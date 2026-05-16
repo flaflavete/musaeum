@@ -1,0 +1,6 @@
+.env
+node_modules/
+fontes/
+.DS_Store
+CLAUDE.md
+.claude/

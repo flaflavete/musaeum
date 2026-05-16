@@ -1,0 +1,1020 @@
+const I18N = {
+  pt: {
+    'brand':           'Musæum',
+    'score-label':     'PONTOS',
+    'begin':           'Começar a história',
+    'challenge':       'Responder o desafio',
+    'play-again':      'Recomeçar',
+    'chapter':         'Capítulo',
+    'intro-kicker':    'UMA HISTÓRIA DO EGITO ANTIGO · ~1875 a.C.',
+    'intro-title':     'A História de Sinué',
+    'intro-subtitle':  'O exílio de um cortesão egípcio, agora em forma de jogo.',
+    'intro-desc':      'Você vai ler a história em 8 partes baseadas principalmente no <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'papiro-berlin\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'papiro-berlin\')}">Papiro Berlin 3022</span>. No fim de cada parte, um desafio sobre a trama ou a cultura egípcia. Acerte de primeira para coletar tesouros da terra de <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'araru\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'araru\')}">Araru</span>!',
+    'correct':         'CORRETO',
+    'warning':         'CUIDADO!',
+    'final-title':     'Fim da Jornada',
+    'final-desc':      'Você acompanhou a história de Sinué até o fim. Veja sua classificação:',
+    'final-inventory': 'TESOUROS CONQUISTADOS NA JORNADA DE SINUÉ',
+    'points':          'pontos',
+    'rank-apprentice': 'Aprendiz',
+    'rank-student':    'Estudante de Hieróglifos',
+    'rank-scribe':     'Escriba Hábil',
+    'rank-master':     'Mestre Escriba',
+    'credits-title':   'Referências Bibliográficas',
+    'credits-body':    'ARAUJO, Emanuel. <b>Escrito para a Eternidade</b>: A literatura do Egito faraônico. Brasília: Ed. UnB, 2000.<br>BARNS, J.W.B. <b>The Ashmolean Ostracon of Sinuhe</b>. London: Oxford University Press, 1952.<br>BLACKMAN, A.M. <b>Middle-Egyptian Stories</b>. Part I. Brussels: Fondation Égyptologique Reine Élisabeth, 1932.<br>FAULKNER, R.O. <b>A Concise Dictionary of Middle Egyptian</b>. Oxford: Griffith Institute, 1962.<br>GARDINER, A.H. <b>Notes on the story of Sinuhe</b>. Paris: Librairie Honoré Champion, 1916.<br>KOCH, R. <b>Die Erzählung des Sinuhe</b>. Brussels: Fondation Égyptologique Reine Élisabeth, 1990.<br>KRIVENKO-ADAMOV, S. <b>The Story of Sinuhe</b> [Análise linguística]. 2015.<br>LICHTHEIM, Miriam. <b>Ancient Egyptian Literature</b>. Vol. I: The Old and Middle Kingdoms. Berkeley: University of California Press, 1975.<br>NEDERHOF, Mark-Jan. <b>Sinuhe</b>: Hieroglyphic transcription and translation. 2006/2011.<br>PARKINSON, R.B. <b>The Tale of Sinuhe and Other Ancient Egyptian Poems 1940–1640 BC</b>. Oxford: Oxford University Press, 1997.<br>SIMPSON, W.K. (ed.). <b>The Literature of Ancient Egypt</b>. New Haven: Yale University Press, 1972.',
+    'back-to-library': 'Voltar para o Musæum',
+    'sound-label':     'Ativar ou desativar som',
+    'inventory-label': 'Tesouros coletados',
+    'splash-subtitle': 'A HISTÓRIA DE SINUÉ',
+    'splash-desc':     'Uma experiência interativa de leitura, gamificação e aprendizado baseada no Papiro Berlin 3022 e outras fontes do Reino Médio',
+    'enter':           'Entrar',
+    'ankh-meaning':    'Símbolo da vida eterna',
+    'chapter-glyph':   'HIERÓGLIFO DO CAPÍTULO',
+    'challenge-count': 'DESAFIO',
+    'context-label':   'CONTEXTO HISTÓRICO',
+    'note-open':       '🔍 Nota Arqueológica',
+    'note-close':      '✕ Fechar Nota',
+    'next-chapter':    'Próximo Capítulo',
+    'see-final':       'Ver Resultado Final',
+    'treasure-got':    'Tesouro coletado',
+    'wrong-default':   'Incorreto. Tente novamente!',
+    'wrong-serpent':   '<b>O campeão de Retjenu ri de você!</b> Releia o capítulo e tente outra resposta.',
+    'final-rank-kicker': 'SEU TÍTULO',
+    'final-rank-meaning':'O escriba mestre',
+    'play-again-btn':  '↻ Recomeçar',
+    'codex-label':     'Códex dos Hieróglifos',
+    'codex-btn':       'Códex',
+    'codex-title':     'Códex dos Hieróglifos',
+    'codex-subtitle':  'Os signos que você encontrou ao longo da jornada',
+    'codex-progress':  'DESCOBERTOS',
+    'codex-locked':    'Ainda não descoberto',
+    'codex-tutorial':  'Como ler hieróglifos',
+    'codex-close':     'Fechar',
+    'sheet-type':      'Tipo',
+    'sheet-meaning':   'Significado',
+    'sheet-note':      'Saiba mais',
+    'sheet-appears':   'Aparece no',
+    'sheet-back':      '← Voltar ao Códex',
+    'tutorial-title':  'Como ler hieróglifos',
+    'tutorial-sub':    'Uma introdução em três passos',
+    'tut-prev':        '← Anterior',
+    'tut-next':        'Próximo →',
+    'tut-done':        'Concluído',
+    'tut-s1-title':    'OS TRÊS TIPOS DE SIGNOS',
+    'tut-s1-body':     'A escrita egípcia não é só imagens de palavras. Um mesmo signo pode funcionar de três maneiras diferentes dependendo do contexto. Saber distinguir é o primeiro passo da leitura.',
+    'tut-s1-c1-label': 'Logograma',
+    'tut-s1-c1-desc':  'representa a palavra inteira',
+    'tut-s1-c2-label': 'Fonograma',
+    'tut-s1-c2-desc':  'representa um som',
+    'tut-s1-c3-label': 'Determinativo',
+    'tut-s1-c3-desc':  'não se lê, classifica o sentido',
+    'tut-s2-title':    'A DIREÇÃO DA LEITURA',
+    'tut-s2-body':     'Os hieróglifos podem ser escritos da direita para a esquerda, da esquerda para a direita ou de cima para baixo. Como saber? Olhe para onde os animais e figuras humanas estão olhando: é de lá que o texto começa. Na maioria dos monumentos, a leitura é da direita para a esquerda.',
+    'tut-s2-body2':    'No nosso jogo, todos os textos estão na direção ocidental (da esquerda para a direita) para facilitar a leitura moderna.',
+    'tut-s3-title':    'O CARTUCHO REAL',
+    'tut-s3-body':     'Quando você vê um grupo de signos cercado por uma moldura oval com uma linha embaixo, está olhando para um cartucho. Ele envolve o nome de um rei ou rainha e serve tanto como honra quanto como proteção mágica.',
+    'tut-s3-body2':    'Foi graças ao cartucho que Champollion decifrou o egípcio antigo em 1822, comparando os nomes de Ptolomeu e Cleópatra na Pedra de Roseta.',
+    'type-logogram':   'Logograma',
+    'type-phonogram':  'Fonograma',
+    'type-determin':   'Determinativo',
+    'type-tri':        'Trilítero',
+    'type-bi':         'Bilítero',
+    'type-uni':        'Unilítero',
+    'type-ideo':       'Ideograma',
+    'glossary-btn':    'Glossário',
+    'glossary-label':  'Glossário de termos',
+    'glossary-title':  'Glossário',
+    'glossary-subtitle':'Palavras e conceitos da História de Sinué',
+    'glossary-search': 'Buscar termo...',
+    'glossary-empty':  'Nenhum termo encontrado.',
+    'discovery-title': '✦ Novo signo descoberto!',
+    'discovery-sub':   'Toque para ver no Códex',
+    'splash-welcome':  'Boas-vindas de volta, ',
+    'final-congrats':  'Parabéns, ',
+  },
+  en: {
+    'brand':           'Musæum',
+    'score-label':     'POINTS',
+    'begin':           'Start the story',
+    'challenge':       'Take the challenge',
+    'play-again':      'Restart',
+    'chapter':         'Chapter',
+    'intro-kicker':    'AN ANCIENT EGYPTIAN TALE · c. 1875 BCE',
+    'intro-title':     'The Tale of Sinuhe',
+    'intro-subtitle':  'The exile of an Egyptian courtier, now as a game.',
+    'intro-desc':      'Read the tale in 8 parts based mainly on the <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'papiro-berlin\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'papiro-berlin\')}">Berlin Papyrus 3022</span>. After each part, take a challenge on the plot or Egyptian culture. Answer on the first try to collect treasures from the land of <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'araru\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'araru\')}">Araru</span>!',
+    'correct':         'CORRECT',
+    'warning':         'WARNING!',
+    'final-title':     'End of the Journey',
+    'final-desc':      'You followed Sinuhe\'s tale to the end. Here is your rank:',
+    'final-inventory': 'TREASURES WON ON SINUHE\'S JOURNEY',
+    'points':          'points',
+    'rank-apprentice': 'Apprentice',
+    'rank-student':    'Hieroglyph Student',
+    'rank-scribe':     'Skillful Scribe',
+    'rank-master':     'Master Scribe',
+    'credits-title':   'Bibliographic References',
+    'credits-body':    'ARAUJO, Emanuel. <b>Escrito para a Eternidade</b>. Brasília: Ed. UnB, 2000.<br>BARNS, J.W.B. <b>The Ashmolean Ostracon of Sinuhe</b>. London: Oxford University Press, 1952.<br>BLACKMAN, A.M. <b>Middle-Egyptian Stories</b>. Part I. Brussels: Fondation Égyptologique Reine Élisabeth, 1932.<br>FAULKNER, R.O. <b>A Concise Dictionary of Middle Egyptian</b>. Oxford: Griffith Institute, 1962.<br>GARDINER, A.H. <b>Notes on the story of Sinuhe</b>. Paris: Librairie Honoré Champion, 1916.<br>KOCH, R. <b>Die Erzählung des Sinuhe</b>. Brussels: Fondation Égyptologique Reine Élisabeth, 1990.<br>KRIVENKO-ADAMOV, S. <b>The Story of Sinuhe</b> [Linguistic analysis]. 2015.<br>LICHTHEIM, Miriam. <b>Ancient Egyptian Literature</b>. Vol. I. Berkeley: University of California Press, 1975.<br>NEDERHOF, Mark-Jan. <b>Sinuhe</b>: Hieroglyphic transcription and translation. 2006/2011.<br>PARKINSON, R.B. <b>The Tale of Sinuhe and Other Ancient Egyptian Poems 1940–1640 BC</b>. Oxford: Oxford University Press, 1997.<br>SIMPSON, W.K. (ed.). <b>The Literature of Ancient Egypt</b>. New Haven: Yale University Press, 1972.',
+    'back-to-library': 'Back to Musæum',
+    'sound-label':     'Toggle sound on or off',
+    'inventory-label': 'Collected treasures',
+    'splash-subtitle': 'THE TALE OF SINUHE',
+    'splash-desc':     'An interactive experience of reading, gamification, and learning based on the Berlin Papyrus 3022 and other Middle Kingdom sources',
+    'enter':           'Enter',
+    'ankh-meaning':    'Symbol of eternal life',
+    'chapter-glyph':   'CHAPTER HIEROGLYPH',
+    'challenge-count': 'CHALLENGE',
+    'context-label':   'HISTORICAL CONTEXT',
+    'note-open':       '🔍 Archaeological Note',
+    'note-close':      '✕ Close Note',
+    'next-chapter':    'Next Chapter',
+    'see-final':       'See Final Result',
+    'treasure-got':    'Treasure collected',
+    'wrong-default':   'Wrong. Try again!',
+    'wrong-serpent':   '<b>The champion of Retjenu laughs at you!</b> Re-read the chapter and try another answer.',
+    'final-rank-kicker': 'YOUR TITLE',
+    'final-rank-meaning':'The master scribe',
+    'play-again-btn':  '↻ Restart',
+    'codex-label':     'Hieroglyph Codex',
+    'codex-btn':       'Codex',
+    'codex-title':     'Hieroglyph Codex',
+    'codex-subtitle':  'The signs you have discovered along the journey',
+    'codex-progress':  'DISCOVERED',
+    'codex-locked':    'Not yet discovered',
+    'codex-tutorial':  'How to read hieroglyphs',
+    'codex-close':     'Close',
+    'sheet-type':      'Type',
+    'sheet-meaning':   'Meaning',
+    'sheet-note':      'Learn more',
+    'sheet-appears':   'Appears in',
+    'sheet-back':      '← Back to Codex',
+    'tutorial-title':  'How to read hieroglyphs',
+    'tutorial-sub':    'A three-step introduction',
+    'tut-prev':        '← Previous',
+    'tut-next':        'Next →',
+    'tut-done':        'Done',
+    'tut-s1-title':    'THE THREE KINDS OF SIGNS',
+    'tut-s1-body':     'Egyptian writing is not just pictures of words. The same sign can work in three different ways depending on context. Learning to tell them apart is the first step to reading.',
+    'tut-s1-c1-label': 'Logogram',
+    'tut-s1-c1-desc':  'stands for the whole word',
+    'tut-s1-c2-label': 'Phonogram',
+    'tut-s1-c2-desc':  'stands for a sound',
+    'tut-s1-c3-label': 'Determinative',
+    'tut-s1-c3-desc':  'not read, classifies meaning',
+    'tut-s2-title':    'THE DIRECTION OF READING',
+    'tut-s2-body':     'Hieroglyphs can be written right-to-left, left-to-right, or top-to-bottom. How to tell? Look at where the animals and human figures face: that is where the text begins. On most monuments, reading goes right to left.',
+    'tut-s2-body2':    'In our game, all texts are shown in the western direction (left to right) to make modern reading easier.',
+    'tut-s3-title':    'THE ROYAL CARTOUCHE',
+    'tut-s3-body':     'When you see a group of signs surrounded by an oval frame with a line beneath, you are looking at a cartouche. It encloses the name of a king or queen and serves as both honor and magical protection.',
+    'tut-s3-body2':    'It was thanks to the cartouche that Champollion deciphered ancient Egyptian in 1822, by comparing the names of Ptolemy and Cleopatra on the Rosetta Stone.',
+    'type-logogram':   'Logogram',
+    'type-phonogram':  'Phonogram',
+    'type-determin':   'Determinative',
+    'type-tri':        'Triliteral',
+    'type-bi':         'Biliteral',
+    'type-uni':        'Uniliteral',
+    'type-ideo':       'Ideogram',
+    'glossary-btn':    'Glossary',
+    'glossary-label':  'Glossary of terms',
+    'glossary-title':  'Glossary',
+    'glossary-subtitle':'Words and concepts from the Tale of Sinuhe',
+    'glossary-search': 'Search term...',
+    'glossary-empty':  'No term found.',
+    'discovery-title': '✦ New sign discovered!',
+    'discovery-sub':   'Tap to view in the Codex',
+    'splash-welcome':  'Welcome back, ',
+    'final-congrats':  'Congratulations, ',
+  }
+};
+
+const ITEMS = [
+  { pt: 'Trigo',       en: 'Wheat',        icon: '🌾' },
+  { pt: 'Falcão',      en: 'Falcon',       icon: '🦅' },
+  { pt: 'Onda',        en: 'Wave',         icon: '🌊' },
+  { pt: 'Palmeira',    en: 'Palm tree',    icon: '🌴' },
+  { pt: 'Espadas',     en: 'Swords',       icon: '⚔️' },
+  { pt: 'Pena de Maat',en: 'Feather of Maat', icon: '🪶' },
+  { pt: 'Lua',         en: 'Moon',         icon: '🌙' },
+  { pt: 'Rolo Real',   en: 'Royal Scroll', icon: '📜' }
+];
+
+// ============================================================
+// GLOSSÁRIO DE TERMOS DIFÍCEIS
+// ============================================================
+const GLOSSARY = [
+  {
+    id: 'amenemhat',
+    termPt: 'Amenemhat I (Sehetepibre)', termEn: 'Amenemhat I (Sehetepibre)',
+    tagPt: 'Faraó', tagEn: 'Pharaoh',
+    defPt: 'Fundador da XII Dinastia (c. 1985–1956 a.C.), cujo nome de trono era <i>Sehetepibre</i> ("aquele que satisfaz o coração de Rá"). Sua morte no 30º ano de reinado, narrada no início da história de Sinué, desencadeia toda a trama. O texto do "Ensinamento de Amenemhat" sugere que ele teria sido vítima de um complô de assassinato dentro do próprio palácio.',
+    defEn: 'Founder of the 12th Dynasty (c. 1985–1956 BCE), whose throne name was <i>Sehetepibre</i> ("he who satisfies the heart of Ra"). His death in the 30th year of his reign, narrated at the opening of the tale of Sinuhe, triggers the entire plot. The text of the "Teaching of Amenemhat" suggests he may have been the victim of an assassination plot within the palace.'
+  },
+  {
+    id: 'amunenshi',
+    termPt: 'Amunenshi', termEn: 'Amunenshi',
+    tagPt: 'Personagem', tagEn: 'Character',
+    defPt: 'Soberano do Alto <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'retjenu\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'retjenu\')}">Retjenu</span> que acolhe Sinué após sua fuga do Egito. Seu nome provavelmente é semítico. Ele reconhece o valor de Sinué, talvez por manter egípcios em sua corte, e o integra à sua família, dando-lhe sua filha mais velha em casamento e as terras de <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'araru\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'araru\')}">Araru</span>.',
+    defEn: 'Ruler of Upper <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'retjenu\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'retjenu\')}">Retjenu</span> who shelters Sinuhe after his flight from Egypt. His name is likely Semitic. He recognizes Sinuhe\'s worth, perhaps through Egyptians at his court, and integrates him into his family, giving him his eldest daughter in marriage and the lands of <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'araru\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'araru\')}">Araru</span>.'
+  },
+  {
+    id: 'araru',
+    termPt: 'Araru (Iaa)', termEn: 'Araru (Yaa)',
+    tagPt: 'Lugar', tagEn: 'Place',
+    defPt: 'Terra fértil na fronteira do domínio de Amunenshi, concedida a Sinué como recompensa por seus serviços. O texto a descreve como "sem igual na terra": havia figos, uvas, vinho em abundância (mais que água), mel, óleo de moringa e gado sem limite. Não foi possível identificá-la com precisão no mapa, mas estudiosos a associam à região de Canaã ou do atual Líbano.',
+    defEn: 'Fertile land on the border of Amunenshi\'s domain, granted to Sinuhe as a reward for his services. The text describes it as "without equal on earth": it had figs, grapes, wine in abundance (more than water), honey, moringa oil, and cattle without limit. Its precise location has not been identified, but scholars associate it with the region of Canaan or present-day Lebanon.'
+  },
+  {
+    id: 'ka',
+    termPt: 'Ka', termEn: 'Ka',
+    tagPt: 'Conceito', tagEn: 'Concept',
+    defPt: 'A força vital ou "duplo espiritual" de uma pessoa, criada no nascimento pelo deus Khnum em seu torno de oleiro. Continuava existindo após a morte e precisava de oferendas de comida e bebida nos túmulos. Dizer que alguém "foi para o seu Ka" era uma forma poética de dizer que havia morrido. Na carta do rei a Sinué, a partida de Amenemhat é descrita como o deus que "entrou em seu horizonte".',
+    defEn: 'The life force or "spiritual double" of a person, created at birth by the god Khnum on his potter\'s wheel. It continued to exist after death and needed offerings of food and drink in tombs. Saying someone "went to their Ka" was a poetic way of saying they had died. In the king\'s letter to Sinuhe, Amenemhat\'s passing is described as the god "entering his horizon".'
+  },
+  {
+    id: 'lapis-lazuli',
+    termPt: 'Lápis-lazúli', termEn: 'Lapis lazuli',
+    tagPt: 'Material', tagEn: 'Material',
+    defPt: 'Pedra semipreciosa de um azul profundo, importada principalmente do Afeganistão, a milhares de quilômetros do Egito. A carta de Sesostris I a Sinué promete-lhe "uma máscara de lápis-lazúli" para seu enterro, um privilégio reservado à realeza e à mais alta nobreza. Seu alto custo fazia dela material exclusivo das elites e dos deuses; na arte egípcia, o cabelo e a barba dos deuses eram representados neste material.',
+    defEn: 'Deep blue semi-precious stone, imported mostly from Afghanistan, thousands of kilometers from Egypt. Sesostris I\'s letter to Sinuhe promises him "a mask of lapis lazuli" for his burial, a privilege reserved for royalty and the highest nobility. Its high cost made it exclusive to elites and gods; in Egyptian art, the hair and beard of the gods were depicted in this material.'
+  },
+  {
+    id: 'maat',
+    termPt: 'Maat', termEn: 'Maat',
+    tagPt: 'Deusa / Conceito', tagEn: 'Goddess / Concept',
+    defPt: 'Deusa e conceito da ordem cósmica, verdade, justiça e equilíbrio. Representada como uma mulher com uma pena de avestruz na cabeça. No julgamento após a morte, o coração era pesado contra a pena de Maat: se mais leve que a pena, a alma era justa. Na história de Sinué, a fuga do personagem representa uma ruptura com a Maat, ordem que só é restaurada com seu retorno ao Egito.',
+    defEn: 'Goddess and concept of cosmic order, truth, justice, and balance. Shown as a woman with an ostrich feather on her head. In the judgment after death, the heart was weighed against Maat\'s feather: if lighter, the soul was righteous. In the tale of Sinuhe, the character\'s flight represents a break with Maat, an order only restored upon his return to Egypt.'
+  },
+  {
+    id: 'montu',
+    termPt: 'Montu (Month)', termEn: 'Montu (Month)',
+    tagPt: 'Deus', tagEn: 'God',
+    defPt: 'Deus da guerra e da força marcial, representado como um homem com cabeça de falcão e um disco solar com penas duplas. Após vencer o duelo contra o campeão de <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'retjenu\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'retjenu\')}">Retjenu</span>, Sinué presta louvor a Montu. Os faraós do Reino Médio, especialmente os Montuhotepes, adotaram seu nome como expressão de poder guerreiro.',
+    defEn: 'God of war and martial strength, depicted as a man with a falcon\'s head and a solar disc with double feathers. After winning the duel against the champion of <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'retjenu\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'retjenu\')}">Retjenu</span>, Sinuhe gives praise to Montu. Middle Kingdom pharaohs, especially the Montuhoteps, adopted his name as an expression of warrior power.'
+  },
+  {
+    id: 'muros-do-soberano',
+    termPt: 'Muros do Soberano (Inbw-HqA)', termEn: 'Walls of the Ruler (Inbw-HqA)',
+    tagPt: 'Lugar', tagEn: 'Place',
+    defPt: 'Sistema de fortalezas erguido na fronteira nordeste do Egito para controlar o fluxo de pessoas e mercadorias entre o Egito e o Levante. Chamado em egípcio de <i>inbw-HqA</i>. Algumas versões do texto chamam-no de "Muros do Pai", sugerindo um senso paternal de proteção das fronteiras. Sinué precisou cruzá-los clandestinamente ao fugir, um ato de gravíssima transgressão.',
+    defEn: 'System of fortresses built on Egypt\'s northeast border to control the flow of people and goods between Egypt and the Levant. Called in Egyptian <i>inbw-HqA</i>. Some versions call it the "Walls of the Father", suggesting a paternal sense of border protection. Sinuhe had to cross them clandestinely during his flight, a gravely transgressive act.'
+  },
+  {
+    id: 'papiro-berlin',
+    termPt: 'Papiro Berlin 3022', termEn: 'Berlin Papyrus 3022',
+    tagPt: 'Manuscrito', tagEn: 'Manuscript',
+    defPt: 'Principal manuscrito da história de Sinué, datado do Reino Médio (c. 1800 a.C.) e preservado no Museu Egípcio de Berlim. É designado pela sigla "B" nos estudos acadêmicos. A história existe em outros manuscritos, como o Papiro Ramesseum (sigla "R") e o Ostraco de Oxford (sigla "AOS"), mas o Papiro Berlin 3022 é o mais completo e literariamente mais refinado.',
+    defEn: 'Primary manuscript of the tale of Sinuhe, dated to the Middle Kingdom (c. 1800 BCE) and preserved in the Egyptian Museum of Berlin. It is designated by the sigla "B" in academic studies. The story exists in other manuscripts, such as the Ramesseum Papyrus (sigla "R") and the Oxford Ostracon (sigla "AOS"), but Berlin Papyrus 3022 is the most complete and literarily refined.'
+  },
+  {
+    id: 'reino-medio',
+    termPt: 'Reino Médio', termEn: 'Middle Kingdom',
+    tagPt: 'Período', tagEn: 'Period',
+    defPt: 'Período da história egípcia entre cerca de 2055 e 1650 a.C. (11ª a 13ª Dinastias). Considerado a "era clássica" da literatura egípcia: é quando foram compostos a História de Sinué, o Conto do Náufrago e muitos textos sapienciais. O egípcio clássico dessas obras tornou-se modelo literário por séculos e ainda era copiado por escribas no período Ramésside, 600 anos depois.',
+    defEn: 'Period of Egyptian history between about 2055 and 1650 BCE (11th to 13th Dynasties). Considered the "classical era" of Egyptian literature: it is when the Tale of Sinuhe, the Tale of the Shipwrecked Sailor, and many wisdom texts were composed. The classical Egyptian of these works became the literary model for centuries and was still being copied by scribes in the Ramesside period, 600 years later.'
+  },
+  {
+    id: 'retjenu',
+    termPt: 'Retjenu', termEn: 'Retjenu',
+    tagPt: 'Região', tagEn: 'Region',
+    defPt: 'Nome egípcio para a região da Síria-Palestina (Canaã, atual Israel, Palestina, Líbano e sul da Síria). Dividida em "Retjenu Superior" (norte) e "Retjenu Inferior" (sul). Era uma região de intercâmbio comercial e tensão política com o Egito. Sinué passa a maior parte de seu exílio no Alto Retjenu, sob proteção de <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'amunenshi\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'amunenshi\')}">Amunenshi</span>.',
+    defEn: 'Egyptian name for the Syria-Palestine region (Canaan, present-day Israel, Palestine, Lebanon, and southern Syria). Divided into "Upper Retjenu" (north) and "Lower Retjenu" (south). It was a region of commercial exchange and political tension with Egypt. Sinuhe spends most of his exile in Upper Retjenu, under the protection of <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'amunenshi\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'amunenshi\')}">Amunenshi</span>.'
+  },
+  {
+    id: 'sa-nht',
+    termPt: 'Sinué (sA-nḥt)', termEn: 'Sinuhe (sA-nḥt)',
+    tagPt: 'Nome próprio', tagEn: 'Proper name',
+    defPt: 'Nome do protagonista, que em egípcio médio significa literalmente "filho da sicômoro" (<i>sA-nḥt</i>). A sicômoro era uma árvore sagrada associada à deusa Hator, que protegia os mortos. O nome pode ser simbólico: Sinué é um homem que, como a sicômoro, vive entre dois mundos, o egípcio e o estrangeiro, antes de encontrar seu lugar de origem.',
+    defEn: 'Name of the protagonist, which in Middle Egyptian literally means "son of the sycamore" (<i>sA-nḥt</i>). The sycamore was a sacred tree associated with the goddess Hathor, who protected the dead. The name may be symbolic: Sinuhe is a man who, like the sycamore, lives between two worlds, the Egyptian and the foreign, before finding his way back to his origins.'
+  },
+  {
+    id: 'sesostris',
+    termPt: 'Sesostris I (Kheperkare)', termEn: 'Sesostris I (Kheperkare)',
+    tagPt: 'Faraó', tagEn: 'Pharaoh',
+    defPt: 'Filho e sucessor de <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'amenemhat\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'amenemhat\')}">Amenemhat I</span>, cujo nome de trono era <i>Kheperkare</i> ("a manifestação da alma de Rá"). Governou o Egito por cerca de 45 anos. No texto, é ele quem envia a carta chamando Sinué de volta ao exílio e ordena a construção de uma pirâmide para o cortesão. É descrito por Sinué com elogios hiperbólicos, um recurso literário típico do Reino Médio.',
+    defEn: 'Son and successor of <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'amenemhat\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'amenemhat\')}">Amenemhat I</span>, whose throne name was <i>Kheperkare</i> ("the manifestation of Ra\'s soul"). He ruled Egypt for about 45 years. In the text, it is he who sends the letter calling Sinuhe back from exile and orders a pyramid to be built for the courtier. He is described by Sinuhe in hyperbolic terms, a typical literary device of the Middle Kingdom.'
+  },
+  {
+    id: 'uraeus',
+    termPt: 'Uraeus (ureo)', termEn: 'Uraeus',
+    tagPt: 'Símbolo real', tagEn: 'Royal symbol',
+    defPt: 'A cobra ereta (<i>Naja haje</i>) que ornava a testa dos faraós egípcios como símbolo de poder e proteção divina. Em egípcio, <i>iaret</i>, "a que se ergue". Representava a deusa Uadjet, protetora do Baixo Egito. Acreditava-se que ela cuspisse fogo nos inimigos do faraó. Na hino das princesas a Sesostris, na história de Sinué, o uraeus é mencionado diretamente.',
+    defEn: 'The rearing cobra (<i>Naja haje</i>) that adorned the forehead of Egyptian pharaohs as a symbol of power and divine protection. In Egyptian, <i>iaret</i>, "the one who rises". It represented the goddess Wadjet, protector of Lower Egypt. It was believed to spit fire at the pharaoh\'s enemies. In the princesses\' hymn to Sesostris in the tale of Sinuhe, the uraeus is directly mentioned.'
+  }
+];
+
+const t = (k) => I18N[state.lang][k] || k;
+
+const CHAPTERS = [
+  {
+    titlePt: 'A Morte do Faraó',
+    titleEn: 'The Pharaoh\'s Death',
+    featured: { glyph: '𓂋', translit: 'r', meaningPt: 'a boca, o anúncio, a palavra que chega', meaningEn: 'the mouth, the announcement, the word that arrives' },
+    notePt: 'A fórmula <i>aq nṯr r Axt=f</i>, "o deus entrou em seu horizonte", é a expressão literária padrão para a morte real. O co-reinado de <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'amenemhat\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'amenemhat\')}">Amenemhat I</span> e <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'sesostris\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'sesostris\')}">Sesostris I</span> durou cerca de dez anos, e a passagem de poder foi turbulenta: o "Ensinamento de Amenemhat" sugere uma tentativa de assassinato dentro do palácio.',
+    noteEn: 'The formula <i>aq nṯr r Axt=f</i>, "the god entered his horizon", is the standard literary phrase for royal death. The co-regency of <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'amenemhat\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'amenemhat\')}">Amenemhat I</span> and <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'sesostris\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'sesostris\')}">Sesostris I</span> lasted about ten years, and the transfer of power was turbulent: the "Teaching of Amenemhat" hints at an assassination attempt inside the palace.',
+    storyPt: `<p class="dropcap">Era o trigésimo ano do reinado de <span class="gloss" tabindex="0" onclick="openGlossaryAt('amenemhat')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('amenemhat')}">Amenemhat</span>. No terceiro mês da estação de inundação, no sétimo dia, o deus entrou em seu horizonte. O faraó ascendeu ao céu e se uniu ao sol. Seu corpo divino fundiu-se àquele que o criara.</p><p>A residência real estava em silêncio. Os corações jaziam em luto, as grandes portas duplas estavam fechadas e os cortesãos gemiam. <span class="gloss" tabindex="0" onclick="openGlossaryAt('sesostris')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('sesostris')}">Sesostris</span> havia sido enviado com um grande exército para subjugar as terras dos líbios. Mensageiros secretos foram despachados à fronteira ocidental para que o príncipe soubesse do que havia acontecido dentro do palácio. Eles o encontraram no caminho, ao cair da noite. Ele não hesitou um instante, o falcão voou com seus seguidores, sem informar seu exército.</p><p>Eu, <span class="gloss" tabindex="0" onclick="openGlossaryAt('sa-nht')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('sa-nht')}">Sinué</span>, era servo do harém real, seguidor do soberano. Estava presente quando os mensageiros chegaram. Ouvi a voz deles, e enquanto falavam, eu estava perto demais de um complô. Meu coração se turbou. Meus braços se abriram. O tremor caiu sobre todos os meus membros. Saltei para longe, procurando um esconderijo.</p>`,
+    storyEn: `<p class="dropcap">It was the thirtieth year of <span class="gloss" tabindex="0" onclick="openGlossaryAt('amenemhat')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('amenemhat')}">Amenemhat</span>'s reign. On the seventh day of the third month of the inundation season, the god entered his horizon. The pharaoh ascended to heaven and was united with the sun. His divine body merged with him who had created him.</p><p>The royal residence was in silence. Hearts lay in mourning, the great double gate was sealed, and courtiers were wailing. <span class="gloss" tabindex="0" onclick="openGlossaryAt('sesostris')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('sesostris')}">Sesostris</span> had been sent with a great army to strike down the lands of the Libyans. Secret messengers were dispatched to the western border to inform the prince of what had happened inside the palace. They found him on the road at nightfall. He did not hesitate for an instant, the falcon flew off with his followers, without informing his army.</p><p>I, <span class="gloss" tabindex="0" onclick="openGlossaryAt('sa-nht')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('sa-nht')}">Sinuhe</span>, was a servant of the royal harem, a follower of the sovereign. I was present when the messengers arrived. I heard their voices, and as they spoke, I was close to a conspiracy. My heart grew confused. My arms dropped wide. Trembling fell over all my limbs. I leapt away, searching for a hiding place.</p>`,
+    question: {
+      promptPt: 'Qual campanha militar Sesostris liderava quando Amenemhat morreu?',
+      promptEn: 'Which military campaign was Sesostris leading when Amenemhat died?',
+      options: [
+        { pt: 'A conquista da Núbia', en: 'The conquest of Nubia', correct: false },
+        { pt: 'Uma expedição às minas reais', en: 'An expedition to the royal mines', correct: false },
+        { pt: 'Uma campanha contra os líbios', en: 'A campaign against the Libyans', correct: true },
+        { pt: 'Uma viagem marítima a Punt', en: 'A sea voyage to Punt', correct: false },
+      ],
+      factPt: 'O <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'reino-medio\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'reino-medio\')}">Reino Médio</span> foi um período de intensa atividade militar no Levante e na Líbia. O "Ensinamento de Amenemhat" sugere que o próprio faraó pode ter sido assassinado, tornando a sucessão ainda mais delicada.',
+      factEn: 'The <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'reino-medio\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'reino-medio\')}">Middle Kingdom</span> was a period of intense military activity in the Levant and Libya. The "Teaching of Amenemhat" suggests the pharaoh may have been assassinated, making the succession all the more precarious.'
+    }
+  },
+  {
+    titlePt: 'A Fuga pelo Deserto',
+    titleEn: 'Flight Through the Desert',
+    featured: { glyph: '𓅓', translit: 'm', meaningPt: 'a coruja, o voo silencioso, a noite', meaningEn: 'the owl, the silent flight, the night' },
+    notePt: 'Os <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'muros-do-soberano\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'muros-do-soberano\')}">Muros do Soberano</span> (<i>inbw-HqA</i>) eram o sistema de fortalezas da fronteira nordeste do Egito, construído exatamente para controlar quem entrava e saía. Cruzá-los clandestinamente era um ato gravíssimo. A sede de Sinué no deserto é um dos momentos de maior tensão dramática da literatura egípcia.',
+    noteEn: 'The <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'muros-do-soberano\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'muros-do-soberano\')}">Walls of the Ruler</span> (<i>inbw-HqA</i>) were Egypt\'s northeast border fortifications, built precisely to control who entered and exited. Crossing them clandestinely was a gravely serious act. Sinuhe\'s thirst in the desert is one of the most dramatically tense moments in all Egyptian literature.',
+    storyPt: `<p class="dropcap">Coloquei-me entre dois arbustos para dar passagem aos que caminhavam pela estrada. Segui para o sul, não tinha intenção de alcançar a residência real, pois esperava conflito. Atravessei a região de Maati e cheguei à Ilha de Snofru. Parti de madrugada, cruzei o rio num barco sem leme, empurrado pelo vento do oeste.</p><p>Avancei para o norte, até avistar os <span class="gloss" tabindex="0" onclick="openGlossaryAt('muros-do-soberano')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('muros-do-soberano')}">Muros do Soberano</span>. Agachei-me entre os arbustos, com medo de ser visto pelos guardas. Atravessei no escuro, cheguei a Peten, depois à ilha de Kemur. A sede caiu sobre mim como fogo. Minha garganta estava ressecada. "Este é o sabor da morte", pensei.</p><p>Então meu coração se ergueu: ouvi o mugido distante de gado. Vi <span class="gloss" tabindex="0" onclick="openGlossaryAt('retjenu')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('retjenu')}">beduínos</span> ao longe. O líder deles, que havia estado no Egito, me reconheceu. Deu-me água e ferveu leite para mim. Fui com ele até seu clã, e o que fizeram por mim foi bom. Terra passou a me dar a outra terra.</p>`,
+    storyEn: `<p class="dropcap">I placed myself between two bushes to clear the road for those passing by. I went southward, I had no intention of reaching the royal residence, for I expected trouble. I crossed the region of Maati and reached the Island of Snofru. I departed at dawn, crossed the river in a boat without a rudder, carried by the west wind.</p><p>I pushed northward until I spotted the <span class="gloss" tabindex="0" onclick="openGlossaryAt('muros-do-soberano')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('muros-do-soberano')}">Walls of the Ruler</span>. I crouched among the bushes, fearing the guards would see me. I crossed in darkness, reached Peten, then the island of Kemur. Thirst overtook me like fire. My throat was parched. "This is the taste of death," I thought.</p><p>Then my heart lifted: I heard the distant lowing of cattle. I spotted <span class="gloss" tabindex="0" onclick="openGlossaryAt('retjenu')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('retjenu')}">bedouin</span> in the distance. Their leader, who had been in Egypt, recognized me. He gave me water and boiled milk for me. I went with him to his clan, and what they did for me was good. Land passed me to land.</p>`,
+    question: {
+      promptPt: 'O que salvou Sinué de morrer de sede no deserto?',
+      promptEn: 'What saved Sinuhe from dying of thirst in the desert?',
+      options: [
+        { pt: 'Encontrou um oásis no caminho', en: 'He found an oasis along the way', correct: false },
+        { pt: 'Ouviu o mugido de gado e beduínos o socorreram', en: 'He heard cattle lowing and bedouin came to his aid', correct: true },
+        { pt: 'Achou uma ânfora de água abandonada', en: 'He found an abandoned water jar', correct: false },
+        { pt: 'Encontrou um rio próximo à fronteira', en: 'He found a river near the border', correct: false },
+      ],
+      factPt: 'Os beduínos, <i>nmjw-Saj</i>, "andarilhos da areia", eram nômades semitas que transitavam pelas fronteiras do Egito. Frequentemente vistos com desconfiança, aqui salvam literalmente a vida de Sinué.',
+      factEn: 'The bedouin, <i>nmjw-Saj</i>, "sand-wanderers", were Semitic nomads who moved along Egypt\'s borders. Often regarded with suspicion, here they literally save Sinuhe\'s life.'
+    }
+  },
+  {
+    titlePt: 'Acolhido em Retjenu',
+    titleEn: 'Welcomed in Retjenu',
+    featured: { glyph: '𓈉', translit: 'xꜣst', meaningPt: 'as colinas estrangeiras, o Levante, terras além do Egito', meaningEn: 'the foreign hills, the Levant, lands beyond Egypt' },
+    notePt: '<span class="gloss" tabindex="0" onclick="openGlossaryAt(\'amunenshi\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'amunenshi\')}">Amunenshi</span> pergunta a Sinué o que aconteceu no Egito, não porque não sabia, mas como protocolo diplomático. A resposta de Sinué é deliberadamente vaga sobre as circunstâncias da morte do faraó, revelando a delicadeza política do momento. Sinué omite a causa real de sua fuga: medo, não traição.',
+    noteEn: '<span class="gloss" tabindex="0" onclick="openGlossaryAt(\'amunenshi\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'amunenshi\')}">Amunenshi</span> asks Sinuhe what happened in Egypt, not because he didn\'t know, but as diplomatic protocol. Sinuhe\'s answer is deliberately vague about the circumstances of the pharaoh\'s death, revealing the political delicacy of the moment. Sinuhe conceals the real cause of his flight: fear, not treason.',
+    storyPt: `<p class="dropcap">Da terra de Byblos parti rumo a Qedem. Passei lá um ano e meio. Foi então que <span class="gloss" tabindex="0" onclick="openGlossaryAt('amunenshi')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('amunenshi')}">Amunenshi</span>, soberano do Alto <span class="gloss" tabindex="0" onclick="openGlossaryAt('retjenu')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('retjenu')}">Retjenu</span>, mandou buscar-me. "Você ficará bem comigo", disse ele, "pois aqui ouvirá a língua do Egito."</p><p>Ele me perguntou o que havia acontecido na residência. Contei-lhe que o rei havia partido, mas sobre os pormenores, fui vago, fabricando uma resposta cautelosa: dissera que havia retornado de uma expedição à Líbia, que a notícia me foi trazida e meu coração fraquejou. Não sabia o que me trouxera àquela terra, era como o plano de um deus, ou como um sonho.</p><p>Amunenshi ficou satisfeito. Deu-me sua filha mais velha em casamento. Deixou-me escolher de suas terras o que havia de melhor na fronteira com outra região. Era uma terra chamada <span class="gloss" tabindex="0" onclick="openGlossaryAt('araru')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('araru')}">Araru</span>.</p>`,
+    storyEn: `<p class="dropcap">From the land of Byblos I departed toward Qedem. I spent a year and a half there. It was then that <span class="gloss" tabindex="0" onclick="openGlossaryAt('amunenshi')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('amunenshi')}">Amunenshi</span>, ruler of Upper <span class="gloss" tabindex="0" onclick="openGlossaryAt('retjenu')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('retjenu')}">Retjenu</span>, came to fetch me. "You will be well with me," he said, "for here you will hear the language of Egypt."</p><p>He asked me what had happened at the residence. I told him that the king had departed, but about the details I was vague, fabricating a careful answer: I said I had returned from an expedition to Libya, that the news was brought to me, and my heart grew weak. I did not know what had brought me to this land, it was like the plan of a god, or like a dream.</p><p>Amunenshi was pleased. He gave me his eldest daughter in marriage. He let me choose from his lands the finest along the border with another region. It was a land called <span class="gloss" tabindex="0" onclick="openGlossaryAt('araru')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('araru')}">Araru</span>.</p>`,
+    question: {
+      promptPt: 'Como se chamava a terra fértil concedida a Sinué em Retjenu?',
+      promptEn: 'What was the name of the fertile land granted to Sinuhe in Retjenu?',
+      options: [
+        { pt: 'Qedem', en: 'Qedem', correct: false },
+        { pt: 'Byblos', en: 'Byblos', correct: false },
+        { pt: 'Araru', en: 'Araru', correct: true },
+        { pt: 'Kemet', en: 'Kemet', correct: false },
+      ],
+      factPt: '<span class="gloss" tabindex="0" onclick="openGlossaryAt(\'araru\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'araru\')}">Araru</span> é descrita como "sem igual na terra", havia mais vinho do que água, mel abundante e gado sem limite. O texto usa essa abundância para mostrar que Sinué prosperou, mas que nada se compara ao Egito.',
+      factEn: '<span class="gloss" tabindex="0" onclick="openGlossaryAt(\'araru\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'araru\')}">Araru</span> is described as "without equal on earth", there was more wine than water, plentiful honey, and cattle without limit. The text uses this abundance to show that Sinuhe prospered, but that nothing compares to Egypt.'
+    }
+  },
+  {
+    titlePt: 'O Elogio de Sesostris',
+    titleEn: 'The Praise of Sesostris',
+    featured: { glyph: '𓆸', translit: 'sšn', meaningPt: 'o lótus, a eloquência florescendo, o elogio', meaningEn: 'the lotus, eloquence in bloom, the eulogy' },
+    notePt: 'O elogio de <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'sesostris\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'sesostris\')}">Sesostris I</span> por Sinué é um dos mais extensos da literatura egípcia e usa metáforas marciais brilhantes. A comparação com <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'montu\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'montu\')}">Montu</span> e Sekhmet era o mais alto elogio guerreiro possível. Filólogos modernos debatem se o elogio é propaganda política ou expressão genuína de lealdade.',
+    noteEn: 'The praise of <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'sesostris\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'sesostris\')}">Sesostris I</span> by Sinuhe is one of the most extensive in Egyptian literature and uses brilliant martial metaphors. The comparison with <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'montu\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'montu\')}">Montu</span> and Sekhmet was the highest possible warrior praise. Modern philologists debate whether the eulogy is political propaganda or a genuine expression of loyalty.',
+    storyPt: `<p class="dropcap"><span class="gloss" tabindex="0" onclick="openGlossaryAt('amunenshi')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('amunenshi')}">Amunenshi</span> perguntou-me: "Como estará aquela terra sem ele, aquele deus excelente? Como é o medo que ele inspira, como Sekhmet em um ano de pestilência?"</p><p>Respondi-lhe: "Seu filho já entrou no palácio e assumiu a herança de seu pai. Ele é um deus sem igual, nenhum outro surgiu diante dele. Ele é um herói que age com seu próprio braço, um campeão sem igual. Quando o vemos atacar, dobra chifres e enfraquece mãos. Seus inimigos não conseguem formar tropas. Ele é vingativo, esmaga cabeças, ninguém pode ficar perto dele."</p><p>"Sua cidade o ama mais do que a si mesma, e se alegra com ele mais do que com seu próprio deus. Homens e mulheres celebram ao vê-lo passar. Ele é um rei que conquistou ainda no ovo, sua mente estava voltada para isso desde que nasceu. Quão alegre é a terra que ele governa! Ele estenderá as fronteiras."</p><p><span class="gloss" tabindex="0" onclick="openGlossaryAt('amunenshi')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('amunenshi')}">Amunenshi</span> disse-me então: "O Egito é feliz, pois conhece a sua capacidade. Você ficará aqui comigo, o que farei por você será bom."</p>`,
+    storyEn: `<p class="dropcap"><span class="gloss" tabindex="0" onclick="openGlossaryAt('amunenshi')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('amunenshi')}">Amunenshi</span> asked me: "How will that land be without him, that excellent god? How is the fear he inspires, like Sekhmet in a year of pestilence?"</p><p>I answered him: "His son has already entered the palace and assumed his father's inheritance. He is a god without equal, no other arose before him. He is a hero who acts with his own arm, a champion without equal. When he is seen attacking, he bends down horns and weakens hands. His enemies cannot marshal troops. He is vengeful, he smashes heads, no one can stand near him."</p><p>"His city loves him more than itself and rejoices in him more than in its own god. Men and women celebrate at the sight of him. He is a king who conquered while still in the egg, his mind was set to it since he was born. How joyful is the land that he rules! He will extend the borders."</p><p><span class="gloss" tabindex="0" onclick="openGlossaryAt('amunenshi')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('amunenshi')}">Amunenshi</span> then said to me: "Egypt is happy, for it knows his ability. You will stay here with me, what I shall do for you is good."</p>`,
+    question: {
+      promptPt: 'A que deusa Amunenshi compara o temor inspirado por Sesostris?',
+      promptEn: 'To which goddess does Amunenshi compare the fear inspired by Sesostris?',
+      options: [
+        { pt: 'Ísis', en: 'Isis', correct: false },
+        { pt: 'Hator', en: 'Hathor', correct: false },
+        { pt: 'Sekhmet', en: 'Sekhmet', correct: true },
+        { pt: 'Nut', en: 'Nut', correct: false },
+      ],
+      factPt: 'Sekhmet era a deusa leoa da guerra e da pestilência, seu nome significa "a poderosa". Comparar o rei a Sekhmet era o mais alto elogio marcial possível no <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'reino-medio\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'reino-medio\')}">Reino Médio</span>.',
+      factEn: 'Sekhmet was the lioness goddess of war and pestilence, her name means "the powerful one". Comparing the king to Sekhmet was the highest possible martial praise in the <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'reino-medio\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'reino-medio\')}">Middle Kingdom</span>.'
+    }
+  },
+  {
+    titlePt: 'Uma Nova Vida em Araru',
+    titleEn: 'A New Life in Araru',
+    featured: { glyph: '𓃒', translit: 'kꜣ', meaningPt: 'o touro, força e abundância, a terra próspera', meaningEn: 'the bull, strength and abundance, the prosperous land' },
+    notePt: 'A descrição da prosperidade de Sinué em <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'araru\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'araru\')}">Araru</span> ecoa as fórmulas de abundância dos textos funerários: mais vinho do que água, mel, azeite, figos e toda espécie de frutas. O texto enfatiza que Sinué tornou-se chefe tribal de pleno direito, com exército, comida e prestígio, mas que jamais esqueceu o Egito.',
+    noteEn: 'The description of Sinuhe\'s prosperity in <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'araru\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'araru\')}">Araru</span> echoes the abundance formulas of funerary texts: more wine than water, honey, oil, figs, and all manner of fruit. The text emphasizes that Sinuhe became a tribal chief in full standing, with an army, food, and prestige, but never forgot Egypt.',
+    storyPt: `<p class="dropcap">A terra de <span class="gloss" tabindex="0" onclick="openGlossaryAt('araru')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('araru')}">Araru</span> era como um sonho de abundância. Havia mais vinho do que água. O mel era em grande quantidade, o azeite em profusão. Todas as espécies de frutas estavam nas árvores. Havia cevada e espelta, sem limite o que o gado produzia.</p><p>Tornei-me um chefe tribal muito estimado. Dei pão ao faminto, água ao sedento, vestimenta ao nu, um caminho àquele que estava perdido. Os anos foram passando, meus filhos tornaram-se chefes de tribos. Cada mensageiro que chegava do Egito parava em minha casa: eu era hospitaleiro a todos.</p><p>Enviei boa água ao sul e trouxe gado ao norte. Saí muitas vezes em expedições com os chefes de <span class="gloss" tabindex="0" onclick="openGlossaryAt('retjenu')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('retjenu')}">Retjenu</span>. E contudo, apesar de toda essa prosperidade, meu coração jamais esqueceu o Egito.</p>`,
+    storyEn: `<p class="dropcap">The land of <span class="gloss" tabindex="0" onclick="openGlossaryAt('araru')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('araru')}">Araru</span> was like a dream of abundance. There was more wine than water. Honey was plentiful, oil in abundance. All kinds of fruit were on the trees. There was barley and emmer wheat, cattle without limit.</p><p>I became a highly regarded tribal chief. I gave bread to the hungry, water to the thirsty, clothing to the naked, a path to whoever was lost on the road. The years passed, my children became chiefs of tribes. Every messenger coming from Egypt stopped at my house: I was hospitable to all.</p><p>I sent good water southward and brought cattle northward. I went out many times on campaigns with the chiefs of <span class="gloss" tabindex="0" onclick="openGlossaryAt('retjenu')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('retjenu')}">Retjenu</span>. And yet, despite all this prosperity, my heart never forgot Egypt.</p>`,
+    question: {
+      promptPt: 'O que havia em Araru em maior abundância do que água, segundo o texto?',
+      promptEn: 'What was there in Araru in greater abundance than water, according to the text?',
+      options: [
+        { pt: 'Mel', en: 'Honey', correct: false },
+        { pt: 'Vinho', en: 'Wine', correct: true },
+        { pt: 'Azeite', en: 'Olive oil', correct: false },
+        { pt: 'Leite', en: 'Milk', correct: false },
+      ],
+      factPt: 'A prosperidade em Araru é descrita com hipérboles celebratórias: "mais vinho do que água". Essa fórmula de abundância é típica dos textos egípcios que descrevem terras ricas, funcionando como metáfora da bênção divina.',
+      factEn: 'The prosperity in Araru is described with celebratory hyperbole: "more wine than water." This abundance formula is typical of Egyptian texts describing rich lands, functioning as a metaphor for divine blessing.'
+    }
+  },
+  {
+    titlePt: 'O Duelo do Herói',
+    titleEn: 'The Hero\'s Duel',
+    featured: { glyph: '𓃭', translit: 'rw', meaningPt: 'o leão, o campeão, a força do guerreiro', meaningEn: 'the lion, the champion, the warrior\'s strength' },
+    notePt: '<span class="gloss" tabindex="0" onclick="openGlossaryAt(\'montu\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'montu\')}">Montu</span>, deus da guerra, é invocado por Sinué após a vitória, o único momento em que ele age como um egípcio genuíno em terra estrangeira. O duelo segue a estrutura clássica do combate singular do heroísmo egípcio: preparação noturna, assembleia da plateia, troca de projéteis e golpe final.',
+    noteEn: '<span class="gloss" tabindex="0" onclick="openGlossaryAt(\'montu\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'montu\')}">Montu</span>, god of war, is invoked by Sinuhe after the victory, the one moment when he acts as a true Egyptian in a foreign land. The duel follows the classic single-combat structure of Egyptian heroism: nocturnal preparation, audience assembly, exchange of projectiles, and final blow.',
+    storyPt: `<p class="dropcap">Veio de <span class="gloss" tabindex="0" onclick="openGlossaryAt('retjenu')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('retjenu')}">Retjenu</span> um homem forte, um herói sem igual que havia destruído toda a região. Declarou que lutaria comigo, querendo tomar meu gado. <span class="gloss" tabindex="0" onclick="openGlossaryAt('amunenshi')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('amunenshi')}">Amunenshi</span> consultou-me. Aceitei o desafio.</p><p>À noite, tendi meu arco, disparei minhas flechas, afiei meu punhal e polí minhas armas. Quando o dia amanheceu, <span class="gloss" tabindex="0" onclick="openGlossaryAt('retjenu')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('retjenu')}">Retjenu</span> havia se reunido. As tribos se juntaram, os vizinhos se agruparam, todos aguardavam a batalha. Todo coração ardia por mim; mulheres tagarelavam, todos me queriam bem.</p><p>O herói veio em minha direção. Aguardei posicionado perto dele. Deixei suas flechas passarem por mim. Quando ele se aproximou, disparei-o, minha flecha ficou cravada em seu pescoço. Ele gritou e caiu de bruços. Com o seu próprio machado, abati-o. Dei louvor a <span class="gloss" tabindex="0" onclick="openGlossaryAt('montu')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('montu')}">Montu</span>. Tornei-me grande. Engrandeci-me em bens. Meu rebanho multiplicou-se.</p>`,
+    storyEn: `<p class="dropcap">There came from <span class="gloss" tabindex="0" onclick="openGlossaryAt('retjenu')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('retjenu')}">Retjenu</span> a strong man, a hero without equal who had entirely devastated the region. He declared he would fight me, intending to seize my cattle. <span class="gloss" tabindex="0" onclick="openGlossaryAt('amunenshi')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('amunenshi')}">Amunenshi</span> consulted with me. I accepted the challenge.</p><p>At night, I strung my bow, shot my arrows, sharpened my dagger, and polished my weapons. When the day dawned, <span class="gloss" tabindex="0" onclick="openGlossaryAt('retjenu')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('retjenu')}">Retjenu</span> had assembled. The tribes gathered, the neighbors came together, all awaiting the battle. Every heart burned for me; women were chattering, all wished me well.</p><p>The hero came toward me. I waited, positioned close to him. I let his arrows pass me by. When he approached, I shot him, my arrow stuck in his neck. He cried out and fell on his face. With his own axe I struck him down. I gave praise to <span class="gloss" tabindex="0" onclick="openGlossaryAt('montu')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('montu')}">Montu</span>. I became great. I grew rich in goods. My herds multiplied.</p>`,
+    question: {
+      promptPt: 'Como Sinué derrotou o campeão de Retjenu no duelo?',
+      promptEn: 'How did Sinuhe defeat the champion of Retjenu in the duel?',
+      options: [
+        { pt: 'Com as mãos nuas, corpo a corpo', en: 'With his bare hands, in hand-to-hand combat', correct: false },
+        { pt: 'Empurrando-o de uma falésia', en: 'Pushing him off a cliff', correct: false },
+        { pt: 'Com uma flecha no pescoço, seguida de golpe de machado', en: 'With an arrow to the neck, followed by an axe blow', correct: true },
+        { pt: 'Com uma armadilha preparada à noite', en: 'With a trap set overnight', correct: false },
+      ],
+      factPt: 'Após a vitória, Sinué tomou os bens do adversário e deu louvores a <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'montu\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'montu\')}">Montu</span>, deus da guerra, o único momento em que ele age publicamente como egípcio em terra estrangeira.',
+      factEn: 'After the victory, Sinuhe seized his adversary\'s goods and gave praise to <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'montu\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'montu\')}">Montu</span>, god of war, the one moment when he publicly acts as an Egyptian in a foreign land.'
+    }
+  },
+  {
+    titlePt: 'A Saudade e a Prece',
+    titleEn: 'Longing and Prayer',
+    featured: { glyph: '𓇹', translit: 'jꜥḥ', meaningPt: 'a lua crescente, a noite da saudade', meaningEn: 'the crescent moon, the night of longing' },
+    notePt: 'A prece de Sinué aos deuses é um dos mais belos exemplos de poesia lírica egípcia. Para os egípcios, ser sepultado em terra estrangeira era uma catástrofe espiritual: sem as mumificação correta e os ritos funerários, a alma não poderia fazer a jornada ao além. O medo de Sinué não é sentimental, é teológico.',
+    noteEn: 'Sinuhe\'s prayer to the gods is one of the finest examples of Egyptian lyric poetry. For Egyptians, being buried in foreign soil was a spiritual catastrophe: without proper mummification and funerary rites, the soul could not make the journey to the afterlife. Sinuhe\'s fear is not sentimental, it is theological.',
+    storyPt: `<p class="dropcap">Apesar de toda a prosperidade, minha casa bela, meus terrenos extensos, meu nome na residência real, a velhice havia chegado. A fraqueza me dominava, meus olhos estavam pesados, meus braços fracos, minhas pernas não me seguiam mais. O coração estava cansado.</p><p>Supliquei a todos os deuses que me haviam conduzido nessa fuga: "Que tenham misericórdia e me tragam de volta para o Egito! Que o Rei do Egito seja misericordioso comigo, para que eu viva pela sua graça! Que eu possa saudar a rainha que está em seu palácio, que eu ouça as mensagens de seus filhos!"</p><p>"Pois o que importa mais do que meu corpo ser sepultado na terra onde nasci? Minha fuga foi sem motivo, não fui insultado, não falei no conselho dos nobres contra ninguém. O deus é quem ordenou essa fuga, como um sonho; como um homem do delta que se vê em Elefantina."</p>`,
+    storyEn: `<p class="dropcap">Despite all the prosperity, my fine house, my extensive grounds, my name at the royal residence, old age had come. Weakness had overtaken me, my eyes were heavy, my arms were weak, my legs no longer followed me. The heart was weary.</p><p>I beseeched all the gods who had guided me in this flight: "May they be merciful and bring me back to Egypt! May the King of Egypt be gracious to me, so that I may live by his mercy! May I greet the queen who is in his palace, may I hear the messages of her children!"</p><p>"For what matters more than my body being buried in the land where I was born? My flight was without cause, I was not insulted, I did not speak in the council of nobles against anyone. It is the god who ordained this flight, like a dream; like a Delta man who finds himself at Elephantine."</p>`,
+    question: {
+      promptPt: 'Por que Sinué temia morrer em terra estrangeira acima de tudo?',
+      promptEn: 'Why did Sinuhe fear dying in a foreign land above all else?',
+      options: [
+        { pt: 'Sentia falta da comida e do clima do Egito', en: 'He missed Egyptian food and climate', correct: false },
+        { pt: 'Queria recuperar seu cargo no palácio', en: 'He wanted to reclaim his palace position', correct: false },
+        { pt: 'Sem ritos funerários egípcios, sua alma não poderia chegar ao além', en: 'Without Egyptian funerary rites, his soul could not reach the afterlife', correct: true },
+        { pt: 'Temia que seus filhos perdessem a herança', en: 'He feared his children would lose their inheritance', correct: false },
+      ],
+      factPt: 'A mumificação e os ritos funerários eram essenciais para a sobrevivência da alma no além. Ser sepultado sem eles, ou em solo estrangeiro, equivalia a uma segunda morte, permanente e irrecuperável.',
+      factEn: 'Mummification and funerary rites were essential for the soul\'s survival in the afterlife. Being buried without them, or in foreign soil, amounted to a second, permanent and unrecoverable death.'
+    }
+  },
+  {
+    titlePt: 'A Carta do Rei e o Retorno',
+    titleEn: 'The King\'s Letter and the Return',
+    featured: { glyph: '𓇼', translit: 'sbꜣ', meaningPt: 'a estrela, a eternidade, o retorno à ordem', meaningEn: 'the star, eternity, the return to order' },
+    notePt: 'A carta real (<i>wD-nsw</i>) prometia a Sinué um enterro com <strong>pirâmide de pedra</strong>, imagem revestida de ouro e máscara de <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'lapis-lazuli\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'lapis-lazuli\')}">lápis-lazúli</span>, privilégios reservados à realeza. A construção de uma pirâmide para um servo, por ordem do próprio faraó, é o símbolo máximo da reintegração de Sinué à ordem do mundo.',
+    noteEn: 'The royal decree (<i>wD-nsw</i>) promised Sinuhe a burial with a <strong>pyramid of stone</strong>, a gold-sheathed image and a mask of <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'lapis-lazuli\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'lapis-lazuli\')}">lapis lazuli</span>, privileges reserved for royalty. The construction of a pyramid for a servant, by order of the pharaoh himself, is the ultimate symbol of Sinuhe\'s reintegration into the world order.',
+    storyPt: `<p class="dropcap"><span class="gloss" tabindex="0" onclick="openGlossaryAt('sesostris')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('sesostris')}">Sesostris</span> soube da condição em que eu me encontrava e enviou-me uma carta com presentes reais. Ela dizia: "Tuas peregrinações pelas terras foram ao conselho do teu próprio coração. Não insultaste ninguém. Pensa no dia do enterro e no passar à bem-aventurança. Não morrerás em terra estrangeira, asiáticos não te sepultarão."</p><p>Quando a carta foi lida para mim, lancei-me de bruços no chão. Percorri meu acampamento gritando de alegria. Passei um dia em <span class="gloss" tabindex="0" onclick="openGlossaryAt('araru')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('araru')}">Araru</span>, transferindo meus bens aos filhos, e segui para o sul pela Estrada de Hórus.</p><p>No Egito, inclinei minha testa entre as esfinges diante do palácio. O rei disse: "Ele voltou como um asiático criado pelos beduínos." As princesas e a rainha soltaram um grito ao me ver. Mas Sesostris disse: "Não há razão para temer." E então, recebi o que nenhum homem comum havia recebido: uma pirâmide de pedra construída para mim entre as dos filhos do rei, com minha imagem revestida de ouro e saiote de electrum. Foi Sua Majestade quem mandou fazer isso.</p>`,
+    storyEn: `<p class="dropcap"><span class="gloss" tabindex="0" onclick="openGlossaryAt('sesostris')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('sesostris')}">Sesostris</span> learned of my state and sent me a letter with royal gifts. It said: "Your wandering through lands was at the counsel of your own heart. You insulted no one. Think of the day of burial and of passing into blessedness. You will not die in a foreign land, Asiatics will not bury you."</p><p>When the letter was read to me, I threw myself face down on the ground. I went around my encampment crying out for joy. I spent a day in <span class="gloss" tabindex="0" onclick="openGlossaryAt('araru')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('araru')}">Araru</span>, transferring my property to my children, and set out southward by the Road of Horus.</p><p>In Egypt, I touched my forehead to the ground between the sphinxes before the palace. The king said: "He has returned as an Asiatic raised by bedouin." The princesses and the queen let out a cry at the sight of me. But Sesostris said: "There is no reason to fear." And then, I received what no ordinary man had ever received: a pyramid of stone built for me among the king's children's, with my image sheathed in gold and a kilt of electrum. It was His Majesty who ordered this to be done.</p>`,
+    question: {
+      promptPt: 'Com qual material raro era revestida a estátua de Sinué, por ordem do rei?',
+      promptEn: 'With which rare material was Sinuhe\'s statue sheathed, by order of the king?',
+      options: [
+        { pt: 'Prata e granito negro', en: 'Silver and black granite', correct: false },
+        { pt: 'Madeira de ébano pintada', en: 'Painted ebony wood', correct: false },
+        { pt: 'Ouro, com saiote de electrum', en: 'Gold, with a kilt of electrum', correct: true },
+        { pt: 'Pedra calcária branca', en: 'White limestone', correct: false },
+      ],
+      factPt: 'O electrum (<i>Dam</i>) era uma liga natural de ouro e prata de cor amarelo-pálido, mais rara que o ouro puro. Usada em obeliscos e ornamentos reais, seu uso na estátua de Sinué sublinha que o faraó o elevou ao nível da realeza.',
+      factEn: 'Electrum (<i>Dam</i>) was a natural gold-silver alloy of pale yellow colour, rarer than pure gold. Used on obelisks and royal ornaments, its use in Sinuhe\'s statue underlines that the pharaoh elevated him to the level of royalty.'
+    }
+  }
+];
+
+function setLang(lang) {
+  ttsStop();
+  state.lang = lang;
+  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+  const btnPt = document.getElementById('btn-pt');
+  const btnEn = document.getElementById('btn-en');
+  btnPt.classList.toggle('active', lang === 'pt');
+  btnEn.classList.toggle('active', lang === 'en');
+  btnPt.setAttribute('aria-pressed', lang === 'pt');
+  btnEn.setAttribute('aria-pressed', lang === 'en');
+  document.getElementById('brandText').textContent = t('brand');
+  // Labels acessíveis dinâmicos
+  const btnBack = document.getElementById('btnBack');
+  if (btnBack) {
+    btnBack.setAttribute('aria-label', t('back-to-library'));
+    btnBack.setAttribute('title', t('back-to-library'));
+  }
+  const btnSound = document.getElementById('btnSound');
+  if (btnSound) btnSound.setAttribute('aria-label', t('sound-label'));
+  const btnCodex = document.getElementById('btnCodex');
+  if (btnCodex) btnCodex.setAttribute('aria-label', t('codex-label') + ': ' + state.discoveredGlyphs.size + '/' + GLYPHS_CODEX.length);
+  const codexLbl = document.getElementById('codexBtnLabel');
+  if (codexLbl) codexLbl.textContent = t('codex-btn');
+  const btnGlossary = document.getElementById('btnGlossary');
+  if (btnGlossary) btnGlossary.setAttribute('aria-label', t('glossary-label'));
+  const glossaryLbl = document.getElementById('glossaryBtnLabel');
+  if (glossaryLbl) glossaryLbl.textContent = t('glossary-btn');
+  // Toast strings
+  const toastTitle = document.getElementById('toastTitle');
+  const toastSub = document.getElementById('toastSub');
+  if (toastTitle) toastTitle.textContent = t('discovery-title');
+  if (toastSub) toastSub.textContent = t('discovery-sub');
+
+  const invHud = document.getElementById('inventoryHud');
+  if (invHud) invHud.setAttribute('aria-label', t('inventory-label'));
+  for (let i = 0; i < ITEMS.length; i++) {
+    const slot = document.getElementById(`slot-${i}`);
+    if (slot) slot.setAttribute('title', lang === 'pt' ? ITEMS[i].pt : ITEMS[i].en);
+  }
+  if (state.modalView) renderModal();
+  render();
+}
+
+function updateScoreHUD() {
+  document.getElementById('scoreDisplay').textContent = state.score;
+  document.querySelector('[data-i18n="score-label"]').textContent = t('score-label');
+}
+
+function updateInventoryUI() {
+  const hud = document.getElementById('inventoryHud');
+  if (state.screen === 'splash' || state.screen === 'intro' || state.screen === 'final') {
+    hud.style.display = 'none';
+  } else {
+    hud.style.display = 'flex';
+  }
+  
+  for(let i=0; i<8; i++) {
+    const slot = document.getElementById(`slot-${i}`);
+    if(slot) slot.classList.toggle('found', state.collected[i]);
+  }
+}
+
+function renderProgress() {
+  const bar = document.getElementById('progressBar');
+  const total = CHAPTERS.length;
+  let html = '<div class="progress-track">';
+  for (let i = 0; i < total; i++) {
+    const cls = i < state.chapter ? 'done' : (i === state.chapter ? 'current' : '');
+    html += `<div class="progress-node ${cls}">${i + 1}</div>`;
+    if (i < total - 1) html += `<div class="progress-dash ${i < state.chapter ? 'done' : ''}"></div>`;
+  }
+  html += '</div>';
+  bar.innerHTML = html;
+}
+
+// ===== TOAST DE DESCOBERTA =====
+let toastTimer = null;
+function showDiscoveryToast(glyphIdx) {
+  const g = GLYPHS_CODEX[glyphIdx];
+  if (!g) return;
+  const toast = document.getElementById('discoveryToast');
+  const toastGlyph = document.getElementById('toastGlyph');
+  const toastSub = document.getElementById('toastSub');
+  if (!toast) return;
+  toastGlyph.textContent = g.glyph;
+  toastSub.textContent = (state.lang === 'pt' ? g.namePt : g.nameEn) + ' · ' + g.translit;
+  toast.classList.add('show');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 4000);
+  // Pulse no botão do códex
+  state.codexHasNew = true;
+  updateCodexButton();
+}
+
+function onToastClick() {
+  document.getElementById('discoveryToast').classList.remove('show');
+  if (toastTimer) clearTimeout(toastTimer);
+  openCodex();
+}
+
+function updateCodexButton() {
+  const btn = document.getElementById('btnCodex');
+  if (!btn) return;
+  btn.classList.toggle('has-new', state.codexHasNew);
+}
+
+// Descoberta com efeitos (toast + pulse)
+function discoverGlyph(idx) {
+  if (state.discoveredGlyphs.has(idx)) return;
+  state.discoveredGlyphs.add(idx);
+  updateCodexCount();
+  // Só mostra toast se não estamos na tela inicial
+  if (state.screen !== 'splash') {
+    showDiscoveryToast(idx);
+  }
+}
+
+function render() {
+  const root = document.getElementById('sceneContainer');
+  const moveFocus = root.contains(document.activeElement);
+  const progBar = document.getElementById('progressBar');
+  const scoreHud = document.getElementById('scoreHud');
+  const btnCodex = document.getElementById('btnCodex');
+  const btnGlossary = document.getElementById('btnGlossary');
+
+  if (state.screen === 'splash') {
+    progBar.style.display = 'none';
+    scoreHud.style.display = 'none';
+    if (btnCodex) btnCodex.style.display = 'none';
+    if (btnGlossary) btnGlossary.style.display = 'none';
+    updateInventoryUI();
+    root.innerHTML = renderSplash();
+  } else {
+    progBar.style.display = 'block';
+    scoreHud.style.display = 'block';
+    if (btnCodex) btnCodex.style.display = 'inline-flex';
+    if (btnGlossary) btnGlossary.style.display = 'inline-flex';
+    updateScoreHUD();
+    updateInventoryUI();
+    updateCodexCount();
+    renderProgress();
+
+    const ch = CHAPTERS[state.chapter];
+    if (state.screen === 'intro')           root.innerHTML = renderIntro();
+    else if (state.screen === 'final')      root.innerHTML = renderFinal();
+    else if (state.screen === 'story')      root.innerHTML = renderStory(ch);
+    else if (state.screen === 'minigame') { root.innerHTML = renderMinigame(ch); attachMinigame(ch); }
+  }
+
+  saveState();
+  if (moveFocus) root.focus();
+}
+
+function renderSplash() {
+  const title = state.lang === 'pt' ? 'A História de Sinué' : 'The Tale of Sinuhe';
+  const name = getPlayerName();
+  const greeting = name
+    ? `<p style="font-family:'EB Garamond','Noto Serif',serif; font-style:italic; color:var(--papyrus-soft); font-size:16px; margin-bottom:44px;">${t('splash-welcome')}<strong>${escapeHtml(name)}</strong></p>`
+    : '';
+  return `
+    <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:70vh; text-align:center;">
+      <div aria-hidden="true" style="font-family:'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size:110px; color:var(--gold); margin-bottom: 10px;">𓊛</div>
+      <h1 style="font-family:'Cinzel', serif; font-size:clamp(32px, 6vw, 64px); color:var(--gold); margin-bottom: 8px;">${title}</h1>
+      <p style="font-family:'Cinzel', serif; color:var(--terracotta-lt); letter-spacing:0.3em; font-size:12px; margin-bottom: 16px;">${t('splash-subtitle')}</p>
+      <p style="font-family:'EB Garamond','Noto Serif',serif; font-style:italic; color:var(--papyrus-dim); font-size:15px; max-width:480px; line-height:1.6; margin-bottom: ${name ? '16px' : '44px'};">${t('splash-desc')}</p>
+      ${greeting}
+      <button class="btn gold" onclick="enterGame()">${t('enter')} →</button>
+    </div>`;
+}
+
+function enterGame() {
+  const audio = document.getElementById('bgMusic');
+  if (audio) { audio.volume = 0.5; audio.play().catch(() => {}); }
+  if (resumeScreen) {
+    state.screen = resumeScreen;
+    resumeScreen = null;
+  } else {
+    state.screen = 'intro';
+  }
+  if (!state.discoveredGlyphs.has(0)) state.discoveredGlyphs.add(0);
+  updateCodexCount();
+  render();
+}
+
+function renderIntro() {
+  return `
+    <div class="scene">
+      <div class="chapter-label">${t('intro-kicker')}</div>
+      <h1 class="title">${t('intro-title')}</h1>
+      <div class="glyph-feature" data-kicker="ANKH · ${state.lang === 'pt' ? 'A VIDA' : 'LIFE'}">
+        <div class="big-glyph" aria-hidden="true">𓋹</div>
+        <div class="translit">ꜥnḫ</div>
+        <div class="meaning">${t('ankh-meaning')}</div>
+      </div>
+      <p class="story">${t('intro-desc')}</p>
+      <div class="actions"><button class="btn gold" onclick="startGame()">${t('begin')} →</button></div>
+    </div>`;
+}
+
+function renderStory(ch) {
+  const title = state.lang === 'pt' ? ch.titlePt : ch.titleEn;
+  const body = state.lang === 'pt' ? ch.storyPt : ch.storyEn;
+  const note = state.lang === 'pt' ? ch.notePt : ch.noteEn;
+  const f = ch.featured;
+  // Descobrir o signo deste capítulo no Códice (com toast)
+  const glyphIdx = GLYPHS_CODEX.findIndex(g => g.chapter === state.chapter);
+  if (glyphIdx !== -1) {
+    discoverGlyph(glyphIdx);
+  }
+  return `
+    <div class="scene">
+      <div class="chapter-label">${t('chapter')} ${state.chapter + 1}</div>
+      <h1 class="title">${title}</h1>
+      <div class="glyph-feature" data-kicker="${t('chapter-glyph')}">
+        <div class="big-glyph" aria-hidden="true">${f.glyph}</div>
+        <div class="translit">${f.translit}</div>
+        <div class="meaning">${state.lang === 'pt' ? f.meaningPt : f.meaningEn}</div>
+      </div>
+      <div class="story">${body}</div>
+
+<button class="note-toggle" id="btnNote" onclick="toggleNote()">
+        ${t('note-open')}
+      </button>
+      <div class="archaeo-note" id="archaeoNote">
+        <strong>${t('context-label')}</strong>
+        ${note}
+      </div>
+
+      <div class="actions"><button class="btn" onclick="goMinigame()">${t('challenge')} →</button></div>
+    </div>`;
+}
+
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function renderMinigame(ch) {
+  const q = ch.question;
+  const prompt = state.lang === 'pt' ? q.promptPt : q.promptEn;
+  state.shuffledOptions = shuffleArray(q.options);
+  return `
+    <div class="scene">
+      <div class="chapter-label">${t('challenge-count')} ${state.chapter + 1}/8</div>
+      <div class="minigame-intro"><div class="question">${prompt}</div></div>
+      <div class="choices" id="choicesWrap" role="group" aria-label="${prompt}">
+        ${state.shuffledOptions.map((o, idx) => {
+          const isGlyph = q.optionsType === 'glyph';
+          const label = isGlyph ? ` aria-label="${escapeHtml(state.lang === 'pt' ? (o.namePt || o.glyph) : (o.nameEn || o.glyph))}"` : '';
+          const content = isGlyph
+            ? `<div aria-hidden="true" style="font-family:'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size:40px;">${o.glyph}</div>`
+            : (state.lang === 'pt' ? o.pt : o.en);
+          return `<button type="button" class="choice" data-idx="${idx}"${label}>${content}</button>`;
+        }).join('')}
+      </div>
+      <div id="feedbackSlot" aria-live="polite"></div>
+      <div class="actions" id="actionSlot"></div>
+    </div>`;
+}
+
+function attachMinigame(ch) {
+  state.answered = false;
+  state.attempts = 0;
+  const q = ch.question;
+  document.querySelectorAll('.choice').forEach(el => {
+    el.onclick = () => {
+      if (state.answered) return;
+      const idx = +el.dataset.idx;
+      const option = state.shuffledOptions[idx];
+      if (option.correct) {
+        el.classList.add('correct');
+        playFeedback('correct');
+        onAnswer(true, q, state.attempts === 0);
+      } else {
+        el.classList.add('wrong');
+        playFeedback('wrong');
+        state.attempts++;
+        const msg = state.chapter === 5 ? t('wrong-serpent') : t('wrong-default');
+        document.getElementById('feedbackSlot').innerHTML = `<div class="feedback danger"><strong class="label">${t('warning')}</strong>${msg}</div>`;
+        setTimeout(() => el.classList.remove('wrong'), 700);
+      }
+    };
+  });
+}
+
+function onAnswer(isCorrect, q, firstTry) {
+  state.answered = true;
+  const earned = firstTry ? 20 : (state.attempts === 1 ? 10 : (state.attempts === 2 ? 5 : 2));
+  state.score += earned;
+  
+  if(firstTry) {
+    state.collected[state.chapter] = true;
+  }
+
+  const fact = state.lang === 'pt' ? q.factPt : q.factEn;
+  const itemName = state.lang === 'pt' ? ITEMS[state.chapter].pt : ITEMS[state.chapter].en;
+  const collectionMsg = firstTry ? `<br><b>${t('treasure-got')}: ${itemName}!</b>` : '';
+  
+  document.getElementById('feedbackSlot').innerHTML = `<div class="feedback good"><strong class="label">${t('correct')}</strong>+${earned} ${t('points')}. ${collectionMsg} <div style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.1); padding-top:8px; font-style:italic;">${fact}</div></div>`;
+  const isLast = state.chapter >= CHAPTERS.length - 1;
+  
+  updateInventoryUI();
+  
+  const nextLabel = isLast ? t('see-final') : t('next-chapter');
+  document.getElementById('actionSlot').innerHTML = `<button class="btn gold" onclick="${isLast ? 'goFinal()' : 'nextChapter()'}">${nextLabel} →</button>`;
+  saveState();
+}
+
+function startGame() { state.chapter = 0; state.screen = 'story'; state.score = 0; state.collected = [false, false, false, false, false, false, false, false]; render(); scrollTop(); }
+function restartGame() { state.chapter = 0; state.screen = 'splash'; state.score = 0; state.answered = false; state.attempts = 0; state.collected = [false, false, false, false, false, false, false, false]; state.discoveredGlyphs = new Set(); state.codexHasNew = false; saveState(); render(); scrollTop(); }
+function goMinigame() { ttsStop(); state.screen = 'minigame'; render(); scrollTop(); }
+function nextChapter() { ttsStop(); state.chapter++; state.screen = 'story'; render(); scrollTop(); }
+function goFinal() { ttsStop(); state.screen = 'final'; render(); scrollTop(); }
+
+function renderFinal() {
+  const max = CHAPTERS.length * 20;
+  const pct = state.score / max;
+  let rank = pct >= 0.9 ? t('rank-master')
+           : pct >= 0.7 ? t('rank-scribe')
+           : pct >= 0.4 ? t('rank-student')
+           : t('rank-apprentice');
+  
+  let treasuresHtml = '';
+  const hasTreasures = state.collected.some(c => c);
+  
+  if (hasTreasures) {
+    treasuresHtml = `
+      <div style="margin-top: 30px;">
+        <div class="chapter-label">${t('final-inventory')}</div>
+        <div class="final-treasures">
+          ${state.collected.map((c, i) => c ? `<div class="treasure-item"><span class="treasure-icon" aria-hidden="true">${ITEMS[i].icon}</span><span class="treasure-label">${state.lang === 'pt' ? ITEMS[i].pt : ITEMS[i].en}</span></div>` : '').join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  const playerName = getPlayerName();
+  const congratsHtml = playerName
+    ? `<p style="font-family:'EB Garamond','Noto Serif',serif; font-style:italic; color:var(--papyrus-soft); font-size:18px; margin-bottom:6px;">${t('final-congrats')}<strong>${escapeHtml(playerName)}</strong>!</p>`
+    : '';
+
+  return `<div class="scene" style="text-align:center;">
+    ${congratsHtml}
+    <h1 class="title">${t('final-title')}</h1>
+    <div class="glyph-feature" data-kicker="${t('final-rank-kicker')}">
+      <div class="big-glyph" aria-hidden="true">𓏞</div>
+      <div class="translit">sš</div>
+      <div class="meaning">${t('final-rank-meaning')}</div>
+    </div>
+    <div style="font-size:48px; color:var(--gold); font-family:Cinzel;">${state.score} / ${max}</div>
+    <div class="final-rank">✦ ${rank} ✦</div>
+    
+    ${treasuresHtml}
+
+    <div class="actions"><button class="btn ghost" onclick="restartGame()">${t('play-again-btn')}</button><a href="index.html" class="btn ghost">${t('back-to-library')}</a></div>
+    <div class="credits">
+      <strong>${t('credits-title')}</strong>
+      <span style="font-size:13px; color:var(--papyrus-dim); line-height:1.4;">${t('credits-body')}</span>
+    </div>
+  </div>`;
+}
+
+// ───── ELEVENLABS TTS ─────
+const TTS_PROXY = 'http://localhost:3001/api/tts';
+
+const ttsCache = {};   // { 'chap_lang': objectURL }
+let ttsAudio   = null;
+let ttsStatus  = 'idle'; // 'idle' | 'loading' | 'playing' | 'paused'
+
+function ttsPlainText(html) {
+  const d = document.createElement('div');
+  d.innerHTML = html;
+  d.querySelectorAll('i').forEach(el => el.remove());
+  return (d.textContent || d.innerText || '').replace(/\s+/g, ' ').trim();
+}
+
+function ttsSync() {
+  const btn = document.getElementById('ttsBtn');
+  if (!btn) return;
+  const icon  = btn.querySelector('.tts-icon');
+  const label = btn.querySelector('.tts-label');
+  const pt    = state.lang === 'pt';
+  const map   = {
+    idle:    { icon: '▶', pt: 'Ouvir',    en: 'Listen'   },
+    loading: { icon: '…', pt: 'Gerando…', en: 'Loading…' },
+    playing: { icon: '⏸', pt: 'Pausar',   en: 'Pause'    },
+    paused:  { icon: '▶', pt: 'Retomar',  en: 'Resume'   },
+  };
+  const c = map[ttsStatus] || map.idle;
+  icon.textContent  = c.icon;
+  label.textContent = pt ? c.pt : c.en;
+  btn.classList.toggle('playing', ttsStatus === 'playing');
+  btn.classList.toggle('loading', ttsStatus === 'loading');
+  btn.disabled = ttsStatus === 'loading';
+}
+
+function ttsStop() {
+  if (ttsAudio) { ttsAudio.pause(); ttsAudio = null; }
+  ttsStatus = 'idle';
+  ttsSync();
+}
+
+async function ttsToggle() {
+  if (ttsStatus === 'playing') {
+    ttsAudio.pause();
+    ttsStatus = 'paused';
+    ttsSync();
+    return;
+  }
+  if (ttsStatus === 'paused' && ttsAudio) {
+    await ttsAudio.play();
+    ttsStatus = 'playing';
+    ttsSync();
+    return;
+  }
+  ttsStop();
+  ttsStatus = 'loading';
+  ttsSync();
+  const ch   = CHAPTERS[state.chapter];
+  const html = state.lang === 'pt' ? ch.storyPt : ch.storyEn;
+  const key  = `${state.chapter}_${state.lang}`;
+  try {
+    let url = ttsCache[key];
+    if (!url) {
+      const res = await fetch(TTS_PROXY, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ text: ttsPlainText(html) }),
+      });
+      if (!res.ok) { const msg = await res.text().catch(() => ''); throw new Error(`TTS ${res.status}: ${msg}`); }
+      url = URL.createObjectURL(await res.blob());
+      ttsCache[key] = url;
+    }
+    ttsAudio = new Audio(url);
+    ttsAudio.onplay  = () => { ttsStatus = 'playing'; ttsSync(); };
+    ttsAudio.onpause = () => { if (ttsAudio && !ttsAudio.ended) { ttsStatus = 'paused'; ttsSync(); } };
+    ttsAudio.onended = () => { ttsStatus = 'idle';    ttsSync(); };
+    ttsAudio.onerror = () => { ttsStatus = 'idle';    ttsSync(); };
+    await ttsAudio.play();
+  } catch (e) {
+    console.error('TTS:', e);
+    ttsStatus = 'idle';
+    ttsSync();
+    alert(state.lang === 'pt'
+      ? 'Não foi possível gerar o áudio. Tente novamente.'
+      : 'Could not generate audio. Please try again.');
+  }
+}
+
+function scrollTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+// ============================================================
+// BANCO DE SIGNOS DO CODEX
+// ============================================================
+const GLYPHS_CODEX = [
+  {
+    glyph: '𓆣', translit: 'ḫpr', chapter: -1,
+    namePt: 'Escaravelho de Khepri', nameEn: 'Khepri Scarab',
+    meaningPt: 'Transformação, renascimento, o devir',
+    meaningEn: 'Transformation, rebirth, becoming',
+    typeKey: 'type-logogram',
+    notePt: 'O escaravelho Khepri empurra o sol nascente no horizonte, como o besouro empurra sua bola no chão. Seu nome deriva de <i>ḫpr</i>, "tornar-se". Nesta história, o escaravelho simboliza a grande transformação de Sinué: de servo do palácio a exilado, a chefe tribal, a egípcio reintegrado.',
+    noteEn: 'The Khepri beetle pushes the rising sun across the horizon, as the dung beetle pushes its ball along the ground. Its name derives from <i>ḫpr</i>, "to become". In this story, the scarab symbolizes Sinuhe\'s great transformation: from palace servant to exile, tribal chief, and reintegrated Egyptian.'
+  },
+  {
+    glyph: '𓂋', translit: 'r', chapter: 0,
+    namePt: 'Boca', nameEn: 'Mouth',
+    meaningPt: 'Boca, discurso, o anúncio',
+    meaningEn: 'Mouth, speech, the announcement',
+    typeKey: 'type-uni',
+    notePt: 'Unilitero <i>r</i>, representa a boca humana vista de lado. É também componente do logograma de "sol" (<i>Rꜥ</i>). No contexto da morte do faraó, a boca é o órgão que recebe a notícia terrível, que faz o coração de Sinué tremer e os membros fraquejarem.',
+    noteEn: 'Uniliteral <i>r</i>, depicts the human mouth seen from the side. It is also a component of the logogram for "sun" (<i>Rꜥ</i>). In the context of the pharaoh\'s death, the mouth is the organ that receives the terrible news, making Sinuhe\'s heart tremble and his limbs go weak.'
+  },
+  {
+    glyph: '𓅓', translit: 'm', chapter: 1,
+    namePt: 'Coruja', nameEn: 'Owl',
+    meaningPt: 'Coruja, o unilitero m, silêncio',
+    meaningEn: 'Owl, the uniliteral m, silence',
+    typeKey: 'type-uni',
+    notePt: 'A coruja pintada de frente é o unilitero <i>m</i>. É um dos raros hieróglifos representados frontalmente, ao contrário da maioria dos seres vivos, que aparecem de perfil. A fuga de Sinué acontece de noite, em silêncio, como o voo da coruja: sem testemunhas, cruzando fronteiras no escuro.',
+    noteEn: 'The horned owl depicted frontally is the uniliteral <i>m</i>. It is one of the rare hieroglyphs shown face-on, as almost all living beings appear in profile. Sinuhe\'s flight takes place at night, in silence, like an owl\'s flight: no witnesses, crossing borders in the dark.'
+  },
+  {
+    glyph: '𓈉', translit: 'xꜣst', chapter: 2,
+    namePt: 'Terra estrangeira', nameEn: 'Foreign land',
+    meaningPt: 'Colinas estrangeiras, o além-fronteira',
+    meaningEn: 'Foreign hills, beyond the border',
+    typeKey: 'type-determin',
+    notePt: 'O signo representa colinas rochosas com vales, evocando o terreno acidentado das terras além do Nilo. É o determinativo padrão de topônimos estrangeiros como <i>Rtnw</i> (Retjenu). Para um egípcio, o mundo além dessas colinas era caos, ausência da ordem de <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'maat\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'maat\')}">Maat</span>.',
+    noteEn: 'The sign depicts rocky hills with valleys, evoking the rough terrain beyond the Nile. It is the standard determinative for foreign place names like <i>Rtnw</i> (Retjenu). To an Egyptian, the world beyond those hills meant chaos, the absence of <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'maat\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'maat\')}">Maat</span>\'s order.'
+  },
+  {
+    glyph: '𓆸', translit: 'sšn', chapter: 3,
+    namePt: 'Flor de lótus', nameEn: 'Lotus flower',
+    meaningPt: 'Lótus, criação, eloquência que floresce',
+    meaningEn: 'Lotus, creation, eloquence in bloom',
+    typeKey: 'type-logogram',
+    notePt: 'O lótus azul do Nilo abre suas pétalas ao amanhecer e fecha ao entardecer, simbolizando o ciclo da criação e do renascimento solar. Na arte egípcia, figuras emergindo de uma flor de lótus representam o surgimento do ser do nada. O elogio de Sinué a Sesostris floresce como o lótus: nasce da lealdade e se abre em eloquência.',
+    noteEn: 'The blue Nile lotus opens its petals at dawn and closes at dusk, symbolizing the cycle of creation and solar rebirth. In Egyptian art, figures emerging from a lotus represent the arising of being from nothing. Sinuhe\'s praise of Sesostris blooms like the lotus: born of loyalty and opening into eloquence.'
+  },
+  {
+    glyph: '𓃒', translit: 'kꜣ', chapter: 4,
+    namePt: 'Touro', nameEn: 'Bull',
+    meaningPt: 'Touro, força, abundância',
+    meaningEn: 'Bull, strength, abundance',
+    typeKey: 'type-logogram',
+    notePt: 'O touro é símbolo de força, fertilidade e realeza no Egito. O signo <i>kꜣ</i> (touro) é homófono de <i>kꜣ</i> (alma vital, o duplo espiritual). Em Araru, Sinué recebe gado sem limite: o touro representa tanto a prosperidade material como a vitalidade espiritual que ele reconstrói longe de sua terra natal.',
+    noteEn: 'The bull is a symbol of strength, fertility, and royalty in Egypt. The sign <i>kꜣ</i> (bull) is a homophone of <i>kꜣ</i> (vital soul, the spiritual double). In Araru, Sinuhe receives cattle without limit: the bull represents both the material prosperity and the spiritual vitality he rebuilds far from his homeland.'
+  },
+  {
+    glyph: '𓃭', translit: 'rw', chapter: 5,
+    namePt: 'Leão', nameEn: 'Lion',
+    meaningPt: 'Leão, o campeão, força guerreira',
+    meaningEn: 'Lion, the champion, warrior strength',
+    typeKey: 'type-determin',
+    notePt: 'O leão deitado é o hieróglifo <i>rw</i> e determinativo de palavras ligadas a força, poder e feras. Faraós eram comparados a leões em batalha; a esfinge, o guardião mais poderoso do Egito, tem corpo de leão. No duelo de Sinué, ele enfrenta um campeão sem igual com a coragem de um leão, vencendo com arco e machado.',
+    noteEn: 'The recumbent lion is the hieroglyph <i>rw</i> and a determinative for words tied to strength, power, and wild animals. Pharaohs were compared to lions in battle; the sphinx, Egypt\'s mightiest guardian, has the body of a lion. In Sinuhe\'s duel, he faces a champion without equal with a lion\'s courage, winning with bow and axe.'
+  },
+  {
+    glyph: '𓇹', translit: 'jꜥḥ', chapter: 6,
+    namePt: 'Lua crescente', nameEn: 'Crescent moon',
+    meaningPt: 'Lua, a noite, o deus Iah',
+    meaningEn: 'Moon, the night, the god Iah',
+    typeKey: 'type-logogram',
+    notePt: 'A lua crescente era o signo do deus lunar <i>Jꜥḥ</i> e aparece como determinativo de palavras ligadas ao tempo noturno e às estações. Para Sinué envelhecido em Araru, o que pesa no coração é o medo de morrer sob um céu estrangeiro, sem o ritual egípcio que permite à alma enfrentar o julgamento de Osíris.',
+    noteEn: 'The crescent moon was the sign of the lunar god <i>Jꜥḥ</i> and appears as a determinative for words tied to night and seasons. For the aging Sinuhe in Araru, what weighs on the heart is the fear of dying under a foreign sky, without the Egyptian ritual that allows the soul to face Osiris\'s judgment.'
+  },
+  {
+    glyph: '𓇼', translit: 'sbꜣ', chapter: 7,
+    namePt: 'Estrela', nameEn: 'Star',
+    meaningPt: 'Estrela, eternidade, o além-celeste',
+    meaningEn: 'Star, eternity, the celestial beyond',
+    typeKey: 'type-logogram',
+    notePt: 'A estrela de cinco pontas é o logograma de <i>sbꜣ</i> ("estrela") e determinativo de palavras ligadas ao céu e à eternidade. As almas dos faraós mortos tornavam-se "estrelas imperecíveis" no céu setentrional. O retorno de Sinué ao Egito é também seu retorno à ordem cósmica, à possibilidade de se tornar ele mesmo uma estrela.',
+    noteEn: 'The five-pointed star is the logogram <i>sbꜣ</i> ("star") and a determinative for words tied to the sky and eternity. Dead pharaohs\' souls became "imperishable stars" in the northern sky. Sinuhe\'s return to Egypt is also his return to cosmic order, to the possibility of becoming a star himself.'
+  }
+];

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A História de Sinué · Musæum</title>
+<meta name="description" content="A História de Sinué — leitura narrativa bilíngue (PT/EN) do Egito Antigo, com hieróglifos e notas arqueológicas. Musæum · PPGArq / Museu Nacional / UFRJ." />
+<meta name="theme-color" content="#1b2a3d" />
+<meta name="author" content="Flavia Lima Corpas — PPGArq / Museu Nacional / UFRJ" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Musæum" />
+<meta property="og:title" content="A História de Sinué · Musæum" />
+<meta property="og:description" content="Explore a jornada de Sinué pelo Egito Antigo e pelo Levante — leitura interativa bilíngue com hieróglifos e comentários arqueológicos." />
+<meta property="og:image" content="assets/images/pexels-clioseye-35506459.jpg" />
+<meta property="og:image:alt" content="Cena egípcia antiga com hieróglifos dourados" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="A História de Sinué · Musæum" />
+<meta name="twitter:description" content="Explore a jornada de Sinué pelo Egito Antigo e pelo Levante — leitura interativa bilíngue com hieróglifos e comentários arqueológicos." />
+<meta name="twitter:image" content="assets/images/pexels-clioseye-35506459.jpg" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%231b2a3d' rx='10'/><g fill='none' stroke='%23c9a646' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'><ellipse cx='32' cy='22' rx='10' ry='12'/><line x1='17' y1='38' x2='47' y2='38'/><line x1='32' y1='34' x2='32' y2='57'/></g></svg>" />
+<link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%231b2a3d' rx='10'/><g fill='none' stroke='%23c9a646' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'><ellipse cx='32' cy='22' rx='10' ry='12'/><line x1='17' y1='38' x2='47' y2='38'/><line x1='32' y1='34' x2='32' y2='57'/></g></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+
+<script src="script.js"></script>
+<script src="data/sinuhe.js"></script>
+<script>
+initStoryApp({
+  inventory: ['🌾', '🦅', '🌊', '🌴', '⚔️', '🪶', '🌙', '📜']
+});
+
+
+const state = {
+  lang: 'pt',
+  screen: 'splash',
+  chapter: 0,
+  score: 0,
+  answered: false,
+  attempts: 0,
+  collected: [false, false, false, false, false, false, false, false],
+  discoveredGlyphs: new Set(),
+  modalView: null,              // 'codex' | 'sheet' | 'tutorial' | 'glossary' | null
+  tutorialStep: 0,
+  sheetIndex: 0,
+  glossaryHighlight: null,      // id de termo para destacar
+  glossarySearch: '',
+  codexHasNew: false,            // para pulse no botão
+  shuffledOptions: []
+};
+
+
+// ============================================================
+// CÓDICE, FICHA, TUTORIAL E GLOSSÁRIO
+// ============================================================
+
+function updateCodexCount() {
+  const el = document.getElementById('codexCount');
+  if (el) el.textContent = `${state.discoveredGlyphs.size}/${GLYPHS_CODEX.length}`;
+  const btn = document.getElementById('btnCodex');
+  if (btn) btn.setAttribute('aria-label', t('codex-label') + ': ' + state.discoveredGlyphs.size + '/' + GLYPHS_CODEX.length);
+}
+
+function openCodex() {
+  state.modalView = 'codex';
+  state.codexHasNew = false;
+  updateCodexButton();
+  renderModal();
+  document.getElementById('modalOverlay').classList.add('open');
+  setTimeout(() => document.getElementById('modalClose').focus(), 50);
+}
+
+function openGlyphSheet(idx) {
+  if (!state.discoveredGlyphs.has(idx)) return;
+  state.modalView = 'sheet';
+  state.sheetIndex = idx;
+  renderModal();
+}
+
+function openTutorial() {
+  state.modalView = 'tutorial';
+  state.tutorialStep = 0;
+  renderModal();
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function openGlossary() {
+  state.modalView = 'glossary';
+  state.glossaryHighlight = null;
+  state.glossarySearch = '';
+  renderModal();
+  document.getElementById('modalOverlay').classList.add('open');
+  setTimeout(() => {
+    const searchInput = document.getElementById('glossarySearchInput');
+    if (searchInput) searchInput.focus();
+  }, 80);
+}
+
+function openGlossaryAt(termId) {
+  state.modalView = 'glossary';
+  state.glossaryHighlight = termId;
+  state.glossarySearch = '';
+  renderModal();
+  document.getElementById('modalOverlay').classList.add('open');
+  // Faz scroll até o termo
+  setTimeout(() => {
+    const target = document.getElementById('gloss-' + termId);
+    if (target) {
+      target.classList.add('highlighted');
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, 100);
+}
+
+function filterGlossary() {
+  const input = document.getElementById('glossarySearchInput');
+  if (!input) return;
+  state.glossarySearch = input.value.toLowerCase().trim();
+  const listEl = document.getElementById('glossaryListContainer');
+  if (listEl) listEl.innerHTML = renderGlossaryList();
+}
+
+function closeModal() {
+  state.modalView = null;
+  state.glossaryHighlight = null;
+  state.glossarySearch = '';
+  document.getElementById('modalOverlay').classList.remove('open');
+  const btnCodex = document.getElementById('btnCodex');
+  if (btnCodex && btnCodex.style.display !== 'none') btnCodex.focus();
+}
+
+function onOverlayClick(event) {
+  if (event.target.id === 'modalOverlay') closeModal();
+}
+
+function tutorialNext() {
+  if (state.tutorialStep < 2) {
+    state.tutorialStep++;
+    renderModal();
+  } else {
+    state.modalView = 'codex';
+    renderModal();
+  }
+}
+
+function tutorialPrev() {
+  if (state.tutorialStep > 0) {
+    state.tutorialStep--;
+    renderModal();
+  }
+}
+
+function renderModal() {
+  const body = document.getElementById('modalBody');
+  if (!body) return;
+  if (state.modalView === 'codex')        body.innerHTML = renderCodexView();
+  else if (state.modalView === 'sheet')   body.innerHTML = renderSheetView();
+  else if (state.modalView === 'tutorial') body.innerHTML = renderTutorialView();
+  else if (state.modalView === 'glossary') body.innerHTML = renderGlossaryView();
+}
+
+function renderCodexView() {
+  const tiles = GLYPHS_CODEX.map((g, idx) => {
+    const discovered = state.discoveredGlyphs.has(idx);
+    if (discovered) {
+      const name = state.lang === 'pt' ? g.namePt : g.nameEn;
+      return `<button class="codex-tile" onclick="openGlyphSheet(${idx})" aria-label="${name}">
+        <div class="tile-glyph" aria-hidden="true">${g.glyph}</div>
+        <div class="tile-translit">${g.translit}</div>
+      </button>`;
+    }
+    return `<button class="codex-tile locked" disabled aria-label="${t('codex-locked')}">
+      <div class="tile-glyph" aria-hidden="true">${g.glyph}</div>
+      <div class="tile-translit">? ? ?</div>
+    </button>`;
+  }).join('');
+
+  return `
+    <h2 class="modal-title" id="modalTitle">${t('codex-title')}</h2>
+    <p class="modal-subtitle">${t('codex-subtitle')}</p>
+    <div class="codex-progress">${state.discoveredGlyphs.size} / ${GLYPHS_CODEX.length} ${t('codex-progress')}</div>
+    <div class="codex-grid">${tiles}</div>
+    <div class="codex-actions">
+      <button class="btn" onclick="openTutorial()">${t('codex-tutorial')}</button>
+      <button class="btn ghost" onclick="closeModal()">${t('codex-close')}</button>
+    </div>`;
+}
+
+function renderSheetView() {
+  const idx = state.sheetIndex;
+  const g = GLYPHS_CODEX[idx];
+  const name = state.lang === 'pt' ? g.namePt : g.nameEn;
+  const meaning = state.lang === 'pt' ? g.meaningPt : g.meaningEn;
+  const note = state.lang === 'pt' ? g.notePt : g.noteEn;
+  const type = t(g.typeKey);
+  const chapterLabel = g.chapter === -1
+    ? (state.lang === 'pt' ? 'Introdução' : 'Introduction')
+    : `${t('chapter')} ${g.chapter + 1}`;
+
+  return `
+    <h2 class="modal-title" id="modalTitle">${name}</h2>
+    <div class="glyph-sheet">
+      <div class="sheet-big" aria-hidden="true">${g.glyph}</div>
+      <div class="sheet-translit">${g.translit}</div>
+      <div class="sheet-name">${name}</div>
+      <div class="sheet-rows">
+        <div class="sheet-row">
+          <div class="row-label">${t('sheet-type')}</div>
+          <div class="row-value">${type}</div>
+        </div>
+        <div class="sheet-row">
+          <div class="row-label">${t('sheet-meaning')}</div>
+          <div class="row-value">${meaning}</div>
+        </div>
+        <div class="sheet-row">
+          <div class="row-label">${t('sheet-appears')}</div>
+          <div class="row-value">${chapterLabel}</div>
+        </div>
+        <div class="sheet-row">
+          <div class="row-label">${t('sheet-note')}</div>
+          <div class="row-value">${note}</div>
+        </div>
+      </div>
+    </div>
+    <div class="codex-actions">
+      <button class="btn ghost" onclick="state.modalView='codex'; renderModal();">${t('sheet-back')}</button>
+    </div>`;
+}
+
+function renderTutorialView() {
+  const step = state.tutorialStep;
+  let content = '';
+  if (step === 0) {
+    content = `
+      <div class="tutorial-step">
+        <h3>${t('tut-s1-title')}</h3>
+        <p>${t('tut-s1-body')}</p>
+        <div class="tutorial-examples">
+          <div class="tutorial-chip">
+            <div class="chip-glyph" aria-hidden="true">𓇳</div>
+            <div class="chip-label">${t('tut-s1-c1-label')}</div>
+            <div class="chip-desc">${t('tut-s1-c1-desc')}</div>
+          </div>
+          <div class="tutorial-chip">
+            <div class="chip-glyph" aria-hidden="true">𓉐</div>
+            <div class="chip-label">${t('tut-s1-c2-label')}</div>
+            <div class="chip-desc">${t('tut-s1-c2-desc')}<br/><i>pr</i></div>
+          </div>
+          <div class="tutorial-chip">
+            <div class="chip-glyph" aria-hidden="true">𓈗</div>
+            <div class="chip-label">${t('tut-s1-c3-label')}</div>
+            <div class="chip-desc">${t('tut-s1-c3-desc')}</div>
+          </div>
+        </div>
+      </div>`;
+  } else if (step === 1) {
+    content = `
+      <div class="tutorial-step">
+        <h3>${t('tut-s2-title')}</h3>
+        <p>${t('tut-s2-body')}</p>
+        <div class="tutorial-examples">
+          <div class="tutorial-chip">
+            <div class="chip-glyph" aria-hidden="true">𓂀 →</div>
+            <div class="chip-desc">${state.lang === 'pt' ? 'olha para a esquerda: lê-se da esquerda' : 'faces left: read from the left'}</div>
+          </div>
+          <div class="tutorial-chip">
+            <div class="chip-glyph" aria-hidden="true">← 𓃾</div>
+            <div class="chip-desc">${state.lang === 'pt' ? 'olha para a direita: lê-se da direita' : 'faces right: read from the right'}</div>
+          </div>
+        </div>
+        <p>${t('tut-s2-body2')}</p>
+      </div>`;
+  } else {
+    content = `
+      <div class="tutorial-step">
+        <h3>${t('tut-s3-title')}</h3>
+        <p>${t('tut-s3-body')}</p>
+        <div class="tutorial-examples">
+          <div class="tutorial-chip" style="min-width: 200px;">
+            <div class="chip-glyph" aria-hidden="true" style="font-size: 34px;">𓍹𓊪𓏏𓅱𓃭𓅓𓇌𓋴𓍺</div>
+            <div class="chip-desc">${state.lang === 'pt' ? 'Cartucho de Ptolomeu' : 'Cartouche of Ptolemy'}</div>
+          </div>
+        </div>
+        <p>${t('tut-s3-body2')}</p>
+      </div>`;
+  }
+
+  const dots = [0,1,2].map(i => `<div class="tutorial-dot ${i === step ? 'active' : ''}"></div>`).join('');
+  const nextLabel = step === 2 ? t('tut-done') : t('tut-next');
+  const prevBtn = step > 0 ? `<button class="btn ghost" onclick="tutorialPrev()">${t('tut-prev')}</button>` : '<div></div>';
+
+  return `
+    <h2 class="modal-title" id="modalTitle">${t('tutorial-title')}</h2>
+    <p class="modal-subtitle">${t('tutorial-sub')}</p>
+    ${content}
+    <div class="tutorial-nav">
+      ${prevBtn}
+      <div class="tutorial-dots" aria-hidden="true">${dots}</div>
+      <button class="btn" onclick="tutorialNext()">${nextLabel}</button>
+    </div>`;
+}
+
+// ========== GLOSSÁRIO ==========
+
+function renderGlossaryView() {
+  return `
+    <h2 class="modal-title" id="modalTitle">${t('glossary-title')}</h2>
+    <p class="modal-subtitle">${t('glossary-subtitle')}</p>
+    <div class="glossary-search-wrap">
+      <input type="text" id="glossarySearchInput" class="glossary-search"
+             placeholder="${t('glossary-search')}"
+             value="${state.glossarySearch}"
+             oninput="filterGlossary()"
+             aria-label="${t('glossary-search')}" />
+    </div>
+    <div id="glossaryListContainer">${renderGlossaryList()}</div>
+    <div class="codex-actions">
+      <button class="btn ghost" onclick="closeModal()">${t('codex-close')}</button>
+    </div>`;
+}
+
+function renderGlossaryList() {
+  const search = state.glossarySearch || '';
+  // Filtra e ordena alfabeticamente pelo termo da língua atual
+  const filtered = GLOSSARY
+    .map(g => ({
+      ...g,
+      _term: state.lang === 'pt' ? g.termPt : g.termEn,
+      _def: state.lang === 'pt' ? g.defPt : g.defEn,
+      _tag: state.lang === 'pt' ? g.tagPt : g.tagEn
+    }))
+    .filter(g => {
+      if (!search) return true;
+      const haystack = (g._term + ' ' + g._def + ' ' + g._tag).toLowerCase();
+      return haystack.includes(search);
+    })
+    .sort((a, b) => a._term.localeCompare(b._term, state.lang === 'pt' ? 'pt-BR' : 'en'));
+
+  if (filtered.length === 0) {
+    return `<div class="glossary-empty">${t('glossary-empty')}</div>`;
+  }
+
+  // Agrupa por letra inicial
+  let html = '<div class="glossary-list">';
+  let currentLetter = '';
+  filtered.forEach(g => {
+    const firstLetter = g._term.charAt(0).toUpperCase();
+    if (firstLetter !== currentLetter) {
+      currentLetter = firstLetter;
+      html += `<div class="glossary-letter">${currentLetter}</div>`;
+    }
+    const highlightCls = state.glossaryHighlight === g.id ? 'highlighted' : '';
+    html += `
+      <div class="glossary-entry ${highlightCls}" id="gloss-${g.id}">
+        <div class="gloss-term-name">${g._term} <span class="gloss-tag">${g._tag}</span></div>
+        <div class="gloss-def">${g._def}</div>
+      </div>`;
+  });
+  html += '</div>';
+  return html;
+}
+
+// Fechar modal com tecla Esc
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && state.modalView) closeModal();
+});
+
+// ===== PERSISTÊNCIA DO PROGRESSO =====
+const STORY_ID = 'sinuhe';
+
+function saveState() {
+  try {
+    storeSave(STORY_ID, {
+      lang:             state.lang,
+      screen:           state.screen,
+      chapter:          state.chapter,
+      score:            state.score,
+      answered:         state.answered,
+      attempts:         state.attempts,
+      collected:        state.collected,
+      discoveredGlyphs: [...state.discoveredGlyphs],
+      codexHasNew:      state.codexHasNew
+    });
+  } catch(e) {}
+}
+
+let resumeScreen = null;
+
+function loadState() {
+  try {
+    const d = storeGet(STORY_ID);
+    if (!d) return false;
+    // lang é sobrescrito depois pelo musaeum-lang compartilhado
+    state.lang             = d.lang             ?? state.lang;
+    // sempre volta à splash; guarda tela anterior para resumir ao entrar
+    resumeScreen           = (d.screen && d.screen !== 'splash') ? d.screen : null;
+    state.screen           = 'splash';
+    state.chapter          = d.chapter          ?? state.chapter;
+    state.score            = d.score            ?? state.score;
+    state.answered         = d.answered         ?? state.answered;
+    state.attempts         = d.attempts         ?? state.attempts;
+    state.collected        = d.collected        ?? state.collected;
+    state.discoveredGlyphs = new Set(d.discoveredGlyphs ?? []);
+    state.codexHasNew      = d.codexHasNew      ?? state.codexHasNew;
+    return true;
+  } catch(e) {
+    return false;
+  }
+}
+
+migrateOldSaves();
+loadState();
+const _sharedLang = localStorage.getItem('musaeum-lang');
+if (_sharedLang) state.lang = _sharedLang;
+setLang(state.lang);
+</script>
+</body>
+</html>

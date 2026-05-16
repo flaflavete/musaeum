@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Musæum · Biblioteca Interativa</title>
+
+<!-- Descrição e cor do tema -->
+<meta name="description" content="Musæum — biblioteca interativa bilíngue de textos literários do Egito do Reino Médio. Leitura narrativa, comentários arqueológicos e hieróglifos." />
+<meta name="theme-color" content="#1b2a3d" />
+<meta name="author" content="Flavia Lima Corpas — PPGArq / Museu Nacional / UFRJ" />
+
+<!-- Open Graph (WhatsApp, Telegram, Facebook, LinkedIn) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Musæum" />
+<meta property="og:title" content="Musæum · Biblioteca interativa" />
+<meta property="og:description" content="Biblioteca interativa bilíngue de textos do Egito antigo. Entre e explore as vozes do Reino Médio." />
+<meta property="og:image" content="assets/images/pexels-clioseye-35506459.jpg" />
+<meta property="og:image:alt" content="Cena egípcia antiga com hieróglifos dourados" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:locale:alternate" content="en_US" />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Musæum · Biblioteca interativa" />
+<meta name="twitter:description" content="Biblioteca interativa bilíngue de textos do Egito antigo. Entre e explore as vozes do Reino Médio." />
+<meta name="twitter:image" content="assets/images/pexels-clioseye-35506459.jpg" />
+
+<!-- Favicon SVG inline: ankh dourado em fundo azul-noite -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%231b2a3d' rx='10'/><g fill='none' stroke='%23c9a646' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'><ellipse cx='32' cy='22' rx='10' ry='12'/><line x1='17' y1='38' x2='47' y2='38'/><line x1='32' y1='34' x2='32' y2='57'/></g></svg>" />
+<link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%231b2a3d' rx='10'/><g fill='none' stroke='%23c9a646' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'><ellipse cx='32' cy='22' rx='10' ry='12'/><line x1='17' y1='38' x2='47' y2='38'/><line x1='32' y1='34' x2='32' y2='57'/></g></svg>" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --papyrus:       #f1e4c6;
+    --papyrus-soft:  #c9b894;
+    --papyrus-dim:   #9a8b6d;
+    --ink:           #1b2a3d;
+    --ink-elevated:  #243449;
+    --gold:          #c9a646;
+    --gold-dark:     #a0801e;
+    --gold-light:    #e8c866;
+    --terracotta-lt: #d97a5c;
+  }
+
+  /* ========== TEMA CLARO ========== */
+  :root[data-theme="light"] {
+    --papyrus:       #0d0a06;
+    --papyrus-soft:  #271e11;
+    --papyrus-dim:   #3d2e1e;
+    --papyrus-dark:  #120d08;
+    --ink:           #fdf8ee;
+    --ink-elevated:  #f5ecd8;
+    --ink-raised:    #eaddb8;
+    --ink-soft:      #dfd0a0;
+    --gold:          #5c480e;
+    --gold-dark:     #42340a;
+    --gold-light:    #7a5e14;
+    --terracotta:    #6e1e0d;
+    --terracotta-lt: #8a2b18;
+    --terracotta-dk: #4e1508;
+    --shadow:        rgba(29, 53, 87, 0.20);
+  }
+
+  html[data-theme="light"],
+  html[data-theme="light"] body {
+    background:
+      linear-gradient(rgba(245, 237, 216, 0.72), rgba(232, 220, 192, 0.78)),
+      url('assets/images/pexels-clioseye-35506459.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--papyrus);
+  }
+
+  html[data-theme="light"] body::before {
+    opacity: 0.25;
+    mix-blend-mode: multiply;
+  }
+
+  html[data-theme="light"] .about-btn,
+  html[data-theme="light"] .lang-toggle {
+    background: rgba(29, 53, 87, 0.08);
+  }
+
+  html[data-theme="light"] .scroll-card {
+    background: linear-gradient(180deg, rgba(255,252,246,0.90), rgba(248,242,226,0.85));
+  }
+
+  html[data-theme="light"] .scroll-card.locked {
+    background: rgba(245, 237, 216, 0.70);
+  }
+
+  html[data-theme="light"] .modal-panel {
+    background: linear-gradient(180deg, #f5edd8 0%, #ede3c8 100%);
+  }
+
+  html[data-theme="light"] .modal-close {
+    background: rgba(29, 53, 87, 0.08);
+  }
+
+  .btn-theme {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    background: rgba(27, 42, 61, 0.5);
+    border: 1.5px solid var(--gold-dark);
+    color: var(--gold);
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    backdrop-filter: blur(4px);
+  }
+  .btn-theme:hover {
+    color: var(--gold-light);
+    border-color: var(--gold);
+  }
+  .btn-theme:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+  html[data-theme="light"] .btn-theme {
+    background: rgba(29, 53, 87, 0.08);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    min-height: 100vh;
+    font-family: 'EB Garamond', 'Noto Serif', Georgia, serif;
+    color: var(--papyrus);
+    background:
+      linear-gradient(rgba(20, 32, 47, 0.85), rgba(27, 42, 61, 0.85)),
+      url('assets/images/pexels-clioseye-35506459.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    line-height: 1.6;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 15% 22%, rgba(201, 166, 70, 0.08) 0 2px, transparent 3px),
+      radial-gradient(circle at 78% 45%, rgba(201, 166, 70, 0.06) 0 2px, transparent 3px),
+      radial-gradient(circle at 32% 78%, rgba(201, 166, 70, 0.09) 0 3px, transparent 4px),
+      radial-gradient(circle at 88% 88%, rgba(201, 166, 70, 0.05) 0 2px, transparent 3px),
+      radial-gradient(circle at 55% 15%, rgba(201, 166, 70, 0.07) 0 2px, transparent 3px);
+    background-size: 340px 340px;
+    opacity: 0.6;
+    mix-blend-mode: screen;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 32px 20px 40px;
+    text-align: center;
+    animation: fadein 1s ease;
+  }
+
+  @keyframes fadein {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .about-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    background: rgba(27, 42, 61, 0.5);
+    border: 1.5px solid var(--gold-dark);
+    color: var(--papyrus-soft);
+    padding: 7px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.25s ease, border-color 0.25s ease;
+    text-transform: uppercase;
+    backdrop-filter: blur(4px);
+  }
+  .about-btn:hover {
+    color: var(--gold-light);
+    border-color: var(--gold);
+  }
+  .about-btn:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+  .about-btn .info-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid currentColor;
+    font-size: 10px;
+    font-family: 'EB Garamond', 'Noto Serif', serif;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1;
+  }
+  
+  .lang-toggle {
+    display: inline-flex;
+    border: 1.5px solid var(--gold-dark);
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(27, 42, 61, 0.5);
+    backdrop-filter: blur(4px);
+  }
+  .lang-toggle button {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    background: transparent;
+    border: none;
+    color: var(--papyrus-soft);
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .lang-toggle button.active {
+    background: var(--gold);
+    color: var(--ink);
+  }
+  .lang-toggle button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-header {
+    animation: fadein 1s ease 0.1s backwards;
+  }
+
+  .header-glyph { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 72px; color: var(--gold); margin-bottom: 10px; text-shadow: 0 0 30px rgba(201,166,70,0.3); line-height: 1; }
+  h1 { font-family: 'Cinzel', serif; font-size: clamp(36px, 5vw, 56px); color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .subtitle { font-family: 'Cinzel', serif; color: var(--terracotta-lt); letter-spacing: 0.3em; font-size: 14px; margin-bottom: 24px; text-transform: uppercase; }
+  .beta-badge { display: inline-block; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); border-radius: 4px; padding: 2px 7px; margin-left: 10px; opacity: 0.7; vertical-align: middle; position: relative; top: -4px; }
+  .about-beta-note { font-size: 0.82em; color: var(--terracotta-lt); font-style: italic; margin-top: 16px; opacity: 0.8; }
+  .intro-text { font-size: 19px; max-width: 650px; margin: 0 auto 36px; line-height: 1.7; font-style: italic; color: var(--papyrus-soft); }
+
+  /* Epígrafe do Ptahhotep */
+  .epigraph {
+    max-width: 620px;
+    margin: 0 auto 56px;
+    padding: 22px 28px;
+    position: relative;
+    animation: fadein 1s ease 0.25s backwards;
+  }
+  .epigraph::before, .epigraph::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 1px;
+    margin: 0 auto;
+    background: linear-gradient(90deg, transparent, rgba(201,166,70,0.5), transparent);
+  }
+  .epigraph::before { margin-bottom: 18px; }
+  .epigraph::after { margin-top: 18px; }
+  .epigraph-label {
+    color: var(--gold);
+    font-size: 20px;
+    margin-bottom: 14px;
+    line-height: 1;
+  }
+  .epigraph-label .glyphs {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    letter-spacing: 0.05em;
+  }
+  .epigraph-label .label-romanized {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-left: 10px;
+    opacity: 0.75;
+    vertical-align: middle;
+    color: var(--papyrus-soft);
+  }
+  .epigraph blockquote {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  .quote-translit {
+    font-family: 'EB Garamond', 'Noto Serif', serif;
+    font-style: italic;
+    color: var(--gold-light);
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    opacity: 0.9;
+  }
+  .quote-translation {
+    font-family: 'EB Garamond', 'Noto Serif', serif;
+    color: var(--papyrus);
+    font-size: 19px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .epigraph-source {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--papyrus-dim);
+    margin-top: 16px;
+  }
+
+  .library-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  .scroll-card {
+    background: linear-gradient(180deg, rgba(36,52,73,0.7), rgba(27,42,61,0.9));
+    border: 1px solid var(--gold-dark);
+    border-radius: 12px;
+    padding: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    display: block;
+    backdrop-filter: blur(4px);
+    animation: fadein-card 0.7s ease backwards;
+  }
+  .scroll-card:nth-child(1) { animation-delay: 0.35s; }
+  .scroll-card:nth-child(2) { animation-delay: 0.55s; }
+  .scroll-card:nth-child(3) { animation-delay: 0.75s; }
+
+  @keyframes fadein-card {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .scroll-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+  }
+  .scroll-card:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
+    border-color: var(--gold);
+  }
+  .scroll-card.locked {
+    background: rgba(27,42,61,0.5);
+    border-color: rgba(154,139,109,0.3);
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .scroll-card.locked:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(154,139,109,0.3);
+  }
+
+  .status-tag {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+  .tag-ready { background: rgba(201,166,70,0.15); color: var(--gold); border: 1px solid rgba(201,166,70,0.3); }
+  .tag-locked { background: rgba(217,122,92,0.1); color: var(--terracotta-lt); border: 1px solid rgba(217,122,92,0.2); }
+
+  .card-glyph { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 48px; color: var(--gold); margin-bottom: 16px; line-height: 1; }
+  .card-title { font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; color: var(--papyrus); margin-bottom: 10px; }
+  .card-desc { font-size: 15px; color: var(--papyrus-soft); line-height: 1.5; }
+
+  footer {
+    margin-top: 80px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(201, 166, 70, 0.2);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--papyrus-dim);
+    line-height: 1.6;
+    white-space: pre-line;
+  }
+
+  /* Modal "Sobre o Projeto" */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 14, 22, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .modal-backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .modal-panel {
+    background: linear-gradient(180deg, #253549 0%, #1b2a3d 100%);
+    border: 1.5px solid var(--gold-dark);
+    border-radius: 14px;
+    max-width: 680px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 36px 40px 32px;
+    position: relative;
+    text-align: left;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    transform: translateY(16px) scale(0.98);
+    transition: transform 0.3s ease;
+  }
+  .modal-backdrop.show .modal-panel {
+    transform: translateY(0) scale(1);
+  }
+  .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-dark);
+    background: rgba(27, 42, 61, 0.7);
+    color: var(--papyrus-soft);
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    padding: 0 0 3px 0;
+  }
+  .modal-close:hover { color: var(--gold-light); border-color: var(--gold); }
+  .modal-close:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .modal-title-glyph {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    color: var(--gold);
+    font-size: 36px;
+    line-height: 1;
+    margin-bottom: 6px;
+    text-shadow: 0 0 18px rgba(201,166,70,0.25);
+  }
+  .modal-title {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    font-size: 22px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(201,166,70,0.25);
+  }
+  .modal-body p {
+    color: var(--papyrus);
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+  .modal-body .meaning-glyph {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    color: var(--gold-light);
+    font-size: 20px;
+    margin: 0 2px;
+    vertical-align: -2px;
+  }
+  .modal-body strong { color: var(--gold-light); font-weight: 600; }
+  .modal-body em { color: var(--papyrus); font-style: italic; }
+  .modal-subtitle {
+    font-family: 'Cinzel', serif;
+    color: var(--gold-light);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 24px 0 12px;
+  }
+  .modal-biblio {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+  }
+  .modal-biblio li {
+    font-size: 13.5px;
+    color: var(--papyrus-soft);
+    line-height: 1.55;
+    padding: 6px 0 6px 20px;
+    position: relative;
+  }
+  .modal-biblio li::before {
+    content: '𓏛';
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    color: var(--gold);
+    position: absolute;
+    left: 0;
+    top: 6px;
+    font-size: 13px;
+    opacity: 0.8;
+  }
+  .modal-credit {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(201,166,70,0.2);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--papyrus-dim);
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  /* ===== COLEÇÃO / INVENTÁRIO ===== */
+  .collection-section {
+    margin-top: 56px;
+    border-top: 1px solid rgba(201, 166, 70, 0.15);
+  }
+  .collection-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font: inherit;
+    gap: 12px;
+  }
+  .collection-header:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+  .collection-heading-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    justify-content: center;
+  }
+  .collection-heading {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-shadow: 0 0 18px rgba(201,166,70,0.25);
+  }
+  .collection-summary {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--papyrus-dim);
+    background: rgba(201, 166, 70, 0.08);
+    border: 1px solid rgba(201, 166, 70, 0.2);
+    border-radius: 999px;
+    padding: 2px 9px;
+  }
+  .collection-chevron {
+    color: var(--gold);
+    font-size: 11px;
+    opacity: 0.5;
+    transition: transform 0.35s ease, opacity 0.25s;
+    flex-shrink: 0;
+  }
+  .collection-section:hover .collection-chevron,
+  .collection-section.open .collection-chevron {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+  /* animação de abertura com grid trick (altura real, sem max-height fixo) */
+  .collection-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease;
+  }
+  .collection-body-inner { overflow: hidden; }
+  .collection-section:hover .collection-body,
+  .collection-section.open .collection-body {
+    grid-template-rows: 1fr;
+  }
+  .collection-player {
+    font-family: 'EB Garamond', 'Noto Serif', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--papyrus-dim);
+    text-align: center;
+    padding: 6px 0 22px;
+  }
+  .collection-player .player-name-val { color: var(--papyrus-soft); }
+  .edit-name-btn {
+    background: none;
+    border: none;
+    color: var(--papyrus-dim);
+    cursor: pointer;
+    font-size: 13px;
+    padding: 0 0 0 5px;
+    opacity: 0.55;
+    transition: opacity 0.2s;
+    vertical-align: middle;
+  }
+  .edit-name-btn:hover { opacity: 1; }
+  .collection-game-name {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--papyrus-dim);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .collection-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    padding-bottom: 24px;
+  }
+  .col-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 60px;
+  }
+  .col-item-icon {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 26px;
+    border: 1px solid rgba(201, 166, 70, 0.1);
+    background: rgba(201, 166, 70, 0.04);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .col-item-icon.is-glyph {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0;
+  }
+  .col-item.earned .col-item-icon {
+    background: rgba(201, 166, 70, 0.14);
+    border-color: rgba(201, 166, 70, 0.35);
+  }
+  .col-item.locked .col-item-icon {
+    filter: grayscale(1) opacity(0.28);
+  }
+  .col-item-label {
+    font-family: 'EB Garamond', 'Noto Serif', serif;
+    font-size: 11px;
+    color: var(--papyrus-dim);
+    text-align: center;
+    line-height: 1.2;
+  }
+  .col-item.earned .col-item-label { color: var(--papyrus-soft); }
+  .collection-empty {
+    text-align: center;
+    font-family: 'EB Garamond', 'Noto Serif', serif;
+    font-style: italic;
+    color: var(--papyrus-dim);
+    font-size: 15px;
+    padding: 4px 0 20px;
+  }
+  /* ===== FICHA DO GLIFO (popup, igual ao naufrago) ===== */
+  .glyph-sheet { text-align: center; }
+  .glyph-sheet .sheet-big {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    font-size: 110px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 10px;
+    text-shadow: 0 0 40px rgba(201, 166, 70, 0.3);
+  }
+  .glyph-sheet .sheet-translit {
+    font-family: 'EB Garamond', 'Noto Serif', serif;
+    font-style: italic;
+    font-size: 24px;
+    color: var(--terracotta-lt);
+    margin-bottom: 4px;
+  }
+  .glyph-sheet .sheet-name {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    letter-spacing: 0.15em;
+    color: var(--papyrus);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .sheet-rows {
+    text-align: left;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .sheet-row {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px dashed rgba(201, 166, 70, 0.2);
+  }
+  .sheet-row:last-child { border-bottom: none; }
+  .sheet-row .row-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    flex-shrink: 0;
+    width: 110px;
+    padding-top: 2px;
+  }
+  .sheet-row .row-value {
+    color: var(--papyrus-soft);
+    font-size: 15px;
+    line-height: 1.55;
+    flex: 1;
+  }
+  .col-item.earned { cursor: pointer; }
+  .col-item.earned:hover .col-item-icon {
+    border-color: rgba(201, 166, 70, 0.6);
+    background: rgba(201, 166, 70, 0.22);
+  }
+
+  /* ===== MODAL NOME ===== */
+  .name-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .name-modal-backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .name-modal-panel {
+    background: linear-gradient(180deg, #1a2535 0%, #131e2e 100%);
+    border: 1px solid rgba(201, 166, 70, 0.3);
+    border-radius: 14px;
+    padding: 40px 32px 32px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+  }
+  .name-modal-glyph {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    font-size: 52px;
+    color: var(--gold);
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+  .name-modal-title {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .name-modal-sub {
+    font-family: 'EB Garamond', 'Noto Serif', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--papyrus-dim);
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+  .name-input {
+    width: 100%;
+    background: rgba(241, 228, 198, 0.07);
+    border: 1px solid rgba(201, 166, 70, 0.3);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-family: 'EB Garamond', 'Noto Serif', serif;
+    font-size: 18px;
+    color: var(--papyrus);
+    text-align: center;
+    margin-bottom: 14px;
+    outline: none;
+    transition: border-color 0.25s ease;
+    box-sizing: border-box;
+  }
+  .name-input:focus { border-color: rgba(201, 166, 70, 0.7); }
+  .name-input::placeholder { color: var(--papyrus-dim); opacity: 0.6; }
+  .name-modal-btn {
+    width: 100%;
+    padding: 12px;
+    background: rgba(201, 166, 70, 0.12);
+    border: 1.5px solid rgba(201, 166, 70, 0.45);
+    border-radius: 8px;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    margin-bottom: 12px;
+  }
+  .name-modal-btn:hover {
+    background: rgba(201, 166, 70, 0.22);
+    border-color: var(--gold);
+  }
+  .name-modal-skip {
+    background: none;
+    border: none;
+    color: var(--papyrus-dim);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+  }
+  .name-modal-skip:hover { color: var(--papyrus-soft); }
+
+  @media (max-width: 560px) {
+    .topbar { justify-content: center; }
+    .modal-panel { padding: 30px 22px 26px; }
+    .modal-title { font-size: 18px; letter-spacing: 0.08em; }
+    .quote-translation { font-size: 17px; }
+    .epigraph { padding: 18px 12px; margin-bottom: 40px; }
+    .header-glyph { font-size: 56px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ===== CERTIFICADO ===== */
+  .certificate-section {
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(201, 166, 70, 0.25);
+    text-align: center;
+    animation: fadein 0.9s ease;
+  }
+  .cert-heading {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .cert-unlock-msg {
+    font-family: 'EB Garamond', 'Noto Serif', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--papyrus-soft);
+    margin-bottom: 26px;
+    line-height: 1.6;
+  }
+  .cert-locked-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 28px 24px;
+    border: 1.5px dashed rgba(201, 166, 70, 0.30);
+    border-radius: 12px;
+    background: rgba(201, 166, 70, 0.04);
+    max-width: 420px;
+    margin: 0 auto 28px;
+  }
+  .cert-lock-icon {
+    font-size: 32px;
+    opacity: 0.45;
+    line-height: 1;
+  }
+  .cert-locked-msg {
+    font-family: 'EB Garamond', 'Noto Serif', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--papyrus-soft);
+    opacity: 0.65;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .cert-open-btn {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 11px 30px;
+    border: 1.5px solid var(--gold);
+    border-radius: 999px;
+    background: rgba(201, 166, 70, 0.1);
+    color: var(--gold);
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s, border-color 0.25s;
+    backdrop-filter: blur(4px);
+    margin-bottom: 28px;
+  }
+  .cert-open-btn:hover {
+    background: rgba(201, 166, 70, 0.2);
+    color: var(--gold-light);
+    border-color: var(--gold-light);
+  }
+  .cert-open-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  #certCanvas {
+    max-width: 100%;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 10px 50px rgba(0,0,0,0.55);
+  }
+  .cert-btn-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+
+</style>
+</head>
+<body>
+
+<p class="sr-only">Imagem de fundo: Fachada do templo de Horus em Edfu, Egito. Foto de Flavia Lima Corpas, outubro de 2025.</p>
+
+<main class="container">
+
+  <nav class="topbar" aria-label="Controles da página">
+    <button class="about-btn" id="btnAbout" type="button" onclick="openAbout()" aria-haspopup="dialog">
+      <span class="info-mark" aria-hidden="true">i</span>
+      <span id="btnAboutLabel">Sobre</span>
+    </button>
+    <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+      <button class="active" id="btn-pt" type="button" onclick="setLang('pt')" aria-pressed="true">PT</button>
+      <button id="btn-en" type="button" onclick="setLang('en')" aria-pressed="false">EN</button>
+    </div>
+    <button id="btnTheme" class="btn-theme" type="button" onclick="toggleTheme()" aria-label="Alternar tema claro/escuro" title="Tema claro/escuro">☀</button>
+  </nav>
+
+  <header class="page-header">
+    <div class="header-glyph" aria-hidden="true"></div>
+    <h1>Musæum<span class="beta-badge">beta</span></h1>
+    <div class="subtitle" id="subtitle"></div>
+    <p class="intro-text" id="intro"></p>
+  </header>
+
+  <section class="epigraph" aria-label="Epígrafe">
+    <div class="epigraph-label">
+      <span class="glyphs" aria-hidden="true">𓋴𓃀𓇼𓄿𓇋𓇋𓏏𓏛</span><span class="label-romanized">sbꜣyt · <span id="epigraphLabel"></span></span>
+    </div>
+    <blockquote>
+      <p class="quote-translit" lang="egy" aria-label="Transliteração do egípcio antigo">mdt nfrt štꜣt r wꜣḏ,<br>gmm.tw.s m-ꜥ ḥmwt ḥr bnwt</p>
+      <p class="quote-translation" id="epigraphQuote"></p>
+    </blockquote>
+    <cite class="epigraph-source" id="epigraphSource"></cite>
+  </section>
+
+  <section aria-labelledby="libraryHeading">
+    <h2 id="libraryHeading" style="position:absolute;left:-9999px;">Biblioteca</h2>
+    <div class="library-grid">
+
+      <a href="naufrago.html" class="scroll-card" id="card1">
+        <span class="status-tag tag-ready" data-t="tagOpen"></span>
+        <div class="card-glyph" aria-hidden="true">𓊛</div>
+        <div class="card-title" data-t="t1"></div>
+        <div class="card-desc" data-t="d1"></div>
+      </a>
+
+      <div class="scroll-card locked" id="card2" aria-disabled="true">
+        <span class="status-tag tag-locked" data-t="tagLocked"></span>
+        <div class="card-glyph" aria-hidden="true">𓂻</div>
+        <div class="card-title" data-t="t2"></div>
+        <div class="card-desc" data-t="d2"></div>
+      </div>
+
+      <div class="scroll-card locked" id="card3" aria-disabled="true">
+        <span class="status-tag tag-locked" data-t="tagLocked"></span>
+        <div class="card-glyph" aria-hidden="true">𓃾</div>
+        <div class="card-title" data-t="t3"></div>
+        <div class="card-desc" data-t="d3"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="collection-section" id="collectionSection" aria-label="Coleção">
+    <button class="collection-header" id="collectionHeader" type="button" onclick="toggleCollection()" aria-expanded="false" aria-controls="collectionBody">
+      <div class="collection-heading-row">
+        <span class="collection-heading" id="collectionHeading"></span>
+        <span class="collection-summary" id="collectionSummary"></span>
+      </div>
+      <span class="collection-chevron" aria-hidden="true">▾</span>
+    </button>
+    <div class="collection-body" id="collectionBody" role="region">
+      <div class="collection-body-inner">
+        <div class="collection-player" id="collectionPlayer"></div>
+        <div id="collectionContent"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="certificate-section" id="certSection" aria-label="Certificado">
+    <div class="cert-heading" id="certHeading"></div>
+    <div class="cert-locked-wrap" id="certLockedWrap" style="display:none;">
+      <span class="cert-lock-icon">𓂀</span>
+      <p class="cert-locked-msg" id="certLockedMsg"></p>
+    </div>
+    <p class="cert-unlock-msg" id="certUnlockMsg" style="display:none;"></p>
+    <div id="certOpenBtnWrap" style="display:none;">
+      <button class="cert-open-btn" id="certOpenBtn" onclick="showCertificate()"></button>
+    </div>
+    <div class="cert-preview" id="certPreview" style="display:none;">
+      <canvas id="certCanvas" width="800" height="560"></canvas>
+      <div class="cert-btn-row">
+        <button class="about-btn" id="certDownloadBtn" onclick="downloadCertificate()"></button>
+        <button class="about-btn" id="certCloseBtn" onclick="hideCertificate()"></button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span id="footerContent"></span>
+    <span id="footerPrivacy" style="display:block; margin-top:10px; font-family: sans-serif; font-size:10px; letter-spacing:0.05em; opacity:0.55;"></span>
+  </footer>
+</main>
+
+<!-- Modal Nome -->
+<div class="name-modal-backdrop" id="nameModal" role="dialog" aria-modal="true" aria-labelledby="nameModalTitle">
+  <div class="name-modal-panel">
+    <div class="name-modal-glyph" aria-hidden="true">𓂀</div>
+    <h2 class="name-modal-title" id="nameModalTitle"></h2>
+    <p class="name-modal-sub" id="nameModalSub"></p>
+    <input type="text" class="name-input" id="nameInput" maxlength="32" autocomplete="off" />
+    <button class="name-modal-btn" id="nameModalBtn" onclick="saveName()"></button>
+    <button class="name-modal-skip" id="nameModalSkip" onclick="skipName()"></button>
+  </div>
+</div>
+
+<!-- Modal Ficha do Glifo -->
+<div class="modal-backdrop" id="glyphModal" role="dialog" aria-modal="true" aria-labelledby="glyphModalTitle" onclick="closeGlyphCardOnBackdrop(event)">
+  <div class="modal-panel" role="document">
+    <button class="modal-close" id="glyphModalClose" type="button" onclick="closeGlyphCard()" aria-label="Fechar">×</button>
+    <div id="glyphModalBody"></div>
+  </div>
+</div>
+
+<!-- Modal Sobre o Projeto -->
+<div class="modal-backdrop" id="aboutModal" role="dialog" aria-modal="true" aria-labelledby="aboutTitle" onclick="closeAboutOnBackdrop(event)">
+  <div class="modal-panel" role="document">
+    <button class="modal-close" id="btnCloseAbout" type="button" onclick="closeAbout()" aria-label="Fechar">×</button>
+    <div class="modal-title-glyph" aria-hidden="true"></div>
+    <h2 class="modal-title" id="aboutTitle"></h2>
+    <div class="modal-body" id="aboutBody"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script src="research.js"></script>
+<script>
+  let currentLang = 'pt';
+  let aboutOpen = false;
+
+  const i18n = {
+    pt: {
+      docLang: 'pt-BR',
+      pageTitle: 'Musæum · Biblioteca interativa',
+      aboutBtn: 'Sobre',
+      aboutClose: 'Fechar',
+
+      subtitle: 'Biblioteca interativa',
+
+      epigraphLabel: 'Ensinamento',
+      epigraphQuote: '"A bela palavra é mais rara que a pedra verde, e no entanto encontra-se com as servas junto aos moinhos."',
+      epigraphSource: '— Ensinamentos de Ptahhotep, prólogo',
+
+      tagOpen: 'Aberto',
+      tagLocked: 'Em Breve',
+      t1: 'O Conto do Náufrago',
+      d1: 'Uma jornada de sobrevivência, criaturas míticas e a importância da fala eficaz.',
+      t2: 'A História de Sinué',
+      d2: 'O exílio e o retorno. O épico máximo da literatura do Reino Médio.',
+      t3: 'Camponês Eloquente',
+      d3: 'O poder da retórica e o clamor por justiça de um homem simples.',
+
+      footer: 'Projeto de Flavia Lima Corpas, 2026\nPPGArq - Museu Nacional / UFRJ\nFoto: Fachada do templo de Horus em Edfu, Egito · Flavia Lima Corpas, out. 2025',
+      footerPrivacy: 'Este site armazena localmente seu progresso e nome, sem enviar dados para nenhum servidor.',
+
+      aboutTitle: 'Sobre o projeto',
+      aboutIntro: 'O nome <strong>Musæum</strong> vem do latim e significa "lugar das musas". Na Antiguidade, esse era o nome dado aos espaços de estudo, arte e preservação do conhecimento.',
+      aboutMiddle: 'Este projeto quer aproximar você de algumas das histórias mais incríveis escritas no Egito Antigo durante o <strong>Reino Médio</strong> (entre os anos 2055 e 1650 a.C.), que foi a época de maior criatividade na literatura egípcia.',
+      aboutGoal: 'Cada texto é apresentado como uma história narrada, com curiosidades da arqueologia, desafios para ajudar a entender o conteúdo e um "código" de hieróglifos que você vai descobrindo aos poucos. A ideia é levar para todo mundo esses textos que muitas vezes só são lidos nas universidades, mantendo o respeito aos originais e explicando como era a vida e a cultura naquela época.',
+      aboutBetaNote: 'Este projeto está em versão beta. Novos textos e recursos serão adicionados.',
+      aboutBiblioTitle: 'Bibliografia de base',
+      aboutBiblio: [
+        'ALLEN, J. P. <em>Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs</em>. Cambridge: Cambridge University Press, 2000.',
+        'ARAUJO, Emanuel. <em>Escrito para a Eternidade: A literatura do Egito faraônico</em>. Brasília, 2000.',
+        'BLACKMAN, A. M. <em>Middle-Egyptian Stories</em>. Part I. Brussels: Fondation Égyptologique Reine Élisabeth, 1932.',
+        'LICHTHEIM, M. <em>Ancient Egyptian Literature, Vol. I: The Old and Middle Kingdoms</em>. Berkeley: University of California Press, 1973.',
+        'NEDERHOF, Mark-Jan. <em>The Shipwrecked Sailor</em>. Hieroglyphic transcription and translation. 2015.',
+        'PARKINSON, R. B. <em>The Tale of Sinuhe and Other Ancient Egyptian Poems, 1940–1640 BC</em>. Oxford: Oxford University Press, 1997.',
+        'POE, William Clay. <em>The Writing of a Skillful Scribe: An introduction to hieratic Middle Egyptian through the text of The Shipwrecked Sailor</em>. Santa Rosa, 2010.',
+        'SIMPSON, W. K. (ed.). <em>The Literature of Ancient Egypt: An Anthology of Stories, Instructions, Stelae, Autobiographies, and Poetry</em>. 3ª ed. New Haven: Yale University Press, 2003.',
+        'UCL Digital Egypt for Universities. <em>The Teaching of Ptahhotep</em>. Disponível em: <a href="https://www.ucl.ac.uk/museums-static/digitalegypt/literature/ptahhotep.html" target="_blank" rel="noopener">ucl.ac.uk/museums-static/digitalegypt/literature/ptahhotep.html</a>.'
+      ],
+      aboutCredit: 'Flavia Lima Corpas · PPGArq\nMuseu Nacional / UFRJ · 2026\nFoto: Templo de Horus em Edfu, Egito · Flavia Lima Corpas, out. 2025',
+      collectionTitle:      'Coleção',
+      codexSectionTitle:    'Códex · Hieróglifos',
+      collectionOf:         'de',
+      collectionEmpty:      'Complete histórias para desbloquear tesouros.',
+      nameModalTitle:       'Como devo te chamar?',
+      nameModalSub:         'Seu nome vai aparecer em sua coleção.',
+      nameModalPlaceholder: 'Seu nome',
+      nameModalBtn:         'Entrar no Musæum',
+      nameModalSkip:        'Entrar sem nome',
+      editNameLabel:        'Editar nome',
+      addNameLabel:         '+ adicionar nome',
+      certSectionTitle:     'Sua Conquista',
+      certLocked:           'Complete todas as atividades para desbloquear o certificado.',
+      certUnlock:           'Você concluiu todas as histórias disponíveis no Musæum. Seu certificado está pronto.',
+      certOpenBtn:          '𓏞 Ver Certificado',
+      certDownload:         '↓ Salvar imagem',
+      certClose:            'Fechar',
+      certTitle:            'CERTIFICADO DE LEITURA',
+      certAttest:           'Atesta-se que',
+      certCompleted:        'concluiu com êxito a leitura de:',
+      certSignature:        'PPGArq · Museu Nacional / UFRJ'
+    },
+    en: {
+      docLang: 'en',
+      pageTitle: 'Musæum · Interactive library',
+      aboutBtn: 'About',
+      aboutClose: 'Close',
+
+      subtitle: 'Interactive library',
+    
+
+      epigraphLabel: 'Teaching',
+      epigraphQuote: '"Fine speech is more hidden than greenstone, and yet it is found among the maidservants at the grindstones."',
+      epigraphSource: '— The Teachings of Ptahhotep, prologue',
+
+      tagOpen: 'Open',
+      tagLocked: 'Coming Soon',
+      t1: 'The Shipwrecked Sailor',
+      d1: 'A journey of survival, mythical creatures, and the importance of effective speech.',
+      t2: 'The Story of Sinuhe',
+      d2: 'Exile and return. The supreme epic of Middle Kingdom literature.',
+      t3: 'The Eloquent Peasant',
+      d3: "The power of rhetoric and a simple man's plea for justice.",
+
+      footer: 'Project by Flavia Lima Corpas, 2026\nPPGArq - National Museum / UFRJ\nPhoto: Facade of the Temple of Horus at Edfu, Egypt · Flavia Lima Corpas, Oct. 2025',
+      footerPrivacy: 'This site stores your progress and name locally, without sending any data to a server.',
+
+      aboutTitle: 'About the project',
+      aboutIntro: 'The name <strong>Musæum</strong> comes from Latin and means "place of the Muses." In Antiquity, this was the name given to spaces of study, art, and the preservation of knowledge.',
+      aboutMiddle: 'This project brings you closer to some of the most incredible stories written in Ancient Egypt during the <strong>Middle Kingdom</strong> (between 2055 and 1650 BCE), the period of greatest creativity in Egyptian literature.',
+      aboutGoal: 'Each text is presented as a narrated story, with archaeological curiosities, challenges to help you understand the content, and a hieroglyphic "code" that you gradually uncover. The idea is to bring these texts — usually only read in universities — to everyone, while respecting the originals and explaining what life and culture were like at that time.',
+      aboutBetaNote: 'This project is in beta. New texts and features are being added.',
+      aboutBiblioTitle: 'Reference bibliography',
+      aboutBiblio: [
+        'ALLEN, J. P. <em>Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs</em>. Cambridge: Cambridge University Press, 2000.',
+        'ARAUJO, Emanuel. <em>Escrito para a Eternidade: A literatura do Egito faraônico</em>. Brasília, 2000.',
+        'BLACKMAN, A. M. <em>Middle-Egyptian Stories</em>. Part I. Brussels: Fondation Égyptologique Reine Élisabeth, 1932.',
+        'LICHTHEIM, M. <em>Ancient Egyptian Literature, Vol. I: The Old and Middle Kingdoms</em>. Berkeley: University of California Press, 1973.',
+        'NEDERHOF, Mark-Jan. <em>The Shipwrecked Sailor</em>. Hieroglyphic transcription and translation. 2015.',
+        'PARKINSON, R. B. <em>The Tale of Sinuhe and Other Ancient Egyptian Poems, 1940–1640 BC</em>. Oxford: Oxford University Press, 1997.',
+        'POE, William Clay. <em>The Writing of a Skillful Scribe: An introduction to hieratic Middle Egyptian through the text of The Shipwrecked Sailor</em>. Santa Rosa, 2010.',
+        'Publications of the Egyptology Section, National Museum / UFRJ.',
+        'SIMPSON, W. K. (ed.). <em>The Literature of Ancient Egypt: An Anthology of Stories, Instructions, Stelae, Autobiographies, and Poetry</em>. 3rd ed. New Haven: Yale University Press, 2003.',
+        'UCL Digital Egypt for Universities. <em>The Teaching of Ptahhotep</em>. Available at: <a href="https://www.ucl.ac.uk/museums-static/digitalegypt/literature/ptahhotep.html" target="_blank" rel="noopener">ucl.ac.uk/museums-static/digitalegypt/literature/ptahhotep.html</a>.'
+      ],
+      aboutCredit: 'Flavia Lima Corpas · PPGArq\nMuseu Nacional / UFRJ · 2026\nPhoto: Temple of Horus at Edfu, Egypt · Flavia Lima Corpas, Oct. 2025',
+      collectionTitle:      'Collection',
+      codexSectionTitle:    'Codex · Hieroglyphs',
+      collectionOf:         'of',
+      collectionEmpty:      'Complete stories to unlock treasures.',
+      nameModalTitle:       'What should I call you?',
+      nameModalSub:         'Your name will appear on your collection.',
+      nameModalPlaceholder: 'Your name',
+      nameModalBtn:         'Enter the Musæum',
+      nameModalSkip:        'Enter without a name',
+      editNameLabel:        'Edit name',
+      addNameLabel:         '+ add a name',
+      certSectionTitle:     'Your Achievement',
+      certLocked:           'Complete all activities to unlock the certificate.',
+      certUnlock:           'You have completed all available stories in the Musæum. Your certificate is ready.',
+      certOpenBtn:          '𓏞 View Certificate',
+      certDownload:         '↓ Save image',
+      certClose:            'Close',
+      certTitle:            'CERTIFICATE OF READING',
+      certAttest:           'This certifies that',
+      certCompleted:        'has successfully completed the reading of:',
+      certSignature:        'PPGArq · National Museum / UFRJ'
+    }
+  };
+
+  function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('musaeum-lang', lang);
+    const t = i18n[lang];
+    document.documentElement.lang = t.docLang;
+    document.title = t.pageTitle;
+
+    document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-pt').setAttribute('aria-pressed', lang === 'pt');
+    document.getElementById('btn-en').setAttribute('aria-pressed', lang === 'en');
+
+    render();
+  }
+
+  function render() {
+    const t = i18n[currentLang];
+
+    document.getElementById('btnAboutLabel').textContent = t.aboutBtn;
+    document.getElementById('btnAbout').setAttribute('aria-label', t.aboutBtn);
+    document.getElementById('btnCloseAbout').setAttribute('aria-label', t.aboutClose);
+
+    document.getElementById('subtitle').textContent = t.subtitle;
+    document.getElementById('intro').textContent = t.intro;
+
+    document.getElementById('epigraphLabel').textContent = t.epigraphLabel;
+    document.getElementById('epigraphQuote').textContent = t.epigraphQuote;
+    document.getElementById('epigraphSource').textContent = t.epigraphSource;
+
+    // Atualiza apenas os textos dos cards (preserva a animação em cascata)
+    document.querySelectorAll('[data-t]').forEach(el => {
+      const key = el.getAttribute('data-t');
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+
+    // aria-labels contextuais dos cards
+    document.getElementById('card1').setAttribute('aria-label', `${t.t1} — ${t.tagOpen}`);
+    document.getElementById('card2').setAttribute('aria-label', `${t.t2} — ${t.tagLocked}`);
+    document.getElementById('card3').setAttribute('aria-label', `${t.t3} — ${t.tagLocked}`);
+
+    document.getElementById('footerContent').innerText = t.footer;
+    document.getElementById('footerPrivacy').innerText = t.footerPrivacy;
+    renderCollection();
+    renderCertificateSection();
+
+    // Corpo do modal Sobre
+    document.getElementById('aboutTitle').textContent = t.aboutTitle;
+    document.getElementById('aboutBody').innerHTML = `
+      <p>${t.aboutIntro}</p>
+      <p>${t.aboutMiddle}</p>
+      <p>${t.aboutGoal}</p>
+      <p class="about-beta-note">${t.aboutBetaNote}</p>
+      <div class="modal-subtitle">${t.aboutBiblioTitle}</div>
+      <ul class="modal-biblio">
+        ${t.aboutBiblio.map(item => `<li>${item}</li>`).join('')}
+      </ul>
+      <div class="modal-credit">${t.aboutCredit.replace('\n', '<br>')}</div>
+    `;
+  }
+
+  function openAbout() {
+    const m = document.getElementById('aboutModal');
+    m.classList.add('show');
+    aboutOpen = true;
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('btnCloseAbout').focus(), 60);
+  }
+  function closeAbout() {
+    document.getElementById('aboutModal').classList.remove('show');
+    aboutOpen = false;
+    document.body.style.overflow = '';
+    document.getElementById('btnAbout').focus();
+  }
+  function closeAboutOnBackdrop(e) {
+    if (e.target.id === 'aboutModal') closeAbout();
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (document.getElementById('glyphModal').classList.contains('show')) closeGlyphCard();
+      else if (aboutOpen) closeAbout();
+    }
+  });
+
+  // ===== CÓDEX =====
+  const CODEX_GLYPHS = [
+    { glyph: '𓋹', translit: 'ꜥnḫ',   chapter: -1,
+      namePt: 'Ankh',          nameEn: 'Ankh',
+      meaningPt: 'Vida, vida eterna',         meaningEn: 'Life, eternal life',
+      notePt: 'Representa provavelmente uma sandália ritual amarrada no tornozelo, segundo a hipótese mais aceita por Alan Gardiner. Quando deuses seguram o ankh diante da boca de um faraó, transmitem-lhe a vida divina. É talvez o signo egípcio mais reconhecível e atravessou milênios como amuleto.',
+      noteEn: 'Likely representing a ceremonial sandal tied at the ankle, per Alan Gardiner\'s accepted hypothesis. When gods hold the ankh before a pharaoh\'s mouth, they transmit divine life. Perhaps the most recognizable Egyptian sign, it crossed millennia as an amulet.' },
+    { glyph: '𓂀', translit: 'wḏꜣt',  chapter: 0,
+      namePt: 'Olho de Hórus', nameEn: 'Eye of Horus',
+      meaningPt: 'Proteção, inteireza, cura', meaningEn: 'Protection, wholeness, healing',
+      notePt: 'Segundo o mito, o olho de Hórus foi ferido por Seth e restaurado por Tot. Cada parte do desenho representa uma fração (1/2, 1/4, 1/8...) que somadas dão 63/64. O pequeno resto é a "magia de Tot".',
+      noteEn: 'In myth, Horus\'s eye was wounded by Seth and restored by Thoth. Each part of the drawing represents a fraction (1/2, 1/4, 1/8...) summing to 63/64. The small remainder is "Thoth\'s magic".' },
+    { glyph: '𓇳', translit: 'rꜥ',    chapter: 1,
+      namePt: 'Sol · Rá',       nameEn: 'Sun · Ra',
+      meaningPt: 'Sol, dia, o deus Rá',       meaningEn: 'Sun, day, the god Ra',
+      notePt: 'Um círculo com ponto no centro. Serve como logograma para "sol" e "Rá", e como determinativo em palavras ligadas ao tempo e à luz. O deus Rá era o sol do meio-dia; Khepri era o sol nascente e Atum, o poente.',
+      noteEn: 'A circle with a dot at center. Works as a logogram for "sun" and "Ra", and as a determinative in words tied to time and light. Ra was the midday sun; Khepri the rising sun and Atum the setting one.' },
+    { glyph: '𓈗', translit: 'mw',    chapter: 2,
+      namePt: 'Águas',          nameEn: 'Waters',
+      meaningPt: 'Água, águas, líquido',      meaningEn: 'Water, waters, liquid',
+      notePt: 'Três linhas onduladas representando ondulações da água. Pode aparecer como ideograma ou como determinativo de palavras ligadas a rios, líquidos e travessias. O Nilo e o "Grande Verde" (o Mediterrâneo) eram escritos com este signo.',
+      noteEn: 'Three wavy lines representing rippling water. Can appear as an ideogram or as a determinative for words tied to rivers, liquids, and crossings. The Nile and the "Great Green" (the Mediterranean) used this sign.' },
+    { glyph: '𓄣', translit: 'ỉb',    chapter: 3,
+      namePt: 'Coração',        nameEn: 'Heart',
+      meaningPt: 'Coração, mente, vontade',   meaningEn: 'Heart, mind, will',
+      notePt: 'Para os egípcios, o coração era a sede do pensamento, da memória e da personalidade — não o cérebro, que era descartado durante a mumificação. No julgamento de Osíris, o coração do morto era pesado contra a pena de Maat.',
+      noteEn: 'For Egyptians, the heart was the seat of thought, memory, and personality — not the brain, which was discarded during mummification. In Osiris\'s judgment, the heart was weighed against Maat\'s feather.' },
+    { glyph: '𓆙', translit: 'ḥfꜣw', chapter: 4,
+      namePt: 'Serpente',       nameEn: 'Serpent',
+      meaningPt: 'Serpente, réptil',          meaningEn: 'Serpent, reptile',
+      notePt: 'A serpente aparece como determinativo de répteis e em nomes de divindades protetoras, como a uraeus (a cobra na testa do faraó). No Conto do Náufrago, a serpente da ilha é uma entidade divina chamada de "Príncipe de Punt".',
+      noteEn: 'Appears as a determinative of reptiles and in names of protective deities, like the uraeus (cobra on the pharaoh\'s forehead). In the Shipwrecked Sailor, the island serpent is a divine being called "Prince of Punt".' },
+    { glyph: '𓏞', translit: 'sš',    chapter: 5,
+      namePt: 'Escriba',        nameEn: 'Scribe',
+      meaningPt: 'Escrita, kit do escriba',   meaningEn: 'Writing, scribe\'s kit',
+      notePt: 'Representa o estojo do escriba: a paleta com duas cavidades para tintas, o saquinho de pigmento e os pincéis de junco. Ser escriba no Egito era uma das profissões mais prestigiosas. "Sê escriba, livra-te do trabalho duro", dizia um texto sapiencial.',
+      noteEn: 'Depicts the scribe\'s kit: the palette with two ink cavities, the pigment bag, and reed brushes. Being a scribe was one of Egypt\'s most prestigious professions. "Be a scribe, free yourself from hard labor", said a wisdom text.' },
+    { glyph: '𓊛', translit: 'dpt',   chapter: 6,
+      namePt: 'Barco',          nameEn: 'Boat',
+      meaningPt: 'Barco, navio, travessia',   meaningEn: 'Boat, ship, crossing',
+      notePt: 'O signo do barco é central na cultura egípcia. O Nilo era a espinha dorsal do país e o sol atravessava o céu em sua barca diária. Navios reais sepultados ao lado de pirâmides, como o de Quéops, mostram a importância religiosa do transporte fluvial.',
+      noteEn: 'The boat sign is central in Egyptian culture. The Nile was the country\'s backbone, and the sun crossed the sky in its daily bark. Royal ships buried beside pyramids, like Khufu\'s, show the religious weight of river travel.' },
+    { glyph: '𓉐', translit: 'pr',    chapter: 7,
+      namePt: 'Casa',           nameEn: 'House',
+      meaningPt: 'Casa, lar, domínio',        meaningEn: 'House, home, domain',
+      notePt: 'A planta baixa de uma casa vista de cima. Como bilítero <i>pr</i>, forma palavras como <i>pr-ꜥnḫ</i> ("casa da vida"), <i>pr-ꜥꜣ</i> ("casa grande" → "faraó") e <i>pr-ḥḏ</i> ("casa branca", o tesouro real).',
+      noteEn: 'The floor plan of a house seen from above. As biliteral <i>pr</i>, it forms words like <i>pr-ꜥnḫ</i> ("house of life"), <i>pr-ꜥꜣ</i> ("great house" → "pharaoh") and <i>pr-ḥḏ</i> ("white house", the royal treasury).' },
+  ];
+
+  // ===== CATÁLOGO DE JOGOS (extensível) =====
+  const GAME_CATALOG = [
+    {
+      storyId: 'naufrago',
+      titlePt: 'O Conto do Náufrago',
+      titleEn: 'The Shipwrecked Sailor',
+      items: [
+        { pt: 'Uvas',    en: 'Grapes',   icon: '🍇' },
+        { pt: 'Vinho',   en: 'Wine',     icon: '🍷' },
+        { pt: 'Incenso', en: 'Incense',  icon: '💨' },
+        { pt: 'Mirra',   en: 'Myrrh',   icon: '🏺' },
+        { pt: 'Óleo',    en: 'Oil',      icon: '🪔' },
+        { pt: 'Marfim',  en: 'Ivory',    icon: '🦷' },
+        { pt: 'Macaco',  en: 'Monkey',   icon: '🐒' },
+        { pt: 'Cão',     en: 'Dog',      icon: '🐕' }
+      ]
+    }
+  ];
+
+  // ===== NOME DO JOGADOR =====
+  function savePlayerName(name) {
+    localStorage.setItem('musaeum-player', JSON.stringify({ name }));
+  }
+
+  function openNameModal() {
+    const pt = i18n.pt;
+    const en = i18n.en;
+    document.getElementById('nameModalTitle').innerHTML =
+      `${pt.nameModalTitle}<span style="color:var(--papyrus-dim); margin:0 6px;">·</span>${en.nameModalTitle}`;
+    document.getElementById('nameModalSub').innerHTML =
+      `${pt.nameModalSub}<br><span style="opacity:0.7">${en.nameModalSub}</span>`;
+    document.getElementById('nameModalBtn').textContent  = `${pt.nameModalBtn} · ${en.nameModalBtn}`;
+    document.getElementById('nameModalSkip').textContent = `${pt.nameModalSkip} · ${en.nameModalSkip}`;
+    const input = document.getElementById('nameInput');
+    input.placeholder = `${pt.nameModalPlaceholder} · ${en.nameModalPlaceholder}`;
+    input.value = getPlayerName() || '';
+    document.getElementById('nameModal').classList.add('show');
+    setTimeout(() => input.focus(), 60);
+  }
+
+  function closeNameModal() {
+    document.getElementById('nameModal').classList.remove('show');
+  }
+
+  function saveName() {
+    const name = document.getElementById('nameInput').value.trim();
+    if (name) savePlayerName(name);
+    closeNameModal();
+    renderCollection();
+  }
+
+  function skipName() {
+    closeNameModal();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeNameModal();
+    if (e.key === 'Enter' && document.getElementById('nameModal').classList.contains('show')) saveName();
+  });
+
+  // ===== COLEÇÃO =====
+  function openGlyphCard(idx) {
+    const g    = CODEX_GLYPHS[idx];
+    const lang = currentLang;
+    const name    = lang === 'pt' ? g.namePt    : g.nameEn;
+    const meaning = lang === 'pt' ? g.meaningPt : g.meaningEn;
+    const note    = lang === 'pt' ? g.notePt    : g.noteEn;
+    const chapterLabel = g.chapter === -1
+      ? (lang === 'pt' ? 'Introdução' : 'Introduction')
+      : `${lang === 'pt' ? 'Capítulo' : 'Chapter'} ${g.chapter + 1}`;
+    const lMeaning  = lang === 'pt' ? 'Significado'   : 'Meaning';
+    const lAppears  = lang === 'pt' ? 'Descoberto em' : 'Discovered in';
+    const lNote     = lang === 'pt' ? 'Nota'          : 'Note';
+
+    document.getElementById('glyphModalBody').innerHTML = `
+      <div class="glyph-sheet">
+        <div class="sheet-big" aria-hidden="true">${g.glyph}</div>
+        <div class="sheet-translit">${g.translit}</div>
+        <div class="sheet-name" id="glyphModalTitle">${name}</div>
+        <div class="sheet-rows">
+          <div class="sheet-row">
+            <div class="row-label">${lMeaning}</div>
+            <div class="row-value">${meaning}</div>
+          </div>
+          <div class="sheet-row">
+            <div class="row-label">${lAppears}</div>
+            <div class="row-value">${chapterLabel}</div>
+          </div>
+          <div class="sheet-row">
+            <div class="row-label">${lNote}</div>
+            <div class="row-value">${note}</div>
+          </div>
+        </div>
+      </div>`;
+
+    const modal = document.getElementById('glyphModal');
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('glyphModalClose').focus(), 60);
+  }
+
+  function closeGlyphCard() {
+    document.getElementById('glyphModal').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  function closeGlyphCardOnBackdrop(e) {
+    if (e.target.id === 'glyphModal') closeGlyphCard();
+  }
+
+  function toggleCollection() {
+    const section = document.getElementById('collectionSection');
+    const header  = document.getElementById('collectionHeader');
+    const isOpen  = section.classList.toggle('open');
+    header.setAttribute('aria-expanded', isOpen);
+  }
+
+  function renderCollection() {
+    const t = i18n[currentLang];
+    const name = getPlayerName();
+
+    const headingEl = document.getElementById('collectionHeading');
+    if (name) {
+      headingEl.innerHTML = `${t.collectionTitle} ${t.collectionOf} <span class="player-name-val">${escapeHtml(name)}</span>`;
+    } else {
+      headingEl.textContent = t.collectionTitle;
+    }
+
+    // badge de resumo (X / total)
+    let earnedCount = 0, totalCount = 0;
+    for (const game of GAME_CATALOG) {
+      totalCount += game.items.length;
+      let save = null;
+      save = storeGet(game.storyId);
+      if (save) {
+        const collected = save.collected || [];
+        earnedCount += game.items.filter((_, i) => collected[i] === true).length;
+      }
+    }
+    const summaryEl = document.getElementById('collectionSummary');
+    if (summaryEl) summaryEl.textContent = `${earnedCount} / ${totalCount}`;
+
+    const playerEl = document.getElementById('collectionPlayer');
+    if (name) {
+      playerEl.innerHTML = `<button class="edit-name-btn" onclick="openNameModal()" aria-label="${t.editNameLabel}" title="${t.editNameLabel}">✎</button>`;
+    } else {
+      playerEl.innerHTML = `<button class="edit-name-btn" onclick="openNameModal()" aria-label="${t.addNameLabel}" title="${t.addNameLabel}" style="opacity:0.45; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; font-family:'Cinzel',serif; text-decoration:underline;">${t.addNameLabel}</button>`;
+    }
+
+    const content = document.getElementById('collectionContent');
+    let html = '';
+    let anyData = false;
+
+    // lê save do náufrago (usado em tesouros e códex)
+    const naufrSave = storeGet('naufrago');
+    const discoveredGlyphs = new Set(naufrSave?.discoveredGlyphs ?? []);
+
+    for (const game of GAME_CATALOG) {
+      const save = storeGet(game.storyId);
+      if (!save) continue;
+      anyData = true;
+      const collected = save.collected || [];
+      const gameTitle = currentLang === 'pt' ? game.titlePt : game.titleEn;
+      html += `<div style="margin-bottom:24px;">
+        <div class="collection-game-name">${gameTitle}</div>
+        <div class="collection-grid">`;
+      for (let i = 0; i < game.items.length; i++) {
+        const item  = game.items[i];
+        const earned = collected[i] === true;
+        const label  = currentLang === 'pt' ? item.pt : item.en;
+        html += `<div class="col-item ${earned ? 'earned' : 'locked'}" title="${earned ? escapeHtml(label) : '?'}">
+          <div class="col-item-icon" aria-hidden="true">${earned ? item.icon : '·'}</div>
+          <div class="col-item-label">${earned ? escapeHtml(label) : '?'}</div>
+        </div>`;
+      }
+      html += `</div></div>`;
+    }
+
+    // seção do códex
+    if (naufrSave) {
+      anyData = true;
+      html += `<div style="margin-bottom:8px;">
+        <div class="collection-game-name">${t.codexSectionTitle}</div>
+        <div class="collection-grid">`;
+      for (let i = 0; i < CODEX_GLYPHS.length; i++) {
+        const g     = CODEX_GLYPHS[i];
+        const found = discoveredGlyphs.has(i);
+        const label = currentLang === 'pt' ? g.namePt : g.nameEn;
+        if (found) {
+          html += `<div class="col-item earned" onclick="openGlyphCard(${i})" title="${escapeHtml(label)}">
+            <div class="col-item-icon is-glyph" aria-hidden="true">${g.glyph}</div>
+            <div class="col-item-label">${escapeHtml(label)}</div>
+          </div>`;
+        } else {
+          html += `<div class="col-item locked">
+            <div class="col-item-icon is-glyph" aria-hidden="true">?</div>
+            <div class="col-item-label">?</div>
+          </div>`;
+        }
+      }
+      html += `</div></div>`;
+    }
+
+    if (!anyData) html = `<div class="collection-empty">${t.collectionEmpty}</div>`;
+    content.innerHTML = html;
+  }
+
+  // ===== CERTIFICADO =====
+  const AVAILABLE_STORIES = ['naufrago'];
+
+  function allStoriesComplete() {
+    return AVAILABLE_STORIES.every(id => {
+      const s = storeGet(id);
+      return s && s.screen === 'final';
+    });
+  }
+
+  function renderCertificateSection() {
+    const section = document.getElementById('certSection');
+    if (!section) return;
+    const t = i18n[currentLang];
+    const unlocked = allStoriesComplete();
+    section.style.display = '';
+    document.getElementById('certHeading').textContent = t.certSectionTitle;
+    document.getElementById('certLockedWrap').style.display  = unlocked ? 'none' : '';
+    document.getElementById('certLockedMsg').textContent     = t.certLocked;
+    document.getElementById('certUnlockMsg').style.display   = unlocked ? '' : 'none';
+    document.getElementById('certUnlockMsg').textContent     = t.certUnlock;
+    document.getElementById('certOpenBtnWrap').style.display = unlocked ? '' : 'none';
+    document.getElementById('certOpenBtn').textContent       = t.certOpenBtn;
+    document.getElementById('certDownloadBtn').textContent   = t.certDownload;
+    document.getElementById('certCloseBtn').textContent      = t.certClose;
+  }
+
+  function showCertificate() {
+    document.getElementById('certPreview').style.display = '';
+    document.getElementById('certOpenBtnWrap').style.display = 'none';
+    document.fonts.ready.then(() => drawCertificate(currentLang));
+  }
+
+  function hideCertificate() {
+    document.getElementById('certPreview').style.display = 'none';
+    document.getElementById('certOpenBtnWrap').style.display = '';
+  }
+
+  function downloadCertificate() {
+    document.fonts.ready.then(() => {
+      drawCertificate(currentLang);
+      const canvas = document.getElementById('certCanvas');
+      const a = document.createElement('a');
+      const raw = (getPlayerName() || 'musaeum').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+      a.download = `musaeum-certificado-${raw || 'leitura'}.png`;
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    });
+  }
+
+  function drawCertificate(lang) {
+    const canvas = document.getElementById('certCanvas');
+    const t = i18n[lang];
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const W = 800, H = 560;
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+
+    const GOLD = '#c9a646', GOLD_L = '#e8c866';
+    const PAPYRUS = '#f1e4c6', P_SOFT = '#c9b894', P_DIM = '#9a8b6d';
+
+    // Fundo
+    const bg = ctx.createLinearGradient(0, 0, 0, H);
+    bg.addColorStop(0, '#253549'); bg.addColorStop(1, '#1b2a3d');
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+
+    // Pontos decorativos
+    ctx.fillStyle = 'rgba(201,166,70,0.06)';
+    for (let i = 0; i < 45; i++) {
+      ctx.beginPath();
+      ctx.arc((i * 157.3 + 20) % (W - 40) + 20, (i * 89.7 + 30) % (H - 60) + 30, 1.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Bordas
+    ctx.strokeStyle = GOLD; ctx.lineWidth = 2;
+    ctx.strokeRect(14, 14, W - 28, H - 28);
+    ctx.strokeStyle = 'rgba(201,166,70,0.3)'; ctx.lineWidth = 1;
+    ctx.strokeRect(22, 22, W - 44, H - 44);
+
+    // Losangos nos cantos
+    [[14,14],[W-14,14],[14,H-14],[W-14,H-14]].forEach(([x,y]) => {
+      ctx.fillStyle = GOLD;
+      ctx.beginPath();
+      ctx.moveTo(x,y-7); ctx.lineTo(x+7,y); ctx.lineTo(x,y+7); ctx.lineTo(x-7,y);
+      ctx.closePath(); ctx.fill();
+    });
+
+    // Linha separadora com fade
+    function line(y, op=0.42) {
+      const g = ctx.createLinearGradient(50,y,W-50,y);
+      g.addColorStop(0,'transparent'); g.addColorStop(0.15,`rgba(201,166,70,${op})`);
+      g.addColorStop(0.85,`rgba(201,166,70,${op})`); g.addColorStop(1,'transparent');
+      ctx.strokeStyle = g; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(50,y); ctx.lineTo(W-50,y); ctx.stroke();
+    }
+
+    ctx.textAlign = 'center';
+
+    // Hieróglifos decorativos no topo
+    ctx.font = '26px "Noto Sans Egyptian Hieroglyphs", sans-serif';
+    ctx.fillStyle = 'rgba(201,166,70,0.5)';
+    ctx.fillText('𓋹  𓂀  𓇳  𓏞  𓊛', W/2, 72);
+
+    line(88);
+
+    // MUSÆUM com brilho
+    ctx.shadowColor = 'rgba(201,166,70,0.4)'; ctx.shadowBlur = 20;
+    ctx.font = 'bold 40px Cinzel, serif';
+    ctx.fillStyle = GOLD;
+    ctx.fillText('MUSÆUM', W/2, 132);
+    ctx.shadowBlur = 0;
+
+    line(150, 0.18);
+
+    // Título do certificado
+    ctx.font = '500 11px Cinzel, serif';
+    ctx.fillStyle = P_SOFT;
+    ctx.fillText(t.certTitle.split('').join('\u200A'), W/2, 174);
+
+    // "Atesta-se que"
+    ctx.font = 'italic 19px "EB Garamond", Georgia, serif';
+    ctx.fillStyle = P_DIM;
+    ctx.fillText(t.certAttest, W/2, 216);
+
+    // Nome do jogador
+    const playerName = getPlayerName() || (lang === 'pt' ? 'Leitor do Musæum' : 'Musæum Reader');
+    ctx.font = 'bold 33px Cinzel, serif';
+    ctx.fillStyle = PAPYRUS;
+    ctx.fillText(playerName, W/2, 258);
+
+    line(276, 0.16);
+
+    // "concluiu com êxito..."
+    ctx.font = 'italic 17px "EB Garamond", Georgia, serif';
+    ctx.fillStyle = P_DIM;
+    ctx.fillText(t.certCompleted, W/2, 308);
+
+    // História: glifo + nome centralizados
+    ctx.font = '24px "Noto Sans Egyptian Hieroglyphs", sans-serif';
+    ctx.fillStyle = GOLD_L;
+    ctx.textAlign = 'right';
+    ctx.fillText('𓊛', W/2 - 10, 350);
+    ctx.font = '500 19px Cinzel, serif';
+    ctx.fillStyle = PAPYRUS;
+    ctx.textAlign = 'left';
+    ctx.fillText(lang === 'pt' ? 'O Conto do Náufrago' : 'The Shipwrecked Sailor', W/2 + 14, 350);
+
+    // Ícones dos tesouros coletados
+    const naufrSave = storeGet('naufrago');
+    const collected = naufrSave ? (naufrSave.collected || []) : [];
+    const earnedIcons = GAME_CATALOG[0].items.filter((_,i) => collected[i]).map(it => it.icon);
+    if (earnedIcons.length > 0) {
+      ctx.font = '17px serif';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = PAPYRUS;
+      ctx.fillText(earnedIcons.join('  '), W/2, 382);
+    }
+
+    line(408);
+
+    // Data e assinatura
+    const now = new Date();
+    const dateStr = now.toLocaleDateString(lang === 'pt' ? 'pt-BR' : 'en-US', { day: '2-digit', month: 'long', year: 'numeric' });
+    ctx.font = 'italic 13px "EB Garamond", Georgia, serif';
+    ctx.fillStyle = P_DIM;
+    ctx.textAlign = 'left';
+    ctx.fillText(dateStr, 58, 438);
+    ctx.font = '500 11px Cinzel, serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(t.certSignature, W - 58, 438);
+
+    // Hieróglifos decorativos no rodapé
+    ctx.font = '17px "Noto Sans Egyptian Hieroglyphs", sans-serif';
+    ctx.fillStyle = 'rgba(201,166,70,0.15)';
+    ctx.textAlign = 'center';
+    ctx.fillText('𓋹𓂀𓇳𓏞𓊛𓁹𓄿𓅓𓆑𓇋𓈖𓉐𓊛𓋴𓌀𓍃𓎛𓏞', W/2, 500);
+  }
+
+  // Inicialização
+  migrateOldSaves();
+  initTheme();
+  const _savedLang = localStorage.getItem('musaeum-lang') || 'pt';
+  setLang(_savedLang);
+  if (!getPlayerName()) setTimeout(openNameModal, 600);
+  if (window.Research) Research.init();
+</script>
+</body>
+</html>
