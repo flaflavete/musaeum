@@ -277,8 +277,9 @@
   .subtitle { font-family: 'Cinzel', serif; color: var(--terracotta-lt); letter-spacing: 0.3em; font-size: 14px; margin-bottom: 24px; text-transform: uppercase; }
   .beta-badge { display: inline-block; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); border-radius: 4px; padding: 2px 7px; margin-left: 10px; opacity: 0.7; vertical-align: middle; position: relative; top: -4px; }
   .about-beta-note { font-size: 0.82em; color: var(--terracotta-lt); font-style: italic; margin-top: 16px; opacity: 0.8; }
-  .modal-license { font-size: 0.78em; color: var(--papyrus-dim); margin-top: 18px; opacity: 0.75; border-top: 1px solid var(--gold-dark); padding-top: 12px; }
-  .modal-license a { color: var(--gold-light); text-decoration: underline; }
+  .modal-license { margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--gold-dark); text-align: center; }
+  .modal-license a { opacity: 0.65; transition: opacity 0.2s; display: inline-block; }
+  .modal-license a:hover { opacity: 1; }
   .footer-license-badge { display: block; margin-top: 10px; opacity: 0.65; transition: opacity 0.2s; }
   .footer-license-badge:hover { opacity: 1; }
   .intro-text { font-size: 19px; max-width: 650px; margin: 0 auto 36px; line-height: 1.7; font-style: italic; color: var(--papyrus-soft); }
@@ -1174,7 +1175,6 @@
         'UCL Digital Egypt for Universities. <em>The Teaching of Ptahhotep</em>. Disponível em: <a href="https://www.ucl.ac.uk/museums-static/digitalegypt/literature/ptahhotep.html" target="_blank" rel="noopener">ucl.ac.uk/museums-static/digitalegypt/literature/ptahhotep.html</a>.'
       ],
       aboutCredit: 'PPGArq / Museu Nacional / UFRJ · 2026\nFoto: Templo de Horus em Edfu, Egito · Flavia Lima Corpas, out. 2025',
-      aboutLicense: 'Licenciado sob <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>. Os textos do Egito Antigo são de domínio público. As traduções são baseadas nas fontes citadas. Curadoria, notas e design por Flavia Lima Corpas.',
       collectionTitle:      'Coleção',
       codexSectionTitle:    'Códex · Hieróglifos',
       collectionOf:         'de',
@@ -1241,7 +1241,6 @@
         'UCL Digital Egypt for Universities. <em>The Teaching of Ptahhotep</em>. Available at: <a href="https://www.ucl.ac.uk/museums-static/digitalegypt/literature/ptahhotep.html" target="_blank" rel="noopener">ucl.ac.uk/museums-static/digitalegypt/literature/ptahhotep.html</a>.'
       ],
       aboutCredit: 'PPGArq / Museu Nacional / UFRJ · 2026\nPhoto: Temple of Horus at Edfu, Egypt · Flavia Lima Corpas, Oct. 2025',
-      aboutLicense: 'Licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>. Ancient Egyptian texts are in the public domain. Translations are based on the cited sources. Curation, notes, and design by Flavia Lima Corpas.',
       collectionTitle:      'Collection',
       codexSectionTitle:    'Codex · Hieroglyphs',
       collectionOf:         'of',
@@ -1323,7 +1322,11 @@
         ${t.aboutBiblio.map(item => `<li>${item}</li>`).join('')}
       </ul>
       <div class="modal-credit">${t.aboutCredit.replace('\n', '<br>')}</div>
-      <p class="modal-license">${t.aboutLicense}</p>
+      <div class="modal-license">
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR" target="_blank" rel="noopener" aria-label="Licenciado sob Creative Commons BY-NC-SA 4.0">
+          <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="CC BY-NC-SA 4.0" width="88" height="31">
+        </a>
+      </div>
     `;
   }
 
