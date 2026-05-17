@@ -279,6 +279,8 @@
   .about-beta-note { font-size: 0.82em; color: var(--terracotta-lt); font-style: italic; margin-top: 16px; opacity: 0.8; }
   .modal-license { font-size: 0.78em; color: var(--papyrus-dim); margin-top: 18px; opacity: 0.75; border-top: 1px solid var(--gold-dark); padding-top: 12px; }
   .modal-license a { color: var(--gold-light); text-decoration: underline; }
+  .footer-license-badge { display: block; margin-top: 10px; opacity: 0.65; transition: opacity 0.2s; }
+  .footer-license-badge:hover { opacity: 1; }
   .intro-text { font-size: 19px; max-width: 650px; margin: 0 auto 36px; line-height: 1.7; font-style: italic; color: var(--papyrus-soft); }
 
   /* Epígrafe do Ptahhotep */
@@ -1087,7 +1089,9 @@
   <footer>
     <span id="footerContent"></span>
     <span id="footerPrivacy" style="display:block; margin-top:10px; font-family: sans-serif; font-size:10px; letter-spacing:0.05em; opacity:0.55;"></span>
-    <span id="footerLicense" style="display:block; margin-top:6px; font-family: sans-serif; font-size:10px; letter-spacing:0.05em; opacity:0.5;"></span>
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR" target="_blank" rel="noopener" class="footer-license-badge" aria-label="Licenciado sob Creative Commons BY-NC-SA 4.0">
+      <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="CC BY-NC-SA 4.0" width="88" height="31">
+    </a>
   </footer>
 </main>
 
@@ -1151,7 +1155,6 @@
 
       footer: 'Projeto de Flavia Lima Corpas, 2026\nPPGArq - Museu Nacional / UFRJ\nFoto: Fachada do templo de Horus em Edfu, Egito · Flavia Lima Corpas, out. 2025',
       footerPrivacy: 'Este site armazena localmente seu progresso e nome, sem enviar dados para nenhum servidor.',
-      footerLicense: 'Licenciado sob CC BY-NC-SA 4.0 — creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR',
 
       aboutTitle: 'Sobre o projeto',
       aboutIntro: 'O nome <strong>Musæum</strong> vem do latim e significa "lugar das musas". Na Antiguidade, esse era o nome dado aos espaços de estudo, arte e preservação do conhecimento.',
@@ -1218,7 +1221,6 @@
 
       footer: 'Project by Flavia Lima Corpas, 2026\nPPGArq - National Museum / UFRJ\nPhoto: Facade of the Temple of Horus at Edfu, Egypt · Flavia Lima Corpas, Oct. 2025',
       footerPrivacy: 'This site stores your progress and name locally, without sending any data to a server.',
-      footerLicense: 'Licensed under CC BY-NC-SA 4.0 — creativecommons.org/licenses/by-nc-sa/4.0',
 
       aboutTitle: 'About the project',
       aboutIntro: 'The name <strong>Musæum</strong> comes from Latin and means "place of the Muses." In Antiquity, this was the name given to spaces of study, art, and the preservation of knowledge.',
@@ -1306,7 +1308,6 @@
 
     document.getElementById('footerContent').innerText = t.footer;
     document.getElementById('footerPrivacy').innerText = t.footerPrivacy;
-    document.getElementById('footerLicense').innerText = t.footerLicense;
     renderCollection();
     renderCertificateSection();
 
