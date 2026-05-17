@@ -2,6 +2,8 @@
 
 [🇧🇷 Português](#português) · [🇬🇧 English](#english)
 
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR)
+
 —
 
 <a name="português"></a>
@@ -90,6 +92,14 @@ Fontes: [Cinzel](https://fonts.google.com/specimen/Cinzel), [EB Garamond](https:
 
 *PPGArq · Museu Nacional / UFRJ · 2026*
 
+### Licença
+
+[![CC BY-NC-SA 4.0](https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR)
+
+Distribuído sob a licença [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR).
+
+Os textos do Egito Antigo são de domínio público. As traduções são baseadas nas fontes bibliográficas citadas. Curadoria, notas arqueológicas e design por **Flavia Lima Corpas**.
+
 —
 
 <a name="english"></a>
@@ -177,3 +187,11 @@ Background photo: Facade of the Temple of Horus at Edfu, Egypt · Flavia Lima Co
 Fonts: [Cinzel](https://fonts.google.com/specimen/Cinzel), [EB Garamond](https://fonts.google.com/specimen/EB+Garamond), [Noto Sans Egyptian Hieroglyphs](https://fonts.google.com/noto/specimen/Noto+Sans+Egyptian+Hieroglyphs) (Google Fonts).
 
 *PPGArq · Museu Nacional / UFRJ · 2026*
+
+### License
+
+[![CC BY-NC-SA 4.0](https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/4.0)
+
+Distributed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0) license.
+
+Ancient Egyptian texts are in the public domain. Translations are based on the cited bibliographic sources. Curation, archaeological notes, and design by **Flavia Lima Corpas**.
