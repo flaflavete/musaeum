@@ -10,7 +10,7 @@ naufrago.html   1434 linhas   Experiência interativa do Conto do Náufrago
 sinuhe.html     1436 linhas   Experiência interativa da História de Sinué
 script.js        160 linhas   Utilitários compartilhados
 style.css                     Estilos globais (tema, tipografia)
-server.js                     Proxy TTS ElevenLabs (Node/Express, opcional)
+server.cjs                     Proxy TTS ElevenLabs (Node/Express, opcional)
 package.json                  Dependências do servidor TTS
 fontes/                       PDFs e áudio de referência bibliográfica
 docs/TECHNICAL.md             Este arquivo
@@ -234,7 +234,7 @@ Gerado em `<canvas>` 800 × 560 px com suporte a devicePixelRatio. Inclui nome d
 
 ---
 
-## Proxy TTS (server.js)
+## Proxy TTS (server.cjs)
 
 Servidor Express na porta **3001** que faz proxy para a API ElevenLabs, evitando expor a chave no frontend.
 

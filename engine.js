@@ -745,7 +745,7 @@ function renderGlossaryView() {
     <div class="glossary-search-wrap">
       <input type="text" id="glossarySearchInput" class="glossary-search"
              placeholder="${t('glossary-search')}"
-             value="${state.glossarySearch}"
+             value="${escapeHtml(state.glossarySearch)}"
              oninput="filterGlossary()"
              aria-label="${t('glossary-search')}" />
     </div>
