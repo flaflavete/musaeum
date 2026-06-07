@@ -135,7 +135,7 @@
 
   html, body {
     min-height: 100vh;
-    font-family: 'EB Garamond', 'Noto Serif', Georgia, serif;
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', Georgia, serif;
     color: var(--papyrus);
     background:
       radial-gradient(ellipse at 20% 10%, rgba(201, 166, 70, 0.10), transparent 60%),
