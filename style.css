@@ -204,7 +204,7 @@
   .btn-back:hover { transform: translateX(-4px); }
 
   .brand {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-weight: 700;
     letter-spacing: 0.18em;
     font-size: 13px;
@@ -229,7 +229,7 @@
     backdrop-filter: blur(4px);
   }
   .lang-toggle button {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-weight: 500;
     font-size: 12px;
     letter-spacing: 0.15em;
@@ -292,7 +292,7 @@
     border: 1.5px solid var(--gold-dark);
     display: grid;
     place-items: center;
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 11px;
     font-weight: 700;
     color: var(--gold-dark);
@@ -334,7 +334,7 @@
   }
 
   .chapter-label {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.32em;
@@ -344,7 +344,7 @@
     margin-bottom: 8px;
   }
   h1.title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-weight: 700;
     font-size: clamp(28px, 4.5vw, 40px);
     text-align: center;
@@ -372,7 +372,7 @@
     transform: translateX(-50%);
     background: var(--ink);
     padding: 0 12px;
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 10px;
     letter-spacing: 0.32em;
     color: var(--gold);
@@ -387,7 +387,7 @@
     margin-bottom: 10px;
   }
   .glyph-feature .translit {
-    font-family: 'EB Garamond', 'Noto Serif', serif;
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
     font-style: italic;
     color: var(--terracotta-lt);
     font-size: 16px;
@@ -408,7 +408,7 @@
   }
   .story p + p { margin-top: 16px; }
   .story .dropcap::first-letter {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     float: left;
     font-size: 52px;
     line-height: 0.85;
@@ -451,7 +451,7 @@
     background: rgba(201, 166, 70, 0.05);
     border: 1px solid var(--gold-dark);
     color: var(--gold-light);
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
@@ -474,7 +474,7 @@
     background: rgba(201, 166, 70, 0.05);
     border: 1px solid var(--gold-dark);
     color: var(--gold-light);
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
@@ -524,10 +524,10 @@
     from { opacity: 0; transform: translateY(-5px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  .archaeo-note strong { color: var(--gold); font-family: 'Cinzel', serif; display: block; margin-bottom: 6px; font-size: 11px; letter-spacing: 0.1em; }
+  .archaeo-note strong { color: var(--gold); font-family: 'Cinzel', 'Gentium Plus', serif; display: block; margin-bottom: 6px; font-size: 11px; letter-spacing: 0.1em; }
 
   .btn {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-weight: 500;
     letter-spacing: 0.18em;
     font-size: 13px;
@@ -626,7 +626,7 @@
   }
   .feedback.good { background: rgba(122, 185, 79, 0.12); border-left: 4px solid #8fc968; color: #d4e8b0; }
   .feedback.danger { background: rgba(217, 122, 92, 0.12); border-left: 4px solid var(--terracotta-lt); color: #ffd0c4; }
-  .feedback strong.label { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.3em; display: block; margin-bottom: 8px; text-transform: uppercase; }
+  .feedback strong.label { font-family: 'Cinzel', 'Gentium Plus', serif; font-size: 11px; letter-spacing: 0.3em; display: block; margin-bottom: 8px; text-transform: uppercase; }
 
   .score-hud {
     position: fixed;
@@ -636,7 +636,7 @@
     color: var(--ink);
     border-radius: 6px;
     padding: 8px 14px;
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 12px;
     z-index: 20;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
@@ -663,14 +663,14 @@
     margin-bottom: 5px;
   }
   .treasure-label {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 10px;
     color: var(--gold);
     text-transform: uppercase;
   }
 
   .final-rank {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 22px;
     font-weight: 700;
     letter-spacing: 0.2em;
@@ -700,7 +700,7 @@
     text-align: left;
   }
   .credits strong {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 11px;
     letter-spacing: 0.2em;
     color: var(--gold);
@@ -720,7 +720,7 @@
     background: rgba(27, 42, 61, 0.6);
     border: 1.5px solid var(--gold-dark);
     color: var(--gold);
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.15em;
@@ -749,12 +749,12 @@
     line-height: 1;
   }
   .ref-btn .ref-label {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
   }
   .ref-btn .ref-count {
     background: var(--gold);
     color: var(--ink);
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 10px;
     font-weight: 700;
     padding: 2px 7px;
@@ -835,14 +835,14 @@
     gap: 2px;
   }
   .discovery-toast .toast-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-weight: 700;
     font-size: 12px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
   .discovery-toast .toast-sub {
-    font-family: 'EB Garamond', 'Noto Serif', serif;
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
     font-size: 13px;
     font-style: italic;
   }
@@ -893,7 +893,7 @@
     color: var(--gold);
   }
   .modal-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 22px;
     color: var(--gold);
     letter-spacing: 0.1em;
@@ -946,7 +946,7 @@
     margin-bottom: 6px;
   }
   .codex-tile .tile-translit {
-    font-family: 'EB Garamond', 'Noto Serif', serif;
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
     font-style: italic;
     color: var(--terracotta-lt);
     font-size: 13px;
@@ -966,7 +966,7 @@
 
   .codex-progress {
     text-align: center;
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 12px;
     letter-spacing: 0.2em;
     color: var(--gold);
@@ -995,14 +995,14 @@
     text-shadow: 0 0 40px rgba(201, 166, 70, 0.3);
   }
   .glyph-sheet .sheet-translit {
-    font-family: 'EB Garamond', 'Noto Serif', serif;
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
     font-style: italic;
     font-size: 26px;
     color: var(--terracotta-lt);
     margin-bottom: 4px;
   }
   .glyph-sheet .sheet-name {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 16px;
     letter-spacing: 0.15em;
     color: var(--papyrus);
@@ -1022,7 +1022,7 @@
   }
   .sheet-row:last-child { border-bottom: none; }
   .sheet-row .row-label {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 10px;
     letter-spacing: 0.2em;
     color: var(--gold);
@@ -1044,7 +1044,7 @@
     padding: 10px 0;
   }
   .tutorial-step h3 {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 18px;
     color: var(--gold-light);
     letter-spacing: 0.1em;
@@ -1082,7 +1082,7 @@
     margin-bottom: 6px;
   }
   .tutorial-chip .chip-label {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 10px;
     letter-spacing: 0.15em;
     color: var(--papyrus-soft);
@@ -1131,7 +1131,7 @@
     border-radius: 999px;
     padding: 10px 16px 10px 42px;
     color: var(--papyrus);
-    font-family: 'EB Garamond', 'Noto Serif', serif;
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
     font-size: 15px;
     transition: all 0.25s ease;
   }
@@ -1170,7 +1170,7 @@
     box-shadow: 0 0 20px -4px rgba(201, 166, 70, 0.4);
   }
   .glossary-entry .gloss-term-name {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-weight: 700;
     font-size: 15px;
     color: var(--gold);
@@ -1185,7 +1185,7 @@
     background: rgba(201, 166, 70, 0.15);
     border: 1px solid var(--gold-dark);
     color: var(--gold-light);
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 9px;
     font-weight: 500;
     letter-spacing: 0.15em;
@@ -1205,7 +1205,7 @@
     padding: 40px 20px;
   }
   .glossary-letter {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 22px;
     font-weight: 700;
     color: var(--gold);
