@@ -440,6 +440,57 @@
     white-space: pre-line;
   }
 
+  /* Logos institucionais (plaquinha clara, legível em ambos os temas) */
+  .inst-logos {
+    margin: 22px auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .inst-logos-label {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--papyrus-dim);
+    opacity: 0.75;
+  }
+  .inst-logos-plaque {
+    display: inline-flex;
+    align-items: center;
+    gap: 26px;
+    padding: 12px 22px;
+    background: #f4ecde;
+    border: 1px solid rgba(201, 166, 70, 0.35);
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
+  }
+  .inst-logos-plaque img {
+    display: block;
+    width: auto;
+    opacity: 0.95;
+    transition: opacity 0.2s;
+  }
+  .inst-logos-plaque img.logo-ppgarq { height: 38px; }
+  .inst-logos-plaque img.logo-mn { height: 30px; }
+  .inst-logos-plaque a:hover img { opacity: 1; }
+  .inst-logos-divider {
+    width: 1px;
+    align-self: stretch;
+    background: rgba(201, 166, 70, 0.4);
+  }
+  /* No modal, um pouco menores */
+  .modal-inst-logos { margin: 16px 0 0; }
+  .modal-inst-logos .inst-logos-plaque { gap: 20px; padding: 10px 18px; }
+  .modal-inst-logos .inst-logos-plaque img.logo-ppgarq { height: 32px; }
+  .modal-inst-logos .inst-logos-plaque img.logo-mn { height: 26px; }
+  @media (max-width: 480px) {
+    .inst-logos-plaque { gap: 18px; padding: 10px 16px; }
+    .inst-logos-plaque img.logo-ppgarq { height: 32px; }
+    .inst-logos-plaque img.logo-mn { height: 25px; }
+  }
+
   /* Modal "Sobre o Projeto" */
   .modal-backdrop {
     position: fixed;
@@ -1092,6 +1143,14 @@
   <footer>
     <span id="footerContent"></span>
     <span id="footerPrivacy" style="display:block; margin-top:10px; font-family: sans-serif; font-size:10px; letter-spacing:0.05em; opacity:0.55;"></span>
+    <div class="inst-logos">
+      <span class="inst-logos-label" id="footerInstSupport"></span>
+      <div class="inst-logos-plaque">
+        <img class="logo-ppgarq" src="assets/images/ppgarq.png" alt="PPGArq — Museu Nacional / UFRJ">
+        <span class="inst-logos-divider" aria-hidden="true"></span>
+        <img class="logo-mn" src="assets/images/museu-nacional.png" alt="Museu Nacional / UFRJ">
+      </div>
+    </div>
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR" target="_blank" rel="noopener" class="footer-license-badge" aria-label="Licenciado sob Creative Commons BY-NC-SA 4.0">
       <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="CC BY-NC-SA 4.0" width="88" height="31">
     </a>
@@ -1158,6 +1217,7 @@
 
       footer: 'Projeto de Flavia Lima Corpas, 2026\nPPGArq - Museu Nacional / UFRJ\nFoto: Fachada do templo de Horus em Edfu, Egito · Flavia Lima Corpas, out. 2025',
       footerPrivacy: 'Este site armazena localmente seu progresso e nome, sem enviar dados para nenhum servidor.',
+      instSupport: 'Desenvolvido no',
 
       aboutTitle: 'Sobre o projeto',
       aboutIntro: 'O nome <strong>Musæum</strong> vem do latim e significa "lugar das musas". Na Antiguidade, esse era o nome dado aos espaços de estudo, arte e preservação do conhecimento.',
@@ -1223,6 +1283,7 @@
 
       footer: 'Project by Flavia Lima Corpas, 2026\nPPGArq - National Museum / UFRJ\nPhoto: Facade of the Temple of Horus at Edfu, Egypt · Flavia Lima Corpas, Oct. 2025',
       footerPrivacy: 'This site stores your progress and name locally, without sending any data to a server.',
+      instSupport: 'Developed at',
 
       aboutTitle: 'About the project',
       aboutIntro: 'The name <strong>Musæum</strong> comes from Latin and means "place of the Muses." In Antiquity, this was the name given to spaces of study, art, and the preservation of knowledge.',
@@ -1309,6 +1370,7 @@
 
     document.getElementById('footerContent').innerText = t.footer;
     document.getElementById('footerPrivacy').innerText = t.footerPrivacy;
+    document.getElementById('footerInstSupport').innerText = t.instSupport;
     renderCollection();
     renderCertificateSection();
 
@@ -1324,6 +1386,14 @@
         ${t.aboutBiblio.map(item => `<li>${item}</li>`).join('')}
       </ul>
       <div class="modal-credit">${t.aboutCredit.replace('\n', '<br>')}</div>
+      <div class="inst-logos modal-inst-logos">
+        <span class="inst-logos-label">${t.instSupport}</span>
+        <div class="inst-logos-plaque">
+          <img class="logo-ppgarq" src="assets/images/ppgarq.png" alt="PPGArq — Museu Nacional / UFRJ">
+          <span class="inst-logos-divider" aria-hidden="true"></span>
+          <img class="logo-mn" src="assets/images/museu-nacional.png" alt="Museu Nacional / UFRJ">
+        </div>
+      </div>
       <div class="modal-license">
         <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR" target="_blank" rel="noopener" aria-label="Licenciado sob Creative Commons BY-NC-SA 4.0">
           <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="CC BY-NC-SA 4.0" width="88" height="31">
