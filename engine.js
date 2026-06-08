@@ -181,10 +181,12 @@ function render() {
 function startStoryTour() {
   if (!window.Tour || Tour.isActive()) return;
   const allSteps = [
-    { selector: '#btnGlossary', title: t('tour-s1-title'), body: t('tour-s1-body') },
-    { selector: '#btnCodex',    title: t('tour-s2-title'), body: t('tour-s2-body') },
-    { selector: '#btnNote',     title: t('tour-s3-title'), body: t('tour-s3-body') },
-    { selector: '#btnSound',    title: t('tour-s4-title'), body: t('tour-s4-body') },
+    { selector: '#btnGlossary',  title: t('tour-s1-title'), body: t('tour-s1-body') },
+    { selector: '#btnCodex',     title: t('tour-s2-title'), body: t('tour-s2-body') },
+    { selector: '#btnSound',     title: t('tour-s3-title'), body: t('tour-s3-body') },
+    { selector: '#inventoryHud', title: t('tour-s4-title'), body: t('tour-s4-body') },
+    { selector: '#btnNote',      title: t('tour-s5-title'), body: t('tour-s5-body') },
+    { selector: '#btnChallenge', title: t('tour-s6-title'), body: t('tour-s6-body') },
   ];
   // Só aponta o que estiver realmente visível na tela atual
   const steps = allSteps.filter(s => {
@@ -279,7 +281,7 @@ function renderStory(ch) {
         ${note}
       </div>
 
-      <div class="actions"><button class="btn" onclick="goMinigame()">${t('challenge')} →</button></div>
+      <div class="actions"><button class="btn" id="btnChallenge" onclick="goMinigame()">${t('challenge')} →</button></div>
     </div>`;
 }
 
