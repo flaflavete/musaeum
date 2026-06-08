@@ -40,10 +40,6 @@ const CULTURA_MATERIAL = {
         valuePt: 'DV-1115', valueEn: 'DV-1115'
       },
       {
-        labelPt: 'Local de criação', labelEn: 'Place of origin',
-        valuePt: 'Egito Antigo', valueEn: 'Ancient Egypt'
-      },
-      {
         labelPt: 'Datação do manuscrito', labelEn: 'Date of manuscript',
         valuePt: 'A cópia que chegou até nós foi feita entre meados do século XVIII e meados do século XVII AEC (Dinastia XIII, Reino Médio).',
         valueEn: 'The surviving copy was made between the mid-18th and mid-17th century BCE (13th Dynasty, Middle Kingdom).'
