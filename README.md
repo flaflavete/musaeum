@@ -48,10 +48,12 @@ Para o proxy TTS, crie um `.env` com `ELEVENLABS_API_KEY=sua-chave` antes de rod
 - **Tesouros** desbloqueados por acerto na primeira tentativa
 - **Códex de hieróglifos** — 9 signos por história, com transliteração e nota
 - **Glossário** — termos da cultura egípcia com busca e links no texto
-- **Tutorial** — introdução a logogramas, fonogramas e determinativos
+- **Tutorial de leitura** — introdução a logogramas, fonogramas e determinativos
+- **Tour guiado** — setas douradas apresentam a biblioteca, a coleção e as ferramentas de cada história; aparece no primeiro acesso e volta pelo botão ?
 - **Coleção** — painel na página inicial com progresso cruzado entre histórias
 - **Certificado** — gerado em canvas, exportável como PNG, ao concluir todas as histórias
 - **Nome do leitor** — opcional, aparece na coleção e no certificado
+- **Participação na pesquisa** — opcional e anônima, escolhida no primeiro acesso (dados de uso, nenhuma informação pessoal)
 - **Acessibilidade** — ARIA, foco gerenciado em modais, `prefers-reduced-motion`
 
 ### Estrutura
@@ -60,7 +62,10 @@ Para o proxy TTS, crie um `.env` com `ELEVENLABS_API_KEY=sua-chave` antes de rod
 index.html            Página da biblioteca
 naufrago.html         Conto do Náufrago
 sinuhe.html           História de Sinué (em preparação)
-script.js             Utilitários compartilhados entre histórias
+script.js             Utilitários compartilhados + shell HTML das histórias
+engine.js             Motor das histórias (telas, desafios, save, TTS)
+tour.js               Tour guiado (usado na home e nas histórias)
+research.js           Coleta anônima de dados da pesquisa
 style.css             Estilos globais
 server.cjs            Proxy TTS ElevenLabs (opcional)
 data/                 Dados das histórias (naufrago.js, sinuhe.js)
@@ -68,7 +73,7 @@ assets/audio/         Trilha sonora e efeitos (acerto, erro)
 assets/images/        Imagens de fundo
 tests/                Testes automatizados (Vitest)
 fontes/               PDFs e áudio de referência (uso interno)
-docs/TECHNICAL.md     Documentação técnica detalhada
+docs/                 Documentação (técnica, dev, guia do usuário, pesquisa)
 ```
 
 **Stack:** HTML · CSS · JavaScript vanilla · localStorage · Google Fonts · Node/Express (TTS opcional)
@@ -144,10 +149,12 @@ For the TTS proxy, create a `.env` file with `ELEVENLABS_API_KEY=your-key` befor
 - **Treasures** unlocked by answering correctly on the first attempt
 - **Hieroglyph Codex** — 9 signs per story, with transliteration and notes
 - **Glossary** — Egyptian cultural terms with search and inline text links
-- **Tutorial** — introduction to logograms, phonograms, and determinatives
+- **Reading tutorial** — introduction to logograms, phonograms, and determinatives
+- **Guided tour** — golden arrows introduce the library, the collection, and each story's tools; appears on first visit and returns via the ? button
 - **Collection** — dashboard on the home page with cross-story progress
 - **Certificate** — generated on canvas, exportable as PNG, upon completing all stories
 - **Reader name** — optional, shown in the collection and certificate
+- **Research participation** — optional and anonymous, chosen on first visit (usage data only, no personal information)
 - **Accessibility** — ARIA labels, managed focus in modals, `prefers-reduced-motion`
 
 ### Structure
@@ -156,7 +163,10 @@ For the TTS proxy, create a `.env` file with `ELEVENLABS_API_KEY=your-key` befor
 index.html            Library home page
 naufrago.html         The Shipwrecked Sailor
 sinuhe.html           The Story of Sinuhe (coming soon)
-script.js             Shared utilities across stories
+script.js             Shared utilities + stories' HTML shell
+engine.js             Story engine (screens, challenges, save, TTS)
+tour.js               Guided tour (used on home and in stories)
+research.js           Anonymous research data collection
 style.css             Global styles
 server.cjs            ElevenLabs TTS proxy (optional)
 data/                 Story data files (naufrago.js, sinuhe.js)
@@ -164,7 +174,7 @@ assets/audio/         Soundtrack and sound effects (correct, wrong)
 assets/images/        Background images
 tests/                Automated tests (Vitest)
 fontes/               Reference PDFs and audio (internal use)
-docs/TECHNICAL.md     Detailed technical documentation
+docs/                 Documentation (technical, dev, user guide, research)
 ```
 
 **Stack:** HTML · CSS · Vanilla JavaScript · localStorage · Google Fonts · Node/Express (TTS optional)
