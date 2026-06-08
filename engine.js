@@ -214,7 +214,7 @@ function renderSplash() {
     : '';
   return `
     <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:70vh; text-align:center;">
-      <p style="font-family:'Cinzel', serif; color:var(--terracotta-lt); letter-spacing:0.3em; font-size:13px; margin-bottom: 16px;">${t('splash-subtitle')}</p>
+      <p style="font-family:'Cinzel', serif; font-weight:700; color:var(--terracotta-lt); letter-spacing:0.2em; font-size:clamp(20px, 3.2vw, 28px); margin-bottom: 22px; text-transform:uppercase;">${t('splash-subtitle')}</p>
       <p style="font-family:'EB Garamond','Noto Serif',serif; font-style:italic; color:var(--papyrus-dim); font-size:15px; max-width:480px; line-height:1.6; margin-bottom: 28px;">${t('splash-desc')}</p>
       ${renderArtifactStrip()}
       ${greeting}
