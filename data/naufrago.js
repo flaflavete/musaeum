@@ -107,7 +107,7 @@ const I18N = {
     'tour-s5-title':   'Nota Arqueológica',
     'tour-s5-body':    'Toque aqui para ver o contexto histórico por trás desta parte da história.',
     'tour-s6-title':   'O Desafio',
-    'tour-s6-body':    'Ao fim de cada parte vem um desafio sobre a trama ou a cultura egípcia. É ele que leva você ao próximo capítulo — acerte de primeira para ganhar o tesouro.',
+    'tour-s6-body':    'Ao fim de cada parte vem um desafio sobre a trama ou a cultura egípcia. É ele que leva você ao próximo capítulo. Acerte de primeira para ganhar o tesouro!',
   },
   en: {
     'brand':           'Musæum',
@@ -217,7 +217,7 @@ const I18N = {
     'tour-s5-title':   'Archaeological Note',
     'tour-s5-body':    'Tap here to see the historical context behind this part of the story.',
     'tour-s6-title':   'The Challenge',
-    'tour-s6-body':    'Each part ends with a challenge about the plot or Egyptian culture. It carries you to the next chapter — answer on the first try to earn the treasure.',
+    'tour-s6-body':    'Each part ends with a challenge about the plot or Egyptian culture. It carries you to the next chapter. Answer on the first try to earn the treasure!',
   }
 };
 
