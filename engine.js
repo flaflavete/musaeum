@@ -236,7 +236,7 @@ function renderArtifactStrip() {
   const caption = state.lang === 'pt' ? a.captionPt : a.captionEn;
   return `
     <figure class="artifact-strip">
-      <img src="${a.image}" alt="${escapeHtml(alt)}" loading="lazy" />
+      <img src="${a.image}" alt="${escapeHtml(alt)}" loading="lazy" onerror="this.parentElement.style.display='none'" />
       <figcaption>${escapeHtml(caption)}</figcaption>
     </figure>
     <button class="btn ghost artifact-btn" onclick="openArtifact()">${t('artifact-btn')}</button>`;
@@ -276,7 +276,7 @@ function renderArtifactView() {
     <h2 class="modal-title" id="modalTitle">${t('artifact-title')}</h2>
     <p class="modal-subtitle">${subtitle}</p>
     <figure class="artifact-photo">
-      <img src="${a.image}" alt="${escapeHtml(alt)}" />
+      <img src="${a.image}" alt="${escapeHtml(alt)}" onerror="this.parentElement.style.display='none'" />
       <figcaption>${credit}</figcaption>
     </figure>
     <p class="artifact-intro">${intro}</p>

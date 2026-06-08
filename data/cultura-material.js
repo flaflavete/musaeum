@@ -68,5 +68,56 @@ const CULTURA_MATERIAL = {
         valueEn: 'State Hermitage Museum, Saint Petersburg, Russia'
       }
     ]
+  },
+
+  sinuhe: {
+    image: 'assets/images/berlin_3022.png',
+    imageAltPt: 'Papiro Berlin 3022, com a História de Sinué em escrita hierática: colunas verticais à esquerda e linhas horizontais à direita.',
+    imageAltEn: 'Berlin Papyrus 3022, showing the Tale of Sinuhe in hieratic script: vertical columns on the left and horizontal lines on the right.',
+
+    titlePt: 'Papiro hierático com a história de vida de Sinué (textos B e R)',
+    titleEn: 'Hieratic papyrus with the life story of Sinuhe (Text B and R)',
+
+    captionPt: 'Papiro Berlin 3022 · Museu Egípcio de Berlim',
+    captionEn: 'Berlin Papyrus 3022 · Egyptian Museum of Berlin',
+
+    creditPt: '© SMB Ägyptisches Museum und Papyrussammlung · Foto: Lisa Baylis',
+    creditEn: '© SMB Ägyptisches Museum und Papyrussammlung · Photo: Lisa Baylis',
+
+    introPt: 'Este é o famoso texto da história de vida de Sinué, uma das obras-primas da literatura clássica egípcia, escrita em egípcio médio. A história se passa no Reino Médio, mas as experiências de Sinué no exílio só foram registradas cerca de 200 anos depois, num estreito rolo de papiro. A autobiografia está entre os textos linguisticamente mais ricos do Egito e ocupava lugar de destaque no currículo escolar do Império Novo.',
+    introEn: 'This is the famous text of the life story of Sinuhe, one of the masterpieces of classical Egyptian literature, written in Middle Egyptian. The tale is set in the Middle Kingdom, but Sinuhe\'s experiences in exile were only recorded about 200 years later, on a narrow papyrus roll. The autobiography is among the linguistically richest texts of Egypt and held a prominent place in the New Kingdom school curriculum.',
+
+    museumUrl: 'https://recherche.smb.museum/detail/779872/hieratischer-papyrus-mit-der-lebensgeschichte-des-sinuhe-text-b-und-r',
+
+    fields: [
+      {
+        labelPt: 'Número de identificação', labelEn: 'Identification number',
+        valuePt: 'P 3022/AI', valueEn: 'P 3022/AI'
+      },
+      {
+        labelPt: 'Datação', labelEn: 'Date',
+        valuePt: 'Reinado de Amenemhat IV (Dinastia XII, Reino Médio).',
+        valueEn: 'Reign of Amenemhat IV (12th Dynasty, Middle Kingdom).'
+      },
+      {
+        labelPt: 'Material / técnica', labelEn: 'Material / technique',
+        valuePt: 'Papiro inscrito; escrita hierática, em egípcio médio.',
+        valueEn: 'Inscribed papyrus; hieratic script, in Middle Egyptian.'
+      },
+      {
+        labelPt: 'Dimensões', labelEn: 'Dimensions',
+        valuePt: 'Altura × largura × profundidade: 17 × 499,3 × 0,02 cm.',
+        valueEn: 'Height × width × depth: 17 × 499.3 × 0.02 cm.'
+      },
+      {
+        labelPt: 'Proveniência', labelEn: 'Provenance',
+        valuePt: 'Desconhecida (Egito).', valueEn: 'Unknown (Egypt).'
+      },
+      {
+        labelPt: 'Acervo atual', labelEn: 'Current collection',
+        valuePt: 'Museu Egípcio e Coleção de Papiros, Staatliche Museen zu Berlin (Neues Museum, sala 211, Berlim, Alemanha).',
+        valueEn: 'Egyptian Museum and Papyrus Collection, Staatliche Museen zu Berlin (Neues Museum, room 211, Berlin, Germany).'
+      }
+    ]
   }
 };
