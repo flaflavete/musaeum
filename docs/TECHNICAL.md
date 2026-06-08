@@ -54,7 +54,7 @@ Todas as histórias incluem `<script src="script.js">` antes do JS inline. Expõ
 <audio id="soundWrong">         erro.wav
 .score-hud #scoreHud            placar de pontos
 .discovery-toast #discoveryToast  notificação de novo glifo descoberto
-.app > .topbar                  barra: ← voltar, brand, lang-toggle, Códex, Glossário, tema, som
+.app > .topbar                  barra: ← voltar, brand, lang-toggle, Códex, Glossário, tema, som, ? (tour)
 .inventory-hud #inventoryHud    slots de tesouros coletados
 .progress #progressBar          barra de progresso de capítulos
 #sceneContainer                 área de conteúdo dinâmico
@@ -101,10 +101,12 @@ Tema padrão: **escuro**. Variáveis redefinidas em `:root[data-theme="light"]`.
 
 | Chave | Tipo | Conteúdo |
 |---|---|---|
-| `musaeum-lang` | string | `"pt"` ou `"en"` |
+| `musaeum-lang` | string | `"pt"` ou `"en"` (escolhido no seletor de idioma da primeira visita) |
 | `musaeum-theme` | string | `"dark"` ou `"light"` |
 | `musaeum-player` | JSON | `{ name: "..." }` |
 | `musaeum-stories` | JSON | `{ naufrago: {...}, sinuhe: {...} }` — save unificado |
+| `musaeum-research-consent` | string | `"sim"` ou `"não"` — consentimento da pesquisa; `null` enquanto não decidido (dispara o onboarding) |
+| `musaeum-tour-<storyId>` | string | `"seen"` — marca que o tour daquela história já auto-disparou |
 
 ### Estrutura do save de uma história
 
@@ -173,11 +175,34 @@ const GAME_CATALOG = [
 
 Glifos desbloqueados são clicáveis — abrem a ficha do hieróglifo num modal.
 
-### Nome do Jogador
+### Primeiro acesso (onboarding) e nome do jogador
 
-- Modal de primeiro acesso (`#nameModal`) exibido 600 ms após o carregamento, se não houver nome.
-- Modal bilíngue (PT · EN) simultâneo.
-- Editável a qualquer momento na seção Coleção.
+Na primeira visita — detectada por `musaeum-research-consent === null` — o `index.html` abre uma sequência de três pop-ups, uma de cada vez:
+
+1. **Seletor de idioma** (`#langModal`, ~500 ms após o carregamento) — bandeiras 🇧🇷 / 🇺🇸. A escolha (`chooseLang`) grava `musaeum-lang` e define o idioma de toda a experiência. É a única pop-up bilíngue; as seguintes já aparecem no idioma escolhido.
+2. **Boas-vindas** (`#nameModal`) — campo de nome (opcional) mais um checkbox de consentimento da pesquisa, **desmarcado por padrão** (opt-in ativo). Ao entrar, grava `musaeum-player` (se houver nome) e `musaeum-research-consent` (`sim`/`não`).
+3. **Oferta de tour** (`#tourOfferModal`) — pergunta se a pessoa quer o tour guiado da home. "Sim" chama `startHomeTour()`.
+
+Na home, `Research.init({ suppressModal: true })` impede que o `research.js` mostre seu próprio modal de consentimento, já que a boas-vindas cuida disso. O nome é editável a qualquer momento na seção Coleção (reabre o `#nameModal`).
+
+---
+
+## Tour guiado (`tour.js`)
+
+Motor de *coach marks* reutilizável por qualquer página. Destaca um elemento real com um spotlight dourado, uma seta piscando apontando para ele e um cartão com texto e botões (pular / voltar / avançar).
+
+```js
+Tour.start(steps, { labels: { skip, prev, next, done }, onClose });
+// steps: [{ selector, title, body }, ...] — textos já no idioma escolhido
+```
+
+- **Cores do cartão são fixas claras**, não usam as variáveis de tema, porque o cartão é sempre escuro (inclusive no tema claro).
+- Navegação por teclado (←/→/Esc); reposiciona ao rolar/redimensionar.
+- Botão `#btnTour` (`?`) na barra superior reabre o tour a qualquer momento.
+
+**Tour da home** (`index.html`, `startHomeTour`): 4 passos — `#card1` (biblioteca), `#collectionSection`, `#certSection`, `#btnAbout`. Textos no objeto `i18n` (`tourSteps`).
+
+**Tour da história** (`engine.js`, `startStoryTour`): aponta os recursos visíveis na cena — `#btnGlossary`, `#btnCodex`, `#btnSound`, `#inventoryHud`, `#btnNote`, `#btnChallenge`. **Auto-dispara uma única vez** na primeira chegada à tela `story` (gravando `musaeum-tour-<storyId>`); depois fica disponível só pelo `?`. Textos nas chaves `tour-*` do `I18N`.
 
 ---
 

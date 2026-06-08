@@ -80,9 +80,9 @@ const ENTRIES = {
 ## 4. Teste o envio
 
 1. Abra o DevTools → aba **Network**
-2. Acesse `index.html` sem o cookie `musaeum-research-consent`
+2. Acesse `index.html` sem a chave `musaeum-research-consent`
    (ou limpe o localStorage com `localStorage.removeItem('musaeum-research-consent')` no console)
-3. O modal de consentimento deve aparecer → clique **Aceito contribuir**
+3. O onboarding aparece: escolha o idioma, e na janela de boas-vindas **marque a caixinha de consentimento** antes de entrar (na home o consentimento é esse checkbox; o modal próprio do `research.js` só aparece em entrada direta numa história)
 4. Acesse `naufrago.html`, jogue até o final
 5. Na aba Network, confirme que houve uma requisição para `formResponse`
 6. Confira a planilha vinculada ao formulário — a linha deve aparecer em segundos
