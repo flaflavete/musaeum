@@ -236,12 +236,10 @@ const CHAPTERS = [
     titlePt: 'A Tempestade',
     titleEn: 'The Storm',
     glyphIndex: 1,               // índice do glifo em GLYPHS_CODEX
-    textPt: `<p>Texto em PT...</p>`,
-    textEn: `<p>Text in EN...</p>`,
+    storyPt: `<p>Texto em PT...</p>`,
+    storyEn: `<p>Text in EN...</p>`,
     notePt: `Nota arqueológica PT...`,
     noteEn: `Archaeological note EN...`,
-    contextPt: `Contexto histórico PT...`,
-    contextEn: `Historical context EN...`,
     question: {
       pt: 'Pergunta em PT?',
       en: 'Question in EN?',

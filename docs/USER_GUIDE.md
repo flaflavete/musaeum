@@ -17,7 +17,7 @@ Este guia explica tudo o que você pode fazer no site — da primeira visita ao 
 7. [Tesouros](#7-tesouros)
 8. [O Códex de Hieróglifos](#8-o-códex-de-hieróglifos)
 9. [O Glossário](#9-o-glossário)
-10. [Notas arqueológicas e contexto histórico](#10-notas-arqueológicas-e-contexto-histórico)
+10. [Notas arqueológicas](#10-notas-arqueológicas)
 11. [Pontuação e títulos](#11-pontuação-e-títulos)
 12. [Tela final](#12-tela-final)
 13. [A Coleção](#13-a-coleção)
@@ -99,8 +99,7 @@ Em cada capítulo você encontrará:
 - **O texto literário** — trecho da história egípcia, disponível em PT e EN.
 - **Palavras sublinhadas** — são termos especiais. Clique nelas para abrir o Glossário diretamente no verbete correspondente.
 - **Um hieróglifo do capítulo** — exibido acima do texto. Ao entrar no capítulo, esse signo é automaticamente adicionado ao seu Códex.
-- **Nota Arqueológica** — clique em *"🔍 Nota Arqueológica"* para ler um comentário acadêmico sobre o trecho.
-- **Contexto Histórico** — informações sobre o período e a cultura egípcia do Reino Médio relacionadas ao capítulo.
+- **Nota Arqueológica** — clique em *"🔍 Nota Arqueológica"* para ler um comentário acadêmico sobre o trecho, com o contexto histórico e cultural da passagem.
 
 Depois de ler, clique em **Responder o desafio** para ir à pergunta do capítulo.
 
@@ -176,17 +175,11 @@ Palavras **sublinhadas** no texto dos capítulos são termos do glossário. Cliq
 
 ---
 
-## 10. Notas arqueológicas e contexto histórico
+## 10. Notas arqueológicas
 
-### Nota Arqueológica
+Cada capítulo tem uma **Nota Arqueológica** opcional, abaixo do texto, com comentários acadêmicos sobre o trecho: referências ao papiro original, escolhas de tradução, paralelos com outros textos do Egito Antigo e o contexto histórico e cultural da passagem.
 
-Cada capítulo tem uma nota opcional com comentários acadêmicos sobre o trecho — referências ao papiro original, escolhas de tradução, paralelos com outros textos do Egito Antigo.
-
-Clique em **🔍 Nota Arqueológica** para abrir e em **✕ Fechar Nota** para fechar.
-
-### Contexto Histórico
-
-Abaixo do texto de cada capítulo há uma caixa de contexto com informações sobre o período, a cultura e os elementos históricos presentes na cena.
+Clique em **🔍 Nota Arqueológica** para abrir e em **✕ Fechar Nota** para fechar. Ler a nota é opcional e não interrompe o avanço da leitura.
 
 ---
 
