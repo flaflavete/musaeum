@@ -24,6 +24,8 @@ docs/TECHNICAL.md             Este arquivo
 | `acerto.wav` | Feedback sonoro de resposta correta |
 | `erro.wav` | Feedback sonoro de resposta incorreta |
 | `pexels-clioseye-35506459.jpg` | Foto de fundo (fachada do templo de Horus em Edfu) |
+| `assets/images/hermitage_1115.jpeg` | Foto do Papiro Hermitage 1115 (cultura material do Náufrago) |
+| `assets/images/berlin_3022.png` | Foto do Papiro Berlin 3022 (cultura material do Sinué) |
 | `ankh-icon.svg` / `ankh-icon-512.png` | Ícone do app |
 | `NotoSansEgyptianHieroglyphs-Regular.ttf` | Fonte local de fallback para hieróglifos |
 
@@ -237,6 +239,35 @@ Cada entrada: `{ id, termPt, termEn, tagPt, tagEn, defPt, defEn }`
 
 ---
 
+## Cultura material (em cada história)
+
+Ficha do manuscrito real por trás do texto. Vive em `data/cultura-material.js` (arquivo único compartilhado), registro indexado por `storyId`. Carregado no HTML da história **antes** de `engine.js`.
+
+Cada entrada:
+
+```js
+CULTURA_MATERIAL[storyId] = {
+  image, imageAltPt, imageAltEn,
+  titlePt, titleEn, captionPt, captionEn,
+  creditPt, creditEn, introPt, introEn,
+  museumUrl,
+  fields: [ { labelPt, labelEn, valuePt, valueEn }, ... ]
+}
+```
+
+Renderização (em `engine.js`):
+- `renderArtifactStrip()` — foto emoldurada + legenda + botão "De onde vem este texto?" na splash. Se não houver entrada para o `storyId`, retorna vazio.
+- `openArtifact()` / `renderArtifactView()` — ficha completa no modal (`state.modalView === 'artifact'`), reaproveitando `#modalOverlay`.
+- A `<img>` tem `onerror` que esconde a `<figure>` se o arquivo faltar (evita ícone de imagem quebrada).
+
+Strings de UI no `I18N` de cada história: `artifact-btn`, `artifact-title`, `artifact-museum` (PT e EN).
+
+Os dados de catálogo devem vir da ficha do museu depositário; preservar o crédito do fotógrafo quando houver. Datas em **AEC/BCE**, exceto títulos de obras citadas.
+
+Fichas atuais: Náufrago → Papiro Hermitage 1115 (`assets/images/hermitage_1115.jpeg`); Sinué → Papiro Berlin 3022 (`assets/images/berlin_3022.png`).
+
+---
+
 ## Tutorial de Hieróglifos
 
 3 passos, acessíveis via "Como ler hieróglifos" no Códex:
@@ -328,6 +359,8 @@ Para adicionar uma história à biblioteca (ex: Camponês Eloquente):
 5. Adicionar `'campones'` em `AVAILABLE_STORIES` (para o certificado)
 
 Para **publicar `sinuhe.html`** especificamente, além dos passos 3–5, converter `card2` e adicionar `storyId: 'sinuhe'` em `GAME_CATALOG`.
+
+6. (opcional) **Cultura material:** salvar a foto do papiro em `assets/images/`, criar a chave `storyId` em `CULTURA_MATERIAL` (`data/cultura-material.js`) com os dados do museu depositário, carregar `data/cultura-material.js` no HTML antes de `engine.js` e adicionar `artifact-btn`/`artifact-title`/`artifact-museum` ao `I18N`.
 
 ---
 
