@@ -983,6 +983,31 @@
     color: var(--papyrus-dim);
   }
   .research-consent-text .en { display: block; opacity: 0.7; margin-top: 2px; }
+  .lang-choice-row { display: flex; gap: 14px; margin-top: 4px; }
+  .lang-choice {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 22px 12px;
+    background: rgba(241, 228, 198, 0.05);
+    border: 1.5px solid rgba(201, 166, 70, 0.3);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.1s;
+  }
+  .lang-choice:hover { background: rgba(201, 166, 70, 0.14); border-color: var(--gold); }
+  .lang-choice:active { transform: scale(0.97); }
+  .lang-choice:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  .lang-flag { font-size: 40px; line-height: 1; }
+  .lang-name {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--papyrus-soft);
+  }
 
   @media (max-width: 560px) {
     .topbar { justify-content: center; }
@@ -1106,6 +1131,7 @@
       <button id="btn-en" type="button" onclick="setLang('en')" aria-pressed="false">EN</button>
     </div>
     <button id="btnTheme" class="btn-theme" type="button" onclick="toggleTheme()" aria-label="Alternar tema claro/escuro" title="Tema claro/escuro">☀</button>
+    <button id="btnTour" class="btn-theme" type="button" onclick="startHomeTour()" aria-label="Tutorial" title="Tutorial">?</button>
   </nav>
 
   <header class="page-header">
@@ -1206,6 +1232,25 @@
   </footer>
 </main>
 
+<!-- Modal Seletor de Idioma -->
+<div class="name-modal-backdrop" id="langModal" role="dialog" aria-modal="true" aria-labelledby="langModalTitle">
+  <div class="name-modal-panel">
+    <div class="name-modal-glyph" aria-hidden="true">𓂀</div>
+    <h2 class="name-modal-title" id="langModalTitle">Musæum</h2>
+    <p class="name-modal-sub">Escolha seu idioma<br><span style="opacity:0.7">Choose your language</span></p>
+    <div class="lang-choice-row">
+      <button class="lang-choice" type="button" onclick="chooseLang('pt')">
+        <span class="lang-flag" aria-hidden="true">🇧🇷</span>
+        <span class="lang-name">Português</span>
+      </button>
+      <button class="lang-choice" type="button" onclick="chooseLang('en')">
+        <span class="lang-flag" aria-hidden="true">🇺🇸</span>
+        <span class="lang-name">English</span>
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- Modal Nome -->
 <div class="name-modal-backdrop" id="nameModal" role="dialog" aria-modal="true" aria-labelledby="nameModalTitle">
   <div class="name-modal-panel">
@@ -1219,6 +1264,17 @@
     </label>
     <button class="name-modal-btn" id="nameModalBtn" onclick="saveName()"></button>
     <button class="name-modal-skip" id="nameModalSkip" onclick="skipName()"></button>
+  </div>
+</div>
+
+<!-- Modal Oferta de Tour -->
+<div class="name-modal-backdrop" id="tourOfferModal" role="dialog" aria-modal="true" aria-labelledby="tourOfferTitle">
+  <div class="name-modal-panel">
+    <div class="name-modal-glyph" aria-hidden="true">𓏞</div>
+    <h2 class="name-modal-title" id="tourOfferTitle"></h2>
+    <p class="name-modal-sub" id="tourOfferSub"></p>
+    <button class="name-modal-btn" id="tourOfferYes" type="button" onclick="acceptTourOffer()"></button>
+    <button class="name-modal-skip" id="tourOfferNo" type="button" onclick="declineTourOffer()"></button>
   </div>
 </div>
 
@@ -1242,6 +1298,7 @@
 
 <script src="script.js"></script>
 <script src="research.js"></script>
+<script src="tour.js"></script>
 <script>
   let currentLang = 'pt';
   let aboutOpen = false;
@@ -1300,6 +1357,20 @@
       nameModalBtn:         'Entrar no Musæum',
       nameModalSkip:        'Entrar sem nome',
       consentLabel:         'Aceito contribuir com a pesquisa acadêmica do PPGArq · Museu Nacional / UFRJ — apenas dados anônimos de uso, nada pessoal.',
+      tourOfferTitle:       'Quer um tour rápido?',
+      tourOfferSub:         'Te mostro em segundos como o Musæum funciona.',
+      tourOfferYes:         'Sim, me mostre',
+      tourOfferNo:          'Agora não',
+      tourSkip:             'Pular',
+      tourPrev:             'Voltar',
+      tourNext:             'Avançar',
+      tourDone:             'Concluir',
+      tourSteps: [
+        { title: 'A Biblioteca',     body: 'Aqui ficam os contos do Egito Antigo. Toque em um deles para começar a ler e interagir.' },
+        { title: 'Sua Coleção',      body: 'Conforme avança nas histórias, você desbloqueia hieróglifos e tesouros, que se reúnem aqui.' },
+        { title: 'Seu Certificado',  body: 'Complete todas as histórias disponíveis para desbloquear um certificado com o seu nome.' },
+        { title: 'Sobre o Projeto',  body: 'Toque aqui para conhecer o Musæum.' }
+      ],
       editNameLabel:        'Editar nome',
       addNameLabel:         '+ adicionar nome',
       certSectionTitle:     'Sua Conquista',
@@ -1368,6 +1439,20 @@
       nameModalBtn:         'Enter the Musæum',
       nameModalSkip:        'Enter without a name',
       consentLabel:         'I agree to contribute to academic research at PPGArq · Museu Nacional / UFRJ — anonymous usage data only, nothing personal.',
+      tourOfferTitle:       'Want a quick tour?',
+      tourOfferSub:         'I\'ll show you how the Musæum works in seconds.',
+      tourOfferYes:         'Yes, show me',
+      tourOfferNo:          'Not now',
+      tourSkip:             'Skip',
+      tourPrev:             'Back',
+      tourNext:             'Next',
+      tourDone:             'Done',
+      tourSteps: [
+        { title: 'The Library',      body: 'This is where the tales of Ancient Egypt live. Tap one to start reading and interacting.' },
+        { title: 'Your Collection',  body: 'As you progress through the stories, you unlock hieroglyphs and treasures, gathered here.' },
+        { title: 'Your Certificate', body: 'Complete every available story to unlock a certificate bearing your name.' },
+        { title: 'About the Project', body: 'Tap here to learn about the Musæum.' }
+      ],
       editNameLabel:        'Edit name',
       addNameLabel:         '+ add a name',
       certSectionTitle:     'Your Achievement',
@@ -1555,23 +1640,34 @@
   }
 
   function openNameModal() {
-    const pt = i18n.pt;
-    const en = i18n.en;
-    document.getElementById('nameModalTitle').innerHTML =
-      `${pt.nameModalTitle}<span style="color:var(--papyrus-dim); margin:0 6px;">·</span>${en.nameModalTitle}`;
-    document.getElementById('nameModalSub').innerHTML =
-      `${pt.nameModalSub}<br><span style="opacity:0.7">${en.nameModalSub}</span>`;
-    document.getElementById('nameModalBtn').textContent  = `${pt.nameModalBtn} · ${en.nameModalBtn}`;
-    document.getElementById('nameModalSkip').textContent = `${pt.nameModalSkip} · ${en.nameModalSkip}`;
+    const t = i18n[currentLang];
+    document.getElementById('nameModalTitle').textContent = t.nameModalTitle;
+    document.getElementById('nameModalSub').textContent   = t.nameModalSub;
+    document.getElementById('nameModalBtn').textContent   = t.nameModalBtn;
+    document.getElementById('nameModalSkip').textContent  = t.nameModalSkip;
     const input = document.getElementById('nameInput');
-    input.placeholder = `${pt.nameModalPlaceholder} · ${en.nameModalPlaceholder}`;
+    input.placeholder = t.nameModalPlaceholder;
     input.value = getPlayerName() || '';
-    document.getElementById('researchConsentText').innerHTML =
-      `${pt.consentLabel}<span class="en">${en.consentLabel}</span>`;
+    document.getElementById('researchConsentText').textContent = t.consentLabel;
     document.getElementById('researchConsent').checked =
       localStorage.getItem('musaeum-research-consent') === 'sim';
     document.getElementById('nameModal').classList.add('show');
     setTimeout(() => input.focus(), 60);
+  }
+
+  // ===== SELETOR DE IDIOMA (primeira pop-up) =====
+  function showLangModal() {
+    document.getElementById('langModal').classList.add('show');
+    setTimeout(() => {
+      const first = document.querySelector('#langModal .lang-choice');
+      if (first) first.focus();
+    }, 60);
+  }
+
+  function chooseLang(lang) {
+    setLang(lang); // persiste em musaeum-lang
+    document.getElementById('langModal').classList.remove('show');
+    setTimeout(openNameModal, 340); // boas-vindas já no idioma escolhido
   }
 
   function closeNameModal() {
@@ -1589,15 +1685,62 @@
     recordConsent();
     closeNameModal();
     renderCollection();
+    maybeOfferTour();
   }
 
   function skipName() {
     recordConsent();
     closeNameModal();
+    maybeOfferTour();
+  }
+
+  // ===== TOUR GUIADO =====
+  let _welcomeFirstRun = false;
+
+  function maybeOfferTour() {
+    if (!_welcomeFirstRun) return;
+    _welcomeFirstRun = false;
+    setTimeout(showTourOffer, 360); // depois do fade do modal de boas-vindas
+  }
+
+  function showTourOffer() {
+    const t = i18n[currentLang];
+    document.getElementById('tourOfferTitle').textContent = t.tourOfferTitle;
+    document.getElementById('tourOfferSub').textContent   = t.tourOfferSub;
+    document.getElementById('tourOfferYes').textContent   = t.tourOfferYes;
+    document.getElementById('tourOfferNo').textContent    = t.tourOfferNo;
+    document.getElementById('tourOfferModal').classList.add('show');
+    setTimeout(() => document.getElementById('tourOfferYes').focus(), 60);
+  }
+
+  function closeTourOffer() {
+    document.getElementById('tourOfferModal').classList.remove('show');
+  }
+
+  function acceptTourOffer() {
+    closeTourOffer();
+    setTimeout(startHomeTour, 340);
+  }
+
+  function declineTourOffer() {
+    closeTourOffer();
+  }
+
+  function startHomeTour() {
+    if (window.Tour && Tour.isActive()) return;
+    const t = i18n[currentLang];
+    const s = t.tourSteps;
+    const selectors = ['#card1', '#collectionSection', '#certSection', '#btnAbout'];
+    const steps = selectors.map((sel, i) => ({ selector: sel, title: s[i].title, body: s[i].body }));
+    if (window.Tour) {
+      Tour.start(steps, {
+        labels: { skip: t.tourSkip, prev: t.tourPrev, next: t.tourNext, done: t.tourDone }
+      });
+    }
   }
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeNameModal();
+    if (e.key === 'Escape') { closeNameModal(); closeTourOffer(); }
     if (e.key === 'Enter' && document.getElementById('nameModal').classList.contains('show')) saveName();
   });
 
@@ -1937,7 +2080,10 @@
   const _savedLang = localStorage.getItem('musaeum-lang') || 'pt';
   setLang(_savedLang);
   if (window.Research) Research.init({ suppressModal: true });
-  if (localStorage.getItem('musaeum-research-consent') === null) setTimeout(openNameModal, 600);
+  if (localStorage.getItem('musaeum-research-consent') === null) {
+    _welcomeFirstRun = true;
+    setTimeout(showLangModal, 500); // idioma → boas-vindas → tour
+  }
 </script>
 </body>
 </html>
