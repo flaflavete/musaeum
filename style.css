@@ -1038,6 +1038,70 @@
     flex: 1;
   }
 
+  /* ===== CULTURA MATERIAL — faixa na tela de entrada ===== */
+  .artifact-strip {
+    margin: 0 auto 18px;
+    max-width: 540px;
+    width: 100%;
+    border: 1px solid var(--gold-dark);
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.18);
+    box-shadow: 0 16px 40px -22px rgba(0, 0, 0, 0.8);
+  }
+  .artifact-strip img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .artifact-strip figcaption {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--papyrus-dim);
+    text-transform: uppercase;
+    text-align: center;
+    padding: 11px 14px;
+    border-top: 1px dashed rgba(201, 166, 70, 0.25);
+  }
+  .artifact-btn {
+    margin-bottom: 36px;
+    font-size: 11px;
+    padding: 11px 22px;
+  }
+
+  /* ===== CULTURA MATERIAL — ficha no modal ===== */
+  .artifact-photo {
+    margin: 0 auto 20px;
+    max-width: 600px;
+    border: 1px solid var(--gold-dark);
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.18);
+  }
+  .artifact-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .artifact-photo figcaption {
+    font-family: 'EB Garamond', 'Noto Serif', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: var(--papyrus-dim);
+    text-align: center;
+    padding: 9px 14px;
+    border-top: 1px dashed rgba(201, 166, 70, 0.25);
+  }
+  .artifact-intro {
+    max-width: 540px;
+    margin: 0 auto 22px;
+    text-align: center;
+    color: var(--papyrus-soft);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
   /* Mini-tutorial */
   .tutorial-step {
     text-align: center;

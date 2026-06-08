@@ -218,9 +218,75 @@ function renderSplash() {
       <div aria-hidden="true" style="font-family:'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size:110px; color:var(--gold); margin-bottom: 10px;">𓊛</div>
       <h1 style="font-family:'Cinzel', serif; font-size:clamp(32px, 6vw, 64px); color:var(--gold); margin-bottom: 8px;">${title}</h1>
       <p style="font-family:'Cinzel', serif; color:var(--terracotta-lt); letter-spacing:0.3em; font-size:12px; margin-bottom: 16px;">${t('splash-subtitle')}</p>
-      <p style="font-family:'EB Garamond','Noto Serif',serif; font-style:italic; color:var(--papyrus-dim); font-size:15px; max-width:480px; line-height:1.6; margin-bottom: ${name ? '16px' : '44px'};">${t('splash-desc')}</p>
+      <p style="font-family:'EB Garamond','Noto Serif',serif; font-style:italic; color:var(--papyrus-dim); font-size:15px; max-width:480px; line-height:1.6; margin-bottom: 28px;">${t('splash-desc')}</p>
+      ${renderArtifactStrip()}
       ${greeting}
       <button class="btn gold" onclick="enterGame()">${t('enter')} →</button>
+    </div>`;
+}
+
+// Ficha de cultura material da história atual (foto do papiro + dados de catálogo).
+function artifact() {
+  return (typeof CULTURA_MATERIAL !== 'undefined') ? CULTURA_MATERIAL[STORY_ID] : null;
+}
+
+// Faixa elegante na tela de entrada: a foto real do manuscrito, legenda e
+// um botão que abre a ficha completa de proveniência.
+function renderArtifactStrip() {
+  const a = artifact();
+  if (!a) return '';
+  const alt = state.lang === 'pt' ? a.imageAltPt : a.imageAltEn;
+  const caption = state.lang === 'pt' ? a.captionPt : a.captionEn;
+  return `
+    <figure class="artifact-strip">
+      <img src="${a.image}" alt="${escapeHtml(alt)}" loading="lazy" />
+      <figcaption>${escapeHtml(caption)}</figcaption>
+    </figure>
+    <button class="btn ghost artifact-btn" onclick="openArtifact()">${t('artifact-btn')}</button>`;
+}
+
+function openArtifact() {
+  state.modalView = 'artifact';
+  renderModal();
+  document.getElementById('modalOverlay').classList.add('open');
+  document.getElementById('modalClose').focus();
+  if (window.Research) Research.trackEvent('artifact');
+}
+
+function renderArtifactView() {
+  const a = artifact();
+  if (!a) return '';
+  const alt     = state.lang === 'pt' ? a.imageAltPt : a.imageAltEn;
+  const subtitle= state.lang === 'pt' ? a.titlePt    : a.titleEn;
+  const intro   = state.lang === 'pt' ? a.introPt    : a.introEn;
+  const credit  = state.lang === 'pt' ? a.creditPt   : a.creditEn;
+
+  const rows = a.fields.map(f => {
+    const label = state.lang === 'pt' ? f.labelPt : f.labelEn;
+    const value = state.lang === 'pt' ? f.valuePt : f.valueEn;
+    return `
+      <div class="sheet-row">
+        <div class="row-label">${label}</div>
+        <div class="row-value">${value}</div>
+      </div>`;
+  }).join('');
+
+  const museumLink = a.museumUrl
+    ? `<a class="btn ghost" href="${a.museumUrl}" target="_blank" rel="noopener">${t('artifact-museum')}</a>`
+    : '';
+
+  return `
+    <h2 class="modal-title" id="modalTitle">${t('artifact-title')}</h2>
+    <p class="modal-subtitle">${subtitle}</p>
+    <figure class="artifact-photo">
+      <img src="${a.image}" alt="${escapeHtml(alt)}" />
+      <figcaption>${credit}</figcaption>
+    </figure>
+    <p class="artifact-intro">${intro}</p>
+    <div class="sheet-rows">${rows}</div>
+    <div class="codex-actions">
+      ${museumLink}
+      <button class="btn ghost" onclick="closeModal()">${t('codex-close')}</button>
     </div>`;
 }
 
@@ -627,6 +693,7 @@ function renderModal() {
   else if (state.modalView === 'sheet')    body.innerHTML = renderSheetView();
   else if (state.modalView === 'tutorial') body.innerHTML = renderTutorialView();
   else if (state.modalView === 'glossary') body.innerHTML = renderGlossaryView();
+  else if (state.modalView === 'artifact') body.innerHTML = renderArtifactView();
 }
 
 function renderCodexView() {

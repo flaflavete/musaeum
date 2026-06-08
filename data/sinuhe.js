@@ -6,7 +6,7 @@ const I18N = {
     'challenge':       'Responder o desafio',
     'play-again':      'Recomeçar',
     'chapter':         'Capítulo',
-    'intro-kicker':    'UMA HISTÓRIA DO EGITO ANTIGO · ~1875 a.C.',
+    'intro-kicker':    'UMA HISTÓRIA DO EGITO ANTIGO · ~1875 AEC',
     'intro-title':     'A História de Sinué',
     'intro-subtitle':  'O exílio de um cortesão egípcio, agora em forma de jogo.',
     'intro-desc':      'Você vai ler a história em 8 partes baseadas principalmente no <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'papiro-berlin\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'papiro-berlin\')}">Papiro Berlin 3022</span>. No fim de cada parte, um desafio sobre a trama ou a cultura egípcia. Acerte de primeira para coletar tesouros da terra de <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'araru\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'araru\')}">Araru</span>!',
@@ -208,7 +208,7 @@ const GLOSSARY = [
     id: 'amenemhat',
     termPt: 'Amenemhat I (Sehetepibre)', termEn: 'Amenemhat I (Sehetepibre)',
     tagPt: 'Faraó', tagEn: 'Pharaoh',
-    defPt: 'Fundador da XII Dinastia (c. 1985–1956 a.C.), cujo nome de trono era <i>Sehetepibre</i> ("aquele que satisfaz o coração de Rá"). Sua morte no 30º ano de reinado, narrada no início da história de Sinué, desencadeia toda a trama. O texto do "Ensinamento de Amenemhat" sugere que ele teria sido vítima de um complô de assassinato dentro do próprio palácio.',
+    defPt: 'Fundador da XII Dinastia (c. 1985–1956 AEC), cujo nome de trono era <i>Sehetepibre</i> ("aquele que satisfaz o coração de Rá"). Sua morte no 30º ano de reinado, narrada no início da história de Sinué, desencadeia toda a trama. O texto do "Ensinamento de Amenemhat" sugere que ele teria sido vítima de um complô de assassinato dentro do próprio palácio.',
     defEn: 'Founder of the 12th Dynasty (c. 1985–1956 BCE), whose throne name was <i>Sehetepibre</i> ("he who satisfies the heart of Ra"). His death in the 30th year of his reign, narrated at the opening of the tale of Sinuhe, triggers the entire plot. The text of the "Teaching of Amenemhat" suggests he may have been the victim of an assassination plot within the palace.'
   },
   {
@@ -264,14 +264,14 @@ const GLOSSARY = [
     id: 'papiro-berlin',
     termPt: 'Papiro Berlin 3022', termEn: 'Berlin Papyrus 3022',
     tagPt: 'Manuscrito', tagEn: 'Manuscript',
-    defPt: 'Principal manuscrito da história de Sinué, datado do Reino Médio (c. 1800 a.C.) e preservado no Museu Egípcio de Berlim. É designado pela sigla "B" nos estudos acadêmicos. A história existe em outros manuscritos, como o Papiro Ramesseum (sigla "R") e o Ostraco de Oxford (sigla "AOS"), mas o Papiro Berlin 3022 é o mais completo e literariamente mais refinado.',
+    defPt: 'Principal manuscrito da história de Sinué, datado do Reino Médio (c. 1800 AEC) e preservado no Museu Egípcio de Berlim. É designado pela sigla "B" nos estudos acadêmicos. A história existe em outros manuscritos, como o Papiro Ramesseum (sigla "R") e o Ostraco de Oxford (sigla "AOS"), mas o Papiro Berlin 3022 é o mais completo e literariamente mais refinado.',
     defEn: 'Primary manuscript of the tale of Sinuhe, dated to the Middle Kingdom (c. 1800 BCE) and preserved in the Egyptian Museum of Berlin. It is designated by the sigla "B" in academic studies. The story exists in other manuscripts, such as the Ramesseum Papyrus (sigla "R") and the Oxford Ostracon (sigla "AOS"), but Berlin Papyrus 3022 is the most complete and literarily refined.'
   },
   {
     id: 'reino-medio',
     termPt: 'Reino Médio', termEn: 'Middle Kingdom',
     tagPt: 'Período', tagEn: 'Period',
-    defPt: 'Período da história egípcia entre cerca de 2055 e 1650 a.C. (11ª a 13ª Dinastias). Considerado a "era clássica" da literatura egípcia: é quando foram compostos a História de Sinué, o Conto do Náufrago e muitos textos sapienciais. O egípcio clássico dessas obras tornou-se modelo literário por séculos e ainda era copiado por escribas no período Ramésside, 600 anos depois.',
+    defPt: 'Período da história egípcia entre cerca de 2055 e 1650 AEC (11ª a 13ª Dinastias). Considerado a "era clássica" da literatura egípcia: é quando foram compostos a História de Sinué, o Conto do Náufrago e muitos textos sapienciais. O egípcio clássico dessas obras tornou-se modelo literário por séculos e ainda era copiado por escribas no período Ramésside, 600 anos depois.',
     defEn: 'Period of Egyptian history between about 2055 and 1650 BCE (11th to 13th Dynasties). Considered the "classical era" of Egyptian literature: it is when the Tale of Sinuhe, the Tale of the Shipwrecked Sailor, and many wisdom texts were composed. The classical Egyptian of these works became the literary model for centuries and was still being copied by scribes in the Ramesside period, 600 years later.'
   },
   {

@@ -6,7 +6,7 @@
 
 ## 1. O que é o Musæum
 
-Musæum é uma biblioteca digital interativa de textos literários do Egito Antigo (Reino Médio, 2055–1650 a.C.). É um projeto acadêmico de Flavia Lima Corpas (PPGArq / Museu Nacional / UFRJ).
+Musæum é uma biblioteca digital interativa de textos literários do Egito Antigo (Reino Médio, 2055–1650 AEC). É um projeto acadêmico de Flavia Lima Corpas (PPGArq / Museu Nacional / UFRJ).
 
 O site é bilíngue (PT/EN), gamificado, e funciona como aplicação web estática — sem framework, sem build, sem bundler. Você abre o HTML direto no navegador.
 

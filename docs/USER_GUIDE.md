@@ -1,6 +1,6 @@
 # Guia do Usuário — Musæum
 
-Bem-vindo ao **Musæum**, uma biblioteca digital interativa de textos literários do Egito Antigo do Reino Médio (2055–1650 a.C.).
+Bem-vindo ao **Musæum**, uma biblioteca digital interativa de textos literários do Egito Antigo do Reino Médio (2055–1650 AEC).
 
 Este guia explica tudo o que você pode fazer no site — da primeira visita ao certificado de conclusão.
 
@@ -286,7 +286,7 @@ Não, é totalmente opcional e vem desmarcada. O Musæum faz parte de uma pesqui
 Clique no botão **?** no canto superior, tanto na página inicial quanto dentro de uma história.
 
 **O que é o Reino Médio?**
-O Reino Médio é um período da história do Egito Antigo que durou de aproximadamente 2055 a 1650 a.C. É considerado a época clássica da literatura egípcia — os textos mais sofisticados e copiados pelos escribas foram escritos nesse período.
+O Reino Médio é um período da história do Egito Antigo que durou de aproximadamente 2055 a 1650 AEC. É considerado a época clássica da literatura egípcia — os textos mais sofisticados e copiados pelos escribas foram escritos nesse período.
 
 ---
 

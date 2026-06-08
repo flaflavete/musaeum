@@ -9,7 +9,7 @@
 <a name="português"></a>
 ## 🇧🇷 Português
 
-Biblioteca digital interativa e bilíngue (PT/EN) de textos literários do Egito Antigo do **Reino Médio** (2055–1650 a.C.).
+Biblioteca digital interativa e bilíngue (PT/EN) de textos literários do Egito Antigo do **Reino Médio** (2055–1650 AEC).
 
 Projeto acadêmico de **Flavia Corpas** — PPGArq / Museu Nacional / UFRJ.
 
