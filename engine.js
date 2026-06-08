@@ -173,6 +173,36 @@ function render() {
 
   saveState();
   if (moveFocus) root.focus();
+  if (state.screen === 'story') maybeStoryTour();
+}
+
+// ===== TOUR GUIADO DA HISTÓRIA =====
+// Aponta os recursos da leitura: glossário, códex, nota arqueológica e trilha.
+function startStoryTour() {
+  if (!window.Tour || Tour.isActive()) return;
+  const allSteps = [
+    { selector: '#btnGlossary', title: t('tour-s1-title'), body: t('tour-s1-body') },
+    { selector: '#btnCodex',    title: t('tour-s2-title'), body: t('tour-s2-body') },
+    { selector: '#btnNote',     title: t('tour-s3-title'), body: t('tour-s3-body') },
+    { selector: '#btnSound',    title: t('tour-s4-title'), body: t('tour-s4-body') },
+  ];
+  // Só aponta o que estiver realmente visível na tela atual
+  const steps = allSteps.filter(s => {
+    const el = document.querySelector(s.selector);
+    return el && el.offsetParent !== null;
+  });
+  if (!steps.length) return;
+  Tour.start(steps, {
+    labels: { skip: t('tour-skip'), prev: t('tour-prev'), next: t('tour-next'), done: t('tour-done') }
+  });
+}
+
+// Dispara o tour automaticamente na primeira vez que o leitor chega à história.
+function maybeStoryTour() {
+  const key = 'musaeum-tour-' + STORY_ID;
+  if (localStorage.getItem(key)) return;
+  localStorage.setItem(key, 'seen');
+  setTimeout(startStoryTour, 700); // deixa a cena e o scroll assentarem
 }
 
 function renderSplash() {

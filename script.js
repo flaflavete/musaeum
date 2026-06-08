@@ -139,6 +139,7 @@ function initStoryApp(config) {
       </button>
       <button id="btnTheme" class="btn-theme" onclick="toggleTheme()" aria-label="Alternar tema claro/escuro" title="Tema claro/escuro">☀</button>
       <button id="btnSound" class="btn-sound" onclick="toggleSound()" aria-label="Ativar ou desativar som">🔊</button>
+      <button id="btnTour" class="btn-theme" onclick="startStoryTour()" aria-label="Tutorial" title="Tutorial">?</button>
     </div>
   </div>
 
