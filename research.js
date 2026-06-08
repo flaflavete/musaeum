@@ -253,8 +253,11 @@
      * Chame em cada página logo após qualquer setup de DOM.
      * Mostra o modal de consentimento na primeira visita.
      */
-    init() {
+    init(opts) {
       _s.isFirstVisit = _isFirstVisit();
+      // Na home, o modal de boas-vindas unificado cuida do consentimento;
+      // passe { suppressModal: true } para não exibir o modal próprio aqui.
+      if (opts && opts.suppressModal) return;
       if (_consent() === null) _showModal();
     },
 

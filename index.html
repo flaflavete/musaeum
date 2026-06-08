@@ -934,6 +934,55 @@
     padding: 0;
   }
   .name-modal-skip:hover { color: var(--papyrus-soft); }
+  .research-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    text-align: left;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  .research-consent input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    margin: 2px 0 0;
+    border: 1.5px solid rgba(201, 166, 70, 0.5);
+    border-radius: 4px;
+    background: rgba(241, 228, 198, 0.05);
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .research-consent input[type="checkbox"]:hover { border-color: var(--gold); }
+  .research-consent input[type="checkbox"]:checked {
+    background: rgba(201, 166, 70, 0.85);
+    border-color: var(--gold);
+  }
+  .research-consent input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #131e2e;
+  }
+  .research-consent input[type="checkbox"]:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+  .research-consent-text {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: var(--papyrus-dim);
+  }
+  .research-consent-text .en { display: block; opacity: 0.7; margin-top: 2px; }
 
   @media (max-width: 560px) {
     .topbar { justify-content: center; }
@@ -1164,6 +1213,10 @@
     <h2 class="name-modal-title" id="nameModalTitle"></h2>
     <p class="name-modal-sub" id="nameModalSub"></p>
     <input type="text" class="name-input" id="nameInput" maxlength="32" autocomplete="off" />
+    <label class="research-consent" for="researchConsent">
+      <input type="checkbox" id="researchConsent" />
+      <span class="research-consent-text" id="researchConsentText"></span>
+    </label>
     <button class="name-modal-btn" id="nameModalBtn" onclick="saveName()"></button>
     <button class="name-modal-skip" id="nameModalSkip" onclick="skipName()"></button>
   </div>
@@ -1246,6 +1299,7 @@
       nameModalPlaceholder: 'Seu nome',
       nameModalBtn:         'Entrar no Musæum',
       nameModalSkip:        'Entrar sem nome',
+      consentLabel:         'Aceito contribuir com a pesquisa acadêmica do PPGArq · Museu Nacional / UFRJ — apenas dados anônimos de uso, nada pessoal.',
       editNameLabel:        'Editar nome',
       addNameLabel:         '+ adicionar nome',
       certSectionTitle:     'Sua Conquista',
@@ -1313,6 +1367,7 @@
       nameModalPlaceholder: 'Your name',
       nameModalBtn:         'Enter the Musæum',
       nameModalSkip:        'Enter without a name',
+      consentLabel:         'I agree to contribute to academic research at PPGArq · Museu Nacional / UFRJ — anonymous usage data only, nothing personal.',
       editNameLabel:        'Edit name',
       addNameLabel:         '+ add a name',
       certSectionTitle:     'Your Achievement',
@@ -1511,6 +1566,10 @@
     const input = document.getElementById('nameInput');
     input.placeholder = `${pt.nameModalPlaceholder} · ${en.nameModalPlaceholder}`;
     input.value = getPlayerName() || '';
+    document.getElementById('researchConsentText').innerHTML =
+      `${pt.consentLabel}<span class="en">${en.consentLabel}</span>`;
+    document.getElementById('researchConsent').checked =
+      localStorage.getItem('musaeum-research-consent') === 'sim';
     document.getElementById('nameModal').classList.add('show');
     setTimeout(() => input.focus(), 60);
   }
@@ -1519,14 +1578,21 @@
     document.getElementById('nameModal').classList.remove('show');
   }
 
+  function recordConsent() {
+    const checked = document.getElementById('researchConsent').checked;
+    localStorage.setItem('musaeum-research-consent', checked ? 'sim' : 'não');
+  }
+
   function saveName() {
     const name = document.getElementById('nameInput').value.trim();
     if (name) savePlayerName(name);
+    recordConsent();
     closeNameModal();
     renderCollection();
   }
 
   function skipName() {
+    recordConsent();
     closeNameModal();
   }
 
@@ -1870,8 +1936,8 @@
   initTheme();
   const _savedLang = localStorage.getItem('musaeum-lang') || 'pt';
   setLang(_savedLang);
-  if (!getPlayerName()) setTimeout(openNameModal, 600);
-  if (window.Research) Research.init();
+  if (window.Research) Research.init({ suppressModal: true });
+  if (localStorage.getItem('musaeum-research-consent') === null) setTimeout(openNameModal, 600);
 </script>
 </body>
 </html>
