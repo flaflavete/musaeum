@@ -208,16 +208,13 @@ function maybeStoryTour() {
 }
 
 function renderSplash() {
-  const title = t('splash-title');
   const name = getPlayerName();
   const greeting = name
     ? `<p style="font-family:'EB Garamond','Noto Serif',serif; font-style:italic; color:var(--papyrus-soft); font-size:16px; margin-bottom:44px;">${t('splash-welcome')}<strong>${escapeHtml(name)}</strong></p>`
     : '';
   return `
     <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:70vh; text-align:center;">
-      <div aria-hidden="true" style="font-family:'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size:110px; color:var(--gold); margin-bottom: 10px;">𓊛</div>
-      <h1 style="font-family:'Cinzel', serif; font-size:clamp(32px, 6vw, 64px); color:var(--gold); margin-bottom: 8px;">${title}</h1>
-      <p style="font-family:'Cinzel', serif; color:var(--terracotta-lt); letter-spacing:0.3em; font-size:12px; margin-bottom: 16px;">${t('splash-subtitle')}</p>
+      <p style="font-family:'Cinzel', serif; color:var(--terracotta-lt); letter-spacing:0.3em; font-size:13px; margin-bottom: 16px;">${t('splash-subtitle')}</p>
       <p style="font-family:'EB Garamond','Noto Serif',serif; font-style:italic; color:var(--papyrus-dim); font-size:15px; max-width:480px; line-height:1.6; margin-bottom: 28px;">${t('splash-desc')}</p>
       ${renderArtifactStrip()}
       ${greeting}
