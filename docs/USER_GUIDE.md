@@ -82,6 +82,17 @@ O botão **?** abre um tour guiado que mostra, com setinhas douradas, pra que se
 
 Ao clicar em um pergaminho da Biblioteca, você vai para a **tela de abertura** da história. Lá você verá o título e uma breve descrição.
 
+### O manuscrito real
+
+Na tela de abertura aparece também a **foto do papiro original** em que a história foi escrita — o objeto de verdade, guardado num museu. Clique em **"De onde vem este texto?"** para abrir a ficha completa do manuscrito, com:
+
+- número de identificação no museu;
+- datação, material e técnica (por exemplo, escrita hierática);
+- dimensões e proveniência;
+- o acervo que guarda o papiro hoje, com um link para a página oficial do museu.
+
+É uma forma de aproximar você do artefato físico por trás do texto. O Conto do Náufrago, por exemplo, vem do **Papiro Hermitage 1115**, em São Petersburgo.
+
 Se já tiver entrado antes, o site vai te reconhecer pelo nome: *"Boas-vindas de volta, [nome]!"*
 
 Clique em **Entrar** para começar (ou continuar de onde parou).

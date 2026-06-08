@@ -42,7 +42,8 @@ musaeum/
 │
 ├── data/
 │   ├── naufrago.js         Dados do Náufrago: I18N, ITEMS, GLYPHS_CODEX, GLOSSARY, CHAPTERS
-│   └── sinuhe.js           Dados do Sinué (mesma estrutura)
+│   ├── sinuhe.js           Dados do Sinué (mesma estrutura)
+│   └── cultura-material.js Fichas dos manuscritos reais (CULTURA_MATERIAL, por storyId)
 │
 ├── docs/
 │   ├── TECHNICAL.md        Documentação técnica de sistemas e estruturas de dados
@@ -255,6 +256,41 @@ const CHAPTERS = [
 ];
 ```
 
+### `CULTURA_MATERIAL` — ficha do manuscrito real
+
+Vive em `data/cultura-material.js` (arquivo único e compartilhado, **não** dentro de cada `data/<historia>.js`). É um registro indexado por `storyId`:
+
+```js
+const CULTURA_MATERIAL = {
+  naufrago: {
+    image:      'assets/images/hermitage_1115.jpeg',  // foto do papiro real
+    imageAltPt: '...', imageAltEn: '...',
+    titlePt:    '...', titleEn:    '...',   // título do objeto no museu
+    captionPt:  '...', captionEn:  '...',   // legenda curta (faixa da splash)
+    creditPt:   '...', creditEn:   '...',   // crédito da imagem (mantenha o fotógrafo!)
+    introPt:    '...', introEn:    '...',   // parágrafo de abertura da ficha
+    museumUrl:  'https://...',              // link para a página oficial do objeto
+    fields: [                               // linhas da ficha de catálogo
+      { labelPt: 'Número de inventário', labelEn: 'Inventory number',
+        valuePt: 'DV-1115',               valueEn: 'DV-1115' },
+      // ... demais campos
+    ]
+  },
+  sinuhe: { /* mesma estrutura */ }
+};
+```
+
+Renderização (em `engine.js`):
+
+- `renderArtifactStrip()` — desenha a foto emoldurada + legenda + botão **"De onde vem este texto?"** na tela de abertura (splash). Se `CULTURA_MATERIAL[storyId]` não existir, retorna vazio (a história simplesmente não mostra a faixa).
+- `openArtifact()` / `renderArtifactView()` — abrem a ficha completa no modal (`state.modalView === 'artifact'`), reaproveitando o `modalOverlay`.
+- A imagem usa `onerror` para **se esconder** caso o arquivo não exista, evitando ícone de imagem quebrada.
+
+> **Fidelidade à fonte:** os dados de catálogo devem vir da ficha do museu que guarda o objeto. Datas seguem a convenção **AEC/BCE** (ver §16), exceto títulos de obras citadas. Se a foto trouxer crédito de fotógrafo, mantenha-o.
+
+> O `cultura-material.js` precisa ser carregado no HTML da história, **antes** de `engine.js`:
+> `<script src="data/cultura-material.js"></script>`. As strings de UI da ficha (`artifact-btn`, `artifact-title`, `artifact-museum`) ficam no `I18N` de cada história (PT e EN).
+
 ---
 
 ## 8. Estado da aplicação (`state`)
@@ -441,6 +477,17 @@ const AVAILABLE_STORIES = ['naufrago', 'campones']; // adicione aqui
 ```
 
 Essa constante controla quais histórias precisam estar completas para o certificado ser desbloqueado.
+
+### Passo 6 (opcional) — cultura material
+
+Para mostrar o manuscrito real na tela de abertura:
+
+1. salve a foto do papiro em `assets/images/`;
+2. crie uma chave nova em `CULTURA_MATERIAL` (`data/cultura-material.js`) com o mesmo formato do `naufrago` (ver §7), preenchendo os campos a partir da ficha de catálogo do museu que guarda o objeto;
+3. garanta que `data/cultura-material.js` esteja carregado no HTML da história, antes de `engine.js`;
+4. acrescente as strings `artifact-btn`, `artifact-title` e `artifact-museum` ao `I18N` (PT e EN) da história.
+
+A faixa e a ficha aparecem sozinhas — nenhuma mudança no `engine.js` é necessária.
 
 ---
 
