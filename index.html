@@ -279,6 +279,10 @@
   .subtitle { font-family: 'Cinzel', 'Gentium Plus', serif; color: var(--terracotta-lt); letter-spacing: 0.3em; font-size: 14px; margin-bottom: 24px; text-transform: uppercase; }
   .beta-badge { display: inline-block; font-family: 'Cinzel', 'Gentium Plus', serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); border-radius: 4px; padding: 2px 7px; margin-left: 10px; opacity: 0.7; vertical-align: middle; position: relative; top: -4px; }
   .about-beta-note { font-size: 0.82em; color: var(--terracotta-lt); font-style: italic; margin-top: 16px; opacity: 0.8; }
+  .modal-cite { margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(201,166,70,0.2); font-size: 0.86em; color: var(--papyrus-soft); line-height: 1.55; }
+  .modal-cite .modal-subtitle { margin-top: 0; }
+  .modal-cite .cite-ref { font-style: italic; }
+  .modal-cite a { color: var(--gold-light); word-break: break-word; }
   .modal-license { margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--gold-dark); text-align: center; }
   .modal-license a { opacity: 0.65; transition: opacity 0.2s; display: inline-block; }
   .modal-license a:hover { opacity: 1; }
@@ -1229,10 +1233,6 @@
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR" target="_blank" rel="noopener" class="footer-license-badge" aria-label="Licenciado sob Creative Commons BY-NC-SA 4.0">
       <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="CC BY-NC-SA 4.0" width="88" height="31">
     </a>
-    <span id="footerCite" style="display:block; margin-top:10px; font-family: sans-serif; font-size:10px; letter-spacing:0.05em; opacity:0.55;">
-      <span id="footerCiteLabel"></span>
-      <a href="https://doi.org/10.5281/zenodo.20617042" target="_blank" rel="noopener" style="color:inherit;">10.5281/zenodo.20617042</a>
-    </span>
   </footer>
 </main>
 
@@ -1331,7 +1331,6 @@
 
       footer: 'Projeto de Flavia Lima Corpas, 2026\nFoto: Fachada do templo de Horus em Edfu, Egito · Flavia Lima Corpas, out. 2025',
       footerPrivacy: 'Este site armazena localmente seu progresso e nome, sem enviar dados para nenhum servidor.',
-      footerCite: 'Como citar (DOI):',
       instSupport: 'Desenvolvido no',
 
       aboutTitle: 'Sobre o projeto',
@@ -1339,6 +1338,8 @@
       aboutMiddle: 'Este projeto quer aproximar você de algumas das histórias mais incríveis escritas no Egito Antigo durante o <strong>Reino Médio</strong> (entre os anos 2055 e 1650 AEC), que foi a época de maior criatividade na literatura egípcia.',
       aboutGoal: 'Cada texto é apresentado como uma história narrada, com curiosidades da arqueologia, desafios para ajudar a entender o conteúdo e um "código" de hieróglifos que você vai descobrindo aos poucos. A ideia é levar para todo mundo esses textos que muitas vezes só são lidos nas universidades, mantendo o respeito aos originais e explicando como era a vida e a cultura naquela época.',
       aboutBetaNote: 'Este projeto está em versão beta. Novos textos e recursos serão adicionados.',
+      aboutCiteTitle: 'Como citar',
+      aboutCiteText: 'CORPAS, Flavia Lima. <em>Musæum: biblioteca digital interativa de literatura do Egito Antigo</em>. Zenodo, 2026. DOI: <a href="https://doi.org/10.5281/zenodo.20617042" target="_blank" rel="noopener">10.5281/zenodo.20617042</a>.',
       aboutBiblioTitle: 'Bibliografia de base',
       aboutBiblio: [
         'ALLEN, J. P. <em>Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs</em>. Cambridge: Cambridge University Press, 2000.',
@@ -1413,7 +1414,6 @@
 
       footer: 'Project by Flavia Lima Corpas, 2026\nPhoto: Facade of the Temple of Horus at Edfu, Egypt · Flavia Lima Corpas, Oct. 2025',
       footerPrivacy: 'This site stores your progress and name locally, without sending any data to a server.',
-      footerCite: 'How to cite (DOI):',
       instSupport: 'Developed at',
 
       aboutTitle: 'About the project',
@@ -1421,6 +1421,8 @@
       aboutMiddle: 'This project brings you closer to some of the most incredible stories written in Ancient Egypt during the <strong>Middle Kingdom</strong> (between 2055 and 1650 BCE), the period of greatest creativity in Egyptian literature.',
       aboutGoal: 'Each text is presented as a narrated story, with archaeological curiosities, challenges to help you understand the content, and a hieroglyphic "code" that you gradually uncover. The idea is to bring these texts — usually only read in universities — to everyone, while respecting the originals and explaining what life and culture were like at that time.',
       aboutBetaNote: 'This project is in beta. New texts and features are being added.',
+      aboutCiteTitle: 'How to cite',
+      aboutCiteText: 'CORPAS, Flavia Lima. <em>Musæum: an interactive digital library of Ancient Egyptian literature</em>. Zenodo, 2026. DOI: <a href="https://doi.org/10.5281/zenodo.20617042" target="_blank" rel="noopener">10.5281/zenodo.20617042</a>.',
       aboutBiblioTitle: 'Reference bibliography',
       aboutBiblio: [
         'ALLEN, J. P. <em>Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs</em>. Cambridge: Cambridge University Press, 2000.',
@@ -1516,7 +1518,6 @@
 
     document.getElementById('footerContent').innerText = t.footer;
     document.getElementById('footerPrivacy').innerText = t.footerPrivacy;
-    document.getElementById('footerCiteLabel').innerText = t.footerCite;
     document.getElementById('footerInstSupport').innerText = t.instSupport;
     renderCollection();
     renderCertificateSection();
@@ -1533,6 +1534,10 @@
         ${t.aboutBiblio.map(item => `<li>${item}</li>`).join('')}
       </ul>
       <div class="modal-credit">${t.aboutCredit.replace('\n', '<br>')}</div>
+      <div class="modal-cite">
+        <div class="modal-subtitle">${t.aboutCiteTitle}</div>
+        <p class="cite-ref">${t.aboutCiteText}</p>
+      </div>
       <div class="inst-logos modal-inst-logos">
         <span class="inst-logos-label">${t.instSupport}</span>
         <div class="inst-logos-plaque">
