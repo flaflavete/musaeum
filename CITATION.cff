@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+title: "Musæum — Biblioteca digital interativa de literatura do Egito Antigo"
+message: "Se você usar este projeto, por favor cite-o conforme os metadados abaixo."
+type: software
+authors:
+  - given-names: Flavia
+    family-names: Lima Corpas
+    affiliation: "PPGArq — Museu Nacional / UFRJ"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"  # preencha com seu ORCID
+abstract: >-
+  Musæum é uma biblioteca digital interativa e bilíngue (português/inglês)
+  de textos literários do Egito Antigo do Reino Médio (2055–1650 AEC).
+  Projeto acadêmico voltado a democratizar o acesso a textos egípcios antigos,
+  com rigor bibliográfico e fidelidade às fontes originais.
+keywords:
+  - egiptologia
+  - Egito Antigo
+  - Reino Médio
+  - literatura egípcia
+  - humanidades digitais
+  - biblioteca digital
+  - arqueologia
+license: CC-BY-NC-SA-4.0
+repository-code: "https://github.com/flaflavete/musaeum"
+version: 0.9.1
+date-released: 2026-06-09
