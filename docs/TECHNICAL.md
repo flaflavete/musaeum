@@ -372,3 +372,13 @@ Para **publicar `sinuhe.html`** especificamente, além dos passos 3–5, convert
 - **localStorage:** prefixo `musaeum-` com hífen (`musaeum-stories`, `musaeum-lang`)
 - **i18n em index.html:** atributo `data-t="chave"`
 - Comentários em português dentro dos arquivos
+
+## Como citar
+
+O projeto tem DOI no Zenodo (*concept DOI*, aponta sempre para a versão mais recente):
+
+**DOI:** [10.5281/zenodo.20617042](https://doi.org/10.5281/zenodo.20617042)
+
+> CORPAS, Flavia Lima. *Musæum: biblioteca digital interativa de literatura do Egito Antigo*. Zenodo, 2026. DOI: 10.5281/zenodo.20617042. Disponível em: https://doi.org/10.5281/zenodo.20617042.
+
+A ficha de citação legível por máquina está em [`CITATION.cff`](../CITATION.cff) na raiz do repositório. Cada *release* gera um *version DOI* próprio; o *concept DOI* acima permanece fixo.

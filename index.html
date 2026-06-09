@@ -1229,6 +1229,10 @@
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR" target="_blank" rel="noopener" class="footer-license-badge" aria-label="Licenciado sob Creative Commons BY-NC-SA 4.0">
       <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="CC BY-NC-SA 4.0" width="88" height="31">
     </a>
+    <span id="footerCite" style="display:block; margin-top:10px; font-family: sans-serif; font-size:10px; letter-spacing:0.05em; opacity:0.55;">
+      <span id="footerCiteLabel"></span>
+      <a href="https://doi.org/10.5281/zenodo.20617042" target="_blank" rel="noopener" style="color:inherit;">10.5281/zenodo.20617042</a>
+    </span>
   </footer>
 </main>
 
@@ -1327,6 +1331,7 @@
 
       footer: 'Projeto de Flavia Lima Corpas, 2026\nFoto: Fachada do templo de Horus em Edfu, Egito · Flavia Lima Corpas, out. 2025',
       footerPrivacy: 'Este site armazena localmente seu progresso e nome, sem enviar dados para nenhum servidor.',
+      footerCite: 'Como citar (DOI):',
       instSupport: 'Desenvolvido no',
 
       aboutTitle: 'Sobre o projeto',
@@ -1408,6 +1413,7 @@
 
       footer: 'Project by Flavia Lima Corpas, 2026\nPhoto: Facade of the Temple of Horus at Edfu, Egypt · Flavia Lima Corpas, Oct. 2025',
       footerPrivacy: 'This site stores your progress and name locally, without sending any data to a server.',
+      footerCite: 'How to cite (DOI):',
       instSupport: 'Developed at',
 
       aboutTitle: 'About the project',
@@ -1510,6 +1516,7 @@
 
     document.getElementById('footerContent').innerText = t.footer;
     document.getElementById('footerPrivacy').innerText = t.footerPrivacy;
+    document.getElementById('footerCiteLabel').innerText = t.footerCite;
     document.getElementById('footerInstSupport').innerText = t.instSupport;
     renderCollection();
     renderCertificateSection();

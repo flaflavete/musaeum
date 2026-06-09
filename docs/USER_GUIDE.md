@@ -302,3 +302,13 @@ O Reino Médio é um período da história do Egito Antigo que durou de aproxima
 ---
 
 *Musæum é um projeto acadêmico de Flavia Lima Corpas — PPGArq / Museu Nacional / UFRJ.*
+
+---
+
+## Como citar
+
+O Musæum tem DOI registrado no Zenodo. Use o *concept DOI*, que sempre aponta para a versão mais recente:
+
+**DOI:** [10.5281/zenodo.20617042](https://doi.org/10.5281/zenodo.20617042)
+
+> CORPAS, Flavia Lima. *Musæum: biblioteca digital interativa de literatura do Egito Antigo*. Zenodo, 2026. DOI: 10.5281/zenodo.20617042. Disponível em: https://doi.org/10.5281/zenodo.20617042.

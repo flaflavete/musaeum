@@ -602,3 +602,13 @@ Sem travessões (`—`); use ponto, vírgula ou `!`. Tom caloroso, de quem mostr
 - [Documentação técnica detalhada](TECHNICAL.md) — estruturas de dados, fluxo de telas, sistemas internos
 - [Unicode Egyptian Hieroglyphs](https://www.unicode.org/charts/PDF/U13000.pdf) — bloco U+13000–U+1342F
 - [Lista de hieróglifos de Gardiner](https://en.wikipedia.org/wiki/Gardiner%27s_sign_list) — referência para transliteração e tipos de signos
+
+## 20. Como citar
+
+O Musæum tem DOI no Zenodo. Para citar, use o *concept DOI* (sempre aponta para a versão mais recente); a ficha legível por máquina está em [`CITATION.cff`](../CITATION.cff).
+
+**DOI:** [10.5281/zenodo.20617042](https://doi.org/10.5281/zenodo.20617042)
+
+> CORPAS, Flavia Lima. *Musæum: biblioteca digital interativa de literatura do Egito Antigo*. Zenodo, 2026. DOI: 10.5281/zenodo.20617042. Disponível em: https://doi.org/10.5281/zenodo.20617042.
+
+Ao publicar uma versão nova: crie um *release* no GitHub (tag `vX.Y.Z`) e o Zenodo arquiva e gera um *version DOI* automaticamente. O *concept DOI* acima nunca muda.
