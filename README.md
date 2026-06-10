@@ -34,13 +34,10 @@ Abra `index.html` diretamente no navegador — não há servidor nem build neces
 ### Scripts disponíveis
 
 ```bash
-npm install               # instala dependências (necessário só para TTS e testes)
-npm start                 # inicia o proxy TTS em http://localhost:3001
+npm install               # instala dependências (necessário só para os testes)
 npm test                  # roda os testes automatizados uma vez
 npm run test:watch        # roda os testes em modo watch (desenvolvimento)
 ```
-
-Para o proxy TTS, crie um `.env` com `ELEVENLABS_API_KEY=sua-chave` antes de rodar `npm start`.
 
 ### Funcionalidades
 
@@ -65,12 +62,11 @@ index.html            Página da biblioteca
 naufrago.html         Conto do Náufrago
 sinuhe.html           História de Sinué
 script.js             Utilitários compartilhados + shell HTML das histórias
-engine.js             Motor das histórias (telas, desafios, save, TTS)
+engine.js             Motor das histórias (telas, desafios, save)
 tour.js               Tour guiado (usado na home e nas histórias)
 research.js           Coleta anônima de dados da pesquisa
 style.css             Estilos globais
-server.cjs            Proxy TTS ElevenLabs (opcional)
-data/                 Dados das histórias (naufrago.js, sinuhe.js)
+data/                 Catálogo central e dados das histórias (catalogo.js, naufrago.js, sinuhe.js)
 assets/audio/         Trilha sonora e efeitos (acerto, erro)
 assets/images/        Imagens de fundo
 tests/                Testes automatizados (Vitest)
@@ -78,7 +74,7 @@ fontes/               PDFs e áudio de referência (uso interno)
 docs/                 Documentação (técnica, dev, guia do usuário, pesquisa)
 ```
 
-**Stack:** HTML · CSS · JavaScript vanilla · localStorage · Google Fonts · Node/Express (TTS opcional)
+**Stack:** HTML · CSS · JavaScript vanilla · localStorage · Google Fonts
 
 ### Referências bibliográficas principais
 
@@ -135,13 +131,10 @@ Open `index.html` directly in your browser — no server or build step required.
 ### Available scripts
 
 ```bash
-npm install               # install dependencies (only needed for TTS and tests)
-npm start                 # start the TTS proxy at http://localhost:3001
+npm install               # install dependencies (only needed for tests)
 npm test                  # run automated tests once
 npm run test:watch        # run tests in watch mode (development)
 ```
-
-For the TTS proxy, create a `.env` file with `ELEVENLABS_API_KEY=your-key` before running `npm start`.
 
 ### Features
 
@@ -166,12 +159,11 @@ index.html            Library home page
 naufrago.html         The Shipwrecked Sailor
 sinuhe.html           The Story of Sinuhe
 script.js             Shared utilities + stories' HTML shell
-engine.js             Story engine (screens, challenges, save, TTS)
+engine.js             Story engine (screens, challenges, save)
 tour.js               Guided tour (used on home and in stories)
 research.js           Anonymous research data collection
 style.css             Global styles
-server.cjs            ElevenLabs TTS proxy (optional)
-data/                 Story data files (naufrago.js, sinuhe.js)
+data/                 Central catalog and story data (catalogo.js, naufrago.js, sinuhe.js)
 assets/audio/         Soundtrack and sound effects (correct, wrong)
 assets/images/        Background images
 tests/                Automated tests (Vitest)
@@ -179,7 +171,7 @@ fontes/               Reference PDFs and audio (internal use)
 docs/                 Documentation (technical, dev, user guide, research)
 ```
 
-**Stack:** HTML · CSS · Vanilla JavaScript · localStorage · Google Fonts · Node/Express (TTS optional)
+**Stack:** HTML · CSS · Vanilla JavaScript · localStorage · Google Fonts
 
 ### Main bibliographic references
 

@@ -467,47 +467,6 @@
     transform: translateY(-1px);
   }
 
-  .tts-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    background: rgba(201, 166, 70, 0.05);
-    border: 1px solid var(--gold-dark);
-    color: var(--gold-light);
-    font-family: 'Cinzel', 'Gentium Plus', serif;
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    padding: 8px 22px;
-    border-radius: 99px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  .tts-btn:hover {
-    background: rgba(201, 166, 70, 0.15);
-    border-color: var(--gold);
-    transform: translateY(-1px);
-  }
-  .tts-btn.playing {
-    background: rgba(201, 166, 70, 0.18);
-    border-color: var(--gold);
-    color: var(--gold);
-  }
-  .tts-btn.loading {
-    opacity: 0.65;
-    cursor: wait;
-    pointer-events: none;
-  }
-  .tts-btn.loading .tts-icon {
-    display: inline-block;
-    animation: ttsPulse 1s ease-in-out infinite;
-  }
-  @keyframes ttsPulse {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.2; }
-  }
-  .tts-icon { font-style: normal; }
   .archaeo-note {
     background: rgba(27, 42, 61, 0.6);
     border-left: 2px solid var(--gold);

@@ -216,13 +216,15 @@
     });
   }
 
-  // ── Rastreio de abandono (beforeunload) ─────────────────────────────────────
+  // ── Rastreio de abandono (pagehide) ─────────────────────────────────────────
   // O handler é sempre registrado; o envio só ocorre se houver consentimento.
+  // Usamos 'pagehide' em vez de 'beforeunload' porque o Safari/iOS quase nunca
+  // dispara beforeunload, o que subnotificava abandono em celulares.
 
   let _abandonFn = null;
 
   function _registerAbandonment(storyId, maxScore, getState) {
-    if (_abandonFn) window.removeEventListener('beforeunload', _abandonFn);
+    if (_abandonFn) window.removeEventListener('pagehide', _abandonFn);
 
     _abandonFn = function () {
       if (_consent() !== 'sim') return;
@@ -242,7 +244,7 @@
       });
     };
 
-    window.addEventListener('beforeunload', _abandonFn);
+    window.addEventListener('pagehide', _abandonFn);
   }
 
   // ── API pública ─────────────────────────────────────────────────────────────
@@ -287,7 +289,7 @@
     trackComplete({ storyId, score, maxScore, lang }) {
       // Remove o listener de abandono — não precisamos mais dele
       if (_abandonFn) {
-        window.removeEventListener('beforeunload', _abandonFn);
+        window.removeEventListener('pagehide', _abandonFn);
         _abandonFn = null;
       }
       _send({

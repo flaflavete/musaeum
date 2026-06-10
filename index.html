@@ -1187,36 +1187,8 @@
 
   <section aria-labelledby="libraryHeading">
     <h2 id="libraryHeading" style="position:absolute;left:-9999px;">Biblioteca</h2>
-    <div class="library-grid">
-
-      <a href="naufrago.html" class="scroll-card" id="card1">
-        <span class="status-tag tag-ready" data-t="tagOpen"></span>
-        <div class="card-glyph" aria-hidden="true">𓊛</div>
-        <div class="card-title" data-t="t1"></div>
-        <div class="card-desc" data-t="d1"></div>
-      </a>
-
-      <div class="scroll-card locked" id="card2" aria-disabled="true">
-        <span class="status-tag tag-locked" data-t="tagLocked"></span>
-        <div class="card-glyph" aria-hidden="true">𓂻</div>
-        <div class="card-title" data-t="t2"></div>
-        <div class="card-desc" data-t="d2"></div>
-      </div>
-
-      <div class="scroll-card locked" id="card3" aria-disabled="true">
-        <span class="status-tag tag-locked" data-t="tagLocked"></span>
-        <div class="card-glyph" aria-hidden="true">𓃾</div>
-        <div class="card-title" data-t="t3"></div>
-        <div class="card-desc" data-t="d3"></div>
-      </div>
-
-      <div class="scroll-card more-soon" id="card4" aria-hidden="true">
-        <div class="card-glyph more-glyph" aria-hidden="true">𓏼</div>
-        <div class="card-title" data-t="tMore"></div>
-        <div class="card-desc" data-t="dMore"></div>
-      </div>
-
-    </div>
+    <!-- Cards gerados a partir de MUSAEUM_CATALOG (data/catalogo.js) por buildLibrary() -->
+    <div class="library-grid" id="libraryGrid"></div>
   </section>
 
   <section class="collection-section" id="collectionSection" aria-label="Coleção">
@@ -1336,6 +1308,7 @@
 </div>
 
 <script src="script.js"></script>
+<script src="data/catalogo.js"></script>
 <script src="research.js"></script>
 <script src="tour.js"></script>
 <script>
@@ -1357,17 +1330,11 @@
 
       tagOpen: 'Aberto',
       tagLocked: 'Em Breve',
-      t1: 'O Conto do Náufrago',
-      d1: 'Uma jornada de sobrevivência, criaturas míticas e a importância da fala eficaz.',
-      t2: 'A História de Sinué',
-      d2: 'O exílio e o retorno. O épico máximo da literatura do Reino Médio.',
-      t3: 'Camponês Eloquente',
-      d3: 'O poder da retórica e o clamor por justiça de um homem simples.',
       tMore: 'Mais histórias em breve',
       dMore: 'Novos contos dos antigos egípcios estão a caminho.',
 
       footer: 'Projeto de Flavia Lima Corpas, 2026\nFoto: Fachada do templo de Horus em Edfu, Egito · Flavia Lima Corpas, out. 2025',
-      footerPrivacy: 'Este site armazena localmente seu progresso e nome, sem enviar dados para nenhum servidor.',
+      footerPrivacy: 'Seu progresso e nome ficam guardados só no seu aparelho. Com seu consentimento, enviamos apenas dados anônimos de uso para a pesquisa do PPGArq · Museu Nacional / UFRJ.',
       instSupport: 'Desenvolvido no',
 
       aboutTitle: 'Sobre o projeto',
@@ -1442,17 +1409,11 @@
 
       tagOpen: 'Open',
       tagLocked: 'Coming Soon',
-      t1: 'The Shipwrecked Sailor',
-      d1: 'A journey of survival, mythical creatures, and the importance of effective speech.',
-      t2: 'The Story of Sinuhe',
-      d2: 'Exile and return. The supreme epic of Middle Kingdom literature.',
-      t3: 'The Eloquent Peasant',
-      d3: "The power of rhetoric and a simple man's plea for justice.",
       tMore: 'More stories soon',
       dMore: 'New tales from the ancient Egyptians are on the way.',
 
       footer: 'Project by Flavia Lima Corpas, 2026\nPhoto: Facade of the Temple of Horus at Edfu, Egypt · Flavia Lima Corpas, Oct. 2025',
-      footerPrivacy: 'This site stores your progress and name locally, without sending any data to a server.',
+      footerPrivacy: 'Your progress and name are stored only on your device. With your consent, we send only anonymous usage data to the research at PPGArq · Museu Nacional / UFRJ.',
       instSupport: 'Developed at',
 
       aboutTitle: 'About the project',
@@ -1515,6 +1476,39 @@
     }
   };
 
+  // Monta os cards da biblioteca a partir do catálogo (uma vez, no load;
+  // os textos são atualizados por render() para preservar a animação).
+  function buildLibrary() {
+    const grid = document.getElementById('libraryGrid');
+    let html = '';
+    for (const s of MUSAEUM_CATALOG) {
+      if (s.available) {
+        html += `
+      <a href="${s.href}" class="scroll-card" id="card-${s.storyId}">
+        <span class="status-tag tag-ready" data-t="tagOpen"></span>
+        <div class="card-glyph" aria-hidden="true">${s.cardGlyph}</div>
+        <div class="card-title"></div>
+        <div class="card-desc"></div>
+      </a>`;
+      } else {
+        html += `
+      <div class="scroll-card locked" id="card-${s.storyId}" aria-disabled="true">
+        <span class="status-tag tag-locked" data-t="tagLocked"></span>
+        <div class="card-glyph" aria-hidden="true">${s.cardGlyph}</div>
+        <div class="card-title"></div>
+        <div class="card-desc"></div>
+      </div>`;
+      }
+    }
+    html += `
+      <div class="scroll-card more-soon" aria-hidden="true">
+        <div class="card-glyph more-glyph" aria-hidden="true">𓏼</div>
+        <div class="card-title" data-t="tMore"></div>
+        <div class="card-desc" data-t="dMore"></div>
+      </div>`;
+    grid.innerHTML = html;
+  }
+
   function setLang(lang) {
     currentLang = lang;
     localStorage.setItem('musaeum-lang', lang);
@@ -1550,10 +1544,16 @@
       if (t[key] !== undefined) el.textContent = t[key];
     });
 
-    // aria-labels contextuais dos cards
-    document.getElementById('card1').setAttribute('aria-label', `${t.t1} — ${t.tagOpen}`);
-    document.getElementById('card2').setAttribute('aria-label', `${t.t2} — ${t.tagLocked}`);
-    document.getElementById('card3').setAttribute('aria-label', `${t.t3} — ${t.tagLocked}`);
+    // Títulos, descrições e aria-labels dos cards vêm do catálogo
+    for (const s of MUSAEUM_CATALOG) {
+      const card = document.getElementById('card-' + s.storyId);
+      if (!card) continue;
+      const title = currentLang === 'pt' ? s.titlePt : s.titleEn;
+      const desc  = currentLang === 'pt' ? s.descPt  : s.descEn;
+      card.querySelector('.card-title').textContent = title;
+      card.querySelector('.card-desc').textContent  = desc;
+      card.setAttribute('aria-label', `${title} — ${s.available ? t.tagOpen : t.tagLocked}`);
+    }
 
     document.getElementById('footerContent').innerText = t.footer;
     document.getElementById('footerPrivacy').innerText = t.footerPrivacy;
@@ -1616,74 +1616,6 @@
       else if (aboutOpen) closeAbout();
     }
   });
-
-  // ===== CÓDEX =====
-  const CODEX_GLYPHS = [
-    { glyph: '𓋹', translit: 'ꜥnḫ',   chapter: -1,
-      namePt: 'Ankh',          nameEn: 'Ankh',
-      meaningPt: 'Vida, vida eterna',         meaningEn: 'Life, eternal life',
-      notePt: 'Representa provavelmente uma sandália ritual amarrada no tornozelo, segundo a hipótese mais aceita por Alan Gardiner. Quando deuses seguram o ankh diante da boca de um faraó, transmitem-lhe a vida divina. É talvez o signo egípcio mais reconhecível e atravessou milênios como amuleto.',
-      noteEn: 'Likely representing a ceremonial sandal tied at the ankle, per Alan Gardiner\'s accepted hypothesis. When gods hold the ankh before a pharaoh\'s mouth, they transmit divine life. Perhaps the most recognizable Egyptian sign, it crossed millennia as an amulet.' },
-    { glyph: '𓂀', translit: 'wḏꜣt',  chapter: 0,
-      namePt: 'Olho de Hórus', nameEn: 'Eye of Horus',
-      meaningPt: 'Proteção, inteireza, cura', meaningEn: 'Protection, wholeness, healing',
-      notePt: 'Segundo o mito, o olho de Hórus foi ferido por Seth e restaurado por Tot. Cada parte do desenho representa uma fração (1/2, 1/4, 1/8...) que somadas dão 63/64. O pequeno resto é a "magia de Tot".',
-      noteEn: 'In myth, Horus\'s eye was wounded by Seth and restored by Thoth. Each part of the drawing represents a fraction (1/2, 1/4, 1/8...) summing to 63/64. The small remainder is "Thoth\'s magic".' },
-    { glyph: '𓇳', translit: 'rꜥ',    chapter: 1,
-      namePt: 'Sol · Rá',       nameEn: 'Sun · Ra',
-      meaningPt: 'Sol, dia, o deus Rá',       meaningEn: 'Sun, day, the god Ra',
-      notePt: 'Um círculo com ponto no centro. Serve como logograma para "sol" e "Rá", e como determinativo em palavras ligadas ao tempo e à luz. O deus Rá era o sol do meio-dia; Khepri era o sol nascente e Atum, o poente.',
-      noteEn: 'A circle with a dot at center. Works as a logogram for "sun" and "Ra", and as a determinative in words tied to time and light. Ra was the midday sun; Khepri the rising sun and Atum the setting one.' },
-    { glyph: '𓈗', translit: 'mw',    chapter: 2,
-      namePt: 'Águas',          nameEn: 'Waters',
-      meaningPt: 'Água, águas, líquido',      meaningEn: 'Water, waters, liquid',
-      notePt: 'Três linhas onduladas representando ondulações da água. Pode aparecer como ideograma ou como determinativo de palavras ligadas a rios, líquidos e travessias. O Nilo e o "Grande Verde" (o Mediterrâneo) eram escritos com este signo.',
-      noteEn: 'Three wavy lines representing rippling water. Can appear as an ideogram or as a determinative for words tied to rivers, liquids, and crossings. The Nile and the "Great Green" (the Mediterranean) used this sign.' },
-    { glyph: '𓄣', translit: 'ỉb',    chapter: 3,
-      namePt: 'Coração',        nameEn: 'Heart',
-      meaningPt: 'Coração, mente, vontade',   meaningEn: 'Heart, mind, will',
-      notePt: 'Para os egípcios, o coração era a sede do pensamento, da memória e da personalidade — não o cérebro, que era descartado durante a mumificação. No julgamento de Osíris, o coração do morto era pesado contra a pena de Maat.',
-      noteEn: 'For Egyptians, the heart was the seat of thought, memory, and personality — not the brain, which was discarded during mummification. In Osiris\'s judgment, the heart was weighed against Maat\'s feather.' },
-    { glyph: '𓆙', translit: 'ḥfꜣw', chapter: 4,
-      namePt: 'Serpente',       nameEn: 'Serpent',
-      meaningPt: 'Serpente, réptil',          meaningEn: 'Serpent, reptile',
-      notePt: 'A serpente aparece como determinativo de répteis e em nomes de divindades protetoras, como a uraeus (a cobra na testa do faraó). No Conto do Náufrago, a serpente da ilha é uma entidade divina chamada de "Príncipe de Punt".',
-      noteEn: 'Appears as a determinative of reptiles and in names of protective deities, like the uraeus (cobra on the pharaoh\'s forehead). In the Shipwrecked Sailor, the island serpent is a divine being called "Prince of Punt".' },
-    { glyph: '𓏞', translit: 'sš',    chapter: 5,
-      namePt: 'Escriba',        nameEn: 'Scribe',
-      meaningPt: 'Escrita, kit do escriba',   meaningEn: 'Writing, scribe\'s kit',
-      notePt: 'Representa o estojo do escriba: a paleta com duas cavidades para tintas, o saquinho de pigmento e os pincéis de junco. Ser escriba no Egito era uma das profissões mais prestigiosas. "Sê escriba, livra-te do trabalho duro", dizia um texto sapiencial.',
-      noteEn: 'Depicts the scribe\'s kit: the palette with two ink cavities, the pigment bag, and reed brushes. Being a scribe was one of Egypt\'s most prestigious professions. "Be a scribe, free yourself from hard labor", said a wisdom text.' },
-    { glyph: '𓊛', translit: 'dpt',   chapter: 6,
-      namePt: 'Barco',          nameEn: 'Boat',
-      meaningPt: 'Barco, navio, travessia',   meaningEn: 'Boat, ship, crossing',
-      notePt: 'O signo do barco é central na cultura egípcia. O Nilo era a espinha dorsal do país e o sol atravessava o céu em sua barca diária. Navios reais sepultados ao lado de pirâmides, como o de Quéops, mostram a importância religiosa do transporte fluvial.',
-      noteEn: 'The boat sign is central in Egyptian culture. The Nile was the country\'s backbone, and the sun crossed the sky in its daily bark. Royal ships buried beside pyramids, like Khufu\'s, show the religious weight of river travel.' },
-    { glyph: '𓉐', translit: 'pr',    chapter: 7,
-      namePt: 'Casa',           nameEn: 'House',
-      meaningPt: 'Casa, lar, domínio',        meaningEn: 'House, home, domain',
-      notePt: 'A planta baixa de uma casa vista de cima. Como bilítero <i>pr</i>, forma palavras como <i>pr-ꜥnḫ</i> ("casa da vida"), <i>pr-ꜥꜣ</i> ("casa grande" → "faraó") e <i>pr-ḥḏ</i> ("casa branca", o tesouro real).',
-      noteEn: 'The floor plan of a house seen from above. As biliteral <i>pr</i>, it forms words like <i>pr-ꜥnḫ</i> ("house of life"), <i>pr-ꜥꜣ</i> ("great house" → "pharaoh") and <i>pr-ḥḏ</i> ("white house", the royal treasury).' },
-  ];
-
-  // ===== CATÁLOGO DE JOGOS (extensível) =====
-  const GAME_CATALOG = [
-    {
-      storyId: 'naufrago',
-      titlePt: 'O Conto do Náufrago',
-      titleEn: 'The Shipwrecked Sailor',
-      items: [
-        { pt: 'Uvas',    en: 'Grapes',   icon: '🍇' },
-        { pt: 'Vinho',   en: 'Wine',     icon: '🍷' },
-        { pt: 'Incenso', en: 'Incense',  icon: '💨' },
-        { pt: 'Mirra',   en: 'Myrrh',   icon: '🏺' },
-        { pt: 'Óleo',    en: 'Oil',      icon: '🪔' },
-        { pt: 'Marfim',  en: 'Ivory',    icon: '🦷' },
-        { pt: 'Macaco',  en: 'Monkey',   icon: '🐒' },
-        { pt: 'Cão',     en: 'Dog',      icon: '🐕' }
-      ]
-    }
-  ];
 
   // ===== NOME DO JOGADOR =====
   function savePlayerName(name) {
@@ -1781,7 +1713,7 @@
     if (window.Tour && Tour.isActive()) return;
     const t = i18n[currentLang];
     const s = t.tourSteps;
-    const selectors = ['#card1', '#collectionSection', '#certSection', '#btnAbout'];
+    const selectors = ['.library-grid .scroll-card', '#collectionSection', '#certSection', '#btnAbout'];
     const steps = selectors.map((sel, i) => ({ selector: sel, title: s[i].title, body: s[i].body }));
     if (window.Tour) {
       Tour.start(steps, {
@@ -1796,8 +1728,10 @@
   });
 
   // ===== COLEÇÃO =====
-  function openGlyphCard(idx) {
-    const g    = CODEX_GLYPHS[idx];
+  function openGlyphCard(storyId, idx) {
+    const story = catalogGet(storyId);
+    if (!story || !story.codex) return;
+    const g    = story.codex[idx];
     const lang = currentLang;
     const name    = lang === 'pt' ? g.namePt    : g.nameEn;
     const meaning = lang === 'pt' ? g.meaningPt : g.meaningEn;
@@ -1863,12 +1797,16 @@
       headingEl.textContent = t.collectionTitle;
     }
 
+    // Histórias que entram na Coleção: têm tesouros e estão publicadas
+    // (ou guardam progresso de quem já jogou).
+    const collectible = MUSAEUM_CATALOG.filter(s =>
+      s.items && (s.available || storeGet(s.storyId)));
+
     // badge de resumo (X / total)
     let earnedCount = 0, totalCount = 0;
-    for (const game of GAME_CATALOG) {
+    for (const game of collectible) {
       totalCount += game.items.length;
-      let save = null;
-      save = storeGet(game.storyId);
+      const save = storeGet(game.storyId);
       if (save) {
         const collected = save.collected || [];
         earnedCount += game.items.filter((_, i) => collected[i] === true).length;
@@ -1888,11 +1826,8 @@
     let html = '';
     let anyData = false;
 
-    // lê save do náufrago (usado em tesouros e códex)
-    const naufrSave = storeGet('naufrago');
-    const discoveredGlyphs = new Set(naufrSave?.discoveredGlyphs ?? []);
-
-    for (const game of GAME_CATALOG) {
+    // Tesouros por história
+    for (const game of collectible) {
       const save = storeGet(game.storyId);
       if (!save) continue;
       anyData = true;
@@ -1913,18 +1848,25 @@
       html += `</div></div>`;
     }
 
-    // seção do códex
-    if (naufrSave) {
+    // Códex de hieróglifos por história
+    const codexStories = MUSAEUM_CATALOG.filter(s => s.codex && storeGet(s.storyId));
+    for (const story of codexStories) {
       anyData = true;
+      const save = storeGet(story.storyId);
+      const discovered = new Set(save?.discoveredGlyphs ?? []);
+      const storyTitle = currentLang === 'pt' ? story.titlePt : story.titleEn;
+      const heading = codexStories.length > 1
+        ? `${t.codexSectionTitle} · ${storyTitle}`
+        : t.codexSectionTitle;
       html += `<div style="margin-bottom:8px;">
-        <div class="collection-game-name">${t.codexSectionTitle}</div>
+        <div class="collection-game-name">${heading}</div>
         <div class="collection-grid">`;
-      for (let i = 0; i < CODEX_GLYPHS.length; i++) {
-        const g     = CODEX_GLYPHS[i];
-        const found = discoveredGlyphs.has(i);
+      for (let i = 0; i < story.codex.length; i++) {
+        const g     = story.codex[i];
+        const found = discovered.has(i);
         const label = currentLang === 'pt' ? g.namePt : g.nameEn;
         if (found) {
-          html += `<div class="col-item earned" onclick="openGlyphCard(${i})" title="${escapeHtml(label)}">
+          html += `<div class="col-item earned" onclick="openGlyphCard('${story.storyId}', ${i})" title="${escapeHtml(label)}">
             <div class="col-item-icon is-glyph" aria-hidden="true">${g.glyph}</div>
             <div class="col-item-label">${escapeHtml(label)}</div>
           </div>`;
@@ -1943,7 +1885,9 @@
   }
 
   // ===== CERTIFICADO =====
-  const AVAILABLE_STORIES = ['naufrago'];
+  // Histórias publicadas (derivado do catálogo): todas precisam estar
+  // concluídas para desbloquear o certificado.
+  const AVAILABLE_STORIES = MUSAEUM_CATALOG.filter(s => s.available).map(s => s.storyId);
 
   function allStoriesComplete() {
     return AVAILABLE_STORIES.every(id => {
@@ -2084,25 +2028,34 @@
     ctx.fillStyle = P_DIM;
     ctx.fillText(t.certCompleted, W/2, 308);
 
-    // História: glifo + nome centralizados
-    ctx.font = '24px "Noto Sans Egyptian Hieroglyphs", sans-serif';
-    ctx.fillStyle = GOLD_L;
-    ctx.textAlign = 'right';
-    ctx.fillText('𓊛', W/2 - 10, 350);
-    ctx.font = '500 19px Cinzel, serif';
-    ctx.fillStyle = PAPYRUS;
-    ctx.textAlign = 'left';
-    ctx.fillText(lang === 'pt' ? 'O Conto do Náufrago' : 'The Shipwrecked Sailor', W/2 + 14, 350);
+    // Histórias concluídas: glifo + nome, uma linha por história publicada
+    const certStories = MUSAEUM_CATALOG.filter(s => s.available);
+    let storyY = 350 - (certStories.length - 1) * 15;
+    for (const s of certStories) {
+      ctx.font = '24px "Noto Sans Egyptian Hieroglyphs", sans-serif';
+      ctx.fillStyle = GOLD_L;
+      ctx.textAlign = 'right';
+      ctx.fillText(s.cardGlyph, W/2 - 10, storyY);
+      ctx.font = '500 19px Cinzel, serif';
+      ctx.fillStyle = PAPYRUS;
+      ctx.textAlign = 'left';
+      ctx.fillText(lang === 'pt' ? s.titlePt : s.titleEn, W/2 + 14, storyY);
+      storyY += 30;
+    }
 
-    // Ícones dos tesouros coletados
-    const naufrSave = storeGet('naufrago');
-    const collected = naufrSave ? (naufrSave.collected || []) : [];
-    const earnedIcons = GAME_CATALOG[0].items.filter((_,i) => collected[i]).map(it => it.icon);
+    // Ícones dos tesouros coletados (todas as histórias publicadas)
+    const earnedIcons = [];
+    for (const s of certStories) {
+      if (!s.items) continue;
+      const save = storeGet(s.storyId);
+      const collected = save ? (save.collected || []) : [];
+      s.items.forEach((it, i) => { if (collected[i]) earnedIcons.push(it.icon); });
+    }
     if (earnedIcons.length > 0) {
       ctx.font = '17px serif';
       ctx.textAlign = 'center';
       ctx.fillStyle = PAPYRUS;
-      ctx.fillText(earnedIcons.join('  '), W/2, 382);
+      ctx.fillText(earnedIcons.join('  '), W/2, storyY + 2);
     }
 
     line(408);
@@ -2128,6 +2081,7 @@
   // Inicialização
   migrateOldSaves();
   initTheme();
+  buildLibrary();
   const _savedLang = localStorage.getItem('musaeum-lang') || 'pt';
   setLang(_savedLang);
   if (window.Research) Research.init({ suppressModal: true });

@@ -41,32 +41,11 @@ export function createEngineContext({
     clear:      () => { for (const k of Object.keys(_store)) delete _store[k] },
   }
 
-  // createElement funcional para ttsPlainText: suporta innerHTML, querySelectorAll('i') e textContent
-  const createElement = () => {
-    let _html = ''
-    return {
-      set innerHTML(v) { _html = String(v) },
-      get innerHTML()  { return _html },
-      querySelectorAll(sel) {
-        const found = []
-        if (sel === 'i') {
-          _html = _html.replace(/<i[^>]*>[\s\S]*?<\/i>/gi, () => {
-            found.push({ remove() {} })
-            return ''
-          })
-        }
-        return { forEach: fn => found.forEach(fn) }
-      },
-      get textContent() { return _html.replace(/<[^>]*>/g, '') },
-      get innerText()   { return _html.replace(/<[^>]*>/g, '') },
-    }
-  }
-
   const ctx = vm.createContext({
     localStorage,
     document: {
       getElementById:  () => makeMockEl(),
-      createElement,
+      createElement:   () => makeMockEl(),
       querySelector:   () => makeMockEl(),
       querySelectorAll: () => [],
       documentElement: {
@@ -127,6 +106,8 @@ export function createScriptContext() {
 /**
  * Carrega um arquivo JS de dados em vm e extrai uma variável const por nome.
  * Usa `var _out = <name>` para expor a const através do contexto vm.
+ * O catálogo central é carregado antes, pois os arquivos de história
+ * referenciam catalogGet() para items e codex.
  */
 export function loadDataVar(filePath, varName) {
   const code = readFileSync(resolve(ROOT, filePath), 'utf8')
@@ -135,6 +116,7 @@ export function loadDataVar(filePath, varName) {
     document: { getElementById: () => null, querySelectorAll: () => [] },
     localStorage: { getItem: () => null, setItem: () => {} },
   })
+  vm.runInContext(readFileSync(resolve(ROOT, 'data/catalogo.js'), 'utf8'), ctx)
   vm.runInContext(code, ctx)
   vm.runInContext(`var _out = ${varName}`, ctx)
   return ctx._out

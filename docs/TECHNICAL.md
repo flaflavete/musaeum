@@ -10,8 +10,7 @@ naufrago.html   1434 linhas   Experiência interativa do Conto do Náufrago
 sinuhe.html     1436 linhas   Experiência interativa da História de Sinué
 script.js        160 linhas   Utilitários compartilhados
 style.css                     Estilos globais (tema, tipografia)
-server.cjs                     Proxy TTS ElevenLabs (Node/Express, opcional)
-package.json                  Dependências do servidor TTS
+package.json                  Dependências de teste (vitest)
 fontes/                       PDFs e áudio de referência bibliográfica
 docs/TECHNICAL.md             Este arquivo
 ```
@@ -283,25 +282,11 @@ Fichas atuais: Náufrago → Papiro Hermitage 1115 (`assets/images/hermitage_111
 Desbloqueia quando todas as histórias em `AVAILABLE_STORIES` têm `screen === 'final'`.
 
 ```js
-const AVAILABLE_STORIES = ['naufrago', 'sinuhe']; // adicionar a próxima história quando publicada
+// Derivado de data/catalogo.js: toda história com available: true conta.
+const AVAILABLE_STORIES = MUSAEUM_CATALOG.filter(s => s.available).map(s => s.storyId);
 ```
 
 Gerado em `<canvas>` 800 × 560 px com suporte a devicePixelRatio. Inclui nome do jogador, tesouros coletados, data e assinatura. Exportável como PNG via `downloadCertificate()`.
-
----
-
-## Proxy TTS (server.cjs)
-
-Servidor Express na porta **3001** que faz proxy para a API ElevenLabs, evitando expor a chave no frontend.
-
-```
-POST /api/tts   { "text": "..." }  →  stream audio/mpeg
-```
-
-Configurar via `.env`: `ELEVENLABS_API_KEY=sk-...`
-Iniciar: `npm start` (Node ≥ 18)
-
-Voz: Adam (`pNInz6obpgDQGcFmaJgB`), modelo `eleven_multilingual_v2`.
 
 ---
 

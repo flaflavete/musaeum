@@ -227,16 +227,7 @@ const I18N = {
   }
 };
 
-const ITEMS = [
-  { pt: 'Trigo',       en: 'Wheat',        icon: '🌾' },
-  { pt: 'Falcão',      en: 'Falcon',       icon: '🦅' },
-  { pt: 'Onda',        en: 'Wave',         icon: '🌊' },
-  { pt: 'Palmeira',    en: 'Palm tree',    icon: '🌴' },
-  { pt: 'Espadas',     en: 'Swords',       icon: '⚔️' },
-  { pt: 'Pena de Maat',en: 'Feather of Maat', icon: '🪶' },
-  { pt: 'Lua',         en: 'Moon',         icon: '🌙' },
-  { pt: 'Rolo Real',   en: 'Royal Scroll', icon: '📜' }
-];
+const ITEMS = catalogGet('sinuhe').items;
 
 // ============================================================
 // GLOSSÁRIO DE TERMOS DIFÍCEIS
@@ -348,8 +339,8 @@ const CHAPTERS = [
     titlePt: 'A Morte do Faraó',
     titleEn: 'The Pharaoh\'s Death',
     featured: { glyph: '𓂋', translit: 'r', meaningPt: 'a boca, o anúncio, a palavra que chega', meaningEn: 'the mouth, the announcement, the word that arrives' },
-    notePt: 'A fórmula <i>aq nṯr r Axt=f</i>, "o deus entrou em seu horizonte", é a expressão literária padrão para a morte real. O co-reinado de <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'amenemhat\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'amenemhat\')}">Amenemhat I</span> e <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'sesostris\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'sesostris\')}">Sesostris I</span> durou cerca de dez anos, e a passagem de poder foi turbulenta: o "Ensinamento de Amenemhat" sugere uma tentativa de assassinato dentro do palácio.',
-    noteEn: 'The formula <i>aq nṯr r Axt=f</i>, "the god entered his horizon", is the standard literary phrase for royal death. The co-regency of <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'amenemhat\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'amenemhat\')}">Amenemhat I</span> and <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'sesostris\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'sesostris\')}">Sesostris I</span> lasted about ten years, and the transfer of power was turbulent: the "Teaching of Amenemhat" hints at an assassination attempt inside the palace.',
+    notePt: 'A fórmula <i>ꜥq nṯr r ꜣḫt=f</i>, "o deus entrou em seu horizonte", é a expressão literária padrão para a morte real. O co-reinado de <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'amenemhat\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'amenemhat\')}">Amenemhat I</span> e <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'sesostris\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'sesostris\')}">Sesostris I</span> durou cerca de dez anos, e a passagem de poder foi turbulenta: o "Ensinamento de Amenemhat" sugere uma tentativa de assassinato dentro do palácio.',
+    noteEn: 'The formula <i>ꜥq nṯr r ꜣḫt=f</i>, "the god entered his horizon", is the standard literary phrase for royal death. The co-regency of <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'amenemhat\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'amenemhat\')}">Amenemhat I</span> and <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'sesostris\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'sesostris\')}">Sesostris I</span> lasted about ten years, and the transfer of power was turbulent: the "Teaching of Amenemhat" hints at an assassination attempt inside the palace.',
     storyPt: `<p class="dropcap">Era o trigésimo ano do reinado de <span class="gloss" tabindex="0" onclick="openGlossaryAt('amenemhat')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('amenemhat')}">Amenemhat</span>. No terceiro mês da estação de inundação, no sétimo dia, o deus entrou em seu horizonte. O faraó ascendeu ao céu e se uniu ao sol. Seu corpo divino fundiu-se àquele que o criara.</p><p>A residência real estava em silêncio. Os corações jaziam em luto, as grandes portas duplas estavam fechadas e os cortesãos gemiam. <span class="gloss" tabindex="0" onclick="openGlossaryAt('sesostris')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('sesostris')}">Sesostris</span> havia sido enviado com um grande exército para subjugar as terras dos líbios. Mensageiros secretos foram despachados à fronteira ocidental para que o príncipe soubesse do que havia acontecido dentro do palácio. Eles o encontraram no caminho, ao cair da noite. Ele não hesitou um instante, o falcão voou com seus seguidores, sem informar seu exército.</p><p>Eu, <span class="gloss" tabindex="0" onclick="openGlossaryAt('sa-nht')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('sa-nht')}">Sinué</span>, era servo do harém real, seguidor do soberano. Estava presente quando os mensageiros chegaram. Ouvi a voz deles, e enquanto falavam, eu estava perto demais de um complô. Meu coração se turbou. Meus braços se abriram. O tremor caiu sobre todos os meus membros. Saltei para longe, procurando um esconderijo.</p>`,
     storyEn: `<p class="dropcap">It was the thirtieth year of <span class="gloss" tabindex="0" onclick="openGlossaryAt('amenemhat')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('amenemhat')}">Amenemhat</span>'s reign. On the seventh day of the third month of the inundation season, the god entered his horizon. The pharaoh ascended to heaven and was united with the sun. His divine body merged with him who had created him.</p><p>The royal residence was in silence. Hearts lay in mourning, the great double gate was sealed, and courtiers were wailing. <span class="gloss" tabindex="0" onclick="openGlossaryAt('sesostris')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('sesostris')}">Sesostris</span> had been sent with a great army to strike down the lands of the Libyans. Secret messengers were dispatched to the western border to inform the prince of what had happened inside the palace. They found him on the road at nightfall. He did not hesitate for an instant, the falcon flew off with his followers, without informing his army.</p><p>I, <span class="gloss" tabindex="0" onclick="openGlossaryAt('sa-nht')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGlossaryAt('sa-nht')}">Sinuhe</span>, was a servant of the royal harem, a follower of the sovereign. I was present when the messengers arrived. I heard their voices, and as they spoke, I was close to a conspiracy. My heart grew confused. My arms dropped wide. Trembling fell over all my limbs. I leapt away, searching for a hiding place.</p>`,
     question: {
@@ -517,86 +508,4 @@ const CHAPTERS = [
 
 const SERPENT_CHAPTER = 5;
 
-const GLYPHS_CODEX = [
-  {
-    glyph: '𓆣', translit: 'ḫpr', chapter: -1,
-    namePt: 'Escaravelho de Khepri', nameEn: 'Khepri Scarab',
-    meaningPt: 'Transformação, renascimento, o devir',
-    meaningEn: 'Transformation, rebirth, becoming',
-    typeKey: 'type-logogram',
-    notePt: 'O escaravelho Khepri empurra o sol nascente no horizonte, como o besouro empurra sua bola no chão. Seu nome deriva de <i>ḫpr</i>, "tornar-se". Nesta história, o escaravelho simboliza a grande transformação de Sinué: de servo do palácio a exilado, a chefe tribal, a egípcio reintegrado.',
-    noteEn: 'The Khepri beetle pushes the rising sun across the horizon, as the dung beetle pushes its ball along the ground. Its name derives from <i>ḫpr</i>, "to become". In this story, the scarab symbolizes Sinuhe\'s great transformation: from palace servant to exile, tribal chief, and reintegrated Egyptian.'
-  },
-  {
-    glyph: '𓂋', translit: 'r', chapter: 0,
-    namePt: 'Boca', nameEn: 'Mouth',
-    meaningPt: 'Boca, discurso, o anúncio',
-    meaningEn: 'Mouth, speech, the announcement',
-    typeKey: 'type-uni',
-    notePt: 'Unilitero <i>r</i>, representa a boca humana vista de lado. É também componente do logograma de "sol" (<i>Rꜥ</i>). No contexto da morte do faraó, a boca é o órgão que recebe a notícia terrível, que faz o coração de Sinué tremer e os membros fraquejarem.',
-    noteEn: 'Uniliteral <i>r</i>, depicts the human mouth seen from the side. It is also a component of the logogram for "sun" (<i>Rꜥ</i>). In the context of the pharaoh\'s death, the mouth is the organ that receives the terrible news, making Sinuhe\'s heart tremble and his limbs go weak.'
-  },
-  {
-    glyph: '𓅓', translit: 'm', chapter: 1,
-    namePt: 'Coruja', nameEn: 'Owl',
-    meaningPt: 'Coruja, o unilitero m, silêncio',
-    meaningEn: 'Owl, the uniliteral m, silence',
-    typeKey: 'type-uni',
-    notePt: 'A coruja pintada de frente é o unilitero <i>m</i>. É um dos raros hieróglifos representados frontalmente, ao contrário da maioria dos seres vivos, que aparecem de perfil. A fuga de Sinué acontece de noite, em silêncio, como o voo da coruja: sem testemunhas, cruzando fronteiras no escuro.',
-    noteEn: 'The horned owl depicted frontally is the uniliteral <i>m</i>. It is one of the rare hieroglyphs shown face-on, as almost all living beings appear in profile. Sinuhe\'s flight takes place at night, in silence, like an owl\'s flight: no witnesses, crossing borders in the dark.'
-  },
-  {
-    glyph: '𓈉', translit: 'xꜣst', chapter: 2,
-    namePt: 'Terra estrangeira', nameEn: 'Foreign land',
-    meaningPt: 'Colinas estrangeiras, o além-fronteira',
-    meaningEn: 'Foreign hills, beyond the border',
-    typeKey: 'type-determin',
-    notePt: 'O signo representa colinas rochosas com vales, evocando o terreno acidentado das terras além do Nilo. É o determinativo padrão de topônimos estrangeiros como <i>Rtnw</i> (Retjenu). Para um egípcio, o mundo além dessas colinas era caos, ausência da ordem de <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'maat\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'maat\')}">Maat</span>.',
-    noteEn: 'The sign depicts rocky hills with valleys, evoking the rough terrain beyond the Nile. It is the standard determinative for foreign place names like <i>Rtnw</i> (Retjenu). To an Egyptian, the world beyond those hills meant chaos, the absence of <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'maat\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'maat\')}">Maat</span>\'s order.'
-  },
-  {
-    glyph: '𓆸', translit: 'sšn', chapter: 3,
-    namePt: 'Flor de lótus', nameEn: 'Lotus flower',
-    meaningPt: 'Lótus, criação, eloquência que floresce',
-    meaningEn: 'Lotus, creation, eloquence in bloom',
-    typeKey: 'type-logogram',
-    notePt: 'O lótus azul do Nilo abre suas pétalas ao amanhecer e fecha ao entardecer, simbolizando o ciclo da criação e do renascimento solar. Na arte egípcia, figuras emergindo de uma flor de lótus representam o surgimento do ser do nada. O elogio de Sinué a Sesostris floresce como o lótus: nasce da lealdade e se abre em eloquência.',
-    noteEn: 'The blue Nile lotus opens its petals at dawn and closes at dusk, symbolizing the cycle of creation and solar rebirth. In Egyptian art, figures emerging from a lotus represent the arising of being from nothing. Sinuhe\'s praise of Sesostris blooms like the lotus: born of loyalty and opening into eloquence.'
-  },
-  {
-    glyph: '𓃒', translit: 'kꜣ', chapter: 4,
-    namePt: 'Touro', nameEn: 'Bull',
-    meaningPt: 'Touro, força, abundância',
-    meaningEn: 'Bull, strength, abundance',
-    typeKey: 'type-logogram',
-    notePt: 'O touro é símbolo de força, fertilidade e realeza no Egito. O signo <i>kꜣ</i> (touro) é homófono de <i>kꜣ</i> (alma vital, o duplo espiritual). Em Araru, Sinué recebe gado sem limite: o touro representa tanto a prosperidade material como a vitalidade espiritual que ele reconstrói longe de sua terra natal.',
-    noteEn: 'The bull is a symbol of strength, fertility, and royalty in Egypt. The sign <i>kꜣ</i> (bull) is a homophone of <i>kꜣ</i> (vital soul, the spiritual double). In Araru, Sinuhe receives cattle without limit: the bull represents both the material prosperity and the spiritual vitality he rebuilds far from his homeland.'
-  },
-  {
-    glyph: '𓃭', translit: 'rw', chapter: 5,
-    namePt: 'Leão', nameEn: 'Lion',
-    meaningPt: 'Leão, o campeão, força guerreira',
-    meaningEn: 'Lion, the champion, warrior strength',
-    typeKey: 'type-determin',
-    notePt: 'O leão deitado é o hieróglifo <i>rw</i> e determinativo de palavras ligadas a força, poder e feras. Faraós eram comparados a leões em batalha; a esfinge, o guardião mais poderoso do Egito, tem corpo de leão. No duelo de Sinué, ele enfrenta um campeão sem igual com a coragem de um leão, vencendo com arco e machado.',
-    noteEn: 'The recumbent lion is the hieroglyph <i>rw</i> and a determinative for words tied to strength, power, and wild animals. Pharaohs were compared to lions in battle; the sphinx, Egypt\'s mightiest guardian, has the body of a lion. In Sinuhe\'s duel, he faces a champion without equal with a lion\'s courage, winning with bow and axe.'
-  },
-  {
-    glyph: '𓇹', translit: 'jꜥḥ', chapter: 6,
-    namePt: 'Lua crescente', nameEn: 'Crescent moon',
-    meaningPt: 'Lua, a noite, o deus Iah',
-    meaningEn: 'Moon, the night, the god Iah',
-    typeKey: 'type-logogram',
-    notePt: 'A lua crescente era o signo do deus lunar <i>Jꜥḥ</i> e aparece como determinativo de palavras ligadas ao tempo noturno e às estações. Para Sinué envelhecido em Araru, o que pesa no coração é o medo de morrer sob um céu estrangeiro, sem o ritual egípcio que permite à alma enfrentar o julgamento de Osíris.',
-    noteEn: 'The crescent moon was the sign of the lunar god <i>Jꜥḥ</i> and appears as a determinative for words tied to night and seasons. For the aging Sinuhe in Araru, what weighs on the heart is the fear of dying under a foreign sky, without the Egyptian ritual that allows the soul to face Osiris\'s judgment.'
-  },
-  {
-    glyph: '𓇼', translit: 'sbꜣ', chapter: 7,
-    namePt: 'Estrela', nameEn: 'Star',
-    meaningPt: 'Estrela, eternidade, o além-celeste',
-    meaningEn: 'Star, eternity, the celestial beyond',
-    typeKey: 'type-logogram',
-    notePt: 'A estrela de cinco pontas é o logograma de <i>sbꜣ</i> ("estrela") e determinativo de palavras ligadas ao céu e à eternidade. As almas dos faraós mortos tornavam-se "estrelas imperecíveis" no céu setentrional. O retorno de Sinué ao Egito é também seu retorno à ordem cósmica, à possibilidade de se tornar ele mesmo uma estrela.',
-    noteEn: 'The five-pointed star is the logogram <i>sbꜣ</i> ("star") and a determinative for words tied to the sky and eternity. Dead pharaohs\' souls became "imperishable stars" in the northern sky. Sinuhe\'s return to Egypt is also his return to cosmic order, to the possibility of becoming a star himself.'
-  }
-];
+const GLYPHS_CODEX = catalogGet('sinuhe').codex;

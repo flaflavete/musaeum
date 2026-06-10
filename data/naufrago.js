@@ -227,16 +227,7 @@ const I18N = {
   }
 };
 
-const ITEMS = [
-  { pt: 'Uvas', en: 'Grapes', icon: '🍇' },
-  { pt: 'Vinho', en: 'Wine', icon: '🍷' },
-  { pt: 'Incenso', en: 'Incense', icon: '💨' },
-  { pt: 'Mirra', en: 'Myrrh', icon: '🏺' },
-  { pt: 'Óleo', en: 'Oil', icon: '🪔' },
-  { pt: 'Marfim', en: 'Ivory', icon: '🦷' },
-  { pt: 'Macaco', en: 'Monkey', icon: '🐒' },
-  { pt: 'Cão', en: 'Dog', icon: '🐕' }
-];
+const ITEMS = catalogGet('naufrago').items;
 
 // ============================================================
 // GLOSSÁRIO DE TERMOS DIFÍCEIS
@@ -517,86 +508,4 @@ const CHAPTERS = [
 
 const SERPENT_CHAPTER = 4;
 
-const GLYPHS_CODEX = [
-  {
-    glyph: '𓋹', translit: 'ꜥnḫ', chapter: -1,
-    namePt: 'Ankh', nameEn: 'Ankh',
-    meaningPt: 'Vida, vida eterna',
-    meaningEn: 'Life, eternal life',
-    typeKey: 'type-tri',
-    notePt: 'Representa provavelmente uma sandália ritual amarrada no tornozelo, segundo a hipótese mais aceita por Alan Gardiner. Quando deuses seguram o ankh diante da boca de um faraó, transmitem-lhe a vida divina. É talvez o signo egípcio mais reconhecível e atravessou milênios como amuleto.',
-    noteEn: 'Likely representing a ceremonial sandal tied at the ankle, according to Alan Gardiner\'s accepted hypothesis. When gods hold the ankh before a pharaoh\'s mouth, they transmit divine life. Perhaps the most recognizable Egyptian sign, it crossed millennia as an amulet.'
-  },
-  {
-    glyph: '𓂀', translit: 'wḏꜣt', chapter: 0,
-    namePt: 'Olho de Hórus (wedjat)', nameEn: 'Eye of Horus (wedjat)',
-    meaningPt: 'O que está completo, proteção, cura',
-    meaningEn: 'What is whole, protection, healing',
-    typeKey: 'type-logogram',
-    notePt: 'Segundo o mito, o olho de Hórus foi ferido por Seth e restaurado por Tot. Por isso significa restituição e integridade. Cada parte do desenho representa uma fração (1/2, 1/4, 1/8...) que somadas dão 63/64. O pequeno resto é a "magia de Tot".',
-    noteEn: 'In the myth, Horus\'s eye was wounded by Seth and restored by Thoth. Hence it signifies restoration and wholeness. Each part of the drawing represents a fraction (1/2, 1/4, 1/8...) summing to 63/64. The small remainder is "Thoth\'s magic".'
-  },
-  {
-    glyph: '𓇳', translit: 'rꜥ', chapter: 1,
-    namePt: 'Sol, deus Rá', nameEn: 'Sun, god Ra',
-    meaningPt: 'Sol, dia, o deus Rá',
-    meaningEn: 'Sun, day, the god Ra',
-    typeKey: 'type-logogram',
-    notePt: 'Um círculo com ponto no centro. Serve como logograma para "sol" e "Rá", e como determinativo em palavras ligadas ao tempo e à luz. O deus Rá era o sol do meio-dia; Khepri era o sol nascente e Atum, o poente.',
-    noteEn: 'A circle with a dot at its center. It works as a logogram for "sun" and "Ra", and as a determinative in words tied to time and light. The god Ra was the midday sun; Khepri was the rising sun and Atum the setting one.'
-  },
-  {
-    glyph: '𓈗', translit: 'mw', chapter: 2,
-    namePt: 'Águas', nameEn: 'Waters',
-    meaningPt: 'Água, águas, líquido',
-    meaningEn: 'Water, waters, liquid',
-    typeKey: 'type-ideo',
-    notePt: 'Três linhas onduladas representando ondulações da água. Pode aparecer como ideograma (a palavra "água") ou como determinativo de palavras ligadas a rios, líquidos e travessias. O Nilo e o "Grande Verde" (o Mediterrâneo) eram escritos com este signo.',
-    noteEn: 'Three wavy lines representing rippling water. It can appear as an ideogram (the word "water") or as a determinative for words tied to rivers, liquids, and crossings. The Nile and the "Great Green" (the Mediterranean) were written with this sign.'
-  },
-  {
-    glyph: '𓄣', translit: 'ỉb', chapter: 3,
-    namePt: 'Coração', nameEn: 'Heart',
-    meaningPt: 'Coração, mente, vontade',
-    meaningEn: 'Heart, mind, will',
-    typeKey: 'type-logogram',
-    notePt: 'Para os egípcios, o coração era a sede do pensamento, da memória e da personalidade, não o cérebro, que era descartado durante a mumificação. No julgamento de Osíris, o coração do morto era pesado contra a pena de Maat.',
-    noteEn: 'For Egyptians, the heart was the seat of thought, memory and personality, not the brain, which was discarded during mummification. In Osiris\'s judgment, the dead one\'s heart was weighed against Maat\'s feather.'
-  },
-  {
-    glyph: '𓆙', translit: 'ḥfꜣw', chapter: 4,
-    namePt: 'Serpente', nameEn: 'Serpent',
-    meaningPt: 'Serpente, réptil',
-    meaningEn: 'Serpent, reptile',
-    typeKey: 'type-determin',
-    notePt: 'A serpente aparece em muitos signos egípcios, como determinativo de répteis e também em nomes de divindades protetoras, como a uraeus (a cobra na testa do faraó). No Conto do Náufrago, a serpente da ilha é uma entidade divina chamada de "Príncipe de Punt".',
-    noteEn: 'The serpent appears in many Egyptian signs, as a determinative of reptiles and also in names of protective deities, like the uraeus (the cobra on the pharaoh\'s forehead). In the Shipwrecked Sailor, the island serpent is a divine being called "Prince of Punt".'
-  },
-  {
-    glyph: '𓏞', translit: 'sš', chapter: 5,
-    namePt: 'Kit do escriba', nameEn: 'Scribe\'s kit',
-    meaningPt: 'Escriba, escrita, escrever',
-    meaningEn: 'Scribe, writing, to write',
-    typeKey: 'type-bi',
-    notePt: 'Representa o estojo do escriba: a paleta com duas cavidades para tintas (preta e vermelha), o saquinho de pigmento em pó e os pincéis de junco. Ser escriba no Egito era uma das profissões mais prestigiosas. "Sê escriba, livra-te do trabalho duro", dizia um texto sapiencial.',
-    noteEn: 'Depicts the scribe\'s kit: the palette with two cavities for ink (black and red), the small bag of pigment powder, and the reed brushes. Being a scribe in Egypt was among the most prestigious professions. "Be a scribe, free yourself from hard labor", said a wisdom text.'
-  },
-  {
-    glyph: '𓊛', translit: 'dpt', chapter: 6,
-    namePt: 'Barco, embarcação', nameEn: 'Boat, vessel',
-    meaningPt: 'Barco, navio, travessia',
-    meaningEn: 'Boat, ship, crossing',
-    typeKey: 'type-logogram',
-    notePt: 'O signo do barco é central na cultura egípcia. O Nilo era a espinha dorsal do país e o sol atravessava o céu em sua barca diária. Navios reais sepultados ao lado de pirâmides, como o de Quéops, mostram a importância religiosa do transporte fluvial.',
-    noteEn: 'The boat sign is central in Egyptian culture. The Nile was the country\'s backbone, and the sun crossed the sky in its daily bark. Royal ships buried beside pyramids, like Khufu\'s, show the religious weight of river travel.'
-  },
-  {
-    glyph: '𓉐', translit: 'pr', chapter: 7,
-    namePt: 'Casa', nameEn: 'House',
-    meaningPt: 'Casa, lar, domínio',
-    meaningEn: 'House, home, domain',
-    typeKey: 'type-bi',
-    notePt: 'A planta baixa de uma casa vista de cima. Como bilítero <i>pr</i>, forma palavras como <i>pr-ꜥnḫ</i> ("casa da vida", biblioteca de templo), <i>pr-ꜥꜣ</i> ("casa grande", donde vem a palavra "faraó") e <i>pr-ḥḏ</i> ("casa branca", o tesouro real).',
-    noteEn: 'The floor plan of a house seen from above. As biliteral <i>pr</i>, it forms words like <i>pr-ꜥnḫ</i> ("house of life", temple library), <i>pr-ꜥꜣ</i> ("great house", source of the word "pharaoh") and <i>pr-ḥḏ</i> ("white house", the royal treasury).'
-  }
-];
+const GLYPHS_CODEX = catalogGet('naufrago').codex;

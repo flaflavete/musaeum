@@ -21,9 +21,8 @@ O site é bilíngue (PT/EN), gamificado, e funciona como aplicação web estáti
 | localStorage | Persistência de progresso, idioma e tema |
 | Google Fonts | Cinzel, EB Garamond, Noto Sans Egyptian Hieroglyphs, Noto Serif |
 | `NotoSansEgyptianHieroglyphs-Regular.ttf` | Fonte local de fallback para hieróglifos |
-| Node.js + Express (opcional) | Proxy TTS para a API ElevenLabs (`server.cjs`) |
 
-**Não há `npm install` para o frontend.** O `package.json` existe apenas para o servidor TTS opcional.
+**Não há `npm install` para o frontend.** O `package.json` existe apenas para os testes automatizados (vitest).
 
 ---
 
@@ -35,7 +34,7 @@ musaeum/
 ├── naufrago.html           Experiência interativa: O Conto do Náufrago
 ├── sinuhe.html             Experiência interativa: A História de Sinué
 ├── script.js               Utilitários compartilhados + shell HTML (initStoryApp)
-├── engine.js               Motor das histórias: telas, render, desafios, TTS, save
+├── engine.js               Motor das histórias: telas, render, desafios, save
 ├── tour.js                 Motor do tour guiado (coach marks), usado na home e nas histórias
 ├── research.js             Coleta anônima de dados da pesquisa (consentimento + envio)
 ├── style.css               Estilos globais (tema, tipografia, componentes)
@@ -51,8 +50,7 @@ musaeum/
 │   ├── USER_GUIDE.md       Guia do usuário final
 │   └── RESEARCH_SETUP.md   Como configurar o backend da pesquisa
 │
-├── server.cjs               Proxy TTS ElevenLabs (Node/Express, porta 3001)
-├── package.json            Dependências do servidor TTS
+├── package.json            Dependências de teste (vitest)
 ├── .env.example            Modelo do arquivo de variáveis de ambiente
 │
 ├── trilha_naufrago.mp3     Música de fundo
@@ -88,16 +86,6 @@ python3 serve.py
 **Opção 3 — extensão VS Code**
 Use a extensão "Live Server" e clique em "Go Live".
 
-**Opção 4 — Node (apenas se for usar TTS)**
-
-```bash
-cp .env.example .env
-# edite .env e coloque sua chave ElevenLabs
-npm install
-npm start
-# Proxy rodando em http://localhost:3001
-# Abra o HTML com qualquer um dos métodos acima
-```
 
 ---
 
@@ -506,37 +494,6 @@ ficam como referência para publicar a próxima história (ex.: o Camponês Eloq
 
 ---
 
-## 15. Proxy TTS (opcional)
-
-O arquivo `server.cjs` é um proxy Express que evita expor a chave da API ElevenLabs no frontend.
-
-**Configuração:**
-
-```bash
-cp .env.example .env
-# edite .env:
-# ELEVENLABS_API_KEY=sk-...
-
-npm install
-npm start   # porta 3001
-```
-
-**Endpoint:**
-
-```
-POST http://localhost:3001/api/tts
-Content-Type: application/json
-
-{ "text": "Texto para sintetizar em voz" }
-
-→ stream audio/mpeg
-```
-
-Voz configurada: Adam (`pNInz6obpgDQGcFmaJgB`), modelo `eleven_multilingual_v2`.
-
-O TTS **não é necessário** para o site funcionar — é uma funcionalidade de narração opcional.
-
----
 
 ## 16. Convenções de código
 

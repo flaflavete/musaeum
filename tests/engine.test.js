@@ -33,35 +33,6 @@ describe('shuffleArray', () => {
   })
 })
 
-// ── ttsPlainText ──────────────────────────────────────────────────────────────
-
-describe('ttsPlainText', () => {
-  const { ctx } = createEngineContext()
-
-  it('retorna string vazia para HTML vazio', () => {
-    expect(ctx.ttsPlainText('')).toBe('')
-  })
-
-  it('mantém texto puro sem alteração', () => {
-    expect(ctx.ttsPlainText('Olá mundo')).toBe('Olá mundo')
-  })
-
-  it('remove tags HTML mantendo o texto interno', () => {
-    expect(ctx.ttsPlainText('<p>Texto simples</p>')).toBe('Texto simples')
-  })
-
-  it('remove elementos <i> completamente, incluindo o conteúdo', () => {
-    const result = ctx.ttsPlainText('Início <i>transliterado</i> fim')
-    expect(result).not.toContain('transliterado')
-    expect(result).toContain('Início')
-    expect(result).toContain('fim')
-  })
-
-  it('normaliza múltiplos espaços para um único espaço', () => {
-    expect(ctx.ttsPlainText('<p>Dois   espaços</p>')).toBe('Dois espaços')
-  })
-})
-
 // ── discoverGlyph ─────────────────────────────────────────────────────────────
 
 describe('discoverGlyph', () => {

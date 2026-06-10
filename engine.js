@@ -10,11 +10,6 @@ let resumeScreen = null;
 
 const t = (k) => I18N[state.lang][k] || k;
 
-// ===== TTS =====
-const TTS_PROXY = 'http://localhost:3001/api/tts';
-const ttsCache = {};
-let ttsAudio   = null;
-let ttsStatus  = 'idle';
 let toastTimer = null;
 
 // ============================================================
@@ -22,7 +17,6 @@ let toastTimer = null;
 // ============================================================
 
 function setLang(lang) {
-  ttsStop();
   state.lang = lang;
   document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
   const btnPt = document.getElementById('btn-pt');
@@ -431,11 +425,10 @@ function onAnswer(isCorrect, q, firstTry) {
 
 function startGame() { state.chapter = 0; state.screen = 'story'; state.score = 0; state.collected = new Array(ITEMS.length).fill(false); render(); scrollTop(); }
 function restartGame() { state.chapter = 0; state.screen = 'splash'; state.score = 0; state.answered = false; state.attempts = 0; state.collected = new Array(ITEMS.length).fill(false); state.discoveredGlyphs = new Set(); state.codexHasNew = false; saveState(); render(); scrollTop(); }
-function goMinigame() { ttsStop(); state.screen = 'minigame'; render(); scrollTop(); }
-function nextChapter() { ttsStop(); state.chapter++; state.screen = 'story'; render(); scrollTop(); }
+function goMinigame() { state.screen = 'minigame'; render(); scrollTop(); }
+function nextChapter() { state.chapter++; state.screen = 'story'; render(); scrollTop(); }
 
 function goFinal() {
-  ttsStop();
   state.screen = 'final';
   if (window.Research) Research.trackComplete({
     storyId:  STORY_ID,
@@ -493,90 +486,6 @@ function renderFinal() {
       <span style="font-size:13px; color:var(--papyrus-dim); line-height:1.4;">${t('credits-body')}</span>
     </div>
   </div>`;
-}
-
-// ============================================================
-// TTS (ElevenLabs via proxy)
-// ============================================================
-
-function ttsPlainText(html) {
-  const d = document.createElement('div');
-  d.innerHTML = html;
-  d.querySelectorAll('i').forEach(el => el.remove());
-  return (d.textContent || d.innerText || '').replace(/\s+/g, ' ').trim();
-}
-
-function ttsSync() {
-  const btn = document.getElementById('ttsBtn');
-  if (!btn) return;
-  const icon  = btn.querySelector('.tts-icon');
-  const label = btn.querySelector('.tts-label');
-  const pt    = state.lang === 'pt';
-  const map   = {
-    idle:    { icon: '▶', pt: 'Ouvir',    en: 'Listen'   },
-    loading: { icon: '…', pt: 'Gerando…', en: 'Loading…' },
-    playing: { icon: '⏸', pt: 'Pausar',   en: 'Pause'    },
-    paused:  { icon: '▶', pt: 'Retomar',  en: 'Resume'   },
-  };
-  const c = map[ttsStatus] || map.idle;
-  icon.textContent  = c.icon;
-  label.textContent = pt ? c.pt : c.en;
-  btn.classList.toggle('playing', ttsStatus === 'playing');
-  btn.classList.toggle('loading', ttsStatus === 'loading');
-  btn.disabled = ttsStatus === 'loading';
-}
-
-function ttsStop() {
-  if (ttsAudio) { ttsAudio.pause(); ttsAudio = null; }
-  ttsStatus = 'idle';
-  ttsSync();
-}
-
-async function ttsToggle() {
-  if (ttsStatus === 'playing') {
-    ttsAudio.pause();
-    ttsStatus = 'paused';
-    ttsSync();
-    return;
-  }
-  if (ttsStatus === 'paused' && ttsAudio) {
-    await ttsAudio.play();
-    ttsStatus = 'playing';
-    ttsSync();
-    return;
-  }
-  ttsStop();
-  ttsStatus = 'loading';
-  ttsSync();
-  const ch   = CHAPTERS[state.chapter];
-  const html = state.lang === 'pt' ? ch.storyPt : ch.storyEn;
-  const key  = `${state.chapter}_${state.lang}`;
-  try {
-    let url = ttsCache[key];
-    if (!url) {
-      const res = await fetch(TTS_PROXY, {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ text: ttsPlainText(html) }),
-      });
-      if (!res.ok) { const msg = await res.text().catch(() => ''); throw new Error(`TTS ${res.status}: ${msg}`); }
-      url = URL.createObjectURL(await res.blob());
-      ttsCache[key] = url;
-    }
-    ttsAudio = new Audio(url);
-    ttsAudio.onplay  = () => { ttsStatus = 'playing'; ttsSync(); };
-    ttsAudio.onpause = () => { if (ttsAudio && !ttsAudio.ended) { ttsStatus = 'paused'; ttsSync(); } };
-    ttsAudio.onended = () => { ttsStatus = 'idle';    ttsSync(); };
-    ttsAudio.onerror = () => { ttsStatus = 'idle';    ttsSync(); };
-    await ttsAudio.play();
-  } catch (e) {
-    console.error('TTS:', e);
-    ttsStatus = 'idle';
-    ttsSync();
-    alert(state.lang === 'pt'
-      ? 'Não foi possível gerar o áudio. Tente novamente.'
-      : 'Could not generate audio. Please try again.');
-  }
 }
 
 function scrollTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
