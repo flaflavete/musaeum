@@ -277,7 +277,6 @@
   .header-glyph { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 72px; color: var(--gold); margin-bottom: 10px; text-shadow: 0 0 30px rgba(201,166,70,0.3); line-height: 1; }
   h1 { font-family: 'Cinzel', 'Gentium Plus', serif; font-size: clamp(36px, 5vw, 56px); color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
   .subtitle { font-family: 'Cinzel', 'Gentium Plus', serif; color: var(--terracotta-lt); letter-spacing: 0.3em; font-size: 14px; margin-bottom: 24px; text-transform: uppercase; }
-  .beta-badge { display: inline-block; font-family: 'Cinzel', 'Gentium Plus', serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); border-radius: 4px; padding: 2px 7px; margin-left: 10px; opacity: 0.7; vertical-align: middle; position: relative; top: -4px; }
   .about-beta-note { font-size: 0.82em; color: var(--terracotta-lt); font-style: italic; margin-top: 16px; opacity: 0.8; }
   .modal-cite { margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(201,166,70,0.2); font-size: 0.86em; color: var(--papyrus-soft); line-height: 1.55; }
   .modal-cite .modal-subtitle { margin-top: 0; }
@@ -1140,7 +1139,7 @@
 
   <header class="page-header">
     <div class="header-glyph" aria-hidden="true"></div>
-    <h1>Musæum<span class="beta-badge">beta</span></h1>
+    <h1>Musæum</h1>
     <div class="subtitle" id="subtitle"></div>
     <p class="intro-text" id="intro"></p>
   </header>
@@ -1150,7 +1149,7 @@
       <span class="glyphs" aria-hidden="true">𓋴𓃀𓇼𓄿𓇋𓇋𓏏𓏛</span><span class="label-romanized">sbꜣyt · <span id="epigraphLabel"></span></span>
     </div>
     <blockquote>
-      <p class="quote-translit" lang="egy" aria-label="Transliteração do egípcio antigo">mdt nfrt štꜣt r wꜣḏ,<br>gmm.tw.s m-ꜥ ḥmwt ḥr bnwt</p>
+      <p class="quote-translit" lang="egy" aria-label="Transliteração do egípcio antigo">dgꜣ mdt nfrt r wꜣḏ,<br>jw gm st m-ꜥ ḥmwt ḥr bnwt</p>
       <p class="quote-translation" id="epigraphQuote"></p>
     </blockquote>
     <cite class="epigraph-source" id="epigraphSource"></cite>
@@ -1167,12 +1166,12 @@
         <div class="card-desc" data-t="d1"></div>
       </a>
 
-      <div class="scroll-card locked" id="card2" aria-disabled="true">
-        <span class="status-tag tag-locked" data-t="tagLocked"></span>
+      <a href="sinuhe.html" class="scroll-card" id="card2">
+        <span class="status-tag tag-ready" data-t="tagOpen"></span>
         <div class="card-glyph" aria-hidden="true">𓂻</div>
         <div class="card-title" data-t="t2"></div>
         <div class="card-desc" data-t="d2"></div>
-      </div>
+      </a>
 
       <div class="scroll-card locked" id="card3" aria-disabled="true">
         <span class="status-tag tag-locked" data-t="tagLocked"></span>
@@ -1317,8 +1316,8 @@
       subtitle: 'Biblioteca interativa',
 
       epigraphLabel: 'Ensinamento',
-      epigraphQuote: '"A bela palavra é mais rara que a pedra verde, e no entanto encontra-se com as servas junto aos moinhos."',
-      epigraphSource: '— Ensinamentos de Ptahhotep, prólogo',
+      epigraphQuote: '"A bela palavra é mais procurada que a pedra verde, mas encontra-se com as mulheres junto ao moinho."',
+      epigraphSource: '— Ensinamentos de Ptahhotep, Papiro Prisse, coluna 5',
 
       tagOpen: 'Aberto',
       tagLocked: 'Em Breve',
@@ -1337,7 +1336,7 @@
       aboutIntro: 'O nome <strong>Musæum</strong> vem do latim e significa "lugar das musas". Na Antiguidade, esse era o nome dado aos espaços de estudo, arte e preservação do conhecimento.',
       aboutMiddle: 'Este projeto quer aproximar você de algumas das histórias mais incríveis escritas no Egito Antigo durante o <strong>Reino Médio</strong> (entre os anos 2055 e 1650 AEC), que foi a época de maior criatividade na literatura egípcia.',
       aboutGoal: 'Cada texto é apresentado como uma história narrada, com curiosidades da arqueologia, desafios para ajudar a entender o conteúdo e um "código" de hieróglifos que você vai descobrindo aos poucos. A ideia é levar para todo mundo esses textos que muitas vezes só são lidos nas universidades, mantendo o respeito aos originais e explicando como era a vida e a cultura naquela época.',
-      aboutBetaNote: 'Este projeto está em versão beta. Novos textos e recursos serão adicionados.',
+      aboutBetaNote: 'Versão 1.0, com duas histórias completas. Novos textos e recursos continuam sendo adicionados.',
       aboutCiteTitle: 'Como citar',
       aboutCiteText: 'CORPAS, Flavia Lima. <em>Musæum: biblioteca digital interativa de literatura do Egito Antigo</em>. Zenodo, 2026. DOI: 10.5281/zenodo.20617042.',
       aboutBiblioTitle: 'Bibliografia de base',
@@ -1400,8 +1399,8 @@
     
 
       epigraphLabel: 'Teaching',
-      epigraphQuote: '"Fine speech is more hidden than greenstone, and yet it is found among the maidservants at the grindstones."',
-      epigraphSource: '— The Teachings of Ptahhotep, prologue',
+      epigraphQuote: '"Fine words are more sought after than greenstone, but can be found with the women at the grindstone."',
+      epigraphSource: '— The Teachings of Ptahhotep, Papyrus Prisse, column 5',
 
       tagOpen: 'Open',
       tagLocked: 'Coming Soon',
@@ -1420,7 +1419,7 @@
       aboutIntro: 'The name <strong>Musæum</strong> comes from Latin and means "place of the Muses." In Antiquity, this was the name given to spaces of study, art, and the preservation of knowledge.',
       aboutMiddle: 'This project brings you closer to some of the most incredible stories written in Ancient Egypt during the <strong>Middle Kingdom</strong> (between 2055 and 1650 BCE), the period of greatest creativity in Egyptian literature.',
       aboutGoal: 'Each text is presented as a narrated story, with archaeological curiosities, challenges to help you understand the content, and a hieroglyphic "code" that you gradually uncover. The idea is to bring these texts — usually only read in universities — to everyone, while respecting the originals and explaining what life and culture were like at that time.',
-      aboutBetaNote: 'This project is in beta. New texts and features are being added.',
+      aboutBetaNote: 'Version 1.0, with two complete stories. New texts and features keep being added.',
       aboutCiteTitle: 'How to cite',
       aboutCiteText: 'CORPAS, Flavia Lima. <em>Musæum: an interactive digital library of Ancient Egyptian literature</em>. Zenodo, 2026. DOI: 10.5281/zenodo.20617042.',
       aboutBiblioTitle: 'Reference bibliography',
@@ -1642,6 +1641,21 @@
         { pt: 'Marfim',  en: 'Ivory',    icon: '🦷' },
         { pt: 'Macaco',  en: 'Monkey',   icon: '🐒' },
         { pt: 'Cão',     en: 'Dog',      icon: '🐕' }
+      ]
+    },
+    {
+      storyId: 'sinuhe',
+      titlePt: 'A História de Sinué',
+      titleEn: 'The Tale of Sinuhe',
+      items: [
+        { pt: 'Trigo',        en: 'Wheat',           icon: '🌾' },
+        { pt: 'Falcão',       en: 'Falcon',          icon: '🦅' },
+        { pt: 'Onda',         en: 'Wave',            icon: '🌊' },
+        { pt: 'Palmeira',     en: 'Palm tree',       icon: '🌴' },
+        { pt: 'Espadas',      en: 'Swords',          icon: '⚔️' },
+        { pt: 'Pena de Maat', en: 'Feather of Maat', icon: '🪶' },
+        { pt: 'Lua',          en: 'Moon',            icon: '🌙' },
+        { pt: 'Rolo Real',    en: 'Royal Scroll',    icon: '📜' }
       ]
     }
   ];
@@ -1904,7 +1918,7 @@
   }
 
   // ===== CERTIFICADO =====
-  const AVAILABLE_STORIES = ['naufrago'];
+  const AVAILABLE_STORIES = ['naufrago', 'sinuhe'];
 
   function allStoriesComplete() {
     return AVAILABLE_STORIES.every(id => {

@@ -2,6 +2,7 @@
 
 [🇧🇷 Português](#português) · [🇬🇧 English](#english)
 
+[![Version](https://img.shields.io/badge/version-1.0-c9a646.svg)](https://github.com/flaflavete/musaeum/releases)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20617042-blue.svg)](https://doi.org/10.5281/zenodo.20617042)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR)
 
@@ -23,7 +24,7 @@ O Musæum apresenta textos da literatura egípcia antiga como experiências inte
 | Texto | Arquivo | Status |
 |---|---|---|
 | O Conto do Náufrago | `naufrago.html` | ✅ Disponível |
-| A História de Sinué | `sinuhe.html` | 🔒 Em preparação |
+| A História de Sinué | `sinuhe.html` | ✅ Disponível |
 | O Camponês Eloquente | — | 🔒 Em breve |
 
 ### Como abrir
@@ -62,7 +63,7 @@ Para o proxy TTS, crie um `.env` com `ELEVENLABS_API_KEY=sua-chave` antes de rod
 ```
 index.html            Página da biblioteca
 naufrago.html         Conto do Náufrago
-sinuhe.html           História de Sinué (em preparação)
+sinuhe.html           História de Sinué
 script.js             Utilitários compartilhados + shell HTML das histórias
 engine.js             Motor das histórias (telas, desafios, save, TTS)
 tour.js               Tour guiado (usado na home e nas histórias)
@@ -124,7 +125,7 @@ Musæum presents ancient Egyptian literary texts as interactive reading experien
 | Text | File | Status |
 |---|---|---|
 | The Tale of the Shipwrecked Sailor | `naufrago.html` | ✅ Available |
-| The Story of Sinuhe | `sinuhe.html` | 🔒 Coming soon |
+| The Story of Sinuhe | `sinuhe.html` | ✅ Available |
 | The Eloquent Peasant | — | 🔒 Coming soon |
 
 ### How to open
@@ -163,7 +164,7 @@ For the TTS proxy, create a `.env` file with `ELEVENLABS_API_KEY=your-key` befor
 ```
 index.html            Library home page
 naufrago.html         The Shipwrecked Sailor
-sinuhe.html           The Story of Sinuhe (coming soon)
+sinuhe.html           The Story of Sinuhe
 script.js             Shared utilities + stories' HTML shell
 engine.js             Story engine (screens, challenges, save, TTS)
 tour.js               Guided tour (used on home and in stories)

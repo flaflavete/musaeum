@@ -33,7 +33,7 @@ O site é bilíngue (PT/EN), gamificado, e funciona como aplicação web estáti
 musaeum/
 ├── index.html              Página inicial: biblioteca, coleção, certificado
 ├── naufrago.html           Experiência interativa: O Conto do Náufrago
-├── sinuhe.html             Experiência interativa: A História de Sinué (em preparação)
+├── sinuhe.html             Experiência interativa: A História de Sinué
 ├── script.js               Utilitários compartilhados + shell HTML (initStoryApp)
 ├── engine.js               Motor das histórias: telas, render, desafios, TTS, save
 ├── tour.js                 Motor do tour guiado (coach marks), usado na home e nas histórias
@@ -491,16 +491,18 @@ A faixa e a ficha aparecem sozinhas — nenhuma mudança no `engine.js` é neces
 
 ---
 
-## 14. Como publicar a história de Sinué (já implementada)
+## 14. Publicação de uma nova história (referência)
 
-A história `sinuhe.html` está completa mas não está acessível na biblioteca. Para publicá-la:
+A História de Sinué foi publicada na **v1.0** (2026-06-09). Os passos abaixo
+ficam como referência para publicar a próxima história (ex.: o Camponês Eloquente):
 
-1. Em `index.html`, converta `card2` de `<div class="scroll-card locked">` para `<a href="sinuhe.html" class="scroll-card">`
-2. Adicione no `GAME_CATALOG`:
+1. Em `index.html`, converta o card de `<div class="scroll-card locked">` para `<a href="<historia>.html" class="scroll-card">` (com a tag `tag-ready` / `tagOpen`)
+2. Adicione no `GAME_CATALOG` a entrada com os tesouros (os mesmos `ITEMS` do `data/<historia>.js`):
    ```js
-   { storyId: 'sinuhe', titlePt: 'A História de Sinué', titleEn: 'The Story of Sinuhe', items: [...] }
+   { storyId: '<historia>', titlePt: '...', titleEn: '...', items: [...] }
    ```
-3. Adicione `'sinuhe'` em `AVAILABLE_STORIES`
+3. Adicione `'<historia>'` em `AVAILABLE_STORIES` (passa a contar para o certificado)
+4. No HTML da história, carregue `research.js` e `tour.js` (paridade com `naufrago.html`) e garanta as chaves `tour-*` no `I18N` de `data/<historia>.js`
 
 ---
 

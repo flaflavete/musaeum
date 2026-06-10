@@ -283,7 +283,7 @@ Fichas atuais: Náufrago → Papiro Hermitage 1115 (`assets/images/hermitage_111
 Desbloqueia quando todas as histórias em `AVAILABLE_STORIES` têm `screen === 'final'`.
 
 ```js
-const AVAILABLE_STORIES = ['naufrago']; // adicionar 'sinuhe' quando publicado
+const AVAILABLE_STORIES = ['naufrago', 'sinuhe']; // adicionar a próxima história quando publicada
 ```
 
 Gerado em `<canvas>` 800 × 560 px com suporte a devicePixelRatio. Inclui nome do jogador, tesouros coletados, data e assinatura. Exportável como PNG via `downloadCertificate()`.
