@@ -1196,12 +1196,12 @@
         <div class="card-desc" data-t="d1"></div>
       </a>
 
-      <a href="sinuhe.html" class="scroll-card" id="card2">
-        <span class="status-tag tag-ready" data-t="tagOpen"></span>
+      <div class="scroll-card locked" id="card2" aria-disabled="true">
+        <span class="status-tag tag-locked" data-t="tagLocked"></span>
         <div class="card-glyph" aria-hidden="true">𓂻</div>
         <div class="card-title" data-t="t2"></div>
         <div class="card-desc" data-t="d2"></div>
-      </a>
+      </div>
 
       <div class="scroll-card locked" id="card3" aria-disabled="true">
         <span class="status-tag tag-locked" data-t="tagLocked"></span>
@@ -1682,21 +1682,6 @@
         { pt: 'Macaco',  en: 'Monkey',   icon: '🐒' },
         { pt: 'Cão',     en: 'Dog',      icon: '🐕' }
       ]
-    },
-    {
-      storyId: 'sinuhe',
-      titlePt: 'A História de Sinué',
-      titleEn: 'The Tale of Sinuhe',
-      items: [
-        { pt: 'Trigo',        en: 'Wheat',           icon: '🌾' },
-        { pt: 'Falcão',       en: 'Falcon',          icon: '🦅' },
-        { pt: 'Onda',         en: 'Wave',            icon: '🌊' },
-        { pt: 'Palmeira',     en: 'Palm tree',       icon: '🌴' },
-        { pt: 'Espadas',      en: 'Swords',          icon: '⚔️' },
-        { pt: 'Pena de Maat', en: 'Feather of Maat', icon: '🪶' },
-        { pt: 'Lua',          en: 'Moon',            icon: '🌙' },
-        { pt: 'Rolo Real',    en: 'Royal Scroll',    icon: '📜' }
-      ]
     }
   ];
 
@@ -1958,7 +1943,7 @@
   }
 
   // ===== CERTIFICADO =====
-  const AVAILABLE_STORIES = ['naufrago', 'sinuhe'];
+  const AVAILABLE_STORIES = ['naufrago'];
 
   function allStoriesComplete() {
     return AVAILABLE_STORIES.every(id => {
