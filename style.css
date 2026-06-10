@@ -147,6 +147,13 @@
     line-height: 1.6;
   }
 
+  /* iOS Safari não suporta background-attachment: fixed e pode esticar o fundo */
+  @media (hover: none), (pointer: coarse) {
+    html, body {
+      background-attachment: scroll;
+    }
+  }
+
   body::before {
     content: '';
     position: fixed;

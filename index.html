@@ -13,9 +13,10 @@
 <!-- Open Graph (WhatsApp, Telegram, Facebook, LinkedIn) -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Musæum" />
+<meta property="og:url" content="https://www.musaeum.app/" />
 <meta property="og:title" content="Musæum · Biblioteca interativa" />
 <meta property="og:description" content="Biblioteca interativa bilíngue de textos do Egito antigo. Entre e explore as vozes do Reino Médio." />
-<meta property="og:image" content="assets/images/pexels-clioseye-35506459.jpg" />
+<meta property="og:image" content="https://www.musaeum.app/assets/images/pexels-clioseye-35506459.jpg" />
 <meta property="og:image:alt" content="Cena egípcia antiga com hieróglifos dourados" />
 <meta property="og:locale" content="pt_BR" />
 <meta property="og:locale:alternate" content="en_US" />
@@ -24,7 +25,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Musæum · Biblioteca interativa" />
 <meta name="twitter:description" content="Biblioteca interativa bilíngue de textos do Egito antigo. Entre e explore as vozes do Reino Médio." />
-<meta name="twitter:image" content="assets/images/pexels-clioseye-35506459.jpg" />
+<meta name="twitter:image" content="https://www.musaeum.app/assets/images/pexels-clioseye-35506459.jpg" />
 
 <!-- Favicon SVG inline: ankh dourado em fundo azul-noite -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%231b2a3d' rx='10'/><g fill='none' stroke='%23c9a646' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'><ellipse cx='32' cy='22' rx='10' ry='12'/><line x1='17' y1='38' x2='47' y2='38'/><line x1='32' y1='34' x2='32' y2='57'/></g></svg>" />
@@ -158,6 +159,15 @@
     line-height: 1.6;
   }
 
+  /* iOS Safari não suporta background-attachment: fixed e pode esticar a foto */
+  @media (hover: none), (pointer: coarse) {
+    html, body,
+    html[data-theme="light"],
+    html[data-theme="light"] body {
+      background-attachment: scroll;
+    }
+  }
+
   body::before {
     content: '';
     position: fixed;
@@ -274,7 +284,6 @@
     animation: fadein 1s ease 0.1s backwards;
   }
 
-  .header-glyph { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 72px; color: var(--gold); margin-bottom: 10px; text-shadow: 0 0 30px rgba(201,166,70,0.3); line-height: 1; }
   h1 { font-family: 'Cinzel', 'Gentium Plus', serif; font-size: clamp(36px, 5vw, 56px); color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
   .subtitle { font-family: 'Cinzel', 'Gentium Plus', serif; color: var(--terracotta-lt); letter-spacing: 0.3em; font-size: 14px; margin-bottom: 24px; text-transform: uppercase; }
   .about-beta-note { font-size: 0.82em; color: var(--terracotta-lt); font-style: italic; margin-top: 16px; opacity: 0.8; }
@@ -1036,10 +1045,9 @@
   .lang-choice:hover { background: rgba(201, 166, 70, 0.14); border-color: var(--gold); }
   .lang-choice:active { transform: scale(0.97); }
   .lang-choice:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
-  .lang-flag { font-size: 40px; line-height: 1; }
   .lang-name {
     font-family: 'Cinzel', 'Gentium Plus', serif;
-    font-size: 12px;
+    font-size: 13px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--papyrus-soft);
@@ -1051,7 +1059,6 @@
     .modal-title { font-size: 18px; letter-spacing: 0.08em; }
     .quote-translation { font-size: 17px; }
     .epigraph { padding: 18px 12px; margin-bottom: 40px; }
-    .header-glyph { font-size: 56px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1171,7 +1178,6 @@
   </nav>
 
   <header class="page-header">
-    <div class="header-glyph" aria-hidden="true"></div>
     <h1>Musæum</h1>
     <div class="subtitle" id="subtitle"></div>
   </header>
@@ -1253,11 +1259,9 @@
     <p class="name-modal-sub">Escolha seu idioma<br><span style="opacity:0.7">Choose your language</span></p>
     <div class="lang-choice-row">
       <button class="lang-choice" type="button" onclick="chooseLang('pt')">
-        <span class="lang-flag" aria-hidden="true">🇧🇷</span>
         <span class="lang-name">Português</span>
       </button>
       <button class="lang-choice" type="button" onclick="chooseLang('en')">
-        <span class="lang-flag" aria-hidden="true">🇺🇸</span>
         <span class="lang-name">English</span>
       </button>
     </div>
