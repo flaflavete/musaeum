@@ -383,6 +383,7 @@
   .scroll-card:nth-child(1) { animation-delay: 0.35s; }
   .scroll-card:nth-child(2) { animation-delay: 0.55s; }
   .scroll-card:nth-child(3) { animation-delay: 0.75s; }
+  .scroll-card:nth-child(4) { animation-delay: 0.95s; }
 
   @keyframes fadein-card {
     from { opacity: 0; transform: translateY(24px); }
@@ -410,6 +411,35 @@
     transform: none;
     box-shadow: none;
     border-color: rgba(154,139,109,0.3);
+  }
+  .scroll-card.more-soon {
+    background: transparent;
+    border: 1px dashed rgba(201,166,70,0.35);
+    cursor: default;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 180px;
+  }
+  .scroll-card.more-soon:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(201,166,70,0.35);
+  }
+  .scroll-card.more-soon .more-glyph {
+    font-size: 40px;
+    opacity: 0.7;
+    margin-bottom: 12px;
+  }
+  .scroll-card.more-soon .card-title {
+    color: var(--gold);
+    font-size: 17px;
+  }
+  .scroll-card.more-soon .card-desc {
+    color: var(--papyrus-dim);
   }
 
   .status-tag {
@@ -1180,6 +1210,12 @@
         <div class="card-desc" data-t="d3"></div>
       </div>
 
+      <div class="scroll-card more-soon" id="card4" aria-hidden="true">
+        <div class="card-glyph more-glyph" aria-hidden="true">𓏼</div>
+        <div class="card-title" data-t="tMore"></div>
+        <div class="card-desc" data-t="dMore"></div>
+      </div>
+
     </div>
   </section>
 
@@ -1327,6 +1363,8 @@
       d2: 'O exílio e o retorno. O épico máximo da literatura do Reino Médio.',
       t3: 'Camponês Eloquente',
       d3: 'O poder da retórica e o clamor por justiça de um homem simples.',
+      tMore: 'Mais histórias em breve',
+      dMore: 'Novos contos dos antigos egípcios estão a caminho.',
 
       footer: 'Projeto de Flavia Lima Corpas, 2026\nFoto: Fachada do templo de Horus em Edfu, Egito · Flavia Lima Corpas, out. 2025',
       footerPrivacy: 'Este site armazena localmente seu progresso e nome, sem enviar dados para nenhum servidor.',
@@ -1410,6 +1448,8 @@
       d2: 'Exile and return. The supreme epic of Middle Kingdom literature.',
       t3: 'The Eloquent Peasant',
       d3: "The power of rhetoric and a simple man's plea for justice.",
+      tMore: 'More stories soon',
+      dMore: 'New tales from the ancient Egyptians are on the way.',
 
       footer: 'Project by Flavia Lima Corpas, 2026\nPhoto: Facade of the Temple of Horus at Edfu, Egypt · Flavia Lima Corpas, Oct. 2025',
       footerPrivacy: 'This site stores your progress and name locally, without sending any data to a server.',
