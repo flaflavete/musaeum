@@ -20,7 +20,6 @@ O site é bilíngue (PT/EN), gamificado, e funciona como aplicação web estáti
 | CSS custom properties | Sistema de temas (dark/light) |
 | localStorage | Persistência de progresso, idioma e tema |
 | Google Fonts | Cinzel, EB Garamond, Noto Sans Egyptian Hieroglyphs, Noto Serif |
-| `NotoSansEgyptianHieroglyphs-Regular.ttf` | Fonte local de fallback para hieróglifos |
 
 **Não há `npm install` para o frontend.** O `package.json` existe apenas para os testes automatizados (vitest).
 
@@ -58,7 +57,6 @@ musaeum/
 ├── erro.wav                Som de resposta incorreta
 ├── pexels-clioseye-35506459.jpg  Foto de fundo (templo de Horus em Edfu)
 ├── ankh-icon.svg / ankh-icon-512.png  Ícones do app
-└── NotoSansEgyptianHieroglyphs-Regular.ttf  Fonte local de fallback
 ```
 
 > `fontes/` contém PDFs e áudio de referência bibliográfica para uso interno da pesquisa — não é servida no site e não deve ir para o repositório público.

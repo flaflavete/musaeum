@@ -18,6 +18,9 @@ let toastTimer = null;
 
 function setLang(lang) {
   state.lang = lang;
+  // Persiste a preferência compartilhada: trocar o idioma dentro da
+  // história vale também para a biblioteca e as outras páginas.
+  try { localStorage.setItem('musaeum-lang', lang); } catch (e) {}
   document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
   const btnPt = document.getElementById('btn-pt');
   const btnEn = document.getElementById('btn-en');
@@ -165,10 +168,37 @@ function render() {
     else if (state.screen === 'minigame') { root.innerHTML = renderMinigame(ch); attachMinigame(ch); }
   }
 
+  activateGloss(root);
   saveState();
   if (moveFocus) root.focus();
   if (state.screen === 'story') maybeStoryTour();
 }
+
+// ===== TERMOS DO GLOSSÁRIO (.gloss) =====
+// Os spans nos textos carregam só data-gloss="id" (ou data-artifact);
+// foco e clique são resolvidos aqui, sem handlers inline repetidos.
+function activateGloss(container) {
+  if (!container || !container.querySelectorAll) return;
+  container.querySelectorAll('.gloss').forEach(el => {
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('role', 'button');
+  });
+}
+
+function handleGloss(target) {
+  const g = target && target.closest ? target.closest('.gloss') : null;
+  if (!g) return false;
+  if (g.dataset && g.dataset.gloss) openGlossaryAt(g.dataset.gloss);
+  else if (g.hasAttribute && g.hasAttribute('data-artifact')) openArtifact();
+  else return false;
+  return true;
+}
+
+document.addEventListener('click', (e) => { handleGloss(e.target); });
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  if (handleGloss(e.target)) e.preventDefault();
+});
 
 // ===== TOUR GUIADO DA HISTÓRIA =====
 // Aponta os recursos da leitura: glossário, códex, nota arqueológica e trilha.
@@ -239,7 +269,7 @@ function renderArtifactStrip() {
 function openArtifact() {
   state.modalView = 'artifact';
   renderModal();
-  document.getElementById('modalOverlay').classList.add('open');
+  showOverlay();
   document.getElementById('modalClose').focus();
   if (window.Research) Research.trackEvent('artifact');
 }
@@ -357,7 +387,7 @@ function renderMinigame(ch) {
   state.shuffledOptions = shuffleArray(q.options);
   return `
     <div class="scene">
-      <div class="chapter-label">${t('challenge-count')} ${state.chapter + 1}/8</div>
+      <div class="chapter-label">${t('challenge-count')} ${state.chapter + 1}/${CHAPTERS.length}</div>
       <div class="minigame-intro"><div class="question">${prompt}</div></div>
       <div class="choices" id="choicesWrap" role="group" aria-label="${prompt}">
         ${state.shuffledOptions.map((o, idx) => {
@@ -402,18 +432,25 @@ function attachMinigame(ch) {
 
 function onAnswer(isCorrect, q, firstTry) {
   state.answered = true;
-  const earned = firstTry ? 20 : (state.attempts === 1 ? 10 : (state.attempts === 2 ? 5 : 2));
+  // Capítulo já respondido antes (ex.: a página foi recarregada no meio
+  // do desafio): mostra o conteúdo de novo, mas não soma pontos nem
+  // coleta tesouro outra vez.
+  const repeat = state.answeredChapters[state.chapter] === true;
+  state.answeredChapters[state.chapter] = true;
+  const earned = repeat ? 0 : (firstTry ? 20 : (state.attempts === 1 ? 10 : (state.attempts === 2 ? 5 : 2)));
   state.score += earned;
 
-  if (firstTry) {
+  const collects = firstTry && !repeat;
+  if (collects) {
     state.collected[state.chapter] = true;
   }
 
   const fact = state.lang === 'pt' ? q.factPt : q.factEn;
   const itemName = state.lang === 'pt' ? ITEMS[state.chapter].pt : ITEMS[state.chapter].en;
-  const collectionMsg = firstTry ? `<br><b>${t('treasure-got')}: ${itemName}!</b>` : '';
+  const collectionMsg = collects ? `<br><b>${t('treasure-got')}: ${itemName}!</b>` : '';
+  const pointsMsg = repeat ? '' : `+${earned} ${t('points')}. `;
 
-  document.getElementById('feedbackSlot').innerHTML = `<div class="feedback good"><strong class="label">${t('correct')}</strong>+${earned} ${t('points')}. ${collectionMsg} <div style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.1); padding-top:8px; font-style:italic;">${fact}</div></div>`;
+  document.getElementById('feedbackSlot').innerHTML = `<div class="feedback good"><strong class="label">${t('correct')}</strong>${pointsMsg}${collectionMsg} <div style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.1); padding-top:8px; font-style:italic;">${fact}</div></div>`;
   const isLast = state.chapter >= CHAPTERS.length - 1;
 
   updateInventoryUI();
@@ -423,8 +460,8 @@ function onAnswer(isCorrect, q, firstTry) {
   saveState();
 }
 
-function startGame() { state.chapter = 0; state.screen = 'story'; state.score = 0; state.collected = new Array(ITEMS.length).fill(false); render(); scrollTop(); }
-function restartGame() { state.chapter = 0; state.screen = 'splash'; state.score = 0; state.answered = false; state.attempts = 0; state.collected = new Array(ITEMS.length).fill(false); state.discoveredGlyphs = new Set(); state.codexHasNew = false; saveState(); render(); scrollTop(); }
+function startGame() { state.chapter = 0; state.screen = 'story'; state.score = 0; state.collected = new Array(ITEMS.length).fill(false); state.answeredChapters = new Array(CHAPTERS.length).fill(false); render(); scrollTop(); }
+function restartGame() { state.chapter = 0; state.screen = 'splash'; state.score = 0; state.answered = false; state.attempts = 0; state.collected = new Array(ITEMS.length).fill(false); state.answeredChapters = new Array(CHAPTERS.length).fill(false); state.discoveredGlyphs = new Set(); state.codexHasNew = false; saveState(); render(); scrollTop(); }
 function goMinigame() { state.screen = 'minigame'; render(); scrollTop(); }
 function nextChapter() { state.chapter++; state.screen = 'story'; render(); scrollTop(); }
 
@@ -506,7 +543,7 @@ function openCodex() {
   state.codexHasNew = false;
   updateCodexButton();
   renderModal();
-  document.getElementById('modalOverlay').classList.add('open');
+  showOverlay();
   setTimeout(() => document.getElementById('modalClose').focus(), 50);
   if (window.Research) Research.trackEvent('codex');
 }
@@ -522,7 +559,7 @@ function openTutorial() {
   state.modalView = 'tutorial';
   state.tutorialStep = 0;
   renderModal();
-  document.getElementById('modalOverlay').classList.add('open');
+  showOverlay();
 }
 
 function openGlossary() {
@@ -530,7 +567,7 @@ function openGlossary() {
   state.glossaryHighlight = null;
   state.glossarySearch = '';
   renderModal();
-  document.getElementById('modalOverlay').classList.add('open');
+  showOverlay();
   setTimeout(() => {
     const searchInput = document.getElementById('glossarySearchInput');
     if (searchInput) searchInput.focus();
@@ -543,7 +580,7 @@ function openGlossaryAt(termId) {
   state.glossaryHighlight = termId;
   state.glossarySearch = '';
   renderModal();
-  document.getElementById('modalOverlay').classList.add('open');
+  showOverlay();
   if (window.Research) Research.trackEvent('glossary');
   setTimeout(() => {
     const target = document.getElementById('gloss-' + termId);
@@ -562,11 +599,21 @@ function filterGlossary() {
   if (listEl) listEl.innerHTML = renderGlossaryList();
 }
 
+// Abre o overlay do modal e isola o resto da página (inert): Tab e
+// leitores de tela ficam restritos ao conteúdo do modal.
+function showOverlay() {
+  document.getElementById('modalOverlay').classList.add('open');
+  const app = document.querySelector('.app');
+  if (app) app.inert = true;
+}
+
 function closeModal() {
   state.modalView = null;
   state.glossaryHighlight = null;
   state.glossarySearch = '';
   document.getElementById('modalOverlay').classList.remove('open');
+  const app = document.querySelector('.app');
+  if (app) app.inert = false;
   const btnCodex = document.getElementById('btnCodex');
   if (btnCodex && btnCodex.style.display !== 'none') btnCodex.focus();
 }
@@ -600,6 +647,7 @@ function renderModal() {
   else if (state.modalView === 'tutorial') body.innerHTML = renderTutorialView();
   else if (state.modalView === 'glossary') body.innerHTML = renderGlossaryView();
   else if (state.modalView === 'artifact') body.innerHTML = renderArtifactView();
+  activateGloss(body);
 }
 
 function renderCodexView() {
@@ -813,6 +861,7 @@ function saveState() {
       answered:         state.answered,
       attempts:         state.attempts,
       collected:        state.collected,
+      answeredChapters: state.answeredChapters,
       discoveredGlyphs: [...state.discoveredGlyphs],
       codexHasNew:      state.codexHasNew
     });
@@ -831,6 +880,7 @@ function loadState() {
     state.answered         = d.answered         ?? state.answered;
     state.attempts         = d.attempts         ?? state.attempts;
     state.collected        = d.collected        ?? state.collected;
+    state.answeredChapters = d.answeredChapters ?? state.answeredChapters;
     state.discoveredGlyphs = new Set(d.discoveredGlyphs ?? []);
     state.codexHasNew      = d.codexHasNew      ?? state.codexHasNew;
     return true;
@@ -862,6 +912,7 @@ function initStory(config) {
     answered: false,
     attempts: 0,
     collected: new Array(ITEMS.length).fill(false),
+    answeredChapters: new Array(CHAPTERS.length).fill(false),
     discoveredGlyphs: new Set(),
     modalView: null,
     tutorialStep: 0,

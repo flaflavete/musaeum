@@ -71,7 +71,7 @@ const CULTURA_MATERIAL = {
   },
 
   sinuhe: {
-    image: 'assets/images/berlin_3022.png',
+    image: 'assets/images/berlin_3022.jpg',
     imageAltPt: 'Papiro Berlin 3022, com a História de Sinué em escrita hierática: colunas verticais à esquerda e linhas horizontais à direita.',
     imageAltEn: 'Berlin Papyrus 3022, showing the Tale of Sinuhe in hieratic script: vertical columns on the left and horizontal lines on the right.',
 

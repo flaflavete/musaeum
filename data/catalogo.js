@@ -177,8 +177,8 @@ const MUSAEUM_CATALOG = [
         meaningPt: 'Colinas estrangeiras, o além-fronteira',
         meaningEn: 'Foreign hills, beyond the border',
         typeKey: 'type-determin',
-        notePt: 'O signo representa colinas rochosas com vales, evocando o terreno acidentado das terras além do Nilo. É o determinativo padrão de topônimos estrangeiros como <i>Rtnw</i> (Retjenu). Para um egípcio, o mundo além dessas colinas era caos, ausência da ordem de <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'maat\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'maat\')}">Maat</span>.',
-        noteEn: 'The sign depicts rocky hills with valleys, evoking the rough terrain beyond the Nile. It is the standard determinative for foreign place names like <i>Rtnw</i> (Retjenu). To an Egyptian, the world beyond those hills meant chaos, the absence of <span class="gloss" tabindex="0" onclick="openGlossaryAt(\'maat\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openGlossaryAt(\'maat\')}">Maat</span>\'s order.'
+        notePt: 'O signo representa colinas rochosas com vales, evocando o terreno acidentado das terras além do Nilo. É o determinativo padrão de topônimos estrangeiros como <i>Rtnw</i> (Retjenu). Para um egípcio, o mundo além dessas colinas era caos, ausência da ordem de <span class="gloss" data-gloss="maat">Maat</span>.',
+        noteEn: 'The sign depicts rocky hills with valleys, evoking the rough terrain beyond the Nile. It is the standard determinative for foreign place names like <i>Rtnw</i> (Retjenu). To an Egyptian, the world beyond those hills meant chaos, the absence of <span class="gloss" data-gloss="maat">Maat</span>\'s order.'
       },
       {
         glyph: '𓆸', translit: 'sšn', chapter: 3,

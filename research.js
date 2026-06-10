@@ -166,6 +166,8 @@
     const el = document.getElementById('research-overlay');
     if (!el) return;
     el.classList.add('research-exit');
+    const app = document.querySelector('.app');
+    if (app) app.inert = false;
     // Devolve foco ao primeiro elemento interativo da página
     setTimeout(() => {
       el.remove();
@@ -204,6 +206,8 @@
       </div>`;
 
     document.body.appendChild(overlay);
+    const app = document.querySelector('.app');
+    if (app) app.inert = true; // foco e leitor de tela ficam só no modal
     setTimeout(() => document.getElementById('researchAccept').focus(), 60);
 
     document.getElementById('researchAccept').addEventListener('click', () => {

@@ -1,11 +1,21 @@
 let isMuted = false;
+try { isMuted = localStorage.getItem('musaeum-muted') === '1'; } catch (e) {}
 
 function toggleSound() {
   const audio = document.getElementById('bgMusic');
   if (!audio) return;
   isMuted = !isMuted;
+  try { localStorage.setItem('musaeum-muted', isMuted ? '1' : '0'); } catch (e) {}
   audio.muted = isMuted;
   document.getElementById('btnSound').textContent = isMuted ? '🔇' : '🔊';
+}
+
+// Aplica a preferência de som guardada ao botão e à trilha da página atual.
+function initSound() {
+  const audio = document.getElementById('bgMusic');
+  if (audio) audio.muted = isMuted;
+  const btn = document.getElementById('btnSound');
+  if (btn) btn.textContent = isMuted ? '🔇' : '🔊';
 }
 
 function playFeedback(type) {
@@ -109,13 +119,13 @@ function initStoryApp(config) {
   <span data-i18n="score-label">PONTOS</span>: <span class="num" id="scoreDisplay">0</span>
 </div>
 
-<div class="discovery-toast" id="discoveryToast" onclick="onToastClick()" role="status" aria-live="polite">
+<button type="button" class="discovery-toast" id="discoveryToast" onclick="onToastClick()" role="status" aria-live="polite">
   <div class="toast-glyph" id="toastGlyph" aria-hidden="true">𓋹</div>
   <div class="toast-text">
     <div class="toast-title" id="toastTitle"></div>
     <div class="toast-sub" id="toastSub"></div>
   </div>
-</div>
+</button>
 
 <div class="app">
   <div class="topbar">
@@ -159,4 +169,5 @@ ${slots}
 </div>`;
 
   initTheme();
+  initSound();
 }

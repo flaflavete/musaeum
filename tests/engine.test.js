@@ -148,6 +148,17 @@ describe('onAnswer — cálculo de pontos', () => {
     ctx.onAnswer(true, mockQ, false)
     expect(ctx.storeGet('test').collected[0]).toBe(false)
   })
+
+  it('responder de novo o mesmo capítulo não soma pontos de novo', () => {
+    const { ctx } = createEngineContext()
+    ctx.onAnswer(true, mockQ, true)
+    const scoreAfterFirst = ctx.storeGet('test').score
+    // simula recarregar a página e responder o mesmo desafio outra vez
+    ctx.onAnswer(true, mockQ, true)
+    const saved = ctx.storeGet('test')
+    expect(saved.score).toBe(scoreAfterFirst)
+    expect(saved.answeredChapters[0]).toBe(true)
+  })
 })
 
 // ── renderGlossaryList — filtro e ordenação ───────────────────────────────────

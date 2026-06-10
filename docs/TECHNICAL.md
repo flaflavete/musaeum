@@ -24,9 +24,8 @@ docs/TECHNICAL.md             Este arquivo
 | `erro.wav` | Feedback sonoro de resposta incorreta |
 | `pexels-clioseye-35506459.jpg` | Foto de fundo (fachada do templo de Horus em Edfu) |
 | `assets/images/hermitage_1115.jpeg` | Foto do Papiro Hermitage 1115 (cultura material do Náufrago) |
-| `assets/images/berlin_3022.png` | Foto do Papiro Berlin 3022 (cultura material do Sinué) |
+| `assets/images/berlin_3022.jpg` | Foto do Papiro Berlin 3022 (cultura material do Sinué) |
 | `ankh-icon.svg` / `ankh-icon-512.png` | Ícone do app |
-| `NotoSansEgyptianHieroglyphs-Regular.ttf` | Fonte local de fallback para hieróglifos |
 
 ---
 
@@ -263,7 +262,7 @@ Strings de UI no `I18N` de cada história: `artifact-btn`, `artifact-title`, `ar
 
 Os dados de catálogo devem vir da ficha do museu depositário; preservar o crédito do fotógrafo quando houver. Datas em **AEC/BCE**, exceto títulos de obras citadas.
 
-Fichas atuais: Náufrago → Papiro Hermitage 1115 (`assets/images/hermitage_1115.jpeg`); Sinué → Papiro Berlin 3022 (`assets/images/berlin_3022.png`).
+Fichas atuais: Náufrago → Papiro Hermitage 1115 (`assets/images/hermitage_1115.jpeg`); Sinué → Papiro Berlin 3022 (`assets/images/berlin_3022.jpg`).
 
 ---
 

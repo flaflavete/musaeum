@@ -287,7 +287,6 @@
   .modal-license a:hover { opacity: 1; }
   .footer-license-badge { display: block; margin-top: 10px; opacity: 0.65; transition: opacity 0.2s; }
   .footer-license-badge:hover { opacity: 1; }
-  .intro-text { font-size: 19px; max-width: 650px; margin: 0 auto 36px; line-height: 1.7; font-style: italic; color: var(--papyrus-soft); }
 
   /* Epígrafe do Ptahhotep */
   .epigraph {
@@ -537,11 +536,13 @@
     padding: 20px;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    visibility: hidden; /* some também para leitores de tela e Tab */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
   }
   .modal-backdrop.show {
     opacity: 1;
     pointer-events: auto;
+    visibility: visible;
   }
   .modal-panel {
     background: linear-gradient(180deg, #253549 0%, #1b2a3d 100%);
@@ -880,11 +881,13 @@
     justify-content: center;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    visibility: hidden; /* some também para leitores de tela e Tab */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
   }
   .name-modal-backdrop.show {
     opacity: 1;
     pointer-events: auto;
+    visibility: visible;
   }
   .name-modal-panel {
     background: linear-gradient(180deg, #1a2535 0%, #131e2e 100%);
@@ -1171,7 +1174,6 @@
     <div class="header-glyph" aria-hidden="true"></div>
     <h1>Musæum</h1>
     <div class="subtitle" id="subtitle"></div>
-    <p class="intro-text" id="intro"></p>
   </header>
 
   <section class="epigraph" aria-label="Epígrafe">
@@ -1532,7 +1534,6 @@
     document.getElementById('btnCloseAbout').setAttribute('aria-label', t.aboutClose);
 
     document.getElementById('subtitle').textContent = t.subtitle;
-    document.getElementById('intro').textContent = t.intro;
 
     document.getElementById('epigraphLabel').textContent = t.epigraphLabel;
     document.getElementById('epigraphQuote').textContent = t.epigraphQuote;
@@ -1593,17 +1594,26 @@
     `;
   }
 
+  // Enquanto um modal está aberto, o resto da página fica inert:
+  // Tab e leitores de tela não escapam para o conteúdo de fundo.
+  function setPageInert(on) {
+    const main = document.querySelector('main.container');
+    if (main) main.inert = on;
+  }
+
   function openAbout() {
     const m = document.getElementById('aboutModal');
     m.classList.add('show');
     aboutOpen = true;
     document.body.style.overflow = 'hidden';
+    setPageInert(true);
     setTimeout(() => document.getElementById('btnCloseAbout').focus(), 60);
   }
   function closeAbout() {
     document.getElementById('aboutModal').classList.remove('show');
     aboutOpen = false;
     document.body.style.overflow = '';
+    setPageInert(false);
     document.getElementById('btnAbout').focus();
   }
   function closeAboutOnBackdrop(e) {
@@ -1635,12 +1645,14 @@
     document.getElementById('researchConsent').checked =
       localStorage.getItem('musaeum-research-consent') === 'sim';
     document.getElementById('nameModal').classList.add('show');
+    setPageInert(true);
     setTimeout(() => input.focus(), 60);
   }
 
   // ===== SELETOR DE IDIOMA (primeira pop-up) =====
   function showLangModal() {
     document.getElementById('langModal').classList.add('show');
+    setPageInert(true);
     setTimeout(() => {
       const first = document.querySelector('#langModal .lang-choice');
       if (first) first.focus();
@@ -1655,6 +1667,7 @@
 
   function closeNameModal() {
     document.getElementById('nameModal').classList.remove('show');
+    setPageInert(false);
   }
 
   function recordConsent() {
@@ -1693,11 +1706,13 @@
     document.getElementById('tourOfferYes').textContent   = t.tourOfferYes;
     document.getElementById('tourOfferNo').textContent    = t.tourOfferNo;
     document.getElementById('tourOfferModal').classList.add('show');
+    setPageInert(true);
     setTimeout(() => document.getElementById('tourOfferYes').focus(), 60);
   }
 
   function closeTourOffer() {
     document.getElementById('tourOfferModal').classList.remove('show');
+    setPageInert(false);
   }
 
   function acceptTourOffer() {
@@ -1724,7 +1739,13 @@
 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') { closeNameModal(); closeTourOffer(); }
-    if (e.key === 'Enter' && document.getElementById('nameModal').classList.contains('show')) saveName();
+    // Enter confirma só quando o foco está no campo de nome; nos botões
+    // ("Entrar sem nome" etc.) o Enter aciona o próprio botão focado.
+    if (e.key === 'Enter' &&
+        document.getElementById('nameModal').classList.contains('show') &&
+        document.activeElement === document.getElementById('nameInput')) {
+      saveName();
+    }
   });
 
   // ===== COLEÇÃO =====
@@ -1767,12 +1788,14 @@
     const modal = document.getElementById('glyphModal');
     modal.classList.add('show');
     document.body.style.overflow = 'hidden';
+    setPageInert(true);
     setTimeout(() => document.getElementById('glyphModalClose').focus(), 60);
   }
 
   function closeGlyphCard() {
     document.getElementById('glyphModal').classList.remove('show');
     document.body.style.overflow = '';
+    setPageInert(false);
   }
 
   function closeGlyphCardOnBackdrop(e) {
