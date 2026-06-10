@@ -2,17 +2,25 @@
 
 ## Arquitetura geral
 
-Aplicação web estática sem etapa de build. O HTML de cada história referencia um CSS e um JS externos compartilhados, e contém o restante do código inline.
+Aplicação web estática sem etapa de build. O HTML de cada história é um esqueleto mínimo que carrega os scripts compartilhados; o conteúdo (textos, desafios, glossário) vive em `data/`, e a lógica no motor compartilhado `engine.js`.
 
 ```
-index.html      1790 linhas   Página inicial / biblioteca
-naufrago.html   1434 linhas   Experiência interativa do Conto do Náufrago
-sinuhe.html     1436 linhas   Experiência interativa da História de Sinué
-script.js        160 linhas   Utilitários compartilhados
-style.css                     Estilos globais (tema, tipografia)
-package.json                  Dependências de teste (vitest)
-fontes/                       PDFs e áudio de referência bibliográfica
-docs/TECHNICAL.md             Este arquivo
+index.html              Página inicial: biblioteca, coleção, certificado, modal "sobre"
+naufrago.html           Experiência interativa do Conto do Náufrago
+sinuhe.html             Experiência interativa da História de Sinué
+script.js               Utilitários compartilhados + shell HTML das histórias
+engine.js               Motor das histórias: telas, render, desafios, save
+tour.js                 Tour guiado (coach marks), usado na home e nas histórias
+research.js             Coleta anônima e consentida de dados da pesquisa
+style.css               Estilos globais (tema, tipografia)
+data/catalogo.js        Catálogo central: cards, tesouros, códex e disponibilidade
+data/naufrago.js        Textos, desafios e glossário do Náufrago
+data/sinuhe.js          Textos, desafios e glossário do Sinué
+data/cultura-material.js  Fichas dos manuscritos reais (foto + catálogo do museu)
+tests/                  Testes automatizados (vitest)
+package.json            Dependências de teste (vitest)
+fontes/                 PDFs e áudio de referência bibliográfica
+docs/TECHNICAL.md       Este arquivo
 ```
 
 ### Assets de mídia
@@ -31,7 +39,7 @@ docs/TECHNICAL.md             Este arquivo
 
 ## script.js — utilitários compartilhados
 
-Todas as histórias incluem `<script src="script.js">` antes do JS inline. Expõe:
+Todas as páginas carregam `<script src="script.js">` antes dos demais scripts. Expõe:
 
 | Função | Descrição |
 |---|---|
@@ -69,11 +77,9 @@ Todas as histórias incluem `<script src="script.js">` antes do JS inline. Expõ
 
 Objeto `i18n` com chaves `pt` e `en`. A função `setLang(lang)` atualiza `currentLang`, persiste em localStorage e chama `render()`. Elementos com `data-t="chave"` são atualizados via `querySelectorAll`.
 
-### histórias (naufrago.html, sinuhe.html)
+### histórias (data/naufrago.js, data/sinuhe.js)
 
-Objeto `I18N` com chaves `pt` e `en`. Função auxiliar `t(k)` retorna `I18N[state.lang][k] || k`. A troca de idioma é imediata e re-renderiza a cena atual.
-
-Preferência salva em `musaeum-lang`.
+Objeto `I18N` com chaves `pt` e `en`, definido no arquivo de dados de cada história. Função auxiliar `t(k)` (em `engine.js`) retorna `I18N[state.lang][k] || k`. A troca de idioma é imediata, re-renderiza a cena atual e persiste em `musaeum-lang` — vale também ao trocar dentro de uma história.
 
 ---
 
@@ -106,6 +112,7 @@ Tema padrão: **escuro**. Variáveis redefinidas em `:root[data-theme="light"]`.
 | `musaeum-player` | JSON | `{ name: "..." }` |
 | `musaeum-stories` | JSON | `{ naufrago: {...}, sinuhe: {...} }` — save unificado |
 | `musaeum-research-consent` | string | `"sim"` ou `"não"` — consentimento da pesquisa; `null` enquanto não decidido (dispara o onboarding) |
+| `musaeum-muted` | string | `"1"` ou `"0"` — preferência de som mutado |
 | `musaeum-tour-<storyId>` | string | `"seen"` — marca que o tour daquela história já auto-disparou |
 
 ### Estrutura do save de uma história
@@ -115,8 +122,9 @@ Tema padrão: **escuro**. Variáveis redefinidas em `:root[data-theme="light"]`.
   screen: 'splash' | 'intro' | 'chapter' | 'challenge' | 'final',
   chapter: 0–7,
   score: number,
-  collected: [true|false, ...],       // 8 tesouros
-  discoveredGlyphs: [0, 1, 3, ...]    // índices dos glifos descobertos
+  collected: [true|false, ...],        // 8 tesouros
+  answeredChapters: [true|false, ...], // desafios já respondidos (impede repontuar ao recarregar)
+  discoveredGlyphs: [0, 1, 3, ...]     // índices dos glifos descobertos
 }
 ```
 
@@ -161,19 +169,25 @@ A migração automática de saves antigos (`musaeum-naufrago`, `musaeum-sinuhe`)
 
 Seção accordion na página inicial que exibe progresso cruzado:
 
-1. **Tesouros coletados** por história (via `GAME_CATALOG`)
-2. **Códex de hieróglifos** desbloqueados (lê `musaeum-stories` de cada história)
+1. **Tesouros coletados** por história (itens definidos em `data/catalogo.js`)
+2. **Códex de hieróglifos** desbloqueados, por história (lê `musaeum-stories`)
 
-### GAME_CATALOG
+### MUSAEUM_CATALOG (data/catalogo.js)
+
+Fonte única de verdade das histórias. Cada entrada tem `storyId`, `href`,
+`available`, `cardGlyph`, títulos e descrições bilíngues, `items` (tesouros)
+e `codex` (os 9 hieróglifos). A Coleção mostra uma história quando ela está
+publicada ou quando existe progresso salvo dela no aparelho.
 
 ```js
-const GAME_CATALOG = [
-  { storyId: 'naufrago', titlePt: '...', titleEn: '...', items: [...] }
-  // adicionar sinuhe aqui quando a história for publicada
+const MUSAEUM_CATALOG = [
+  { storyId: 'naufrago', href: 'naufrago.html', available: true, items: [...], codex: [...] },
+  { storyId: 'sinuhe',   href: 'sinuhe.html',   available: false, ... },
 ];
 ```
 
-Glifos desbloqueados são clicáveis — abrem a ficha do hieróglifo num modal.
+Glifos desbloqueados são clicáveis — abrem a ficha do hieróglifo num modal
+(`openGlyphCard(storyId, idx)`).
 
 ### Primeiro acesso (onboarding) e nome do jogador
 
@@ -332,19 +346,24 @@ Esta pasta **não** é servida pelo site e não deve ser comitada no repositóri
 
 ## Publicando uma nova história
 
-Para adicionar uma história à biblioteca (ex: Camponês Eloquente):
+Para **publicar uma história que já existe** (ex.: Sinué): mudar `available`
+para `true` na entrada dela em `data/catalogo.js`. Só isso — card, Coleção,
+Certificado e desbloqueio derivam todos do catálogo.
 
-1. Criar `campones.html` seguindo a estrutura de `sinuhe.html`
-2. Definir `STORY_ID`, `ITEMS` (8 tesouros), `GLYPHS_CODEX` (9 glifos), `GLOSSARY`, `CHAPTERS` (8 capítulos)
-3. Em `index.html`:
-   - Converter `card3` de `<div class="scroll-card locked">` para `<a href="campones.html" class="scroll-card">`
-   - Atualizar `aria-label` do card
-4. Adicionar entrada em `GAME_CATALOG` com `storyId: 'campones'`
-5. Adicionar `'campones'` em `AVAILABLE_STORIES` (para o certificado)
+Para **criar uma história nova** (ex.: Camponês Eloquente):
 
-Para **publicar `sinuhe.html`** especificamente, além dos passos 3–5, converter `card2` e adicionar `storyId: 'sinuhe'` em `GAME_CATALOG`.
-
-6. (opcional) **Cultura material:** salvar a foto do papiro em `assets/images/`, criar a chave `storyId` em `CULTURA_MATERIAL` (`data/cultura-material.js`) com os dados do museu depositário, carregar `data/cultura-material.js` no HTML antes de `engine.js` e adicionar `artifact-btn`/`artifact-title`/`artifact-museum` ao `I18N`.
+1. Completar a entrada dela em `data/catalogo.js` com `href`, `items`
+   (8 tesouros) e `codex` (9 glifos)
+2. Criar `data/campones.js` com `I18N`, `CHAPTERS` (8 capítulos), `GLOSSARY`
+   e as linhas `const ITEMS = catalogGet('campones').items;` e
+   `const GLYPHS_CODEX = catalogGet('campones').codex;`
+3. Criar `campones.html` seguindo a estrutura de `sinuhe.html` (mesma ordem
+   de scripts, trocando só `data/sinuhe.js` por `data/campones.js`)
+4. Quando estiver pronta, `available: true` no catálogo
+5. (opcional) **Cultura material:** salvar a foto do papiro em
+   `assets/images/`, criar a chave `storyId` em `CULTURA_MATERIAL`
+   (`data/cultura-material.js`) com os dados do museu depositário e adicionar
+   `artifact-btn`/`artifact-title`/`artifact-museum` ao `I18N`.
 
 ---
 
@@ -352,7 +371,7 @@ Para **publicar `sinuhe.html`** especificamente, além dos passos 3–5, convert
 
 - **JS:** camelCase em português para conteúdo (`nomePapiro`, `progressoAtual`)
 - **CSS:** kebab-case descritivo (`.archaeo-note`, `.glyph-card`, `.collection-section`)
-- **IDs:** kebab-case (`card1`, `aboutModal`, `certCanvas`)
+- **IDs:** kebab-case (`card-naufrago`, `aboutModal`, `certCanvas`)
 - **localStorage:** prefixo `musaeum-` com hífen (`musaeum-stories`, `musaeum-lang`)
 - **i18n em index.html:** atributo `data-t="chave"`
 - Comentários em português dentro dos arquivos
