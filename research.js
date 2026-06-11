@@ -65,6 +65,9 @@
 
   // ── CSS do modal ────────────────────────────────────────────────────────────
 
+  // Visual idêntico ao modal de boas-vindas da home (index.html).
+  // Cores fixas escuras: como o cartão do tour, o painel é sempre escuro,
+  // inclusive no tema claro.
   function _injectStyles() {
     if (document.getElementById('research-styles')) return;
     const style = document.createElement('style');
@@ -73,89 +76,151 @@
 #research-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10, 18, 30, 0.88);
-  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.72);
   z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.3s ease;
 }
 #research-overlay.research-exit {
   opacity: 0;
   pointer-events: none;
 }
 .research-box {
-  background: #1b2a3d;
-  border: 1px solid #c9a646;
-  border-radius: 12px;
-  max-width: 460px;
-  width: 100%;
-  padding: 36px 32px 28px;
+  background: linear-gradient(180deg, #1a2535 0%, #131e2e 100%);
+  border: 1px solid rgba(201, 166, 70, 0.3);
+  border-radius: 14px;
+  padding: 40px 32px 32px;
+  max-width: 400px;
+  width: 90%;
   text-align: center;
-  box-shadow: 0 12px 56px rgba(0, 0, 0, 0.65);
-  color: #f1e4c6;
 }
-.research-seal {
-  font-size: 38px;
-  line-height: 1;
-  margin-bottom: 14px;
+.research-glyph {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-size: 52px;
   color: #c9a646;
+  margin-bottom: 12px;
+  line-height: 1;
 }
 .research-title {
-  font-family: Cinzel, 'Times New Roman', serif;
-  font-size: 19px;
-  font-weight: 700;
-  color: #c9a646;
-  letter-spacing: 0.06em;
-  margin: 0 0 18px;
-}
-.research-body {
-  font-family: 'EB Garamond', 'Noto Serif', Georgia, serif;
+  font-family: 'Cinzel', 'Gentium Plus', serif;
   font-size: 15px;
-  line-height: 1.65;
-  color: #c9b894;
-  margin: 0 0 10px;
+  letter-spacing: 0.18em;
+  color: #c9a646;
+  text-transform: uppercase;
+  margin: 0 0 6px;
 }
-.research-body-secondary {
-  font-size: 13px;
-  color: #9a8b6d;
-  margin-bottom: 26px;
+.research-sub {
+  font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
   font-style: italic;
+  font-size: 15px;
+  color: #9a8b6d;
+  margin: 0 0 24px;
+  line-height: 1.5;
 }
-.research-actions {
+.research-input {
+  width: 100%;
+  background: rgba(241, 228, 198, 0.07);
+  border: 1px solid rgba(201, 166, 70, 0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+  font-size: 18px;
+  color: #f1e4c6;
+  text-align: center;
+  margin-bottom: 14px;
+  outline: none;
+  transition: border-color 0.25s ease;
+  box-sizing: border-box;
+}
+.research-input:focus { border-color: rgba(201, 166, 70, 0.7); }
+.research-input::placeholder { color: #9a8b6d; opacity: 0.6; }
+.research-consent {
   display: flex;
-  flex-direction: column;
+  align-items: flex-start;
   gap: 10px;
+  text-align: left;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.research-consent input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  border: 1.5px solid rgba(201, 166, 70, 0.5);
+  border-radius: 4px;
+  background: rgba(241, 228, 198, 0.05);
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s, border-color 0.2s;
+}
+.research-consent input[type="checkbox"]:hover { border-color: #c9a646; }
+.research-consent input[type="checkbox"]:checked {
+  background: rgba(201, 166, 70, 0.85);
+  border-color: #c9a646;
+}
+.research-consent input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #131e2e;
+}
+.research-consent input[type="checkbox"]:focus-visible {
+  outline: 2px solid #c9a646;
+  outline-offset: 2px;
+}
+.research-consent-text {
+  font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #9a8b6d;
 }
 .research-btn {
-  font-family: Cinzel, 'Times New Roman', serif;
-  font-size: 13px;
-  letter-spacing: 0.05em;
-  border: none;
-  border-radius: 6px;
-  padding: 12px 20px;
-  cursor: pointer;
-  transition: opacity 0.2s, transform 0.1s;
   width: 100%;
+  padding: 12px;
+  background: rgba(201, 166, 70, 0.12);
+  border: 1.5px solid rgba(201, 166, 70, 0.45);
+  border-radius: 8px;
+  color: #c9a646;
+  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  margin-bottom: 12px;
 }
-.research-btn:hover { opacity: 0.87; }
-.research-btn:active { transform: scale(0.98); }
+.research-btn:hover {
+  background: rgba(201, 166, 70, 0.22);
+  border-color: #c9a646;
+}
 .research-btn:focus-visible {
   outline: 2px solid #c9a646;
   outline-offset: 3px;
 }
-.research-btn-accept {
-  background: #c9a646;
-  color: #1b2a3d;
-  font-weight: 700;
-}
-.research-btn-decline {
-  background: transparent;
+.research-skip {
+  background: none;
+  border: none;
   color: #9a8b6d;
-  border: 1px solid #3a4a60;
+  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
 }
+.research-skip:hover { color: #c9b894; }
     `;
     document.head.appendChild(style);
   }
@@ -176,8 +241,35 @@
     }, 370);
   }
 
+  // Mesmos textos do modal de boas-vindas da home (nameModal/consentLabel).
+  const _MODAL_TEXTS = {
+    pt: {
+      title:       'Como devo te chamar?',
+      sub:         'Seu nome vai aparecer em sua coleção.',
+      placeholder: 'Seu nome',
+      btn:         'Entrar no Musæum',
+      skip:        'Entrar sem nome',
+      consent:     'Aceito contribuir com a pesquisa acadêmica do PPGArq · Museu Nacional / UFRJ. A gente coleta só dados anônimos de uso, nada pessoal.',
+    },
+    en: {
+      title:       'What should I call you?',
+      sub:         'Your name will appear on your collection.',
+      placeholder: 'Your name',
+      btn:         'Enter the Musæum',
+      skip:        'Enter without a name',
+      consent:     'I agree to contribute to academic research at PPGArq · Museu Nacional / UFRJ. We only collect anonymous usage data, nothing personal.',
+    },
+  };
+
+  function _modalLang() {
+    const saved = localStorage.getItem('musaeum-lang');
+    if (saved === 'pt' || saved === 'en') return saved;
+    return (navigator.language || 'pt').toLowerCase().startsWith('pt') ? 'pt' : 'en';
+  }
+
   function _showModal() {
     _injectStyles();
+    const t = _MODAL_TEXTS[_modalLang()];
     const overlay = document.createElement('div');
     overlay.id = 'research-overlay';
     overlay.setAttribute('role', 'dialog');
@@ -185,38 +277,49 @@
     overlay.setAttribute('aria-labelledby', 'research-title');
     overlay.innerHTML = `
       <div class="research-box">
-        <div class="research-seal" aria-hidden="true">𓂀</div>
-        <h2 id="research-title" class="research-title">Pesquisa Acadêmica</h2>
-        <p class="research-body">
-          O Musæum integra uma pesquisa do <strong>PPGArq&thinsp;—&thinsp;Museu Nacional&thinsp;/&thinsp;UFRJ</strong>.
-          Gostaríamos de registrar dados anônimos de uso (idioma, dispositivo, progresso)
-          para fins exclusivamente acadêmicos. Nenhuma informação pessoal é coletada.
-        </p>
-        <p class="research-body research-body-secondary">
-          This project is part of academic research. Participation is optional and fully anonymous.
-        </p>
-        <div class="research-actions">
-          <button class="research-btn research-btn-accept" id="researchAccept">
-            Aceito contribuir
-          </button>
-          <button class="research-btn research-btn-decline" id="researchDecline">
-            Prefiro não participar
-          </button>
-        </div>
+        <div class="research-glyph" aria-hidden="true">𓂀</div>
+        <h2 id="research-title" class="research-title"></h2>
+        <p class="research-sub"></p>
+        <input type="text" class="research-input" id="researchNameInput" maxlength="32" autocomplete="off" />
+        <label class="research-consent" for="researchConsentBox">
+          <input type="checkbox" id="researchConsentBox" />
+          <span class="research-consent-text"></span>
+        </label>
+        <button class="research-btn" id="researchEnter"></button>
+        <button class="research-skip" id="researchSkip"></button>
       </div>`;
+
+    overlay.querySelector('.research-title').textContent        = t.title;
+    overlay.querySelector('.research-sub').textContent          = t.sub;
+    overlay.querySelector('.research-consent-text').textContent = t.consent;
+    overlay.querySelector('#researchEnter').textContent         = t.btn;
+    overlay.querySelector('#researchSkip').textContent          = t.skip;
+    const input = overlay.querySelector('#researchNameInput');
+    input.placeholder = t.placeholder;
+    input.value = (typeof getPlayerName === 'function' && getPlayerName()) || '';
 
     document.body.appendChild(overlay);
     const app = document.querySelector('.app');
     if (app) app.inert = true; // foco e leitor de tela ficam só no modal
-    setTimeout(() => document.getElementById('researchAccept').focus(), 60);
+    setTimeout(() => input.focus(), 60);
 
-    document.getElementById('researchAccept').addEventListener('click', () => {
-      localStorage.setItem(CONSENT_KEY, 'sim');
+    function _recordConsent() {
+      const checked = overlay.querySelector('#researchConsentBox').checked;
+      localStorage.setItem(CONSENT_KEY, checked ? 'sim' : 'não');
+    }
+    function _enter() {
+      const name = input.value.trim();
+      if (name) localStorage.setItem('musaeum-player', JSON.stringify({ name }));
+      _recordConsent();
+      _removeModal();
+    }
+    overlay.querySelector('#researchEnter').addEventListener('click', _enter);
+    overlay.querySelector('#researchSkip').addEventListener('click', () => {
+      _recordConsent();
       _removeModal();
     });
-    document.getElementById('researchDecline').addEventListener('click', () => {
-      localStorage.setItem(CONSENT_KEY, 'não');
-      _removeModal();
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') _enter();
     });
   }
 
