@@ -183,9 +183,16 @@ function activateGloss(container) {
     el.setAttribute('tabindex', '0');
     el.setAttribute('role', 'button');
   });
+  container.querySelectorAll('.achado-ref').forEach(el => {
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('role', 'button');
+    el.setAttribute('aria-expanded', 'false');
+  });
 }
 
 function handleGloss(target) {
+  const a = target && target.closest ? target.closest('.achado-ref') : null;
+  if (a) { toggleAchado(a); return true; }
   const g = target && target.closest ? target.closest('.gloss') : null;
   if (!g) return false;
   if (g.dataset && g.dataset.gloss) openGlossaryAt(g.dataset.gloss);
@@ -199,6 +206,45 @@ document.addEventListener('keydown', (e) => {
   if (e.key !== 'Enter' && e.key !== ' ') return;
   if (handleGloss(e.target)) e.preventDefault();
 });
+
+// ===== ACHADOS NAS NOTAS (.achado-ref) =====
+// Algumas notas citam um objeto real registrado em ACHADOS
+// (data/cultura-material.js). O clique no span revela um cartão
+// com a foto e a referência de acervo. De propósito não há contador
+// nem coleção: o achado é só o momento da descoberta.
+function toggleAchado(el) {
+  const reg = (typeof ACHADOS !== 'undefined' && ACHADOS[STORY_ID]) ? ACHADOS[STORY_ID] : null;
+  const id = el.dataset ? el.dataset.achado : null;
+  const a = reg && id ? reg[id] : null;
+  const note = el.closest ? el.closest('.archaeo-note') : null;
+  if (!a || !note) return;
+
+  const open = note.querySelector('.achado-card');
+  if (open) {
+    const sameId = open.dataset.achado === id;
+    open.remove();
+    note.querySelectorAll('.achado-ref').forEach(s => s.setAttribute('aria-expanded', 'false'));
+    if (sameId) return;
+  }
+
+  const pt = state.lang === 'pt';
+  const card = document.createElement('div');
+  card.className = 'achado-card';
+  card.dataset.achado = id;
+  card.innerHTML = `
+    <div class="achado-corpo">
+      <img src="${a.image}" alt="${pt ? a.altPt : a.altEn}" loading="lazy" />
+      <div>
+        <div class="achado-kicker">${t('achado-kicker')}</div>
+        <div class="achado-nome">${pt ? a.namePt : a.nameEn}</div>
+        <div class="achado-info">${pt ? a.refPt : a.refEn}</div>
+        <div class="achado-credito">${pt ? a.creditPt : a.creditEn}</div>
+      </div>
+    </div>
+    ${a.url ? `<div class="achado-rodape"><a href="${a.url}" target="_blank" rel="noopener">${t('achado-link')}</a></div>` : ''}`;
+  note.appendChild(card);
+  el.setAttribute('aria-expanded', 'true');
+}
 
 // ===== TOUR GUIADO DA HISTÓRIA =====
 // Aponta os recursos da leitura: glossário, códex, nota arqueológica e trilha.

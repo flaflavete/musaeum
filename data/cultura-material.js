@@ -121,3 +121,106 @@ const CULTURA_MATERIAL = {
     ]
   }
 };
+
+// =============================================================
+// Achados: objetos reais citados nas notas arqueológicas
+// =============================================================
+// Nem toda nota tem um achado; só as que citam um objeto com foto
+// de licença verificada e referência de acervo. O span no texto da
+// nota carrega class="achado-ref" data-achado="id", e o cartão é
+// montado pelo engine (toggleAchado). Campos:
+//   image    caminho local da foto (assets/images/)
+//   altPt/En texto alternativo da foto
+//   namePt/En nome curto do achado
+//   refPt/En  uma linha: o que é · onde está (nº de inventário)
+//   creditPt/En crédito e licença da foto
+//   url       (opcional) ficha do objeto no acervo do museu
+
+const ACHADOS = {
+  naufrago: {
+    'tesouro-tod': {
+      image: 'assets/images/tesouro_tod_louvre.jpg',
+      altPt: 'Vitrine do Louvre com o tesouro de Tod: taças de prata, argolas e um dos cofres de metal de Amenemhat II.',
+      altEn: 'Louvre showcase with the Tod treasure: silver cups, rings, and one of Amenemhat II\'s metal chests.',
+      namePt: 'O tesouro de Tod',
+      nameEn: 'The Tod treasure',
+      refPt: 'Taças de prata e um dos cofres de Amenemhat II · Museu do Louvre, Paris',
+      refEn: 'Silver cups and one of Amenemhat II\'s chests · Louvre Museum, Paris',
+      creditPt: 'Foto: Neithsabes, domínio público',
+      creditEn: 'Photo: Neithsabes, public domain'
+    },
+    'estela-mentuwoser': {
+      image: 'assets/images/estela_mentuwoser_met.jpg',
+      altPt: 'Estela de calcário do mordomo Mentuwoser, com o morto sentado diante de ofertas e linhas de hieróglifos.',
+      altEn: 'Limestone stela of the steward Mentuwoser, with the deceased seated before offerings and lines of hieroglyphs.',
+      namePt: 'A estela de Mentuwoser',
+      nameEn: 'The stela of Mentuwoser',
+      refPt: 'Estela autobiográfica de um mordomo real, c. 1944 AEC · The Met, Nova York (12.184)',
+      refEn: 'Autobiographical stela of a royal steward, ca. 1944 BCE · The Met, New York (12.184)',
+      creditPt: 'Imagem: The Metropolitan Museum of Art, CC0',
+      creditEn: 'Image: The Metropolitan Museum of Art, CC0',
+      url: 'https://www.metmuseum.org/art/collection/search/544320'
+    }
+  },
+
+  sinuhe: {
+    'piramide-amenemhat': {
+      image: 'assets/images/piramide_amenemhat1_lisht.jpg',
+      altPt: 'Colina de pedra e areia que restou da pirâmide de Amenemhat I em El-Lisht, atrás de um cemitério moderno.',
+      altEn: 'Mound of stone and sand left of Amenemhat I\'s pyramid at El-Lisht, behind a modern cemetery.',
+      namePt: 'A pirâmide de Amenemhat I',
+      nameEn: 'The pyramid of Amenemhat I',
+      refPt: 'O que restou dela hoje, em El-Lisht, ao sul do Cairo',
+      refEn: 'What remains of it today, at El-Lisht, south of Cairo',
+      creditPt: 'Foto: Ernesto Graf, CC BY-SA 2.0',
+      creditEn: 'Photo: Ernesto Graf, CC BY-SA 2.0'
+    },
+    'procissao-abisha': {
+      image: 'assets/images/aamu_facsimile_met.jpg',
+      altPt: 'Pintura com dois homens de túnicas coloridas conduzindo um íbex e uma gazela, com hieróglifos acima.',
+      altEn: 'Painting of two men in colorful tunics leading an ibex and a gazelle, with hieroglyphs above.',
+      namePt: 'Os líderes da caravana de Abisha',
+      nameEn: 'The leaders of Abisha\'s caravan',
+      refPt: 'Fac-símile de N. de Garis Davies (1931) da pintura de Beni Hassan · The Met, Nova York (33.8.17)',
+      refEn: 'Facsimile by N. de Garis Davies (1931) of the Beni Hassan painting · The Met, New York (33.8.17)',
+      creditPt: 'Imagem: The Metropolitan Museum of Art, CC0',
+      creditEn: 'Image: The Metropolitan Museum of Art, CC0',
+      url: 'https://www.metmuseum.org/art/collection/search/544548'
+    },
+    'soldados-mesehti': {
+      image: 'assets/images/mesehti_soldados_cairo.jpg',
+      altPt: 'Modelo de madeira pintada com fileiras de lanceiros egípcios segurando escudos e lanças.',
+      altEn: 'Painted wooden model with rows of Egyptian spearmen holding shields and spears.',
+      namePt: 'Os lanceiros de Mesehti',
+      nameEn: 'Mesehti\'s spearmen',
+      refPt: 'Os quarenta lanceiros do modelo de Assiut · Grande Museu Egípcio, Gizé (CG 258)',
+      refEn: 'The forty spearmen of the Asyut model · Grand Egyptian Museum, Giza (CG 258)',
+      creditPt: 'Foto: Udimu, CC BY-SA 3.0',
+      creditEn: 'Photo: Udimu, CC BY-SA 3.0'
+    },
+    'peitoral-sithathoryunet': {
+      image: 'assets/images/pectoral_sithathoryunet_met.jpg',
+      altPt: 'Peitoral de ouro incrustado de pedras azuis, vermelhas e verdes, com dois falcões e o nome de Sesostris II.',
+      altEn: 'Gold pectoral inlaid with blue, red, and green stones, with two falcons and the name of Senwosret II.',
+      namePt: 'O peitoral de Sithathoryunet',
+      nameEn: 'Sithathoryunet\'s pectoral',
+      refPt: 'Ouro, lápis-lazúli e outras pedras, achado em Lahun · The Met, Nova York (16.1.3a, b)',
+      refEn: 'Gold, lapis lazuli, and other stones, found at Lahun · The Met, New York (16.1.3a, b)',
+      creditPt: 'Imagem: The Metropolitan Museum of Art, CC0',
+      creditEn: 'Image: The Metropolitan Museum of Art, CC0',
+      url: 'https://www.metmuseum.org/art/collection/search/544232'
+    },
+    'estatua-sehetepibreankh': {
+      image: 'assets/images/sehetepibreankh_met.jpg',
+      altPt: 'Estátua de calcário de um homem sentado, com peruca até os ombros e inscrições nas laterais do assento.',
+      altEn: 'Limestone statue of a seated man with a shoulder-length wig and inscriptions on the sides of the seat.',
+      namePt: 'O mordomo Sehetepibreankh',
+      nameEn: 'The steward Sehetepibreankh',
+      refPt: 'Estátua achada no túmulo dele, junto à pirâmide, em Lisht Sul · The Met, Nova York (24.1.45)',
+      refEn: 'Statue found in his tomb, beside the pyramid, at Lisht South · The Met, New York (24.1.45)',
+      creditPt: 'Imagem: The Metropolitan Museum of Art, CC0',
+      creditEn: 'Image: The Metropolitan Museum of Art, CC0',
+      url: 'https://www.metmuseum.org/art/collection/search/573446'
+    }
+  }
+};

@@ -75,6 +75,10 @@
     background: rgba(29, 53, 87, 0.05);
   }
 
+  html[data-theme="light"] .achado-card {
+    background: rgba(255, 252, 246, 0.85);
+  }
+
   html[data-theme="light"] .choice {
     background: rgba(255, 252, 246, 0.80);
   }
@@ -450,6 +454,96 @@
     outline: 2px solid var(--gold-light);
     outline-offset: 2px;
     background: rgba(201, 166, 70, 0.15);
+  }
+
+  /* ========== ACHADOS NAS NOTAS ========== */
+  /* O span da nota que esconde um achado: tracejado (diferente do
+     pontilhado do glossário) e cursor de lupa. */
+  .achado-ref {
+    border-bottom: 1px dashed var(--gold);
+    cursor: zoom-in;
+    color: var(--gold-light);
+    transition: all 0.2s ease;
+    padding: 0 1px;
+    border-radius: 2px;
+  }
+  .achado-ref:hover {
+    background: rgba(201, 166, 70, 0.15);
+    color: var(--gold);
+    border-bottom-style: solid;
+  }
+  .achado-ref:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 2px;
+    background: rgba(201, 166, 70, 0.15);
+  }
+
+  .achado-card {
+    margin-top: 14px;
+    border: 1px solid var(--gold-dark);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    animation: fadeInSlide 0.4s ease-out;
+  }
+  .achado-corpo {
+    display: flex;
+    gap: 14px;
+    padding: 12px 14px;
+    align-items: center;
+  }
+  .achado-corpo img {
+    flex: 0 0 96px;
+    width: 96px;
+    height: 76px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid var(--gold-dark);
+  }
+  .achado-kicker {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .achado-nome {
+    color: var(--papyrus);
+    font-size: 15px;
+    line-height: 1.4;
+  }
+  .achado-info {
+    font-size: 12.5px;
+    color: var(--papyrus-dim);
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+  .achado-credito {
+    font-size: 11px;
+    color: var(--papyrus-dim);
+    opacity: 0.8;
+    margin-top: 2px;
+  }
+  .achado-rodape {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid rgba(201, 166, 70, 0.25);
+    padding: 7px 14px;
+  }
+  .achado-rodape a {
+    font-size: 12.5px;
+    color: var(--gold-light);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .achado-rodape a:hover {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .achado-card, .archaeo-note { animation: none; }
   }
 
   .note-toggle {
