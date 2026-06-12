@@ -331,6 +331,7 @@ Objeto `state` completo:
 Referências bibliográficas em PDF e áudio para uso interno da pesquisa:
 
 ```
+Faulkner-ConciseDictionaryMiddleEgyptian.pdf
 Gardiner-EgyptianGrammar.pdf
 Poe, The_Writing_of_a_Skillful_Scribe_An_intr.pdf
 Review_of_J_L_Foster_Thought_Couplets_in.pdf

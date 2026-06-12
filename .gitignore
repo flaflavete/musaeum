@@ -1,5 +1,6 @@
 .env
 node_modules/
+docs/verificacao-bibliografica.md
 fontes/
 .DS_Store
 CLAUDE.md

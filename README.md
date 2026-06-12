@@ -81,6 +81,9 @@ docs/                 Documentação (técnica, dev, guia do usuário, pesquisa)
 - ALLEN, J. P. *Middle Egyptian*. Cambridge University Press, 2000.
 - ARAUJO, Emanuel. *Escrito para a Eternidade*. Brasília, 2000.
 - BLACKMAN, A. M. *Middle-Egyptian Stories*. Bruxelas, 1932.
+- CABRAL, Jessica. Sobre os Efeitos de um Exílio. *Revista do Museu de Arqueologia e Etnologia*, n. 38, 2022.
+- FAULKNER, R. O. *A Concise Dictionary of Middle Egyptian*. Griffith Institute, 1962.
+- GARDINER, A. H. *Egyptian Grammar*. 3ª ed. Griffith Institute, 1957.
 - LICHTHEIM, M. *Ancient Egyptian Literature, Vol. I*. UC Press, 1973.
 - NEDERHOF, M.-J. *The Shipwrecked Sailor*. 2015.
 - PARKINSON, R. B. *The Tale of Sinuhe and Other Ancient Egyptian Poems*. Oxford, 1997.
@@ -178,6 +181,9 @@ docs/                 Documentation (technical, dev, user guide, research)
 - ALLEN, J. P. *Middle Egyptian*. Cambridge University Press, 2000.
 - ARAUJO, Emanuel. *Escrito para a Eternidade*. Brasília, 2000.
 - BLACKMAN, A. M. *Middle-Egyptian Stories*. Brussels, 1932.
+- CABRAL, Jessica. Sobre os Efeitos de um Exílio. *Revista do Museu de Arqueologia e Etnologia*, n. 38, 2022.
+- FAULKNER, R. O. *A Concise Dictionary of Middle Egyptian*. Griffith Institute, 1962.
+- GARDINER, A. H. *Egyptian Grammar*. 3rd ed. Griffith Institute, 1957.
 - LICHTHEIM, M. *Ancient Egyptian Literature, Vol. I*. UC Press, 1973.
 - NEDERHOF, M.-J. *The Shipwrecked Sailor*. 2015.
 - PARKINSON, R. B. *The Tale of Sinuhe and Other Ancient Egyptian Poems*. Oxford, 1997.
