@@ -1,5 +1,5 @@
 /**
- * Musæum — Motor de tour guiado (coach marks)
+ * Musæum: Motor de tour guiado (coach marks)
  * PPGArq / Museu Nacional / UFRJ
  *
  * Aponta setas douradas piscando para elementos reais da página, com um

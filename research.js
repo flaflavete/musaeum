@@ -1,5 +1,5 @@
 /**
- * Musæum — Módulo de coleta de dados para pesquisa acadêmica
+ * Musæum: Módulo de coleta de dados para pesquisa acadêmica
  * PPGArq / Museu Nacional / UFRJ
  *
  * Backend: Google Apps Script Web App (doGet) gravando em Google Sheets.
@@ -60,7 +60,7 @@
       .catch(() => {});
   }
 
-  // Alias usado no beforeunload — mesma lógica, keepalive já cobre.
+  // Alias usado no beforeunload, mesma lógica, keepalive já cobre.
   function _sendBeacon(data) { _send(data); }
 
   // ── CSS do modal ────────────────────────────────────────────────────────────
@@ -394,7 +394,7 @@
      * @param {{ storyId: string, score: number, maxScore: number, lang: string }} opts
      */
     trackComplete({ storyId, score, maxScore, lang }) {
-      // Remove o listener de abandono — não precisamos mais dele
+      // Remove o listener de abandono, não precisamos mais dele
       if (_abandonFn) {
         window.removeEventListener('pagehide', _abandonFn);
         _abandonFn = null;

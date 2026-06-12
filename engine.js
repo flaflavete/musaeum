@@ -1,5 +1,5 @@
 // ============================================================
-// ENGINE.JS — Motor compartilhado de todas as histórias
+// ENGINE.JS: Motor compartilhado de todas as histórias
 // Carregado APÓS script.js e o arquivo data/<historia>.js
 // ============================================================
 

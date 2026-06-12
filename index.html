@@ -6,9 +6,9 @@
 <title>Musæum · Biblioteca Interativa</title>
 
 <!-- Descrição e cor do tema -->
-<meta name="description" content="Musæum — biblioteca interativa bilíngue de textos literários do Egito do Reino Médio. Leitura narrativa, comentários arqueológicos e hieróglifos." />
+<meta name="description" content="Musæum: biblioteca interativa bilíngue de textos literários do Egito do Reino Médio. Leitura narrativa, comentários arqueológicos e hieróglifos." />
 <meta name="theme-color" content="#1b2a3d" />
-<meta name="author" content="Flavia Lima Corpas — PPGArq / Museu Nacional / UFRJ" />
+<meta name="author" content="Flavia Lima Corpas · PPGArq / Museu Nacional / UFRJ" />
 
 <!-- Open Graph (WhatsApp, Telegram, Facebook, LinkedIn) -->
 <meta property="og:type" content="website" />
@@ -1240,7 +1240,7 @@
     <div class="inst-logos">
       <span class="inst-logos-label" id="footerInstSupport"></span>
       <div class="inst-logos-plaque">
-        <img class="logo-ppgarq" src="assets/images/ppgarq.png" alt="PPGArq — Museu Nacional / UFRJ">
+        <img class="logo-ppgarq" src="assets/images/ppgarq.png" alt="PPGArq · Museu Nacional / UFRJ">
         <span class="inst-logos-divider" aria-hidden="true"></span>
         <img class="logo-mn" src="assets/images/museu-nacional.png" alt="Museu Nacional / UFRJ">
       </div>
@@ -1332,7 +1332,7 @@
 
       epigraphLabel: 'Ensinamento',
       epigraphQuote: '"A bela palavra é mais procurada que a pedra verde, mas encontra-se com as mulheres junto ao moinho."',
-      epigraphSource: '— Ensinamentos de Ptahhotep, Papiro Prisse, coluna 5',
+      epigraphSource: 'Ensinamentos de Ptahhotep, Papiro Prisse, coluna 5',
 
       tagOpen: 'Aberto',
       tagLocked: 'Em Breve',
@@ -1412,7 +1412,7 @@
 
       epigraphLabel: 'Teaching',
       epigraphQuote: '"Fine words are more sought after than greenstone, but can be found with the women at the grindstone."',
-      epigraphSource: '— The Teachings of Ptahhotep, Prisse Papyrus, column 5',
+      epigraphSource: 'The Teachings of Ptahhotep, Prisse Papyrus, column 5',
 
       tagOpen: 'Open',
       tagLocked: 'Coming Soon',
@@ -1426,7 +1426,7 @@
       aboutTitle: 'About the project',
       aboutIntro: 'The name <strong>Musæum</strong> comes from Latin and means "place of the Muses." In Antiquity, this was the name given to spaces of study, art, and the preservation of knowledge.',
       aboutMiddle: 'This project brings you closer to some of the most incredible stories written in Ancient Egypt during the <strong>Middle Kingdom</strong> (between 2055 and 1650 BCE), the period of greatest creativity in Egyptian literature.',
-      aboutGoal: 'Each text is presented as a narrated story, with archaeological curiosities, challenges to help you understand the content, and a hieroglyphic "code" that you gradually uncover. The idea is to bring these texts — usually only read in universities — to everyone, while respecting the originals and explaining what life and culture were like at that time.',
+      aboutGoal: 'Each text is presented as a narrated story, with archaeological curiosities, challenges to help you understand the content, and a hieroglyphic "code" that you gradually uncover. The idea is to bring these texts, usually only read in universities, to everyone, while respecting the originals and explaining what life and culture were like at that time.',
       aboutBetaNote: 'Version 1.0, with two complete stories. New texts and features keep being added.',
       aboutCiteTitle: 'How to cite',
       aboutCiteText: 'CORPAS, Flavia Lima. <em>Musæum: an interactive digital library of Ancient Egyptian literature</em>. Zenodo, 2026. DOI: 10.5281/zenodo.20617042.',
@@ -1558,7 +1558,7 @@
       const desc  = currentLang === 'pt' ? s.descPt  : s.descEn;
       card.querySelector('.card-title').textContent = title;
       card.querySelector('.card-desc').textContent  = desc;
-      card.setAttribute('aria-label', `${title} — ${s.available ? t.tagOpen : t.tagLocked}`);
+      card.setAttribute('aria-label', `${title}, ${s.available ? t.tagOpen : t.tagLocked}`);
     }
 
     document.getElementById('footerContent').innerText = t.footer;
@@ -1586,7 +1586,7 @@
       <div class="inst-logos modal-inst-logos">
         <span class="inst-logos-label">${t.instSupport}</span>
         <div class="inst-logos-plaque">
-          <img class="logo-ppgarq" src="assets/images/ppgarq.png" alt="PPGArq — Museu Nacional / UFRJ">
+          <img class="logo-ppgarq" src="assets/images/ppgarq.png" alt="PPGArq · Museu Nacional / UFRJ">
           <span class="inst-logos-divider" aria-hidden="true"></span>
           <img class="logo-mn" src="assets/images/museu-nacional.png" alt="Museu Nacional / UFRJ">
         </div>

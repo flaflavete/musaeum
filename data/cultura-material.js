@@ -1,5 +1,5 @@
 // =============================================================
-// Cultura material — fichas de proveniência dos manuscritos reais
+// Cultura material: fichas de proveniência dos manuscritos reais
 // =============================================================
 // Cada entrada reúne a foto do papiro original e os dados de catálogo
 // do museu que o guarda, separados por storyId. A ideia é mostrar ao

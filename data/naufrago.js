@@ -32,7 +32,7 @@ const I18N = {
     'artifact-btn':    'De onde vem este texto?',
     'artifact-title':  'O Manuscrito',
     'artifact-museum': 'Ver no acervo do museu →',
-    'ankh-meaning':    'Símbolo da vida eterna',
+    'ankh-meaning':    'Símbolo da vida',
     'chapter-glyph':   'HIERÓGLIFO DO CAPÍTULO',
     'challenge-count': 'DESAFIO',
     'context-label':   'NOTA ARQUEOLÓGICA',
@@ -144,7 +144,7 @@ const I18N = {
     'artifact-btn':    'Where does this text come from?',
     'artifact-title':  'The Manuscript',
     'artifact-museum': 'View in the museum collection →',
-    'ankh-meaning':    'Symbol of eternal life',
+    'ankh-meaning':    'Symbol of life',
     'chapter-glyph':   'CHAPTER HIEROGLYPH',
     'challenge-count': 'CHALLENGE',
     'context-label':   'ARCHAEOLOGICAL NOTE',
@@ -338,7 +338,7 @@ const CHAPTERS = [
   {
     titlePt: 'A Fala Eficaz',
     titleEn: 'The Effective Speech',
-    featured: { glyph: '𓂀', translit: 'wḏꜣt', meaningPt: 'o Olho de Hórus, símbolo de proteção', meaningEn: 'the Eye of Horus, protection' },
+    featured: { glyph: '𓂀', translit: 'wḏꜣt', meaningPt: 'o Olho de Hórus: logograma de wḏꜣt, "o (olho) íntegro"', meaningEn: 'the Eye of Horus: logogram of wḏꜣt, "the whole (eye)"' },
     notePt: 'A menção a <span class="gloss" data-gloss="wawat">Wawat</span> e <span class="gloss" data-gloss="senemut">Senemut</span> no Conto do Náufrago não é meramente poética; ela ancora a narrativa na realidade administrativa da XII Dinastia, situando a história em um contexto de exploração mineral e controle de fronteiras.',
     noteEn: 'The mention of <span class="gloss" data-gloss="wawat">Wawat</span> and <span class="gloss" data-gloss="senemut">Senemut</span> in the Tale of the Shipwrecked Sailor is not merely poetic; it anchors the narrative in the administrative reality of the 12th Dynasty, situating the story in a context of mineral exploration and border control.',
     storyPt: `<p class="dropcap">A expedição havia terminado. O navio finalmente atracava em solo egípcio, mas o coração do comandante estava pesado de temor. Ele havia falhado em sua missão oficial perante o soberano e temia o julgamento real.</p><p>Vendo o desespero de seu mestre, um marinheiro astuto aproximou-se. <i>"wḏꜣ jb.k ḥꜣty-ꜥ"</i> (Que teu coração prospere, líder), disse ele. "Acalme o seu coração, meu senhor, eis que chegamos em casa! O malhete foi seguro, as amarras presas e a corda da proa já toca a terra. Agradeça aos deuses, pois nossa tripulação voltou a salvo e não houve baixas em nossa jornada.</p><p>Deixamos <span class="gloss" data-gloss="wawat">Wawat</span> para trás e passamos pelas águas de <span class="gloss" data-gloss="senemut">Senemut</span>. Já retornamos sãos e salvos e pisamos em nossa terra. Agora, ouça-me: purifique-se e derrame água sobre seus dedos. Quando for levado diante do Rei e interrogado, deverá responder com firmeza e segurança, sem gaguejar. Lembre-se que a boca de um homem pode salvá-lo. Deixe-me contar-lhe o que aconteceu comigo em uma missão semelhante, para que entenda que o destino pode ser generoso, mesmo após o desastre."</p>`,
@@ -359,7 +359,7 @@ const CHAPTERS = [
   {
     titlePt: 'A Grande Viagem',
     titleEn: 'The Great Voyage',
-    featured: { glyph: '𓇳', translit: 'rꜥ', meaningPt: 'o Sol, o deus Rá, senhor do dia', meaningEn: 'the Sun, the god Ra' },
+    featured: { glyph: '𓇳', translit: 'rꜥ', meaningPt: 'o sol: logograma de rꜥ, "sol", e do nome do deus Rá', meaningEn: 'the sun: logogram of rꜥ, "sun", and of the god Ra' },
     notePt: 'O navio media <strong>120 <span class="gloss" data-gloss="covado">côvados</span></strong>, cerca de 60 metros. Para a época, isso seria o equivalente a um navio de carga gigante. O "côvado real" era a medida baseada no antebraço do <span class="gloss" data-gloss="farao">Faraó</span>.',
     noteEn: 'The ship measured <strong>120 <span class="gloss" data-gloss="covado">cubits</span></strong>, about 60 meters. At the time, this would be the equivalent of a giant cargo ship. The "royal cubit" was the measure based on the <span class="gloss" data-gloss="farao">Pharaoh\'s</span> forearm.',
     storyPt: `<p class="dropcap">"Deixa que eu te conte algo semelhante que me aconteceu quando fui enviado às minas do Soberano. Eu navegava pelo mar a bordo de um grande navio, uma embarcação de cento e vinte <span class="gloss" data-gloss="covado">côvados</span> de comprimento por quarenta de largura. Nele embarcaram cento e vinte marinheiros, escolhidos entre os melhores de todo o Egito; homens cujos corações eram mais intrépidos que o de leões. Fosse observando o céu, fosse observando a terra, eles possuíam a sabedoria de prever uma borrasca antes mesmo dela sobrevir e uma tempestade antes de rebentar. Contudo, no meio do mar, uma tormenta terrível nos atingiu."</p>`,
@@ -380,7 +380,7 @@ const CHAPTERS = [
   {
     titlePt: 'O Naufrágio',
     titleEn: 'The Shipwreck',
-    featured: { glyph: '𓈗', translit: 'mw', meaningPt: 'as águas, três linhas onduladas', meaningEn: 'the waters, three wavy lines' },
+    featured: { glyph: '𓈗', translit: 'mw', meaningPt: 'a água: ideograma de mw, "água"', meaningEn: 'water: ideogram of mw, "water"' },
     notePt: 'O termo para tempestade usado aqui é nšnı͗. No imaginário egípcio, o mar era o domínio do caos. Sobreviver a um naufrágio era visto como uma intervenção divina direta do <span class="gloss" data-gloss="ka">Ka</span>, a força vital.',
     noteEn: 'The term for storm used here is <strong>nšnı͗</strong>. In the Egyptian imagination, the sea was the domain of chaos. Surviving a shipwreck was seen as a direct divine intervention of the <span class="gloss" data-gloss="ka">Ka</span>, the life force.',
     storyPt: `<p class="dropcap">"A tormenta irrompeu enquanto ainda estávamos no <span class="gloss" data-gloss="grande-verde">Grande Verde</span>, antes que pudéssemos alcançar a terra. O vento rugiu sem parar e as ondas atingiram oito <span class="gloss" data-gloss="covado">côvados</span> de altura, chocando-se contra o mastro com tamanha violência que o navio pereceu. De todos os que estavam a bordo, ninguém sobreviveu, exceto eu. Fui arrebatado e lançado em uma ilha por uma gigantesca onda do mar."</p>`,
@@ -401,7 +401,7 @@ const CHAPTERS = [
   {
     titlePt: 'A Ilha de Abundância',
     titleEn: 'The Island of Abundance',
-    featured: { glyph: '𓄣', translit: 'ỉb', meaningPt: 'o coração, sede do pensamento', meaningEn: 'the heart, seat of thought' },
+    featured: { glyph: '𓄣', translit: 'ỉb', meaningPt: 'o coração: logograma de ỉb, "coração"', meaningEn: 'the heart: logogram of ỉb, "heart"' },
     notePt: 'A ilha é descrita como um local de abundância impossível como figos, uvas e <span class="gloss" data-gloss="incenso">incenso</span>. Para os egípcios do <span class="gloss" data-gloss="reino-medio">Reino Médio</span>, isso representava a Ilha do <span class="gloss" data-gloss="ka">Ka</span>, um plano espiritual onde a vida nunca termina.',
     noteEn: 'The island is described as a place of impossible abundance such as figs, grapes, and <span class="gloss" data-gloss="incenso">incense</span>. For <span class="gloss" data-gloss="reino-medio">Middle Kingdom</span> Egyptians, this represented the Island of the <span class="gloss" data-gloss="ka">Ka</span>, a spiritual plane where life never ends.',
     storyPt: `<p class="dropcap">"Passei três dias sozinho, tendo apenas o meu próprio coração por companheiro. Ali, estendido sob o abrigo de uma cabana, eu abraçava a minha própria sombra. Mas a terra era generosa; sobrevivi comendo o que ela me oferecia: figos, uvas, excelentes legumes, peixes e aves. Nada havia que não se encontrasse ali. Saciei-me e, em gratidão, fiz uma fogueira e queimei oferendas aos deuses, pois estava diante de uma terra de absoluta abundância."</p>`,
@@ -422,7 +422,7 @@ const CHAPTERS = [
   {
     titlePt: 'A Aparição Divina',
     titleEn: 'The Divine Appearance',
-    featured: { glyph: '𓆙', translit: 'ḥfꜣw', meaningPt: 'a serpente de poder antigo', meaningEn: 'the serpent of ancient power' },
+    featured: { glyph: '𓆙', translit: 'ḥfꜣw', meaningPt: 'a serpente: determinativo e na grafia de ḥfꜣw, "serpente"', meaningEn: 'the serpent: determinative and in the spelling of ḥfꜣw, "serpent"' },
     notePt: 'A serpente é descrita com corpo de ouro e sobrancelhas de <span class="gloss" data-gloss="lapis-lazuli">lápis-lazúli</span> real. Essas cores indicam divindade. Ela não é um monstro, mas uma entidade sábia e antiga.',
     noteEn: 'The serpent is described with body of gold and eyebrows of real <span class="gloss" data-gloss="lapis-lazuli">lapis lazuli</span>. These colors indicate divinity. He is not a monster, but a wise and ancient entity.',
     storyPt: `<p class="dropcap">"De repente, ouvi um estrondo como o de um trovão. A terra tremeu e as árvores balançaram. Quando abri os olhos, vi uma serpente gigantesca aproximando-se. Ela tinha trinta <span class="gloss" data-gloss="covado">côvados</span> de comprimento, sua pele era revestida de ouro e suas sobrancelhas eram de puro <span class="gloss" data-gloss="lapis-lazuli">lápis-lazúli</span>.</p><p>A criatura parou diante de mim e perguntou, com voz de trovão: 'Quem te trouxe, baixinho? Se demorares a me dizer quem te trouxe a esta ilha, farei com que te tornes cinzas.' Eu estava tão aterrorizado que não conseguia entender minhas próprias palavras.</p><p>A serpente, então, levou-me gentilmente em sua boca até sua morada e repetiu a pergunta. Contei-lhe sobre a missão do Rei, a tempestade e o naufrágio. Ao ouvir minha dor, a serpente me confortou: 'Não temas, não empalideças. Foi o próprio Deus quem permitiu que sobrevivesses e te trouxe a esta Ilha da Abundância. Nada te faltará. Passarás quatro meses aqui, até que um navio de tua terra venha buscar-te, e voltarás para os teus filhos e para a tua casa.'"</p>`,
@@ -443,7 +443,7 @@ const CHAPTERS = [
   {
     titlePt: 'A História da Serpente',
     titleEn: 'The Serpent\'s Tale',
-    featured: { glyph: '𓏞', translit: 'sš', meaningPt: 'o kit de escriba, escrita', meaningEn: 'the scribe kit, writing' },
+    featured: { glyph: '𓏞', translit: 'sš', meaningPt: 'o estojo do escriba: logograma de sš, "escriba", "escrever"', meaningEn: 'the scribe kit: logogram of sš, "scribe", "to write"' },
     notePt: 'O Poe analisa este trecho como um espelhamento narrativo. A Serpente conta sua própria tragédia para mostrar ao marinheiro que ele não é o único a sofrer. Ela menciona que morava com setenta e cinco parentes antes de um desastre atingir a ilha.',
     noteEn: 'Poe analyzes this part as narrative mirroring. The Serpent tells its own tragedy to show the sailor he is not the only one suffering. It mentions living with seventy-five kin before a disaster struck the island.',
     storyPt: `<p class="dropcap">"A serpente contou-me, então, sua própria tristeza. Ela vivia naquela ilha com sua família de setenta e cinco serpentes ao todo. Mas um dia, enquanto ela estava fora, uma estrela caiu do céu e incendiou o lugar, consumindo todos os seus entes queridos. Ela sobreviveu sozinha, carregando a dor da perda, assim como eu.</p><p>Ela me prometeu: 'Se fores forte e controlares teu coração, abraçarás tua mulher e verás tua casa novamente.' Prostrei-me diante dela, prometendo enviar-lhe <span class="gloss" data-gloss="incenso">incensos</span> e perfumes preciosos do Egito quando eu voltasse. Mas a serpente apenas riu e disse: 'Tu não és rico em <span class="gloss" data-gloss="mirra">mirra</span> e <span class="gloss" data-gloss="incenso">incenso</span>, mas eu sou a Senhora de <span class="gloss" data-gloss="punt">Punt</span>, e todos os perfumes me pertencem. Além disso, quando partires, esta ilha nunca mais será vista; ela afundará nas ondas.'"</p>`,
@@ -464,7 +464,7 @@ const CHAPTERS = [
   {
     titlePt: 'O Resgate e Presentes',
     titleEn: 'The Rescue and Gifts',
-    featured: { glyph: '𓊛', translit: 'dpt', meaningPt: 'barco, embarcação', meaningEn: 'boat, vessel' },
+    featured: { glyph: '𓊛', translit: 'dpt', meaningPt: 'o barco: logograma e determinativo de dpt, "barco"', meaningEn: 'the boat: logogram and determinative of dpt, "boat"' },
     notePt: 'A Serpente previu que um navio viria em quatro meses. Quando o navio chega, o marinheiro promete oferendas, mas a Serpente ri, dizendo que já possui todo o <span class="gloss" data-gloss="incenso">incenso</span> de <span class="gloss" data-gloss="punt">Punt</span>. Ela pede apenas que ele fale bem dela em sua cidade.',
     noteEn: 'The Serpent predicted a ship would come in four months. When the ship arrives, the sailor promises offerings, but the Serpent laughs, saying it already owns all the <span class="gloss" data-gloss="incenso">incense</span> of <span class="gloss" data-gloss="punt">Punt</span>. It only asks that he speak well of it in his city.',
     storyPt: `<p class="dropcap">"E então o navio chegou, como ela predissera. Corri para a praia, subi numa árvore bem alta e reconheci os que estavam a bordo[...] Então ela me deu um carregamento de <span class="gloss" data-gloss="mirra">mirra</span>, <span class="gloss" data-gloss="kohl">kohl</span>, rabos de girafa, uma grande pilha de <span class="gloss" data-gloss="incenso">incenso</span>, presas de elefante, cães de caça, macacos e toda sorte de coisas preciosas."</p>`,
@@ -485,7 +485,7 @@ const CHAPTERS = [
   {
     titlePt: 'O Fim da Jornada',
     titleEn: 'The End of the Journey',
-    featured: { glyph: '𓉐', translit: 'pr', meaningPt: 'a casa, o lar', meaningEn: 'the house, the home' },
+    featured: { glyph: '𓉐', translit: 'pr', meaningPt: 'a casa: logograma de pr, "casa", e bilítero pr', meaningEn: 'the house: logogram of pr, "house", and biliteral pr' },
     notePt: 'A ilha desaparece no final, tornando-se água novamente. Arqueologicamente, isso simboliza a natureza efêmera do contato com o divino. A história termina com o capitão recusando o consolo, um toque de realismo literário raro.',
     noteEn: 'The island disappears at the end, becoming water again. Archaeologically, this symbolizes the ephemeral nature of contact with the divine. The story ends with the captain refusing consolation, a rare touch of literary realism.',
     storyPt: `<p class="dropcap">"Voltei ao Egito, fui recebido pelo Soberano e gratificado por minha jornada.</p><p>Portanto, meu senhor, ouça-me: é proveitoso escutar o que passei. Não se entregue ao desespero."</p><p>Mas o comandante, ainda amargurado, respondeu com tristeza: "Não tente ser tão otimista, meu amigo. Quem daria água a um ganso ao amanhecer, sabendo que ele será abatido ao entardecer?"</p>`,
