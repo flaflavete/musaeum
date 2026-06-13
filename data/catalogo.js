@@ -134,12 +134,12 @@ const MUSAEUM_CATALOG = [
     descPt: 'O exílio e o retorno. O épico máximo da literatura do Reino Médio.',
     descEn: 'Exile and return. The supreme epic of Middle Kingdom literature.',
     items: [
-      { pt: 'Trigo', en: 'Wheat', icon: '🌾' },
+      { pt: 'Coroa', en: 'Crown', icon: '👑' },
       { pt: 'Falcão', en: 'Falcon', icon: '🦅' },
-      { pt: 'Onda', en: 'Wave', icon: '🌊' },
-      { pt: 'Palmeira', en: 'Palm tree', icon: '🌴' },
-      { pt: 'Espadas', en: 'Swords', icon: '⚔️' },
-      { pt: 'Lua', en: 'Moon', icon: '🌙' },
+      { pt: 'Camelo', en: 'Camel', icon: '🐪' },
+      { pt: 'Mel', en: 'Honey', icon: '🍯' },
+      { pt: 'Arco', en: 'Bow', icon: '🏹' },
+      { pt: 'Escaravelho', en: 'Scarab', icon: '🪲' },
       { pt: 'Rolo Real', en: 'Royal Scroll', icon: '📜' },
       { pt: 'Pena de Maat', en: 'Feather of Maat', icon: '🪶' }
     ],
