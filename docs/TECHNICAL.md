@@ -33,6 +33,7 @@ docs/TECHNICAL.md       Este arquivo
 | `pexels-clioseye-35506459.jpg` | Foto de fundo (fachada do templo de Horus em Edfu) |
 | `assets/images/hermitage_1115.jpeg` | Foto do Papiro Hermitage 1115 (cultura material do Náufrago) |
 | `assets/images/berlin_3022.jpg` | Foto do Papiro Berlin 3022 (cultura material do Sinué) |
+| `assets/images/mapa-egito-malte-brun-1837.jpg` | Carta de fundo do mapa interativo: «Égypte Ancienne», V. A. Malte-Brun, 1837. Domínio público, via Wikimedia Commons |
 | `ankh-icon.svg` / `ankh-icon-512.png` | Ícone do app |
 
 ---

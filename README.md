@@ -50,6 +50,7 @@ npm run test:watch        # roda os testes em modo watch (desenvolvimento)
 - **Tutorial de leitura** — introdução a logogramas, fonogramas e determinativos
 - **Tour guiado** — setas douradas apresentam a biblioteca, a coleção e as ferramentas de cada história; aparece no primeiro acesso e volta pelo botão ?
 - **Coleção** — painel na página inicial com progresso cruzado entre histórias
+- **Mapa interativo** — os lugares citados nos textos sobre uma carta de 1837; cada ponto abre um cartão com o que era e em que história aparece, e localizações debatidas vêm sinalizadas
 - **Certificado** — gerado em canvas, exportável como PNG, ao concluir todas as histórias
 - **Nome do leitor** — opcional, aparece na coleção e no certificado
 - **Participação na pesquisa** — opcional e anônima, escolhida no primeiro acesso (dados de uso, nenhuma informação pessoal)
@@ -94,6 +95,8 @@ docs/                 Documentação (técnica, dev, guia do usuário, pesquisa)
 ### Créditos
 
 Foto de fundo: Fachada do templo de Horus em Edfu, Egito · Flavia Lima Corpas, outubro de 2025.
+
+Carta de fundo do mapa interativo: «Égypte Ancienne», V. A. Malte-Brun, 1837. Domínio público, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:1837_Malte-Brun_Map_of_Ancient_Egypt,_Nubia_(_Sudan_)_and_Abyssinia_(_Ethiopia_)_-_Geographicus_-_EgyptAncient-mb-1837.jpg).
 
 Fontes: [Cinzel](https://fonts.google.com/specimen/Cinzel), [EB Garamond](https://fonts.google.com/specimen/EB+Garamond), [Noto Sans Egyptian Hieroglyphs](https://fonts.google.com/noto/specimen/Noto+Sans+Egyptian+Hieroglyphs) (Google Fonts).
 
@@ -151,6 +154,7 @@ npm run test:watch        # run tests in watch mode (development)
 - **Reading tutorial** — introduction to logograms, phonograms, and determinatives
 - **Guided tour** — golden arrows introduce the library, the collection, and each story's tools; appears on first visit and returns via the ? button
 - **Collection** — dashboard on the home page with cross-story progress
+- **Interactive map** — the places named in the texts over an 1837 chart; each marker opens a card on what it was and which story it appears in, with debated locations flagged
 - **Certificate** — generated on canvas, exportable as PNG, upon completing all stories
 - **Reader name** — optional, shown in the collection and certificate
 - **Research participation** — optional and anonymous, chosen on first visit (usage data only, no personal information)
@@ -195,6 +199,8 @@ docs/                 Documentation (technical, dev, user guide, research)
 ### Credits
 
 Background photo: Facade of the Temple of Horus at Edfu, Egypt · Flavia Lima Corpas, October 2025.
+
+Base chart of the interactive map: "Égypte Ancienne", V. A. Malte-Brun, 1837. Public domain, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:1837_Malte-Brun_Map_of_Ancient_Egypt,_Nubia_(_Sudan_)_and_Abyssinia_(_Ethiopia_)_-_Geographicus_-_EgyptAncient-mb-1837.jpg).
 
 Fonts: [Cinzel](https://fonts.google.com/specimen/Cinzel), [EB Garamond](https://fonts.google.com/specimen/EB+Garamond), [Noto Sans Egyptian Hieroglyphs](https://fonts.google.com/noto/specimen/Noto+Sans+Egyptian+Hieroglyphs) (Google Fonts).
 

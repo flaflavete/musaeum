@@ -109,8 +109,8 @@ const MUSAEUM_CATALOG = [
         meaningPt: 'Logograma: dpt, "barco"<br>Determinativo: embarcações e navegação',
         meaningEn: 'Logogram: dpt, "boat"<br>Determinative: vessels and sailing',
         typeKey: 'type-logogram',
-        notePt: 'O signo do barco é central na cultura egípcia. O Nilo era a espinha dorsal do país e o sol atravessava o céu em sua barca diária. Navios reais sepultados ao lado de pirâmides, como o de Quéops, mostram a importância religiosa do transporte fluvial.',
-        noteEn: 'The boat sign is central in Egyptian culture. The Nile was the country\'s backbone, and the sun crossed the sky in its daily bark. Royal ships buried beside pyramids, like Khufu\'s, show the religious weight of river travel.'
+        notePt: 'O signo do barco é central na cultura egípcia. O Nilo era o eixo vital do país e o sol atravessava o céu em sua barca diária. Navios reais sepultados ao lado de pirâmides, como o de Quéops, mostram a importância religiosa do transporte fluvial.',
+        noteEn: 'The boat sign is central in Egyptian culture. The Nile was the country\'s lifeline, and the sun crossed the sky in its daily bark. Royal ships buried beside pyramids, like Khufu\'s, show the religious weight of river travel.'
       },
       {
         glyph: '𓉐', translit: 'pr', chapter: 7,
