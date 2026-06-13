@@ -357,7 +357,7 @@
   /* Epígrafe do Ptahhotep */
   .epigraph {
     max-width: 620px;
-    margin: 0 auto 56px;
+    margin: 56px auto 0;
     padding: 22px 28px;
     position: relative;
     animation: fadein 1s ease 0.25s backwards;
@@ -1245,7 +1245,7 @@
     .modal-panel { padding: 30px 22px 26px; }
     .modal-title { font-size: 18px; letter-spacing: 0.08em; }
     .quote-translation { font-size: 17px; }
-    .epigraph { padding: 18px 12px; margin-bottom: 40px; }
+    .epigraph { padding: 18px 12px; margin-top: 40px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1366,7 +1366,6 @@
 
   <header class="page-header">
     <h1>Musæum</h1>
-    <div class="subtitle" id="subtitle"></div>
   </header>
 
   <nav class="tabbar" id="tabbar" role="tablist" aria-label="Seções do Musæum">
@@ -1377,6 +1376,12 @@
   </nav>
 
   <div class="tab-panel active" id="panel-inicio" role="tabpanel" aria-labelledby="tab-inicio">
+    <section aria-labelledby="libraryHeading">
+      <h2 id="libraryHeading" style="position:absolute;left:-9999px;">Biblioteca</h2>
+      <!-- Cards gerados a partir de MUSAEUM_CATALOG (data/catalogo.js) por buildLibrary() -->
+      <div class="library-grid" id="libraryGrid"></div>
+    </section>
+
     <section class="epigraph" aria-label="Epígrafe">
       <div class="epigraph-label">
         <span class="glyphs" aria-hidden="true">𓋴𓃀𓇼𓄿𓇋𓇋𓏏𓏛</span><span class="label-romanized">sbꜣyt · <span id="epigraphLabel"></span></span>
@@ -1386,12 +1391,6 @@
         <p class="quote-translation" id="epigraphQuote"></p>
       </blockquote>
       <cite class="epigraph-source" id="epigraphSource"></cite>
-    </section>
-
-    <section aria-labelledby="libraryHeading">
-      <h2 id="libraryHeading" style="position:absolute;left:-9999px;">Biblioteca</h2>
-      <!-- Cards gerados a partir de MUSAEUM_CATALOG (data/catalogo.js) por buildLibrary() -->
-      <div class="library-grid" id="libraryGrid"></div>
     </section>
   </div>
 
@@ -1806,7 +1805,6 @@
     document.getElementById('btnAbout').setAttribute('aria-label', t.aboutBtn);
     document.getElementById('btnCloseAbout').setAttribute('aria-label', t.aboutClose);
 
-    document.getElementById('subtitle').textContent = t.subtitle;
 
     document.getElementById('epigraphLabel').textContent = t.epigraphLabel;
     document.getElementById('epigraphQuote').textContent = t.epigraphQuote;
