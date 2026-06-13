@@ -2,7 +2,7 @@
 
 [🇧🇷 Português](#português) · [🇬🇧 English](#english)
 
-[![Version](https://img.shields.io/badge/version-1.0-c9a646.svg)](https://github.com/flaflavete/musaeum/releases)
+[![Version](https://img.shields.io/badge/version-1.1-c9a646.svg)](https://github.com/flaflavete/musaeum/releases)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20617042-blue.svg)](https://doi.org/10.5281/zenodo.20617042)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR)
 
@@ -53,6 +53,7 @@ npm run test:watch        # roda os testes em modo watch (desenvolvimento)
 - **Certificado** — gerado em canvas, exportável como PNG, ao concluir todas as histórias
 - **Nome do leitor** — opcional, aparece na coleção e no certificado
 - **Participação na pesquisa** — opcional e anônima, escolhida no primeiro acesso (dados de uso, nenhuma informação pessoal)
+- **Achados nas notas arqueológicas** — spans clicáveis nas notas revelam um cartão com foto, nome, referência de acervo e crédito do objeto real citado (imagens CC0/domínio público)
 - **Acessibilidade** — ARIA, foco gerenciado em modais, `prefers-reduced-motion`
 
 ### Estrutura
@@ -153,6 +154,7 @@ npm run test:watch        # run tests in watch mode (development)
 - **Certificate** — generated on canvas, exportable as PNG, upon completing all stories
 - **Reader name** — optional, shown in the collection and certificate
 - **Research participation** — optional and anonymous, chosen on first visit (usage data only, no personal information)
+- **Finds in archaeological notes** — clickable spans in the notes reveal a card with a photo, name, museum accession reference, and credit for the real object cited (CC0/public domain images)
 - **Accessibility** — ARIA labels, managed focus in modals, `prefers-reduced-motion`
 
 ### Structure
