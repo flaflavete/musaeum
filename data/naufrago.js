@@ -6,7 +6,7 @@ const I18N = {
     'challenge':       'Responder o desafio',
     'play-again':      'Recomeçar',
     'chapter':         'Capítulo',
-    'intro-kicker':    'UMA HISTÓRIA DO EGITO ANTIGO · ~1800 AEC',
+    'intro-kicker':    'UMA HISTÓRIA DO EGITO ANTIGO · ~1800 <span class="gloss" data-gloss="aec">AEC</span>',
     'intro-title':     'O Conto do Náufrago',
     'intro-subtitle':  'Uma das histórias mais antigas já escritas, agora em forma de jogo.',
     'intro-desc':      'Você vai ler a história em 8 partes baseadas no <span class="gloss" data-artifact="1">Papiro Hermitage 1115</span>. No fim de cada parte, um desafio sobre a trama ou a cultura egípcia. Acerte de primeira para coletar tesouros de <span class="gloss" data-gloss="punt">Punt</span>!',
@@ -121,7 +121,7 @@ const I18N = {
     'challenge':       'Take the challenge',
     'play-again':      'Restart',
     'chapter':         'Chapter',
-    'intro-kicker':    'AN ANCIENT EGYPTIAN TALE · c. 1800 BCE',
+    'intro-kicker':    'AN ANCIENT EGYPTIAN TALE · c. 1800 <span class="gloss" data-gloss="aec">BCE</span>',
     'intro-title':    'The Shipwrecked Sailor',
     'intro-subtitle': 'One of the oldest stories ever written, now as a game.',
     'intro-desc':     'Read the tale in 8 parts based on the <span class="gloss" data-artifact="1">Hermitage Papyrus 1115</span>. After each part, take a challenge on the plot or Egyptian culture. Answer on the first try to collect treasures from <span class="gloss" data-gloss="punt">Punt</span>!',
@@ -334,6 +334,13 @@ const GLOSSARY = [
     tagPt: 'Região', tagEn: 'Region',
     defPt: 'Área rochosa associada à região da segunda catarata do Nilo, na Núbia. As "águas de Senemut" mencionadas no Conto do Náufrago indicam que a embarcação havia partido de uma expedição muito além das fronteiras sul do Egito, adentrando as zonas de extração mineral controladas pela coroa.',
     defEn: 'Rocky area associated with the region of the second cataract of the Nile, in Nubia. The "waters of Senemut" mentioned in the Tale of the Shipwrecked Sailor indicate that the vessel had returned from an expedition far beyond Egypt\'s southern borders, into the mineral extraction zones controlled by the crown.'
+  },
+  {
+    id: 'aec',
+    termPt: 'AEC (Antes da Era Comum)', termEn: 'BCE (Before the Common Era)',
+    tagPt: 'Convenção de datação', tagEn: 'Dating convention',
+    defPt: 'Convenção secular equivalente ao antigo "a.C." (antes de Cristo). Usa o mesmo calendário, mas substitui a referência religiosa por um termo neutro, mais adequado em contextos científicos, acadêmicos e multiculturais. A Era Comum (EC) começa no ano 1 desse calendário. Em inglês: BCE (<i>Before the Common Era</i>).',
+    defEn: 'Secular convention equivalent to the old "BC" (Before Christ). Uses the same calendar but replaces the religious reference with a neutral term, more appropriate in scientific, academic, and multicultural contexts. The Common Era (CE) begins at year 1 of this calendar. In Portuguese: AEC (<i>Antes da Era Comum</i>).'
   }
 ];
 

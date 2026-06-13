@@ -6,7 +6,7 @@ const I18N = {
     'challenge':       'Responder o desafio',
     'play-again':      'Recomeçar',
     'chapter':         'Capítulo',
-    'intro-kicker':    'UMA HISTÓRIA DO EGITO ANTIGO · ~1875 AEC',
+    'intro-kicker':    'UMA HISTÓRIA DO EGITO ANTIGO · ~1875 <span class="gloss" data-gloss="aec">AEC</span>',
     'intro-title':     'A História de Sinué',
     'intro-subtitle':  'O exílio de um cortesão egípcio, agora em forma de jogo.',
     'intro-desc':      'Você vai ler a história em 8 partes. No fim de cada parte, um desafio sobre a trama ou a cultura egípcia. Acerte de primeira para coletar tesouros da terra de <span class="gloss" data-gloss="araru">Iaa</span>!',
@@ -121,7 +121,7 @@ const I18N = {
     'challenge':       'Take the challenge',
     'play-again':      'Restart',
     'chapter':         'Chapter',
-    'intro-kicker':    'AN ANCIENT EGYPTIAN TALE · c. 1875 BCE',
+    'intro-kicker':    'AN ANCIENT EGYPTIAN TALE · c. 1875 <span class="gloss" data-gloss="aec">BCE</span>',
     'intro-title':     'The Tale of Sinuhe',
     'intro-subtitle':  'The exile of an Egyptian courtier, now as a game.',
     'intro-desc':      'Read the tale in 8 parts. After each part, take a challenge on the plot or Egyptian culture. Answer on the first try to collect treasures from the land of <span class="gloss" data-gloss="araru">Yaa</span>!',
@@ -334,6 +334,13 @@ const GLOSSARY = [
     tagPt: 'Símbolo real', tagEn: 'Royal symbol',
     defPt: 'A cobra ereta (<i>Naja haje</i>) que ornava a testa dos faraós egípcios como símbolo de poder e proteção divina. Em egípcio, <i>iaret</i>, "a que se ergue". Representava a deusa Uadjet, protetora do Baixo Egito. Acreditava-se que ela cuspisse fogo nos inimigos do faraó. No hino das princesas a Sesostris, na história de Sinué, o uraeus é mencionado diretamente.',
     defEn: 'The rearing cobra (<i>Naja haje</i>) that adorned the forehead of Egyptian pharaohs as a symbol of power and divine protection. In Egyptian, <i>iaret</i>, "the one who rises". It represented the goddess Wadjet, protector of Lower Egypt. It was believed to spit fire at the pharaoh\'s enemies. In the princesses\' hymn to Sesostris in the tale of Sinuhe, the uraeus is directly mentioned.'
+  },
+  {
+    id: 'aec',
+    termPt: 'AEC (Antes da Era Comum)', termEn: 'BCE (Before the Common Era)',
+    tagPt: 'Convenção de datação', tagEn: 'Dating convention',
+    defPt: 'Convenção secular equivalente ao antigo "a.C." (antes de Cristo). Usa o mesmo calendário, mas substitui a referência religiosa por um termo neutro, mais adequado em contextos científicos, acadêmicos e multiculturais. A Era Comum (EC) começa no ano 1 desse calendário. Em inglês: BCE (<i>Before the Common Era</i>).',
+    defEn: 'Secular convention equivalent to the old "BC" (Before Christ). Uses the same calendar but replaces the religious reference with a neutral term, more appropriate in scientific, academic, and multicultural contexts. The Common Era (CE) begins at year 1 of this calendar. In Portuguese: AEC (<i>Antes da Era Comum</i>).'
   }
 ];
 

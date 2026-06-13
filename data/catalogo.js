@@ -194,7 +194,7 @@ const MUSAEUM_CATALOG = [
         namePt: 'Leão', nameEn: 'Lion',
         meaningPt: 'Logograma: rw, "leão"<br>Fonograma: bilítero rw',
         meaningEn: 'Logogram: rw, "lion"<br>Phonogram: biliteral rw',
-        typeKey: 'type-determin',
+        typeKey: 'type-bi',
         notePt: 'O leão deitado é o bilítero <i>rw</i>, usado na grafia da própria palavra <i>rw</i>, "leão". No período ptolomaico, serviu para o som "l" em nomes como Ptolomeu e Cleópatra, nos cartuchos que guiaram Champollion. Na imagética real, textos descrevem o faraó como leão em batalha, e a esfinge combina corpo de leão e cabeça humana. No duelo, Sinué vence o campeão de Retjenu com flecha e machado.',
         noteEn: 'The recumbent lion is the biliteral <i>rw</i>, used in the spelling of the word <i>rw</i>, "lion", itself. In the Ptolemaic period it served for the sound "l" in names such as Ptolemy and Cleopatra, in the cartouches that guided Champollion. In royal imagery, texts describe the pharaoh as a lion in battle, and the sphinx combines a lion body with a human head. In the duel, Sinuhe defeats the champion of Retjenu with arrow and axe.'
       },
