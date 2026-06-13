@@ -1621,6 +1621,7 @@
       tourDone:             'Concluir',
       tourSteps: [
         { title: 'A Biblioteca',     body: 'Aqui ficam os contos do Egito Antigo. Toque em um deles para começar a ler e interagir.' },
+        { title: 'O Mapa',           body: 'Sobre uma carta antiga, os lugares citados nas histórias. Toque em cada um para saber o que era e em qual conto aparece.' },
         { title: 'Sua Coleção',      body: 'Conforme avança nas histórias, você desbloqueia hieróglifos e tesouros, que se reúnem aqui.' },
         { title: 'Seu Certificado',  body: 'Complete todas as histórias disponíveis para desbloquear um certificado com o seu nome.' },
         { title: 'Sobre o Projeto',  body: 'Toque aqui para conhecer o Musæum.' }
@@ -1726,6 +1727,7 @@
       tourDone:             'Done',
       tourSteps: [
         { title: 'The Library',      body: 'This is where the tales of Ancient Egypt live. Tap one to start reading and interacting.' },
+        { title: 'The Map',          body: 'The places named in the stories, set over an old chart. Tap any of them to learn what it was and which tale it appears in.' },
         { title: 'Your Collection',  body: 'As you progress through the stories, you unlock hieroglyphs and treasures, gathered here.' },
         { title: 'Your Certificate', body: 'Complete every available story to unlock a certificate bearing your name.' },
         { title: 'About the Project', body: 'Tap here to learn about the Musæum.' }
@@ -2000,7 +2002,7 @@
     if (window.Tour && Tour.isActive()) return;
     const t = i18n[currentLang];
     const s = t.tourSteps;
-    const selectors = ['.library-grid .scroll-card', '#tab-colecao', '#tab-cert', '#btnAbout'];
+    const selectors = ['.library-grid .scroll-card', '#tab-mapa', '#tab-colecao', '#tab-cert', '#btnAbout'];
     const steps = selectors.map((sel, i) => ({ selector: sel, title: s[i].title, body: s[i].body }));
     if (window.Tour) {
       Tour.start(steps, {
