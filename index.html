@@ -1,0 +1,2434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Musæum · Biblioteca Interativa</title>
+
+<!-- Descrição e cor do tema -->
+<meta name="description" content="Musæum: biblioteca interativa bilíngue de textos literários do Egito do Reino Médio. Leitura narrativa, comentários arqueológicos e hieróglifos." />
+<meta name="theme-color" content="#1b2a3d" />
+<meta name="author" content="Flavia Lima Corpas · PPGArq / Museu Nacional / UFRJ" />
+
+<!-- Open Graph (WhatsApp, Telegram, Facebook, LinkedIn) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Musæum" />
+<meta property="og:url" content="https://www.musaeum.app/" />
+<meta property="og:title" content="Musæum · Biblioteca interativa" />
+<meta property="og:description" content="Biblioteca interativa bilíngue de textos do Egito antigo. Entre e explore as vozes do Reino Médio." />
+<meta property="og:image" content="https://www.musaeum.app/assets/images/pexels-clioseye-35506459.jpg" />
+<meta property="og:image:alt" content="Cena egípcia antiga com hieróglifos dourados" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:locale:alternate" content="en_US" />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Musæum · Biblioteca interativa" />
+<meta name="twitter:description" content="Biblioteca interativa bilíngue de textos do Egito antigo. Entre e explore as vozes do Reino Médio." />
+<meta name="twitter:image" content="https://www.musaeum.app/assets/images/pexels-clioseye-35506459.jpg" />
+
+<!-- Favicon SVG inline: ankh dourado em fundo azul-noite -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%231b2a3d' rx='10'/><g fill='none' stroke='%23c9a646' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'><ellipse cx='32' cy='22' rx='10' ry='12'/><line x1='17' y1='38' x2='47' y2='38'/><line x1='32' y1='34' x2='32' y2='57'/></g></svg>" />
+<link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%231b2a3d' rx='10'/><g fill='none' stroke='%23c9a646' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'><ellipse cx='32' cy='22' rx='10' ry='12'/><line x1='17' y1='38' x2='47' y2='38'/><line x1='32' y1='34' x2='32' y2='57'/></g></svg>" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<!-- Fallback só para o aleph (ꜣ) e ayin (ꜥ) egiptológicos, que as fontes do iOS não trazem -->
+<link href="https://fonts.googleapis.com/css2?family=Gentium+Plus&text=%EA%9C%A2%EA%9C%A3%EA%9C%A4%EA%9C%A5&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --papyrus:       #f1e4c6;
+    --papyrus-soft:  #c9b894;
+    --papyrus-dim:   #9a8b6d;
+    --ink:           #1b2a3d;
+    --ink-elevated:  #243449;
+    --ink-raised:    #2d3f57;
+    --gold:          #c9a646;
+    --gold-dark:     #a0801e;
+    --gold-light:    #e8c866;
+    --terracotta-lt: #d97a5c;
+  }
+
+  /* ========== TEMA CLARO ========== */
+  :root[data-theme="light"] {
+    --papyrus:       #0d0a06;
+    --papyrus-soft:  #271e11;
+    --papyrus-dim:   #3d2e1e;
+    --papyrus-dark:  #120d08;
+    --ink:           #fdf8ee;
+    --ink-elevated:  #f5ecd8;
+    --ink-raised:    #eaddb8;
+    --ink-soft:      #dfd0a0;
+    --gold:          #5c480e;
+    --gold-dark:     #42340a;
+    --gold-light:    #7a5e14;
+    --terracotta:    #6e1e0d;
+    --terracotta-lt: #8a2b18;
+    --terracotta-dk: #4e1508;
+    --shadow:        rgba(29, 53, 87, 0.20);
+  }
+
+  html[data-theme="light"],
+  html[data-theme="light"] body {
+    background:
+      linear-gradient(rgba(245, 237, 216, 0.72), rgba(232, 220, 192, 0.78)),
+      url('assets/images/pexels-clioseye-35506459.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--papyrus);
+  }
+
+  html[data-theme="light"] body::before {
+    opacity: 0.25;
+    mix-blend-mode: multiply;
+  }
+
+  html[data-theme="light"] .about-btn,
+  html[data-theme="light"] .lang-toggle {
+    background: rgba(29, 53, 87, 0.08);
+  }
+
+  html[data-theme="light"] .scroll-card {
+    background: linear-gradient(180deg, rgba(255,252,246,0.90), rgba(248,242,226,0.85));
+  }
+
+  html[data-theme="light"] .scroll-card.locked {
+    background: rgba(245, 237, 216, 0.70);
+  }
+
+  html[data-theme="light"] .modal-panel {
+    background: linear-gradient(180deg, #f5edd8 0%, #ede3c8 100%);
+  }
+
+  html[data-theme="light"] .modal-close {
+    background: rgba(29, 53, 87, 0.08);
+  }
+
+  .btn-theme {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    background: rgba(27, 42, 61, 0.5);
+    border: 1.5px solid var(--gold-dark);
+    color: var(--gold);
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    backdrop-filter: blur(4px);
+  }
+  .btn-theme:hover {
+    color: var(--gold-light);
+    border-color: var(--gold);
+  }
+  .btn-theme:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+  html[data-theme="light"] .btn-theme {
+    background: rgba(29, 53, 87, 0.08);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    min-height: 100vh;
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', Georgia, serif;
+    color: var(--papyrus);
+    background:
+      linear-gradient(rgba(20, 32, 47, 0.85), rgba(27, 42, 61, 0.85)),
+      url('assets/images/pexels-clioseye-35506459.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    line-height: 1.6;
+  }
+
+  /* iOS Safari não suporta background-attachment: fixed e pode esticar a foto */
+  @media (hover: none), (pointer: coarse) {
+    html, body,
+    html[data-theme="light"],
+    html[data-theme="light"] body {
+      background-attachment: scroll;
+    }
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 15% 22%, rgba(201, 166, 70, 0.08) 0 2px, transparent 3px),
+      radial-gradient(circle at 78% 45%, rgba(201, 166, 70, 0.06) 0 2px, transparent 3px),
+      radial-gradient(circle at 32% 78%, rgba(201, 166, 70, 0.09) 0 3px, transparent 4px),
+      radial-gradient(circle at 88% 88%, rgba(201, 166, 70, 0.05) 0 2px, transparent 3px),
+      radial-gradient(circle at 55% 15%, rgba(201, 166, 70, 0.07) 0 2px, transparent 3px);
+    background-size: 340px 340px;
+    opacity: 0.6;
+    mix-blend-mode: screen;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 32px 20px 40px;
+    text-align: center;
+    animation: fadein 1s ease;
+  }
+
+  @keyframes fadein {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .about-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    background: rgba(27, 42, 61, 0.5);
+    border: 1.5px solid var(--gold-dark);
+    color: var(--papyrus-soft);
+    padding: 7px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.25s ease, border-color 0.25s ease;
+    text-transform: uppercase;
+    backdrop-filter: blur(4px);
+  }
+  .about-btn:hover {
+    color: var(--gold-light);
+    border-color: var(--gold);
+  }
+  .about-btn:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+  .about-btn .info-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid currentColor;
+    font-size: 10px;
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1;
+  }
+  
+  .lang-toggle {
+    display: inline-flex;
+    border: 1.5px solid var(--gold-dark);
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(27, 42, 61, 0.5);
+    backdrop-filter: blur(4px);
+  }
+  .lang-toggle button {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    background: transparent;
+    border: none;
+    color: var(--papyrus-soft);
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .lang-toggle button.active {
+    background: var(--gold);
+    color: var(--ink);
+  }
+  .lang-toggle button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-header {
+    animation: fadein 1s ease 0.1s backwards;
+  }
+
+  h1 { font-family: 'Cinzel', 'Gentium Plus', serif; font-size: clamp(36px, 5vw, 56px); color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .subtitle { font-family: 'Cinzel', 'Gentium Plus', serif; color: var(--terracotta-lt); letter-spacing: 0.3em; font-size: 14px; margin-bottom: 24px; text-transform: uppercase; }
+
+  /* ===== Abas (Início · Mapa · Coleção · Certificado) ===== */
+  .tabbar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 auto 38px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(201, 166, 70, 0.15);
+    animation: fadein 1s ease 0.15s backwards;
+  }
+  .tabbar .tab {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--papyrus-dim);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 8px 16px 10px;
+    margin-bottom: -15px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .tabbar .tab:hover { color: var(--gold-light); }
+  .tabbar .tab.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+    text-shadow: 0 0 18px rgba(201, 166, 70, 0.25);
+  }
+  .tabbar .tab:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+  .tab-panel { animation: fadein 0.5s ease; }
+  .tab-panel[hidden] { display: none; }
+
+  /* Cabeçalho de cada painel (Mapa / Coleção) */
+  .panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .panel-body { animation: fadein 0.5s ease; }
+
+  /* Como painéis autônomos, não herdam a borda/margem de empilhamento */
+  .tab-panel.geo-section,
+  .tab-panel.collection-section,
+  .tab-panel.certificate-section {
+    margin-top: 0;
+    border-top: none;
+    padding-top: 0;
+  }
+  .about-beta-note { font-size: 0.82em; color: var(--terracotta-lt); font-style: italic; margin-top: 16px; opacity: 0.8; }
+  .modal-cite { margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(201,166,70,0.2); font-size: 0.86em; color: var(--papyrus-soft); line-height: 1.55; }
+  .modal-cite .modal-subtitle { margin-top: 0; }
+  .modal-cite .cite-ref { font-style: normal; }
+  .modal-cite a { color: var(--gold-light); word-break: break-word; }
+  .modal-license { margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--gold-dark); text-align: center; }
+  .modal-license a { opacity: 0.65; transition: opacity 0.2s; display: inline-block; }
+  .modal-license a:hover { opacity: 1; }
+  .footer-license-badge { display: block; margin-top: 10px; opacity: 0.65; transition: opacity 0.2s; }
+  .footer-license-badge:hover { opacity: 1; }
+
+  /* Epígrafe do Ptahhotep */
+  .epigraph {
+    max-width: 620px;
+    margin: 0 auto 56px;
+    padding: 22px 28px;
+    position: relative;
+    animation: fadein 1s ease 0.25s backwards;
+  }
+  .epigraph::before, .epigraph::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 1px;
+    margin: 0 auto;
+    background: linear-gradient(90deg, transparent, rgba(201,166,70,0.5), transparent);
+  }
+  .epigraph::before { margin-bottom: 18px; }
+  .epigraph::after { margin-top: 18px; }
+  .epigraph-label {
+    color: var(--gold);
+    font-size: 20px;
+    margin-bottom: 14px;
+    line-height: 1;
+  }
+  .epigraph-label .glyphs {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    letter-spacing: 0.05em;
+  }
+  .epigraph-label .label-romanized {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-left: 10px;
+    opacity: 0.75;
+    vertical-align: middle;
+    color: var(--papyrus-soft);
+  }
+  .epigraph blockquote {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  .quote-translit {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-style: italic;
+    color: var(--gold-light);
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    opacity: 0.9;
+  }
+  .quote-translation {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    color: var(--papyrus);
+    font-size: 19px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .epigraph-source {
+    display: block;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--papyrus-dim);
+    margin-top: 16px;
+  }
+
+  .library-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  .scroll-card {
+    background: linear-gradient(180deg, rgba(36,52,73,0.7), rgba(27,42,61,0.9));
+    border: 1px solid var(--gold-dark);
+    border-radius: 12px;
+    padding: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    display: block;
+    backdrop-filter: blur(4px);
+    animation: fadein-card 0.7s ease backwards;
+  }
+  .scroll-card:nth-child(1) { animation-delay: 0.35s; }
+  .scroll-card:nth-child(2) { animation-delay: 0.55s; }
+  .scroll-card:nth-child(3) { animation-delay: 0.75s; }
+  .scroll-card:nth-child(4) { animation-delay: 0.95s; }
+
+  @keyframes fadein-card {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .scroll-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+  }
+  .scroll-card:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
+    border-color: var(--gold);
+  }
+  .scroll-card.locked {
+    background: rgba(27,42,61,0.5);
+    border-color: rgba(154,139,109,0.3);
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .scroll-card.locked:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(154,139,109,0.3);
+  }
+  .scroll-card.more-soon {
+    background: transparent;
+    border: 1px dashed rgba(201,166,70,0.35);
+    cursor: default;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 180px;
+  }
+  .scroll-card.more-soon:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(201,166,70,0.35);
+  }
+  .scroll-card.more-soon .more-glyph {
+    font-size: 40px;
+    opacity: 0.7;
+    margin-bottom: 12px;
+  }
+  .scroll-card.more-soon .card-title {
+    color: var(--gold);
+    font-size: 17px;
+  }
+  .scroll-card.more-soon .card-desc {
+    color: var(--papyrus-dim);
+  }
+
+  .status-tag {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+  .tag-ready { background: rgba(201,166,70,0.15); color: var(--gold); border: 1px solid rgba(201,166,70,0.3); }
+  .tag-locked { background: rgba(217,122,92,0.1); color: var(--terracotta-lt); border: 1px solid rgba(217,122,92,0.2); }
+
+  .card-glyph { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 48px; color: var(--gold); margin-bottom: 16px; line-height: 1; }
+  .card-title { font-family: 'Cinzel', 'Gentium Plus', serif; font-size: 20px; font-weight: 700; color: var(--papyrus); margin-bottom: 10px; }
+  .card-desc { font-size: 15px; color: var(--papyrus-soft); line-height: 1.5; }
+
+  footer {
+    margin-top: 80px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(201, 166, 70, 0.2);
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--papyrus-dim);
+    line-height: 1.6;
+    white-space: pre-line;
+  }
+
+  /* Logos institucionais (plaquinha clara, legível em ambos os temas) */
+  .inst-logos {
+    margin: 22px auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .inst-logos-label {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--papyrus-dim);
+    opacity: 0.75;
+  }
+  .inst-logos-plaque {
+    display: inline-flex;
+    align-items: center;
+    gap: 26px;
+    padding: 12px 22px;
+    background: #f4ecde;
+    border: 1px solid rgba(201, 166, 70, 0.35);
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
+  }
+  .inst-logos-plaque img {
+    display: block;
+    width: auto;
+    opacity: 0.95;
+    transition: opacity 0.2s;
+  }
+  .inst-logos-plaque img.logo-ppgarq { height: 38px; }
+  .inst-logos-plaque img.logo-mn { height: 30px; }
+  .inst-logos-plaque a:hover img { opacity: 1; }
+  .inst-logos-divider {
+    width: 1px;
+    align-self: stretch;
+    background: rgba(201, 166, 70, 0.4);
+  }
+  /* No modal, um pouco menores */
+  .modal-inst-logos { margin: 16px 0 0; }
+  .modal-inst-logos .inst-logos-plaque { gap: 20px; padding: 10px 18px; }
+  .modal-inst-logos .inst-logos-plaque img.logo-ppgarq { height: 32px; }
+  .modal-inst-logos .inst-logos-plaque img.logo-mn { height: 26px; }
+  @media (max-width: 480px) {
+    .inst-logos-plaque { gap: 18px; padding: 10px 16px; }
+    .inst-logos-plaque img.logo-ppgarq { height: 32px; }
+    .inst-logos-plaque img.logo-mn { height: 25px; }
+    /* abas mais compactas pra caber as quatro em uma linha */
+    .tabbar { gap: 2px; }
+    .tabbar .tab { font-size: 11px; letter-spacing: 0.08em; padding: 8px 9px 10px; }
+  }
+
+  /* Modal "Sobre o Projeto" */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 14, 22, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden; /* some também para leitores de tela e Tab */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .modal-backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+  .modal-panel {
+    background: linear-gradient(180deg, #253549 0%, #1b2a3d 100%);
+    border: 1.5px solid var(--gold-dark);
+    border-radius: 14px;
+    max-width: 680px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 36px 40px 32px;
+    position: relative;
+    text-align: left;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    transform: translateY(16px) scale(0.98);
+    transition: transform 0.3s ease;
+  }
+  .modal-backdrop.show .modal-panel {
+    transform: translateY(0) scale(1);
+  }
+  .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-dark);
+    background: rgba(27, 42, 61, 0.7);
+    color: var(--papyrus-soft);
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    padding: 0 0 3px 0;
+  }
+  .modal-close:hover { color: var(--gold-light); border-color: var(--gold); }
+  .modal-close:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .modal-title-glyph {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    color: var(--gold);
+    font-size: 36px;
+    line-height: 1;
+    margin-bottom: 6px;
+    text-shadow: 0 0 18px rgba(201,166,70,0.25);
+  }
+  .modal-title {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    color: var(--gold);
+    font-size: 22px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(201,166,70,0.25);
+  }
+  .modal-body p {
+    color: var(--papyrus);
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+  .modal-body .meaning-glyph {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    color: var(--gold-light);
+    font-size: 20px;
+    margin: 0 2px;
+    vertical-align: -2px;
+  }
+  .modal-body strong { color: var(--gold-light); font-weight: 600; }
+  .modal-body em { color: var(--papyrus); font-style: italic; }
+  .modal-subtitle {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    color: var(--gold-light);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 24px 0 12px;
+  }
+  .modal-biblio {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+  }
+  .modal-biblio li {
+    font-size: 13.5px;
+    color: var(--papyrus-soft);
+    line-height: 1.55;
+    padding: 6px 0 6px 20px;
+    position: relative;
+  }
+  .modal-biblio li::before {
+    content: '𓏛';
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    color: var(--gold);
+    position: absolute;
+    left: 0;
+    top: 6px;
+    font-size: 13px;
+    opacity: 0.8;
+  }
+  .modal-credit {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(201,166,70,0.2);
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--papyrus-dim);
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  /* ===== COLEÇÃO / INVENTÁRIO ===== */
+  .collection-section {
+    margin-top: 56px;
+    border-top: 1px solid rgba(201, 166, 70, 0.15);
+  }
+
+  /* ===== Mapa interativo ===== */
+  .geo-intro {
+    text-align: center;
+    max-width: 560px;
+    margin: 4px auto 22px;
+    color: var(--papyrus-soft);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .geo-map-wrap {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 26px;
+    align-items: start;
+  }
+  .geo-map {
+    background: rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--gold-dark);
+    border-radius: 8px;
+    padding: 8px;
+  }
+  .geo-stage { position: relative; line-height: 0; }
+  .geo-basemap {
+    width: 100%; height: auto; display: block; border-radius: 4px;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.28);
+  }
+  .geo-markers { position: absolute; inset: 0; }
+  .geo-credit {
+    margin: 8px 2px 0; font-size: 10px; line-height: 1.45;
+    color: var(--papyrus-dim); font-family: 'Cinzel', serif; letter-spacing: 0.02em;
+  }
+
+  /* Marcadores sobre a carta */
+  .geo-marker {
+    position: absolute; transform: translate(-50%, -50%);
+    display: flex; align-items: center; gap: 6px;
+    background: none; border: none; padding: 0; margin: 0;
+    cursor: pointer; white-space: nowrap;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+  }
+  .geo-marker:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+  .geo-pin {
+    width: 13px; height: 13px; border-radius: 50%;
+    border: 2px solid #1b1206; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0; transition: transform 0.16s ease;
+  }
+  /* Cores dos pinos por história: geradas em data/geografia.js
+     (.geo-pin--<storyId>), derivadas do catálogo. Multi = gradiente inline. */
+  .geo-marker--uncertain .geo-pin { border-style: dashed; }
+  .geo-tag {
+    font-size: 13px; letter-spacing: 0.02em; font-weight: 700;
+    color: #2a1c08; background: rgba(244, 233, 205, 0.88);
+    border: 1px solid rgba(120, 92, 30, 0.5); border-radius: 4px;
+    padding: 1px 6px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  .geo-q { color: #9a5a14; font-weight: 700; }
+  .geo-marker:hover .geo-pin,
+  .geo-marker--selected .geo-pin { transform: scale(1.28); }
+  .geo-marker:hover .geo-tag,
+  .geo-marker--selected .geo-tag {
+    background: var(--gold-light); color: #1b1206; border-color: var(--gold-dark);
+  }
+  .geo-marker--selected { z-index: 3; }
+
+  /* Marcadores de borda (lugares fora da carta) com seta */
+  .geo-marker--edge { transform: translateX(-50%); flex-direction: column; gap: 1px; }
+  .geo-edge--s { flex-direction: column-reverse; }
+  .geo-arrow {
+    font-size: 13px; line-height: 1; color: var(--papyrus-dim);
+    text-shadow: 0 1px 2px rgba(244, 233, 205, 0.8);
+  }
+  /* Cor da seta por história: .geo-arrow--<storyId> (data/geografia.js). */
+  .geo-marker--edge .geo-tag { font-size: 12px; }
+
+  /* Painel de detalhe + legenda */
+  .geo-panel {
+    background: var(--ink-elevated);
+    border: 1px solid var(--gold-dark);
+    border-radius: 8px;
+    padding: 18px 20px;
+    min-height: 120px;
+  }
+  .geo-panel-hint { color: var(--papyrus-dim); font-size: 14px; line-height: 1.6; margin: 0; }
+  .geo-panel-head { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+  .geo-panel-kind {
+    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .geo-panel-name {
+    font-family: 'Cinzel', 'Gentium Plus', serif; font-size: 20px;
+    color: var(--papyrus); margin: 0; font-weight: 700;
+  }
+  .geo-panel-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .geo-badge {
+    font-size: 10px; letter-spacing: 0.04em; padding: 2px 9px; border-radius: 999px;
+    border: 1px solid; font-family: 'Cinzel', serif;
+  }
+  /* Cor do selo por história: .geo-badge--<storyId> (data/geografia.js). */
+  .geo-panel-desc { color: var(--papyrus-soft); font-size: 14px; line-height: 1.7; margin: 0; }
+  .geo-panel-uncertain {
+    margin: 12px 0 0; padding-top: 10px; border-top: 1px solid rgba(201,166,70,0.2);
+    color: var(--papyrus-dim); font-size: 12px; font-style: italic; line-height: 1.5;
+  }
+  .geo-legend {
+    list-style: none; margin: 16px 0 0; padding: 0;
+    display: flex; flex-wrap: wrap; gap: 8px 18px;
+  }
+  .geo-legend li {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 12px; color: var(--papyrus-dim);
+  }
+  .geo-legend .geo-swatch {
+    width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0;
+    border: 1px solid var(--ink);
+  }
+  /* Cor do quadradinho por história: .geo-swatch--<storyId> e
+     .geo-swatch--multi (data/geografia.js). */
+  .geo-swatch.geo--uncertain {
+    background: transparent; border: 1.4px dashed var(--papyrus-dim);
+  }
+
+  @media (max-width: 760px) {
+    .geo-map-wrap { grid-template-columns: 1fr; gap: 16px; }
+    .geo-tag, .geo-marker--edge .geo-tag { font-size: 10px; padding: 0 4px; }
+    .geo-pin { width: 11px; height: 11px; }
+  }
+  .collection-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font: inherit;
+    gap: 12px;
+  }
+  .collection-header:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+  .collection-heading-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    justify-content: center;
+  }
+  .collection-heading {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-shadow: 0 0 18px rgba(201,166,70,0.25);
+  }
+  .collection-summary {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--papyrus-dim);
+    background: rgba(201, 166, 70, 0.08);
+    border: 1px solid rgba(201, 166, 70, 0.2);
+    border-radius: 999px;
+    padding: 2px 9px;
+  }
+  .collection-chevron {
+    color: var(--gold);
+    font-size: 11px;
+    opacity: 0.5;
+    transition: transform 0.35s ease, opacity 0.25s;
+    flex-shrink: 0;
+  }
+  .collection-section:hover .collection-chevron,
+  .collection-section.open .collection-chevron {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+  /* animação de abertura com grid trick (altura real, sem max-height fixo) */
+  .collection-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease;
+  }
+  .collection-body-inner { overflow: hidden; }
+  .collection-section:hover .collection-body,
+  .collection-section.open .collection-body {
+    grid-template-rows: 1fr;
+  }
+  .collection-player {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--papyrus-dim);
+    text-align: center;
+    padding: 6px 0 22px;
+  }
+  .collection-player .player-name-val { color: var(--papyrus-soft); }
+  .edit-name-btn {
+    background: none;
+    border: none;
+    color: var(--papyrus-dim);
+    cursor: pointer;
+    font-size: 13px;
+    padding: 0 0 0 5px;
+    opacity: 0.55;
+    transition: opacity 0.2s;
+    vertical-align: middle;
+  }
+  .edit-name-btn:hover { opacity: 1; }
+  .collection-game-name {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--papyrus-dim);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .collection-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    padding-bottom: 24px;
+  }
+  .col-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 60px;
+  }
+  .col-item-icon {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 26px;
+    border: 1px solid rgba(201, 166, 70, 0.1);
+    background: rgba(201, 166, 70, 0.04);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .col-item-icon.is-glyph {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0;
+  }
+  .col-item.earned .col-item-icon {
+    background: rgba(201, 166, 70, 0.14);
+    border-color: rgba(201, 166, 70, 0.35);
+  }
+  .col-item.locked .col-item-icon {
+    filter: grayscale(1) opacity(0.28);
+  }
+  .col-item-label {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-size: 11px;
+    color: var(--papyrus-dim);
+    text-align: center;
+    line-height: 1.2;
+  }
+  .col-item.earned .col-item-label { color: var(--papyrus-soft); }
+  .collection-empty {
+    text-align: center;
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-style: italic;
+    color: var(--papyrus-dim);
+    font-size: 15px;
+    padding: 4px 0 20px;
+  }
+  /* ===== FICHA DO GLIFO (popup, igual ao naufrago) ===== */
+  .glyph-sheet { text-align: center; }
+  .glyph-sheet .sheet-big {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    font-size: 110px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 10px;
+    text-shadow: 0 0 40px rgba(201, 166, 70, 0.3);
+  }
+  .glyph-sheet .sheet-translit {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-style: italic;
+    font-size: 24px;
+    color: var(--terracotta-lt);
+    margin-bottom: 4px;
+  }
+  .glyph-sheet .sheet-name {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 15px;
+    letter-spacing: 0.15em;
+    color: var(--papyrus);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .sheet-rows {
+    text-align: left;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .sheet-row {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px dashed rgba(201, 166, 70, 0.2);
+  }
+  .sheet-row:last-child { border-bottom: none; }
+  .sheet-row .row-label {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    flex-shrink: 0;
+    width: 110px;
+    padding-top: 2px;
+  }
+  .sheet-row .row-value {
+    color: var(--papyrus-soft);
+    font-size: 15px;
+    line-height: 1.55;
+    flex: 1;
+  }
+  .col-item.earned { cursor: pointer; }
+  .col-item.earned:hover .col-item-icon {
+    border-color: rgba(201, 166, 70, 0.6);
+    background: rgba(201, 166, 70, 0.22);
+  }
+
+  /* ===== MODAL NOME ===== */
+  .name-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden; /* some também para leitores de tela e Tab */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .name-modal-backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+  .name-modal-panel {
+    background: linear-gradient(180deg, #1a2535 0%, #131e2e 100%);
+    border: 1px solid rgba(201, 166, 70, 0.3);
+    border-radius: 14px;
+    padding: 40px 32px 32px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+  }
+  .name-modal-glyph {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    font-size: 52px;
+    color: var(--gold);
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+  .name-modal-title {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 15px;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .name-modal-sub {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--papyrus-dim);
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+  .name-input {
+    width: 100%;
+    background: rgba(241, 228, 198, 0.07);
+    border: 1px solid rgba(201, 166, 70, 0.3);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-size: 18px;
+    color: var(--papyrus);
+    text-align: center;
+    margin-bottom: 14px;
+    outline: none;
+    transition: border-color 0.25s ease;
+    box-sizing: border-box;
+  }
+  .name-input:focus { border-color: rgba(201, 166, 70, 0.7); }
+  .name-input::placeholder { color: var(--papyrus-dim); opacity: 0.6; }
+  .name-modal-btn {
+    width: 100%;
+    padding: 12px;
+    background: rgba(201, 166, 70, 0.12);
+    border: 1.5px solid rgba(201, 166, 70, 0.45);
+    border-radius: 8px;
+    color: var(--gold);
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    margin-bottom: 12px;
+  }
+  .name-modal-btn:hover {
+    background: rgba(201, 166, 70, 0.22);
+    border-color: var(--gold);
+  }
+  .name-modal-skip {
+    background: none;
+    border: none;
+    color: var(--papyrus-dim);
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+  }
+  .name-modal-skip:hover { color: var(--papyrus-soft); }
+  .research-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    text-align: left;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  .research-consent input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    margin: 2px 0 0;
+    border: 1.5px solid rgba(201, 166, 70, 0.5);
+    border-radius: 4px;
+    background: rgba(241, 228, 198, 0.05);
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .research-consent input[type="checkbox"]:hover { border-color: var(--gold); }
+  .research-consent input[type="checkbox"]:checked {
+    background: rgba(201, 166, 70, 0.85);
+    border-color: var(--gold);
+  }
+  .research-consent input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #131e2e;
+  }
+  .research-consent input[type="checkbox"]:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+  .research-consent-text {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: var(--papyrus-dim);
+  }
+  .research-consent-text .en { display: block; opacity: 0.7; margin-top: 2px; }
+  .lang-choice-row { display: flex; gap: 14px; margin-top: 4px; }
+  .lang-choice {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 22px 12px;
+    background: rgba(241, 228, 198, 0.05);
+    border: 1.5px solid rgba(201, 166, 70, 0.3);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.1s;
+  }
+  .lang-choice:hover { background: rgba(201, 166, 70, 0.14); border-color: var(--gold); }
+  .lang-choice:active { transform: scale(0.97); }
+  .lang-choice:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  .lang-name {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--papyrus-soft);
+  }
+
+  @media (max-width: 560px) {
+    .topbar { justify-content: center; }
+    .modal-panel { padding: 30px 22px 26px; }
+    .modal-title { font-size: 18px; letter-spacing: 0.08em; }
+    .quote-translation { font-size: 17px; }
+    .epigraph { padding: 18px 12px; margin-bottom: 40px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ===== CERTIFICADO ===== */
+  .certificate-section {
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(201, 166, 70, 0.25);
+    text-align: center;
+    animation: fadein 0.9s ease;
+  }
+  .cert-heading {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .cert-unlock-msg {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--papyrus-soft);
+    margin-bottom: 26px;
+    line-height: 1.6;
+  }
+  .cert-locked-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 28px 24px;
+    border: 1.5px dashed rgba(201, 166, 70, 0.30);
+    border-radius: 12px;
+    background: rgba(201, 166, 70, 0.04);
+    max-width: 420px;
+    margin: 0 auto 28px;
+  }
+  .cert-lock-icon {
+    font-size: 32px;
+    opacity: 0.45;
+    line-height: 1;
+  }
+  .cert-locked-msg {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--papyrus-soft);
+    opacity: 0.65;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .cert-open-btn {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 11px 30px;
+    border: 1.5px solid var(--gold);
+    border-radius: 999px;
+    background: rgba(201, 166, 70, 0.1);
+    color: var(--gold);
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s, border-color 0.25s;
+    backdrop-filter: blur(4px);
+    margin-bottom: 28px;
+  }
+  .cert-open-btn:hover {
+    background: rgba(201, 166, 70, 0.2);
+    color: var(--gold-light);
+    border-color: var(--gold-light);
+  }
+  .cert-open-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  #certCanvas {
+    max-width: 100%;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 10px 50px rgba(0,0,0,0.55);
+  }
+  .cert-btn-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+
+</style>
+</head>
+<body>
+
+<p class="sr-only">Imagem de fundo: Fachada do templo de Horus em Edfu, Egito. Foto de Flavia Lima Corpas, outubro de 2025.</p>
+
+<main class="container">
+
+  <nav class="topbar" aria-label="Controles da página">
+    <button class="about-btn" id="btnAbout" type="button" onclick="openAbout()" aria-haspopup="dialog">
+      <span class="info-mark" aria-hidden="true">i</span>
+      <span id="btnAboutLabel">Sobre</span>
+    </button>
+    <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+      <button class="active" id="btn-pt" type="button" onclick="setLang('pt')" aria-pressed="true">PT</button>
+      <button id="btn-en" type="button" onclick="setLang('en')" aria-pressed="false">EN</button>
+    </div>
+    <button id="btnTheme" class="btn-theme" type="button" onclick="toggleTheme()" aria-label="Alternar tema claro/escuro" title="Tema claro/escuro">☀</button>
+    <button id="btnTour" class="btn-theme" type="button" onclick="startHomeTour()" aria-label="Tutorial" title="Tutorial">?</button>
+  </nav>
+
+  <header class="page-header">
+    <h1>Musæum</h1>
+    <div class="subtitle" id="subtitle"></div>
+  </header>
+
+  <nav class="tabbar" id="tabbar" role="tablist" aria-label="Seções do Musæum">
+    <button class="tab active" id="tab-inicio"  role="tab" aria-selected="true"  aria-controls="panel-inicio"  data-tab="inicio"  data-t="tabInicio"  type="button" onclick="showTab('inicio')"></button>
+    <button class="tab"        id="tab-mapa"    role="tab" aria-selected="false" aria-controls="panel-mapa"    data-tab="mapa"    data-t="tabMapa"    type="button" tabindex="-1" onclick="showTab('mapa')"></button>
+    <button class="tab"        id="tab-colecao" role="tab" aria-selected="false" aria-controls="panel-colecao" data-tab="colecao" data-t="tabColecao" type="button" tabindex="-1" onclick="showTab('colecao')"></button>
+    <button class="tab"        id="tab-cert"    role="tab" aria-selected="false" aria-controls="panel-cert"    data-tab="cert"    data-t="tabCert"    type="button" tabindex="-1" onclick="showTab('cert')"></button>
+  </nav>
+
+  <div class="tab-panel active" id="panel-inicio" role="tabpanel" aria-labelledby="tab-inicio">
+    <section class="epigraph" aria-label="Epígrafe">
+      <div class="epigraph-label">
+        <span class="glyphs" aria-hidden="true">𓋴𓃀𓇼𓄿𓇋𓇋𓏏𓏛</span><span class="label-romanized">sbꜣyt · <span id="epigraphLabel"></span></span>
+      </div>
+      <blockquote>
+        <p class="quote-translit" lang="egy" aria-label="Transliteração do egípcio antigo">dgꜣ mdt nfrt r wꜣḏ,<br>jw gm st m-ꜥ ḥmwt ḥr bnwt</p>
+        <p class="quote-translation" id="epigraphQuote"></p>
+      </blockquote>
+      <cite class="epigraph-source" id="epigraphSource"></cite>
+    </section>
+
+    <section aria-labelledby="libraryHeading">
+      <h2 id="libraryHeading" style="position:absolute;left:-9999px;">Biblioteca</h2>
+      <!-- Cards gerados a partir de MUSAEUM_CATALOG (data/catalogo.js) por buildLibrary() -->
+      <div class="library-grid" id="libraryGrid"></div>
+    </section>
+  </div>
+
+  <section class="geo-section tab-panel" id="panel-mapa" role="tabpanel" aria-labelledby="tab-mapa" hidden>
+    <div class="panel-heading">
+      <span class="collection-heading" id="geoHeading"></span>
+      <span class="collection-summary" id="geoSummary"></span>
+    </div>
+    <div class="panel-body">
+      <p class="geo-intro" id="geoIntro"></p>
+      <div class="geo-map-wrap">
+        <div class="geo-map">
+          <!-- Carta antiga (fundo) + camada de marcadores (data/geografia.js) -->
+          <div class="geo-stage">
+            <img class="geo-basemap" id="geoBasemap" src="assets/images/mapa-egito-malte-brun-1837.jpg" alt="">
+            <div class="geo-markers" id="geoMarkers"></div>
+          </div>
+          <p class="geo-credit" id="geoCredit"></p>
+        </div>
+        <aside class="geo-side">
+          <div class="geo-panel" id="geoPanel" aria-live="polite"></div>
+          <ul class="geo-legend" id="geoLegend"></ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="collection-section tab-panel" id="panel-colecao" role="tabpanel" aria-labelledby="tab-colecao" hidden>
+    <div class="panel-heading">
+      <span class="collection-heading" id="collectionHeading"></span>
+      <span class="collection-summary" id="collectionSummary"></span>
+    </div>
+    <div class="panel-body">
+      <div class="collection-player" id="collectionPlayer"></div>
+      <div id="collectionContent"></div>
+    </div>
+  </section>
+
+  <section class="certificate-section tab-panel" id="panel-cert" role="tabpanel" aria-labelledby="tab-cert" hidden>
+    <div class="cert-heading" id="certHeading"></div>
+    <div class="cert-locked-wrap" id="certLockedWrap" style="display:none;">
+      <span class="cert-lock-icon">𓂀</span>
+      <p class="cert-locked-msg" id="certLockedMsg"></p>
+    </div>
+    <p class="cert-unlock-msg" id="certUnlockMsg" style="display:none;"></p>
+    <div id="certOpenBtnWrap" style="display:none;">
+      <button class="cert-open-btn" id="certOpenBtn" onclick="showCertificate()"></button>
+    </div>
+    <div class="cert-preview" id="certPreview" style="display:none;">
+      <canvas id="certCanvas" width="800" height="560"></canvas>
+      <div class="cert-btn-row">
+        <button class="about-btn" id="certDownloadBtn" onclick="downloadCertificate()"></button>
+        <button class="about-btn" id="certCloseBtn" onclick="hideCertificate()"></button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span id="footerContent"></span>
+    <span id="footerPrivacy" style="display:block; margin-top:10px; font-family: sans-serif; font-size:10px; letter-spacing:0.05em; opacity:0.55;"></span>
+    <div class="inst-logos">
+      <span class="inst-logos-label" id="footerInstSupport"></span>
+      <div class="inst-logos-plaque">
+        <img class="logo-ppgarq" src="assets/images/ppgarq.png" alt="PPGArq · Museu Nacional / UFRJ">
+        <span class="inst-logos-divider" aria-hidden="true"></span>
+        <img class="logo-mn" src="assets/images/museu-nacional.png" alt="Museu Nacional / UFRJ">
+      </div>
+    </div>
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR" target="_blank" rel="noopener" class="footer-license-badge" aria-label="Licenciado sob Creative Commons BY-NC-SA 4.0">
+      <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="CC BY-NC-SA 4.0" width="88" height="31">
+    </a>
+  </footer>
+</main>
+
+<!-- Modal Seletor de Idioma -->
+<div class="name-modal-backdrop" id="langModal" role="dialog" aria-modal="true" aria-labelledby="langModalTitle">
+  <div class="name-modal-panel">
+    <div class="name-modal-glyph" aria-hidden="true">𓂀</div>
+    <h2 class="name-modal-title" id="langModalTitle">Musæum</h2>
+    <p class="name-modal-sub">Escolha seu idioma<br><span style="opacity:0.7">Choose your language</span></p>
+    <div class="lang-choice-row">
+      <button class="lang-choice" type="button" onclick="chooseLang('pt')">
+        <span class="lang-name">Português</span>
+      </button>
+      <button class="lang-choice" type="button" onclick="chooseLang('en')">
+        <span class="lang-name">English</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Nome -->
+<div class="name-modal-backdrop" id="nameModal" role="dialog" aria-modal="true" aria-labelledby="nameModalTitle">
+  <div class="name-modal-panel">
+    <div class="name-modal-glyph" aria-hidden="true">𓂀</div>
+    <h2 class="name-modal-title" id="nameModalTitle"></h2>
+    <p class="name-modal-sub" id="nameModalSub"></p>
+    <input type="text" class="name-input" id="nameInput" maxlength="32" autocomplete="off" />
+    <label class="research-consent" for="researchConsent">
+      <input type="checkbox" id="researchConsent" />
+      <span class="research-consent-text" id="researchConsentText"></span>
+    </label>
+    <button class="name-modal-btn" id="nameModalBtn" onclick="saveName()"></button>
+    <button class="name-modal-skip" id="nameModalSkip" onclick="skipName()"></button>
+  </div>
+</div>
+
+<!-- Modal Oferta de Tour -->
+<div class="name-modal-backdrop" id="tourOfferModal" role="dialog" aria-modal="true" aria-labelledby="tourOfferTitle">
+  <div class="name-modal-panel">
+    <div class="name-modal-glyph" aria-hidden="true">𓏞</div>
+    <h2 class="name-modal-title" id="tourOfferTitle"></h2>
+    <p class="name-modal-sub" id="tourOfferSub"></p>
+    <button class="name-modal-btn" id="tourOfferYes" type="button" onclick="acceptTourOffer()"></button>
+    <button class="name-modal-skip" id="tourOfferNo" type="button" onclick="declineTourOffer()"></button>
+  </div>
+</div>
+
+<!-- Modal Ficha do Glifo -->
+<div class="modal-backdrop" id="glyphModal" role="dialog" aria-modal="true" aria-labelledby="glyphModalTitle" onclick="closeGlyphCardOnBackdrop(event)">
+  <div class="modal-panel" role="document">
+    <button class="modal-close" id="glyphModalClose" type="button" onclick="closeGlyphCard()" aria-label="Fechar">×</button>
+    <div id="glyphModalBody"></div>
+  </div>
+</div>
+
+<!-- Modal Sobre o Projeto -->
+<div class="modal-backdrop" id="aboutModal" role="dialog" aria-modal="true" aria-labelledby="aboutTitle" onclick="closeAboutOnBackdrop(event)">
+  <div class="modal-panel" role="document">
+    <button class="modal-close" id="btnCloseAbout" type="button" onclick="closeAbout()" aria-label="Fechar">×</button>
+    <div class="modal-title-glyph" aria-hidden="true"></div>
+    <h2 class="modal-title" id="aboutTitle"></h2>
+    <div class="modal-body" id="aboutBody"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script src="data/catalogo.js"></script>
+<script src="data/geografia.js"></script>
+<script src="research.js"></script>
+<script src="tour.js"></script>
+<script>
+  let currentLang = 'pt';
+  let aboutOpen = false;
+
+  const i18n = {
+    pt: {
+      docLang: 'pt-BR',
+      pageTitle: 'Musæum · Biblioteca interativa',
+      aboutBtn: 'Sobre',
+      aboutClose: 'Fechar',
+
+      subtitle: 'Biblioteca interativa',
+
+      epigraphLabel: 'Ensinamento',
+      epigraphQuote: '"A bela palavra é mais procurada que a pedra verde, mas encontra-se com as mulheres junto ao moinho."',
+      epigraphSource: 'Ensinamentos de Ptahhotep, Papiro Prisse, coluna 5',
+
+      tagOpen: 'Aberto',
+      tagLocked: 'Em Breve',
+      tMore: 'Mais histórias em breve',
+      dMore: 'Novos contos dos antigos egípcios estão a caminho.',
+
+      footer: 'Projeto de Flavia Lima Corpas, 2026\nFoto: Fachada do templo de Horus em Edfu, Egito · Flavia Lima Corpas, out. 2025',
+      footerPrivacy: 'Seu progresso e nome ficam guardados só no seu aparelho. Com seu consentimento, enviamos apenas dados anônimos de uso para a pesquisa do PPGArq · Museu Nacional / UFRJ.',
+      instSupport: 'Desenvolvido no',
+
+      aboutTitle: 'Sobre o projeto',
+      aboutIntro: 'O nome <strong>Musæum</strong> vem do latim e significa "lugar das musas". Na Antiguidade, esse era o nome dado aos espaços de estudo, arte e preservação do conhecimento.',
+      aboutMiddle: 'Este projeto quer aproximar você de algumas das histórias mais incríveis escritas no Egito Antigo durante o <strong>Reino Médio</strong> (entre os anos 2055 e 1650 AEC), que foi a época de maior criatividade na literatura egípcia.',
+      aboutGoal: 'Cada texto é apresentado como uma história narrada, com curiosidades da arqueologia, desafios para ajudar a entender o conteúdo e um "código" de hieróglifos que você vai descobrindo aos poucos. A ideia é levar para todo mundo esses textos que muitas vezes só são lidos nas universidades, mantendo o respeito aos originais e explicando como era a vida e a cultura naquela época.',
+      aboutBetaNote: 'Versão 1.1, com duas histórias completas. Novos textos e recursos continuam sendo adicionados.',
+      aboutCiteTitle: 'Como citar',
+      aboutCiteText: 'CORPAS, Flavia Lima. <em>Musæum: biblioteca digital interativa de literatura do Egito Antigo</em>. Zenodo, 2026. DOI: 10.5281/zenodo.20617042.',
+      aboutBiblioTitle: 'Bibliografia de base',
+      aboutBiblio: [
+        'ALLEN, J. P. <em>Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs</em>. Cambridge: Cambridge University Press, 2000.',
+        'ARAUJO, Emanuel. <em>Escrito para a Eternidade: A literatura do Egito faraônico</em>. Brasília, 2000.',
+        'ARNOLD, D. <em>Middle Kingdom Tomb Architecture at Lisht</em>. New York: Metropolitan Museum of Art, 2008.',
+        'BABA, M.; YAZAWA, K. Burial Assemblages of the Late Middle Kingdom: Shaft-tombs in Dahshur North. In: MINIACI, G.; GRAJETZKI, W. (ed.). <em>The World of Middle Kingdom Egypt (2000-1550 BC)</em>. Vol. I. London: Golden House Publications, 2015. p. 1-24.',
+        'BARD, K. A.; FATTOVICH, R. <em>Seafaring Expeditions to Punt in the Middle Kingdom: Excavations at Mersa/Wadi Gawasis, Egypt</em>. Leiden: Brill, 2018.',
+        'BLACKMAN, A. M. <em>Middle-Egyptian Stories</em>. Part I. Brussels: Fondation Égyptologique Reine Élisabeth, 1932.',
+        'CABRAL, Jessica. Sobre os Efeitos de um Exílio: Jean-François Champollion e o estudo da língua egípcia em Figeac. <em>Revista do Museu de Arqueologia e Etnologia</em>, São Paulo, n. 38, p. 163-178, 2022.',
+        'CASANOVA, M.; PIERRAT-BONNEFOIS, G.; QUENET, P.; DANREY, V.; LACAMBRE, D. Lapis Lazuli in the Tôd Treasure: A New Investigation. In: <em>Proceedings of the Tenth International Congress of Egyptologists</em>. Leuven: Peeters, 2015. (Orientalia Lovaniensia Analecta, 241).',
+        'COLLIER, M.; QUIRKE, S. <em>The UCL Lahun Papyri: Letters</em>. Oxford: Archaeopress, 2002.',
+        'FAULKNER, R. O. <em>A Concise Dictionary of Middle Egyptian</em>. Oxford: Griffith Institute, 1962.',
+        'GARDINER, A. H. <em>Egyptian Grammar: Being an Introduction to the Study of Hieroglyphs</em>. 3ª ed. Oxford: Griffith Institute, 1957.',
+        'GASSE, A. Wadi Hammamat on the Road to Punt. <em>Abgadiyat</em>, v. 11, p. 44-50, 2016.',
+        'KAHL, J. <em>Ancient Asyut: The First Synthesis after 300 Years of Research</em>. Wiesbaden: Harrassowitz, 2007.',
+        'KANAWATI, N.; EVANS, L. <em>Beni Hassan. Volume I: The Tomb of Khnumhotep II</em>. Oxford: Aris and Phillips, 2014.',
+        'KOCH, R. <em>Die Erzählung des Sinuhe</em>. Brussels: Fondation Égyptologique Reine Élisabeth, 1990.',
+        'KRAEMER, B.; LISZKA, K. Evidence for Administration of the Nubian Fortresses in the Late Middle Kingdom: The Semna Dispatches. <em>Journal of Egyptian History</em>, v. 9, 2016.',
+        'KRIVENKO-ADAMOV, S. <em>The Story of Sinuhe</em>. Linguistic analysis. 2015.',
+        'LICHTHEIM, M. <em>Ancient Egyptian Literature, Vol. I: The Old and Middle Kingdoms</em>. Berkeley: University of California Press, 1973.',
+        'LISZKA, K. Site 4 at Wadi el-Hudi: A Lost Amethyst Mining Settlement. <em>Egyptian Archaeology</em>, v. 51, p. 36-40, 2018.',
+        'LORAND, D. The Archetype of Kingship: Who Senwosret I Claimed to Be, How and Why? In: MINIACI, G.; GRAJETZKI, W. (ed.). <em>The World of Middle Kingdom Egypt (2000-1550 BC)</em>. Vol. I. London: Golden House Publications, 2015. p. 205-219.',
+        'NEDERHOF, Mark-Jan. <em>The Shipwrecked Sailor</em>. Hieroglyphic transcription and translation. 2015.',
+        'NEDERHOF, Mark-Jan. <em>Sinuhe</em>. Hieroglyphic transcription and translation. 2006/2011.',        'PARKINSON, R. B. <em>The Tale of Sinuhe and Other Ancient Egyptian Poems, 1940–1640 BC</em>. Oxford: Oxford University Press, 1997.',
+        'POE, William Clay. <em>The Writing of a Skillful Scribe: An introduction to hieratic Middle Egyptian through the text of The Shipwrecked Sailor</em>. Santa Rosa, 2010.',
+        'SIMPSON, W. K. (ed.). <em>The Literature of Ancient Egypt: An Anthology of Stories, Instructions, Stelae, Autobiographies, and Poetry</em>. 3ª ed. New Haven: Yale University Press, 2003.',
+        'TALLET, P. Ayn Sukhna and Wadi el-Jarf: Two Newly Discovered Pharaonic Harbours on the Suez Gulf. <em>British Museum Studies in Ancient Egypt and Sudan</em>, v. 18, p. 147-168, 2012.',
+        'UCL Digital Egypt for Universities. <em>The Teaching of Ptahhotep</em>. Disponível em: <a href="https://www.ucl.ac.uk/museums-static/digitalegypt/literature/ptahhotep.html" target="_blank" rel="noopener">ucl.ac.uk/museums-static/digitalegypt/literature/ptahhotep.html</a>.'
+      ],
+      aboutCredit: 'Foto: Templo de Horus em Edfu, Egito · Flavia Lima Corpas, out. 2025',
+      collectionTitle:      'Coleção',
+      codexSectionTitle:    'Códex · Hieróglifos',
+      collectionOf:         'de',
+      collectionEmpty:      'Complete histórias para desbloquear tesouros.',
+      geoTitle:             'Mapa · Os lugares das histórias',
+      geoIntro:             'Os mundos do Reino Médio sobre uma carta de 1837. Toque em um lugar para saber o que era e em que história aparece; as setas na borda apontam o que fica fora da carta (Punt ao sul, o Levante ao norte).',
+      geoCredit:            'Carta de fundo: «Égypte Ancienne», V. A. Malte-Brun, 1837. Domínio público, via Wikimedia Commons.',
+      geoLegendMulti:       'Em mais de uma história',
+      geoLegendUncertain:   'Localização debatida (?)',
+      nameModalTitle:       'Como devo te chamar?',
+      nameModalSub:         'Seu nome vai aparecer em sua coleção.',
+      nameModalPlaceholder: 'Seu nome',
+      nameModalBtn:         'Entrar no Musæum',
+      nameModalSkip:        'Entrar sem nome',
+      consentLabel:         'Aceito contribuir com a pesquisa acadêmica do PPGArq · Museu Nacional / UFRJ. A gente coleta só dados anônimos de uso, nada pessoal.',
+      tourOfferTitle:       'Quer um tour rápido?',
+      tourOfferSub:         'Te mostro em segundos como o Musæum funciona.',
+      tourOfferYes:         'Sim, me mostre',
+      tourOfferNo:          'Agora não',
+      tourSkip:             'Pular',
+      tourPrev:             'Voltar',
+      tourNext:             'Avançar',
+      tourDone:             'Concluir',
+      tourSteps: [
+        { title: 'A Biblioteca',     body: 'Aqui ficam os contos do Egito Antigo. Toque em um deles para começar a ler e interagir.' },
+        { title: 'O Mapa',           body: 'Sobre uma carta antiga, os lugares citados nas histórias. Toque em cada um para saber o que era e em qual conto aparece.' },
+        { title: 'Sua Coleção',      body: 'Conforme avança nas histórias, você desbloqueia hieróglifos e tesouros, que se reúnem aqui.' },
+        { title: 'Seu Certificado',  body: 'Complete todas as histórias disponíveis para desbloquear um certificado com o seu nome.' },
+        { title: 'Sobre o Projeto',  body: 'Toque aqui para conhecer o Musæum.' }
+      ],
+      editNameLabel:        'Editar nome',
+      addNameLabel:         '+ adicionar nome',
+      tabInicio:            'Início',
+      tabMapa:              'Mapa',
+      tabColecao:           'Coleção',
+      tabCert:              'Certificado',
+      certSectionTitle:     'Sua Conquista',
+      certLocked:           'Complete todas as atividades para desbloquear o certificado.',
+      certUnlock:           'Você concluiu todas as histórias disponíveis no Musæum. Seu certificado está pronto.',
+      certOpenBtn:          '𓏞 Ver Certificado',
+      certDownload:         '↓ Salvar imagem',
+      certClose:            'Fechar',
+      certTitle:            'CERTIFICADO DE LEITURA',
+      certAttest:           'Atesta-se que',
+      certCompleted:        'concluiu com êxito a leitura de:',
+      certSignature:        'Museu Nacional / UFRJ'
+    },
+    en: {
+      docLang: 'en',
+      pageTitle: 'Musæum · Interactive library',
+      aboutBtn: 'About',
+      aboutClose: 'Close',
+
+      subtitle: 'Interactive library',
+    
+
+      epigraphLabel: 'Teaching',
+      epigraphQuote: '"Fine words are more sought after than greenstone, but can be found with the women at the grindstone."',
+      epigraphSource: 'The Teachings of Ptahhotep, Prisse Papyrus, column 5',
+
+      tagOpen: 'Open',
+      tagLocked: 'Coming Soon',
+      tMore: 'More stories soon',
+      dMore: 'New tales from the ancient Egyptians are on the way.',
+
+      footer: 'Project by Flavia Lima Corpas, 2026\nPhoto: Facade of the Temple of Horus at Edfu, Egypt · Flavia Lima Corpas, Oct. 2025',
+      footerPrivacy: 'Your progress and name are stored only on your device. With your consent, we send only anonymous usage data to the research at PPGArq · Museu Nacional / UFRJ.',
+      instSupport: 'Developed at',
+
+      aboutTitle: 'About the project',
+      aboutIntro: 'The name <strong>Musæum</strong> comes from Latin and means "place of the Muses." In Antiquity, this was the name given to spaces of study, art, and the preservation of knowledge.',
+      aboutMiddle: 'This project brings you closer to some of the most incredible stories written in Ancient Egypt during the <strong>Middle Kingdom</strong> (between 2055 and 1650 BCE), the period of greatest creativity in Egyptian literature.',
+      aboutGoal: 'Each text is presented as a narrated story, with archaeological curiosities, challenges to help you understand the content, and a hieroglyphic "code" that you gradually uncover. The idea is to bring these texts, usually only read in universities, to everyone, while respecting the originals and explaining what life and culture were like at that time.',
+      aboutBetaNote: 'Version 1.1, with two complete stories. New texts and features keep being added.',
+      aboutCiteTitle: 'How to cite',
+      aboutCiteText: 'CORPAS, Flavia Lima. <em>Musæum: an interactive digital library of Ancient Egyptian literature</em>. Zenodo, 2026. DOI: 10.5281/zenodo.20617042.',
+      aboutBiblioTitle: 'Reference bibliography',
+      aboutBiblio: [
+        'ALLEN, J. P. <em>Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs</em>. Cambridge: Cambridge University Press, 2000.',
+        'ARAUJO, Emanuel. <em>Escrito para a Eternidade: A literatura do Egito faraônico</em>. Brasília, 2000.',
+        'ARNOLD, D. <em>Middle Kingdom Tomb Architecture at Lisht</em>. New York: Metropolitan Museum of Art, 2008.',
+        'BABA, M.; YAZAWA, K. Burial Assemblages of the Late Middle Kingdom: Shaft-tombs in Dahshur North. In: MINIACI, G.; GRAJETZKI, W. (ed.). <em>The World of Middle Kingdom Egypt (2000-1550 BC)</em>. Vol. I. London: Golden House Publications, 2015. p. 1-24.',
+        'BARD, K. A.; FATTOVICH, R. <em>Seafaring Expeditions to Punt in the Middle Kingdom: Excavations at Mersa/Wadi Gawasis, Egypt</em>. Leiden: Brill, 2018.',
+        'BLACKMAN, A. M. <em>Middle-Egyptian Stories</em>. Part I. Brussels: Fondation Égyptologique Reine Élisabeth, 1932.',
+        'CABRAL, Jessica. Sobre os Efeitos de um Exílio: Jean-François Champollion e o estudo da língua egípcia em Figeac. <em>Revista do Museu de Arqueologia e Etnologia</em>, São Paulo, n. 38, p. 163-178, 2022.',
+        'CASANOVA, M.; PIERRAT-BONNEFOIS, G.; QUENET, P.; DANREY, V.; LACAMBRE, D. Lapis Lazuli in the Tôd Treasure: A New Investigation. In: <em>Proceedings of the Tenth International Congress of Egyptologists</em>. Leuven: Peeters, 2015. (Orientalia Lovaniensia Analecta, 241).',
+        'COLLIER, M.; QUIRKE, S. <em>The UCL Lahun Papyri: Letters</em>. Oxford: Archaeopress, 2002.',
+        'FAULKNER, R. O. <em>A Concise Dictionary of Middle Egyptian</em>. Oxford: Griffith Institute, 1962.',
+        'GARDINER, A. H. <em>Egyptian Grammar: Being an Introduction to the Study of Hieroglyphs</em>. 3rd ed. Oxford: Griffith Institute, 1957.',
+        'GASSE, A. Wadi Hammamat on the Road to Punt. <em>Abgadiyat</em>, v. 11, p. 44-50, 2016.',
+        'KAHL, J. <em>Ancient Asyut: The First Synthesis after 300 Years of Research</em>. Wiesbaden: Harrassowitz, 2007.',
+        'KANAWATI, N.; EVANS, L. <em>Beni Hassan. Volume I: The Tomb of Khnumhotep II</em>. Oxford: Aris and Phillips, 2014.',
+        'KOCH, R. <em>Die Erzählung des Sinuhe</em>. Brussels: Fondation Égyptologique Reine Élisabeth, 1990.',
+        'KRAEMER, B.; LISZKA, K. Evidence for Administration of the Nubian Fortresses in the Late Middle Kingdom: The Semna Dispatches. <em>Journal of Egyptian History</em>, v. 9, 2016.',
+        'KRIVENKO-ADAMOV, S. <em>The Story of Sinuhe</em>. Linguistic analysis. 2015.',
+        'LICHTHEIM, M. <em>Ancient Egyptian Literature, Vol. I: The Old and Middle Kingdoms</em>. Berkeley: University of California Press, 1973.',
+        'LISZKA, K. Site 4 at Wadi el-Hudi: A Lost Amethyst Mining Settlement. <em>Egyptian Archaeology</em>, v. 51, p. 36-40, 2018.',
+        'LORAND, D. The Archetype of Kingship: Who Senwosret I Claimed to Be, How and Why? In: MINIACI, G.; GRAJETZKI, W. (ed.). <em>The World of Middle Kingdom Egypt (2000-1550 BC)</em>. Vol. I. London: Golden House Publications, 2015. p. 205-219.',
+        'NEDERHOF, Mark-Jan. <em>The Shipwrecked Sailor</em>. Hieroglyphic transcription and translation. 2015.',
+        'NEDERHOF, Mark-Jan. <em>Sinuhe</em>. Hieroglyphic transcription and translation. 2006/2011.',        'PARKINSON, R. B. <em>The Tale of Sinuhe and Other Ancient Egyptian Poems, 1940–1640 BC</em>. Oxford: Oxford University Press, 1997.',
+        'POE, William Clay. <em>The Writing of a Skillful Scribe: An introduction to hieratic Middle Egyptian through the text of The Shipwrecked Sailor</em>. Santa Rosa, 2010.',
+        'SIMPSON, W. K. (ed.). <em>The Literature of Ancient Egypt: An Anthology of Stories, Instructions, Stelae, Autobiographies, and Poetry</em>. 3rd ed. New Haven: Yale University Press, 2003.',
+        'TALLET, P. Ayn Sukhna and Wadi el-Jarf: Two Newly Discovered Pharaonic Harbours on the Suez Gulf. <em>British Museum Studies in Ancient Egypt and Sudan</em>, v. 18, p. 147-168, 2012.',
+        'UCL Digital Egypt for Universities. <em>The Teaching of Ptahhotep</em>. Available at: <a href="https://www.ucl.ac.uk/museums-static/digitalegypt/literature/ptahhotep.html" target="_blank" rel="noopener">ucl.ac.uk/museums-static/digitalegypt/literature/ptahhotep.html</a>.'
+      ],
+      aboutCredit: 'Photo: Temple of Horus at Edfu, Egypt · Flavia Lima Corpas, Oct. 2025',
+      collectionTitle:      'Collection',
+      codexSectionTitle:    'Codex · Hieroglyphs',
+      collectionOf:         'of',
+      collectionEmpty:      'Complete stories to unlock treasures.',
+      geoTitle:             'Map · The places of the stories',
+      geoIntro:             'The worlds of the Middle Kingdom over an 1837 chart. Tap a place to learn what it was and which story it appears in; the arrows at the edge point to what lies beyond the chart (Punt to the south, the Levant to the north).',
+      geoCredit:            'Base chart: "Égypte Ancienne", V. A. Malte-Brun, 1837. Public domain, via Wikimedia Commons.',
+      geoLegendMulti:       'In more than one story',
+      geoLegendUncertain:   'Debated location (?)',
+      nameModalTitle:       'What should I call you?',
+      nameModalSub:         'Your name will appear on your collection.',
+      nameModalPlaceholder: 'Your name',
+      nameModalBtn:         'Enter the Musæum',
+      nameModalSkip:        'Enter without a name',
+      consentLabel:         'I agree to contribute to academic research at PPGArq · Museu Nacional / UFRJ. We only collect anonymous usage data, nothing personal.',
+      tourOfferTitle:       'Want a quick tour?',
+      tourOfferSub:         'I\'ll show you how the Musæum works in seconds.',
+      tourOfferYes:         'Yes, show me',
+      tourOfferNo:          'Not now',
+      tourSkip:             'Skip',
+      tourPrev:             'Back',
+      tourNext:             'Next',
+      tourDone:             'Done',
+      tourSteps: [
+        { title: 'The Library',      body: 'This is where the tales of Ancient Egypt live. Tap one to start reading and interacting.' },
+        { title: 'The Map',          body: 'The places named in the stories, set over an old chart. Tap any of them to learn what it was and which tale it appears in.' },
+        { title: 'Your Collection',  body: 'As you progress through the stories, you unlock hieroglyphs and treasures, gathered here.' },
+        { title: 'Your Certificate', body: 'Complete every available story to unlock a certificate bearing your name.' },
+        { title: 'About the Project', body: 'Tap here to learn about the Musæum.' }
+      ],
+      editNameLabel:        'Edit name',
+      addNameLabel:         '+ add a name',
+      tabInicio:            'Home',
+      tabMapa:              'Map',
+      tabColecao:           'Collection',
+      tabCert:              'Certificate',
+      certSectionTitle:     'Your Achievement',
+      certLocked:           'Complete all activities to unlock the certificate.',
+      certUnlock:           'You have completed all available stories in the Musæum. Your certificate is ready.',
+      certOpenBtn:          '𓏞 View Certificate',
+      certDownload:         '↓ Save image',
+      certClose:            'Close',
+      certTitle:            'CERTIFICATE OF READING',
+      certAttest:           'This certifies that',
+      certCompleted:        'has successfully completed the reading of:',
+      certSignature:        'National Museum / UFRJ'
+    }
+  };
+
+  // Monta os cards da biblioteca a partir do catálogo (uma vez, no load;
+  // os textos são atualizados por render() para preservar a animação).
+  function buildLibrary() {
+    const grid = document.getElementById('libraryGrid');
+    let html = '';
+    for (const s of MUSAEUM_CATALOG) {
+      if (s.available) {
+        html += `
+      <a href="${s.href}" class="scroll-card" id="card-${s.storyId}">
+        <span class="status-tag tag-ready" data-t="tagOpen"></span>
+        <div class="card-glyph" aria-hidden="true">${s.cardGlyph}</div>
+        <div class="card-title"></div>
+        <div class="card-desc"></div>
+      </a>`;
+      } else {
+        html += `
+      <div class="scroll-card locked" id="card-${s.storyId}" aria-disabled="true">
+        <span class="status-tag tag-locked" data-t="tagLocked"></span>
+        <div class="card-glyph" aria-hidden="true">${s.cardGlyph}</div>
+        <div class="card-title"></div>
+        <div class="card-desc"></div>
+      </div>`;
+      }
+    }
+    html += `
+      <div class="scroll-card more-soon" aria-hidden="true">
+        <div class="card-glyph more-glyph" aria-hidden="true">𓏼</div>
+        <div class="card-title" data-t="tMore"></div>
+        <div class="card-desc" data-t="dMore"></div>
+      </div>`;
+    grid.innerHTML = html;
+  }
+
+  function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('musaeum-lang', lang);
+    const t = i18n[lang];
+    document.documentElement.lang = t.docLang;
+    document.title = t.pageTitle;
+
+    document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-pt').setAttribute('aria-pressed', lang === 'pt');
+    document.getElementById('btn-en').setAttribute('aria-pressed', lang === 'en');
+
+    render();
+  }
+
+  function render() {
+    const t = i18n[currentLang];
+
+    document.getElementById('btnAboutLabel').textContent = t.aboutBtn;
+    document.getElementById('btnAbout').setAttribute('aria-label', t.aboutBtn);
+    document.getElementById('btnCloseAbout').setAttribute('aria-label', t.aboutClose);
+
+    document.getElementById('subtitle').textContent = t.subtitle;
+
+    document.getElementById('epigraphLabel').textContent = t.epigraphLabel;
+    document.getElementById('epigraphQuote').textContent = t.epigraphQuote;
+    document.getElementById('epigraphSource').textContent = t.epigraphSource;
+
+    // Atualiza apenas os textos dos cards (preserva a animação em cascata)
+    document.querySelectorAll('[data-t]').forEach(el => {
+      const key = el.getAttribute('data-t');
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+
+    // Títulos, descrições e aria-labels dos cards vêm do catálogo
+    for (const s of MUSAEUM_CATALOG) {
+      const card = document.getElementById('card-' + s.storyId);
+      if (!card) continue;
+      const title = currentLang === 'pt' ? s.titlePt : s.titleEn;
+      const desc  = currentLang === 'pt' ? s.descPt  : s.descEn;
+      card.querySelector('.card-title').textContent = title;
+      card.querySelector('.card-desc').textContent  = desc;
+      card.setAttribute('aria-label', `${title}, ${s.available ? t.tagOpen : t.tagLocked}`);
+    }
+
+    document.getElementById('footerContent').innerText = t.footer;
+    document.getElementById('footerPrivacy').innerText = t.footerPrivacy;
+    document.getElementById('footerInstSupport').innerText = t.instSupport;
+    renderCollection();
+    renderGeoSection();
+    renderCertificateSection();
+
+    // Corpo do modal Sobre
+    document.getElementById('aboutTitle').textContent = t.aboutTitle;
+    document.getElementById('aboutBody').innerHTML = `
+      <p>${t.aboutIntro}</p>
+      <p>${t.aboutMiddle}</p>
+      <p>${t.aboutGoal}</p>
+      <p class="about-beta-note">${t.aboutBetaNote}</p>
+      <div class="modal-subtitle">${t.aboutBiblioTitle}</div>
+      <ul class="modal-biblio">
+        ${t.aboutBiblio.map(item => `<li>${item}</li>`).join('')}
+      </ul>
+      <div class="modal-credit">${t.aboutCredit.replace('\n', '<br>')}</div>
+      <div class="modal-cite">
+        <div class="modal-subtitle">${t.aboutCiteTitle}</div>
+        <p class="cite-ref">${t.aboutCiteText}</p>
+      </div>
+      <div class="inst-logos modal-inst-logos">
+        <span class="inst-logos-label">${t.instSupport}</span>
+        <div class="inst-logos-plaque">
+          <img class="logo-ppgarq" src="assets/images/ppgarq.png" alt="PPGArq · Museu Nacional / UFRJ">
+          <span class="inst-logos-divider" aria-hidden="true"></span>
+          <img class="logo-mn" src="assets/images/museu-nacional.png" alt="Museu Nacional / UFRJ">
+        </div>
+      </div>
+      <div class="modal-license">
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR" target="_blank" rel="noopener" aria-label="Licenciado sob Creative Commons BY-NC-SA 4.0">
+          <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="CC BY-NC-SA 4.0" width="88" height="31">
+        </a>
+      </div>
+    `;
+  }
+
+  // Enquanto um modal está aberto, o resto da página fica inert:
+  // Tab e leitores de tela não escapam para o conteúdo de fundo.
+  function setPageInert(on) {
+    const main = document.querySelector('main.container');
+    if (main) main.inert = on;
+  }
+
+  function openAbout() {
+    const m = document.getElementById('aboutModal');
+    m.classList.add('show');
+    aboutOpen = true;
+    document.body.style.overflow = 'hidden';
+    setPageInert(true);
+    setTimeout(() => document.getElementById('btnCloseAbout').focus(), 60);
+  }
+  function closeAbout() {
+    document.getElementById('aboutModal').classList.remove('show');
+    aboutOpen = false;
+    document.body.style.overflow = '';
+    setPageInert(false);
+    document.getElementById('btnAbout').focus();
+  }
+  function closeAboutOnBackdrop(e) {
+    if (e.target.id === 'aboutModal') closeAbout();
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (document.getElementById('glyphModal').classList.contains('show')) closeGlyphCard();
+      else if (aboutOpen) closeAbout();
+    }
+  });
+
+  // ===== NOME DO JOGADOR =====
+  function savePlayerName(name) {
+    localStorage.setItem('musaeum-player', JSON.stringify({ name }));
+  }
+
+  function openNameModal() {
+    const t = i18n[currentLang];
+    document.getElementById('nameModalTitle').textContent = t.nameModalTitle;
+    document.getElementById('nameModalSub').textContent   = t.nameModalSub;
+    document.getElementById('nameModalBtn').textContent   = t.nameModalBtn;
+    document.getElementById('nameModalSkip').textContent  = t.nameModalSkip;
+    const input = document.getElementById('nameInput');
+    input.placeholder = t.nameModalPlaceholder;
+    input.value = getPlayerName() || '';
+    document.getElementById('researchConsentText').textContent = t.consentLabel;
+    document.getElementById('researchConsent').checked =
+      localStorage.getItem('musaeum-research-consent') === 'sim';
+    document.getElementById('nameModal').classList.add('show');
+    setPageInert(true);
+    setTimeout(() => input.focus(), 60);
+  }
+
+  // ===== SELETOR DE IDIOMA (primeira pop-up) =====
+  function showLangModal() {
+    document.getElementById('langModal').classList.add('show');
+    setPageInert(true);
+    setTimeout(() => {
+      const first = document.querySelector('#langModal .lang-choice');
+      if (first) first.focus();
+    }, 60);
+  }
+
+  function chooseLang(lang) {
+    setLang(lang); // persiste em musaeum-lang
+    document.getElementById('langModal').classList.remove('show');
+    setTimeout(openNameModal, 340); // boas-vindas já no idioma escolhido
+  }
+
+  function closeNameModal() {
+    document.getElementById('nameModal').classList.remove('show');
+    setPageInert(false);
+  }
+
+  function recordConsent() {
+    const checked = document.getElementById('researchConsent').checked;
+    localStorage.setItem('musaeum-research-consent', checked ? 'sim' : 'não');
+  }
+
+  function saveName() {
+    const name = document.getElementById('nameInput').value.trim();
+    if (name) savePlayerName(name);
+    recordConsent();
+    closeNameModal();
+    renderCollection();
+    maybeOfferTour();
+  }
+
+  function skipName() {
+    recordConsent();
+    closeNameModal();
+    maybeOfferTour();
+  }
+
+  // ===== TOUR GUIADO =====
+  let _welcomeFirstRun = false;
+
+  function maybeOfferTour() {
+    if (!_welcomeFirstRun) return;
+    _welcomeFirstRun = false;
+    setTimeout(showTourOffer, 360); // depois do fade do modal de boas-vindas
+  }
+
+  function showTourOffer() {
+    const t = i18n[currentLang];
+    document.getElementById('tourOfferTitle').textContent = t.tourOfferTitle;
+    document.getElementById('tourOfferSub').textContent   = t.tourOfferSub;
+    document.getElementById('tourOfferYes').textContent   = t.tourOfferYes;
+    document.getElementById('tourOfferNo').textContent    = t.tourOfferNo;
+    document.getElementById('tourOfferModal').classList.add('show');
+    setPageInert(true);
+    setTimeout(() => document.getElementById('tourOfferYes').focus(), 60);
+  }
+
+  function closeTourOffer() {
+    document.getElementById('tourOfferModal').classList.remove('show');
+    setPageInert(false);
+  }
+
+  function acceptTourOffer() {
+    closeTourOffer();
+    setTimeout(startHomeTour, 340);
+  }
+
+  function declineTourOffer() {
+    closeTourOffer();
+  }
+
+  function startHomeTour() {
+    if (window.Tour && Tour.isActive()) return;
+    const t = i18n[currentLang];
+    const s = t.tourSteps;
+    const selectors = ['.library-grid .scroll-card', '#tab-mapa', '#tab-colecao', '#tab-cert', '#btnAbout'];
+    const steps = selectors.map((sel, i) => ({ selector: sel, title: s[i].title, body: s[i].body }));
+    if (window.Tour) {
+      Tour.start(steps, {
+        labels: { skip: t.tourSkip, prev: t.tourPrev, next: t.tourNext, done: t.tourDone }
+      });
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeNameModal(); closeTourOffer(); }
+    // Enter confirma só quando o foco está no campo de nome; nos botões
+    // ("Entrar sem nome" etc.) o Enter aciona o próprio botão focado.
+    if (e.key === 'Enter' &&
+        document.getElementById('nameModal').classList.contains('show') &&
+        document.activeElement === document.getElementById('nameInput')) {
+      saveName();
+    }
+  });
+
+  // ===== COLEÇÃO =====
+  function openGlyphCard(storyId, idx) {
+    const story = catalogGet(storyId);
+    if (!story || !story.codex) return;
+    const g    = story.codex[idx];
+    const lang = currentLang;
+    const name    = lang === 'pt' ? g.namePt    : g.nameEn;
+    const meaning = lang === 'pt' ? g.meaningPt : g.meaningEn;
+    const note    = lang === 'pt' ? g.notePt    : g.noteEn;
+    const chapterLabel = g.chapter === -1
+      ? (lang === 'pt' ? 'Introdução' : 'Introduction')
+      : `${lang === 'pt' ? 'Capítulo' : 'Chapter'} ${g.chapter + 1}`;
+    const lMeaning  = lang === 'pt' ? 'Significado'   : 'Meaning';
+    const lAppears  = lang === 'pt' ? 'Descoberto em' : 'Discovered in';
+    const lNote     = lang === 'pt' ? 'Nota'          : 'Note';
+
+    document.getElementById('glyphModalBody').innerHTML = `
+      <div class="glyph-sheet">
+        <div class="sheet-big" aria-hidden="true">${g.glyph}</div>
+        <div class="sheet-translit">${g.translit}</div>
+        <div class="sheet-name" id="glyphModalTitle">${name}</div>
+        <div class="sheet-rows">
+          <div class="sheet-row">
+            <div class="row-label">${lMeaning}</div>
+            <div class="row-value">${meaning}</div>
+          </div>
+          <div class="sheet-row">
+            <div class="row-label">${lAppears}</div>
+            <div class="row-value">${chapterLabel}</div>
+          </div>
+          <div class="sheet-row">
+            <div class="row-label">${lNote}</div>
+            <div class="row-value">${note}</div>
+          </div>
+        </div>
+      </div>`;
+
+    const modal = document.getElementById('glyphModal');
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    setPageInert(true);
+    setTimeout(() => document.getElementById('glyphModalClose').focus(), 60);
+  }
+
+  function closeGlyphCard() {
+    document.getElementById('glyphModal').classList.remove('show');
+    document.body.style.overflow = '';
+    setPageInert(false);
+  }
+
+  function closeGlyphCardOnBackdrop(e) {
+    if (e.target.id === 'glyphModal') closeGlyphCard();
+  }
+
+  // ===== ABAS (Início · Mapa · Coleção · Certificado) =====
+  // Troca a seção visível sem recarregar. Sem persistência: sempre abre no
+  // Início, que é o convite (epígrafe + biblioteca).
+  function showTab(name) {
+    const tabs = document.querySelectorAll('#tabbar .tab');
+    tabs.forEach(tab => {
+      const active = tab.dataset.tab === name;
+      tab.classList.toggle('active', active);
+      tab.setAttribute('aria-selected', active);
+      tab.tabIndex = active ? 0 : -1;
+      const panel = document.getElementById(tab.getAttribute('aria-controls'));
+      if (panel) {
+        panel.classList.toggle('active', active);
+        panel.hidden = !active;
+      }
+    });
+  }
+
+  // Setas/Home/End navegam entre as abas (padrão WAI-ARIA tablist).
+  function initTabKeys() {
+    const bar = document.getElementById('tabbar');
+    if (!bar) return;
+    const tabs = Array.from(bar.querySelectorAll('.tab'));
+    bar.addEventListener('keydown', e => {
+      const i = tabs.indexOf(document.activeElement);
+      if (i === -1) return;
+      let j = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') j = (i + 1) % tabs.length;
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') j = (i - 1 + tabs.length) % tabs.length;
+      else if (e.key === 'Home') j = 0;
+      else if (e.key === 'End') j = tabs.length - 1;
+      if (j === null) return;
+      e.preventDefault();
+      tabs[j].focus();
+      showTab(tabs[j].dataset.tab);
+    });
+  }
+
+  function renderGeoSection() {
+    const t = i18n[currentLang];
+    document.getElementById('geoHeading').textContent = t.geoTitle;
+    document.getElementById('geoSummary').textContent = MUSAEUM_GEO.length;
+    document.getElementById('geoIntro').textContent = t.geoIntro;
+    document.getElementById('geoCredit').textContent = t.geoCredit;
+    document.getElementById('geoBasemap').alt = t.geoTitle;
+    // Cores por história, marcadores, painel e legenda (data/geografia.js).
+    // As cores derivam do catálogo: histórias novas entram sem tocar no CSS.
+    injectGeoStoryStyles();
+    renderGeoMap(currentLang);
+    renderGeoLegend(currentLang, { multi: t.geoLegendMulti, uncertain: t.geoLegendUncertain });
+  }
+
+  function renderCollection() {
+    const t = i18n[currentLang];
+    const name = getPlayerName();
+
+    const headingEl = document.getElementById('collectionHeading');
+    if (name) {
+      headingEl.innerHTML = `${t.collectionTitle} ${t.collectionOf} <span class="player-name-val">${escapeHtml(name)}</span>`;
+    } else {
+      headingEl.textContent = t.collectionTitle;
+    }
+
+    // Histórias que entram na Coleção: têm tesouros e estão publicadas
+    // (ou guardam progresso de quem já jogou).
+    const collectible = MUSAEUM_CATALOG.filter(s =>
+      s.items && (s.available || storeGet(s.storyId)));
+
+    // badge de resumo (X / total)
+    let earnedCount = 0, totalCount = 0;
+    for (const game of collectible) {
+      totalCount += game.items.length;
+      const save = storeGet(game.storyId);
+      if (save) {
+        const collected = save.collected || [];
+        earnedCount += game.items.filter((_, i) => collected[i] === true).length;
+      }
+    }
+    const summaryEl = document.getElementById('collectionSummary');
+    if (summaryEl) summaryEl.textContent = `${earnedCount} / ${totalCount}`;
+
+    const playerEl = document.getElementById('collectionPlayer');
+    if (name) {
+      playerEl.innerHTML = `<button class="edit-name-btn" onclick="openNameModal()" aria-label="${t.editNameLabel}" title="${t.editNameLabel}">✎</button>`;
+    } else {
+      playerEl.innerHTML = `<button class="edit-name-btn" onclick="openNameModal()" aria-label="${t.addNameLabel}" title="${t.addNameLabel}" style="opacity:0.45; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; font-family:'Cinzel',serif; text-decoration:underline;">${t.addNameLabel}</button>`;
+    }
+
+    const content = document.getElementById('collectionContent');
+    let html = '';
+    let anyData = false;
+
+    // Tesouros por história
+    for (const game of collectible) {
+      const save = storeGet(game.storyId);
+      if (!save) continue;
+      anyData = true;
+      const collected = save.collected || [];
+      const gameTitle = currentLang === 'pt' ? game.titlePt : game.titleEn;
+      html += `<div style="margin-bottom:24px;">
+        <div class="collection-game-name">${gameTitle}</div>
+        <div class="collection-grid">`;
+      for (let i = 0; i < game.items.length; i++) {
+        const item  = game.items[i];
+        const earned = collected[i] === true;
+        const label  = currentLang === 'pt' ? item.pt : item.en;
+        html += `<div class="col-item ${earned ? 'earned' : 'locked'}" title="${earned ? escapeHtml(label) : '?'}">
+          <div class="col-item-icon" aria-hidden="true">${earned ? item.icon : '·'}</div>
+          <div class="col-item-label">${earned ? escapeHtml(label) : '?'}</div>
+        </div>`;
+      }
+      html += `</div></div>`;
+    }
+
+    // Códex de hieróglifos por história
+    const codexStories = MUSAEUM_CATALOG.filter(s => s.codex && storeGet(s.storyId));
+    for (const story of codexStories) {
+      anyData = true;
+      const save = storeGet(story.storyId);
+      const discovered = new Set(save?.discoveredGlyphs ?? []);
+      const storyTitle = currentLang === 'pt' ? story.titlePt : story.titleEn;
+      const heading = codexStories.length > 1
+        ? `${t.codexSectionTitle} · ${storyTitle}`
+        : t.codexSectionTitle;
+      html += `<div style="margin-bottom:8px;">
+        <div class="collection-game-name">${heading}</div>
+        <div class="collection-grid">`;
+      for (let i = 0; i < story.codex.length; i++) {
+        const g     = story.codex[i];
+        const found = discovered.has(i);
+        const label = currentLang === 'pt' ? g.namePt : g.nameEn;
+        if (found) {
+          html += `<div class="col-item earned" onclick="openGlyphCard('${story.storyId}', ${i})" title="${escapeHtml(label)}">
+            <div class="col-item-icon is-glyph" aria-hidden="true">${g.glyph}</div>
+            <div class="col-item-label">${escapeHtml(label)}</div>
+          </div>`;
+        } else {
+          html += `<div class="col-item locked">
+            <div class="col-item-icon is-glyph" aria-hidden="true">?</div>
+            <div class="col-item-label">?</div>
+          </div>`;
+        }
+      }
+      html += `</div></div>`;
+    }
+
+    if (!anyData) html = `<div class="collection-empty">${t.collectionEmpty}</div>`;
+    content.innerHTML = html;
+  }
+
+  // ===== CERTIFICADO =====
+  // Histórias publicadas (derivado do catálogo): todas precisam estar
+  // concluídas para desbloquear o certificado.
+  const AVAILABLE_STORIES = MUSAEUM_CATALOG.filter(s => s.available).map(s => s.storyId);
+
+  function allStoriesComplete() {
+    return AVAILABLE_STORIES.every(id => {
+      const s = storeGet(id);
+      return s && s.screen === 'final';
+    });
+  }
+
+  function renderCertificateSection() {
+    const section = document.getElementById('panel-cert');
+    if (!section) return;
+    const t = i18n[currentLang];
+    const unlocked = allStoriesComplete();
+    document.getElementById('certHeading').textContent = t.certSectionTitle;
+    document.getElementById('certLockedWrap').style.display  = unlocked ? 'none' : '';
+    document.getElementById('certLockedMsg').textContent     = t.certLocked;
+    document.getElementById('certUnlockMsg').style.display   = unlocked ? '' : 'none';
+    document.getElementById('certUnlockMsg').textContent     = t.certUnlock;
+    document.getElementById('certOpenBtnWrap').style.display = unlocked ? '' : 'none';
+    document.getElementById('certOpenBtn').textContent       = t.certOpenBtn;
+    document.getElementById('certDownloadBtn').textContent   = t.certDownload;
+    document.getElementById('certCloseBtn').textContent      = t.certClose;
+  }
+
+  function showCertificate() {
+    document.getElementById('certPreview').style.display = '';
+    document.getElementById('certOpenBtnWrap').style.display = 'none';
+    document.fonts.ready.then(() => drawCertificate(currentLang));
+  }
+
+  function hideCertificate() {
+    document.getElementById('certPreview').style.display = 'none';
+    document.getElementById('certOpenBtnWrap').style.display = '';
+  }
+
+  function downloadCertificate() {
+    document.fonts.ready.then(() => drawCertificate(currentLang).then(() => {
+      const canvas = document.getElementById('certCanvas');
+      const a = document.createElement('a');
+      const raw = (getPlayerName() || 'musaeum').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+      a.download = `musaeum-certificado-${raw || 'leitura'}.png`;
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    }));
+  }
+
+  function drawCertificate(lang) {
+    const canvas = document.getElementById('certCanvas');
+    const t = i18n[lang];
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const W = 800, H = 560;
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+
+    const GOLD = '#b5922e', GOLD_L = '#c8a642';
+    const INK = '#1a1008', INK_SOFT = '#4a3820', INK_DIM = '#7a6040';
+
+    function line(y, op=0.32) {
+      const g = ctx.createLinearGradient(44, y, W - 44, y);
+      g.addColorStop(0, 'transparent');
+      g.addColorStop(0.12, `rgba(181,146,46,${op})`);
+      g.addColorStop(0.88, `rgba(181,146,46,${op})`);
+      g.addColorStop(1, 'transparent');
+      ctx.strokeStyle = g; ctx.lineWidth = 0.8;
+      ctx.beginPath(); ctx.moveTo(44, y); ctx.lineTo(W - 44, y); ctx.stroke();
+    }
+
+    function draw(ppImg, mnImg) {
+      // Fundo marfim
+      ctx.fillStyle = '#faf8f0';
+      ctx.fillRect(0, 0, W, H);
+
+      // Bordas
+      ctx.strokeStyle = GOLD; ctx.lineWidth = 1.5;
+      ctx.strokeRect(12, 12, W - 24, H - 24);
+      ctx.strokeStyle = `rgba(181,146,46,0.35)`; ctx.lineWidth = 0.7;
+      ctx.strokeRect(20, 20, W - 40, H - 40);
+
+      // Losangos nos cantos
+      [[12,12],[W-12,12],[12,H-12],[W-12,H-12]].forEach(([x,y]) => {
+        ctx.fillStyle = GOLD;
+        ctx.beginPath();
+        ctx.moveTo(x, y-5); ctx.lineTo(x+5, y); ctx.lineTo(x, y+5); ctx.lineTo(x-5, y);
+        ctx.closePath(); ctx.fill();
+      });
+
+      line(36);
+
+      ctx.textAlign = 'center';
+
+      // Hieroglifos ornamentais
+      ctx.font = '17px "Noto Sans Egyptian Hieroglyphs", sans-serif';
+      ctx.fillStyle = `rgba(181,146,46,0.42)`;
+      ctx.fillText('𓊹   𓂀   𓇳', W/2, 60);
+
+      // MUSAEUM
+      ctx.font = 'bold 28px Cinzel, serif';
+      ctx.fillStyle = GOLD;
+      ctx.fillText('M U S Æ U M', W/2, 86);
+
+      line(102, 0.16);
+
+      // Titulo do certificado
+      ctx.font = '700 9.5px Cinzel, serif';
+      ctx.fillStyle = INK_DIM;
+      ctx.fillText(t.certTitle.split('').join(' '), W/2, 118);
+
+      line(132, 0.1);
+
+      // Atesta-se que
+      ctx.font = 'italic 16px "EB Garamond", Georgia, serif';
+      ctx.fillStyle = INK_DIM;
+      ctx.fillText(t.certAttest, W/2, 162);
+
+      // Nome
+      const playerName = getPlayerName() || (lang === 'pt' ? 'Leitor do Musæum' : 'Musæum Reader');
+      ctx.font = 'bold 32px Cinzel, serif';
+      ctx.fillStyle = INK;
+      ctx.fillText(playerName, W/2, 200);
+
+      line(218, 0.2);
+
+      // concluiu com exito
+      ctx.font = 'italic 15px "EB Garamond", Georgia, serif';
+      ctx.fillStyle = INK_DIM;
+      ctx.fillText(t.certCompleted, W/2, 246);
+
+      // Historias
+      const certStories = MUSAEUM_CATALOG.filter(s => s.available);
+      let storyY = 282 - (certStories.length - 1) * 14;
+      for (const s of certStories) {
+        ctx.font = '20px "Noto Sans Egyptian Hieroglyphs", sans-serif';
+        ctx.fillStyle = GOLD_L;
+        ctx.textAlign = 'right';
+        ctx.fillText(s.cardGlyph, W/2 - 12, storyY);
+        ctx.font = '500 16px Cinzel, serif';
+        ctx.fillStyle = INK_SOFT;
+        ctx.textAlign = 'left';
+        ctx.fillText(lang === 'pt' ? s.titlePt : s.titleEn, W/2 + 18, storyY);
+        storyY += 28;
+      }
+
+      line(340);
+
+      // Data centralizada
+      const now = new Date();
+      const dateStr = now.toLocaleDateString(lang === 'pt' ? 'pt-BR' : 'en-US', { day: '2-digit', month: 'long', year: 'numeric' });
+      ctx.font = 'italic 12px "EB Garamond", Georgia, serif';
+      ctx.fillStyle = INK_DIM;
+      ctx.textAlign = 'center';
+      ctx.fillText(dateStr, W/2, 364);
+
+      // Logos institucionais centralizadas no rodape
+      const logoH = 36;
+      const ppW = ppImg && ppImg.naturalWidth ? logoH * (ppImg.naturalWidth / ppImg.naturalHeight) : 0;
+      const mnW = mnImg && mnImg.naturalWidth ? logoH * (mnImg.naturalWidth / mnImg.naturalHeight) : 0;
+      const gap = 28;
+      const totalW = ppW + gap + mnW;
+      const logoX = (W - totalW) / 2;
+      const logoY = 386;
+      if (ppImg && ppImg.naturalWidth) ctx.drawImage(ppImg, logoX, logoY, ppW, logoH);
+      if (mnImg && mnImg.naturalWidth) ctx.drawImage(mnImg, logoX + ppW + gap, logoY, mnW, logoH);
+
+      // Ornamento de rodape
+      ctx.font = '13px "Noto Sans Egyptian Hieroglyphs", sans-serif';
+      ctx.fillStyle = `rgba(181,146,46,0.09)`;
+      ctx.textAlign = 'center';
+      ctx.fillText('𓊹𓂀𓇳𓏞𓊛𓁹𓄿𓅓𓆑𓈋𓈖𓉐𓊛𓊴𓌀𓏃𓌛𓏞', W/2, 476);
+    }
+
+    return new Promise(resolve => {
+      const ppImg = new Image();
+      const mnImg = new Image();
+      let pending = 2;
+      function onDone() { if (--pending === 0) { draw(ppImg, mnImg); resolve(); } }
+      ppImg.onload = ppImg.onerror = onDone;
+      mnImg.onload = mnImg.onerror = onDone;
+      ppImg.src = 'assets/images/ppgarq.png';
+      mnImg.src = 'assets/images/museu-nacional.png';
+    });
+  }
+
+
+  // Inicialização
+  migrateOldSaves();
+  initTheme();
+  buildLibrary();
+  initTabKeys();
+  const _savedLang = localStorage.getItem('musaeum-lang') || 'pt';
+  setLang(_savedLang);
+  if (window.Research) Research.init({ suppressModal: true });
+  if (localStorage.getItem('musaeum-research-consent') === null) {
+    _welcomeFirstRun = true;
+    setTimeout(showLangModal, 500); // idioma → boas-vindas → tour
+  }
+</script>
+</body>
+</html>
