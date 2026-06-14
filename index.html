@@ -21,6 +21,12 @@
 <meta property="og:locale" content="pt_BR" />
 <meta property="og:locale:alternate" content="en_US" />
 
+<!-- Canonical e versões por idioma -->
+<link rel="canonical" href="https://www.musaeum.app/" />
+<link rel="alternate" hreflang="pt-br" href="https://www.musaeum.app/" />
+<link rel="alternate" hreflang="en" href="https://www.musaeum.app/?lang=en" />
+<link rel="alternate" hreflang="x-default" href="https://www.musaeum.app/" />
+
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Musæum · Biblioteca interativa" />
@@ -1344,6 +1350,44 @@
   }
 
 </style>
+
+<!-- Dados estruturados: liga o nome da autora ao projeto (Google Knowledge Graph) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://www.musaeum.app/#flavia-lima-corpas",
+      "name": "Flavia Lima Corpas",
+      "givenName": "Flavia",
+      "familyName": "Lima Corpas",
+      "jobTitle": "Pesquisadora em Arqueologia Egípcia",
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "PPGArq, Museu Nacional, Universidade Federal do Rio de Janeiro (UFRJ)"
+      },
+      "sameAs": [
+        "http://lattes.cnpq.br/3306979938277728"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.musaeum.app/#website",
+      "url": "https://www.musaeum.app/",
+      "name": "Musæum",
+      "alternateName": "Musæum: biblioteca digital interativa de literatura do Egito Antigo",
+      "description": "Biblioteca digital interativa e bilíngue (português e inglês) de textos literários do Egito Antigo do Reino Médio, com leitura narrativa, hieróglifos e comentários arqueológicos.",
+      "inLanguage": ["pt-BR", "en"],
+      "author": { "@id": "https://www.musaeum.app/#flavia-lima-corpas" },
+      "creator": { "@id": "https://www.musaeum.app/#flavia-lima-corpas" },
+      "publisher": { "@id": "https://www.musaeum.app/#flavia-lima-corpas" },
+      "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "citation": "https://doi.org/10.5281/zenodo.20617042"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
