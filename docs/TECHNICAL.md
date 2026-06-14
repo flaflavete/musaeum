@@ -5,7 +5,7 @@
 Aplicação web estática sem etapa de build. O HTML de cada história é um esqueleto mínimo que carrega os scripts compartilhados; o conteúdo (textos, desafios, glossário) vive em `data/`, e a lógica no motor compartilhado `engine.js`.
 
 ```
-index.html              Página inicial: biblioteca, coleção, certificado, modal "sobre"
+index.html              Página inicial: biblioteca, mapa, coleção, certificado, modal "sobre"
 naufrago.html           Experiência interativa do Conto do Náufrago
 sinuhe.html             Experiência interativa da História de Sinué
 script.js               Utilitários compartilhados + shell HTML das histórias
@@ -16,7 +16,8 @@ style.css               Estilos globais (tema, tipografia)
 data/catalogo.js        Catálogo central: cards, tesouros, códex e disponibilidade
 data/naufrago.js        Textos, desafios e glossário do Náufrago
 data/sinuhe.js          Textos, desafios e glossário do Sinué
-data/cultura-material.js  Fichas dos manuscritos reais (foto + catálogo do museu)
+data/cultura-material.js  Fichas dos manuscritos reais (foto + catálogo) e achados das notas
+data/geografia.js       Lugares citados nos textos, para o mapa interativo do index
 tests/                  Testes automatizados (vitest)
 package.json            Dependências de teste (vitest)
 fontes/                 PDFs e áudio de referência bibliográfica
@@ -215,7 +216,7 @@ Tour.start(steps, { labels: { skip, prev, next, done }, onClose });
 - Navegação por teclado (←/→/Esc); reposiciona ao rolar/redimensionar.
 - Botão `#btnTour` (`?`) na barra superior reabre o tour a qualquer momento.
 
-**Tour da home** (`index.html`, `startHomeTour`): 4 passos — `#card1` (biblioteca), `#collectionSection`, `#certSection`, `#btnAbout`. Textos no objeto `i18n` (`tourSteps`).
+**Tour da home** (`index.html`, `startHomeTour`): 5 passos — `.library-grid .scroll-card` (biblioteca), `#tab-mapa`, `#tab-colecao`, `#tab-cert`, `#btnAbout`. Textos no objeto `i18n` (`tourSteps`).
 
 **Tour da história** (`engine.js`, `startStoryTour`): aponta os recursos visíveis na cena — `#btnGlossary`, `#btnCodex`, `#btnSound`, `#inventoryHud`, `#btnNote`, `#btnChallenge`. **Auto-dispara uma única vez** na primeira chegada à tela `story` (gravando `musaeum-tour-<storyId>`); depois fica disponível só pelo `?`. Textos nas chaves `tour-*` do `I18N`.
 
@@ -278,6 +279,47 @@ Strings de UI no `I18N` de cada história: `artifact-btn`, `artifact-title`, `ar
 Os dados de catálogo devem vir da ficha do museu depositário; preservar o crédito do fotógrafo quando houver. Datas em **AEC/BCE**, exceto títulos de obras citadas.
 
 Fichas atuais: Náufrago → Papiro Hermitage 1115 (`assets/images/hermitage_1115.jpeg`); Sinué → Papiro Berlin 3022 (`assets/images/berlin_3022.jpg`).
+
+### Achados nas notas arqueológicas
+
+Também em `data/cultura-material.js`, o registro `ACHADOS` (indexado por `storyId`) guarda objetos reais citados em notas arqueológicas. Quando uma nota menciona um objeto com foto de licença verificada e referência de acervo, o trecho recebe um `<span class="achado-ref" data-achado="id">`; o clique chama `toggleAchado()` (em `engine.js`) e revela um cartão pequeno com foto, nome, referência e crédito.
+
+```js
+ACHADOS[storyId] = {
+  'id-do-achado': {
+    image,            // caminho local da foto (assets/images/)
+    altPt, altEn,     // texto alternativo
+    namePt, nameEn,   // nome curto
+    refPt, refEn,     // uma linha: o que é · onde está (nº de inventário)
+    creditPt, creditEn, // crédito e licença da foto
+    url               // (opcional) ficha do objeto no acervo
+  }
+}
+```
+
+De propósito **não há contador, coleção nem persistência**: tesouros e códex já são inventário suficiente; o achado é só o momento da descoberta. Nem toda nota tem achado, também de propósito. Só entra objeto com imagem de licença verificada (CC0 / domínio público / CC BY-SA com crédito) e referência fiel ao acervo.
+
+---
+
+## Mapa interativo (index.html)
+
+Aba **Mapa** da home: os lugares citados nos textos plotados sobre a carta antiga «Égypte Ancienne» (Malte-Brun, 1837, domínio público). Os dados vivem em `data/geografia.js`.
+
+`MUSAEUM_GEO` é um array; cada lugar tem:
+
+| Campo | Descrição |
+|---|---|
+| `id` | identificador |
+| `namePt` / `nameEn` | nome bilíngue (forma egípcia + moderna quando útil) |
+| `kind` | tipo de lugar (chave em `GEO_KINDS`, rótulo bilíngue) |
+| `stories` | array de `storyId` em que o lugar aparece |
+| `uncertain` | `true` quando a localização é debatida ou não atestada |
+| `pos` | `{ map: [left%, top%] }` (ponto sobre a carta) **ou** `{ edge: 'n'\|'s', at: % }` (lugar fora da carta, vira seta de borda) |
+| `descPt` / `descEn` | descrição factual, fiel às fontes |
+
+Lugares fora da carta (Punt ao sul, o Levante ao norte) viram marcadores de **borda** com seta apontando a direção. As cores por história derivam do catálogo (`geoStoryStyle` / `injectGeoStoryStyles`), então **história nova é drop-in**: basta adicionar lugares com o novo `storyId` em `stories`. Renderização: `renderGeoMap()` (marcadores), `renderGeoPanel()` (cartão do lugar selecionado), `renderGeoLegend()` (legenda por história).
+
+**Rigor:** localizações debatidas (Punt, Iaa, Qedem) e lugares conhecidos só pelos textos (Muros do Soberano) levam `uncertain: true`, e a ressalva aparece no próprio cartão. As posições sobre a carta são aproximadas. Só usar carta de fundo com licença verificada e crédito.
 
 ---
 
