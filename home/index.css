@@ -36,7 +36,7 @@
   html[data-theme="light"] body {
     background:
       linear-gradient(rgba(245, 237, 216, 0.72), rgba(232, 220, 192, 0.78)),
-      url('assets/images/pexels-clioseye-35506459.jpg');
+      url('../assets/images/pexels-clioseye-35506459.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -115,7 +115,7 @@
     color: var(--papyrus);
     background:
       linear-gradient(rgba(20, 32, 47, 0.85), rgba(27, 42, 61, 0.85)),
-      url('assets/images/pexels-clioseye-35506459.jpg');
+      url('../assets/images/pexels-clioseye-35506459.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
