@@ -1,5 +1,5 @@
-// Abas (Início · Mapa · Coleção · Certificado). Troca a seção visível sem
-// recarregar. Sem persistência: sempre abre no Início, que é o convite
+// Abas (Biblioteca · Mapa · Coleção · Certificado). Troca a seção visível sem
+// recarregar. Sem persistência: sempre abre na Biblioteca, que é o convite
 // (epígrafe + biblioteca).
   function showTab(name) {
     const tabs = document.querySelectorAll('#tabbar .tab');

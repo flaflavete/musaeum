@@ -102,7 +102,7 @@
     if (window.Tour && Tour.isActive()) return;
     const t = i18n[currentLang];
     const s = t.tourSteps;
-    const selectors = ['.library-grid .scroll-card', '#tab-mapa', '#tab-colecao', '#tab-cert', '#btnAbout'];
+    const selectors = ['#tab-inicio', '#tab-mapa', '#tab-colecao', '#tab-cert', '#btnAbout'];
     const steps = selectors.map((sel, i) => ({ selector: sel, title: s[i].title, body: s[i].body }));
     if (window.Tour) {
       Tour.start(steps, {
