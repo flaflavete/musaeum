@@ -183,8 +183,9 @@ publicada ou quando existe progresso salvo dela no aparelho.
 
 ```js
 const MUSAEUM_CATALOG = [
-  { storyId: 'naufrago', href: 'naufrago.html', available: true, items: [...], codex: [...] },
-  { storyId: 'sinuhe',   href: 'sinuhe.html',   available: false, ... },
+  { storyId: 'naufrago', href: 'naufrago.html', available: true,  items: [...], codex: [...] },
+  { storyId: 'sinuhe',   href: 'sinuhe.html',   available: true,  ... },
+  { storyId: 'campones', href: 'campones.html', available: false, ... }, // em breve
 ];
 ```
 

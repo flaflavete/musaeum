@@ -39,7 +39,8 @@ musaeum/
 ├── style.css               Estilos globais (tema, tipografia, componentes)
 │
 ├── data/
-│   ├── naufrago.js         Dados do Náufrago: I18N, ITEMS, GLYPHS_CODEX, GLOSSARY, CHAPTERS
+│   ├── catalogo.js         Catálogo central (MUSAEUM_CATALOG): cards, tesouros, códex e disponibilidade
+│   ├── naufrago.js         Dados do Náufrago: I18N, GLOSSARY, CHAPTERS (ITEMS e GLYPHS_CODEX vêm do catálogo)
 │   ├── sinuhe.js           Dados do Sinué (mesma estrutura)
 │   ├── cultura-material.js Fichas dos manuscritos reais (CULTURA_MATERIAL) e achados das notas (ACHADOS)
 │   └── geografia.js        Lugares citados nos textos (MUSAEUM_GEO), para o mapa interativo do index
@@ -94,16 +95,18 @@ Cada página de história (`naufrago.html`, `sinuhe.html`) segue sempre esta ord
 
 ```html
 <body>
-  <script src="script.js"></script>        <!-- 1. utilitários + shell HTML -->
-  <script src="data/naufrago.js"></script> <!-- 2. dados da história (I18N, CHAPTERS...) -->
-  <script src="research.js"></script>      <!-- 3. coleta da pesquisa -->
-  <script src="engine.js"></script>        <!-- 4. motor: telas, render, desafios, save -->
-  <script src="tour.js"></script>          <!-- 5. motor do tour guiado -->
-  <script>initStory({ storyId: 'naufrago' });</script>  <!-- 6. dá o play -->
+  <script src="script.js"></script>             <!-- 1. utilitários + shell HTML -->
+  <script src="data/catalogo.js"></script>      <!-- 2. catálogo central (MUSAEUM_CATALOG, catalogGet) -->
+  <script src="data/naufrago.js"></script>      <!-- 3. dados da história (I18N, CHAPTERS...) -->
+  <script src="data/cultura-material.js"></script> <!-- 4. fichas dos papiros + achados -->
+  <script src="research.js"></script>           <!-- 5. coleta da pesquisa -->
+  <script src="engine.js"></script>             <!-- 6. motor: telas, render, desafios, save -->
+  <script src="tour.js"></script>               <!-- 7. motor do tour guiado -->
+  <script>initStory({ storyId: 'naufrago' });</script>  <!-- 8. dá o play -->
 </body>
 ```
 
-Os scripts são carregados em ordem, então todas as funções e constantes ficam disponíveis globalmente. A lógica da história vive em `engine.js` (não inline): `initStory()` monta o estado, injeta o shell via `initStoryApp()`, carrega o save e renderiza. `tour.js` é opcional do ponto de vista do motor — se estiver presente, `engine.js` o usa para o tour da história.
+Os scripts são carregados em ordem, então todas as funções e constantes ficam disponíveis globalmente. **`data/catalogo.js` vem logo após `script.js`** porque o data file da história usa `catalogGet()` para puxar `ITEMS` e `GLYPHS_CODEX` dali. A lógica da história vive em `engine.js` (não inline): `initStory()` monta o estado, injeta o shell via `initStoryApp()`, carrega o save e renderiza. `tour.js` é opcional do ponto de vista do motor — se estiver presente, `engine.js` o usa para o tour da história.
 
 ---
 
@@ -147,7 +150,7 @@ Após a chamada, o `<body>` terá:
 
 ## 7. Arquivos de dados (`data/*.js`)
 
-Cada história tem seu arquivo de dados com estas constantes:
+Cada história tem seu arquivo de dados (`data/<historia>.js`) com `I18N`, `GLOSSARY` e `CHAPTERS`. Os tesouros (`ITEMS`) e os hieróglifos do códex (`GLYPHS_CODEX`) **não** ficam aqui: vivem no catálogo central (`data/catalogo.js`) e são puxados de lá com `catalogGet()`.
 
 ### `I18N` — textos bilíngues
 
@@ -164,33 +167,38 @@ Acessado via a função `t(chave)` definida no JS inline de cada história:
 function t(k) { return I18N[state.lang][k] || k; }
 ```
 
-### `ITEMS` — tesouros colecionáveis (8 por história)
+### `ITEMS` e `GLYPHS_CODEX` — vêm do catálogo
+
+No data file da história, as duas constantes são apenas atalhos que puxam os dados do catálogo central:
 
 ```js
-const ITEMS = [
-  { pt: 'Uvas', en: 'Grapes', icon: '🍇' },
-  // ... 7 mais
-];
+const ITEMS = catalogGet('naufrago').items;        // 8 tesouros
+const GLYPHS_CODEX = catalogGet('naufrago').codex; // 9 hieróglifos
 ```
 
-### `GLYPHS_CODEX` — hieróglifos desbloqueáveis (9 por história)
+Os arrays de verdade ficam em `data/catalogo.js`, na entrada da história. Cada tesouro de `items`:
 
 ```js
-const GLYPHS_CODEX = [
-  {
-    glyph:     '𓋹',          // caractere Unicode do bloco Egípcio Hieroglífico
-    translit:  'ꜥnḫ',         // transliteração acadêmica
-    namePt:    'Ankh',        nameEn:    'Ankh',
-    meaningPt: 'Vida',        meaningEn: 'Life',
-    notePt:    '...',         noteEn:    '...',
-    typeKey:   'type-logogram', // tipo (ver tabela abaixo)
-    chapter:   -1              // -1 = intro, 0–7 = capítulos
-  },
-  // ... 8 mais
-];
+{ pt: 'Uvas', en: 'Grapes', icon: '🍇' }   // ... 8 no total
+```
+
+Cada hieróglifo de `codex`:
+
+```js
+{
+  glyph:     '𓋹',           // caractere Unicode do bloco Egípcio Hieroglífico
+  translit:  'ꜥnḫ',          // transliteração acadêmica
+  namePt:    'Ankh',        nameEn:    'Ankh',
+  meaningPt: '...',         meaningEn: '...',   // função/leitura (Gardiner/Faulkner)
+  notePt:    '...',         noteEn:    '...',
+  typeKey:   'type-tri',    // tipo (ver valores abaixo)
+  chapter:   -1             // -1 = intro, 0–7 = capítulos
+}   // ... 9 no total
 ```
 
 Valores válidos de `typeKey`: `type-logogram`, `type-phonogram`, `type-determin`, `type-uni`, `type-bi`, `type-tri`, `type-ideo`.
+
+> Por isso `data/catalogo.js` precisa ser carregado **antes** do data file da história (ver §5). Editar tesouros ou códex significa editar o catálogo, não o data file.
 
 ### `GLOSSARY` — termos do glossário
 
@@ -448,91 +456,67 @@ Padrões que devem ser mantidos em qualquer alteração:
 
 ## 13. Como adicionar uma nova história
 
-Exemplo: adicionar "O Camponês Eloquente" (`campones.html`).
+Exemplo: adicionar "O Camponês Eloquente" (storyId `campones`). O catálogo central (`data/catalogo.js`) é a **fonte única**: card, Coleção, Certificado, mapa e desbloqueio derivam todos dele.
 
-### Passo 1 — criar o arquivo de dados
+### Passo 1 — entrada no catálogo
 
-Crie `data/campones.js` seguindo a estrutura de `data/sinuhe.js`. Defina:
-
-- `I18N` — todos os textos bilíngues da UI
-- `ITEMS` — 8 tesouros (emoji + nome PT + nome EN)
-- `GLYPHS_CODEX` — 9 hieróglifos (preencha todos os campos)
-- `GLOSSARY` — termos do glossário
-- `CHAPTERS` — 8 capítulos com texto, nota, contexto e questão
-
-### Passo 2 — criar o HTML da história
-
-Copie `sinuhe.html` e renomeie para `campones.html`. Altere:
-
-1. `<title>` e metatags no `<head>`
-2. `<script src="data/sinuhe.js">` → `<script src="data/campones.js">`
-3. `initStoryApp({ inventory: ['emoji1', ..., 'emoji8'] })` — use os ícones dos seus ITEMS
-4. `const STORY_ID = 'campones';` (se a história usar essa constante)
-5. Revise o objeto `state` inicial
-6. Adapte a lógica se houver diferenças narrativas
-
-### Passo 3 — publicar no index.html
-
-Em `index.html`, localize o card correspondente (ex: `card3`) e converta de card bloqueado para link:
-
-```html
-<!-- antes -->
-<div class="scroll-card locked" id="card3" aria-label="...">
-
-<!-- depois -->
-<a href="campones.html" class="scroll-card" id="card3" aria-label="...">
-```
-
-Feche com `</a>` em vez de `</div>`.
-
-### Passo 4 — adicionar ao GAME_CATALOG
-
-No `index.html`, localize o array `GAME_CATALOG` e adicione:
+Em `data/catalogo.js`, acrescente uma entrada ao array `MUSAEUM_CATALOG`:
 
 ```js
 {
-  storyId: 'campones',
-  titlePt: 'O Camponês Eloquente',
-  titleEn: 'The Eloquent Peasant',
-  items: ITEMS_CAMPONES   // importar do data file ou duplicar o array aqui
+  storyId:   'campones',
+  href:      'campones.html',
+  available:  false,               // ainda não publicada
+  cardGlyph: '𓀢',
+  titlePt:   'O Camponês Eloquente', titleEn: 'The Eloquent Peasant',
+  descPt:    '...',                  descEn:  '...',
+  items: [ /* 8 tesouros { pt, en, icon } */ ],
+  codex: [ /* 9 hieróglifos (ver §7) */ ]
 }
 ```
 
-> Atenção: o `index.html` não carrega os arquivos `data/*.js`. Se precisar dos ITEMS no catálogo, copie o array diretamente ou reestruture para carregar o JS.
+Com `available: false`, o card já aparece na biblioteca, mas bloqueado (cadeado).
 
-### Passo 5 — adicionar ao AVAILABLE_STORIES
+### Passo 2 — arquivo de dados
+
+Crie `data/campones.js` seguindo `data/sinuhe.js`. Defina `I18N`, `GLOSSARY`, `CHAPTERS` (8 capítulos com texto, nota e questão) e os dois atalhos do catálogo:
 
 ```js
-const AVAILABLE_STORIES = ['naufrago', 'campones']; // adicione aqui
+const ITEMS = catalogGet('campones').items;
+const GLYPHS_CODEX = catalogGet('campones').codex;
 ```
 
-Essa constante controla quais histórias precisam estar completas para o certificado ser desbloqueado.
+### Passo 3 — HTML da história
 
-### Passo 6 (opcional) — cultura material
+Copie `sinuhe.html` para `campones.html` mantendo a mesma ordem de scripts (§5). Altere só:
 
-Para mostrar o manuscrito real na tela de abertura:
+1. `<title>` e metatags no `<head>`
+2. `<script src="data/sinuhe.js">` → `<script src="data/campones.js">`
+3. o `storyId` em `initStory({ storyId: 'campones' })`
 
-1. salve a foto do papiro em `assets/images/`;
-2. crie uma chave nova em `CULTURA_MATERIAL` (`data/cultura-material.js`) com o mesmo formato do `naufrago` (ver §7), preenchendo os campos a partir da ficha de catálogo do museu que guarda o objeto;
-3. garanta que `data/cultura-material.js` esteja carregado no HTML da história, antes de `engine.js`;
-4. acrescente as strings `artifact-btn`, `artifact-title` e `artifact-museum` ao `I18N` (PT e EN) da história.
+Os cards não são editados na mão: `buildLibrary()` gera todos a partir do catálogo.
 
-A faixa e a ficha aparecem sozinhas — nenhuma mudança no `engine.js` é necessária.
+### Passo 4 (opcional) — cultura material e mapa
+
+- **Cultura material:** crie a chave `campones` em `CULTURA_MATERIAL` (`data/cultura-material.js`), salve a foto em `assets/images/` e acrescente as strings `artifact-btn`/`artifact-title`/`artifact-museum` ao `I18N` (ver §7). Garanta que `data/cultura-material.js` esteja carregado no HTML (já está, se você copiou de `sinuhe.html`).
+- **Mapa:** acrescente os lugares citados ao `MUSAEUM_GEO` (`data/geografia.js`) com `'campones'` em `stories`. As cores saem do catálogo sozinhas.
+
+### Passo 5 — publicar
+
+Quando a história estiver pronta, mude `available` para `true` na entrada do catálogo. **Só isso.** Card aberto, Coleção, Certificado e o desbloqueio passam a contar a história automaticamente.
 
 ---
 
-## 14. Publicação de uma nova história (referência)
+## 14. Como o catálogo deriva tudo (referência)
 
-A História de Sinué foi publicada na **v1.0** (2026-06-09). Os passos abaixo
-ficam como referência para publicar a próxima história (ex.: o Camponês Eloquente):
+Nada de card, Coleção ou Certificado é escrito à mão: tudo lê `MUSAEUM_CATALOG` (`data/catalogo.js`).
 
-1. Em `index.html`, converta o card de `<div class="scroll-card locked">` para `<a href="<historia>.html" class="scroll-card">` (com a tag `tag-ready` / `tagOpen`)
-2. Adicione no `GAME_CATALOG` a entrada com os tesouros (os mesmos `ITEMS` do `data/<historia>.js`):
-   ```js
-   { storyId: '<historia>', titlePt: '...', titleEn: '...', items: [...] }
-   ```
-3. Adicione `'<historia>'` em `AVAILABLE_STORIES` (passa a contar para o certificado)
-4. No HTML da história, carregue `research.js` e `tour.js` (paridade com `naufrago.html`) e garanta as chaves `tour-*` no `I18N` de `data/<historia>.js`
+- **Cards da biblioteca:** `buildLibrary()` percorre o catálogo; `available: true` vira card-link, `false` vira card bloqueado.
+- **Certificado:** `AVAILABLE_STORIES = MUSAEUM_CATALOG.filter(s => s.available).map(s => s.storyId)` — derivado, não escrito à mão. O certificado desbloqueia quando todas essas histórias chegam à tela final.
+- **Coleção:** mostra uma história quando ela está publicada ou quando há save dela no aparelho.
+- **Mapa:** as cores por história derivam do catálogo (`geoStoryStyle`).
+
+Por isso publicar é só `available: true`: a derivação cuida do resto. (A História de Sinué foi publicada na v1.0, em 2026-06-09, por esse mesmo caminho.)
 
 ---
 
