@@ -66,8 +66,9 @@
   // ── CSS do modal ────────────────────────────────────────────────────────────
 
   // Visual idêntico ao modal de boas-vindas da home (index.html).
-  // Cores fixas escuras: como o cartão do tour, o painel é sempre escuro,
-  // inclusive no tema claro.
+  // Cores fixas escuras de propósito: o escuro é o tema inicial padrão e
+  // este painel só aparece na primeira entrada, antes de qualquer escolha
+  // de tema. (O cartão do tour, esse sim, acompanha o tema.)
   function _injectStyles() {
     if (document.getElementById('research-styles')) return;
     const style = document.createElement('style');

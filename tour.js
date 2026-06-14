@@ -128,6 +128,28 @@
 }
 .tour-btn-next:hover { background: rgba(201, 166, 70, 0.28); border-color: #c9a646; }
 .tour-btn:focus-visible { outline: 2px solid #c9a646; outline-offset: 2px; }
+/* Tema claro: o card do tour acompanha a escolha de tema. As setas e o
+   holofote seguem dourados, pois ficam sobre o escurecedor da página. */
+html[data-theme="light"] .tour-card {
+  background: linear-gradient(180deg, #f5edd8 0%, #ede3c8 100%);
+  border-color: rgba(160, 128, 30, 0.45);
+  color: #271e11;
+  box-shadow: 0 14px 48px rgba(29, 53, 87, 0.25);
+}
+html[data-theme="light"] .tour-step-count,
+html[data-theme="light"] .tour-card-title { color: #5c480e; }
+html[data-theme="light"] .tour-card-body { color: #3d2e1e; }
+html[data-theme="light"] .tour-btn-skip { color: #3d2e1e; }
+html[data-theme="light"] .tour-btn-skip:hover { color: #5c480e; }
+html[data-theme="light"] .tour-btn-prev { border-color: rgba(92, 72, 14, 0.4); color: #5c480e; }
+html[data-theme="light"] .tour-btn-prev:hover { border-color: #5c480e; }
+html[data-theme="light"] .tour-btn-next {
+  background: rgba(92, 72, 14, 0.14);
+  border-color: rgba(92, 72, 14, 0.5);
+  color: #5c480e;
+}
+html[data-theme="light"] .tour-btn-next:hover { background: rgba(92, 72, 14, 0.22); border-color: #5c480e; }
+html[data-theme="light"] .tour-btn:focus-visible { outline-color: #5c480e; }
 @media (prefers-reduced-motion: reduce) {
   .tour-arrow { animation: none; opacity: 1; }
   .tour-spotlight, .tour-card { transition: none; }

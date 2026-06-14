@@ -107,6 +107,11 @@
     background: rgba(29, 53, 87, 0.10);
   }
 
+  html[data-theme="light"] .tutorial-chip {
+    background: rgba(255, 252, 246, 0.85);
+    border-color: rgba(138, 106, 24, 0.35);
+  }
+
   html[data-theme="light"] .glossary-entry {
     background: rgba(255, 252, 246, 0.85);
     border-color: rgba(138, 106, 24, 0.35);

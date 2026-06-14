@@ -165,7 +165,14 @@ function render() {
     if (state.screen === 'intro')           root.innerHTML = renderIntro();
     else if (state.screen === 'final')      root.innerHTML = renderFinal();
     else if (state.screen === 'story')      root.innerHTML = renderStory(ch);
-    else if (state.screen === 'minigame') { root.innerHTML = renderMinigame(ch); attachMinigame(ch); }
+    else if (state.screen === 'minigame') {
+      root.innerHTML = renderMinigame(ch);
+      // Desafio já respondido e com resultado guardado (ex.: troca de idioma
+      // ou recarga da página): restaura o feedback sem reiniciar. Senão,
+      // arma os cliques de um desafio novo.
+      if (state.answered && state.answerResult) restoreAnsweredMinigame();
+      else attachMinigame(ch);
+    }
   }
 
   activateGloss(root);
@@ -430,7 +437,12 @@ function shuffleArray(arr) {
 function renderMinigame(ch) {
   const q = ch.question;
   const prompt = state.lang === 'pt' ? q.promptPt : q.promptEn;
-  state.shuffledOptions = shuffleArray(q.options);
+  // Só embaralha ao entrar no desafio (goMinigame zera shuffledOptions).
+  // Em re-renders (trocar idioma, restaurar resposta) reaproveita a ordem
+  // já sorteada, para não reiniciar o desafio nem as opções pularem de lugar.
+  if (!state.shuffledOptions || !state.shuffledOptions.length) {
+    state.shuffledOptions = shuffleArray(q.options);
+  }
   return `
     <div class="scene">
       <div class="chapter-label">${t('challenge-count')} ${state.chapter + 1}/${CHAPTERS.length}</div>
@@ -451,8 +463,9 @@ function renderMinigame(ch) {
 }
 
 function attachMinigame(ch) {
-  state.answered = false;
-  state.attempts = 0;
+  // answered/attempts são zerados em goMinigame ao entrar no desafio.
+  // Aqui só armamos os cliques, para que re-renders (troca de idioma no
+  // meio de tentativas) preservem a contagem de tentativas.
   const q = ch.question;
   document.querySelectorAll('.choice').forEach(el => {
     el.onclick = () => {
@@ -491,24 +504,61 @@ function onAnswer(isCorrect, q, firstTry) {
     state.collected[state.chapter] = true;
   }
 
-  const fact = state.lang === 'pt' ? q.factPt : q.factEn;
-  const itemName = state.lang === 'pt' ? ITEMS[state.chapter].pt : ITEMS[state.chapter].en;
-  const collectionMsg = collects ? `<br><b>${t('treasure-got')}: ${itemName}!</b>` : '';
-  const pointsMsg = repeat ? '' : `+${earned} ${t('points')}. `;
-
-  document.getElementById('feedbackSlot').innerHTML = `<div class="feedback good"><strong class="label">${t('correct')}</strong>${pointsMsg}${collectionMsg} <div style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.1); padding-top:8px; font-style:italic;">${fact}</div></div>`;
-  const isLast = state.chapter >= CHAPTERS.length - 1;
+  // Guarda o resultado para reconstruir o feedback em re-renders (troca de
+  // idioma, recarga da página) sem somar pontos nem coletar o tesouro de novo.
+  state.answerResult = { earned, repeat, collects };
 
   updateInventoryUI();
-
-  const nextLabel = isLast ? t('see-final') : t('next-chapter');
-  document.getElementById('actionSlot').innerHTML = `<button class="btn gold" onclick="${isLast ? 'goFinal()' : 'nextChapter()'}">${nextLabel} →</button>`;
+  renderAnswerFeedback();
   saveState();
 }
 
-function startGame() { state.chapter = 0; state.screen = 'story'; state.score = 0; state.collected = new Array(ITEMS.length).fill(false); state.answeredChapters = new Array(CHAPTERS.length).fill(false); render(); scrollTop(); }
-function restartGame() { state.chapter = 0; state.screen = 'splash'; state.score = 0; state.answered = false; state.attempts = 0; state.collected = new Array(ITEMS.length).fill(false); state.answeredChapters = new Array(CHAPTERS.length).fill(false); state.discoveredGlyphs = new Set(); state.codexHasNew = false; saveState(); render(); scrollTop(); }
-function goMinigame() { state.screen = 'minigame'; render(); scrollTop(); }
+// Monta o feedback de acerto (pontos, tesouro, curiosidade e botão de avançar)
+// a partir de state.answerResult. Reexecutável: lê o idioma atual, então
+// trocar de idioma reescreve o texto sem reiniciar o desafio.
+function renderAnswerFeedback() {
+  const r = state.answerResult;
+  const slot = document.getElementById('feedbackSlot');
+  const action = document.getElementById('actionSlot');
+  if (!r || !slot || !action) return;
+
+  const ch = CHAPTERS[state.chapter];
+  const q = ch && ch.question ? ch.question : null;
+  const fact = q ? (state.lang === 'pt' ? q.factPt : q.factEn) : '';
+  const itemName = state.lang === 'pt' ? ITEMS[state.chapter].pt : ITEMS[state.chapter].en;
+  const collectionMsg = r.collects ? `<br><b>${t('treasure-got')}: ${itemName}!</b>` : '';
+  const pointsMsg = r.repeat ? '' : `+${r.earned} ${t('points')}. `;
+
+  slot.innerHTML = `<div class="feedback good"><strong class="label">${t('correct')}</strong>${pointsMsg}${collectionMsg} <div style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.1); padding-top:8px; font-style:italic;">${fact}</div></div>`;
+  const isLast = state.chapter >= CHAPTERS.length - 1;
+  const nextLabel = isLast ? t('see-final') : t('next-chapter');
+  action.innerHTML = `<button class="btn gold" onclick="${isLast ? 'goFinal()' : 'nextChapter()'}">${nextLabel} →</button>`;
+}
+
+// Re-render de um desafio já respondido: destaca a opção correta e remonta
+// o feedback. Os botões ficam sem handler (não foram rearmados), então não
+// há como responder de novo.
+function restoreAnsweredMinigame() {
+  document.querySelectorAll('.choice').forEach(el => {
+    const opt = state.shuffledOptions[+el.dataset.idx];
+    if (opt && opt.correct) el.classList.add('correct');
+  });
+  renderAnswerFeedback();
+}
+
+function startGame() { state.chapter = 0; state.screen = 'story'; state.score = 0; state.answered = false; state.attempts = 0; state.answerResult = null; state.shuffledOptions = []; state.collected = new Array(ITEMS.length).fill(false); state.answeredChapters = new Array(CHAPTERS.length).fill(false); render(); scrollTop(); }
+function restartGame() { state.chapter = 0; state.screen = 'splash'; state.score = 0; state.answered = false; state.attempts = 0; state.answerResult = null; state.shuffledOptions = []; state.collected = new Array(ITEMS.length).fill(false); state.answeredChapters = new Array(CHAPTERS.length).fill(false); state.discoveredGlyphs = new Set(); state.codexHasNew = false; saveState(); render(); scrollTop(); }
+function goMinigame() {
+  state.screen = 'minigame';
+  // Entrada limpa: zera resposta/tentativas e sorteia uma nova ordem para
+  // as opções deste capítulo (shuffledOptions vazio força novo sorteio).
+  state.answered = false;
+  state.attempts = 0;
+  state.answerResult = null;
+  state.shuffledOptions = shuffleArray(CHAPTERS[state.chapter].question.options);
+  render();
+  scrollTop();
+}
 function nextChapter() { state.chapter++; state.screen = 'story'; render(); scrollTop(); }
 
 function goFinal() {
@@ -908,6 +958,7 @@ function saveState() {
       attempts:         state.attempts,
       collected:        state.collected,
       answeredChapters: state.answeredChapters,
+      answerResult:     state.answerResult,
       discoveredGlyphs: [...state.discoveredGlyphs],
       codexHasNew:      state.codexHasNew
     });
@@ -927,6 +978,11 @@ function loadState() {
     state.attempts         = d.attempts         ?? state.attempts;
     state.collected        = d.collected        ?? state.collected;
     state.answeredChapters = d.answeredChapters ?? state.answeredChapters;
+    state.answerResult     = d.answerResult     ?? null;
+    // Save antigo, sem answerResult: se o desafio estava respondido, deixa
+    // respondê-lo de novo (a proteção de repeat impede pontuar duas vezes),
+    // assim nunca fica preso num desafio sem botão de avançar.
+    if (state.answered && !state.answerResult) state.answered = false;
     state.discoveredGlyphs = new Set(d.discoveredGlyphs ?? []);
     state.codexHasNew      = d.codexHasNew      ?? state.codexHasNew;
     return true;
@@ -966,7 +1022,8 @@ function initStory(config) {
     glossaryHighlight: null,
     glossarySearch: '',
     codexHasNew: false,
-    shuffledOptions: []
+    shuffledOptions: [],
+    answerResult: null
   };
 
   initStoryApp({ inventory: ITEMS.map(i => i.icon) });
