@@ -76,14 +76,32 @@ function updateInventoryUI() {
   }
 }
 
+// Capítulo mais avançado que o leitor já alcançou. Derivado de
+// answeredChapters (só se chega ao capítulo i+1 respondendo o i), para que
+// continuar valendo mesmo depois de voltar e reler um capítulo anterior.
+function maxReachedChapter() {
+  let m = 0;
+  for (let i = 0; i < state.answeredChapters.length; i++) {
+    if (state.answeredChapters[i]) m = Math.min(i + 1, CHAPTERS.length - 1);
+  }
+  return m;
+}
+
 function renderProgress() {
   const bar = document.getElementById('progressBar');
   const total = CHAPTERS.length;
+  const reached = maxReachedChapter();
   let html = '<div class="progress-track">';
   for (let i = 0; i < total; i++) {
-    const cls = i < state.chapter ? 'done' : (i === state.chapter ? 'current' : '');
-    html += `<div class="progress-node ${cls}">${i + 1}</div>`;
-    if (i < total - 1) html += `<div class="progress-dash ${i < state.chapter ? 'done' : ''}"></div>`;
+    const done = state.answeredChapters[i];
+    const cls = i === state.chapter ? 'current' : (done ? 'done' : '');
+    // Capítulos já alcançados viram botão: o leitor pode voltar e reler.
+    const unlocked = i <= reached;
+    const interactive = unlocked
+      ? ` role="button" tabindex="0" aria-label="${t('reread-chapter')} ${i + 1}" onclick="goChapter(${i})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goChapter(${i});}"`
+      : '';
+    html += `<div class="progress-node ${cls}${unlocked ? ' clickable' : ''}"${interactive}>${i + 1}</div>`;
+    if (i < total - 1) html += `<div class="progress-dash ${done ? 'done' : ''}"></div>`;
   }
   html += '</div>';
   bar.innerHTML = html;
@@ -264,6 +282,7 @@ function startStoryTour() {
     { selector: '#inventoryHud', title: t('tour-s4-title'), body: t('tour-s4-body') },
     { selector: '#btnNote',      title: t('tour-s5-title'), body: t('tour-s5-body') },
     { selector: '#btnChallenge', title: t('tour-s6-title'), body: t('tour-s6-body') },
+    { selector: '#progressBar',  title: t('tour-s7-title'), body: t('tour-s7-body') },
   ];
   // Só aponta o que estiver realmente visível na tela atual
   const steps = allSteps.filter(s => {
@@ -560,6 +579,21 @@ function goMinigame() {
   scrollTop();
 }
 function nextChapter() { state.chapter++; state.screen = 'story'; render(); scrollTop(); }
+
+// Volta a um capítulo já alcançado para reler a história. Reabre na tela de
+// leitura; o desafio daquele capítulo continua marcado como respondido
+// (answeredChapters), então repeti-lo não soma pontos nem coleta de novo.
+function goChapter(i) {
+  if (i < 0 || i >= CHAPTERS.length || i > maxReachedChapter()) return;
+  state.chapter = i;
+  state.screen = 'story';
+  state.answered = false;
+  state.attempts = 0;
+  state.answerResult = null;
+  state.shuffledOptions = [];
+  render();
+  scrollTop();
+}
 
 function goFinal() {
   state.screen = 'final';

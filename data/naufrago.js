@@ -41,6 +41,7 @@ const I18N = {
     'note-open':       '🔍 Nota Arqueológica',
     'note-close':      '✕ Fechar Nota',
     'next-chapter':    'Próximo Capítulo',
+    'reread-chapter':  'Reler capítulo',
     'see-final':       'Ver Resultado Final',
     'treasure-got':    'Tesouro coletado',
     'wrong-default':   'Incorreto. Tente novamente!',
@@ -113,6 +114,8 @@ const I18N = {
     'tour-s5-body':    'Toque aqui para abrir a nota arqueológica desta parte da história.',
     'tour-s6-title':   'O Desafio',
     'tour-s6-body':    'Ao fim de cada parte vem um desafio sobre a trama ou a cultura egípcia. É ele que leva você ao próximo capítulo. Acerte de primeira para ganhar o tesouro!',
+    'tour-s7-title':   'A Trilha dos Capítulos',
+    'tour-s7-body':    'Os números mostram seu avanço. Quando quiser voltar e reler um capítulo, é só tocar na bolinha dele: isso não muda nada do que você já conquistou.',
   },
   en: {
     'brand':           'Musæum',
@@ -155,6 +158,7 @@ const I18N = {
     'note-open':       '🔍 Archaeological Note',
     'note-close':      '✕ Close Note',
     'next-chapter':    'Next Chapter',
+    'reread-chapter':  'Reread chapter',
     'see-final':       'See Final Result',
     'treasure-got':    'Treasure collected',
     'wrong-default':   'Wrong. Try again!',
@@ -228,6 +232,8 @@ const I18N = {
     'tour-s5-body':    'Tap here to open the archaeological note for this part of the story.',
     'tour-s6-title':   'The Challenge',
     'tour-s6-body':    'Each part ends with a challenge about the plot or Egyptian culture. It carries you to the next chapter. Answer on the first try to earn the treasure!',
+    'tour-s7-title':   'The Chapter Trail',
+    'tour-s7-body':    'The numbers track your progress. Whenever you want to go back and reread a chapter, just tap its dot: it changes nothing you have already earned.',
   }
 };
 

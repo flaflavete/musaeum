@@ -326,6 +326,21 @@
     transform: scale(1.15);
     box-shadow: 0 0 14px rgba(232, 200, 102, 0.5);
   }
+  .progress-node.clickable {
+    cursor: pointer;
+  }
+  .progress-node.clickable:hover {
+    border-color: var(--gold-light);
+    color: var(--gold-light);
+  }
+  .progress-node.done.clickable:hover,
+  .progress-node.current.clickable:hover {
+    color: var(--ink);
+  }
+  .progress-node.clickable:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 2px;
+  }
   .progress-dash {
     height: 1.5px;
     width: 14px;
