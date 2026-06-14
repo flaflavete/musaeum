@@ -72,6 +72,10 @@
         <div class="modal-subtitle">${t.aboutCiteTitle}</div>
         <p class="cite-ref">${t.aboutCiteText}</p>
       </div>
+      <div class="modal-contact">
+        <div class="modal-subtitle">${t.aboutContactTitle}</div>
+        <p>${t.aboutContactText}</p>
+      </div>
       <div class="inst-logos modal-inst-logos">
         <span class="inst-logos-label">${t.instSupport}</span>
         <div class="inst-logos-plaque">

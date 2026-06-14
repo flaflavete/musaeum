@@ -31,6 +31,8 @@
       aboutMethod: 'As histórias aqui não são traduções literais: cada uma se apoia nas edições críticas e traduções de referência citadas na bibliografia e foi reescrita para ser lida com prazer, sem trair o sentido do original. Os significados de hieróglifos seguem Gardiner e Faulkner; curiosidades arqueológicas citam sítios e objetos reais, com a fonte nomeável. As datas usam AEC (antes da Era Comum) em vez de a.C., por inclusividade.',
       aboutCiteTitle: 'Como citar',
       aboutCiteText: 'CORPAS, Flavia Lima. <em>Musæum: biblioteca digital interativa de literatura do Egito Antigo</em>. Zenodo, 2026. DOI: 10.5281/zenodo.20617042.',
+      aboutContactTitle: 'Contato',
+      aboutContactText: 'Dúvidas, sugestões ou correções são bem-vindas: <a href="mailto:flavia.corpas@ufrj.br">flavia.corpas@ufrj.br</a>.',
       aboutBiblioTitle: 'Bibliografia de base',
       aboutBiblio: [
         'ALLEN, J. P. <em>Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs</em>. Cambridge: Cambridge University Press, 2000.',
@@ -119,7 +121,7 @@
 
       epigraphLabel: 'Teaching',
       epigraphQuote: '"Fine words are more sought after than greenstone, but can be found with the women at the grindstone."',
-      epigraphSource: 'The Teachings of Ptahhotep, Prisse Papyrus, column 5',
+      epigraphSource: 'The Teaching of Ptahhotep, Prisse Papyrus, column 5',
 
       tagOpen: 'Open',
       tagLocked: 'Coming Soon',
@@ -127,7 +129,7 @@
       dMore: 'New tales from the ancient Egyptians are on the way.',
 
       footer: 'Project by Flavia Lima Corpas, 2026\nPhoto: Facade of the Temple of Horus at Edfu, Egypt · Flavia Lima Corpas, Oct. 2025',
-      footerPrivacy: 'Your progress and name are stored only on your device. With your consent, we send only anonymous usage data to the research at PPGArq · Museu Nacional / UFRJ.',
+      footerPrivacy: 'Your progress and name are stored only on your device. With your consent, we send only anonymous usage data for the research at PPGArq · Museu Nacional / UFRJ.',
       instSupport: 'Developed at',
 
       aboutTitle: 'About the project',
@@ -136,9 +138,11 @@
       aboutGoal: 'Each text is presented as a narrated story, with archaeological curiosities, challenges to help you understand the content, and a hieroglyphic "code" that you gradually uncover. The idea is to bring these texts, usually only read in universities, to everyone, while respecting the originals and explaining what life and culture were like at that time.',
       aboutBetaNote: 'Version 1.1, with two complete stories. New texts and features keep being added.',
       aboutMethodTitle: 'A note on the text',
-      aboutMethod: 'The stories here are not literal translations: each one draws on the critical editions and reference translations cited in the bibliography and was rewritten to be read with pleasure, without betraying the meaning of the original. Hieroglyph meanings follow Gardiner and Faulkner; archaeological curiosities cite real sites and objects, with a nameable source. Dates use BCE (Before the Common Era) instead of BC, for inclusivity.',
+      aboutMethod: 'The stories here are not literal translations: each one draws on the critical editions and reference translations cited in the bibliography and was rewritten to be read with pleasure, without betraying the meaning of the original. Hieroglyph meanings follow Gardiner and Faulkner; archaeological curiosities cite real sites and objects, with a source that can be named. Dates use BCE (Before the Common Era) instead of BC, for inclusivity.',
       aboutCiteTitle: 'How to cite',
       aboutCiteText: 'CORPAS, Flavia Lima. <em>Musæum: an interactive digital library of Ancient Egyptian literature</em>. Zenodo, 2026. DOI: 10.5281/zenodo.20617042.',
+      aboutContactTitle: 'Contact',
+      aboutContactText: 'Questions, suggestions or corrections are welcome: <a href="mailto:flavia.corpas@ufrj.br">flavia.corpas@ufrj.br</a>.',
       aboutBiblioTitle: 'Reference bibliography',
       aboutBiblio: [
         'ALLEN, J. P. <em>Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs</em>. Cambridge: Cambridge University Press, 2000.',
@@ -179,7 +183,7 @@
       geoLegendMulti:       'In more than one story',
       geoLegendUncertain:   'Debated location (?)',
       nameModalTitle:       'What should I call you?',
-      nameModalSub:         'Your name will appear on your collection.',
+      nameModalSub:         'Your name will appear in your collection.',
       nameModalPlaceholder: 'Your name',
       nameModalBtn:         'Enter the Musæum',
       nameModalSkip:        'Enter without a name',
@@ -211,9 +215,9 @@
       certOpenBtn:          '𓏞 View Certificate',
       certDownload:         '↓ Save image',
       certClose:            'Close',
-      certTitle:            'CERTIFICATE OF READING',
+      certTitle:            'READING CERTIFICATE',
       certAttest:           'This certifies that',
-      certCompleted:        'has successfully completed the reading of:',
-      certSignature:        'National Museum / UFRJ'
+      certCompleted:        'has successfully completed:',
+      certSignature:        'Museu Nacional / UFRJ'
     }
   };
