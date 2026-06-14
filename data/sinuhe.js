@@ -244,6 +244,13 @@ const ITEMS = catalogGet('sinuhe').items;
 // ============================================================
 const GLOSSARY = [
   {
+    id: 'em-hotep',
+    termPt: 'Em hotep', termEn: 'Em hotep',
+    tagPt: 'Saudação', tagEn: 'Greeting',
+    defPt: 'Expressão egípcia que significa "em paz". <i>Em</i> (transliterado <i>m</i>) é a preposição "em"; <i>hotep</i> (<i>ḥtp</i>) quer dizer "paz, contentamento, satisfação" e também "oferenda" (Faulkner, 1962). Entrava em fórmulas de saudação e despedida, como "vir em paz" (acolher alguém) e "ir em paz". É nesse sentido que serve hoje de saudação, algo como "esteja em paz". A vocalização "em hotep" é convencional: a escrita egípcia não registrava as vogais.',
+    defEn: 'Egyptian expression meaning "in peace". <i>Em</i> (transliterated <i>m</i>) is the preposition "in"; <i>hotep</i> (<i>ḥtp</i>) means "peace, contentment, satisfaction" and also "offering" (Faulkner, 1962). It figured in greeting and farewell formulas, such as "come in peace" (to welcome someone) and "go in peace". That is how it serves today as a greeting, roughly "be at peace". The vocalization "em hotep" is conventional: Egyptian writing did not record vowels.'
+  },
+  {
     id: 'amenemhat',
     termPt: 'Amenemhat I (Sehetepibre)', termEn: 'Amenemhat I (Sehetepibre)',
     tagPt: 'Faraó', tagEn: 'Pharaoh',
