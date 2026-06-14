@@ -29,7 +29,19 @@ O site é bilíngue (PT/EN), gamificado, e funciona como aplicação web estáti
 
 ```
 musaeum/
-├── index.html              Página inicial: biblioteca, coleção, certificado
+├── index.html              Página inicial: biblioteca, coleção, certificado (CSS inline; JS em home/)
+│
+├── home/                   JS exclusivo do index, uma gaveta por seção:
+│   ├── i18n.js             Textos PT/EN de UI (objeto i18n)
+│   ├── biblioteca.js       buildLibrary (cards a partir do catálogo)
+│   ├── modais.js           setPageInert + modal Sobre + card do glifo (Códex)
+│   ├── onboarding.js       Idioma, nome, consentimento, oferta de tour
+│   ├── abas.js             showTab, initTabKeys (tablist WAI-ARIA)
+│   ├── mapa.js             renderGeoSection (delega para data/geografia.js)
+│   ├── colecao.js          renderCollection (tesouros + Códex por história)
+│   ├── certificado.js      Certificado em canvas + export PNG
+│   └── main.js             Estado, setLang/render, init (carrega por ÚLTIMO)
+│
 ├── naufrago.html           Experiência interativa: O Conto do Náufrago
 ├── sinuhe.html             Experiência interativa: A História de Sinué
 ├── script.js               Utilitários compartilhados + shell HTML (initStoryApp)
@@ -433,7 +445,7 @@ Troca de idioma: chame `setLang('pt')` ou `setLang('en')`, que atualiza `state.l
 
 ### No index.html
 
-O `index.html` usa um sistema diferente: elementos com `data-t="chave"` são atualizados em massa pela função `render()` que chama `querySelectorAll('[data-t]')`.
+O `index.html` usa um sistema diferente: elementos com `data-t="chave"` são atualizados em massa pela função `render()` (em `home/main.js`) que chama `querySelectorAll('[data-t]')`. Os textos ficam no objeto `i18n` (`home/i18n.js`).
 
 ```html
 <span data-t="collection-title">Coleção</span>

@@ -60,7 +60,8 @@ npm run test:watch        # roda os testes em modo watch (desenvolvimento)
 ### Estrutura
 
 ```
-index.html            Página da biblioteca
+index.html            Página da biblioteca (CSS inline; JS em home/)
+home/                 JS do index, um arquivo por seção (i18n, coleção, mapa, certificado…)
 naufrago.html         Conto do Náufrago
 sinuhe.html           História de Sinué
 script.js             Utilitários compartilhados + shell HTML das histórias
@@ -164,7 +165,8 @@ npm run test:watch        # run tests in watch mode (development)
 ### Structure
 
 ```
-index.html            Library home page
+index.html            Library home page (inline CSS; JS in home/)
+home/                 Index JS, one file per section (i18n, collection, map, certificate…)
 naufrago.html         The Shipwrecked Sailor
 sinuhe.html           The Story of Sinuhe
 script.js             Shared utilities + stories' HTML shell
