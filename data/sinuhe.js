@@ -114,7 +114,7 @@ const I18N = {
     'tour-s6-body':    'Ao fim de cada parte vem um desafio sobre a trama ou a cultura egípcia. É ele que leva você ao próximo capítulo. Acerte de primeira para ganhar o tesouro!',
     'tour-s7-title':   'A Trilha dos Capítulos',
     'tour-s7-body':    'Os números mostram seu avanço. Quando quiser voltar e reler um capítulo, é só tocar na bolinha dele: isso não muda nada do que você já conquistou.',
-    'splash-welcome':  'Boas-vindas de volta, ',
+    'splash-welcome':  'Em hotep! ',
     'final-congrats':  'Parabéns, ',
   },
   en: {
@@ -232,7 +232,7 @@ const I18N = {
     'tour-s6-body':    'Each part ends with a challenge about the plot or Egyptian culture. It carries you to the next chapter. Answer on the first try to earn the treasure!',
     'tour-s7-title':   'The Chapter Trail',
     'tour-s7-body':    'The numbers track your progress. Whenever you want to go back and reread a chapter, just tap its dot: it changes nothing you have already earned.',
-    'splash-welcome':  'Welcome back, ',
+    'splash-welcome':  'Em hotep! ',
     'final-congrats':  'Congratulations, ',
   }
 };
