@@ -1,0 +1,1307 @@
+/* Estilos da página inicial (index.html). Único arquivo de CSS do index;
+   variáveis de cor definidas nos dois temas (:root e :root[data-theme="light"]). */
+  :root {
+    --papyrus:       #f1e4c6;
+    --papyrus-soft:  #c9b894;
+    --papyrus-dim:   #9a8b6d;
+    --ink:           #1b2a3d;
+    --ink-elevated:  #243449;
+    --ink-raised:    #2d3f57;
+    --gold:          #c9a646;
+    --gold-dark:     #a0801e;
+    --gold-light:    #e8c866;
+    --terracotta-lt: #d97a5c;
+  }
+
+  /* ========== TEMA CLARO ========== */
+  :root[data-theme="light"] {
+    --papyrus:       #0d0a06;
+    --papyrus-soft:  #271e11;
+    --papyrus-dim:   #3d2e1e;
+    --papyrus-dark:  #120d08;
+    --ink:           #fdf8ee;
+    --ink-elevated:  #f5ecd8;
+    --ink-raised:    #eaddb8;
+    --ink-soft:      #dfd0a0;
+    --gold:          #5c480e;
+    --gold-dark:     #42340a;
+    --gold-light:    #7a5e14;
+    --terracotta:    #6e1e0d;
+    --terracotta-lt: #8a2b18;
+    --terracotta-dk: #4e1508;
+    --shadow:        rgba(29, 53, 87, 0.20);
+  }
+
+  html[data-theme="light"],
+  html[data-theme="light"] body {
+    background:
+      linear-gradient(rgba(245, 237, 216, 0.72), rgba(232, 220, 192, 0.78)),
+      url('assets/images/pexels-clioseye-35506459.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--papyrus);
+  }
+
+  html[data-theme="light"] body::before {
+    opacity: 0.25;
+    mix-blend-mode: multiply;
+  }
+
+  html[data-theme="light"] .about-btn,
+  html[data-theme="light"] .lang-toggle {
+    background: rgba(29, 53, 87, 0.08);
+  }
+
+  html[data-theme="light"] .scroll-card {
+    background: linear-gradient(180deg, rgba(255,252,246,0.90), rgba(248,242,226,0.85));
+  }
+
+  html[data-theme="light"] .scroll-card.locked {
+    background: rgba(245, 237, 216, 0.70);
+  }
+
+  html[data-theme="light"] .modal-panel {
+    background: linear-gradient(180deg, #f5edd8 0%, #ede3c8 100%);
+  }
+
+  html[data-theme="light"] .modal-close {
+    background: rgba(29, 53, 87, 0.08);
+  }
+
+  .btn-theme {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    background: rgba(27, 42, 61, 0.5);
+    border: 1.5px solid var(--gold-dark);
+    color: var(--gold);
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    backdrop-filter: blur(4px);
+  }
+  .btn-theme:hover {
+    color: var(--gold-light);
+    border-color: var(--gold);
+  }
+  .btn-theme:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+  html[data-theme="light"] .btn-theme {
+    background: rgba(29, 53, 87, 0.08);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    min-height: 100vh;
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', Georgia, serif;
+    color: var(--papyrus);
+    background:
+      linear-gradient(rgba(20, 32, 47, 0.85), rgba(27, 42, 61, 0.85)),
+      url('assets/images/pexels-clioseye-35506459.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    line-height: 1.6;
+  }
+
+  /* iOS Safari não suporta background-attachment: fixed e pode esticar a foto */
+  @media (hover: none), (pointer: coarse) {
+    html, body,
+    html[data-theme="light"],
+    html[data-theme="light"] body {
+      background-attachment: scroll;
+    }
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 15% 22%, rgba(201, 166, 70, 0.08) 0 2px, transparent 3px),
+      radial-gradient(circle at 78% 45%, rgba(201, 166, 70, 0.06) 0 2px, transparent 3px),
+      radial-gradient(circle at 32% 78%, rgba(201, 166, 70, 0.09) 0 3px, transparent 4px),
+      radial-gradient(circle at 88% 88%, rgba(201, 166, 70, 0.05) 0 2px, transparent 3px),
+      radial-gradient(circle at 55% 15%, rgba(201, 166, 70, 0.07) 0 2px, transparent 3px);
+    background-size: 340px 340px;
+    opacity: 0.6;
+    mix-blend-mode: screen;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 32px 20px 40px;
+    text-align: center;
+    animation: fadein 1s ease;
+  }
+
+  @keyframes fadein {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .about-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    background: rgba(27, 42, 61, 0.5);
+    border: 1.5px solid var(--gold-dark);
+    color: var(--papyrus-soft);
+    padding: 7px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.25s ease, border-color 0.25s ease;
+    text-transform: uppercase;
+    backdrop-filter: blur(4px);
+  }
+  .about-btn:hover {
+    color: var(--gold-light);
+    border-color: var(--gold);
+  }
+  .about-btn:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+  .about-btn .info-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid currentColor;
+    font-size: 10px;
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1;
+  }
+  
+  .lang-toggle {
+    display: inline-flex;
+    border: 1.5px solid var(--gold-dark);
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(27, 42, 61, 0.5);
+    backdrop-filter: blur(4px);
+  }
+  .lang-toggle button {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    background: transparent;
+    border: none;
+    color: var(--papyrus-soft);
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .lang-toggle button.active {
+    background: var(--gold);
+    color: var(--ink);
+  }
+  .lang-toggle button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-header {
+    animation: fadein 1s ease 0.1s backwards;
+  }
+
+  h1 { font-family: 'Cinzel', 'Gentium Plus', serif; font-size: clamp(36px, 5vw, 56px); color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .subtitle { font-family: 'Cinzel', 'Gentium Plus', serif; color: var(--terracotta-lt); letter-spacing: 0.3em; font-size: 14px; margin-bottom: 24px; text-transform: uppercase; }
+
+  /* ===== Abas (Início · Mapa · Coleção · Certificado) ===== */
+  .tabbar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 auto 38px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(201, 166, 70, 0.15);
+    animation: fadein 1s ease 0.15s backwards;
+  }
+  .tabbar .tab {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--papyrus-dim);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 8px 16px 10px;
+    margin-bottom: -15px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .tabbar .tab:hover { color: var(--gold-light); }
+  .tabbar .tab.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+    text-shadow: 0 0 18px rgba(201, 166, 70, 0.25);
+  }
+  .tabbar .tab:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+  .tab-panel { animation: fadein 0.5s ease; }
+  .tab-panel[hidden] { display: none; }
+
+  /* Cabeçalho de cada painel (Mapa / Coleção) */
+  .panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .panel-body { animation: fadein 0.5s ease; }
+
+  /* Como painéis autônomos, não herdam a borda/margem de empilhamento */
+  .tab-panel.geo-section,
+  .tab-panel.collection-section,
+  .tab-panel.certificate-section {
+    margin-top: 0;
+    border-top: none;
+    padding-top: 0;
+  }
+  .about-beta-note { font-size: 0.82em; color: var(--terracotta-lt); font-style: italic; margin-top: 16px; opacity: 0.8; }
+  .modal-cite { margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(201,166,70,0.2); font-size: 0.86em; color: var(--papyrus-soft); line-height: 1.55; }
+  .modal-cite .modal-subtitle { margin-top: 0; }
+  .modal-cite .cite-ref { font-style: normal; }
+  .modal-cite a { color: var(--gold-light); word-break: break-word; }
+  .modal-license { margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--gold-dark); text-align: center; }
+  .modal-license a { opacity: 0.65; transition: opacity 0.2s; display: inline-block; }
+  .modal-license a:hover { opacity: 1; }
+  .footer-license-badge { display: block; margin-top: 10px; opacity: 0.65; transition: opacity 0.2s; }
+  .footer-license-badge:hover { opacity: 1; }
+
+  /* Epígrafe do Ptahhotep */
+  .epigraph {
+    max-width: 620px;
+    margin: 56px auto 0;
+    padding: 22px 28px;
+    position: relative;
+    animation: fadein 1s ease 0.25s backwards;
+  }
+  .epigraph::before, .epigraph::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 1px;
+    margin: 0 auto;
+    background: linear-gradient(90deg, transparent, rgba(201,166,70,0.5), transparent);
+  }
+  .epigraph::before { margin-bottom: 18px; }
+  .epigraph::after { margin-top: 18px; }
+  .epigraph-label {
+    color: var(--gold);
+    font-size: 20px;
+    margin-bottom: 14px;
+    line-height: 1;
+  }
+  .epigraph-label .glyphs {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    letter-spacing: 0.05em;
+  }
+  .epigraph-label .label-romanized {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-left: 10px;
+    opacity: 0.75;
+    vertical-align: middle;
+    color: var(--papyrus-soft);
+  }
+  .epigraph blockquote {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  .quote-translit {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-style: italic;
+    color: var(--gold-light);
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    opacity: 0.9;
+  }
+  .quote-translation {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    color: var(--papyrus);
+    font-size: 19px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .epigraph-source {
+    display: block;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--papyrus-dim);
+    margin-top: 16px;
+  }
+
+  .library-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  .scroll-card {
+    background: linear-gradient(180deg, rgba(36,52,73,0.7), rgba(27,42,61,0.9));
+    border: 1px solid var(--gold-dark);
+    border-radius: 12px;
+    padding: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    display: block;
+    backdrop-filter: blur(4px);
+    animation: fadein-card 0.7s ease backwards;
+  }
+  .scroll-card:nth-child(1) { animation-delay: 0.35s; }
+  .scroll-card:nth-child(2) { animation-delay: 0.55s; }
+  .scroll-card:nth-child(3) { animation-delay: 0.75s; }
+  .scroll-card:nth-child(4) { animation-delay: 0.95s; }
+
+  @keyframes fadein-card {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .scroll-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+  }
+  .scroll-card:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
+    border-color: var(--gold);
+  }
+  .scroll-card.locked {
+    background: rgba(27,42,61,0.5);
+    border-color: rgba(154,139,109,0.3);
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .scroll-card.locked:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(154,139,109,0.3);
+  }
+  .scroll-card.more-soon {
+    background: transparent;
+    border: 1px dashed rgba(201,166,70,0.35);
+    cursor: default;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 180px;
+  }
+  .scroll-card.more-soon:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(201,166,70,0.35);
+  }
+  .scroll-card.more-soon .more-glyph {
+    font-size: 40px;
+    opacity: 0.7;
+    margin-bottom: 12px;
+  }
+  .scroll-card.more-soon .card-title {
+    color: var(--gold);
+    font-size: 17px;
+  }
+  .scroll-card.more-soon .card-desc {
+    color: var(--papyrus-dim);
+  }
+
+  .status-tag {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+  .tag-ready { background: rgba(201,166,70,0.15); color: var(--gold); border: 1px solid rgba(201,166,70,0.3); }
+  .tag-locked { background: rgba(217,122,92,0.1); color: var(--terracotta-lt); border: 1px solid rgba(217,122,92,0.2); }
+
+  .card-glyph { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 48px; color: var(--gold); margin-bottom: 16px; line-height: 1; }
+  .card-title { font-family: 'Cinzel', 'Gentium Plus', serif; font-size: 20px; font-weight: 700; color: var(--papyrus); margin-bottom: 10px; }
+  .card-desc { font-size: 15px; color: var(--papyrus-soft); line-height: 1.5; }
+
+  footer {
+    margin-top: 80px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(201, 166, 70, 0.2);
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--papyrus-dim);
+    line-height: 1.6;
+    white-space: pre-line;
+  }
+
+  /* Logos institucionais (plaquinha clara, legível em ambos os temas) */
+  .inst-logos {
+    margin: 22px auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .inst-logos-label {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--papyrus-dim);
+    opacity: 0.75;
+  }
+  .inst-logos-plaque {
+    display: inline-flex;
+    align-items: center;
+    gap: 26px;
+    padding: 12px 22px;
+    background: #f4ecde;
+    border: 1px solid rgba(201, 166, 70, 0.35);
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
+  }
+  .inst-logos-plaque img {
+    display: block;
+    width: auto;
+    opacity: 0.95;
+    transition: opacity 0.2s;
+  }
+  .inst-logos-plaque img.logo-ppgarq { height: 38px; }
+  .inst-logos-plaque img.logo-mn { height: 30px; }
+  .inst-logos-plaque a:hover img { opacity: 1; }
+  .inst-logos-divider {
+    width: 1px;
+    align-self: stretch;
+    background: rgba(201, 166, 70, 0.4);
+  }
+  /* No modal, um pouco menores */
+  .modal-inst-logos { margin: 16px 0 0; }
+  .modal-inst-logos .inst-logos-plaque { gap: 20px; padding: 10px 18px; }
+  .modal-inst-logos .inst-logos-plaque img.logo-ppgarq { height: 32px; }
+  .modal-inst-logos .inst-logos-plaque img.logo-mn { height: 26px; }
+  @media (max-width: 480px) {
+    .inst-logos-plaque { gap: 18px; padding: 10px 16px; }
+    .inst-logos-plaque img.logo-ppgarq { height: 32px; }
+    .inst-logos-plaque img.logo-mn { height: 25px; }
+    /* abas mais compactas pra caber as quatro em uma linha */
+    .tabbar { gap: 2px; }
+    .tabbar .tab { font-size: 11px; letter-spacing: 0.08em; padding: 8px 9px 10px; }
+  }
+
+  /* Modal "Sobre o Projeto" */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 14, 22, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden; /* some também para leitores de tela e Tab */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .modal-backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+  .modal-panel {
+    background: linear-gradient(180deg, #253549 0%, #1b2a3d 100%);
+    border: 1.5px solid var(--gold-dark);
+    border-radius: 14px;
+    max-width: 680px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 36px 40px 32px;
+    position: relative;
+    text-align: left;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    transform: translateY(16px) scale(0.98);
+    transition: transform 0.3s ease;
+  }
+  .modal-backdrop.show .modal-panel {
+    transform: translateY(0) scale(1);
+  }
+  .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-dark);
+    background: rgba(27, 42, 61, 0.7);
+    color: var(--papyrus-soft);
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    padding: 0 0 3px 0;
+  }
+  .modal-close:hover { color: var(--gold-light); border-color: var(--gold); }
+  .modal-close:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .modal-title-glyph {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    color: var(--gold);
+    font-size: 36px;
+    line-height: 1;
+    margin-bottom: 6px;
+    text-shadow: 0 0 18px rgba(201,166,70,0.25);
+  }
+  .modal-title {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    color: var(--gold);
+    font-size: 22px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(201,166,70,0.25);
+  }
+  .modal-body p {
+    color: var(--papyrus);
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+  .modal-body .meaning-glyph {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    color: var(--gold-light);
+    font-size: 20px;
+    margin: 0 2px;
+    vertical-align: -2px;
+  }
+  .modal-body strong { color: var(--gold-light); font-weight: 600; }
+  .modal-body em { color: var(--papyrus); font-style: italic; }
+  .modal-subtitle {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    color: var(--gold-light);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 24px 0 12px;
+  }
+  .modal-biblio {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+  }
+  .modal-biblio li {
+    font-size: 13.5px;
+    color: var(--papyrus-soft);
+    line-height: 1.55;
+    padding: 6px 0 6px 20px;
+    position: relative;
+  }
+  .modal-biblio li::before {
+    content: '𓏛';
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    color: var(--gold);
+    position: absolute;
+    left: 0;
+    top: 6px;
+    font-size: 13px;
+    opacity: 0.8;
+  }
+  .modal-credit {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(201,166,70,0.2);
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--papyrus-dim);
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  /* ===== COLEÇÃO / INVENTÁRIO ===== */
+  .collection-section {
+    margin-top: 56px;
+    border-top: 1px solid rgba(201, 166, 70, 0.15);
+  }
+
+  /* ===== Mapa interativo ===== */
+  .geo-intro {
+    text-align: center;
+    max-width: 560px;
+    margin: 4px auto 22px;
+    color: var(--papyrus-soft);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .geo-map-wrap {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 26px;
+    align-items: start;
+  }
+  .geo-map {
+    background: rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--gold-dark);
+    border-radius: 8px;
+    padding: 8px;
+  }
+  .geo-stage { position: relative; line-height: 0; }
+  .geo-basemap {
+    width: 100%; height: auto; display: block; border-radius: 4px;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.28);
+  }
+  .geo-markers { position: absolute; inset: 0; }
+  .geo-credit {
+    margin: 8px 2px 0; font-size: 10px; line-height: 1.45;
+    color: var(--papyrus-dim); font-family: 'Cinzel', serif; letter-spacing: 0.02em;
+  }
+
+  /* Marcadores sobre a carta */
+  .geo-marker {
+    position: absolute; transform: translate(-50%, -50%);
+    display: flex; align-items: center; gap: 6px;
+    background: none; border: none; padding: 0; margin: 0;
+    cursor: pointer; white-space: nowrap;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+  }
+  .geo-marker:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+  .geo-pin {
+    width: 13px; height: 13px; border-radius: 50%;
+    border: 2px solid #1b1206; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0; transition: transform 0.16s ease;
+  }
+  /* Cores dos pinos por história: geradas em data/geografia.js
+     (.geo-pin--<storyId>), derivadas do catálogo. Multi = gradiente inline. */
+  .geo-marker--uncertain .geo-pin { border-style: dashed; }
+  .geo-tag {
+    font-size: 13px; letter-spacing: 0.02em; font-weight: 700;
+    color: #2a1c08; background: rgba(244, 233, 205, 0.88);
+    border: 1px solid rgba(120, 92, 30, 0.5); border-radius: 4px;
+    padding: 1px 6px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  .geo-q { color: #9a5a14; font-weight: 700; }
+  .geo-marker:hover .geo-pin,
+  .geo-marker--selected .geo-pin { transform: scale(1.28); }
+  .geo-marker:hover .geo-tag,
+  .geo-marker--selected .geo-tag {
+    background: var(--gold-light); color: #1b1206; border-color: var(--gold-dark);
+  }
+  .geo-marker--selected { z-index: 3; }
+
+  /* Marcadores de borda (lugares fora da carta) com seta */
+  .geo-marker--edge { transform: translateX(-50%); flex-direction: column; gap: 1px; }
+  .geo-edge--s { flex-direction: column-reverse; }
+  .geo-arrow {
+    font-size: 13px; line-height: 1; color: var(--papyrus-dim);
+    text-shadow: 0 1px 2px rgba(244, 233, 205, 0.8);
+  }
+  /* Cor da seta por história: .geo-arrow--<storyId> (data/geografia.js). */
+  .geo-marker--edge .geo-tag { font-size: 12px; }
+
+  /* Painel de detalhe + legenda */
+  .geo-panel {
+    background: var(--ink-elevated);
+    border: 1px solid var(--gold-dark);
+    border-radius: 8px;
+    padding: 18px 20px;
+    min-height: 120px;
+  }
+  .geo-panel-hint { color: var(--papyrus-dim); font-size: 14px; line-height: 1.6; margin: 0; }
+  .geo-panel-head { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+  .geo-panel-kind {
+    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .geo-panel-name {
+    font-family: 'Cinzel', 'Gentium Plus', serif; font-size: 20px;
+    color: var(--papyrus); margin: 0; font-weight: 700;
+  }
+  .geo-panel-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .geo-badge {
+    font-size: 10px; letter-spacing: 0.04em; padding: 2px 9px; border-radius: 999px;
+    border: 1px solid; font-family: 'Cinzel', serif;
+  }
+  /* Cor do selo por história: .geo-badge--<storyId> (data/geografia.js). */
+  .geo-panel-desc { color: var(--papyrus-soft); font-size: 14px; line-height: 1.7; margin: 0; }
+  .geo-panel-uncertain {
+    margin: 12px 0 0; padding-top: 10px; border-top: 1px solid rgba(201,166,70,0.2);
+    color: var(--papyrus-dim); font-size: 12px; font-style: italic; line-height: 1.5;
+  }
+  .geo-legend {
+    list-style: none; margin: 16px 0 0; padding: 0;
+    display: flex; flex-wrap: wrap; gap: 8px 18px;
+  }
+  .geo-legend li {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 12px; color: var(--papyrus-dim);
+  }
+  .geo-legend .geo-swatch {
+    width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0;
+    border: 1px solid var(--ink);
+  }
+  /* Cor do quadradinho por história: .geo-swatch--<storyId> e
+     .geo-swatch--multi (data/geografia.js). */
+  .geo-swatch.geo--uncertain {
+    background: transparent; border: 1.4px dashed var(--papyrus-dim);
+  }
+
+  @media (max-width: 760px) {
+    .geo-map-wrap { grid-template-columns: 1fr; gap: 16px; }
+    .geo-tag, .geo-marker--edge .geo-tag { font-size: 10px; padding: 0 4px; }
+    .geo-pin { width: 11px; height: 11px; }
+  }
+  .collection-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font: inherit;
+    gap: 12px;
+  }
+  .collection-header:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+  .collection-heading-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    justify-content: center;
+  }
+  .collection-heading {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-shadow: 0 0 18px rgba(201,166,70,0.25);
+  }
+  .collection-summary {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--papyrus-dim);
+    background: rgba(201, 166, 70, 0.08);
+    border: 1px solid rgba(201, 166, 70, 0.2);
+    border-radius: 999px;
+    padding: 2px 9px;
+  }
+  .collection-chevron {
+    color: var(--gold);
+    font-size: 11px;
+    opacity: 0.5;
+    transition: transform 0.35s ease, opacity 0.25s;
+    flex-shrink: 0;
+  }
+  .collection-section:hover .collection-chevron,
+  .collection-section.open .collection-chevron {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+  /* animação de abertura com grid trick (altura real, sem max-height fixo) */
+  .collection-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease;
+  }
+  .collection-body-inner { overflow: hidden; }
+  .collection-section:hover .collection-body,
+  .collection-section.open .collection-body {
+    grid-template-rows: 1fr;
+  }
+  .collection-player {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--papyrus-dim);
+    text-align: center;
+    padding: 6px 0 22px;
+  }
+  .collection-player .player-name-val { color: var(--papyrus-soft); }
+  .edit-name-btn {
+    background: none;
+    border: none;
+    color: var(--papyrus-dim);
+    cursor: pointer;
+    font-size: 13px;
+    padding: 0 0 0 5px;
+    opacity: 0.55;
+    transition: opacity 0.2s;
+    vertical-align: middle;
+  }
+  .edit-name-btn:hover { opacity: 1; }
+  .collection-game-name {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--papyrus-dim);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .collection-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    padding-bottom: 24px;
+  }
+  .col-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 60px;
+  }
+  .col-item-icon {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 26px;
+    border: 1px solid rgba(201, 166, 70, 0.1);
+    background: rgba(201, 166, 70, 0.04);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .col-item-icon.is-glyph {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0;
+  }
+  .col-item.earned .col-item-icon {
+    background: rgba(201, 166, 70, 0.14);
+    border-color: rgba(201, 166, 70, 0.35);
+  }
+  .col-item.locked .col-item-icon {
+    filter: grayscale(1) opacity(0.28);
+  }
+  .col-item-label {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-size: 11px;
+    color: var(--papyrus-dim);
+    text-align: center;
+    line-height: 1.2;
+  }
+  .col-item.earned .col-item-label { color: var(--papyrus-soft); }
+  .collection-empty {
+    text-align: center;
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-style: italic;
+    color: var(--papyrus-dim);
+    font-size: 15px;
+    padding: 4px 0 20px;
+  }
+  /* ===== FICHA DO GLIFO (popup, igual ao naufrago) ===== */
+  .glyph-sheet { text-align: center; }
+  .glyph-sheet .sheet-big {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    font-size: 110px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 10px;
+    text-shadow: 0 0 40px rgba(201, 166, 70, 0.3);
+  }
+  .glyph-sheet .sheet-translit {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-style: italic;
+    font-size: 24px;
+    color: var(--terracotta-lt);
+    margin-bottom: 4px;
+  }
+  .glyph-sheet .sheet-name {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 15px;
+    letter-spacing: 0.15em;
+    color: var(--papyrus);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .sheet-rows {
+    text-align: left;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .sheet-row {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px dashed rgba(201, 166, 70, 0.2);
+  }
+  .sheet-row:last-child { border-bottom: none; }
+  .sheet-row .row-label {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    flex-shrink: 0;
+    width: 110px;
+    padding-top: 2px;
+  }
+  .sheet-row .row-value {
+    color: var(--papyrus-soft);
+    font-size: 15px;
+    line-height: 1.55;
+    flex: 1;
+  }
+  .col-item.earned { cursor: pointer; }
+  .col-item.earned:hover .col-item-icon {
+    border-color: rgba(201, 166, 70, 0.6);
+    background: rgba(201, 166, 70, 0.22);
+  }
+
+  /* ===== MODAL NOME ===== */
+  .name-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden; /* some também para leitores de tela e Tab */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .name-modal-backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+  .name-modal-panel {
+    background: linear-gradient(180deg, #1a2535 0%, #131e2e 100%);
+    border: 1px solid rgba(201, 166, 70, 0.3);
+    border-radius: 14px;
+    padding: 40px 32px 32px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+  }
+  .name-modal-glyph {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    font-size: 52px;
+    color: var(--gold);
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+  .name-modal-title {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 15px;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .name-modal-sub {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--papyrus-dim);
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+  .name-input {
+    width: 100%;
+    background: rgba(241, 228, 198, 0.07);
+    border: 1px solid rgba(201, 166, 70, 0.3);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-size: 18px;
+    color: var(--papyrus);
+    text-align: center;
+    margin-bottom: 14px;
+    outline: none;
+    transition: border-color 0.25s ease;
+    box-sizing: border-box;
+  }
+  .name-input:focus { border-color: rgba(201, 166, 70, 0.7); }
+  .name-input::placeholder { color: var(--papyrus-dim); opacity: 0.6; }
+  .name-modal-btn {
+    width: 100%;
+    padding: 12px;
+    background: rgba(201, 166, 70, 0.12);
+    border: 1.5px solid rgba(201, 166, 70, 0.45);
+    border-radius: 8px;
+    color: var(--gold);
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    margin-bottom: 12px;
+  }
+  .name-modal-btn:hover {
+    background: rgba(201, 166, 70, 0.22);
+    border-color: var(--gold);
+  }
+  .name-modal-skip {
+    background: none;
+    border: none;
+    color: var(--papyrus-dim);
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+  }
+  .name-modal-skip:hover { color: var(--papyrus-soft); }
+  .research-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    text-align: left;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  .research-consent input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    margin: 2px 0 0;
+    border: 1.5px solid rgba(201, 166, 70, 0.5);
+    border-radius: 4px;
+    background: rgba(241, 228, 198, 0.05);
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .research-consent input[type="checkbox"]:hover { border-color: var(--gold); }
+  .research-consent input[type="checkbox"]:checked {
+    background: rgba(201, 166, 70, 0.85);
+    border-color: var(--gold);
+  }
+  .research-consent input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #131e2e;
+  }
+  .research-consent input[type="checkbox"]:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+  .research-consent-text {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: var(--papyrus-dim);
+  }
+  .research-consent-text .en { display: block; opacity: 0.7; margin-top: 2px; }
+  .lang-choice-row { display: flex; gap: 14px; margin-top: 4px; }
+  .lang-choice {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 22px 12px;
+    background: rgba(241, 228, 198, 0.05);
+    border: 1.5px solid rgba(201, 166, 70, 0.3);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.1s;
+  }
+  .lang-choice:hover { background: rgba(201, 166, 70, 0.14); border-color: var(--gold); }
+  .lang-choice:active { transform: scale(0.97); }
+  .lang-choice:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  .lang-name {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--papyrus-soft);
+  }
+
+  @media (max-width: 560px) {
+    .topbar { justify-content: center; }
+    .modal-panel { padding: 30px 22px 26px; }
+    .modal-title { font-size: 18px; letter-spacing: 0.08em; }
+    .quote-translation { font-size: 17px; }
+    .epigraph { padding: 18px 12px; margin-top: 40px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ===== CERTIFICADO ===== */
+  .certificate-section {
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(201, 166, 70, 0.25);
+    text-align: center;
+    animation: fadein 0.9s ease;
+  }
+  .cert-heading {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .cert-unlock-msg {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--papyrus-soft);
+    margin-bottom: 26px;
+    line-height: 1.6;
+  }
+  .cert-locked-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 28px 24px;
+    border: 1.5px dashed rgba(201, 166, 70, 0.30);
+    border-radius: 12px;
+    background: rgba(201, 166, 70, 0.04);
+    max-width: 420px;
+    margin: 0 auto 28px;
+  }
+  .cert-lock-icon {
+    font-size: 32px;
+    opacity: 0.45;
+    line-height: 1;
+  }
+  .cert-locked-msg {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--papyrus-soft);
+    opacity: 0.65;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .cert-open-btn {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 11px 30px;
+    border: 1.5px solid var(--gold);
+    border-radius: 999px;
+    background: rgba(201, 166, 70, 0.1);
+    color: var(--gold);
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s, border-color 0.25s;
+    backdrop-filter: blur(4px);
+    margin-bottom: 28px;
+  }
+  .cert-open-btn:hover {
+    background: rgba(201, 166, 70, 0.2);
+    color: var(--gold-light);
+    border-color: var(--gold-light);
+  }
+  .cert-open-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  #certCanvas {
+    max-width: 100%;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 10px 50px rgba(0,0,0,0.55);
+  }
+  .cert-btn-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+

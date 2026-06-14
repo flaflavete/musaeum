@@ -12,8 +12,9 @@ script.js               Utilitários compartilhados + shell HTML das histórias
 engine.js               Motor das histórias: telas, render, desafios, save
 tour.js                 Tour guiado (coach marks), usado na home e nas histórias
 research.js             Coleta anônima e consentida de dados da pesquisa
-style.css               Estilos globais (tema, tipografia)
-home/                   JS exclusivo da página inicial, separado por seção
+style.css               Estilos globais das histórias (tema, tipografia); não usado pelo index
+home/                   CSS e JS exclusivos da página inicial. index.css: todo
+                        o estilo do index (um arquivo só). JS separado por seção
                         (i18n, biblioteca, modais, onboarding, abas, mapa,
                         colecao, certificado, main). main.js carrega por último.
 data/catalogo.js        Catálogo central: cards, tesouros, códex e disponibilidade
@@ -80,7 +81,7 @@ Todas as páginas carregam `<script src="script.js">` antes dos demais scripts. 
 
 ### index.html
 
-Objeto `i18n` com chaves `pt` e `en`, em `home/i18n.js`. A função `setLang(lang)` (em `home/main.js`) atualiza `currentLang`, persiste em localStorage e chama `render()`. Elementos com `data-t="chave"` são atualizados via `querySelectorAll`. O JS da home não é mais inline: vive em `home/*.js`, carregado em ordem com `home/main.js` por último (contém o `init`).
+Objeto `i18n` com chaves `pt` e `en`, em `home/i18n.js`. A função `setLang(lang)` (em `home/main.js`) atualiza `currentLang`, persiste em localStorage e chama `render()`. Elementos com `data-t="chave"` são atualizados via `querySelectorAll`. O JS da home não é mais inline: vive em `home/*.js`, carregado em ordem com `home/main.js` por último (contém o `init`). O CSS também não é mais inline: o `index.html` só carrega `home/index.css` (arquivo único com todo o estilo da página, variáveis de cor definidas nos dois temas).
 
 ### histórias (data/naufrago.js, data/sinuhe.js)
 
