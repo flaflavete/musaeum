@@ -76,7 +76,7 @@ const CULTURA_MATERIAL = {
     imageAltEn: 'Berlin Papyrus 3022, showing the Tale of Sinuhe in hieratic script: vertical columns on the left and horizontal lines on the right.',
 
     titlePt: 'Papiro hierático com a história de vida de Sinué (textos B e R)',
-    titleEn: 'Hieratic papyrus with the life story of Sinuhe (Text B and R)',
+    titleEn: 'Hieratic papyrus with the life story of Sinuhe (Texts B and R)',
 
     captionPt: 'Papiro Berlin 3022 · Museu Egípcio de Berlim',
     captionEn: 'Berlin Papyrus 3022 · Egyptian Museum of Berlin',
@@ -201,7 +201,7 @@ const ACHADOS = {
     'peitoral-sithathoryunet': {
       image: 'assets/images/pectoral_sithathoryunet_met.jpg',
       altPt: 'Peitoral de ouro incrustado de pedras azuis, vermelhas e verdes, com dois falcões e o nome de Sesostris II.',
-      altEn: 'Gold pectoral inlaid with blue, red, and green stones, with two falcons and the name of Senwosret II.',
+      altEn: 'Gold pectoral inlaid with blue, red, and green stones, with two falcons and the name of Sesostris II.',
       namePt: 'O peitoral de Sithathoryunet',
       nameEn: 'Sithathoryunet\'s pectoral',
       refPt: 'Ouro, lápis-lazúli e outras pedras, achado em Lahun · The Met, Nova York (16.1.3a, b)',

@@ -57,7 +57,7 @@ const MUSAEUM_GEO = [
     kind: 'capital', stories: ['naufrago', 'sinuhe'], uncertain: false,
     pos: { map: [32, 26] },
     descPt: 'O coração das duas histórias. No Reino Médio a capital era Itj-taui, perto da atual Lisht, onde faraós da XII dinastia como Amenemhat I e Sesostris I ergueram suas pirâmides. É o Egito a que Sinué anseia voltar.',
-    descEn: 'The heart of both stories. In the Middle Kingdom the capital was Itj-tawy, near present-day Lisht, where Twelfth Dynasty pharaohs such as Amenemhat I and Senusret I built their pyramids. It is the Egypt Sinuhe longs to return to.'
+    descEn: 'The heart of both stories. In the Middle Kingdom the capital was Itj-tawy, near present-day Lisht, where 12th Dynasty pharaohs such as Amenemhat I and Sesostris I built their pyramids. It is the Egypt Sinuhe longs to return to.'
   },
   {
     id: 'nilo',

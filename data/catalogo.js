@@ -91,8 +91,8 @@ const MUSAEUM_CATALOG = [
         meaningPt: 'Determinativo: serpentes e répteis, na grafia de ḥfꜣw, "serpente"',
         meaningEn: 'Determinative: snakes and reptiles, in the spelling of ḥfꜣw, "serpent"',
         typeKey: 'type-determin',
-        notePt: 'A serpente aparece em muitos signos egípcios, como determinativo de répteis e também em nomes de divindades protetoras, como a uraeus (a cobra na testa do faraó). No Conto do Náufrago, a serpente da ilha é uma entidade divina chamada de "Príncipe de Punt".',
-        noteEn: 'The serpent appears in many Egyptian signs, as a determinative of reptiles and also in names of protective deities, like the uraeus (the cobra on the pharaoh\'s forehead). In the Shipwrecked Sailor, the island serpent is a divine being called "Prince of Punt".'
+        notePt: 'A serpente aparece em muitos signos egípcios, como determinativo de répteis e também em nomes de divindades protetoras, como a uraeus (a cobra na testa do faraó). No Conto do Náufrago, a serpente da ilha é uma entidade divina chamada de "Senhor de Punt".',
+        noteEn: 'The serpent appears in many Egyptian signs, as a determinative of reptiles and also in names of protective deities, like the uraeus (the cobra on the pharaoh\'s forehead). In the Shipwrecked Sailor, the island serpent is a divine being called "Lord of Punt".'
       },
       {
         glyph: '𓏞', translit: 'sš', chapter: 5,
@@ -130,7 +130,7 @@ const MUSAEUM_CATALOG = [
     available: true,
     cardGlyph: '𓂻',
     titlePt: 'A História de Sinué',
-    titleEn: 'The Story of Sinuhe',
+    titleEn: 'The Tale of Sinuhe',
     descPt: 'O exílio e o retorno. O épico máximo da literatura do Reino Médio.',
     descEn: 'Exile and return. The supreme epic of Middle Kingdom literature.',
     items: [
