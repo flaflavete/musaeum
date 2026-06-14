@@ -18,7 +18,7 @@
       tMore: 'Mais histórias em breve',
       dMore: 'Novos contos dos antigos egípcios estão a caminho.',
 
-      footer: 'Projeto de Flavia Lima Corpas, 2026\nFoto: Fachada do templo de Horus em Edfu, Egito · Flavia Lima Corpas, out. 2025',
+      footer: 'Musæum, 2026\nFoto: Fachada do templo de Horus em Edfu, Egito · Flavia Lima Corpas, out. 2025',
       footerPrivacy: 'Seu progresso e nome ficam guardados só no seu aparelho. Com seu consentimento, enviamos apenas dados anônimos de uso para a pesquisa do PPGArq · Museu Nacional / UFRJ.',
       instSupport: 'Desenvolvido no',
 
@@ -128,7 +128,7 @@
       tMore: 'More stories soon',
       dMore: 'New tales from the ancient Egyptians are on the way.',
 
-      footer: 'Project by Flavia Lima Corpas, 2026\nPhoto: Facade of the Temple of Horus at Edfu, Egypt · Flavia Lima Corpas, Oct. 2025',
+      footer: 'Musæum, 2026\nPhoto: Facade of the Temple of Horus at Edfu, Egypt · Flavia Lima Corpas, Oct. 2025',
       footerPrivacy: 'Your progress and name are stored only on your device. With your consent, we send only anonymous usage data for the research at PPGArq · Museu Nacional / UFRJ.',
       instSupport: 'Developed at',
 
