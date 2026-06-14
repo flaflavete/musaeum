@@ -61,6 +61,8 @@
       <p>${t.aboutMiddle}</p>
       <p>${t.aboutGoal}</p>
       <p class="about-beta-note">${t.aboutBetaNote}</p>
+      <div class="modal-subtitle">${t.aboutMethodTitle}</div>
+      <p>${t.aboutMethod}</p>
       <div class="modal-subtitle">${t.aboutBiblioTitle}</div>
       <ul class="modal-biblio">
         ${t.aboutBiblio.map(item => `<li>${item}</li>`).join('')}
