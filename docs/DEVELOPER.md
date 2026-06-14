@@ -41,7 +41,8 @@ musaeum/
 ├── data/
 │   ├── naufrago.js         Dados do Náufrago: I18N, ITEMS, GLYPHS_CODEX, GLOSSARY, CHAPTERS
 │   ├── sinuhe.js           Dados do Sinué (mesma estrutura)
-│   └── cultura-material.js Fichas dos manuscritos reais (CULTURA_MATERIAL, por storyId)
+│   ├── cultura-material.js Fichas dos manuscritos reais (CULTURA_MATERIAL) e achados das notas (ACHADOS)
+│   └── geografia.js        Lugares citados nos textos (MUSAEUM_GEO), para o mapa interativo do index
 │
 ├── docs/
 │   ├── TECHNICAL.md        Documentação técnica de sistemas e estruturas de dados
@@ -276,6 +277,49 @@ Renderização (em `engine.js`):
 
 > O `cultura-material.js` precisa ser carregado no HTML da história, **antes** de `engine.js`:
 > `<script src="data/cultura-material.js"></script>`. As strings de UI da ficha (`artifact-btn`, `artifact-title`, `artifact-museum`) ficam no `I18N` de cada história (PT e EN).
+
+### `ACHADOS` — objetos reais nas notas arqueológicas
+
+Também em `data/cultura-material.js`, indexado por `storyId`. Quando uma nota cita um objeto real com foto licenciada, o trecho recebe um `<span class="achado-ref" data-achado="id">`; o clique chama `toggleAchado()` (em `engine.js`), que monta o cartão de descoberta.
+
+```js
+const ACHADOS = {
+  naufrago: {
+    'tesouro-tod': {
+      image:    'assets/images/tesouro_tod_louvre.jpg', // foto local
+      altPt:    '...', altEn:    '...',                 // texto alternativo
+      namePt:   '...', nameEn:   '...',                 // nome curto
+      refPt:    '...', refEn:    '...',                 // o que é · onde está (nº de inventário)
+      creditPt: '...', creditEn: '...',                 // crédito + licença da foto
+      url:      'https://...'                           // (opcional) ficha no acervo
+    }
+  }
+};
+```
+
+> De propósito **não há contador, coleção nem persistência**: o achado é só o momento da descoberta (tesouros e códex já são o inventário). Nem toda nota tem achado. Só entra objeto com imagem de licença verificada (CC0 / domínio público / CC BY-SA com crédito) e referência fiel ao acervo.
+
+### `MUSAEUM_GEO` — lugares do mapa interativo
+
+Vive em `data/geografia.js`. Array dos lugares citados nos textos, plotados sobre a carta «Égypte Ancienne» (Malte-Brun, 1837, domínio público) na aba **Mapa** do `index.html`.
+
+```js
+const MUSAEUM_GEO = [
+  {
+    id:       'grande-verde',
+    namePt:   'Grande Verde',  nameEn: 'Great Green',
+    kind:     'sea',           // chave em GEO_KINDS (rótulo bilíngue)
+    stories:  ['naufrago'],    // storyId(s) em que aparece
+    uncertain: false,          // true = localização debatida/não atestada
+    pos:      { map: [24, 6] },// ponto sobre a carta [left%, top%]
+    //        { edge: 's', at: 50 } -> lugar fora da carta, vira seta de borda
+    descPt:   '...',  descEn: '...'  // descrição factual, fiel às fontes
+  },
+  // ...
+];
+```
+
+> As cores por história derivam do catálogo (`geoStoryStyle`/`injectGeoStoryStyles`), então **história nova é drop-in**: basta acrescentar lugares com o novo `storyId` em `stories`. Render: `renderGeoMap()`, `renderGeoPanel()`, `renderGeoLegend()`. Localizações debatidas levam `uncertain: true`, e a ressalva aparece no cartão. Só usar carta de fundo com licença verificada e crédito.
 
 ---
 
@@ -545,7 +589,7 @@ Tour.isActive();  Tour.close();
 
 Spotlight dourado sobre o elemento real + seta piscando + cartão com texto e botões. **As cores do cartão são fixas claras** (não usam as variáveis de tema), porque o cartão é sempre escuro, inclusive no tema claro. Teclado: ←/→/Esc. Reposiciona em scroll/resize. O botão `#btnTour` (`?`), tanto na home quanto no shell das histórias, reabre o tour.
 
-- **Home** (`startHomeTour`, index.html): `#card1`, `#collectionSection`, `#certSection`, `#btnAbout`. Textos em `i18n.<lang>.tourSteps`.
+- **Home** (`startHomeTour`, index.html): 5 passos — `.library-grid .scroll-card`, `#tab-mapa`, `#tab-colecao`, `#tab-cert`, `#btnAbout`. Textos em `i18n.<lang>.tourSteps`.
 - **História** (`startStoryTour`, engine.js): `#btnGlossary`, `#btnCodex`, `#btnSound`, `#inventoryHud`, `#btnNote`, `#btnChallenge` (filtra só os visíveis). **Auto-dispara uma vez** ao chegar à tela `story` (flag `musaeum-tour-<storyId>`). Textos nas chaves `tour-*` do `I18N`.
 
 ### Estilo dos textos de UI

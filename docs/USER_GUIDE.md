@@ -9,7 +9,7 @@ Este guia explica tudo o que você pode fazer no site — da primeira visita ao 
 ## Sumário
 
 1. [Primeiro acesso](#1-primeiro-acesso)
-2. [A Biblioteca](#2-a-biblioteca)
+2. [A Biblioteca e o Mapa](#2-a-biblioteca-e-o-mapa)
 3. [Idioma, tema e som](#3-idioma-tema-e-som)
 4. [Entrando em uma história](#4-entrando-em-uma-história)
 5. [Lendo os capítulos](#5-lendo-os-capítulos)
@@ -44,13 +44,28 @@ Quer trocar seu nome mais tarde? É só ir na seção **Coleção** da página i
 
 ---
 
-## 2. A Biblioteca
+## 2. A Biblioteca e o Mapa
 
-A página inicial do Musæum é a **Biblioteca**. Nela você encontra:
+A página inicial do Musæum é organizada em quatro abas, logo abaixo do título: **Início**, **Mapa**, **Coleção** e **Certificado**.
 
-- **Os pergaminhos** — cada um representa uma história disponível. Clique num pergaminho para entrar na história.
+### Início — a Biblioteca
+
+É a aba que abre primeiro. Nela você encontra:
+
+- **Os pergaminhos** — cada um representa uma história. Clique num pergaminho disponível para entrar na história.
 - Histórias ainda não disponíveis aparecem com um cadeado e não são clicáveis.
-- Abaixo dos pergaminhos fica a seção **Coleção**, com o resumo do seu progresso em todas as histórias.
+- Abaixo dos pergaminhos, uma epígrafe dos *Ensinamentos de Ptahhotep* fecha a biblioteca.
+
+### Mapa — onde as histórias acontecem
+
+A aba **Mapa** mostra os lugares citados nos textos sobre uma carta antiga do Egito, de 1837. Cada lugar é um marcador:
+
+- **Toque num marcador** para abrir um cartão com o que era aquele lugar e em que história ele aparece.
+- Lugares que ficam fora da carta (como Punt, ao sul, e o Levante, ao norte) aparecem como **setas na borda**, apontando a direção.
+- As cores distinguem a que história cada lugar pertence; a legenda ao lado explica.
+- Alguns lugares têm localização **debatida** pelos pesquisadores ou são conhecidos só pelos textos antigos. Nesses casos, o próprio cartão avisa, com honestidade, que a posição é aproximada.
+
+As outras duas abas, **Coleção** e **Certificado**, têm seções próprias mais adiante neste guia.
 
 ---
 
@@ -191,6 +206,12 @@ Palavras **sublinhadas** no texto dos capítulos são termos do glossário. Cliq
 Cada capítulo tem uma **Nota Arqueológica** opcional, abaixo do texto, com comentários acadêmicos sobre o trecho: referências ao papiro original, escolhas de tradução, paralelos com outros textos do Egito Antigo e o contexto histórico e cultural da passagem.
 
 Clique em **🔍 Nota Arqueológica** para abrir e em **✕ Fechar Nota** para fechar. Ler a nota é opcional e não interrompe o avanço da leitura.
+
+### Achados
+
+Algumas notas mencionam um **objeto real** que você pode ver: uma palavra ou trecho destacado dentro da nota. Toque nele para revelar um pequeno cartão com a **foto** do objeto, seu **nome**, onde ele está hoje (museu e número de inventário) e o **crédito** da imagem. Alguns trazem ainda um link para a ficha do objeto no acervo do museu.
+
+É só o prazer da descoberta no momento da leitura: não há contador nem coleção a completar, e nem toda nota tem um achado. Quando tiver, o destaque está ali esperando seu toque.
 
 ---
 
