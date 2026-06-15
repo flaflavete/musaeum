@@ -46,9 +46,9 @@ Quer trocar seu nome mais tarde? É só ir na seção **Coleção** da página i
 
 ## 2. A Biblioteca e o Mapa
 
-A página inicial do Musæum é organizada em quatro abas, logo abaixo do título: **Início**, **Mapa**, **Coleção** e **Certificado**.
+A página inicial do Musæum é organizada em quatro abas, logo abaixo do título: **Biblioteca**, **Mapa**, **Coleção** e **Certificado**.
 
-### Início — a Biblioteca
+### Biblioteca
 
 É a aba que abre primeiro. Nela você encontra:
 
