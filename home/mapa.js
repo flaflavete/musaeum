@@ -3,7 +3,7 @@
   function renderGeoSection() {
     const t = i18n[currentLang];
     document.getElementById('geoHeading').textContent = t.geoTitle;
-    document.getElementById('geoSummary').textContent = MUSAEUM_GEO.length;
+    document.getElementById('geoSummary').textContent = geoVisiblePlaces().length;
     document.getElementById('geoIntro').textContent = t.geoIntro;
     document.getElementById('geoCredit').textContent = t.geoCredit;
     document.getElementById('geoBasemap').alt = t.geoTitle;

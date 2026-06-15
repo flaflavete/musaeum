@@ -961,6 +961,45 @@
     line-height: 1.2;
   }
   .col-item.earned .col-item-label { color: var(--papyrus-soft); }
+  /* Pergaminho de conclusão (premiação única, mais largo que um col-item) */
+  .col-award {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 16px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(201, 166, 70, 0.1);
+    background: rgba(201, 166, 70, 0.04);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .col-award.earned {
+    background: rgba(201, 166, 70, 0.14);
+    border-color: rgba(201, 166, 70, 0.35);
+  }
+  .col-award-icon {
+    font-size: 34px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .col-award.locked .col-award-icon { filter: grayscale(1) opacity(0.28); }
+  .col-award-title {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--papyrus-dim);
+    margin-bottom: 6px;
+  }
+  .col-award.earned .col-award-title { color: var(--gold); }
+  .col-award-desc {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--papyrus-dim);
+  }
+  .col-award.earned .col-award-desc { color: var(--papyrus-soft); }
   .collection-empty {
     text-align: center;
     font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;

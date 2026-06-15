@@ -83,6 +83,23 @@ const MUSAEUM_GEO = [
     descPt: 'Nome egípcio da Baixa Núbia, entre a primeira e a segunda cataratas do Nilo. Expedições reais buscavam ali ouro, cobre e pedras semipreciosas. No Conto do Náufrago, é por Wawat que a tripulação volta para casa.',
     descEn: 'Egyptian name for Lower Nubia, between the first and second Nile cataracts. Royal expeditions sought gold, copper, and semi-precious stones there. In the Shipwrecked Sailor, it is past Wawat that the crew returns home.'
   },
+  // ----- O Camponês Eloquente -----
+  {
+    id: 'uadi-natrun',
+    namePt: 'Uádi Natrun', nameEn: 'Wadi Natrun',
+    kind: 'region', stories: ['campones'], uncertain: false,
+    pos: { map: [22, 20] },
+    descPt: 'Depressão a noroeste do delta do Nilo, cerca de 100 km a noroeste do atual Cairo. Os egípcios a chamavam Sekhet-hemat, "Campo do Sal": seus lagos secam deixando depósitos de sal e natrão, usado na mumificação. É de lá que parte Khun-Anup, o camponês, com sua carga de produtos do oásis.',
+    descEn: 'Depression northwest of the Nile delta, about 100 km northwest of present-day Cairo. The Egyptians called it Sekhet-hemat, "Field of Salt": its lakes dry up leaving deposits of salt and natron, used in mummification. It is from there that Khun-Anup, the peasant, sets out with his load of oasis goods.'
+  },
+  {
+    id: 'heracleopolis',
+    namePt: 'Heracleópolis (Nen-nesut)', nameEn: 'Herakleopolis (Nen-nesut)',
+    kind: 'capital', stories: ['campones'], uncertain: false,
+    pos: { map: [29, 34] },
+    descPt: 'Cidade do Médio Egito, junto à entrada do Faium, capital dos reis das IX e X dinastias. Seu deus principal era o carneiro Hery-shef, "Aquele que está sobre o seu lago". É ali que fica o tribunal do grande intendente que o camponês procura. Hoje corresponde ao sítio de Ihnasya el-Medina.',
+    descEn: 'City of Middle Egypt, by the entrance to the Faiyum, capital of the kings of the 9th and 10th Dynasties. Its main god was the ram Herishef, "He who is upon his lake". It is there that the high steward\'s court the peasant seeks is found. Today it is the site of Ihnasya el-Medina.'
+  },
   // ----- Fora da carta, ao norte (Levante) -----
   {
     id: 'byblos',
@@ -165,9 +182,23 @@ function geoStoryStyle(id) {
   return GEO_STORY_STYLE[id];
 }
 
-// Histórias que têm pelo menos um lugar no mapa, na ordem do catálogo.
+// Uma história só aparece no mapa quando está publicada (available no
+// catálogo). Assim o mapa é drop-in como o resto do Musæum: publicar uma
+// história nova é só mudar available para true, e seus lugares surgem aqui.
+function geoStoryAvailable(id) {
+  if (typeof catalogGet !== 'function') return true;
+  const s = catalogGet(id);
+  return s ? s.available !== false : true;
+}
+
+// Lugares visíveis no mapa: os de pelo menos uma história publicada.
+function geoVisiblePlaces() {
+  return MUSAEUM_GEO.filter(p => p.stories.some(geoStoryAvailable));
+}
+
+// Histórias publicadas que têm pelo menos um lugar no mapa, na ordem do catálogo.
 function geoStoriesInMap() {
-  const ids = [...new Set(MUSAEUM_GEO.flatMap(p => p.stories))];
+  const ids = [...new Set(geoVisiblePlaces().flatMap(p => p.stories))].filter(geoStoryAvailable);
   if (typeof MUSAEUM_CATALOG !== 'undefined') {
     return MUSAEUM_CATALOG.map(s => s.storyId).filter(id => ids.includes(id));
   }
@@ -223,7 +254,7 @@ function renderGeoLegend(lang, labels) {
     const title = s ? (isPt ? s.titlePt : s.titleEn) : id;
     return `<li><span class="geo-swatch geo-swatch--${id}"></span>${title}</li>`;
   });
-  if (MUSAEUM_GEO.some(p => p.stories.length > 1)) {
+  if (geoVisiblePlaces().some(p => p.stories.length > 1)) {
     items.push(`<li><span class="geo-swatch geo-swatch--multi"></span>${labels.multi}</li>`);
   }
   items.push(`<li><span class="geo-swatch geo--uncertain"></span>${labels.uncertain}</li>`);
@@ -240,7 +271,7 @@ function renderGeoMap(lang) {
   if (!layer) return;
   const isPt = lang === 'pt';
 
-  layer.innerHTML = MUSAEUM_GEO.map(place => {
+  layer.innerHTML = geoVisiblePlaces().map(place => {
     const name = isPt ? place.namePt : place.nameEn;
     const multi = place.stories.length > 1;
     const unc = place.uncertain ? ' geo-marker--uncertain' : '';

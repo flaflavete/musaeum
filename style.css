@@ -447,6 +447,17 @@
     color: var(--gold);
     font-weight: 700;
   }
+  /* Estrofes citadas (ex.: as apelações do Camponês Eloquente) */
+  .story .verse {
+    font-family: 'EB Garamond', 'Noto Serif', serif;
+    font-style: italic;
+    color: var(--papyrus-soft);
+    line-height: 1.6;
+    max-width: 540px;
+    margin: 22px auto;
+    padding: 4px 0 4px 18px;
+    border-left: 2px solid var(--gold-dark);
+  }
 
   /* ========== TERMOS DO GLOSSÁRIO INLINE ========== */
   .gloss {
@@ -758,6 +769,37 @@
     text-transform: uppercase;
     margin: 14px 0 6px;
     text-shadow: 0 0 20px rgba(232, 200, 102, 0.3);
+  }
+
+  /* Pergaminho de premiação na tela final (histórias sem tesouros) */
+  .final-award {
+    margin: 30px auto 0;
+    max-width: 480px;
+    padding: 22px;
+    background: rgba(201, 166, 70, 0.06);
+    border: 1px solid var(--gold-dark);
+    border-radius: 12px;
+    text-align: center;
+  }
+  .final-award-icon {
+    font-size: 44px;
+    line-height: 1;
+    margin: 8px 0 10px;
+  }
+  .final-award-title {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+  }
+  .final-award-desc {
+    font-family: 'EB Garamond', 'Noto Serif', serif;
+    font-size: 14px;
+    color: var(--papyrus-soft);
+    line-height: 1.6;
   }
 
   .btn.ghost {

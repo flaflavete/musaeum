@@ -62,6 +62,31 @@
       html += `</div></div>`;
     }
 
+    // Pergaminho de conclusão: histórias que premiam com um título único (em
+    // vez de tesouros colecionáveis). Desbloqueia ao concluir (screen === 'final').
+    const awardStories = MUSAEUM_CATALOG.filter(s => s.award && storeGet(s.storyId));
+    for (const story of awardStories) {
+      anyData = true;
+      const save = storeGet(story.storyId);
+      const earned = save?.screen === 'final';
+      const a = story.award;
+      const title = currentLang === 'pt' ? a.titlePt : a.titleEn;
+      const desc  = earned
+        ? (currentLang === 'pt' ? a.descPt : a.descEn)
+        : t.awardLocked;
+      const storyTitle = currentLang === 'pt' ? story.titlePt : story.titleEn;
+      html += `<div style="margin-bottom:24px;">
+        <div class="collection-game-name">${escapeHtml(storyTitle)}</div>
+        <div class="col-award ${earned ? 'earned' : 'locked'}">
+          <div class="col-award-icon" aria-hidden="true">${a.icon}</div>
+          <div class="col-award-body">
+            <div class="col-award-title">${escapeHtml(title)}</div>
+            <div class="col-award-desc">${escapeHtml(desc)}</div>
+          </div>
+        </div>
+      </div>`;
+    }
+
     // Códex de hieróglifos por história
     const codexStories = MUSAEUM_CATALOG.filter(s => s.codex && storeGet(s.storyId));
     for (const story of codexStories) {

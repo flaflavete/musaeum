@@ -119,6 +119,63 @@ const CULTURA_MATERIAL = {
         valueEn: 'Egyptian Museum and Papyrus Collection, Staatliche Museen zu Berlin (Neues Museum, room 211, Berlin, Germany).'
       }
     ]
+  },
+
+  campones: {
+    image: 'assets/images/EA10274.jpg',
+    imageAltPt: 'Papiro BM EA 10274, fragmentado e montado entre vidros, com o início do Camponês Eloquente em escrita hierática: colunas de tinta preta com alguns toques de vermelho.',
+    imageAltEn: 'Papyrus BM EA 10274, fragmentary and mounted between glass, showing the opening of the Eloquent Peasant in hieratic script: columns of black ink with a few touches of red.',
+
+    titlePt: '"O Camponês Eloquente", início do conto (papiro Butler)',
+    titleEn: '"The Eloquent Peasant", opening of the tale (Butler papyrus)',
+
+    captionPt: 'Papiro BM EA 10274 · Museu Britânico, Londres',
+    captionEn: 'Papyrus BM EA 10274 · British Museum, London',
+
+    creditPt: '© The Trustees of the British Museum · CC BY-NC-SA 4.0',
+    creditEn: '© The Trustees of the British Museum · CC BY-NC-SA 4.0',
+
+    introPt: 'O Camponês Eloquente chegou até nós em quatro cópias do Reino Médio. Nenhuma está completa sozinha, mas juntas dão o texto inteiro, de 430 linhas. A mais completa é o Papiro Berlin 3023 (chamado B1). Este, o "papiro Butler", preserva o começo do conto na frente (recto); no verso traz outra obra, o "Discurso do Passarinheiro". Veio da coleção de Henry Salt, depois de Samuel Butler, e foi achado em Tebas.',
+    introEn: 'The Eloquent Peasant has reached us in four Middle Kingdom copies. None is complete on its own, but together they yield the full text of 430 lines. The most complete is Berlin Papyrus 3023 (known as B1). This one, the "Butler papyrus", preserves the opening of the tale on the front (recto); on the back it carries another work, the "Discourse of the Fowler". It came from the collection of Henry Salt, later Samuel Butler, and was found at Thebes.',
+
+    museumUrl: 'https://www.britishmuseum.org/collection/object/Y_EA10274',
+
+    fields: [
+      {
+        labelPt: 'Número de inventário', labelEn: 'Inventory number',
+        valuePt: 'EA 10274', valueEn: 'EA 10274'
+      },
+      {
+        labelPt: 'Datação', labelEn: 'Date',
+        valuePt: 'Dinastia XII (Reino Médio).',
+        valueEn: '12th Dynasty (Middle Kingdom).'
+      },
+      {
+        labelPt: 'Material / técnica', labelEn: 'Material / technique',
+        valuePt: 'Papiro inscrito; escrita hierática, em egípcio médio.',
+        valueEn: 'Inscribed papyrus; hieratic script, in Middle Egyptian.'
+      },
+      {
+        labelPt: 'Conteúdo', labelEn: 'Contents',
+        valuePt: 'Recto: o início do Camponês Eloquente (40 linhas). Verso: o "Discurso do Passarinheiro".',
+        valueEn: 'Recto: the opening of the Eloquent Peasant (40 lines). Verso: the "Discourse of the Fowler".'
+      },
+      {
+        labelPt: 'Dimensões', labelEn: 'Dimensions',
+        valuePt: 'Altura × comprimento: 13,7 × 72 cm.',
+        valueEn: 'Height × length: 13.7 × 72 cm.'
+      },
+      {
+        labelPt: 'Proveniência', labelEn: 'Provenance',
+        valuePt: 'Tebas; coleção de Henry Salt, depois de Samuel Butler.',
+        valueEn: 'Thebes; collection of Henry Salt, later Samuel Butler.'
+      },
+      {
+        labelPt: 'Acervo atual', labelEn: 'Current collection',
+        valuePt: 'Museu Britânico, Londres, Reino Unido.',
+        valueEn: 'British Museum, London, United Kingdom.'
+      }
+    ]
   }
 };
 
@@ -221,6 +278,56 @@ const ACHADOS = {
       creditPt: 'Imagem: The Metropolitan Museum of Art, CC0',
       creditEn: 'Image: The Metropolitan Museum of Art, CC0',
       url: 'https://www.metmuseum.org/art/collection/search/573446'
+    }
+  },
+
+  campones: {
+    'uadi-natrun': {
+      image: 'assets/images/uadi_natrun_nasa.jpg',
+      altPt: 'Vista aérea de um lago salgado do uádi Natrun, com a água esverdeada cercada por crostas claras de sal no deserto.',
+      altEn: 'Aerial view of a salt lake in Wadi Natrun, its greenish water ringed by pale crusts of salt in the desert.',
+      namePt: 'Os lagos de sal do uádi Natrun',
+      nameEn: 'The salt lakes of Wadi Natrun',
+      refPt: 'Um dos lagos da depressão, onde o natrão aflora sozinho · deserto ocidental do Egito',
+      refEn: 'One of the lakes in the depression, where natron forms on its own · Egypt\'s Western Desert',
+      creditPt: 'Imagem: NASA, domínio público',
+      creditEn: 'Image: NASA, public domain'
+    },
+    'barco-pesca-meketre': {
+      image: 'assets/images/barco_pesca_meketre_met.jpg',
+      altPt: 'Modelo de madeira pintada de um barco de papiro com homens em pé fincando arpões longos na água.',
+      altEn: 'Painted wooden model of a papyrus boat with men standing and driving long harpoons into the water.',
+      namePt: 'O barco de pesca de Meketre',
+      nameEn: 'Meketre\'s fishing boat',
+      refPt: 'Modelo de madeira da tumba tebana de Meketre (Deir el-Bahari), c. 1980 AEC · um dos 24 modelos divididos em 1920 entre o Cairo e o Met, Nova York (20.3.6)',
+      refEn: 'Wooden model from the Theban tomb of Meketre (Deir el-Bahari), ca. 1980 BCE · one of 24 models split in 1920 between Cairo and the Met, New York (20.3.6)',
+      creditPt: 'Imagem: The Metropolitan Museum of Art, CC0',
+      creditEn: 'Image: The Metropolitan Museum of Art, CC0',
+      url: 'https://www.metmuseum.org/art/collection/search/544126'
+    },
+    'barco-meketre': {
+      image: 'assets/images/barco_meketre_met.jpg',
+      altPt: 'Modelo de madeira de um barco a remo, com remadores e, na popa, um timoneiro de pé segurando o grande remo-leme.',
+      altEn: 'Wooden model of a rowed boat, with oarsmen and, at the stern, a steersman standing and holding the great steering oar.',
+      namePt: 'O barco de viagem de Meketre',
+      nameEn: 'Meketre\'s travelling boat',
+      refPt: 'Modelo de madeira da tumba tebana de Meketre (Deir el-Bahari), com o timoneiro ao leme, c. 1980 AEC · um dos 24 modelos divididos em 1920 entre o Cairo e o Met, Nova York (20.3.1)',
+      refEn: 'Wooden model from the Theban tomb of Meketre (Deir el-Bahari), with the steersman at the rudder, ca. 1980 BCE · one of 24 models split in 1920 between Cairo and the Met, New York (20.3.1)',
+      creditPt: 'Imagem: The Metropolitan Museum of Art, CC0',
+      creditEn: 'Image: The Metropolitan Museum of Art, CC0',
+      url: 'https://www.metmuseum.org/art/collection/search/544214'
+    },
+    'celeiro-meketre': {
+      image: 'assets/images/celeiro_meketre_met.jpg',
+      altPt: 'Modelo de madeira de um celeiro: homens carregam sacos de grão enquanto escribas sentados registram as medidas.',
+      altEn: 'Wooden model of a granary: men carry sacks of grain while seated scribes record the measures.',
+      namePt: 'O celeiro de Meketre',
+      nameEn: 'Meketre\'s granary',
+      refPt: 'Modelo de madeira da tumba tebana de Meketre (Deir el-Bahari), com escribas contando o grão, c. 1980 AEC · um dos 24 modelos divididos em 1920 entre o Cairo e o Met, Nova York (20.3.11)',
+      refEn: 'Wooden model from the Theban tomb of Meketre (Deir el-Bahari), with scribes counting the grain, ca. 1980 BCE · one of 24 models split in 1920 between Cairo and the Met, New York (20.3.11)',
+      creditPt: 'Imagem: The Metropolitan Museum of Art, CC0',
+      creditEn: 'Image: The Metropolitan Museum of Art, CC0',
+      url: 'https://www.metmuseum.org/art/collection/search/545281'
     }
   }
 };

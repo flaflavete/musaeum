@@ -230,7 +230,7 @@ const MUSAEUM_CATALOG = [
 
   {
     storyId: 'campones',
-    href: null,
+    href: 'campones.html',
     available: false,
     cardGlyph: '𓃾',
     titlePt: 'Camponês Eloquente',
@@ -238,7 +238,100 @@ const MUSAEUM_CATALOG = [
     descPt: 'O poder da retórica e o clamor por justiça de um homem simples.',
     descEn: "The power of rhetoric and a simple man's plea for justice.",
     items: null,
-    codex: null
+    // Em vez de tesouros colecionáveis, esta história premia com um único
+    // pergaminho ao ser concluída (screen === 'final'): o título «justo de
+    // voz» (mꜣꜥ-ḫrw), epíteto de quem foi vindicado, que o próprio texto
+    // aplica ao rei (Araújo, p. 231: «de palavra perfeita»).
+    award: {
+      icon: '📜',
+      titlePt: 'Justo de Voz',
+      titleEn: 'True of Voice',
+      descPt: 'Você seguiu as nove apelações do camponês até o fim. Como ele, conquistou o epíteto «Justo de voz» (mꜣꜥ-ḫrw), o título de quem foi justificado.',
+      descEn: 'You followed the peasant’s nine petitions to the end. Like him, you earned the epithet “true of voice” (mꜣꜥ-ḫrw), the title of one who has been justified.'
+    },
+    codex: [
+      {
+        glyph: '𓃘', translit: 'ꜥꜣ', chapter: 0,
+        namePt: 'Asno', nameEn: 'Donkey',
+        meaningPt: 'Logograma: ꜥꜣ, "asno"<br>Determinativo: asininos',
+        meaningEn: 'Logogram: ꜥꜣ, "donkey"<br>Determinative: asses',
+        typeKey: 'type-logogram',
+        notePt: 'O asno foi o grande animal de carga do Egito muito antes do camelo, que só se difunde bem mais tarde. Caravanas de asnos cruzavam o deserto entre os oásis e o vale do Nilo levando sal, natrão e mercadorias, exatamente como os de Khun-Anup. É o roubo desses asnos que põe toda a história em movimento.',
+        noteEn: 'The donkey was Egypt\'s main pack animal long before the camel, which spread only much later. Donkey caravans crossed the desert between the oases and the Nile valley carrying salt, natron, and goods, exactly like Khun-Anup\'s. It is the theft of these donkeys that sets the whole story in motion.'
+      },
+      {
+        glyph: '𓇣', translit: 'jt', chapter: 1,
+        namePt: 'Espiga de cevada', nameEn: 'Ear of barley',
+        meaningPt: 'Determinativo: cereais, na grafia de jt, "cevada", e bdt, "trigo emmer"',
+        meaningEn: 'Determinative: cereals, in the spelling of jt, "barley", and bdt, "emmer wheat"',
+        typeKey: 'type-determin',
+        notePt: 'A cevada e o trigo emmer eram a base da alimentação egípcia, virando pão e cerveja, e serviam também de moeda de troca e de medida de salário numa economia sem dinheiro cunhado. Na história, é um punhado de cevada comido por um asno que serve de pretexto para Nemti-nakht confiscar tudo.',
+        noteEn: 'Barley and emmer wheat were the foundation of the Egyptian diet, turned into bread and beer, and also served as a medium of exchange and a measure of wages in an economy without coined money. In the story, it is a mouthful of barley eaten by a donkey that serves as Nemti-nakht\'s pretext to seize everything.'
+      },
+      {
+        glyph: '𓆄', translit: 'mꜣꜥt', chapter: 2,
+        namePt: 'Pena de Maât', nameEn: 'Feather of Maat',
+        meaningPt: 'Logograma: mꜣꜥt, "Maât", a ordem justa<br>Fonograma: šw',
+        meaningEn: 'Logogram: mꜣꜥt, "Maat", the just order<br>Phonogram: šw',
+        typeKey: 'type-logogram',
+        notePt: 'A pena de avestruz é o emblema de <span class="gloss" data-gloss="maat">Maât</span>, deusa e conceito da ordem cósmica, da verdade e da justiça. No julgamento dos mortos, o coração era pesado contra essa pena. As nove apelações do camponês são, no fundo, um clamor para que Maât seja restaurada na terra.',
+        noteEn: 'The ostrich feather is the emblem of <span class="gloss" data-gloss="maat">Maat</span>, goddess and concept of cosmic order, truth, and justice. In the judgment of the dead, the heart was weighed against this feather. The peasant\'s nine petitions are, at heart, a plea for Maat to be restored on earth.'
+      },
+      {
+        glyph: '𓅝', translit: 'ḏḥwty', chapter: 3,
+        namePt: 'Íbis de Tot', nameEn: 'Ibis of Thoth',
+        meaningPt: 'Logograma: ḏḥwty, o deus Tot',
+        meaningEn: 'Logogram: ḏḥwty, the god Thoth',
+        typeKey: 'type-logogram',
+        notePt: 'O íbis-sagrado empoleirado num estandarte escreve o nome de <span class="gloss" data-gloss="tot">Tot</span>, deus da escrita, do cálculo e da justiça, escriba dos deuses. Era ele quem registrava o veredito na pesagem do coração. Nas apelações, o camponês invoca Tot como o fiel da balança, o juiz que não se deixa torcer.',
+        noteEn: 'The sacred ibis perched on a standard writes the name of <span class="gloss" data-gloss="tot">Thoth</span>, god of writing, reckoning, and justice, scribe of the gods. It was he who recorded the verdict at the weighing of the heart. In the petitions, the peasant invokes Thoth as the tongue of the balance, the judge who cannot be bent.'
+      },
+      {
+        glyph: '𓆛', translit: 'jn', chapter: 4,
+        namePt: 'Tilápia', nameEn: 'Tilapia',
+        meaningPt: 'Fonograma: jn<br>Determinativo: peixes, na grafia de jn, "tilápia"',
+        meaningEn: 'Phonogram: jn<br>Determinative: fish, in the spelling of jn, "tilapia"',
+        typeKey: 'type-phonogram',
+        notePt: 'A tilápia-do-nilo (Oreochromis niloticus) choca os ovos na própria boca, e por isso foi associada ao renascimento na arte egípcia. Aqui ela vale pelo mundo dos pescadores: na quinta apelação, o camponês compara o grande intendente a um pescador que arrasta a rede e devasta o rio, sem poupar nem o peixe mais humilde.',
+        noteEn: 'The Nile tilapia (Oreochromis niloticus) broods its eggs in its own mouth, and was therefore linked to rebirth in Egyptian art. Here it stands for the world of fishermen: in the fifth petition, the peasant compares the high steward to a fisherman who drags the net and lays the river waste, sparing not even the humblest fish.'
+      },
+      {
+        glyph: '𓊤', translit: 'ḫrw', chapter: 5,
+        namePt: 'Remo', nameEn: 'Oar',
+        meaningPt: 'Fonograma: ḫrw, "voz", como em mꜣꜥ-ḫrw, "justo de voz"',
+        meaningEn: 'Phonogram: ḫrw, "voice", as in mꜣꜥ-ḫrw, "true of voice"',
+        typeKey: 'type-phonogram',
+        notePt: 'O sinal do remo tem o valor sonoro ḫrw, "voz". É o mesmo ḫrw do epíteto <span class="gloss" data-gloss="justo-de-voz">mꜣꜥ-ḫrw</span>, "justo de voz", dado a quem foi vindicado num julgamento. Nas apelações o camponês chama o grande intendente de "leme de todo o país": é pela voz, sua única arma, que ele tenta endireitar o leme da justiça.',
+        noteEn: 'The oar sign carries the sound value ḫrw, "voice". It is the very ḫrw of the epithet <span class="gloss" data-gloss="justo-de-voz">mꜣꜥ-ḫrw</span>, "true of voice", given to one vindicated in judgment. In the petitions the peasant calls the high steward "the steering oar of the whole land": it is by his voice, his only weapon, that he tries to set the rudder of justice straight.'
+      },
+      {
+        glyph: '𓌾', translit: 'ḥqꜣt', chapter: 6,
+        namePt: 'Medida de grãos', nameEn: 'Grain measure',
+        meaningPt: 'Ideograma e determinativo: a medida de grão (heqat), em palavras de medir e contar',
+        meaningEn: 'Ideogram and determinative: the grain measure (heqat), in words of measuring and counting',
+        typeKey: 'type-ideo',
+        notePt: 'A <span class="gloss" data-gloss="heqat">heqat</span> era a medida-padrão de cereais (cerca de 4,8 litros), e a justiça egípcia era pensada como uma medida exata: nem a mais, nem a menos. Na oitava apelação, o camponês diz que a medida cheia transborda e o que sobra se perde no chão, imagem da ganância do intendente, que já tem o bastante e ainda toma do pobre.',
+        noteEn: 'The <span class="gloss" data-gloss="heqat">heqat</span> was the standard measure of grain (about 4.8 liters), and Egyptian justice was imagined as an exact measure: neither more nor less. In the eighth petition, the peasant says the full measure overflows and the surplus is lost on the ground, an image of the steward\'s greed, who already has enough and still takes from the poor.'
+      },
+      {
+        glyph: '𓃢', translit: 'jnpw', chapter: 7,
+        namePt: 'Chacal de Anúbis', nameEn: 'Jackal of Anubis',
+        meaningPt: 'Logograma e determinativo: o chacal deitado, o deus Anúbis (jnpw)',
+        meaningEn: 'Logogram and determinative: the recumbent jackal, the god Anubis (jnpw)',
+        typeKey: 'type-logogram',
+        notePt: 'O chacal deitado é <span class="gloss" data-gloss="anubis">Anúbis</span>, deus dos embalsamadores e guardião das necrópoles, que conduz o morto ao julgamento. O nome do próprio camponês, Khun-Anup, significa "protegido de Anúbis", e é a Anúbis que ele ameaça apelar quando perde a esperança na justiça humana, no fecho da nona apelação.',
+        noteEn: 'The recumbent jackal is <span class="gloss" data-gloss="anubis">Anubis</span>, god of embalmers and guardian of the necropolis, who leads the dead to judgment. The peasant\'s own name, Khun-Anup, means "protected of Anubis", and it is to Anubis that he threatens to appeal when he loses hope in human justice, at the close of the ninth petition.'
+      },
+      {
+        glyph: '𓏛', translit: 'mḏꜣt', chapter: 8,
+        namePt: 'Rolo de papiro', nameEn: 'Papyrus roll',
+        meaningPt: 'Determinativo: escrita, conhecimento e ideias abstratas<br>Logograma: mḏꜣt, "livro", "documento"',
+        meaningEn: 'Determinative: writing, knowledge, and abstract ideas<br>Logogram: mḏꜣt, "book", "document"',
+        typeKey: 'type-determin',
+        notePt: 'O rolo de papiro atado e selado fecha palavras ligadas à escrita e ao pensamento abstrato. No fim da história, o grande intendente manda copiar as nove apelações "num rolo de papiro novo" para enviá-las ao rei: é a escrita que salva a voz do camponês e, de certo modo, a transforma neste texto que chegou até nós.',
+        noteEn: 'The rolled, tied, and sealed papyrus closes words tied to writing and abstract thought. At the end of the story, the high steward has the nine petitions copied "onto a fresh papyrus roll" to send them to the king: it is writing that saves the peasant\'s voice and, in a way, turns it into this very text that has reached us.'
+      }
+    ]
   }
 ];
 

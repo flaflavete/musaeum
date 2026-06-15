@@ -50,7 +50,7 @@ function setLang(lang) {
   if (toastSub) toastSub.textContent = t('discovery-sub');
   const invHud = document.getElementById('inventoryHud');
   if (invHud) invHud.setAttribute('aria-label', t('inventory-label'));
-  for (let i = 0; i < ITEMS.length; i++) {
+  if (ITEMS) for (let i = 0; i < ITEMS.length; i++) {
     const slot = document.getElementById(`slot-${i}`);
     if (slot) slot.setAttribute('title', lang === 'pt' ? ITEMS[i].pt : ITEMS[i].en);
   }
@@ -65,6 +65,8 @@ function updateScoreHUD() {
 
 function updateInventoryUI() {
   const hud = document.getElementById('inventoryHud');
+  // Histórias sem tesouros (ITEMS nulo, ex.: o Camponês) não têm HUD de coleta.
+  if (!ITEMS || !ITEMS.length) { if (hud) hud.style.display = 'none'; return; }
   if (state.screen === 'splash' || state.screen === 'intro' || state.screen === 'final') {
     hud.style.display = 'none';
   } else {
@@ -392,7 +394,12 @@ function enterGame() {
   } else {
     state.screen = 'intro';
   }
-  if (!state.discoveredGlyphs.has(0)) state.discoveredGlyphs.add(0);
+  // Glifo de tema (chapter: -1) aparece já na abertura. Histórias sem esse
+  // glifo (todos os signos ligados a capítulos) não revelam nada aqui: o
+  // primeiro signo é descoberto ao ler o capítulo 1, com seu toast.
+  if (GLYPHS_CODEX[0] && GLYPHS_CODEX[0].chapter === -1) {
+    if (!state.discoveredGlyphs.has(0)) state.discoveredGlyphs.add(0);
+  }
   updateCodexCount();
   render();
 }
@@ -518,7 +525,7 @@ function onAnswer(isCorrect, q, firstTry) {
   const earned = repeat ? 0 : (firstTry ? 20 : (state.attempts === 1 ? 10 : (state.attempts === 2 ? 5 : 2)));
   state.score += earned;
 
-  const collects = firstTry && !repeat;
+  const collects = firstTry && !repeat && !!ITEMS;
   if (collects) {
     state.collected[state.chapter] = true;
   }
@@ -544,8 +551,9 @@ function renderAnswerFeedback() {
   const ch = CHAPTERS[state.chapter];
   const q = ch && ch.question ? ch.question : null;
   const fact = q ? (state.lang === 'pt' ? q.factPt : q.factEn) : '';
-  const itemName = state.lang === 'pt' ? ITEMS[state.chapter].pt : ITEMS[state.chapter].en;
-  const collectionMsg = r.collects ? `<br><b>${t('treasure-got')}: ${itemName}!</b>` : '';
+  const item = ITEMS ? ITEMS[state.chapter] : null;
+  const itemName = item ? (state.lang === 'pt' ? item.pt : item.en) : '';
+  const collectionMsg = r.collects && item ? `<br><b>${t('treasure-got')}: ${itemName}!</b>` : '';
   const pointsMsg = r.repeat ? '' : `+${r.earned} ${t('points')}. `;
 
   slot.innerHTML = `<div class="feedback good"><strong class="label">${t('correct')}</strong>${pointsMsg}${collectionMsg} <div style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.1); padding-top:8px; font-style:italic;">${fact}</div></div>`;
@@ -565,8 +573,8 @@ function restoreAnsweredMinigame() {
   renderAnswerFeedback();
 }
 
-function startGame() { state.chapter = 0; state.screen = 'story'; state.score = 0; state.answered = false; state.attempts = 0; state.answerResult = null; state.shuffledOptions = []; state.collected = new Array(ITEMS.length).fill(false); state.answeredChapters = new Array(CHAPTERS.length).fill(false); render(); scrollTop(); }
-function restartGame() { state.chapter = 0; state.screen = 'splash'; state.score = 0; state.answered = false; state.attempts = 0; state.answerResult = null; state.shuffledOptions = []; state.collected = new Array(ITEMS.length).fill(false); state.answeredChapters = new Array(CHAPTERS.length).fill(false); state.discoveredGlyphs = new Set(); state.codexHasNew = false; saveState(); render(); scrollTop(); }
+function startGame() { state.chapter = 0; state.screen = 'story'; state.score = 0; state.answered = false; state.attempts = 0; state.answerResult = null; state.shuffledOptions = []; state.collected = new Array(ITEMS ? ITEMS.length : 0).fill(false); state.answeredChapters = new Array(CHAPTERS.length).fill(false); render(); scrollTop(); }
+function restartGame() { state.chapter = 0; state.screen = 'splash'; state.score = 0; state.answered = false; state.attempts = 0; state.answerResult = null; state.shuffledOptions = []; state.collected = new Array(ITEMS ? ITEMS.length : 0).fill(false); state.answeredChapters = new Array(CHAPTERS.length).fill(false); state.discoveredGlyphs = new Set(); state.codexHasNew = false; saveState(); render(); scrollTop(); }
 function goMinigame() {
   state.screen = 'minigame';
   // Entrada limpa: zera resposta/tentativas e sorteia uma nova ordem para
@@ -629,23 +637,47 @@ function renderFinal() {
     `;
   }
 
+  // Histórias sem tesouros podem premiar com um pergaminho único (campo award
+  // do catálogo): por exemplo o título "Justo de Voz" do Camponês Eloquente.
+  let awardHtml = '';
+  const story = (typeof catalogGet === 'function') ? catalogGet(STORY_ID) : null;
+  if (story && story.award && !hasTreasures) {
+    const a = story.award;
+    const aTitle = state.lang === 'pt' ? a.titlePt : a.titleEn;
+    const aDesc  = state.lang === 'pt' ? a.descPt  : a.descEn;
+    awardHtml = `
+      <div class="final-award">
+        <div class="chapter-label">${t('final-inventory')}</div>
+        <div class="final-award-icon" aria-hidden="true">${a.icon}</div>
+        <div class="final-award-title">${escapeHtml(aTitle)}</div>
+        <div class="final-award-desc">${escapeHtml(aDesc)}</div>
+      </div>
+    `;
+  }
+
   const playerName = getPlayerName();
   const congratsHtml = playerName
     ? `<p style="font-family:'EB Garamond','Noto Serif',serif; font-style:italic; color:var(--papyrus-soft); font-size:18px; margin-bottom:6px;">${t('final-congrats')}<strong>${escapeHtml(playerName)}</strong>!</p>`
     : '';
 
-  return `<div class="scene" style="text-align:center;">
-    ${congratsHtml}
-    <h1 class="title">${t('final-title')}</h1>
+  // O glifo-rank genérico (escriba) é a "honraria" padrão. Quando a história
+  // tem um prêmio próprio (awardHtml), ele substitui esse bloco para não repetir.
+  const rankGlyphHtml = awardHtml ? '' : `
     <div class="glyph-feature" data-kicker="${t('final-rank-kicker')}">
       <div class="big-glyph" aria-hidden="true">𓏞</div>
       <div class="translit">sš</div>
       <div class="meaning">${t('final-rank-meaning')}</div>
-    </div>
+    </div>`;
+
+  return `<div class="scene" style="text-align:center;">
+    ${congratsHtml}
+    <h1 class="title">${t('final-title')}</h1>
+    ${rankGlyphHtml}
     <div style="font-size:48px; color:var(--gold); font-family:Cinzel;">${state.score} / ${max}</div>
-    <div class="final-rank">✦ ${rank} ✦</div>
+    ${awardHtml ? '' : `<div class="final-rank">✦ ${rank} ✦</div>`}
 
     ${treasuresHtml}
+    ${awardHtml}
 
     <div class="actions"><button class="btn ghost" onclick="restartGame()">${t('play-again-btn')}</button><a href="index.html" class="btn ghost">${t('back-to-library')}</a></div>
     <div class="credits">
@@ -1047,7 +1079,7 @@ function initStory(config) {
     score: 0,
     answered: false,
     attempts: 0,
-    collected: new Array(ITEMS.length).fill(false),
+    collected: new Array(ITEMS ? ITEMS.length : 0).fill(false),
     answeredChapters: new Array(CHAPTERS.length).fill(false),
     discoveredGlyphs: new Set(),
     modalView: null,
@@ -1060,7 +1092,7 @@ function initStory(config) {
     answerResult: null
   };
 
-  initStoryApp({ inventory: ITEMS.map(i => i.icon) });
+  initStoryApp({ inventory: (ITEMS || []).map(i => i.icon) });
   migrateOldSaves();
   loadState();
   const _sharedLang = localStorage.getItem('musaeum-lang');
