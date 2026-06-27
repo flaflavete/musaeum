@@ -188,9 +188,34 @@
   </section>
 
   <section class="tab-panel" id="panel-aprender" role="tabpanel" aria-labelledby="tab-aprender" hidden>
-    <div class="cert-locked-wrap" style="margin-top:48px;">
-      <span class="cert-lock-icon">𓄿</span>
-      <p class="cert-locked-msg" data-t="aprenderEmBreve"></p>
+    <div class="aprender-hub">
+
+      <div class="aprender-progress">
+        <div class="aprender-stat">
+          <span class="aprender-num" id="aprenderStatDone">0</span>
+          <span class="aprender-label" data-t="aprenderLicoesConcl"></span>
+        </div>
+        <div class="aprender-stat">
+          <span class="aprender-num" id="aprenderStatCards">0</span>
+          <span class="aprender-label" data-t="aprenderSinaisRev"></span>
+        </div>
+        <div class="aprender-bar-wrap">
+          <div class="aprender-bar-label">
+            <span data-t="aprenderProgressoGeral"></span>
+            <span id="aprenderPct">0%</span>
+          </div>
+          <div class="aprender-bar-bg">
+            <div class="aprender-bar-fill" id="aprenderFill" style="width:0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="aprender-section" data-t="aprenderLicoesTitle"></p>
+      <div class="aprender-grid" id="aprenderGrid"></div>
+
+      <p class="aprender-section" data-t="aprenderFerrTitle"></p>
+      <div class="aprender-tools" id="aprenderTools"></div>
+
     </div>
   </section>
 
@@ -286,6 +311,7 @@
 <script src="home/mapa.js"></script>
 <script src="home/colecao.js"></script>
 <script src="home/certificado.js"></script>
+<script src="home/aprender.js"></script>
 <script src="home/main.js"></script>
 </body>
 </html>

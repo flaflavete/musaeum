@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lição 5 · Cartuchos reais · Musæum</title>
+<meta name="theme-color" content="#1b2a3d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="aprender.css">
+<style>
+.callout {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin: 20px 0;
+  font-size: 16px;
+  color: var(--papyrus-soft);
+  line-height: 1.65;
+}
+.callout strong { color: var(--gold); }
+
+.cartouche-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+.cartouche-card {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+}
+.cc-cartouche { margin-bottom: 16px; }
+.cartouche-frame {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  border: 3px solid var(--gold);
+  border-radius: 40px;
+  position: relative;
+  margin-bottom: 8px;
+}
+.cartouche-frame::before {
+  content: '';
+  position: absolute;
+  left: -11px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 70%;
+  background: var(--gold);
+  border-radius: 3px 0 0 3px;
+}
+.cartouche-glyphs {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-size: 32px;
+  color: var(--gold);
+  line-height: 1;
+  letter-spacing: 3px;
+}
+.cc-pharaoh-name {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--papyrus);
+  letter-spacing: 0.08em;
+  display: block;
+  margin-top: 6px;
+}
+.cc-era { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.1em; color: var(--papyrus-dim); margin-bottom: 4px; }
+.cc-name { font-family: 'EB Garamond', serif; font-size: 17px; font-style: italic; color: var(--terracotta-lt); margin-bottom: 2px; }
+.cc-epithet { font-size: 14px; color: var(--papyrus-soft); font-style: italic; margin-bottom: 12px; }
+.cc-breakdown { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.cc-sign {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  background: var(--ink-raised); border: 1px solid var(--border);
+  border-radius: 8px; padding: 6px 10px; text-align: center;
+}
+.cc-sign .g { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 22px; color: var(--gold); line-height: 1; }
+.cc-sign .p { font-family: 'EB Garamond', serif; font-size: 13px; font-style: italic; color: var(--terracotta-lt); }
+.cc-sign .d { font-size: 10px; color: var(--papyrus-dim); }
+.cc-note { font-size: 13px; color: var(--papyrus-soft); line-height: 1.6; font-style: italic; }
+
+.cartouche-quiz {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  margin: 24px 0;
+}
+.cartouche-quiz h2 { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700; letter-spacing: 0.12em; color: var(--papyrus); margin-bottom: 6px; }
+.quiz-sub { font-size: 15px; color: var(--papyrus-soft); margin-bottom: 20px; }
+.cq-cartouche { text-align: center; margin-bottom: 20px; }
+.cq-frame {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border: 3px solid var(--gold);
+  border-radius: 40px;
+  position: relative;
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-size: 44px;
+  color: var(--gold);
+  line-height: 1;
+  letter-spacing: 4px;
+}
+.cq-frame::before {
+  content: '';
+  position: absolute;
+  left: -11px; top: 50%;
+  transform: translateY(-50%);
+  width: 5px; height: 70%;
+  background: var(--gold);
+  border-radius: 3px 0 0 3px;
+}
+.cq-score { text-align: center; font-family: 'Cinzel', serif; font-size: 11px; color: var(--papyrus-dim); letter-spacing: 0.08em; margin-bottom: 16px; }
+.cq-score span { color: var(--gold); font-weight: 700; font-size: 14px; }
+.cq-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.cq-opt { background: var(--ink-raised); border: 1px solid var(--border); border-radius: 10px; padding: 13px 16px; font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; cursor: pointer; transition: all .13s; text-align: center; color: var(--papyrus); }
+.cq-opt:hover:not(:disabled) { background: rgba(201,166,70,.1); border-color: var(--gold); }
+.cq-opt.correct { background: rgba(76,175,122,.12); border-color: var(--green); color: var(--green); }
+.cq-opt.wrong   { background: rgba(217,122,92,.08); border-color: var(--terracotta-lt); color: var(--terracotta-lt); }
+.cq-opt:disabled { pointer-events: none; }
+
+.lesson-done {
+  background: linear-gradient(135deg, rgba(201,166,70,.10), rgba(201,166,70,.03));
+  border: 1px solid var(--gold);
+  border-radius: 18px; padding: 36px;
+  text-align: center; margin: 32px 0;
+}
+.lesson-done .trophy { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 52px; margin-bottom: 16px; color: var(--gold); }
+.lesson-done h2 { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; color: var(--papyrus); margin-bottom: 12px; letter-spacing: 0.06em; }
+.lesson-done p { font-size: 16px; color: var(--papyrus-soft); line-height: 1.7; max-width: 480px; margin: 0 auto 22px; }
+.done-stats { display: flex; justify-content: center; gap: 32px; margin-bottom: 24px; }
+.done-stat .num { display: block; font-family: 'Cinzel', serif; font-size: 32px; font-weight: 700; color: var(--gold); }
+.done-stat .lbl { font-family: 'Cinzel', serif; font-size: 10px; color: var(--papyrus-dim); letter-spacing: 0.12em; text-transform: uppercase; }
+
+.lesson-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); }
+.lesson-nav-info { font-family: 'Cinzel', serif; font-size: 11px; color: var(--papyrus-dim); text-align: center; letter-spacing: 0.1em; }
+
+@media (max-width: 600px) {
+  .cartouche-grid { grid-template-columns: 1fr; }
+  .cq-opts { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="licao-progress-bar" id="progressBar" style="width:0%"></div>
+
+<header class="licao-header">
+  <a class="licao-back" href="../index.html" onclick="history.length>1 ? (history.back(), event.preventDefault()) : null">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Musæum
+  </a>
+  <span class="licao-header-title">Lição 5 · Cartuchos reais</span>
+</header>
+
+<div class="licao-content">
+
+  <div class="licao-hero">
+    <div class="licao-hero-num">Lição 5 · Leitura real</div>
+    <span class="licao-hero-glyph">𓇳</span>
+    <h1>Cartuchos reais</h1>
+    <p>O cartucho é uma oval alongada com uma barra horizontal que envolve os nomes dos faraós. Hoje você vai ler os nomes de Ramsés, Cleópatra e Tutancâmon da mesma forma que os sacerdotes egípcios faziam há 3000 anos.</p>
+  </div>
+
+  <div class="licao-section">
+    <h2>O que é um cartucho?</h2>
+    <p>A palavra cartucho vem dos soldados de Napoleão: o oval lembrava um cartucho de munição. Em egípcio, chama-se <em>šnw</em> (shenu), derivado de uma corda enrolada que simboliza "tudo que o sol circula", uma ideia de proteção infinita.</p>
+    <p>Os faraós tinham <strong>cinco nomes</strong> durante o reinado, e os dois mais importantes eram escritos em cartuchos: o <em>nome de Hórus</em> e o <em>nome de Rá</em>. Esses eram os nomes que viajavam para a eternidade.</p>
+    <div class="callout">
+      <strong>A Pedra de Roseta:</strong> Champollion decifrou os hieróglifos em 1822 exatamente porque reconheceu o cartucho: ele sabia que ovais continham nomes próprios. Ao comparar o texto em grego (que mencionava Ptolomeu) com os cartuchos hieroglíficos, ele conseguiu atribuir sons aos sinais.
+    </div>
+  </div>
+
+  <div class="licao-section">
+    <h2>Leia os cartuchos</h2>
+    <p>Cada cartucho abaixo tem a decomposição sinal por sinal. Estude a lógica de leitura antes do quiz.</p>
+
+    <div class="cartouche-grid">
+
+      <div class="cartouche-card">
+        <div class="cc-cartouche">
+          <div class="cartouche-frame"><span class="cartouche-glyphs">𓇳𓇋𓇋𓏠𓇋𓇋𓋴𓇋</span></div>
+          <span class="cc-pharaoh-name">Ramsés II</span>
+        </div>
+        <div class="cc-era">XIX Dinastia · ~1279–1213 AEC</div>
+        <div class="cc-name">Ramsés (Rꜥ-ms-sw)</div>
+        <div class="cc-epithet">"Nascido de Rá / Filho de Rá"</div>
+        <div class="cc-breakdown">
+          <div class="cc-sign"><span class="g">𓇳</span><span class="p">Rꜥ</span><span class="d">disco solar = Rá</span></div>
+          <div class="cc-sign"><span class="g">𓇋</span><span class="p">ms</span><span class="d">nascido de</span></div>
+          <div class="cc-sign"><span class="g">𓋴</span><span class="p">s</span><span class="d">complemento s</span></div>
+          <div class="cc-sign"><span class="g">𓇋</span><span class="p">sw</span><span class="d">ele/filho</span></div>
+        </div>
+        <div class="cc-note">Ramsés II "O Grande" assinou o primeiro tratado de paz da história (com os Hititas) e construiu Abu Simbel. O nome significa literalmente "Rá o criou".</div>
+      </div>
+
+      <div class="cartouche-card">
+        <div class="cc-cartouche">
+          <div class="cartouche-frame"><span class="cartouche-glyphs">𓏠𓈖𓎡𓏏𓅱𓈖𓇋𓏠𓈖</span></div>
+          <span class="cc-pharaoh-name">Tutancâmon</span>
+        </div>
+        <div class="cc-era">XVIII Dinastia · ~1332–1323 AEC</div>
+        <div class="cc-name">Tutancâmon (Twt-ꜥnḫ-jmn)</div>
+        <div class="cc-epithet">"Imagem viva de Amon"</div>
+        <div class="cc-breakdown">
+          <div class="cc-sign"><span class="g">𓏠</span><span class="p">twt</span><span class="d">imagem/estátua</span></div>
+          <div class="cc-sign"><span class="g">𓋹</span><span class="p">ꜥnḫ</span><span class="d">ankh = vida</span></div>
+          <div class="cc-sign"><span class="g">𓇋𓏠𓈖</span><span class="p">jmn</span><span class="d">Amon (deus)</span></div>
+        </div>
+        <div class="cc-note">O faraó menino que morreu com cerca de 19 anos. Seu nome original era Tutancaton ("imagem de Aton") e foi mudado para Tutancâmon depois que a religião de Akhenaton foi abolida.</div>
+      </div>
+
+      <div class="cartouche-card">
+        <div class="cc-cartouche">
+          <div class="cartouche-frame"><span class="cartouche-glyphs">𓎡𓃀𓇋𓍿𓂋𓊪𓄿𓏏</span></div>
+          <span class="cc-pharaoh-name">Cleópatra VII</span>
+        </div>
+        <div class="cc-era">Período Ptolomaico · 51–30 AEC</div>
+        <div class="cc-name">Cleópatra (Qljwpdrt)</div>
+        <div class="cc-epithet">Transliteração do grego Kleopatra</div>
+        <div class="cc-breakdown">
+          <div class="cc-sign"><span class="g">𓎡</span><span class="p">q/k</span><span class="d">cesta (kl)</span></div>
+          <div class="cc-sign"><span class="g">𓃀</span><span class="p">b/p</span><span class="d">pé (l→p)</span></div>
+          <div class="cc-sign"><span class="g">𓇋</span><span class="p">j</span><span class="d">junco</span></div>
+          <div class="cc-sign"><span class="g">𓏏</span><span class="p">t</span><span class="d">pão</span></div>
+          <div class="cc-sign"><span class="g">𓂋</span><span class="p">r</span><span class="d">boca</span></div>
+          <div class="cc-sign"><span class="g">𓄿</span><span class="p">ꜣ</span><span class="d">abutre (a)</span></div>
+        </div>
+        <div class="cc-note">O cartucho de Cleópatra foi fundamental para Champollion: comparando os sons com o cartucho de Ptolomeu, ele confirmou a lógica fonética dos hieróglifos.</div>
+      </div>
+
+      <div class="cartouche-card">
+        <div class="cc-cartouche">
+          <div class="cartouche-frame"><span class="cartouche-glyphs">𓄤𓆑𓂋𓏏𓇋𓇌𓏏</span></div>
+          <span class="cc-pharaoh-name">Nefertiti</span>
+        </div>
+        <div class="cc-era">XVIII Dinastia · ~1370–1330 AEC</div>
+        <div class="cc-name">Nefertiti (Nfrt-jjtj)</div>
+        <div class="cc-epithet">"A bela chegou"</div>
+        <div class="cc-breakdown">
+          <div class="cc-sign"><span class="g">𓄤</span><span class="p">nfr</span><span class="d">belo/bom (trilit.)</span></div>
+          <div class="cc-sign"><span class="g">𓏏</span><span class="p">t</span><span class="d">pão (fem.)</span></div>
+          <div class="cc-sign"><span class="g">𓇋𓇌</span><span class="p">jj</span><span class="d">chegou/veio</span></div>
+          <div class="cc-sign"><span class="g">𓏏</span><span class="p">t</span><span class="d">pão (fem.)</span></div>
+        </div>
+        <div class="cc-note">Esposa de Akhenaton, rainha que co-governou o Egito. O busto de Nefertiti no Museu de Berlim é um dos retratos mais famosos do mundo antigo.</div>
+      </div>
+
+      <div class="cartouche-card">
+        <div class="cc-cartouche">
+          <div class="cartouche-frame"><span class="cartouche-glyphs">𓉔𓏏𓊪𓈙𓅱𓏏</span></div>
+          <span class="cc-pharaoh-name">Hatchepsut</span>
+        </div>
+        <div class="cc-era">XVIII Dinastia · ~1479–1458 AEC</div>
+        <div class="cc-name">Hatchepsut (Ḥꜣt-špsw-t)</div>
+        <div class="cc-epithet">"A mais nobre das mulheres"</div>
+        <div class="cc-breakdown">
+          <div class="cc-sign"><span class="g">𓉔</span><span class="p">ḥ</span><span class="d">abrigo (h aspirado)</span></div>
+          <div class="cc-sign"><span class="g">𓏏</span><span class="p">t</span><span class="d">pão</span></div>
+          <div class="cc-sign"><span class="g">𓊪</span><span class="p">p</span><span class="d">banco</span></div>
+          <div class="cc-sign"><span class="g">𓈙</span><span class="p">š</span><span class="d">lagoa</span></div>
+          <div class="cc-sign"><span class="g">𓅱</span><span class="p">w</span><span class="d">pintinho</span></div>
+          <div class="cc-sign"><span class="g">𓏏</span><span class="p">t</span><span class="d">feminino</span></div>
+        </div>
+        <div class="cc-note">Uma das poucas mulheres a governar o Egito com todos os títulos faraônicos. Seu sucessor Tutmósis III apagou seu nome de muitos monumentos.</div>
+      </div>
+
+      <div class="cartouche-card">
+        <div class="cc-cartouche">
+          <div class="cartouche-frame"><span class="cartouche-glyphs">𓇯𓈖𓐍𓏏𓈖</span></div>
+          <span class="cc-pharaoh-name">Akhenaton</span>
+        </div>
+        <div class="cc-era">XVIII Dinastia · ~1353–1336 AEC</div>
+        <div class="cc-name">Akhenaton (ꜣḫ-n-jtn)</div>
+        <div class="cc-epithet">"Espírito luminoso de Aton"</div>
+        <div class="cc-breakdown">
+          <div class="cc-sign"><span class="g">𓆭</span><span class="p">ꜣḫ</span><span class="d">íbis = espírito</span></div>
+          <div class="cc-sign"><span class="g">𓈖</span><span class="p">n</span><span class="d">água = "de"</span></div>
+          <div class="cc-sign"><span class="g">𓇯</span><span class="p">jtn</span><span class="d">disco = Aton</span></div>
+          <div class="cc-sign"><span class="g">𓈖</span><span class="p">n</span><span class="d">complemento</span></div>
+        </div>
+        <div class="cc-note">O faraó que aboliu o panteão egípcio e introduziu o monoteísmo de Aton. Após sua morte, seus sucessores apagaram seu nome, mas sem sucesso total.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="licao-section">
+    <h2>Quiz: identifique o faraó</h2>
+    <div class="cartouche-quiz">
+      <h2>Qual faraó está neste cartucho?</h2>
+      <p class="quiz-sub">Com base no que você aprendeu, identifique o nome pelo cartucho.</p>
+      <div class="cq-cartouche">
+        <div class="cq-frame" id="cqGlyph">𓄤𓆑𓂋𓏏𓇋𓇌𓏏</div>
+      </div>
+      <div class="cq-score">Pontuação: <span id="cqScore">0</span> acertos de <span id="cqTotal">0</span></div>
+      <div class="cq-opts" id="cqOpts"></div>
+      <button class="btn btn-primary" style="width:100%;text-align:center" id="cqNext" onclick="nextCartouche()" disabled>Próximo →</button>
+    </div>
+  </div>
+
+  <div class="lesson-done" id="lessonDone" style="display:none">
+    <div class="trophy">𓂋𓏤</div>
+    <h2>Curso completo!</h2>
+    <p>Você terminou as 5 lições do curso básico de hieróglifos. Agora você entende o sistema de escrita, conhece os 24 sinais unileteral, os biliterais essenciais, leu palavras reais e identificou cartuchos de faraós.</p>
+    <div class="done-stats">
+      <div class="done-stat"><span class="num">5</span><span class="lbl">lições</span></div>
+      <div class="done-stat"><span class="num">24</span><span class="lbl">unileteral</span></div>
+      <div class="done-stat"><span class="num">6</span><span class="lbl">faraós</span></div>
+    </div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a class="btn" href="flashcards.html">Continuar praticando</a>
+      <a class="btn btn-primary" href="../index.html">Voltar ao Musæum</a>
+    </div>
+  </div>
+
+  <div class="lesson-nav">
+    <a class="btn" href="04-palavras.html">← Lição 4</a>
+    <div class="lesson-nav-info">Lição 5 de 5</div>
+    <a class="btn btn-primary" href="../index.html">Voltar ao Musæum</a>
+  </div>
+
+</div>
+
+<script>
+const CARTOUCHES = [
+  { glyph:'𓄤𓆑𓂋𓏏𓇋𓇌𓏏', name:'Nefertiti',   opts:['Ramsés II','Nefertiti','Tutancâmon','Hatchepsut'] },
+  { glyph:'𓇳𓇋𓇋𓏠𓇋𓇋𓋴𓇋', name:'Ramsés II',  opts:['Cleópatra','Ramsés II','Akhenaton','Nefertiti'] },
+  { glyph:'𓏠𓈖𓎡𓏏𓅱𓈖𓇋𓏠𓈖', name:'Tutancâmon', opts:['Tutancâmon','Hatchepsut','Akhenaton','Ramsés II'] },
+  { glyph:'𓎡𓃀𓇋𓍿𓂋𓊪𓄿𓏏', name:'Cleópatra',  opts:['Nefertiti','Tutancâmon','Cleópatra','Ramsés II'] },
+  { glyph:'𓉔𓏏𓊪𓈙𓅱𓏏',     name:'Hatchepsut', opts:['Hatchepsut','Akhenaton','Nefertiti','Cleópatra'] },
+  { glyph:'𓇯𓈖𓐍𓏏𓈖',      name:'Akhenaton',  opts:['Ramsés II','Tutancâmon','Akhenaton','Cleópatra'] },
+];
+
+let cqIdx = null, cqScore = 0, cqTotal = 0, cqAnswered = false;
+let questionsAsked = 0;
+
+function nextCartouche() {
+  cqAnswered = false;
+  document.getElementById('cqNext').disabled = true;
+  const c = CARTOUCHES[Math.floor(Math.random() * CARTOUCHES.length)];
+  cqIdx = c;
+  document.getElementById('cqGlyph').textContent = c.glyph;
+  document.getElementById('cqOpts').innerHTML = c.opts.map(o =>
+    `<button class="cq-opt" onclick="checkCartouche(this,'${o}')">${o}</button>`).join('');
+}
+
+function checkCartouche(btn, chosen) {
+  if (cqAnswered) return;
+  cqAnswered = true; cqTotal++; questionsAsked++;
+  document.querySelectorAll('.cq-opt').forEach(o => {
+    o.disabled = true;
+    if (o.textContent.trim() === cqIdx.name) o.classList.add('correct');
+  });
+  if (chosen === cqIdx.name) { btn.classList.add('correct'); cqScore++; }
+  else btn.classList.add('wrong');
+  document.getElementById('cqScore').textContent = cqScore;
+  document.getElementById('cqTotal').textContent = cqTotal;
+  document.getElementById('cqNext').disabled = false;
+  document.getElementById('progressBar').style.width = Math.min(100, Math.round((questionsAsked/6)*100)) + '%';
+  if (questionsAsked >= 6) markComplete();
+}
+
+function markComplete() {
+  const p = JSON.parse(localStorage.getItem('musaeum-hieroglyphs') || '{}');
+  p.lessonsCompleted = 5;
+  localStorage.setItem('musaeum-hieroglyphs', JSON.stringify(p));
+  document.getElementById('lessonDone').style.display = 'block';
+  document.getElementById('lessonDone').scrollIntoView({ behavior:'smooth', block:'center' });
+}
+
+nextCartouche();
+const t = localStorage.getItem('musaeum-theme');
+if (t) document.documentElement.setAttribute('data-theme', t);
+</script>
+
+</body>
+</html>
