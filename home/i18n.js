@@ -91,6 +91,7 @@
         { title: 'A Biblioteca',     body: 'Aqui ficam os contos do Egito Antigo. Toque em um deles para começar a ler e interagir.' },
         { title: 'O Mapa',           body: 'Sobre uma carta antiga, os lugares citados nas histórias. Toque em cada um para saber o que era e em qual conto aparece.' },
         { title: 'Sua Coleção',      body: 'Conforme avança nas histórias, você desbloqueia hieróglifos e tesouros, que se reúnem aqui. Complete tudo para ganhar seu Certificado de Leitura.' },
+        { title: 'Aprender',         body: 'Em breve, aqui você vai poder aprender mais sobre a leitura de hieróglifos.' },
         { title: 'Sobre o Projeto',  body: 'Toque aqui para conhecer o Musæum.' }
       ],
       editNameLabel:        'Editar nome',
@@ -207,6 +208,7 @@
         { title: 'The Library',      body: 'This is where the tales of Ancient Egypt live. Tap one to start reading and interacting.' },
         { title: 'The Map',          body: 'The places named in the stories, set over an old chart. Tap any of them to learn what it was and which tale it appears in.' },
         { title: 'Your Collection',  body: 'As you progress through the stories, you unlock hieroglyphs and treasures, gathered here. Complete everything to earn your Reading Certificate.' },
+        { title: 'Learn',            body: 'Coming soon: here you\'ll be able to learn more about reading hieroglyphs.' },
         { title: 'About the Project', body: 'Tap here to learn about the Musæum.' }
       ],
       editNameLabel:        'Edit name',
