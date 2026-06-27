@@ -299,8 +299,7 @@
 
   /* Como painéis autônomos, não herdam a borda/margem de empilhamento */
   .tab-panel.geo-section,
-  .tab-panel.collection-section,
-  .tab-panel.certificate-section {
+  .tab-panel.collection-section {
     margin-top: 0;
     border-top: none;
     padding-top: 0;
@@ -1257,21 +1256,47 @@
     }
   }
 
-  /* ===== CERTIFICADO ===== */
-  .certificate-section {
-    margin-top: 56px;
-    padding-top: 40px;
-    border-top: 1px solid rgba(201, 166, 70, 0.25);
+  /* ===== EM BREVE (Aprender) ===== */
+  .coming-soon-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 260px;
+    gap: 20px;
     text-align: center;
-    animation: fadein 0.9s ease;
+    padding: 40px 24px;
   }
-  .cert-heading {
-    font-family: 'Cinzel', 'Gentium Plus', serif;
-    font-size: 12px;
-    letter-spacing: 0.25em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 10px;
+  .coming-soon-glyph {
+    font-size: 48px;
+    opacity: 0.35;
+    line-height: 1;
+  }
+  .coming-soon-msg {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--papyrus-soft);
+    opacity: 0.7;
+    max-width: 380px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ===== CERTIFICADO ===== */
+  .cert-colecao-wrap {
+    margin-top: 48px;
+    padding-top: 36px;
+    border-top: 1px solid rgba(201, 166, 70, 0.18);
+    text-align: center;
+  }
+  .cert-modal-panel {
+    text-align: center;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    max-width: 840px;
   }
   .cert-unlock-msg {
     font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
@@ -1342,5 +1367,206 @@
     justify-content: center;
     margin-top: 18px;
     flex-wrap: wrap;
+  }
+
+  /* ── APRENDER HUB ─────────────────────────────────── */
+  .aprender-hub {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 0 48px;
+  }
+
+  .aprender-progress {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(201, 166, 70, 0.06);
+    border: 1px solid rgba(201, 166, 70, 0.22);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .aprender-stat {
+    text-align: center;
+    flex: 1;
+    min-width: 60px;
+  }
+  .aprender-num {
+    display: block;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.1;
+  }
+  .aprender-stat .aprender-label {
+    display: block;
+    font-size: 11px;
+    color: var(--papyrus-soft);
+    margin-top: 3px;
+    letter-spacing: 0.04em;
+  }
+  .aprender-bar-wrap {
+    flex: 2;
+    min-width: 120px;
+  }
+  .aprender-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--papyrus-soft);
+    margin-bottom: 6px;
+    letter-spacing: 0.04em;
+  }
+  .aprender-bar-bg {
+    height: 5px;
+    background: rgba(201, 166, 70, 0.15);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .aprender-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+    border-radius: 99px;
+    transition: width 0.6s ease;
+  }
+
+  .aprender-section {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--papyrus-dim);
+    margin: 0 0 14px;
+  }
+
+  .aprender-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+  .aprender-card {
+    background: rgba(201, 166, 70, 0.04);
+    border: 1px solid rgba(201, 166, 70, 0.18);
+    border-radius: 12px;
+    padding: 18px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: background 0.15s, border-color 0.15s, transform 0.15s;
+  }
+  .aprender-card:hover {
+    background: rgba(201, 166, 70, 0.10);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .aprender-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .aprender-card-glyph {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--gold);
+  }
+  .aprender-card-badge {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 99px;
+  }
+  .badge-new   { background: rgba(201, 166, 70, 0.14); color: var(--gold); }
+  .badge-final { background: rgba(201, 166, 70, 0.25); color: var(--gold-light); border: 1px solid rgba(201,166,70,0.4); }
+  .aprender-card-num {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--papyrus-dim);
+  }
+  .aprender-card-title {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--papyrus);
+    line-height: 1.3;
+  }
+  .aprender-card-desc {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-size: 13px;
+    color: var(--papyrus-soft);
+    line-height: 1.55;
+    flex: 1;
+  }
+  .aprender-card-meta {
+    display: flex;
+    gap: 12px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(201, 166, 70, 0.14);
+    font-size: 11px;
+    color: var(--papyrus-dim);
+    letter-spacing: 0.04em;
+    margin-top: auto;
+  }
+
+  .aprender-tools {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  .aprender-tool {
+    background: rgba(201, 166, 70, 0.04);
+    border: 1px solid rgba(201, 166, 70, 0.15);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .aprender-tool:hover { background: rgba(201, 166, 70, 0.10); border-color: var(--gold); }
+  .aprender-tool-glyph {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    font-size: 24px;
+    color: var(--gold);
+    flex-shrink: 0;
+    width: 32px;
+    text-align: center;
+    line-height: 1;
+  }
+  .aprender-tool-glyph.emoji { font-family: sans-serif; font-size: 20px; }
+  .aprender-tool-info strong {
+    display: block;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--papyrus);
+    letter-spacing: 0.06em;
+    margin-bottom: 2px;
+  }
+  .aprender-tool-info span {
+    font-family: 'EB Garamond', 'Gentium Plus', serif;
+    font-size: 12px;
+    color: var(--papyrus-soft);
+    line-height: 1.4;
+  }
+
+  @media (max-width: 600px) {
+    .aprender-progress { flex-wrap: wrap; gap: 12px; }
+    .aprender-stat { min-width: 80px; }
+    .aprender-bar-wrap { flex: 1 1 100%; }
+    .aprender-grid { grid-template-columns: 1fr; }
   }
 

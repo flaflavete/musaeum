@@ -44,6 +44,7 @@ musaeum/
 │
 ├── naufrago.html           Experiência interativa: O Conto do Náufrago
 ├── sinuhe.html             Experiência interativa: A História de Sinué
+├── campones.html           Experiência interativa: O Camponês Eloquente (pronta, não publicada)
 ├── script.js               Utilitários compartilhados + shell HTML (initStoryApp)
 ├── engine.js               Motor das histórias: telas, render, desafios, save
 ├── tour.js                 Motor do tour guiado (coach marks), usado na home e nas histórias
@@ -54,6 +55,7 @@ musaeum/
 │   ├── catalogo.js         Catálogo central (MUSAEUM_CATALOG): cards, tesouros, códex e disponibilidade
 │   ├── naufrago.js         Dados do Náufrago: I18N, GLOSSARY, CHAPTERS (ITEMS e GLYPHS_CODEX vêm do catálogo)
 │   ├── sinuhe.js           Dados do Sinué (mesma estrutura)
+│   ├── campones.js         Dados do Camponês Eloquente (9 capítulos; prêmio award em vez de tesouros)
 │   ├── cultura-material.js Fichas dos manuscritos reais (CULTURA_MATERIAL) e achados das notas (ACHADOS)
 │   └── geografia.js        Lugares citados nos textos (MUSAEUM_GEO), para o mapa interativo do index
 │
@@ -188,6 +190,8 @@ const ITEMS = catalogGet('naufrago').items;        // 8 tesouros
 const GLYPHS_CODEX = catalogGet('naufrago').codex; // 9 hieróglifos
 ```
 
+> **Histórias sem tesouros:** uma história pode trazer `items: null` no catálogo e, no lugar, um objeto `award` (um pergaminho de conclusão). É o caso do **Camponês Eloquente**, que premia com o título «Justo de Voz» (mꜣꜥ-ḫrw) ao chegar à tela final. Nesse caso `const ITEMS = ...` fica `null` e o motor não monta a barra de tesouros. Ver §13.
+
 Os arrays de verdade ficam em `data/catalogo.js`, na entrada da história. Cada tesouro de `items`:
 
 ```js
@@ -259,7 +263,7 @@ const CHAPTERS = [
       ]
     }
   },
-  // ... 7 capítulos mais (total: 8)
+  // ... demais capítulos (Náufrago e Sinué têm 8; o Camponês, 9)
 ];
 ```
 
@@ -351,7 +355,7 @@ Cada história mantém um objeto `state` em memória. A estrutura completa:
 const state = {
   lang: 'pt',                     // idioma atual
   screen: 'splash',               // tela atual: 'splash' | 'intro' | 'chapter' | 'challenge' | 'final'
-  chapter: 0,                     // índice do capítulo atual (0–7)
+  chapter: 0,                     // índice do capítulo atual (0 a CHAPTERS.length-1)
   score: 0,                       // pontuação acumulada
   answered: false,                // se o desafio atual já foi respondido
   attempts: 0,                    // tentativas no desafio atual
@@ -395,7 +399,7 @@ O save de cada história dentro de `musaeum-stories`:
   screen: 'splash' | 'intro' | 'chapter' | 'challenge' | 'final',
   chapter: 0–7,
   score: number,
-  collected: [true|false, ...],       // 8 elementos
+  collected: [true|false, ...],       // tesouros (vazio nas histórias com award)
   discoveredGlyphs: [0, 1, 3, ...]    // array de índices (Set é serializado como array)
 }
 ```
@@ -468,7 +472,9 @@ Padrões que devem ser mantidos em qualquer alteração:
 
 ## 13. Como adicionar uma nova história
 
-Exemplo: adicionar "O Camponês Eloquente" (storyId `campones`). O catálogo central (`data/catalogo.js`) é a **fonte única**: card, Coleção, Certificado, mapa e desbloqueio derivam todos dele.
+O catálogo central (`data/catalogo.js`) é a **fonte única**: card, Coleção, Certificado, mapa e desbloqueio derivam todos dele.
+
+> **Exemplo real já no repositório:** "O Camponês Eloquente" (storyId `campones`) já passou por todos os passos abaixo. `campones.html` e `data/campones.js` existem e estão completos (9 capítulos, prêmio `award` em vez de tesouros); falta só `available: true` para publicá-lo. Use esses arquivos como referência viva.
 
 ### Passo 1 — entrada no catálogo
 
@@ -479,22 +485,27 @@ Em `data/catalogo.js`, acrescente uma entrada ao array `MUSAEUM_CATALOG`:
   storyId:   'campones',
   href:      'campones.html',
   available:  false,               // ainda não publicada
-  cardGlyph: '𓀢',
-  titlePt:   'O Camponês Eloquente', titleEn: 'The Eloquent Peasant',
+  cardGlyph: '𓃾',
+  titlePt:   'Camponês Eloquente',  titleEn: 'The Eloquent Peasant',
   descPt:    '...',                  descEn:  '...',
-  items: [ /* 8 tesouros { pt, en, icon } */ ],
+  items: null,                      // sem tesouros: premia com um pergaminho
+  award: {                          // (alternativa a items) prêmio de conclusão
+    icon: '📜',
+    titlePt: 'Justo de Voz',        titleEn: 'True of Voice',
+    descPt:  '...',                  descEn:  '...'
+  },
   codex: [ /* 9 hieróglifos (ver §7) */ ]
 }
 ```
 
-Com `available: false`, o card já aparece na biblioteca, mas bloqueado (cadeado).
+Use **ou** `items` (array de tesouros colecionáveis) **ou** `items: null` + `award` (um único pergaminho ao concluir). Com `available: false`, o card já aparece na biblioteca, mas bloqueado (cadeado).
 
 ### Passo 2 — arquivo de dados
 
-Crie `data/campones.js` seguindo `data/sinuhe.js`. Defina `I18N`, `GLOSSARY`, `CHAPTERS` (8 capítulos com texto, nota e questão) e os dois atalhos do catálogo:
+Crie `data/campones.js` seguindo `data/sinuhe.js`. Defina `I18N`, `GLOSSARY` (incluindo as entradas `em-hotep` e `aec`), `CHAPTERS` (8 ou mais capítulos com texto, nota e questão; o Camponês tem 9) e os dois atalhos do catálogo:
 
 ```js
-const ITEMS = catalogGet('campones').items;
+const ITEMS = catalogGet('campones').items;        // null nas histórias com award
 const GLYPHS_CODEX = catalogGet('campones').codex;
 ```
 

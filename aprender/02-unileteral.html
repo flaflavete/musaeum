@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lição 2 · Os 24 sinais unileteral · Musæum</title>
+<meta name="theme-color" content="#1b2a3d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="aprender.css">
+<style>
+.callout {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin: 20px 0;
+  font-size: 16px;
+  color: var(--papyrus-soft);
+  line-height: 1.65;
+}
+.callout strong { color: var(--gold); }
+
+.signs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+  margin-bottom: 36px;
+}
+.sign-card {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 10px 14px;
+  cursor: pointer;
+  text-align: center;
+  transition: background .15s, border-color .15s, transform .15s;
+  position: relative;
+  user-select: none;
+}
+.sign-card:hover { background: var(--ink-raised); border-color: var(--gold); transform: translateY(-2px); }
+.sign-card.learned { border-color: rgba(76,175,122,.55); background: rgba(76,175,122,.06); }
+.sign-card.learned::after {
+  content: '✓';
+  position: absolute; top: 8px; right: 10px;
+  font-size: 11px; color: var(--green); font-weight: 700;
+}
+.sc-glyph {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-size: 44px; line-height: 1; display: block;
+  margin-bottom: 8px; color: var(--gold);
+}
+.sc-gardiner { font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700; color: var(--gold); display: block; margin-bottom: 2px; letter-spacing: 0.06em; }
+.sc-phon { font-family: 'EB Garamond', serif; font-size: 18px; font-style: italic; color: var(--terracotta-lt); display: block; margin-bottom: 4px; }
+.sc-name { font-size: 10px; color: var(--papyrus-dim); line-height: 1.3; display: block; }
+
+.filter-row { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; align-items: center; }
+.filter-label { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.12em; color: var(--papyrus-dim); }
+.progress-count { margin-left: auto; font-family: 'Cinzel', serif; font-size: 11px; color: var(--papyrus-dim); letter-spacing: 0.06em; }
+.progress-count span { color: var(--gold); font-weight: 700; }
+
+/* modal */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(27,42,61,.82);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100; padding: 20px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .2s;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 18px; padding: 32px;
+  max-width: 420px; width: 100%;
+  position: relative;
+  transform: translateY(14px);
+  transition: transform .2s;
+  box-shadow: 0 24px 80px rgba(27,42,61,.6);
+}
+.modal-overlay.open .modal { transform: translateY(0); }
+.modal-close {
+  position: absolute; top: 14px; right: 14px;
+  background: var(--ink-raised); border: none; border-radius: 8px;
+  width: 30px; height: 30px; cursor: pointer;
+  color: var(--papyrus-dim); font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .13s, color .13s;
+}
+.modal-close:hover { background: var(--border); color: var(--papyrus); }
+.modal-glyph {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-size: 88px; line-height: 1; text-align: center; display: block;
+  color: var(--gold); margin-bottom: 8px;
+}
+.modal-id { text-align: center; font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700; color: var(--papyrus-dim); letter-spacing: 0.12em; margin-bottom: 14px; }
+.modal-phon { text-align: center; font-family: 'EB Garamond', serif; font-size: 32px; font-style: italic; color: var(--terracotta-lt); margin-bottom: 4px; }
+.modal-name { text-align: center; font-size: 14px; color: var(--papyrus-soft); margin-bottom: 20px; }
+.modal-info { background: var(--ink-raised); border-radius: 10px; padding: 14px; margin-bottom: 16px; }
+.modal-info-row { display: flex; justify-content: space-between; font-size: 14px; padding: 5px 0; border-bottom: 1px solid var(--border); }
+.modal-info-row:last-child { border-bottom: none; }
+.modal-info-row .key { color: var(--papyrus-dim); }
+.modal-info-row .val { color: var(--papyrus); font-style: italic; }
+.modal-tip { font-size: 14px; color: var(--papyrus-soft); line-height: 1.6; margin-bottom: 20px; font-style: italic; background: var(--ink-raised); border-radius: 8px; padding: 12px 14px; }
+.modal-actions { display: flex; gap: 10px; }
+.modal-actions .btn { flex: 1; text-align: center; }
+
+/* quiz */
+.quiz-section { background: var(--ink-elevated); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 40px; }
+.quiz-section h2 { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700; letter-spacing: 0.12em; color: var(--papyrus); margin-bottom: 4px; }
+.quiz-sub { font-size: 15px; color: var(--papyrus-soft); margin-bottom: 20px; }
+.quiz-glyph-big { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 80px; line-height: 1; text-align: center; display: block; color: var(--gold); margin-bottom: 20px; }
+.quiz-score { text-align: center; font-family: 'Cinzel', serif; font-size: 11px; color: var(--papyrus-dim); letter-spacing: 0.08em; margin-bottom: 14px; }
+.quiz-score span { color: var(--gold); font-weight: 700; font-size: 14px; }
+.quiz-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.quiz-opt { background: var(--ink-raised); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; font-family: 'EB Garamond', serif; font-size: 18px; font-style: italic; cursor: pointer; transition: all .13s; text-align: center; color: var(--papyrus); }
+.quiz-opt:hover:not(:disabled) { background: rgba(201,166,70,.1); border-color: var(--gold); }
+.quiz-opt.correct { background: rgba(76,175,122,.12); border-color: var(--green); color: var(--green); }
+.quiz-opt.wrong   { background: rgba(217,122,92,.08); border-color: var(--terracotta-lt); color: var(--terracotta-lt); }
+.quiz-opt:disabled { pointer-events: none; }
+
+.lesson-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); }
+.lesson-nav-info { font-family: 'Cinzel', serif; font-size: 11px; color: var(--papyrus-dim); text-align: center; letter-spacing: 0.1em; }
+</style>
+</head>
+<body>
+
+<div class="licao-progress-bar" id="progressBar" style="width:0%"></div>
+
+<header class="licao-header">
+  <a class="licao-back" href="../index.html" onclick="history.length>1 ? (history.back(), event.preventDefault()) : null">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Musæum
+  </a>
+  <span class="licao-header-title">Lição 2 · Os 24 sinais unileteral</span>
+</header>
+
+<div class="licao-content">
+
+  <div class="licao-hero">
+    <div class="licao-hero-num">Lição 2 · Fonética</div>
+    <span class="licao-hero-glyph">𓄿</span>
+    <h1>Os 24 sinais unileteral</h1>
+    <p>Estes são os sinais mais importantes do egípcio: cada um representa uma única consoante. Aprenda estes 24 e você terá a base para ler qualquer palavra. Clique em cada sinal para ver detalhes e marcar como aprendido.</p>
+  </div>
+
+  <div class="callout">
+    <strong>Sobre a transliteração:</strong> Os egiptólogos usam um sistema especial de letras para representar sons do egípcio antigo. Alguns sons não existem em português, como <em>ꜣ</em> (um a gutural), <em>ꜥ</em> (consoante faríngea) e <em>ḥ ḫ ẖ</em> (variações do H). Não se preocupe em pronunciar perfeitamente: o foco é reconhecer os sinais.
+  </div>
+
+  <div class="filter-row">
+    <span class="filter-label">Filtrar:</span>
+    <button class="filtro-btn active" onclick="setFilter('all', this)">Todos (24)</button>
+    <button class="filtro-btn" onclick="setFilter('learned', this)">Aprendidos</button>
+    <button class="filtro-btn" onclick="setFilter('new', this)">Novos</button>
+    <span class="progress-count">Aprendidos: <span id="learnedCount">0</span>/24</span>
+  </div>
+
+  <div class="signs-grid" id="signsGrid"></div>
+
+  <div class="quiz-section">
+    <h2>Quiz · Qual é a transliteração?</h2>
+    <p class="quiz-sub">Veja o hieróglifo e escolha o som correto entre as opções.</p>
+    <span class="quiz-glyph-big" id="quizGlyph">𓄿</span>
+    <div class="quiz-score">Pontuação: <span id="quizScore">0</span> acertos de <span id="quizTotal">0</span></div>
+    <div class="quiz-opts" id="quizOpts"></div>
+    <button class="btn btn-primary" style="width:100%;text-align:center" id="nextQuizBtn" onclick="nextQuiz()" disabled>
+      Próximo sinal →
+    </button>
+  </div>
+
+  <div class="lesson-nav">
+    <a class="btn" href="01-sistema.html">← Lição 1</a>
+    <div class="lesson-nav-info">Lição 2 de 5</div>
+    <a class="btn btn-primary" href="03-biliteral.html">Próxima →</a>
+  </div>
+
+</div>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <span class="modal-glyph" id="mGlyph"></span>
+    <div class="modal-id" id="mId"></div>
+    <div class="modal-phon" id="mPhon"></div>
+    <div class="modal-name" id="mName"></div>
+    <div class="modal-info">
+      <div class="modal-info-row">
+        <span class="key">Tipo</span>
+        <span class="val">Unileteral · 1 consoante</span>
+      </div>
+      <div class="modal-info-row">
+        <span class="key">Transliteração</span>
+        <span class="val" id="mTranslit"></span>
+      </div>
+      <div class="modal-info-row">
+        <span class="key">Sinal</span>
+        <span class="val" id="mDesc"></span>
+      </div>
+    </div>
+    <p class="modal-tip" id="mTip"></p>
+    <div class="modal-actions">
+      <button class="btn" onclick="markLearned()">✓ Marcar aprendido</button>
+      <a class="btn btn-primary" href="flashcards.html">Praticar →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const UNILITERALS = [
+  { id:'G1',  glyph:'𓄿', phon:'ꜣ', name:'abutre egípcio', tip:'O abutre egípcio. Som gutural, como um a aspirado. Aparece muito em palavras divinas.' },
+  { id:'M17', glyph:'𓇋', phon:'j', name:'junco',           tip:'Um junco/cana. Equivale ao nosso Y ou I. Muito comum no início de palavras.' },
+  { id:'M17', glyph:'𓇌', phon:'y', name:'dois juncos',     tip:'Dois juncos, que reforçam o som Y. Aparece especialmente em sufixos e formas femininas.' },
+  { id:'D36', glyph:'𓂝', phon:'ꜥ', name:'braço',          tip:'O braço com mão aberta. Som faríngeo sem equivalente em português. Imagine um "a" profundo na garganta.' },
+  { id:'G17', glyph:'𓅱', phon:'w', name:'pintinho',        tip:'O pintinho de codorna. Som W, como em "uva". Um dos sinais mais frequentes.' },
+  { id:'D58', glyph:'𓃀', phon:'b', name:'pé',              tip:'Um pé. O som B. Note que o sinal é um pé visto de lado.' },
+  { id:'Q3',  glyph:'𓊪', phon:'p', name:'banco',           tip:'Um banco visto de cima. O som P.' },
+  { id:'I9',  glyph:'𓆑', phon:'f', name:'víbora cornuda',  tip:'A víbora cornuda. O som F. Cuidado para não confundir com outras cobras.' },
+  { id:'G17', glyph:'𓅓', phon:'m', name:'coruja',          tip:'A coruja. O som M. Um dos sinais mais reconhecíveis: sempre olha para frente.' },
+  { id:'N35', glyph:'𓈖', phon:'n', name:'ondas de água',   tip:'Ondas de água. O som N. A forma em ziguezague é inconfundível.' },
+  { id:'D21', glyph:'𓂋', phon:'r', name:'boca',            tip:'Uma boca vista de frente. O som R. Extremamente comum em gramática e sufixos.' },
+  { id:'O4',  glyph:'𓉔', phon:'h', name:'abrigo de juncos',tip:'Um abrigo de juncos. O H simples, como em "há".' },
+  { id:'V28', glyph:'𓎛', phon:'ḥ', name:'pavio de linho',  tip:'Um pavio de linho torcido. H aspirado mais forte, pronuncie com mais ar.' },
+  { id:'Aa1', glyph:'𓐍', phon:'ḫ', name:'placenta',        tip:'A placenta (interpretação incerta). Som KH gutural, como o CH alemão em "Bach".' },
+  { id:'F32', glyph:'𓄡', phon:'ẖ', name:'barriga animal',  tip:'Barriga de animal. Outro som KH, ligeiramente mais palatal.' },
+  { id:'O34', glyph:'𓊃', phon:'z', name:'tranca',          tip:'Uma tranca de porta. O som Z (ou S em alguns contextos).' },
+  { id:'S29', glyph:'𓋴', phon:'s', name:'tecido dobrado',  tip:'Um tecido dobrado. O som S. Muito comum, aparece em centenas de palavras.' },
+  { id:'N37', glyph:'𓈙', phon:'š', name:'lago de jardim',  tip:'Um lago visto de cima. O som SH, como em "show".' },
+  { id:'N29', glyph:'𓈎', phon:'q', name:'encosta',         tip:'Uma encosta de colina. Som Q gutural, mais fundo que o K.' },
+  { id:'V31', glyph:'𓎡', phon:'k', name:'cesta com alça',  tip:'Uma cesta com alça. O som K comum.' },
+  { id:'W11', glyph:'𓎼', phon:'g', name:'suporte de jarro',tip:'Um suporte para jarro. O som G, como em "gato".' },
+  { id:'X1',  glyph:'𓏏', phon:'t', name:'pão achatado',    tip:'Um pão achatado. O som T. Este sinal também marca o feminino em substantivos.' },
+  { id:'V13', glyph:'𓍿', phon:'ṯ', name:'corda',           tip:'Uma corda de amarrar. Som TJ palatal, como o CH italiano em "ciao".' },
+  { id:'D46', glyph:'𓂧', phon:'d', name:'mão',             tip:'Uma mão. O som D.' },
+  { id:'I10', glyph:'𓌀', phon:'ḏ', name:'cobra com capuz', tip:'Uma cobra com capuz. Som DJ, como em "djinn". Par palatal do D.' },
+];
+
+let learned      = new Set(JSON.parse(localStorage.getItem('musaeum-uniliterals-learned') || '[]'));
+let currentFilter = 'all';
+let currentModal  = null;
+let quizSign = null, quizScore = 0, quizTotal = 0, quizAnswered = false;
+
+function saveLearned() {
+  localStorage.setItem('musaeum-uniliterals-learned', JSON.stringify([...learned]));
+  document.getElementById('learnedCount').textContent = learned.size;
+  renderGrid();
+  const p = JSON.parse(localStorage.getItem('musaeum-hieroglyphs') || '{}');
+  p.cardsReviewed = (p.cardsReviewed || 0) + 1;
+  if (learned.size >= 24) p.lessonsCompleted = Math.max(p.lessonsCompleted || 0, 2);
+  localStorage.setItem('musaeum-hieroglyphs', JSON.stringify(p));
+}
+
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid();
+}
+
+function renderGrid() {
+  const grid = document.getElementById('signsGrid');
+  const filtered = UNILITERALS.filter(s => {
+    if (currentFilter === 'learned') return learned.has(s.phon);
+    if (currentFilter === 'new') return !learned.has(s.phon);
+    return true;
+  });
+  grid.innerHTML = filtered.map(s => `
+    <div class="sign-card ${learned.has(s.phon) ? 'learned' : ''}" onclick="openModal('${s.phon}')">
+      <span class="sc-glyph">${s.glyph}</span>
+      <span class="sc-gardiner">${s.id}</span>
+      <span class="sc-phon">${s.phon}</span>
+      <span class="sc-name">${s.name}</span>
+    </div>`).join('');
+  const pct = Math.round((learned.size / 24) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+}
+
+function openModal(phon) {
+  const s = UNILITERALS.find(x => x.phon === phon);
+  if (!s) return;
+  currentModal = s;
+  document.getElementById('mGlyph').textContent = s.glyph;
+  document.getElementById('mId').textContent    = s.id + ' · unileteral';
+  document.getElementById('mPhon').textContent  = s.phon;
+  document.getElementById('mName').textContent  = s.name;
+  document.getElementById('mTranslit').textContent = s.phon;
+  document.getElementById('mDesc').textContent  = s.name;
+  document.getElementById('mTip').textContent   = s.tip;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+function closeModal(e) { if (e.target === document.getElementById('modalOverlay')) closeModalBtn(); }
+function closeModalBtn() { document.getElementById('modalOverlay').classList.remove('open'); }
+function markLearned() { if (!currentModal) return; learned.add(currentModal.phon); saveLearned(); closeModalBtn(); }
+
+function nextQuiz() {
+  quizAnswered = false;
+  document.getElementById('nextQuizBtn').disabled = true;
+  quizSign = UNILITERALS[Math.floor(Math.random() * UNILITERALS.length)];
+  document.getElementById('quizGlyph').textContent = quizSign.glyph;
+  const wrong = UNILITERALS.filter(s => s.phon !== quizSign.phon).sort(() => Math.random() - .5).slice(0, 3);
+  const options = [...wrong, quizSign].sort(() => Math.random() - .5);
+  document.getElementById('quizOpts').innerHTML = options.map(o =>
+    `<button class="quiz-opt" onclick="checkQuiz(this,'${o.phon}')">${o.phon}</button>`).join('');
+}
+
+function checkQuiz(btn, chosen) {
+  if (quizAnswered) return;
+  quizAnswered = true; quizTotal++;
+  document.querySelectorAll('.quiz-opt').forEach(o => {
+    o.disabled = true;
+    if (o.textContent.trim() === quizSign.phon) o.classList.add('correct');
+  });
+  if (chosen === quizSign.phon) {
+    btn.classList.add('correct'); quizScore++;
+    learned.add(quizSign.phon); saveLearned();
+  } else {
+    btn.classList.add('wrong');
+  }
+  document.getElementById('quizScore').textContent = quizScore;
+  document.getElementById('quizTotal').textContent = quizTotal;
+  document.getElementById('nextQuizBtn').disabled = false;
+}
+
+renderGrid();
+nextQuiz();
+const t = localStorage.getItem('musaeum-theme');
+if (t) document.documentElement.setAttribute('data-theme', t);
+</script>
+
+</body>
+</html>

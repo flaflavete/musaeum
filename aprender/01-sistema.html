@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lição 1 · Como funciona a escrita egípcia · Musæum</title>
+<meta name="theme-color" content="#1b2a3d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="aprender.css">
+<style>
+/* estilos específicos desta lição */
+.sign-types {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+.sign-type-card {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 14px;
+  text-align: center;
+}
+.sign-type-card .icon {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-size: 36px;
+  line-height: 1;
+  display: block;
+  margin-bottom: 10px;
+  color: var(--gold);
+}
+.sign-type-card h3 {
+  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--papyrus);
+  margin-bottom: 6px;
+  letter-spacing: 0.06em;
+}
+.sign-type-card p { font-size: 13px; color: var(--papyrus-soft); line-height: 1.5; margin: 0; }
+.sign-type-card .badge {
+  display: inline-block;
+  font-family: 'Cinzel', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 99px;
+  margin-bottom: 8px;
+  letter-spacing: 0.08em;
+}
+.type-uni { background: rgba(92,141,224,.15); color: var(--blue); }
+.type-bi  { background: rgba(201,166,70,.15); color: var(--gold); }
+.type-det { background: rgba(76,175,122,.15); color: var(--green); }
+
+.callout {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin: 20px 0;
+  font-size: 16px;
+  color: var(--papyrus-soft);
+  line-height: 1.65;
+}
+.callout strong { color: var(--gold); }
+.callout.azul { border-left-color: var(--blue); }
+.callout.azul strong { color: var(--blue); }
+
+.example-box {
+  background: var(--ink-raised);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  margin: 20px 0;
+}
+.example-label {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--papyrus-dim);
+  margin-bottom: 16px;
+}
+.example-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.glyph-block {
+  text-align: center;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--ink-elevated);
+  cursor: help;
+  transition: border-color .15s;
+  position: relative;
+}
+.glyph-block:hover { border-color: var(--gold); }
+.glyph-char {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-size: 40px;
+  line-height: 1;
+  display: block;
+  color: var(--gold);
+}
+.glyph-label { font-size: 10px; color: var(--papyrus-dim); margin-top: 6px; display: block; }
+.glyph-phon  { font-family: 'EB Garamond', serif; font-size: 12px; color: var(--terracotta-lt); display: block; margin-top: 2px; font-style: italic; }
+.glyph-type  { font-size: 9px; padding: 2px 6px; border-radius: 99px; margin-top: 4px; display: inline-block; }
+
+.plus-sep { font-size: 20px; color: var(--papyrus-dim); padding: 0 8px; align-self: center; }
+.eq-sep   { font-size: 16px; color: var(--papyrus-dim); padding: 0 16px; align-self: center; flex-shrink: 0; }
+.word-result { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 52px; color: var(--gold); padding: 0 8px; }
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink-raised);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: 'EB Garamond', serif;
+  font-size: 13px;
+  color: var(--papyrus);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .15s;
+  z-index: 10;
+}
+.glyph-block:hover .tooltip { opacity: 1; }
+
+.direction-demo {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.dir-row { display: flex; align-items: center; gap: 12px; }
+.dir-label { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.08em; color: var(--papyrus-dim); min-width: 110px; }
+.dir-glyphs { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 32px; letter-spacing: 4px; color: var(--papyrus); flex: 1; }
+.dir-arrow { font-size: 13px; color: var(--gold); font-style: italic; }
+
+.lesson-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.lesson-nav-info { font-family: 'Cinzel', serif; font-size: 11px; color: var(--papyrus-dim); text-align: center; letter-spacing: 0.1em; }
+
+@media (max-width: 520px) {
+  .sign-types { grid-template-columns: 1fr; }
+  .lesson-nav { flex-direction: column; gap: 14px; }
+}
+</style>
+</head>
+<body>
+
+<div class="licao-progress-bar" id="progressBar" style="width:0%"></div>
+
+<header class="licao-header">
+  <a class="licao-back" href="../index.html#aprender" onclick="history.length>1 ? (history.back(), event.preventDefault()) : null">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Musæum
+  </a>
+  <span class="licao-header-title">Lição 1 · Como funciona a escrita egípcia</span>
+</header>
+
+<div class="licao-content">
+
+  <div class="licao-hero">
+    <div class="licao-hero-num">Lição 1 · Fundamentos</div>
+    <span class="licao-hero-glyph">𓁹</span>
+    <h1>Como funciona a escrita egípcia</h1>
+    <p>Antes de decorar qualquer sinal, você precisa entender a lógica do sistema. A escrita hieroglífica não é um simples alfabeto: ela combina três tipos de sinais de formas que, uma vez compreendidas, tornam tudo mais fácil.</p>
+  </div>
+
+  <div class="licao-section">
+    <h2>1 · Hieróglifos não são letras</h2>
+    <p>O nome <em>hieróglifo</em> vem do grego: <em>hieros</em> (sagrado) + <em>glyphe</em> (gravura). Os próprios egípcios chamavam sua escrita de <strong>mdw nṯr</strong>, que significa "palavras de deus".</p>
+    <p>Diferente do nosso alfabeto, onde cada letra representa um som, os hieróglifos funcionam em três camadas ao mesmo tempo. Um sinal pode representar um <strong>som</strong>, uma <strong>palavra inteira</strong> ou simplesmente <strong>categorizar</strong> o que veio antes, sem ter som próprio.</p>
+    <div class="callout">
+      <strong>Analogia:</strong> Imagine que no português, a palavra "sol" pudesse ser escrita com o desenho de um sol ☀ (lógico), com as letras S-O-L (fonético), ou com um sol sem som só para mostrar que estamos falando de algo luminoso (determinativo). Os egípcios misturavam tudo isso.
+    </div>
+  </div>
+
+  <div class="licao-section">
+    <h2>2 · Os três tipos de sinais</h2>
+    <div class="sign-types">
+      <div class="sign-type-card">
+        <span class="badge type-uni">Fonéticos</span>
+        <span class="icon">𓄿</span>
+        <h3>Sinais fonéticos</h3>
+        <p>Representam sons de uma, duas ou três consoantes. São como as letras do nosso alfabeto.</p>
+      </div>
+      <div class="sign-type-card">
+        <span class="badge type-bi">Logograma</span>
+        <span class="icon">𓇳</span>
+        <h3>Logogramas</h3>
+        <p>Representam a palavra inteira pelo próprio desenho. O sol 𓇳 pode simplesmente significar "sol" ou "dia".</p>
+      </div>
+      <div class="sign-type-card">
+        <span class="badge type-det">Determinativo</span>
+        <span class="icon">𓀀</span>
+        <h3>Determinativos</h3>
+        <p>Não têm som. Aparecem no final de palavras para indicar a categoria semântica: animal, pessoa, deus, ação.</p>
+      </div>
+    </div>
+    <p>Na prática, a maioria das palavras egípcias combina sinais fonéticos (para soletrar) com um determinativo no final (para classificar). Isso ajudava a diferenciar palavras que soariam igual.</p>
+  </div>
+
+  <div class="licao-section">
+    <h2>3 · Veja na prática: a palavra <em>nfr</em></h2>
+    <p>A palavra <strong>nfr</strong> (pronunciada aproximadamente "nefer") significa "belo, bom, perfeito". É uma das mais comuns em textos egípcios. Veja como ela é escrita:</p>
+
+    <div class="example-box">
+      <div class="example-label">Passe o mouse sobre cada sinal</div>
+      <div class="example-row">
+        <div class="glyph-block">
+          <span class="glyph-char">𓄤</span>
+          <span class="glyph-label">F35</span>
+          <span class="glyph-phon">nfr</span>
+          <span class="glyph-type type-bi">trileteral</span>
+          <div class="tooltip">𓄤 nfr, coração com traqueia · representa as três consoantes N-F-R</div>
+        </div>
+      </div>
+      <p style="font-size:15px; color:var(--papyrus-soft); margin:0">
+        Neste caso, um único sinal, o coração com traqueia, que representa as três consoantes <em>nfr</em> de uma vez. É um <strong>trileteral</strong>.
+      </p>
+    </div>
+
+    <p>Mas o egípcio frequentemente adiciona sinais complementares para reforçar a leitura:</p>
+
+    <div class="example-box">
+      <div class="example-label">Escrita completa de nfr</div>
+      <div class="example-row">
+        <div class="glyph-block">
+          <span class="glyph-char">𓄤</span>
+          <span class="glyph-label">F35</span>
+          <span class="glyph-phon">nfr</span>
+          <span class="glyph-type type-bi">trileteral</span>
+          <div class="tooltip">𓄤 nfr — o sinal principal, três consoantes de uma vez</div>
+        </div>
+        <span class="plus-sep">+</span>
+        <div class="glyph-block">
+          <span class="glyph-char">𓆑</span>
+          <span class="glyph-label">I9</span>
+          <span class="glyph-phon">f</span>
+          <span class="glyph-type type-uni">unileteral</span>
+          <div class="tooltip">𓆑 f, cobra cornuda · confirma o som F de nfr</div>
+        </div>
+        <span class="plus-sep">+</span>
+        <div class="glyph-block">
+          <span class="glyph-char">𓂋</span>
+          <span class="glyph-label">D21</span>
+          <span class="glyph-phon">r</span>
+          <span class="glyph-type type-uni">unileteral</span>
+          <div class="tooltip">𓂋 r, boca · confirma o som R de nfr</div>
+        </div>
+        <span class="eq-sep">=</span>
+        <span class="word-result">𓄤𓆑𓂋</span>
+      </div>
+      <p style="font-size:15px; color:var(--papyrus-soft); margin:0">
+        Os sinais 𓆑 (f) e 𓂋 (r) são <strong>complementos fonéticos</strong>: eles não adicionam novos sons, apenas confirmam a leitura do sinal principal. É como se o egípcio "soletresse" parte da palavra novamente para não deixar dúvida.
+      </p>
+    </div>
+
+    <div class="callout azul">
+      <strong>Regra prática:</strong> Quando você ver um sinal grande seguido de sinais menores com sons que já estão no sinal grande, esses menores são complementos fonéticos. Leia o sinal grande uma vez e não repita os sons.
+    </div>
+  </div>
+
+  <div class="licao-section">
+    <h2>4 · Direção da leitura</h2>
+    <p>Os hieróglifos podem ser escritos da direita para a esquerda, da esquerda para a direita, ou de cima para baixo. Como saber para onde ler?</p>
+    <p><strong>Observe os animais e pessoas.</strong> Eles sempre olham para o início da linha. A direção que os rostos encaram é por onde você começa a ler.</p>
+
+    <div class="direction-demo">
+      <div class="dir-row">
+        <span class="dir-label">← direita p/ esquerda</span>
+        <span class="dir-glyphs" style="direction:rtl">𓀀𓂋𓈖</span>
+        <span class="dir-arrow">← começar aqui</span>
+      </div>
+      <div class="dir-row">
+        <span class="dir-label">→ esquerda p/ direita</span>
+        <span class="dir-glyphs">𓀁𓂋𓈖</span>
+        <span class="dir-arrow">começar aqui →</span>
+      </div>
+    </div>
+
+    <p>Em textos religiosos e monumentais, a escrita da direita para a esquerda era mais comum. Nos papiros e textos cotidianos, a direção variava. O importante é: <strong>sempre siga os rostos.</strong></p>
+  </div>
+
+  <div class="licao-section">
+    <h2>5 · Vogais: onde estão?</h2>
+    <p>O egípcio antigo, como o árabe e o hebraico, escrevia apenas as <strong>consoantes</strong>. As vogais eram omitidas e o leitor nativo as deduzia pelo contexto.</p>
+    <p>Isso significa que quando você lê <em>nfr</em>, não sabe ao certo como soava. Linguistas adicionam vogais convencionais (como <em>nefer</em>) para facilitar a pronúncia, mas essa não é a pronúncia original.</p>
+    <div class="callout">
+      <strong>Consequência prática:</strong> Não se preocupe em pronunciar "certo". Na comunidade de estudo, usa-se <em>e</em> entre consoantes como convenção (<em>nefer</em>, <em>remen</em>). O foco real é reconhecer os sinais e as consoantes.
+    </div>
+  </div>
+
+  <div class="licao-section">
+    <h2>? · Quiz rápido</h2>
+    <div class="quiz-box" id="quiz1">
+      <h3>Teste seu entendimento</h3>
+      <p style="color:var(--papyrus-soft); font-size:16px; margin-bottom:14px">Este sinal aparece ao final de uma palavra sem ter som próprio, apenas para indicar que a palavra é sobre uma pessoa. Que tipo de sinal é este?</p>
+      <span class="quiz-glyph">𓀀</span>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="checkAnswer(this, false)">Unileteral: representa um único som</button>
+        <button class="quiz-opt" onclick="checkAnswer(this, false)">Logograma: representa a palavra "homem"</button>
+        <button class="quiz-opt" onclick="checkAnswer(this, true)">Determinativo: classifica a palavra sem som</button>
+        <button class="quiz-opt" onclick="checkAnswer(this, false)">Complemento fonético: reforça a leitura</button>
+      </div>
+      <div class="quiz-feedback" id="quiz1-feedback"></div>
+      <div class="quiz-nav" id="quiz1-nav" style="display:none">
+        <a class="btn btn-primary" href="02-unileteral.html">Próxima lição →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-nav">
+    <a class="btn" href="../index.html">← Musæum</a>
+    <div class="lesson-nav-info">Lição 1 de 5</div>
+    <a class="btn btn-primary" href="02-unileteral.html">Próxima →</a>
+  </div>
+
+</div>
+
+<script>
+let quizDone = false;
+
+function checkAnswer(btn, correct) {
+  if (quizDone) return;
+  quizDone = true;
+
+  document.querySelectorAll('.quiz-opt').forEach(o => {
+    o.style.pointerEvents = 'none';
+    if (o.getAttribute('onclick').includes('true')) o.classList.add('correct');
+  });
+
+  const fb = document.getElementById('quiz1-feedback');
+  if (correct) {
+    btn.classList.add('correct');
+    fb.textContent = 'Exato! Determinativos não têm som: eles apenas classificam. O sinal de homem sentado 𓀀 é um dos determinativos mais comuns, aparecendo em qualquer palavra relacionada a seres masculinos.';
+    fb.style.color = 'var(--green)';
+    markDone();
+  } else {
+    btn.classList.add('wrong');
+    fb.textContent = 'Não desta vez. Quando um sinal aparece sem som ao final de uma palavra para categorizar, ele é um determinativo.';
+    fb.style.color = 'var(--terracotta-lt)';
+  }
+  document.getElementById('progressBar').style.width = '100%';
+  document.getElementById('quiz1-nav').style.display = 'flex';
+}
+
+function markDone() {
+  const p = JSON.parse(localStorage.getItem('musaeum-hieroglyphs') || '{}');
+  p.lessonsCompleted = Math.max(p.lessonsCompleted || 0, 1);
+  localStorage.setItem('musaeum-hieroglyphs', JSON.stringify(p));
+}
+
+window.addEventListener('scroll', () => {
+  if (quizDone) return;
+  const pct = Math.min(95, Math.round(((window.scrollY + window.innerHeight) / document.body.scrollHeight) * 100));
+  document.getElementById('progressBar').style.width = pct + '%';
+});
+
+// herda tema do musaeum
+const t = localStorage.getItem('musaeum-theme');
+if (t) document.documentElement.setAttribute('data-theme', t);
+</script>
+
+</body>
+</html>

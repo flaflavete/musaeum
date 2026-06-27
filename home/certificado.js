@@ -13,14 +13,12 @@
   }
 
   function renderCertificateSection() {
-    const section = document.getElementById('panel-cert');
-    if (!section) return;
+    const wrap = document.getElementById('certColecaoWrap');
+    if (!wrap) return;
     const t = i18n[currentLang];
     const unlocked = allStoriesComplete();
-    document.getElementById('certHeading').textContent = t.certSectionTitle;
     document.getElementById('certLockedWrap').style.display  = unlocked ? 'none' : '';
     document.getElementById('certLockedMsg').textContent     = t.certLocked;
-    document.getElementById('certUnlockMsg').style.display   = unlocked ? '' : 'none';
     document.getElementById('certUnlockMsg').textContent     = t.certUnlock;
     document.getElementById('certOpenBtnWrap').style.display = unlocked ? '' : 'none';
     document.getElementById('certOpenBtn').textContent       = t.certOpenBtn;
@@ -29,14 +27,20 @@
   }
 
   function showCertificate() {
-    document.getElementById('certPreview').style.display = '';
-    document.getElementById('certOpenBtnWrap').style.display = 'none';
+    const modal = document.getElementById('certModal');
+    modal.classList.add('show');
+    modal.addEventListener('click', _certBackdropClose);
     document.fonts.ready.then(() => drawCertificate(currentLang));
   }
 
+  function _certBackdropClose(e) {
+    if (e.target === document.getElementById('certModal')) hideCertificate();
+  }
+
   function hideCertificate() {
-    document.getElementById('certPreview').style.display = 'none';
-    document.getElementById('certOpenBtnWrap').style.display = '';
+    const modal = document.getElementById('certModal');
+    modal.classList.remove('show');
+    modal.removeEventListener('click', _certBackdropClose);
   }
 
   function downloadCertificate() {

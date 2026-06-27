@@ -8,6 +8,7 @@ Aplicação web estática sem etapa de build. O HTML de cada história é um esq
 index.html              Página inicial: biblioteca, mapa, coleção, certificado, modal "sobre"
 naufrago.html           Experiência interativa do Conto do Náufrago
 sinuhe.html             Experiência interativa da História de Sinué
+campones.html           Experiência interativa do Camponês Eloquente (pronta, ainda não publicada)
 script.js               Utilitários compartilhados + shell HTML das histórias
 engine.js               Motor das histórias: telas, render, desafios, save
 tour.js                 Tour guiado (coach marks), usado na home e nas histórias
@@ -20,6 +21,7 @@ home/                   CSS e JS exclusivos da página inicial. index.css: todo
 data/catalogo.js        Catálogo central: cards, tesouros, códex e disponibilidade
 data/naufrago.js        Textos, desafios e glossário do Náufrago
 data/sinuhe.js          Textos, desafios e glossário do Sinué
+data/campones.js        Textos, desafios e glossário do Camponês Eloquente
 data/cultura-material.js  Fichas dos manuscritos reais (foto + catálogo) e achados das notas
 data/geografia.js       Lugares citados nos textos, para o mapa interativo do index
 tests/                  Testes automatizados (vitest)
@@ -128,7 +130,7 @@ Tema padrão: **escuro**. Variáveis redefinidas em `:root[data-theme="light"]`.
   screen: 'splash' | 'intro' | 'chapter' | 'challenge' | 'final',
   chapter: 0–7,
   score: number,
-  collected: [true|false, ...],        // 8 tesouros
+  collected: [true|false, ...],        // tesouros (vazio nas histórias com award, ex.: Camponês)
   answeredChapters: [true|false, ...], // desafios já respondidos (impede repontuar ao recarregar)
   discoveredGlyphs: [0, 1, 3, ...]     // índices dos glifos descobertos
 }
@@ -169,6 +171,32 @@ A migração automática de saves antigos (`musaeum-naufrago`, `musaeum-sinuhe`)
 - **Glossário:** termos específicos da história (Amenemhat I, Sesostris I, Retjenu, Araru, etc.)
 - **Capítulos:** 8
 
+### O Camponês Eloquente (`campones.html`) — escrita, ainda não publicada
+
+Já existe como arquivo completo (`campones.html` + `data/campones.js`); falta só `available: true` no catálogo para publicar.
+
+- **STORY_ID:** `campones`
+- **Prêmio:** não tem tesouros (`items: null`). Em vez disso, premia com um único pergaminho ao concluir: o título **«Justo de Voz»** (mꜣꜥ-ḫrw), via o campo `award` no catálogo (ver abaixo).
+- **Hieróglifos do Códex (9):** asno, espiga de cevada, pena de Maât, íbis de Tot, tilápia, remo, medida de grãos, chacal de Anúbis, rolo de papiro (capítulos 0 a 8)
+- **Capítulos:** **9** (as nove apelações de Khun-Anup)
+
+> O número de capítulos é derivado de `CHAPTERS.length`, não fixo: Náufrago e Sinué têm 8; o Camponês tem 9. O fluxo de telas e a barra de progresso se ajustam sozinhos.
+
+### Prêmio por conclusão (`award`) — alternativa aos tesouros
+
+Uma história pode não ter tesouros colecionáveis. Nesse caso, a entrada do catálogo traz `items: null` e um objeto `award`:
+
+```js
+award: {
+  icon: '📜',
+  titlePt: 'Justo de Voz',  titleEn: 'True of Voice',
+  descPt: '...',            descEn: '...'
+}
+```
+
+- **Tela final** (`engine.js`): se a história tem `award` e não tem tesouros, o bloco do prêmio substitui o rank/glifo final (não repete).
+- **Coleção** (`home/colecao.js`): histórias com `items` mostram a grade de tesouros; histórias com `award` mostram um cartão do pergaminho (`.col-award`), travado até `screen === 'final'`.
+
 ---
 
 ## Sistema de Coleção (index.html)
@@ -188,8 +216,8 @@ publicada ou quando existe progresso salvo dela no aparelho.
 ```js
 const MUSAEUM_CATALOG = [
   { storyId: 'naufrago', href: 'naufrago.html', available: true,  items: [...], codex: [...] },
-  { storyId: 'sinuhe',   href: 'sinuhe.html',   available: true,  ... },
-  { storyId: 'campones', href: 'campones.html', available: false, ... }, // em breve
+  { storyId: 'sinuhe',   href: 'sinuhe.html',   available: true,  items: [...], ... },
+  { storyId: 'campones', href: 'campones.html', available: false, items: null, award: {...}, ... }, // pronta, não publicada
 ];
 ```
 
@@ -255,6 +283,8 @@ Termos bilíngues acessíveis por:
 - Campo de busca por texto
 
 Cada entrada: `{ id, termPt, termEn, tagPt, tagEn, defPt, defEn }`
+
+> A saudação **«Em hotep!»** da tela de abertura (`splash-welcome` no `I18N`) é um link de glossário para o termo `em-hotep`, presente nas três histórias. Toda história nova deve trazer a entrada `em-hotep` (e a `aec`) no seu `GLOSSARY`.
 
 ---
 
@@ -399,15 +429,21 @@ Para **publicar uma história que já existe** (ex.: Sinué): mudar `available`
 para `true` na entrada dela em `data/catalogo.js`. Só isso — card, Coleção,
 Certificado e desbloqueio derivam todos do catálogo.
 
-Para **criar uma história nova** (ex.: Camponês Eloquente):
+> O Camponês Eloquente já passou por esses passos: `campones.html` e
+> `data/campones.js` existem e estão completos (9 capítulos, prêmio `award`
+> em vez de tesouros). Falta só `available: true` para publicá-lo.
 
-1. Completar a entrada dela em `data/catalogo.js` com `href`, `items`
-   (8 tesouros) e `codex` (9 glifos)
-2. Criar `data/campones.js` com `I18N`, `CHAPTERS` (8 capítulos), `GLOSSARY`
-   e as linhas `const ITEMS = catalogGet('campones').items;` e
-   `const GLYPHS_CODEX = catalogGet('campones').codex;`
-3. Criar `campones.html` seguindo a estrutura de `sinuhe.html` (mesma ordem
-   de scripts, trocando só `data/sinuhe.js` por `data/campones.js`)
+Para **criar uma história nova** do zero:
+
+1. Completar a entrada dela em `data/catalogo.js` com `href`, `codex`
+   (9 glifos) e **ou** `items` (tesouros colecionáveis) **ou** `items: null`
+   + `award` (pergaminho de conclusão, como no Camponês)
+2. Criar `data/<historia>.js` com `I18N`, `CHAPTERS` (8 ou mais capítulos),
+   `GLOSSARY` (incluindo as entradas `em-hotep` e `aec`) e as linhas
+   `const ITEMS = catalogGet('<id>').items;` e
+   `const GLYPHS_CODEX = catalogGet('<id>').codex;`
+3. Criar `<historia>.html` seguindo a estrutura de `sinuhe.html` (mesma ordem
+   de scripts, trocando só o data file da história)
 4. Quando estiver pronta, `available: true` no catálogo
 5. (opcional) **Cultura material:** salvar a foto do papiro em
    `assets/images/`, criar a chave `storyId` em `CULTURA_MATERIAL`

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lição 4 · Lendo palavras simples · Musæum</title>
+<meta name="theme-color" content="#1b2a3d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="aprender.css">
+<style>
+.callout {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin: 20px 0;
+  font-size: 16px;
+  color: var(--papyrus-soft);
+  line-height: 1.65;
+}
+.callout strong { color: var(--gold); }
+
+.cat-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.cat-tab {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 7px 18px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--papyrus-dim);
+  cursor: pointer;
+  transition: all .15s;
+}
+.cat-tab:hover { border-color: var(--gold); color: var(--gold); }
+.cat-tab.active { background: rgba(201,166,70,.15); border-color: var(--gold); color: var(--gold); }
+
+.score-strip {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  font-size: 15px;
+  color: var(--papyrus-soft);
+}
+.score-strip strong { color: var(--gold); font-family: 'Cinzel', serif; font-size: 20px; }
+
+.word-card {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 14px;
+  transition: border-color .2s;
+}
+.word-card.revealed { border-color: rgba(201,166,70,.35); }
+.wc-glyph {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-size: 52px;
+  color: var(--gold);
+  line-height: 1;
+  display: block;
+  margin-bottom: 14px;
+}
+.wc-prompt { font-size: 14px; color: var(--papyrus-soft); margin-bottom: 10px; }
+.wc-input-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.wc-input {
+  font-family: 'EB Garamond', serif;
+  font-size: 17px;
+  font-style: italic;
+  background: var(--ink-raised);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 13px;
+  color: var(--papyrus);
+  flex: 1;
+  min-width: 140px;
+  outline: none;
+  transition: border-color .15s;
+}
+.wc-input:focus { border-color: var(--gold); }
+.wc-check, .wc-reveal-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 9px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.wc-check { background: rgba(201,166,70,.12); border: 1px solid var(--gold); color: var(--gold); }
+.wc-check:hover { background: rgba(201,166,70,.22); }
+.wc-reveal-btn { background: none; border: 1px solid var(--border); color: var(--papyrus-dim); }
+.wc-reveal-btn:hover { border-color: var(--papyrus-soft); color: var(--papyrus); }
+.wc-feedback { font-size: 14px; font-weight: 600; padding: 4px 0; margin-top: 6px; }
+.wc-feedback.ok  { color: var(--green); }
+.wc-feedback.err { color: var(--terracotta-lt); }
+
+.wc-answer { display: none; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+.word-card.revealed .wc-answer { display: block; }
+.wc-answer-phon { font-family: 'EB Garamond', serif; font-size: 24px; font-style: italic; color: var(--terracotta-lt); margin-bottom: 4px; }
+.wc-answer-meaning { font-family: 'Cinzel', serif; font-size: 14px; color: var(--gold); letter-spacing: 0.06em; margin-bottom: 14px; }
+.wc-answer-breakdown { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.wc-sign-chip { display: flex; align-items: center; gap: 6px; background: var(--ink-raised); border: 1px solid var(--border); border-radius: 8px; padding: 5px 10px; font-size: 13px; }
+.wc-sign-chip .g { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 20px; color: var(--gold); }
+.wc-sign-chip .p { font-family: 'EB Garamond', serif; font-size: 14px; font-style: italic; color: var(--terracotta-lt); }
+.wc-sign-chip .d { color: var(--papyrus-dim); font-size: 12px; }
+.wc-answer-note { font-size: 15px; color: var(--papyrus-soft); line-height: 1.6; font-style: italic; }
+
+ol { font-size: 16px; color: var(--papyrus-soft); line-height: 2; padding-left: 22px; margin-bottom: 14px; }
+ol strong { color: var(--papyrus); }
+
+.lesson-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); }
+.lesson-nav-info { font-family: 'Cinzel', serif; font-size: 11px; color: var(--papyrus-dim); text-align: center; letter-spacing: 0.1em; }
+</style>
+</head>
+<body>
+
+<div class="licao-progress-bar" id="progressBar" style="width:0%"></div>
+
+<header class="licao-header">
+  <a class="licao-back" href="../index.html" onclick="history.length>1 ? (history.back(), event.preventDefault()) : null">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Musæum
+  </a>
+  <span class="licao-header-title">Lição 4 · Lendo palavras simples</span>
+</header>
+
+<div class="licao-content">
+
+  <div class="licao-hero">
+    <div class="licao-hero-num">Lição 4 · Leitura</div>
+    <span class="licao-hero-glyph">𓂋</span>
+    <h1>Lendo palavras simples</h1>
+    <p>É hora de colocar tudo junto. Cada palavra abaixo é uma leitura real em egípcio médio. Tente transliterar antes de revelar. Mesmo que erre, o processo de tentar é o que fixa.</p>
+  </div>
+
+  <div class="licao-section">
+    <h2>Como ler uma palavra</h2>
+    <p>Ao encontrar uma palavra em hieróglifos, siga este processo:</p>
+    <ol>
+      <li>Identifique a <strong>direção</strong> (os rostos encarando de qual lado?)</li>
+      <li>Separe os sinais e classifique: unileteral, biliteral, trileteral ou determinativo</li>
+      <li>Leia os sinais fonéticos em ordem, ignorando repetições de complementos</li>
+      <li>O determinativo no final não é lido: ele apenas confirma a categoria</li>
+    </ol>
+    <div class="callout">
+      <strong>Dica:</strong> Não existe pontuação, espaço entre palavras ou maiúsculas em egípcio. O contexto e os determinativos são os separadores naturais.
+    </div>
+  </div>
+
+  <div class="licao-section">
+    <h2>Prática: tente transliterar</h2>
+    <p>Tente escrever a transliteração antes de revelar. Clique em "Revelar" para ver a resposta e a explicação completa.</p>
+
+    <div class="cat-tabs">
+      <button class="cat-tab active" onclick="showCat('corpo',this)">Corpo humano</button>
+      <button class="cat-tab" onclick="showCat('cosmos',this)">Cosmos e deuses</button>
+      <button class="cat-tab" onclick="showCat('vida',this)">Vida cotidiana</button>
+    </div>
+
+    <div class="score-strip">
+      <span>Palavras reveladas: <strong id="scoreNum">0</strong> / <span id="scoreTotal">0</span></span>
+      <span style="font-size:13px;">Cada palavra revelada conta como praticada.</span>
+    </div>
+
+    <div id="wordCards"></div>
+  </div>
+
+  <div class="lesson-nav">
+    <a class="btn" href="03-biliteral.html">← Lição 3</a>
+    <div class="lesson-nav-info">Lição 4 de 5</div>
+    <a class="btn btn-primary" href="05-cartuchos.html">Próxima →</a>
+  </div>
+
+</div>
+
+<script>
+const WORDS = {
+  corpo: [
+    { glyph:'𓁷𓏤', phon:'ḥr', meaning:'rosto / sobre',
+      parts:[{g:'𓁷',p:'ḥr',d:'rosto (biliteral)'},{g:'𓏤',p:'',d:'traço vertical (logograma)'}],
+      note:'Uma das preposições mais comuns. ḥr também aparece no nome do deus Hórus.' },
+    { glyph:'𓂋𓏤𓈖', phon:'rn', meaning:'nome',
+      parts:[{g:'𓂋',p:'r',d:'boca'},{g:'𓏤',p:'',d:'traço'},{g:'𓈖',p:'n',d:'água (complemento)'}],
+      note:'O "nome" era sagrado: destruí-lo equivalia a uma segunda morte. Por isso os faraós apagavam os nomes dos antecessores.' },
+    { glyph:'𓂗', phon:'jb', meaning:'coração',
+      parts:[{g:'𓂗',p:'jb',d:'coração (biliteral)'}],
+      note:'O coração era a sede da inteligência para os egípcios, não o cérebro. No Julgamento dos Mortos, o coração era pesado contra uma pena.' },
+    { glyph:'𓂀', phon:'jr', meaning:'olho',
+      parts:[{g:'𓂀',p:'jr',d:'olho (logograma)'}],
+      note:'O Olho de Hórus (wḏꜣt) era um dos amuletos mais poderosos do Egito.' },
+    { glyph:'𓂧𓂋𓏤𓂻', phon:'drt', meaning:'mão',
+      parts:[{g:'𓂧',p:'d',d:'mão'},{g:'𓂋',p:'r',d:'boca (complemento)'},{g:'𓏤',p:'',d:'traço'},{g:'𓂻',p:'',d:'determinativo: movimento'}],
+      note:'Palavra "mão" em egípcio clássico. O determinativo final indica ação/movimento.' },
+  ],
+  cosmos: [
+    { glyph:'𓇳', phon:'rꜥ', meaning:'sol / Rá',
+      parts:[{g:'𓇳',p:'rꜥ',d:'disco solar (logograma)'}],
+      note:'O disco solar representa tanto o astro quanto o deus Rá, o mais importante do panteão. Muitos faraós incluíam Rá em seus nomes.' },
+    { glyph:'𓇯', phon:'jtn', meaning:'disco solar / Aton',
+      parts:[{g:'𓇯',p:'jtn',d:'disco solar com raios'}],
+      note:'Aton era o disco solar elevado à divindade única por Akhenaton na revolução religiosa do século XIV AEC.' },
+    { glyph:'𓇋𓈖𓊪𓏏𓇯', phon:'jnpt', meaning:'céu',
+      parts:[{g:'𓇋',p:'j',d:'junco'},{g:'𓈖',p:'n',d:'água'},{g:'𓊪',p:'p',d:'banco'},{g:'𓏏',p:'t',d:'pão'}],
+      note:'O céu em egípcio. A deusa do céu era Nut, que arqueava seu corpo sobre a terra.' },
+    { glyph:'𓇺', phon:'tꜣ', meaning:'terra / país',
+      parts:[{g:'𓇺',p:'tꜣ',d:'terra (logograma + determinativo)'}],
+      note:'Representa a faixa de terra fértil às margens do Nilo. O Egito chamava a si mesmo de "Terra Negra" (Kemet).' },
+    { glyph:'𓄤𓆑𓂋', phon:'nfr', meaning:'belo, bom, perfeito',
+      parts:[{g:'𓄤',p:'nfr',d:'coração-traqueia (trileteral)'},{g:'𓆑',p:'f',d:'víbora (complemento)'},{g:'𓂋',p:'r',d:'boca (complemento)'}],
+      note:'Uma das palavras mais belas do egípcio. Aparece em nomes próprios (Nefertiti = "a bela chegou") e em expressões de louvor.' },
+  ],
+  vida: [
+    { glyph:'𓉐𓂋𓏤', phon:'pr', meaning:'casa',
+      parts:[{g:'𓉐',p:'pr',d:'planta da casa (biliteral)'},{g:'𓂋',p:'r',d:'boca (complemento)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      note:'pr = "casa" é a raiz de Per-aa (pr-ꜥꜣ), "grande casa" = Faraó. Também em "Per-Ramesés", a capital de Ramsés II.' },
+    { glyph:'𓌀𓂧𓏤𓌀', phon:'ḏd', meaning:'dizer, falar',
+      parts:[{g:'𓌀',p:'ḏ',d:'cobra'},{g:'𓂧',p:'d',d:'mão (complemento)'},{g:'𓏤',p:'',d:'traço'},{g:'𓌀',p:'',d:'det. de cobra/discurso'}],
+      note:'Verbo "dizer". Fórmulas como ḏd mdw ("palavras a dizer") introduzem falas de deuses nos textos religiosos.' },
+    { glyph:'𓄿𓈖𓐍𓂝𓏤', phon:'ꜣnḫ', meaning:'vida / viver',
+      parts:[{g:'𓄿',p:'ꜣ',d:'abutre'},{g:'𓈖',p:'n',d:'água'},{g:'𓐍',p:'ḫ',d:'placenta'},{g:'𓂝',p:'ꜥ',d:'braço (det.)'}],
+      note:'ꜣnḫ = "vida". O símbolo ankh 𓋹 é um dos ícones mais reconhecíveis do Egito. Era presente dado pelos deuses à realeza.' },
+    { glyph:'𓌀𓂧𓏏𓂻', phon:'ḏdt', meaning:'corrida / andar rápido',
+      parts:[{g:'𓌀',p:'ḏ',d:'cobra'},{g:'𓂧',p:'d',d:'mão'},{g:'𓏏',p:'t',d:'pão (feminino)'},{g:'𓂻',p:'',d:'det. movimento'}],
+      note:'O determinativo de pernas em movimento indica ação física, comum em verbos de movimento e transformação.' },
+    { glyph:'𓊽𓏤', phon:'nṯr', meaning:'deus',
+      parts:[{g:'𓊽',p:'nṯr',d:'estandarte (logograma)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      note:'O sinal do estandarte representa divindade em geral. Não havia uma palavra diferente para "deus" e "deusa". Só o gênero do artigo mudava.' },
+  ],
+};
+
+let currentCat = 'corpo';
+let revealed = new Set();
+
+function showCat(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderWords();
+}
+
+function renderWords() {
+  const words = WORDS[currentCat];
+  document.getElementById('scoreTotal').textContent = words.length;
+  const done = words.filter(w => revealed.has(currentCat + w.phon)).length;
+  document.getElementById('scoreNum').textContent = done;
+
+  document.getElementById('wordCards').innerHTML = words.map((w, i) => {
+    const key = currentCat + w.phon;
+    const isRevealed = revealed.has(key);
+    return `<div class="word-card ${isRevealed ? 'revealed' : ''}" id="wc-${i}">
+      <span class="wc-glyph">${w.glyph}</span>
+      <div class="wc-prompt">Qual é a transliteração desta palavra?</div>
+      <div class="wc-input-row">
+        <input class="wc-input" type="text" placeholder="escreva aqui..." id="inp-${i}" onkeydown="if(event.key==='Enter')checkWord(${i})">
+        <button class="wc-check" onclick="checkWord(${i})">Verificar</button>
+        <button class="wc-reveal-btn" onclick="revealWord(${i})">Revelar</button>
+      </div>
+      <div class="wc-feedback" id="fb-${i}"></div>
+      <div class="wc-answer">
+        <div class="wc-answer-phon">${w.phon}</div>
+        <div class="wc-answer-meaning">"${w.meaning}"</div>
+        <div class="wc-answer-breakdown">${w.parts.map(p=>`
+          <div class="wc-sign-chip">
+            <span class="g">${p.g}</span>
+            ${p.p ? `<span class="p">${p.p}</span>` : ''}
+            <span class="d">${p.d}</span>
+          </div>`).join('')}</div>
+        <div class="wc-answer-note">${w.note}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function checkWord(i) {
+  const w = WORDS[currentCat][i];
+  const inp = document.getElementById('inp-' + i).value.trim().toLowerCase();
+  const fb  = document.getElementById('fb-' + i);
+  const norm = s => s.replace(/[^a-zꜣꜥḥḫẖšṯḏ]/gi, '');
+  if (norm(inp) === norm(w.phon.toLowerCase())) {
+    fb.textContent = 'Correto!'; fb.className = 'wc-feedback ok';
+    revealWord(i);
+  } else {
+    fb.textContent = 'Tente novamente, ou clique em Revelar para ver.';
+    fb.className = 'wc-feedback err';
+  }
+}
+
+function revealWord(i) {
+  const w = WORDS[currentCat][i];
+  const key = currentCat + w.phon;
+  revealed.add(key);
+  document.getElementById('wc-' + i).classList.add('revealed');
+  updateScore();
+  const pct = Math.round((revealed.size / 15) * 100);
+  document.getElementById('progressBar').style.width = Math.min(100, pct) + '%';
+  const p = JSON.parse(localStorage.getItem('musaeum-hieroglyphs') || '{}');
+  p.cardsReviewed = Math.max(p.cardsReviewed || 0, revealed.size);
+  if (revealed.size >= 10) p.lessonsCompleted = Math.max(p.lessonsCompleted || 0, 4);
+  localStorage.setItem('musaeum-hieroglyphs', JSON.stringify(p));
+}
+
+function updateScore() {
+  const words = WORDS[currentCat];
+  const done = words.filter(w => revealed.has(currentCat + w.phon)).length;
+  document.getElementById('scoreNum').textContent = done;
+}
+
+showCat('corpo', document.querySelector('.cat-tab'));
+const t = localStorage.getItem('musaeum-theme');
+if (t) document.documentElement.setAttribute('data-theme', t);
+</script>
+
+</body>
+</html>

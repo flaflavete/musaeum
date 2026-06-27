@@ -53,6 +53,7 @@
     renderCollection();
     renderGeoSection();
     renderCertificateSection();
+    renderAprenderHub();
 
     // Corpo do modal Sobre
     document.getElementById('aboutTitle').textContent = t.aboutTitle;

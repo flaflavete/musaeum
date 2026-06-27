@@ -110,7 +110,7 @@
     <button class="tab active" id="tab-inicio"  role="tab" aria-selected="true"  aria-controls="panel-inicio"  data-tab="inicio"  data-t="tabInicio"  type="button" onclick="showTab('inicio')"></button>
     <button class="tab"        id="tab-mapa"    role="tab" aria-selected="false" aria-controls="panel-mapa"    data-tab="mapa"    data-t="tabMapa"    type="button" tabindex="-1" onclick="showTab('mapa')"></button>
     <button class="tab"        id="tab-colecao" role="tab" aria-selected="false" aria-controls="panel-colecao" data-tab="colecao" data-t="tabColecao" type="button" tabindex="-1" onclick="showTab('colecao')"></button>
-    <button class="tab"        id="tab-cert"    role="tab" aria-selected="false" aria-controls="panel-cert"    data-tab="cert"    data-t="tabCert"    type="button" tabindex="-1" onclick="showTab('cert')"></button>
+    <button class="tab"        id="tab-aprender" role="tab" aria-selected="false" aria-controls="panel-aprender" data-tab="aprender" data-t="tabAprender" type="button" tabindex="-1" onclick="showTab('aprender')"></button>
   </nav>
 
   <div class="tab-panel active" id="panel-inicio" role="tabpanel" aria-labelledby="tab-inicio">
@@ -165,24 +165,22 @@
       <div class="collection-player" id="collectionPlayer"></div>
       <div id="collectionContent"></div>
     </div>
+    <div class="cert-colecao-wrap" id="certColecaoWrap">
+      <div class="cert-locked-wrap" id="certLockedWrap" style="display:none;">
+        <span class="cert-lock-icon">𓂀</span>
+        <p class="cert-locked-msg" id="certLockedMsg"></p>
+      </div>
+      <div id="certOpenBtnWrap" style="display:none;">
+        <p class="cert-unlock-msg" id="certUnlockMsg"></p>
+        <button class="cert-open-btn" id="certOpenBtn" onclick="showCertificate()"></button>
+      </div>
+    </div>
   </section>
 
-  <section class="certificate-section tab-panel" id="panel-cert" role="tabpanel" aria-labelledby="tab-cert" hidden>
-    <div class="cert-heading" id="certHeading"></div>
-    <div class="cert-locked-wrap" id="certLockedWrap" style="display:none;">
-      <span class="cert-lock-icon">𓂀</span>
-      <p class="cert-locked-msg" id="certLockedMsg"></p>
-    </div>
-    <p class="cert-unlock-msg" id="certUnlockMsg" style="display:none;"></p>
-    <div id="certOpenBtnWrap" style="display:none;">
-      <button class="cert-open-btn" id="certOpenBtn" onclick="showCertificate()"></button>
-    </div>
-    <div class="cert-preview" id="certPreview" style="display:none;">
-      <canvas id="certCanvas" width="800" height="560"></canvas>
-      <div class="cert-btn-row">
-        <button class="about-btn" id="certDownloadBtn" onclick="downloadCertificate()"></button>
-        <button class="about-btn" id="certCloseBtn" onclick="hideCertificate()"></button>
-      </div>
+  <section class="tab-panel" id="panel-aprender" role="tabpanel" aria-labelledby="tab-aprender" hidden>
+    <div class="coming-soon-wrap">
+      <span class="coming-soon-glyph" aria-hidden="true">𓏛</span>
+      <p class="coming-soon-msg" data-t="aprenderEmBreve"></p>
     </div>
   </section>
 
@@ -202,6 +200,17 @@
     </a>
   </footer>
 </main>
+
+<!-- Modal Certificado de Leitura -->
+<div class="modal-backdrop" id="certModal" role="dialog" aria-modal="true" aria-labelledby="certModalTitle">
+  <div class="modal-panel cert-modal-panel">
+    <canvas id="certCanvas" width="800" height="560"></canvas>
+    <div class="cert-btn-row">
+      <button class="about-btn" id="certDownloadBtn" onclick="downloadCertificate()"></button>
+      <button class="about-btn" id="certCloseBtn" onclick="hideCertificate()"></button>
+    </div>
+  </div>
+</div>
 
 <!-- Modal Seletor de Idioma -->
 <div class="name-modal-backdrop" id="langModal" role="dialog" aria-modal="true" aria-labelledby="langModalTitle">
@@ -278,6 +287,7 @@
 <script src="home/mapa.js"></script>
 <script src="home/colecao.js"></script>
 <script src="home/certificado.js"></script>
+<script src="home/aprender.js"></script>
 <script src="home/main.js"></script>
 </body>
 </html>
