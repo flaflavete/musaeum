@@ -90,8 +90,7 @@
       tourSteps: [
         { title: 'A Biblioteca',     body: 'Aqui ficam os contos do Egito Antigo. Toque em um deles para começar a ler e interagir.' },
         { title: 'O Mapa',           body: 'Sobre uma carta antiga, os lugares citados nas histórias. Toque em cada um para saber o que era e em qual conto aparece.' },
-        { title: 'Sua Coleção',      body: 'Conforme avança nas histórias, você desbloqueia hieróglifos e tesouros, que se reúnem aqui.' },
-        { title: 'Seu Certificado',  body: 'Complete todas as histórias disponíveis para desbloquear um certificado com o seu nome.' },
+        { title: 'Sua Coleção',      body: 'Conforme avança nas histórias, você desbloqueia hieróglifos e tesouros, que se reúnem aqui. Complete tudo para ganhar seu Certificado de Leitura.' },
         { title: 'Sobre o Projeto',  body: 'Toque aqui para conhecer o Musæum.' }
       ],
       editNameLabel:        'Editar nome',
@@ -99,7 +98,6 @@
       tabInicio:            'Biblioteca',
       tabMapa:              'Mapa',
       tabColecao:           'Coleção',
-      tabCert:              'Certificado',
       certSectionTitle:     'Sua Conquista',
       certLocked:           'Complete todas as atividades para desbloquear o certificado.',
       certUnlock:           'Você concluiu todas as histórias disponíveis no Musæum. Seu certificado está pronto.',
@@ -201,8 +199,7 @@
       tourSteps: [
         { title: 'The Library',      body: 'This is where the tales of Ancient Egypt live. Tap one to start reading and interacting.' },
         { title: 'The Map',          body: 'The places named in the stories, set over an old chart. Tap any of them to learn what it was and which tale it appears in.' },
-        { title: 'Your Collection',  body: 'As you progress through the stories, you unlock hieroglyphs and treasures, gathered here.' },
-        { title: 'Your Certificate', body: 'Complete every available story to unlock a certificate bearing your name.' },
+        { title: 'Your Collection',  body: 'As you progress through the stories, you unlock hieroglyphs and treasures, gathered here. Complete everything to earn your Reading Certificate.' },
         { title: 'About the Project', body: 'Tap here to learn about the Musæum.' }
       ],
       editNameLabel:        'Edit name',
@@ -210,7 +207,6 @@
       tabInicio:            'Library',
       tabMapa:              'Map',
       tabColecao:           'Collection',
-      tabCert:              'Certificate',
       certSectionTitle:     'Your Achievement',
       certLocked:           'Complete all activities to unlock the certificate.',
       certUnlock:           'You have completed all available stories in the Musæum. Your certificate is ready.',

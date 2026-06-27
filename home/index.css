@@ -299,8 +299,7 @@
 
   /* Como painéis autônomos, não herdam a borda/margem de empilhamento */
   .tab-panel.geo-section,
-  .tab-panel.collection-section,
-  .tab-panel.certificate-section {
+  .tab-panel.collection-section {
     margin-top: 0;
     border-top: none;
     padding-top: 0;
@@ -1258,20 +1257,19 @@
   }
 
   /* ===== CERTIFICADO ===== */
-  .certificate-section {
-    margin-top: 56px;
-    padding-top: 40px;
-    border-top: 1px solid rgba(201, 166, 70, 0.25);
+  .cert-colecao-wrap {
+    margin-top: 48px;
+    padding-top: 36px;
+    border-top: 1px solid rgba(201, 166, 70, 0.18);
     text-align: center;
-    animation: fadein 0.9s ease;
   }
-  .cert-heading {
-    font-family: 'Cinzel', 'Gentium Plus', serif;
-    font-size: 12px;
-    letter-spacing: 0.25em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 10px;
+  .cert-modal-panel {
+    text-align: center;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    max-width: 840px;
   }
   .cert-unlock-msg {
     font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
