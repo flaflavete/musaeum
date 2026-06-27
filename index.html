@@ -111,6 +111,7 @@
     <button class="tab"        id="tab-mapa"    role="tab" aria-selected="false" aria-controls="panel-mapa"    data-tab="mapa"    data-t="tabMapa"    type="button" tabindex="-1" onclick="showTab('mapa')"></button>
     <button class="tab"        id="tab-colecao" role="tab" aria-selected="false" aria-controls="panel-colecao" data-tab="colecao" data-t="tabColecao" type="button" tabindex="-1" onclick="showTab('colecao')"></button>
     <button class="tab"        id="tab-cert"    role="tab" aria-selected="false" aria-controls="panel-cert"    data-tab="cert"    data-t="tabCert"    type="button" tabindex="-1" onclick="showTab('cert')"></button>
+    <button class="tab"        id="tab-aprender" role="tab" aria-selected="false" aria-controls="panel-aprender" data-tab="aprender" data-t="tabAprender" type="button" tabindex="-1" onclick="showTab('aprender')"></button>
   </nav>
 
   <div class="tab-panel active" id="panel-inicio" role="tabpanel" aria-labelledby="tab-inicio">
@@ -183,6 +184,13 @@
         <button class="about-btn" id="certDownloadBtn" onclick="downloadCertificate()"></button>
         <button class="about-btn" id="certCloseBtn" onclick="hideCertificate()"></button>
       </div>
+    </div>
+  </section>
+
+  <section class="tab-panel" id="panel-aprender" role="tabpanel" aria-labelledby="tab-aprender" hidden>
+    <div class="cert-locked-wrap" style="margin-top:48px;">
+      <span class="cert-lock-icon">𓄿</span>
+      <p class="cert-locked-msg" data-t="aprenderEmBreve"></p>
     </div>
   </section>
 
