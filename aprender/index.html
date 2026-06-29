@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aprender Hieróglifos · Curso de Leitura · Musæum</title>
+<meta name="theme-color" content="#1b2a3d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="aprender.css">
+<style>
+/* ── ESTILOS DO ÍNDICE ─────────────────────────────── */
+.curso-intro {
+  font-size: 16px;
+  color: var(--papyrus-soft);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+.curso-fontes {
+  font-size: 14px;
+  color: var(--papyrus-dim);
+  font-style: italic;
+  margin-bottom: 0;
+}
+.curso-fontes strong {
+  font-style: normal;
+  color: var(--papyrus-soft);
+}
+
+/* ── LISTA DE LIÇÕES ───────────────────────────────── */
+.licoes-lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+.licao-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 22px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.18s, background 0.18s, transform 0.18s;
+  position: relative;
+}
+.licao-item:hover {
+  border-color: var(--gold);
+  background: var(--ink-raised);
+  transform: translateX(4px);
+}
+.licao-item-glyph {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-size: 44px;
+  line-height: 1;
+  color: var(--gold);
+  flex-shrink: 0;
+  width: 54px;
+  text-align: center;
+}
+.licao-item-body {
+  flex: 1;
+  min-width: 0;
+}
+.licao-item-num {
+  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--papyrus-dim);
+  margin-bottom: 3px;
+}
+.licao-item-title {
+  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--papyrus);
+  letter-spacing: 0.04em;
+  margin-bottom: 5px;
+  line-height: 1.25;
+}
+.licao-item-desc {
+  font-size: 14px;
+  color: var(--papyrus-dim);
+  line-height: 1.5;
+  margin: 0;
+}
+.licao-item-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--papyrus-dim);
+  text-align: right;
+}
+.licao-item-dur {
+  white-space: nowrap;
+}
+.licao-item-badge {
+  font-family: 'Cinzel', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.badge-start { background: rgba(76,175,122,.15); color: var(--green); }
+.badge-new   { background: rgba(92,141,224,.15); color: var(--blue); }
+.badge-final { background: rgba(201,166,70,.15);  color: var(--gold); }
+
+/* ── FERRAMENTAS ───────────────────────────────────── */
+.ferramentas-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.ferr-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, background 0.15s;
+}
+.ferr-card:hover { border-color: var(--gold); background: var(--ink-raised); }
+.ferr-glyph {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-size: 32px;
+  line-height: 1;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.ferr-info strong {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--papyrus);
+  margin-bottom: 3px;
+}
+.ferr-info span {
+  font-size: 13px;
+  color: var(--papyrus-dim);
+  line-height: 1.4;
+}
+
+/* ── REFERÊNCIAS ────────────────────────────────────── */
+.refs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.ref-item {
+  padding-left: 16px;
+  border-left: 3px solid var(--border);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--papyrus-soft);
+}
+.ref-item cite {
+  font-style: italic;
+  color: var(--papyrus);
+}
+.ref-item .ref-note {
+  display: block;
+  font-size: 13px;
+  color: var(--papyrus-dim);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .ferramentas-grid { grid-template-columns: 1fr; }
+  .licao-item-meta { display: none; }
+  .licao-item-glyph { font-size: 36px; width: 44px; }
+}
+</style>
+</head>
+<body>
+
+<header class="licao-header">
+  <a class="licao-back" href="../index.html">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Musæum
+  </a>
+  <span class="licao-header-title">Aprender Hieróglifos</span>
+</header>
+
+<div class="licao-content">
+
+  <div class="licao-hero">
+    <div class="licao-hero-num">Curso de Leitura</div>
+    <span class="licao-hero-glyph">𓏛</span>
+    <h1>Aprender hieróglifos</h1>
+    <p>Cinco lições do sistema ao cartucho, seguidas de flashcards para praticar. Sem pré-requisitos: você começa do zero e termina lendo nomes de faraós.</p>
+  </div>
+
+  <div class="licao-section">
+    <h2>Sobre este curso</h2>
+    <p class="curso-intro">O curso apresenta a escrita hieroglífica do egípcio médio, o registro literário clássico. O conteúdo segue a tradição acadêmica estabelecida por três obras fundamentais da egyptologia.</p>
+    <p class="curso-fontes">Baseado em <strong>Gardiner</strong> (lista de sinais e gramática), <strong>Faulkner</strong> (vocabulário) e <strong>Allen</strong> (estrutura do curso e exemplos).</p>
+  </div>
+
+  <div class="licao-section">
+    <h2>Lições</h2>
+    <ul class="licoes-lista">
+      <li>
+        <a class="licao-item" href="01-sistema.html">
+          <span class="licao-item-glyph">𓁹</span>
+          <div class="licao-item-body">
+            <div class="licao-item-num">Lição 1 · Fundamentos</div>
+            <div class="licao-item-title">Como funciona a escrita egípcia</div>
+            <p class="licao-item-desc">Entenda os três tipos de sinais (fonéticos, logogramas, determinativos) e a lógica do sistema antes de qualquer símbolo.</p>
+          </div>
+          <div class="licao-item-meta">
+            <span class="licao-item-dur">⏱ ~10 min</span>
+            <span class="licao-item-badge badge-start">Começar aqui</span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a class="licao-item" href="02-unileteral.html">
+          <span class="licao-item-glyph">𓄿</span>
+          <div class="licao-item-body">
+            <div class="licao-item-num">Lição 2 · Fonética</div>
+            <div class="licao-item-title">Os 24 sinais unileteral</div>
+            <p class="licao-item-desc">O "alfabeto" do egípcio: cada sinal representa uma única consoante. A base de tudo que vem depois.</p>
+          </div>
+          <div class="licao-item-meta">
+            <span class="licao-item-dur">⏱ ~20 min</span>
+            <span class="licao-item-badge badge-new">24 sinais</span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a class="licao-item" href="03-biliteral.html">
+          <span class="licao-item-glyph">𓅱</span>
+          <div class="licao-item-body">
+            <div class="licao-item-num">Lição 3 · Fonética</div>
+            <div class="licao-item-title">Sinais biliterais essenciais</div>
+            <p class="licao-item-desc">Os 30 sinais mais comuns que representam duas consoantes. A base para ler palavras reais do egípcio clássico.</p>
+          </div>
+          <div class="licao-item-meta">
+            <span class="licao-item-dur">⏱ ~25 min</span>
+            <span class="licao-item-badge badge-new">30 sinais</span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a class="licao-item" href="04-palavras.html">
+          <span class="licao-item-glyph">𓂋</span>
+          <div class="licao-item-body">
+            <div class="licao-item-num">Lição 4 · Vocabulário</div>
+            <div class="licao-item-title">Lendo palavras simples</div>
+            <p class="licao-item-desc">Combine os sinais para ler 20 palavras reais: corpo humano, cosmos e vida cotidiana no Egito antigo.</p>
+          </div>
+          <div class="licao-item-meta">
+            <span class="licao-item-dur">⏱ ~30 min</span>
+            <span class="licao-item-badge badge-new">20 palavras</span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a class="licao-item" href="05-cartuchos.html">
+          <span class="licao-item-glyph">𓇳</span>
+          <div class="licao-item-body">
+            <div class="licao-item-num">Lição 5 · Cartuchos</div>
+            <div class="licao-item-title">Cartuchos reais</div>
+            <p class="licao-item-desc">Leia os nomes de Ramsés, Cleópatra, Tutancâmon e mais, exatamente como os antigos egípcios escreviam.</p>
+          </div>
+          <div class="licao-item-meta">
+            <span class="licao-item-dur">⏱ ~20 min</span>
+            <span class="licao-item-badge badge-final">Lição final</span>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="licao-section">
+    <h2>Ferramentas de prática</h2>
+    <div class="ferramentas-grid">
+      <a class="ferr-card" href="flashcards.html">
+        <span class="ferr-glyph">𓄿</span>
+        <div class="ferr-info">
+          <strong>Flashcards</strong>
+          <span>Revise os sinais com repetição espaçada</span>
+        </div>
+      </a>
+      <a class="ferr-card" href="flashcards.html?mode=quiz">
+        <span class="ferr-glyph" style="font-family:inherit">❓</span>
+        <div class="ferr-info">
+          <strong>Quiz</strong>
+          <span>Teste seu conhecimento com múltipla escolha</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="licao-section">
+    <h2>Referências</h2>
+    <ul class="refs-list">
+      <li class="ref-item">
+        <strong>GARDINER, Alan H.</strong> <cite>Egyptian Grammar: Being an Introduction to the Study of Hieroglyphs.</cite> 3.ª ed. Oxford: Griffith Institute, 1957.
+        <span class="ref-note">A gramática de referência do egípcio médio, com a lista canônica de sinais (A-Aa) que classifica os hieróglifos por tema. Os códigos Gardiner (ex. G17, N35) usados neste curso seguem essa numeração.</span>
+      </li>
+      <li class="ref-item">
+        <strong>FAULKNER, Raymond O.</strong> <cite>A Concise Dictionary of Middle Egyptian.</cite> Oxford: Griffith Institute, 1962.
+        <span class="ref-note">O dicionário de bolso do egípcio médio mais consultado. As traduções de palavras e as escolhas de vocabulário deste curso têm Faulkner como referência principal.</span>
+      </li>
+      <li class="ref-item">
+        <strong>ALLEN, James P.</strong> <cite>Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs.</cite> 3.ª ed. Cambridge: Cambridge University Press, 2014.
+        <span class="ref-note">O manual universitário mais adotado atualmente. A sequência pedagógica do curso, a escolha de exemplos e a progressão do sistema fonético ao cartucho seguem a organização de Allen.</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="lesson-nav" style="justify-content: center; margin-top: 48px;">
+    <a class="btn btn-primary" href="01-sistema.html">Começar a Lição 1 →</a>
+  </div>
+
+</div>
+
+</body>
+</html>
