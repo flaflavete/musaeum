@@ -258,16 +258,22 @@ const BILITERALS = [
   { id:'G38', glyph:'𓅬', phon:'gb',   name:'ganso',                   tip:'gb = nome do deus Geb, senhor da terra. O ganso era o animal sagrado de Geb nos textos cosmológicos.' },
 ];
 
-let learned = new Set(JSON.parse(localStorage.getItem('musaeum-biliterals-learned') || '[]'));
+const _p0 = JSON.parse(localStorage.getItem('musaeum-hieroglyphs') || '{}');
+if (!(_p0.learned || {}).biliterals) {
+  const _old = localStorage.getItem('musaeum-biliterals-learned');
+  if (_old) { if (!_p0.learned) _p0.learned = {}; _p0.learned.biliterals = JSON.parse(_old); localStorage.removeItem('musaeum-biliterals-learned'); localStorage.setItem('musaeum-hieroglyphs', JSON.stringify(_p0)); }
+}
+let learned = new Set((_p0.learned || {}).biliterals || []);
 let currentFilter = 'all';
 let currentModal = null;
 let quizSign = null, quizScore = 0, quizTotal = 0, quizAnswered = false;
 
 function saveLearned() {
-  localStorage.setItem('musaeum-biliterals-learned', JSON.stringify([...learned]));
   document.getElementById('learnedCount').textContent = learned.size;
   renderGrid();
   const p = JSON.parse(localStorage.getItem('musaeum-hieroglyphs') || '{}');
+  if (!p.learned) p.learned = {};
+  p.learned.biliterals = [...learned];
   p.cardsReviewed = (p.cardsReviewed || 0) + 1;
   if (learned.size >= 10) p.lessonsCompleted = Math.max(p.lessonsCompleted || 0, 3);
   localStorage.setItem('musaeum-hieroglyphs', JSON.stringify(p));

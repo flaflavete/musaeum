@@ -239,16 +239,22 @@ const UNILITERALS = [
   { id:'I10', glyph:'𓆓', phon:'ḏ', name:'cobra com capuz', tip:'Uma cobra com capuz. Som DJ, como em "djinn". Par palatal do D.' },
 ];
 
-let learned      = new Set(JSON.parse(localStorage.getItem('musaeum-uniliterals-learned') || '[]'));
+const _p0 = JSON.parse(localStorage.getItem('musaeum-hieroglyphs') || '{}');
+if (!_p0.learned) {
+  const _old = localStorage.getItem('musaeum-uniliterals-learned');
+  if (_old) { _p0.learned = { uniliterals: JSON.parse(_old) }; localStorage.removeItem('musaeum-uniliterals-learned'); localStorage.setItem('musaeum-hieroglyphs', JSON.stringify(_p0)); }
+}
+let learned      = new Set((_p0.learned || {}).uniliterals || []);
 let currentFilter = 'all';
 let currentModal  = null;
 let quizSign = null, quizScore = 0, quizTotal = 0, quizAnswered = false;
 
 function saveLearned() {
-  localStorage.setItem('musaeum-uniliterals-learned', JSON.stringify([...learned]));
   document.getElementById('learnedCount').textContent = learned.size;
   renderGrid();
   const p = JSON.parse(localStorage.getItem('musaeum-hieroglyphs') || '{}');
+  if (!p.learned) p.learned = {};
+  p.learned.uniliterals = [...learned];
   p.cardsReviewed = (p.cardsReviewed || 0) + 1;
   if (learned.size >= 25) p.lessonsCompleted = Math.max(p.lessonsCompleted || 0, 2);
   localStorage.setItem('musaeum-hieroglyphs', JSON.stringify(p));
