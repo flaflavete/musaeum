@@ -61,54 +61,6 @@
 .progress-count { margin-left: auto; font-family: 'Cinzel', serif; font-size: 11px; color: var(--papyrus-dim); letter-spacing: 0.06em; }
 .progress-count span { color: var(--gold); font-weight: 700; }
 
-/* modal */
-.modal-overlay {
-  position: fixed; inset: 0;
-  background: rgba(27,42,61,.82);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 100; padding: 20px;
-  opacity: 0; pointer-events: none;
-  transition: opacity .2s;
-  backdrop-filter: blur(4px);
-}
-.modal-overlay.open { opacity: 1; pointer-events: all; }
-.modal {
-  background: var(--ink-elevated);
-  border: 1px solid var(--border);
-  border-radius: 18px; padding: 32px;
-  max-width: 420px; width: 100%;
-  position: relative;
-  transform: translateY(14px);
-  transition: transform .2s;
-  box-shadow: 0 24px 80px rgba(27,42,61,.6);
-}
-.modal-overlay.open .modal { transform: translateY(0); }
-.modal-close {
-  position: absolute; top: 14px; right: 14px;
-  background: var(--ink-raised); border: none; border-radius: 8px;
-  width: 30px; height: 30px; cursor: pointer;
-  color: var(--papyrus-dim); font-size: 16px;
-  display: flex; align-items: center; justify-content: center;
-  transition: background .13s, color .13s;
-}
-.modal-close:hover { background: var(--border); color: var(--papyrus); }
-.modal-glyph {
-  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
-  font-size: 88px; line-height: 1; text-align: center; display: block;
-  color: var(--gold); margin-bottom: 8px;
-}
-.modal-id { text-align: center; font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700; color: var(--papyrus-dim); letter-spacing: 0.12em; margin-bottom: 14px; }
-.modal-phon { text-align: center; font-family: 'EB Garamond', serif; font-size: 32px; font-style: italic; color: var(--terracotta-lt); margin-bottom: 4px; }
-.modal-name { text-align: center; font-size: 14px; color: var(--papyrus-soft); margin-bottom: 20px; }
-.modal-info { background: var(--ink-raised); border-radius: 10px; padding: 14px; margin-bottom: 16px; }
-.modal-info-row { display: flex; justify-content: space-between; font-size: 14px; padding: 5px 0; border-bottom: 1px solid var(--border); }
-.modal-info-row:last-child { border-bottom: none; }
-.modal-info-row .key { color: var(--papyrus-dim); }
-.modal-info-row .val { color: var(--papyrus); font-style: italic; }
-.modal-tip { font-size: 14px; color: var(--papyrus-soft); line-height: 1.6; margin-bottom: 20px; font-style: italic; background: var(--ink-raised); border-radius: 8px; padding: 12px 14px; }
-.modal-actions { display: flex; gap: 10px; }
-.modal-actions .btn { flex: 1; text-align: center; }
-
 /* quiz */
 .quiz-section { background: var(--ink-elevated); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 40px; }
 .quiz-section h2 { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700; letter-spacing: 0.12em; color: var(--papyrus); margin-bottom: 4px; }
@@ -222,34 +174,8 @@
   </div>
 </div>
 
+<script src="hieroglyphs-data.js"></script>
 <script>
-const UNILITERALS = [
-  { id:'G1',  glyph:'𓄿', phon:'ꜣ', name:'abutre egípcio', tip:'O abutre egípcio. Som gutural, como um a aspirado. Aparece muito em palavras divinas.' },
-  { id:'M17', glyph:'𓇋', phon:'j', name:'junco',           tip:'Um junco/cana. Equivale ao nosso Y ou I. Muito comum no início de palavras.' },
-  { id:'M17', glyph:'𓇌', phon:'y', name:'dois juncos',     tip:'Dois juncos, que reforçam o som Y. Aparece especialmente em sufixos e formas femininas.' },
-  { id:'D36', glyph:'𓂝', phon:'ꜥ', name:'braço',          tip:'O braço com mão aberta. Som faríngeo sem equivalente em português. Imagine um "a" profundo na garganta.' },
-  { id:'G43', glyph:'𓅱', phon:'w', name:'pintinho de codorna', tip:'O pintinho de codorna. Som W, como em "uva". Um dos sinais mais frequentes do egípcio.' },
-  { id:'D58', glyph:'𓃀', phon:'b', name:'pé',              tip:'Um pé. O som B. Note que o sinal é um pé visto de lado.' },
-  { id:'Q3',  glyph:'𓊪', phon:'p', name:'banco',           tip:'Um banco visto de cima. O som P.' },
-  { id:'I9',  glyph:'𓆑', phon:'f', name:'víbora cornuda',  tip:'A víbora cornuda. O som F. Cuidado para não confundir com outras cobras.' },
-  { id:'G17', glyph:'𓅓', phon:'m', name:'coruja',          tip:'A coruja. O som M. Um dos sinais mais reconhecíveis: sempre olha para frente.' },
-  { id:'N35', glyph:'𓈖', phon:'n', name:'ondas de água',   tip:'Ondas de água. O som N. A forma em ziguezague é inconfundível.' },
-  { id:'D21', glyph:'𓂋', phon:'r', name:'boca',            tip:'Uma boca vista de frente. O som R. Extremamente comum em gramática e sufixos.' },
-  { id:'O4',  glyph:'𓉔', phon:'h', name:'abrigo de juncos',tip:'Um abrigo de juncos. O H simples, como em "há".' },
-  { id:'V28', glyph:'𓎛', phon:'ḥ', name:'pavio de linho',  tip:'Um pavio de linho torcido. H aspirado mais forte, pronuncie com mais ar.' },
-  { id:'Aa1', glyph:'𓐍', phon:'ḫ', name:'placenta',        tip:'A placenta (interpretação incerta). Som KH gutural, como o CH alemão em "Bach".' },
-  { id:'F32', glyph:'𓄡', phon:'ẖ', name:'barriga animal',  tip:'Barriga de animal. Outro som KH, ligeiramente mais palatal.' },
-  { id:'O34', glyph:'𓊃', phon:'z', name:'tranca',          tip:'Uma tranca de porta. O som Z (ou S em alguns contextos).' },
-  { id:'S29', glyph:'𓋴', phon:'s', name:'tecido dobrado',  tip:'Um tecido dobrado. O som S. Muito comum, aparece em centenas de palavras.' },
-  { id:'N37', glyph:'𓈙', phon:'š', name:'lago de jardim',  tip:'Um lago visto de cima. O som SH, como em "show".' },
-  { id:'N29', glyph:'𓈎', phon:'q', name:'encosta',         tip:'Uma encosta de colina. Som Q gutural, mais fundo que o K.' },
-  { id:'V31', glyph:'𓎡', phon:'k', name:'cesta com alça',  tip:'Uma cesta com alça. O som K comum.' },
-  { id:'W11', glyph:'𓎼', phon:'g', name:'suporte de jarro',tip:'Um suporte para jarro. O som G, como em "gato".' },
-  { id:'X1',  glyph:'𓏏', phon:'t', name:'pão achatado',    tip:'Um pão achatado. O som T. Este sinal também marca o feminino em substantivos.' },
-  { id:'V13', glyph:'𓍿', phon:'ṯ', name:'corda',           tip:'Uma corda de amarrar. Som TJ palatal, como o CH italiano em "ciao".' },
-  { id:'D46', glyph:'𓂧', phon:'d', name:'mão',             tip:'Uma mão. O som D.' },
-  { id:'I10', glyph:'𓌀', phon:'ḏ', name:'cobra com capuz', tip:'Uma cobra com capuz. Som DJ, como em "djinn". Par palatal do D.' },
-];
 
 let learned      = new Set(JSON.parse(localStorage.getItem('musaeum-uniliterals-learned') || '[]'));
 let currentFilter = 'all';
@@ -285,7 +211,7 @@ function renderGrid() {
       <span class="sc-glyph">${s.glyph}</span>
       <span class="sc-gardiner">${s.id}</span>
       <span class="sc-phon">${s.phon}</span>
-      <span class="sc-name">${s.name}</span>
+      <span class="sc-name">${s.name_pt}</span>
     </div>`).join('');
   const pct = Math.round((learned.size / 24) * 100);
   document.getElementById('progressBar').style.width = pct + '%';
@@ -298,9 +224,9 @@ function openModal(phon) {
   document.getElementById('mGlyph').textContent = s.glyph;
   document.getElementById('mId').textContent    = s.id + ' · uniliterais';
   document.getElementById('mPhon').textContent  = s.phon;
-  document.getElementById('mName').textContent  = s.name;
+  document.getElementById('mName').textContent  = s.name_pt;
   document.getElementById('mTranslit').textContent = s.phon;
-  document.getElementById('mDesc').textContent  = s.name;
+  document.getElementById('mDesc').textContent  = s.name_pt;
   document.getElementById('mTip').textContent   = s.tip;
   document.getElementById('modalOverlay').classList.add('open');
 }

@@ -57,49 +57,6 @@
 .progress-count { margin-left: auto; font-family: 'Cinzel', serif; font-size: 11px; color: var(--papyrus-dim); letter-spacing: 0.06em; }
 .progress-count span { color: var(--gold); font-weight: 700; }
 
-.modal-overlay {
-  position: fixed; inset: 0;
-  background: rgba(27,42,61,.82);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 100; padding: 20px;
-  opacity: 0; pointer-events: none;
-  transition: opacity .2s;
-  backdrop-filter: blur(4px);
-}
-.modal-overlay.open { opacity: 1; pointer-events: all; }
-.modal {
-  background: var(--ink-elevated);
-  border: 1px solid var(--border);
-  border-radius: 18px; padding: 32px;
-  max-width: 420px; width: 100%;
-  position: relative;
-  transform: translateY(14px);
-  transition: transform .2s;
-  box-shadow: 0 24px 80px rgba(27,42,61,.6);
-}
-.modal-overlay.open .modal { transform: translateY(0); }
-.modal-close {
-  position: absolute; top: 14px; right: 14px;
-  background: var(--ink-raised); border: none; border-radius: 8px;
-  width: 30px; height: 30px; cursor: pointer;
-  color: var(--papyrus-dim); font-size: 16px;
-  display: flex; align-items: center; justify-content: center;
-  transition: background .13s, color .13s;
-}
-.modal-close:hover { background: var(--border); color: var(--papyrus); }
-.modal-glyph { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 88px; line-height: 1; text-align: center; display: block; color: var(--gold); margin-bottom: 8px; }
-.modal-id { text-align: center; font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700; color: var(--papyrus-dim); letter-spacing: 0.12em; margin-bottom: 14px; }
-.modal-phon { text-align: center; font-family: 'EB Garamond', serif; font-size: 32px; font-style: italic; color: var(--terracotta-lt); margin-bottom: 4px; }
-.modal-name { text-align: center; font-size: 14px; color: var(--papyrus-soft); margin-bottom: 20px; }
-.modal-info { background: var(--ink-raised); border-radius: 10px; padding: 14px; margin-bottom: 16px; }
-.modal-info-row { display: flex; justify-content: space-between; font-size: 14px; padding: 5px 0; border-bottom: 1px solid var(--border); }
-.modal-info-row:last-child { border-bottom: none; }
-.modal-info-row .key { color: var(--papyrus-dim); }
-.modal-info-row .val { color: var(--papyrus); font-style: italic; }
-.modal-tip { font-size: 14px; color: var(--papyrus-soft); line-height: 1.6; margin-bottom: 20px; font-style: italic; background: var(--ink-raised); border-radius: 8px; padding: 12px 14px; }
-.modal-actions { display: flex; gap: 10px; }
-.modal-actions .btn { flex: 1; text-align: center; }
-
 .quiz-section { background: var(--ink-elevated); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 40px; }
 .quiz-section h2 { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700; letter-spacing: 0.12em; color: var(--papyrus); margin-bottom: 4px; }
 .quiz-sub { font-size: 15px; color: var(--papyrus-soft); margin-bottom: 20px; }
@@ -234,29 +191,8 @@
   </div>
 </div>
 
+<script src="hieroglyphs-data.js"></script>
 <script>
-const BILITERALS = [
-  { id:'O1',  glyph:'𓉐', phon:'pr',   name:'planta de casa',          tip:'pr = "casa". Raiz de per-aa (pr-ꜥꜣ), "grande casa" = Faraó. Frequente em topônimos como Per-Ramsés.' },
-  { id:'D2',  glyph:'𓁷', phon:'ḥr',   name:'rosto',                   tip:'ḥr = "rosto" e preposição "sobre, em". Aparece também no nome do deus Hórus (ḥrw).' },
-  { id:'F4',  glyph:'𓄂', phon:'ḥꜣ',   name:'parte dianteira de leão', tip:'ḥꜣ = "atrás, além de". Preposição espacial frequente em textos funerários e geográficos.' },
-  { id:'D28', glyph:'𓂓', phon:'kꜣ',   name:'dois braços erguidos',    tip:'kꜣ = "ka", o duplo espiritual de cada pessoa. Central na teologia egípcia e nos ritos funerários.' },
-  { id:'G25', glyph:'𓅜', phon:'ꜣḫ',   name:'íbis com crista',         tip:'ꜣḫ = "espírito luminoso". Os mortos bem-sucedidos tornavam-se ꜣḫ e habitavam o campo estelar.' },
-  { id:'F34', glyph:'𓄣', phon:'ib',    name:'coração',                 tip:'ib = "coração, vontade". Para os egípcios, o coração era a sede da inteligência e da memória.' },
-  { id:'W24', glyph:'𓏌', phon:'nw',    name:'vasos',                   tip:'nw = partícula plural do Reino Antigo. Aparece em Nun/Nunu (nwn), o oceano primordial da criação.' },
-  { id:'G19', glyph:'𓅕', phon:'mi',    name:'coruja com antebraço',    tip:'mi = "como, igual a" (partícula de comparação). Frequente em expressões poéticas e laudatórias.' },
-  { id:'V30', glyph:'𓎟', phon:'nb',    name:'cesto',                   tip:'nb = "senhor, todo, cada". Extremamente frequente: nb-tꜣwy = "Senhor das Duas Terras" = Faraó.' },
-  { id:'G36', glyph:'𓅨', phon:'wr',    name:'andorinha',               tip:'wr = "grande". Aparece em epítetos divinos (wr-nṯr, "o grande deus") e títulos nobiliárquicos.' },
-  { id:'R8',  glyph:'𓊹', phon:'nṯr',  name:'tecido sobre mastro',     tip:'nṯr = "deus". Trileteral usado como logograma. Aparece em quase todo texto religioso egípcio.' },
-  { id:'R11', glyph:'𓊽', phon:'ḏd',   name:'coluna djed',             tip:'ḏd = "dizer" (verbo) e "estabilidade" (logograma). A coluna djed é símbolo de Osíris.' },
-  { id:'N41', glyph:'𓈞', phon:'ḥm',   name:'poço com ondas',          tip:'ḥm = "servo" e "Majestade" em contexto real. ḥm-nṯr = "servo do deus" = sacerdote.' },
-  { id:'D1',  glyph:'𓁶', phon:'tp',   name:'cabeça',                  tip:'tp = "cabeça, topo, sobre". Funciona tanto como substantivo quanto como preposição.' },
-  { id:'N16', glyph:'𓇾', phon:'tꜣ',   name:'terra com grãos',         tip:'tꜣ = "terra, país, solo". Aparece em nb-tꜣwy e expressões geográficas fundamentais.' },
-  { id:'G39', glyph:'𓅭', phon:'sꜣ',   name:'pato',                    tip:'sꜣ = "filho", "proteção" e "costas". Muito frequente em linhagens reais e títulos.' },
-  { id:'S34', glyph:'𓋹', phon:'ꜥnḫ',  name:'ânkh',                    tip:'ꜥnḫ = "vida". O ankh é apresentado pelos deuses aos faraós como dom da vida eterna.' },
-  { id:'N18', glyph:'𓈀', phon:'iw',   name:'ilha',                    tip:'iw = "ilha". Também funciona como conectivo verbal frequentíssimo no início de orações.' },
-  { id:'N36', glyph:'𓈘', phon:'mr',   name:'canal',                   tip:'mr = "canal" e verbo "amar, querer". Muito frequente em textos do Reino Médio.' },
-  { id:'G38', glyph:'𓅬', phon:'gb',   name:'ganso',                   tip:'gb = nome do deus Geb, senhor da terra. O ganso era o animal sagrado de Geb nos textos cosmológicos.' },
-];
 
 let learned = new Set(JSON.parse(localStorage.getItem('musaeum-biliterals-learned') || '[]'));
 let currentFilter = 'all';
@@ -281,7 +217,7 @@ function setFilter(f, btn) {
 }
 
 function renderGrid() {
-  const filtered = BILITERALS.filter(s => {
+  const filtered = BILITERALS_LESSON.filter(s => {
     if (currentFilter === 'learned') return learned.has(s.phon);
     if (currentFilter === 'new') return !learned.has(s.phon);
     return true;
@@ -291,22 +227,22 @@ function renderGrid() {
       <span class="sc-glyph">${s.glyph}</span>
       <span class="sc-gardiner">${s.id}</span>
       <span class="sc-phon">${s.phon}</span>
-      <span class="sc-name">${s.name}</span>
+      <span class="sc-name">${s.name_pt}</span>
     </div>`).join('');
   document.getElementById('learnedCount').textContent = learned.size;
   document.getElementById('progressBar').style.width = Math.round((learned.size/20)*100) + '%';
 }
 
 function openModal(phon) {
-  const s = BILITERALS.find(x => x.phon === phon);
+  const s = BILITERALS_LESSON.find(x => x.phon === phon);
   if (!s) return;
   currentModal = s;
   document.getElementById('mGlyph').textContent    = s.glyph;
   document.getElementById('mId').textContent       = s.id + ' · biliteral';
   document.getElementById('mPhon').textContent     = s.phon;
-  document.getElementById('mName').textContent     = s.name;
+  document.getElementById('mName').textContent     = s.name_pt;
   document.getElementById('mTranslit').textContent = s.phon;
-  document.getElementById('mDesc').textContent     = s.name;
+  document.getElementById('mDesc').textContent     = s.name_pt;
   document.getElementById('mTip').textContent      = s.tip;
   document.getElementById('modalOverlay').classList.add('open');
 }
@@ -316,9 +252,9 @@ function markLearned() { if (!currentModal) return; learned.add(currentModal.pho
 function nextQuiz() {
   quizAnswered = false;
   document.getElementById('nextBtn').disabled = true;
-  quizSign = BILITERALS[Math.floor(Math.random() * BILITERALS.length)];
+  quizSign = BILITERALS_LESSON[Math.floor(Math.random() * BILITERALS_LESSON.length)];
   document.getElementById('quizGlyph').textContent = quizSign.glyph;
-  const others = BILITERALS.filter(s => s.phon !== quizSign.phon).sort(() => Math.random()-.5).slice(0,3);
+  const others = BILITERALS_LESSON.filter(s => s.phon !== quizSign.phon).sort(() => Math.random()-.5).slice(0,3);
   const opts = [...others, quizSign].sort(() => Math.random()-.5);
   document.getElementById('quizOpts').innerHTML = opts.map(o =>
     `<button class="quiz-opt" onclick="checkQuiz(this,'${o.phon}')">${o.phon}</button>`).join('');

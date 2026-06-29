@@ -407,58 +407,14 @@ body {
 </div>
 </div>
 
+<script src="hieroglyphs-data.js"></script>
 <script>
-const UNILITERALS = [
-  { id:'G1',  glyph:'𓄿', phon:'ꜣ', name:'Egyptian vulture',   tip:'O abutre egípcio. Som gutural aspirado. Muito comum em palavras divinas.' },
-  { id:'M17', glyph:'𓇋', phon:'j',  name:'reed',               tip:'Um junco. Equivale ao Y ou I. Muito comum no início de palavras.' },
-  { id:'M17', glyph:'𓇌', phon:'y',  name:'double reed',        tip:'Dois juncos. Reforça o som Y em sufixos e formas femininas.' },
-  { id:'D36', glyph:'𓂝', phon:'ꜥ',  name:'forearm',            tip:'O braço aberto. Som faríngeo sem equivalente em português.' },
-  { id:'G17', glyph:'𓅱', phon:'w',  name:'quail chick',        tip:'O pintinho de codorna. Som W, como em "uva". Muito frequente.' },
-  { id:'D58', glyph:'𓃀', phon:'b',  name:'foot',               tip:'Um pé visto de lado. O som B.' },
-  { id:'Q3',  glyph:'𓊪', phon:'p',  name:'stool',              tip:'Um banco visto de cima. O som P.' },
-  { id:'I9',  glyph:'𓆑', phon:'f',  name:'horned viper',       tip:'A víbora cornuda. O som F.' },
-  { id:'G17', glyph:'𓅓', phon:'m',  name:'owl',                tip:'A coruja. O som M. Olha sempre para a frente.' },
-  { id:'N35', glyph:'𓈖', phon:'n',  name:'water ripple',       tip:'Ondas de água em ziguezague. O som N.' },
-  { id:'D21', glyph:'𓂋', phon:'r',  name:'mouth',              tip:'Uma boca de frente. O som R. Extremamente comum.' },
-  { id:'O4',  glyph:'𓉔', phon:'h',  name:'reed shelter',       tip:'Um abrigo de juncos. O H simples.' },
-  { id:'V28', glyph:'𓎛', phon:'ḥ',  name:'twisted flax wick',  tip:'Pavio de linho torcido. H aspirado mais forte.' },
-  { id:'Aa1', glyph:'𓐍', phon:'ḫ',  name:'placenta',           tip:'Som KH gutural, como o CH alemão em "Bach".' },
-  { id:'F32', glyph:'𓄡', phon:'ẖ',  name:'belly of animal',    tip:'Barriga de animal. KH palatal, ligeiramente diferente do anterior.' },
-  { id:'O34', glyph:'𓊃', phon:'z',  name:'bolt',               tip:'Uma tranca de porta. Som Z (ou S em alguns contextos).' },
-  { id:'S29', glyph:'𓋴', phon:'s',  name:'folded cloth',       tip:'Tecido dobrado. O som S. Aparece em centenas de palavras.' },
-  { id:'N37', glyph:'𓈙', phon:'š',  name:'garden pool',        tip:'Um lago visto de cima. O som SH, como em "show".' },
-  { id:'N29', glyph:'𓈎', phon:'q',  name:'slope of hill',      tip:'Encosta de colina. O Q gutural, mais fundo que K.' },
-  { id:'V31', glyph:'𓎡', phon:'k',  name:'basket with handle', tip:'Uma cesta com alça. O som K.' },
-  { id:'W11', glyph:'𓎼', phon:'g',  name:'stand for jar',      tip:'Suporte para jarro. O som G como em "gato".' },
-  { id:'X1',  glyph:'𓏏', phon:'t',  name:'bread loaf',         tip:'Um pão achatado. O som T. Também marca o feminino.' },
-  { id:'V13', glyph:'𓍿', phon:'ṯ',  name:'tethering rope',     tip:'Uma corda. Som TJ palatal, como CH italiano em "ciao".' },
-  { id:'D46', glyph:'𓂧', phon:'d',  name:'hand',               tip:'Uma mão. O som D.' },
-  { id:'I10', glyph:'𓌀', phon:'ḏ',  name:'cobra',              tip:'Cobra com capuz. Som DJ, como em "djinn".' },
-];
-
-const BILITERALS = [
-  { id:'D28', glyph:'𓐝', phon:'kꜣ', name:'pair of arms' },
-  { id:'F34', glyph:'𓄤', phon:'nfr', name:'heart with trachea' },
-  { id:'N5',  glyph:'𓇳', phon:'rꜥ', name:'sun disc' },
-  { id:'S34', glyph:'𓋹', phon:'ꜥnḫ', name:'ankh' },
-  { id:'G25', glyph:'𓅐', phon:'ꜣḫ', name:'crested ibis' },
-  { id:'M22', glyph:'𓇷', phon:'wn', name:'rush' },
-  { id:'D4',  glyph:'𓁹', phon:'jr', name:'eye' },
-  { id:'G43', glyph:'𓅱', phon:'wꜣ', name:'quail chick (bil)' },
-  { id:'N36', glyph:'𓈗', phon:'mr', name:'canal' },
-  { id:'F35', glyph:'𓄥', phon:'ms', name:'three fox skins' },
-  { id:'D54', glyph:'𓇼', phon:'jw', name:'walking legs' },
-  { id:'O29', glyph:'𓋴𓄿', phon:'sꜣ', name:'folded cloth + vulture' },
-  { id:'G1',  glyph:'𓄿𓏏', phon:'ꜣt', name:'vulture + bread' },
-  { id:'N18', glyph:'𓏇', phon:'jw', name:'island' },
-  { id:'V4',  glyph:'𓌀', phon:'wꜥ', name:'lasso' },
-];
 
 let deck = [], deckName = 'uniliterals', mode = 'flash';
 let idx = 0, correct = 0, wrong = 0, flipped = false, quizAnswered = false;
 
 function buildDeck(name) {
-  let base = name === 'uniliterals' ? [...UNILITERALS] : [...UNILITERALS, ...BILITERALS];
+  let base = name === 'uniliterals' ? [...UNILITERALS] : [...UNILITERALS, ...BILITERALS_FLASH];
   return base.sort(() => Math.random() - .5);
 }
 
@@ -510,7 +466,7 @@ function showCard() {
     document.getElementById('cardGlyph').textContent = s.glyph;
     document.getElementById('cardId').textContent = s.id;
     document.getElementById('cardPhon').textContent = s.phon;
-    document.getElementById('cardName').textContent = s.name;
+    document.getElementById('cardName').textContent = s.name_en;
     document.getElementById('cardTip').textContent = s.tip || '';
   } else {
     quizAnswered = false;
@@ -524,7 +480,7 @@ function showCard() {
     document.getElementById('quizOpts').innerHTML = opts.map(o =>
       `<button class="qopt" onclick="checkQuiz(this,'${o.phon}')">
         <span>${o.phon}</span>
-        <small>${o.name.split(' ').slice(0,2).join(' ')}</small>
+        <small>${o.name_en.split(' ').slice(0,2).join(' ')}</small>
       </button>`).join('');
   }
 }
