@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lição 3 · Sinais bilíteros essenciais · Musæum</title>
+<title>Lição 3 · Sinais biliterais essenciais · Musæum</title>
 <meta name="theme-color" content="#1b2a3d">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -128,11 +128,11 @@
 <div class="licao-progress-bar" id="progressBar" style="width:0%"></div>
 
 <header class="licao-header">
-  <a class="licao-back" href="index.html" onclick="history.length>1 ? (history.back(), event.preventDefault()) : null">
+  <a class="licao-back" href="../index.html" onclick="history.length>1 ? (history.back(), event.preventDefault()) : null">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     Musæum
   </a>
-  <span class="licao-header-title">Lição 3 · Sinais bilíteros essenciais</span>
+  <span class="licao-header-title">Lição 3 · Sinais biliterais essenciais</span>
 </header>
 
 <div class="licao-content">
@@ -140,12 +140,12 @@
   <div class="licao-hero">
     <div class="licao-hero-num">Lição 3 · Fonética</div>
     <span class="licao-hero-glyph">𓅱</span>
-    <h1>Sinais bilíteros essenciais</h1>
-    <p>Os sinais bilíteros representam duas consoantes de uma vez. Allen explica que funcionam pelo princípio do rébus: a imagem de uma "casa" (𓉐) foi usada para representar os sons <em>pr</em> porque a palavra egípcia para "casa" começava com essa combinação. Os 20 aqui são os mais frequentes em textos reais do Egito Antigo — entre eles alguns trilíteros e logogramas fundamentais.</p>
+    <h1>Sinais biliterais essenciais</h1>
+    <p>Os sinais biliterais representam duas consoantes de uma vez, ampliando muito o que você consegue ler. Os 20 aqui são os mais frequentes em textos reais do Egito Antigo — entre eles alguns triliterais e logogramas fundamentais.</p>
   </div>
 
   <div class="callout">
-    <strong>Regra dos complementos fonéticos (Allen, §3.2):</strong> Um unilítero que vem <em>após</em> um bilítero é quase sempre complemento fonético, não uma letra adicional. Exemplo: 𓉐𓂋 = <em>pr</em> (não <em>prr</em>) — o 𓂋 apenas confirma o r final do bilítero. Para escrever <em>prr</em> de verdade, seriam necessários dois sinais 𓉐.
+    <strong>Complemento fonético:</strong> Biliterais muitas vezes vêm acompanhados de uniliterais que repetem o som final. Exemplo: pr (casa) + 𓂋 (r) = 𓉐𓂋. O r não é lido duas vezes — ele apenas confirma a leitura. Clique em qualquer sinal para ver a dica e marcar como aprendido.
   </div>
 
   <div class="filter-row">
@@ -159,13 +159,13 @@
   <div class="signs-grid" id="signsGrid"></div>
 
   <div class="licao-section">
-    <h2>Bilíteros em palavras reais</h2>
-    <p>Veja como bilíteros se combinam com complementos e determinativos para formar palavras:</p>
+    <h2>Biliterais em palavras reais</h2>
+    <p>Veja como biliterais se combinam com complementos e determinativos para formar palavras:</p>
     <div class="combos-grid">
       <div class="combo-card">
-        <div class="combo-glyphs">𓉐𓂋</div>
+        <div class="combo-glyphs">𓉐</div>
         <div class="combo-translit">pr</div>
-        <div class="combo-meaning">casa · 𓂋 = complemento r</div>
+        <div class="combo-meaning">casa</div>
       </div>
       <div class="combo-card">
         <div class="combo-glyphs">𓁷𓂋</div>
@@ -222,7 +222,7 @@
     <div class="modal-phon" id="mPhon"></div>
     <div class="modal-name" id="mName"></div>
     <div class="modal-info">
-      <div class="modal-info-row"><span class="key">Tipo</span><span class="val" id="mTipo">Bilítero · 2 consoantes</span></div>
+      <div class="modal-info-row"><span class="key">Tipo</span><span class="val">Biliteral · 2 consoantes</span></div>
       <div class="modal-info-row"><span class="key">Transliteração</span><span class="val" id="mTranslit"></span></div>
       <div class="modal-info-row"><span class="key">Sinal</span><span class="val" id="mDesc"></span></div>
     </div>
@@ -246,7 +246,7 @@ const BILITERALS = [
   { id:'G19', glyph:'𓅕', phon:'mi',    name:'coruja com antebraço',    tip:'mi = "como, igual a" (partícula de comparação). Frequente em expressões poéticas e laudatórias.' },
   { id:'V30', glyph:'𓎟', phon:'nb',    name:'cesto',                   tip:'nb = "senhor, todo, cada". Extremamente frequente: nb-tꜣwy = "Senhor das Duas Terras" = Faraó.' },
   { id:'G36', glyph:'𓅨', phon:'wr',    name:'andorinha',               tip:'wr = "grande". Aparece em epítetos divinos (wr-nṯr, "o grande deus") e títulos nobiliárquicos.' },
-  { id:'R8',  glyph:'𓊹', phon:'nṯr',  name:'tecido sobre mastro',     tip:'nṯr = "deus". Trilítero usado como logograma. Aparece em quase todo texto religioso egípcio.' },
+  { id:'R8',  glyph:'𓊹', phon:'nṯr',  name:'tecido sobre mastro',     tip:'nṯr = "deus". Trileteral usado como logograma. Aparece em quase todo texto religioso egípcio.' },
   { id:'R11', glyph:'𓊽', phon:'ḏd',   name:'coluna djed',             tip:'ḏd = "dizer" (verbo) e "estabilidade" (logograma). A coluna djed é símbolo de Osíris.' },
   { id:'N41', glyph:'𓈞', phon:'ḥm',   name:'poço com ondas',          tip:'ḥm = "servo" e "Majestade" em contexto real. ḥm-nṯr = "servo do deus" = sacerdote.' },
   { id:'D1',  glyph:'𓁶', phon:'tp',   name:'cabeça',                  tip:'tp = "cabeça, topo, sobre". Funciona tanto como substantivo quanto como preposição.' },
@@ -258,22 +258,16 @@ const BILITERALS = [
   { id:'G38', glyph:'𓅬', phon:'gb',   name:'ganso',                   tip:'gb = nome do deus Geb, senhor da terra. O ganso era o animal sagrado de Geb nos textos cosmológicos.' },
 ];
 
-const _p0 = JSON.parse(localStorage.getItem('musaeum-hieroglyphs') || '{}');
-if (!(_p0.learned || {}).biliterals) {
-  const _old = localStorage.getItem('musaeum-biliterals-learned');
-  if (_old) { if (!_p0.learned) _p0.learned = {}; _p0.learned.biliterals = JSON.parse(_old); localStorage.removeItem('musaeum-biliterals-learned'); localStorage.setItem('musaeum-hieroglyphs', JSON.stringify(_p0)); }
-}
-let learned = new Set((_p0.learned || {}).biliterals || []);
+let learned = new Set(JSON.parse(localStorage.getItem('musaeum-biliterals-learned') || '[]'));
 let currentFilter = 'all';
 let currentModal = null;
 let quizSign = null, quizScore = 0, quizTotal = 0, quizAnswered = false;
 
 function saveLearned() {
+  localStorage.setItem('musaeum-biliterals-learned', JSON.stringify([...learned]));
   document.getElementById('learnedCount').textContent = learned.size;
   renderGrid();
   const p = JSON.parse(localStorage.getItem('musaeum-hieroglyphs') || '{}');
-  if (!p.learned) p.learned = {};
-  p.learned.biliterals = [...learned];
   p.cardsReviewed = (p.cardsReviewed || 0) + 1;
   if (learned.size >= 10) p.lessonsCompleted = Math.max(p.lessonsCompleted || 0, 3);
   localStorage.setItem('musaeum-hieroglyphs', JSON.stringify(p));
@@ -307,10 +301,8 @@ function openModal(phon) {
   const s = BILITERALS.find(x => x.phon === phon);
   if (!s) return;
   currentModal = s;
-  const tipo = s.phon.length >= 3 ? 'Trilítero · 3 consoantes' : s.phon.length === 2 ? 'Bilítero · 2 consoantes' : 'Logograma';
   document.getElementById('mGlyph').textContent    = s.glyph;
-  document.getElementById('mId').textContent       = s.id;
-  document.getElementById('mTipo').textContent     = tipo;
+  document.getElementById('mId').textContent       = s.id + ' · biliteral';
   document.getElementById('mPhon').textContent     = s.phon;
   document.getElementById('mName').textContent     = s.name;
   document.getElementById('mTranslit').textContent = s.phon;

@@ -108,6 +108,42 @@
 .wc-feedback.ok  { color: var(--green); }
 .wc-feedback.err { color: var(--terracotta-lt); }
 
+.btn-tooltip-wrap { position: relative; display: inline-block; margin-bottom: 18px; }
+.btn-tooltip-wrap .tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 13px;
+  font-family: 'EB Garamond', serif;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--papyrus-soft);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .18s;
+  box-shadow: 0 6px 20px rgba(0,0,0,.3);
+  z-index: 10;
+}
+.btn-tooltip-wrap .tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--border);
+}
+.btn-tooltip-wrap:hover .tooltip { opacity: 1; }
+
+.translit-kbd { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.translit-kbd button { font-family: 'EB Garamond', serif; font-size: 16px; font-style: italic; background: var(--ink-raised); border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; color: var(--terracotta-lt); cursor: pointer; transition: background .12s, border-color .12s; line-height: 1; }
+.translit-kbd button:hover { background: rgba(201,166,70,.12); border-color: var(--gold); color: var(--papyrus); }
+.translit-kbd .kbd-del { color: var(--papyrus-dim); font-style: normal; font-size: 13px; }
+
 .wc-answer { display: none; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
 .word-card.revealed .wc-answer { display: block; }
 .wc-answer-phon { font-family: 'EB Garamond', serif; font-size: 24px; font-style: italic; color: var(--terracotta-lt); margin-bottom: 4px; }
@@ -131,7 +167,7 @@ ol strong { color: var(--papyrus); }
 <div class="licao-progress-bar" id="progressBar" style="width:0%"></div>
 
 <header class="licao-header">
-  <a class="licao-back" href="index.html" onclick="history.length>1 ? (history.back(), event.preventDefault()) : null">
+  <a class="licao-back" href="../index.html" onclick="history.length>1 ? (history.back(), event.preventDefault()) : null">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     Musæum
   </a>
@@ -152,7 +188,7 @@ ol strong { color: var(--papyrus); }
     <p>Ao encontrar uma palavra em hieróglifos, siga este processo:</p>
     <ol>
       <li>Identifique a <strong>direção</strong> (os rostos encarando de qual lado?)</li>
-      <li>Separe os sinais e classifique: unilítero, bilítero, trilítero ou determinativo</li>
+      <li>Separe os sinais e classifique: unileteral, biliteral, trileteral ou determinativo</li>
       <li>Leia os sinais fonéticos em ordem, ignorando repetições de complementos</li>
       <li>O determinativo no final não é lido: ele apenas confirma a categoria</li>
     </ol>
@@ -162,23 +198,14 @@ ol strong { color: var(--papyrus); }
   </div>
 
   <div class="licao-section">
-    <h2>Substantivos em egípcio: gênero e número</h2>
-    <p>A Lição 4 de Allen é dedicada aos substantivos. Em egípcio médio, todo substantivo tem gênero — masculino ou feminino — e número.</p>
-    <div class="callout">
-      <strong>Masculino</strong> — sem sufixo: <em>nṯr</em> "deus" (𓊹𓏤)<br>
-      <strong>Feminino</strong> — sufixo <em>-t</em>: <em>nṯrt</em> "deusa" (𓊹𓏏𓏤)<br>
-      <strong>Plural masc.</strong> — sufixo <em>-w</em>: <em>nṯrw</em> "deuses" (𓊹𓅱𓏤)<br>
-      <strong>Plural fem.</strong> — sufixo <em>-wt</em>: <em>nṯrwt</em> "deusas" (𓊹𓅱𓏏𓏤)
-    </div>
-    <p>Dois substantivos justapostos formam o <em>genitivo direto</em> (A + B = "A de B"). Por reverência, nomes divinos podem ser escritos antes mesmo sendo lidos depois — Allen chama isso de <em>transposição honorífica</em>:</p>
-    <div class="callout">
-      <strong>𓊹𓉗</strong> — escrito: <em>nṯr</em> + <em>ḥwt</em> — lido: <em>ḥwt-nṯr</em> "recinto do deus" = <strong>templo</strong>
-    </div>
-  </div>
-
-  <div class="licao-section">
     <h2>Prática: tente transliterar</h2>
-    <p>Tente escrever a transliteração antes de revelar. Clique em "Revelar" para ver a resposta e a explicação completa.</p>
+    <p>Tente escrever a transliteração antes de revelar. Clique em "Revelar" para ver a resposta e a explicação completa. Os caracteres especiais da transliteração egípcia estão no tecladinho abaixo de cada campo, e as letras comuns você digita normalmente pelo teclado.</p>
+    <div class="btn-tooltip-wrap">
+      <a class="btn" href="../gardiner/gardiner.html" target="_blank" style="display:inline-flex;align-items:center;gap:6px">
+        <span style="font-family:'Noto Sans Egyptian Hieroglyphs',sans-serif;font-size:18px;line-height:1">𓏟</span> Consultar lista de Gardiner
+      </a>
+      <div class="tooltip">Abre a lista completa de sinais de Gardiner em uma nova aba para você consultar enquanto pratica.</div>
+    </div>
 
     <div class="cat-tabs">
       <button class="cat-tab active" onclick="showCat('corpo',this)">Corpo humano</button>
@@ -195,7 +222,7 @@ ol strong { color: var(--papyrus); }
   </div>
 
   <div class="lesson-nav">
-    <a class="btn" href="03-bilítero.html">← Lição 3</a>
+    <a class="btn" href="03-biliteral.html">← Lição 3</a>
     <div class="lesson-nav-info">Lição 4 de 5</div>
     <a class="btn btn-primary" href="05-cartuchos.html">Próxima →</a>
   </div>
@@ -206,54 +233,54 @@ ol strong { color: var(--papyrus); }
 const WORDS = {
   corpo: [
     { glyph:'𓁷𓏤', phon:'ḥr', meaning:'rosto / sobre',
-      parts:[{g:'𓁷',p:'ḥr',d:'rosto (bilítero D2)'},{g:'𓏤',p:'',d:'traço vertical (logograma)'}],
-      note:'Uma das preposições mais frequentes do egípcio médio. ḥr = "rosto" como substantivo e "sobre, a respeito de" como preposição. Aparece no nome do deus Hórus (ḥrw).' },
-    { glyph:'𓂋𓈖𓏤', phon:'rn', meaning:'nome',
-      parts:[{g:'𓂋',p:'r',d:'boca (unilítero D21)'},{g:'𓈖',p:'n',d:'ondas de água (unilítero N35)'},{g:'𓏤',p:'',d:'traço vertical'}],
-      note:'O "nome" era sagrado: destruí-lo equivalia a uma segunda morte. Por isso faraós apagavam os nomes de antecessores indesejados dos monumentos.' },
-    { glyph:'𓄣𓏤', phon:'jb', meaning:'coração',
-      parts:[{g:'𓄣',p:'jb',d:'coração (bilítero F34)'},{g:'𓏤',p:'',d:'traço vertical'}],
-      note:'O coração era a sede da inteligência e da memória para os egípcios. No Julgamento dos Mortos, o coração era pesado contra a pena de Maat.' },
+      parts:[{g:'𓁷',p:'ḥr',d:'rosto (biliteral)'},{g:'𓏤',p:'',d:'traço vertical (logograma)'}],
+      note:'Uma das preposições mais comuns. ḥr também aparece no nome do deus Hórus.' },
+    { glyph:'𓂋𓏤𓈖', phon:'rn', meaning:'nome',
+      parts:[{g:'𓂋',p:'r',d:'boca'},{g:'𓏤',p:'',d:'traço'},{g:'𓈖',p:'n',d:'água (complemento)'}],
+      note:'O "nome" era sagrado e destruí-lo equivalia a uma segunda morte. Por isso os faraós apagavam os nomes dos antecessores.' },
+    { glyph:'𓄣', phon:'jb', meaning:'coração',
+      parts:[{g:'𓄣',p:'jb',d:'coração (biliteral)'}],
+      note:'O coração era a sede da inteligência para os egípcios, não o cérebro. No Julgamento dos Mortos, o coração era pesado contra uma pena.' },
     { glyph:'𓁹𓏤', phon:'jrt', meaning:'olho',
-      parts:[{g:'𓁹',p:'jrt',d:'olho (logograma D4)'},{g:'𓏤',p:'',d:'traço vertical'}],
-      note:'jrt = "olho". O Olho de Hórus (wḏꜣt, D10) era uma forma especial derivada deste sinal — um dos amuletos mais poderosos do Egito Antigo.' },
-    { glyph:'𓆓𓂋𓏏𓂧', phon:'ḏrt', meaning:'mão',
-      parts:[{g:'𓆓',p:'ḏ',d:'cobra (unilítero I10)'},{g:'𓂋',p:'r',d:'boca (complemento)'},{g:'𓏏',p:'t',d:'pão (complemento)'},{g:'𓂧',p:'',d:'determinativo: mão'}],
-      note:'ḏrt = "mão" em egípcio médio. O sinal da mão no final é silencioso: funciona como determinativo semântico, confirmando a categoria da palavra.' },
+      parts:[{g:'𓁹',p:'jrt',d:'olho (logograma, D4)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      note:'O Olho de Hórus (wḏꜣt) era um dos amuletos mais poderosos do Egito.' },
+    { glyph:'𓂧𓂋𓏏𓂧', phon:'drt', meaning:'mão',
+      parts:[{g:'𓂧',p:'d',d:'mão (D46)'},{g:'𓂋',p:'r',d:'boca (complemento fonético)'},{g:'𓏏',p:'t',d:'pão (complemento fonético)'},{g:'𓂧',p:'',d:'mão (determinativo)'}],
+      note:'A palavra para mão em egípcio clássico. O mesmo sinal aparece como fonético e como determinativo no final.' },
   ],
   cosmos: [
-    { glyph:'𓇳𓏤', phon:'rꜥ', meaning:'sol / Rá',
-      parts:[{g:'𓇳',p:'rꜥ',d:'disco solar (logograma N5)'},{g:'𓏤',p:'',d:'traço vertical'}],
-      note:'O disco solar representa tanto o astro quanto o deus Rá. Muitos faraós incluíam rꜥ em seus nomes reais, como Ramsés (rꜥ-ms-sw = "Rá o criou").' },
-    { glyph:'𓇯𓏤', phon:'pt', meaning:'céu',
-      parts:[{g:'𓇯',p:'pt',d:'céu (logograma N1)'},{g:'𓏤',p:'',d:'traço vertical'}],
-      note:'pt = "céu". A deusa Nut arqueava seu corpo sobre a terra formando a abóbada celeste. O céu egípcio era feminino, ao contrário da terra (masculina).' },
-    { glyph:'𓂓𓏤', phon:'kꜣ', meaning:'ka (duplo espiritual)',
-      parts:[{g:'𓂓',p:'kꜣ',d:'braços erguidos (bilítero D28)'},{g:'𓏤',p:'',d:'traço vertical'}],
-      note:'O kꜣ era o "duplo" espiritual criado junto com o corpo. Templos e tumbas eram "casas do kꜣ". O sinal de dois braços erguidos é inconfundível.' },
+    { glyph:'𓇳', phon:'rꜥ', meaning:'sol / Rá',
+      parts:[{g:'𓇳',p:'rꜥ',d:'disco solar (logograma)'}],
+      note:'O disco solar representa tanto o astro quanto o deus Rá, o mais importante do panteão. Muitos faraós incluíam Rá em seus nomes.' },
+    { glyph:'𓇋𓏏𓈖𓇳', phon:'jtn', meaning:'disco solar / Aton',
+      parts:[{g:'𓇋',p:'j',d:'junco (M17)'},{g:'𓏏',p:'t',d:'pão (X1)'},{g:'𓈖',p:'n',d:'água (N35)'},{g:'𓇳',p:'',d:'disco solar (determinativo, N5)'}],
+      note:'Aton era o disco solar elevado à divindade única por Akhenaton na revolução religiosa do século XIV AEC.' },
+    { glyph:'𓇯', phon:'pt', meaning:'céu',
+      parts:[{g:'𓇯',p:'pt',d:'céu (logograma, N1)'}],
+      note:'O céu em egípcio. A deusa do céu era Nut, que arqueava seu corpo sobre a terra.' },
     { glyph:'𓇾𓏤', phon:'tꜣ', meaning:'terra / país',
-      parts:[{g:'𓇾',p:'tꜣ',d:'terra com grãos (logograma N16)'},{g:'𓏤',p:'',d:'traço vertical'}],
-      note:'tꜣ representa a faixa de terra fértil às margens do Nilo. O Egito se chamava km.t ("Terra Negra") por oposição ao deserto vermelho (dšrt).' },
+      parts:[{g:'𓇾',p:'tꜣ',d:'faixa de terra (logograma, N16)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      note:'Representa a faixa de terra fértil às margens do Nilo. O Egito chamava a si mesmo de "Terra Negra" (Kemet).' },
     { glyph:'𓄤𓆑𓂋', phon:'nfr', meaning:'belo, bom, perfeito',
-      parts:[{g:'𓄤',p:'nfr',d:'coração-traqueia (trilítero F35)'},{g:'𓆑',p:'f',d:'víbora (complemento)'},{g:'𓂋',p:'r',d:'boca (complemento)'}],
-      note:'Uma das palavras mais frequentes do egípcio médio. Aparece em nomes (Nefertiti = "a bela chegou"), fórmulas de louvor e expressões de oferenda.' },
+      parts:[{g:'𓄤',p:'nfr',d:'coração-traqueia (trileteral)'},{g:'𓆑',p:'f',d:'víbora (complemento)'},{g:'𓂋',p:'r',d:'boca (complemento)'}],
+      note:'Uma das palavras mais belas do egípcio. Aparece em nomes próprios (Nefertiti = "a bela chegou") e em expressões de louvor.' },
   ],
   vida: [
     { glyph:'𓉐𓂋𓏤', phon:'pr', meaning:'casa',
-      parts:[{g:'𓉐',p:'pr',d:'planta da casa (bilítero O1)'},{g:'𓂋',p:'r',d:'boca (complemento)'},{g:'𓏤',p:'',d:'traço vertical'}],
-      note:'pr = "casa" é a raiz de pr-ꜥꜣ ("grande casa") = Faraó, e de topônimos como pr-Rꜥ-ms-sw (Per-Ramsés), capital de Ramsés II no Delta.' },
-    { glyph:'𓊹𓉗𓏤', phon:'ḥwt-nṯr', meaning:'templo',
-      parts:[{g:'𓊹',p:'nṯr',d:'estandarte = deus (escrito primeiro por reverência)'},{g:'𓉗',p:'ḥwt',d:'recinto/mansão (O6)'},{g:'𓏤',p:'',d:'traço vertical (logograma)'}],
-      note:'Ḥwt-nṯr = "recinto do deus" = templo. Exemplo de genitivo direto com transposição honorífica: nṯr é escrito antes de ḥwt por respeito ao deus, mas lido depois. Allen (§4.15) usa ḥwt-nṯr como exemplo central deste fenômeno.' },
-    { glyph:'𓋹𓏤', phon:'ꜥnḫ', meaning:'vida / viver',
-      parts:[{g:'𓋹',p:'ꜥnḫ',d:'ankh (logograma S34)'},{g:'𓏤',p:'',d:'traço vertical'}],
-      note:'ꜥnḫ = "vida". O símbolo ankh é um dos ícones mais reconhecíveis do Egito Antigo. Era apresentado pelos deuses à realeza como dom da vida eterna.' },
-    { glyph:'𓎟𓏤', phon:'nb', meaning:'senhor / todo / qualquer',
-      parts:[{g:'𓎟',p:'nb',d:'cesto (logograma V30)'},{g:'𓏤',p:'',d:'traço vertical'}],
-      note:'Uma das palavras mais frequentes do egípcio clássico. nb = "senhor" e "todo/qualquer". nb-tꜣwy = "Senhor das Duas Terras" era o título central do faraó.' },
+      parts:[{g:'𓉐',p:'pr',d:'planta da casa (biliteral)'},{g:'𓂋',p:'r',d:'boca (complemento)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      note:'pr = "casa" é a raiz de Per-aa (pr-ꜥꜣ), "grande casa" = Faraó. Também em "Per-Ramesés", a capital de Ramsés II.' },
+    { glyph:'𓆓𓂧𓏤', phon:'ḏd', meaning:'dizer, falar',
+      parts:[{g:'𓆓',p:'ḏ',d:'cobra (I10)'},{g:'𓂧',p:'d',d:'mão (complemento fonético, D46)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      note:'Verbo "dizer". Fórmulas como ḏd mdw ("palavras a dizer") introduzem falas de deuses nos textos religiosos.' },
+    { glyph:'𓄿𓈖𓐍𓋹', phon:'ꜣnḫ', meaning:'vida / viver',
+      parts:[{g:'𓄿',p:'ꜣ',d:'abutre (G1)'},{g:'𓈖',p:'n',d:'água (N35)'},{g:'𓐍',p:'ḫ',d:'placenta (Aa1)'},{g:'𓋹',p:'',d:'ankh (determinativo, S34)'}],
+      note:'ꜣnḫ = "vida". O símbolo ankh 𓋹 é um dos ícones mais reconhecíveis do Egito. Era presente dado pelos deuses à realeza.' },
+    { glyph:'𓆓𓂧𓏏𓂻', phon:'ḏdt', meaning:'corrida / andar rápido',
+      parts:[{g:'𓆓',p:'ḏ',d:'cobra (I10)'},{g:'𓂧',p:'d',d:'mão (D46)'},{g:'𓏏',p:'t',d:'pão (X1)'},{g:'𓂻',p:'',d:'pernas em movimento (determinativo, D54)'}],
+      note:'O determinativo de pernas em movimento indica ação física, comum em verbos de movimento e transformação.' },
     { glyph:'𓊹𓏤', phon:'nṯr', meaning:'deus',
-      parts:[{g:'𓊹',p:'nṯr',d:'tecido em mastro (logograma R8)'},{g:'𓏤',p:'',d:'traço vertical'}],
-      note:'O sinal do estandarte representa divindade em geral. Em egípcio, não havia palavras distintas para "deus" e "deusa": só o gênero do artigo e do adjetivo diferenciava.' },
+      parts:[{g:'𓊹',p:'nṯr',d:'estandarte (logograma, R8)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      note:'O sinal do estandarte representa divindade em geral. Não havia uma palavra diferente para "deus" e "deusa". Só o gênero do artigo mudava.' },
   ],
 };
 
@@ -280,10 +307,11 @@ function renderWords() {
       <span class="wc-glyph">${w.glyph}</span>
       <div class="wc-prompt">Qual é a transliteração desta palavra?</div>
       <div class="wc-input-row">
-        <input class="wc-input" type="text" placeholder="escreva aqui..." id="inp-${i}" onkeydown="if(event.key==='Enter')checkWord(${i})">
+        <input class="wc-input" type="text" placeholder="escreva aqui..." id="inp-${i}" onkeydown="if(event.key==='Enter')checkWord(${i})" onfocus="activeInp='inp-${i}'">
         <button class="wc-check" onclick="checkWord(${i})">Verificar</button>
         <button class="wc-reveal-btn" onclick="revealWord(${i})">Revelar</button>
       </div>
+      <div class="translit-kbd" id="kbd-${i}"></div>
       <div class="wc-feedback" id="fb-${i}"></div>
       <div class="wc-answer">
         <div class="wc-answer-phon">${w.phon}</div>
@@ -298,6 +326,36 @@ function renderWords() {
       </div>
     </div>`;
   }).join('');
+  words.forEach((_, i) => renderKbd(i));
+}
+
+const SPECIAL_CHARS = ['ꜣ','ꜥ','ḥ','ḫ','ẖ','š','ṯ','ḏ','ỉ'];
+let activeInp = null;
+
+function renderKbd(i) {
+  const el = document.getElementById('kbd-' + i);
+  if (!el) return;
+  el.innerHTML = SPECIAL_CHARS.map(c =>
+    `<button type="button" onclick="kbdInsert('inp-${i}','${c}')">${c}</button>`
+  ).join('') + `<button type="button" class="kbd-del" onclick="kbdDel('inp-${i}')">⌫</button>`;
+}
+
+function kbdInsert(id, char) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const s = el.selectionStart, e = el.selectionEnd;
+  el.value = el.value.slice(0, s) + char + el.value.slice(e);
+  el.selectionStart = el.selectionEnd = s + char.length;
+  el.focus();
+}
+
+function kbdDel(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const s = el.selectionStart, e = el.selectionEnd;
+  if (s !== e) { el.value = el.value.slice(0, s) + el.value.slice(e); el.selectionStart = el.selectionEnd = s; }
+  else if (s > 0) { el.value = el.value.slice(0, s - 1) + el.value.slice(s); el.selectionStart = el.selectionEnd = s - 1; }
+  el.focus();
 }
 
 function checkWord(i) {
@@ -306,7 +364,8 @@ function checkWord(i) {
   const fb  = document.getElementById('fb-' + i);
   const norm = s => s.replace(/[^a-zꜣꜥḥḫẖšṯḏ]/gi, '');
   if (norm(inp) === norm(w.phon.toLowerCase())) {
-    fb.textContent = 'Correto!'; fb.className = 'wc-feedback ok';
+    fb.innerHTML = `Correto! <span style="font-style:italic;font-weight:400;color:var(--papyrus-soft)">&ldquo;${w.meaning}&rdquo;</span>`;
+    fb.className = 'wc-feedback ok';
     revealWord(i);
   } else {
     fb.textContent = 'Tente novamente, ou clique em Revelar para ver.';
