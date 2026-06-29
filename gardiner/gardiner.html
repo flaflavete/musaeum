@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Gardiner · Musæum</title>
+<meta name="theme-color" content="#1b2a3d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<script>document.documentElement.setAttribute('data-theme', localStorage.getItem('musaeum-theme') || 'dark');</script>
+<script src="./gardiner_data.js"></script>
+<script src="./gardiner_data_en.js"></script>
+<style>
+
+@font-face {
+  font-family: 'Noto Sans Egyptian Hieroglyphs';
+  src: url('NotoSansEgyptianHieroglyphs-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --papyrus:       #f1e4c6;
+  --papyrus-soft:  #c9b894;
+  --papyrus-dim:   #9a8b6d;
+  --ink:           #1b2a3d;
+  --ink-elevated:  #243449;
+  --ink-raised:    #2d3f57;
+  --gold:          #c9a646;
+  --gold-dark:     #a0801e;
+  --terracotta-lt: #d97a5c;
+  --green:         #4caf7a;
+  --border:        rgba(201, 166, 70, 0.20);
+  --hier:          'Noto Sans Egyptian Hieroglyphs', 'Segoe UI Historic', serif;
+}
+
+[data-theme="light"] {
+  --papyrus:       #0d0a06;
+  --papyrus-soft:  #271e11;
+  --papyrus-dim:   #3d2e1e;
+  --ink:           #fdf8ee;
+  --ink-elevated:  #f5ecd8;
+  --ink-raised:    #eaddb8;
+  --gold:          #5c480e;
+  --gold-dark:     #42340a;
+  --terracotta-lt: #8a2b18;
+  --green:         #2a6e45;
+  --border:        rgba(92, 72, 14, 0.22);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'EB Garamond', serif;
+  background: var(--ink);
+  color: var(--papyrus);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── HEADER ── */
+header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 20px;
+  height: 54px;
+  background: var(--ink-elevated);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.logo-glyph {
+  font-family: var(--hier);
+  font-size: 26px;
+  line-height: 1;
+  color: var(--gold);
+}
+.logo-text {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--papyrus);
+}
+.logo-sub {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  color: var(--papyrus-dim);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+#btn-lang {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  background: var(--ink-raised);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  color: var(--papyrus-dim);
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+#btn-lang:hover { border-color: var(--gold); color: var(--gold); }
+
+.header-back {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  color: var(--papyrus-dim);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 8px;
+  transition: color .15s;
+}
+.header-back:hover { color: var(--gold); }
+
+.search-wrap {
+  margin-left: auto;
+  position: relative;
+}
+.search-wrap svg {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--papyrus-dim);
+  pointer-events: none;
+}
+#search {
+  background: var(--ink-raised);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 12px 7px 34px;
+  color: var(--papyrus);
+  font-family: 'EB Garamond', serif;
+  font-size: 15px;
+  width: 260px;
+  outline: none;
+  transition: border-color .15s;
+}
+#search:focus { border-color: var(--gold); }
+#search::placeholder { color: var(--papyrus-dim); }
+
+/* ── LAYOUT ── */
+.body {
+  display: grid;
+  grid-template-columns: 200px 1fr 300px;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  background: var(--ink-elevated);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.cat-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 14px;
+  background: none;
+  border: none;
+  border-left: 3px solid transparent;
+  color: var(--papyrus-soft);
+  cursor: pointer;
+  font-family: 'EB Garamond', serif;
+  font-size: 14px;
+  text-align: left;
+  transition: background .12s, border-color .12s;
+}
+.cat-btn:hover { background: rgba(201,166,70,.07); color: var(--papyrus); }
+.cat-btn.active {
+  background: rgba(201,166,70,.12);
+  border-left-color: var(--gold);
+  color: var(--papyrus);
+}
+.cat-code {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--gold);
+  min-width: 26px;
+  padding-top: 2px;
+  letter-spacing: 0.06em;
+}
+.cat-name {
+  color: var(--papyrus-dim);
+  line-height: 1.35;
+  font-size: 12px;
+}
+.cat-btn.active .cat-name { color: var(--papyrus-soft); }
+
+/* ── GRID DE SINAIS ── */
+.main {
+  overflow-y: auto;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section-head {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.section-head h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+}
+.section-head p {
+  font-size: 13px;
+  color: var(--papyrus-dim);
+  margin-top: 3px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 8px;
+}
+
+.sign {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 6px 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: background .13s, border-color .13s, transform .13s;
+  user-select: none;
+}
+.sign:hover {
+  background: var(--ink-raised);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+.sign-g {
+  font-family: var(--hier);
+  font-size: 36px;
+  line-height: 1.1;
+  display: block;
+  min-height: 44px;
+  color: var(--gold);
+}
+.sign-id {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-top: 5px;
+  display: block;
+  letter-spacing: 0.06em;
+}
+.sign-ph-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+  min-height: 17px;
+  margin-top: 2px;
+}
+.ph-tag {
+  font-family: 'EB Garamond', serif;
+  font-size: 11px;
+  font-style: italic;
+  color: var(--terracotta-lt);
+  background: rgba(217,122,92,.12);
+  border-radius: 4px;
+  padding: 1px 4px;
+  line-height: 1.4;
+}
+.sign-desc {
+  font-size: 10px;
+  color: var(--papyrus-dim);
+  line-height: 1.3;
+  margin-top: 2px;
+  display: block;
+}
+.search-info {
+  font-family: 'EB Garamond', serif;
+  font-size: 14px;
+  color: var(--papyrus-dim);
+}
+
+/* ── PAINEL DIREITO ── */
+.builder {
+  background: var(--ink-elevated);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.builder-section {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.builder-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--papyrus-dim);
+  margin-bottom: 8px;
+}
+
+.hier-display {
+  min-height: 52px;
+  background: var(--ink-raised);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-family: var(--hier);
+  font-size: 40px;
+  line-height: 1.1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+  cursor: default;
+}
+.hier-display.empty::after {
+  content: 'clique nos sinais →';
+  font-family: 'EB Garamond', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--papyrus-dim);
+}
+.h-token {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0 1px;
+  position: relative;
+  transition: background .1s;
+}
+.h-token:hover { background: rgba(217,122,92,.25); }
+.h-token:hover::after {
+  content: '×';
+  position: absolute;
+  top: -5px; right: -3px;
+  font-size: 9px;
+  font-family: sans-serif;
+  color: var(--terracotta-lt);
+}
+
+.translit-auto {
+  background: var(--ink-raised);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-family: 'EB Garamond', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--papyrus);
+  min-height: 36px;
+  letter-spacing: .5px;
+  word-break: break-all;
+}
+.translit-auto.empty {
+  font-size: 13px;
+  color: var(--papyrus-dim);
+  display: flex;
+  align-items: center;
+}
+.translit-auto.empty::before { content: 'gerada automaticamente'; font-style: italic; }
+
+.translit-edit {
+  width: 100%;
+  background: var(--ink-raised);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 6px 12px;
+  color: var(--papyrus);
+  font-family: 'EB Garamond', serif;
+  font-size: 16px;
+  font-style: italic;
+  outline: none;
+  resize: vertical;
+  min-height: 36px;
+  max-height: 80px;
+  transition: border-color .15s;
+}
+.translit-edit:focus { border-color: var(--gold); }
+
+.keys-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+}
+.tkey {
+  background: var(--ink-raised);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 4px 10px;
+  font-family: 'EB Garamond', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--terracotta-lt);
+  cursor: pointer;
+  transition: background .12s, border-color .12s;
+  user-select: none;
+  line-height: 1;
+}
+.tkey:hover { background: rgba(201,166,70,.12); border-color: var(--gold); color: var(--papyrus); }
+
+.btn-row {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.action-btn {
+  width: 100%;
+  padding: 9px 14px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--ink-raised);
+  color: var(--papyrus-soft);
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all .15s;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.action-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,166,70,.08); }
+.action-btn.success { background: rgba(76,175,122,.15) !important; border-color: var(--green) !important; color: var(--green) !important; }
+.action-btn.clear { color: var(--papyrus-dim); }
+.action-btn.clear:hover { border-color: var(--terracotta-lt); color: var(--terracotta-lt); background: rgba(217,122,92,.08); }
+
+.vega-info {
+  font-size: 13px;
+  color: var(--papyrus-dim);
+  line-height: 1.55;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+.vega-info a { color: var(--gold); text-decoration: none; }
+.vega-info a:hover { text-decoration: underline; }
+
+.biblio {
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--papyrus-dim);
+  line-height: 1.7;
+  font-style: italic;
+}
+.biblio strong {
+  font-family: 'Cinzel', serif;
+  font-style: normal;
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 3px;
+}
+
+/* ── PHONEME PICKER ── */
+#ph-picker {
+  position: fixed;
+  z-index: 2000;
+  background: var(--ink-elevated);
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.6);
+  min-width: 200px;
+  animation: pop-in .12s ease;
+}
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(.93); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.pk-title {
+  font-family: var(--hier);
+  font-size: 28px;
+  color: var(--gold);
+  margin-bottom: 4px;
+  line-height: 1.1;
+}
+.pk-title span {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  color: var(--papyrus-dim);
+  margin-left: 6px;
+  letter-spacing: 0.06em;
+}
+.pk-desc {
+  font-size: 12px;
+  color: var(--papyrus-dim);
+  margin-bottom: 10px;
+  line-height: 1.4;
+  font-style: italic;
+}
+.pk-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.pk-btn {
+  background: var(--ink-raised);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-family: 'EB Garamond', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--terracotta-lt);
+  cursor: pointer;
+  transition: all .13s;
+  text-align: left;
+}
+.pk-btn:hover { background: rgba(201,166,70,.1); border-color: var(--gold); color: var(--papyrus); }
+.pk-det { color: var(--papyrus-dim); font-style: normal; font-size: 13px; }
+
+/* ── MOBILE ── */
+.mob-tabs { display: none; }
+
+@media (max-width: 640px) {
+  body { height: 100dvh; }
+  .logo-sub { display: none; }
+  .search-wrap { flex: 1; }
+  #search { width: 100%; }
+  .body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+  .body > * { display: none !important; }
+  .body[data-panel="sidebar"] > .sidebar { display: flex !important; }
+  .body[data-panel="main"]    > .main    { display: flex !important; }
+  .body[data-panel="builder"] > .builder { display: flex !important; }
+  .hier-display.empty::after { content: 'toque nos sinais ↓'; }
+  .mob-tabs {
+    display: flex;
+    flex-shrink: 0;
+    background: var(--ink-elevated);
+    border-top: 1px solid var(--border);
+    height: 48px;
+  }
+  .mob-tab {
+    flex: 1;
+    background: none;
+    border: none;
+    border-top: 2px solid transparent;
+    color: var(--papyrus-dim);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: color .12s, border-color .12s;
+    padding: 0;
+  }
+  .mob-tab.active { color: var(--gold); border-top-color: var(--gold); }
+}
+
+/* scrollbars */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--papyrus-dim); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="header-back" href="../aprender/05-palavras.html" onclick="history.length>1 ? (history.back(), event.preventDefault()) : null">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Musæum
+  </a>
+  <div class="logo">
+    <span class="logo-glyph">𓏟</span>
+    <div>
+      <div class="logo-text">Lista de Gardiner</div>
+      <div class="logo-sub">Egípcio Médio Clássico · Lista de Sinais</div>
+    </div>
+  </div>
+  <button id="btn-lang" title="Alternar idioma das descrições">PT · EN</button>
+  <div class="search-wrap">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input id="search" type="text" placeholder="Buscar sinal, fonema, descrição…" autocomplete="off">
+  </div>
+</header>
+
+<!-- BODY -->
+<div class="body" data-panel="main">
+
+  <nav class="sidebar" id="sidebar"></nav>
+
+  <main class="main" id="main">
+    <div id="section-head"></div>
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <aside class="builder">
+
+    <div class="builder-section">
+      <div class="builder-label">Palavra em hieróglifos</div>
+      <div class="hier-display empty" id="hier-display"></div>
+    </div>
+
+    <div class="builder-section">
+      <div class="builder-label">Transliteração automática</div>
+      <div class="translit-auto empty" id="translit-auto"></div>
+    </div>
+
+    <div class="builder-section">
+      <div class="builder-label">Editar transliteração</div>
+      <textarea class="translit-edit" id="translit-edit" placeholder="escreva ou edite aqui…" rows="2" spellcheck="false"></textarea>
+      <div class="keys-grid">
+        <span class="tkey" data-char="ꜣ">ꜣ</span>
+        <span class="tkey" data-char="ꜥ">ꜥ</span>
+        <span class="tkey" data-char="ḥ">ḥ</span>
+        <span class="tkey" data-char="ḫ">ḫ</span>
+        <span class="tkey" data-char="ẖ">ẖ</span>
+        <span class="tkey" data-char="š">š</span>
+        <span class="tkey" data-char="ṯ">ṯ</span>
+        <span class="tkey" data-char="ḏ">ḏ</span>
+        <span class="tkey" data-char="ỉ">ỉ</span>
+        <span class="tkey" data-char="·">·</span>
+      </div>
+    </div>
+
+    <div class="builder-section">
+      <div class="builder-label">Buscar no VÉgA</div>
+      <p class="vega-info">
+        <a href="https://vega-vocabulaire-egyptien-ancien.fr/en/the-vega/" target="_blank" rel="noopener">VÉgA</a>
+        é um dicionário científico do egípcio antigo. Clique para copiar a transliteração e abrir o dicionário.
+      </p>
+      <button class="action-btn disabled" id="btn-vega">
+        <span style="font-family:var(--hier)">𓂀</span> Copiar e abrir VÉgA ↗
+      </button>
+    </div>
+
+    <div class="builder-section">
+      <div class="builder-label">Copiar</div>
+      <div class="btn-row">
+        <button class="action-btn" id="btn-hier"><span style="font-family:var(--hier)">𓀀</span> Hieróglifos</button>
+        <button class="action-btn" id="btn-translit"><span style="font-style:italic">ꜣ</span> Transliteração</button>
+        <button class="action-btn" id="btn-both"><span>⊞</span> Hieróglifos + Transliteração</button>
+        <button class="action-btn clear" id="btn-clear"><span>✕</span> Limpar tudo</button>
+      </div>
+    </div>
+
+    <div class="biblio">
+      <strong>Bibliografia</strong>
+      GARDINER, Alan H. <em>Egyptian Grammar</em>. 3ª ed. Oxford: Griffith Institute, 1957.<br>
+      Unicode Consortium. <em>Egyptian Hieroglyphs</em>. Unicode 5.2+, U+13000–U+1342F.
+    </div>
+
+  </aside>
+</div>
+
+<nav class="mob-tabs" id="mob-tabs">
+  <button class="mob-tab" data-panel="sidebar">Categorias</button>
+  <button class="mob-tab active" data-panel="main">Sinais</button>
+  <button class="mob-tab" data-panel="builder">Construtor</button>
+</nav>
+
+<script>
+const CATS = [
+  ['A','Homem e suas Ocupações'],
+  ['B','Mulher e suas Ocupações'],
+  ['C','Deidades Antropomórficas'],
+  ['D','Partes do Corpo Humano'],
+  ['E','Mamíferos'],
+  ['F','Partes de Mamíferos'],
+  ['G','Aves'],
+  ['H','Partes de Aves'],
+  ['I','Répteis e Anfíbios'],
+  ['K','Peixes'],
+  ['L','Invertebrados'],
+  ['M','Plantas e Árvores'],
+  ['N','Céu, Terra, Água'],
+  ['O','Edificações e Partes'],
+  ['P','Embarcações'],
+  ['Q','Mobiliário Doméstico'],
+  ['R','Objetos de Templo e Emblemas Sagrados'],
+  ['S','Coroas, Vestes e Cetros'],
+  ['T','Guerra, Caça e Abate'],
+  ['U','Agricultura, Ofícios e Profissões'],
+  ['V','Cordas, Fibras, Cestos e Bolsas'],
+  ['W','Vasos de Pedra e Barro'],
+  ['X','Pães e Bolos'],
+  ['Y','Escrita, Jogos e Música'],
+  ['Z','Traços e Sinais Hieráticos'],
+  ['Aa','Não Classificados'],
+];
+
+let SIGNS = [];
+let word  = [];
+let cat   = 'A';
+let query = '';
+
+function buildSidebar() {
+  document.getElementById('sidebar').innerHTML = CATS.map(([id, name]) => `
+    <button class="cat-btn ${id === cat ? 'active' : ''}" data-cat="${id}">
+      <span class="cat-code">${id}</span>
+      <span class="cat-name">${name}</span>
+    </button>`).join('');
+  document.querySelectorAll('.cat-btn').forEach(btn =>
+    btn.addEventListener('click', () => {
+      cat = btn.dataset.cat;
+      query = '';
+      document.getElementById('search').value = '';
+      refresh();
+      mobSwitchPanel('main');
+    })
+  );
+}
+
+function refreshSidebar() {
+  document.querySelectorAll('.cat-btn').forEach(btn =>
+    btn.classList.toggle('active', btn.dataset.cat === cat && !query)
+  );
+}
+
+function getSigns() {
+  if (query) {
+    const q = query.toLowerCase();
+    return SIGNS.filter(s =>
+      s[0].toLowerCase().includes(q) ||
+      s[2].toLowerCase().includes(q) ||
+      s[3].toLowerCase().includes(q)
+    );
+  }
+  return SIGNS.filter(s =>
+    cat === 'Aa' ? s[0].startsWith('Aa') : s[0].match(new RegExp('^' + cat + '\\d'))
+  );
+}
+
+function renderGrid() {
+  const signs = getSigns();
+  const catInfo = CATS.find(c => c[0] === cat);
+
+  document.getElementById('section-head').innerHTML = query
+    ? `<p class="search-info">Resultados para "<strong>${esc(query)}</strong>": ${signs.length} sinal(is)</p>`
+    : catInfo ? `
+      <div class="section-head">
+        <h2>${catInfo[0]} · ${catInfo[1]}</h2>
+        <p>${signs.length} sinais nesta categoria</p>
+      </div>` : '';
+
+  document.getElementById('grid').innerHTML = signs.map(([id, glyph, phon, desc]) => {
+    const phons = phon ? phon.split('|') : [];
+    const phTag = phons.map(p => `<span class="ph-tag">${p}</span>`).join('');
+    return `<div class="sign" data-id="${id}" data-g="${esc(glyph)}" data-ph="${esc(phon)}" data-desc="${esc(desc)}">
+      <span class="sign-g">${glyph}</span>
+      <span class="sign-id">${id}</span>
+      <span class="sign-ph-wrap">${phTag}</span>
+      <span class="sign-desc">${desc}</span>
+    </div>`;
+  }).join('');
+
+  document.querySelectorAll('.sign').forEach(el =>
+    el.addEventListener('click', (e) => {
+      const phons = el.dataset.ph
+        ? el.dataset.ph.split('|').map(p => p.trim()).filter(Boolean)
+        : [];
+      if (phons.length > 1) showPicker(e, el.dataset.g, el.dataset.id, phons, el.dataset.desc);
+      else addSign(el.dataset.g, el.dataset.id, phons[0] || '', el.dataset.desc);
+    })
+  );
+}
+
+function esc(s) { return (s || '').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+
+function addSign(glyph, id, phon, desc) {
+  word.push({ glyph, id, phon, desc });
+  renderBuilder();
+  closePicker();
+  mobSwitchPanel('builder');
+}
+
+let pickerOpen = false;
+
+function showPicker(e, glyph, id, phons, desc) {
+  closePicker();
+  const picker = document.createElement('div');
+  picker.id = 'ph-picker';
+  picker.innerHTML = `
+    <div class="pk-title">${glyph} <span>${id}</span></div>
+    <div class="pk-desc">${desc}</div>
+    <div class="pk-opts">
+      ${phons.map(p => `<button class="pk-btn" data-p="${p}">${p}</button>`).join('')}
+      <button class="pk-btn pk-det">sem fonema (determinativo)</button>
+    </div>`;
+  document.body.appendChild(picker);
+  pickerOpen = true;
+
+  const rect = e.currentTarget.getBoundingClientRect();
+  const pw = 220, ph2 = picker.offsetHeight || 120;
+  let left = rect.left + rect.width / 2 - pw / 2;
+  let top  = rect.top - ph2 - 8;
+  if (left < 8) left = 8;
+  if (left + pw > window.innerWidth - 8) left = window.innerWidth - pw - 8;
+  if (top < 8) top = rect.bottom + 8;
+  picker.style.left = left + 'px';
+  picker.style.top  = top  + 'px';
+
+  picker.querySelectorAll('.pk-btn[data-p]').forEach(btn =>
+    btn.addEventListener('click', () => addSign(glyph, id, btn.dataset.p, desc))
+  );
+  picker.querySelector('.pk-det').addEventListener('click', () => addSign(glyph, id, '', desc));
+}
+
+function closePicker() {
+  const p = document.getElementById('ph-picker');
+  if (p) p.remove();
+  pickerOpen = false;
+}
+
+document.addEventListener('click', (e) => {
+  if (pickerOpen && !e.target.closest('#ph-picker') && !e.target.closest('.sign')) closePicker();
+});
+
+function removeSign(i) { word.splice(i, 1); renderBuilder(); }
+
+function renderBuilder() {
+  const hd = document.getElementById('hier-display');
+  if (word.length === 0) {
+    hd.innerHTML = ''; hd.classList.add('empty');
+  } else {
+    hd.classList.remove('empty');
+    hd.innerHTML = word.map((s, i) =>
+      `<span class="h-token" data-i="${i}" title="${s.id} · ${s.desc}">${s.glyph}</span>`
+    ).join('');
+    hd.querySelectorAll('.h-token').forEach(t =>
+      t.addEventListener('click', () => removeSign(+t.dataset.i))
+    );
+  }
+
+  const phonParts = word.map(s => s.phon).filter(Boolean);
+  const ta = document.getElementById('translit-auto');
+  if (phonParts.length === 0) {
+    ta.textContent = ''; ta.classList.add('empty');
+  } else {
+    ta.classList.remove('empty');
+    ta.textContent = phonParts.join('');
+  }
+
+  document.getElementById('translit-edit').value = phonParts.join('');
+  updateVegaLink();
+}
+
+function updateVegaLink() {
+  const translit = document.getElementById('translit-edit').value.trim();
+  const btn = document.getElementById('btn-vega');
+  btn.classList.toggle('disabled', !translit);
+}
+
+document.getElementById('btn-vega').addEventListener('click', function() {
+  const translit = document.getElementById('translit-edit').value.trim();
+  if (!translit) return;
+  navigator.clipboard.writeText(translit).then(() => {
+    window.open('https://app.vega-lexique.fr/', '_blank', 'noopener');
+    const orig = this.innerHTML;
+    this.innerHTML = this.innerHTML.replace(/>.+$/, '>✓ Copiado — cole no VÉgA!');
+    this.classList.add('success');
+    setTimeout(() => { this.innerHTML = orig; this.classList.remove('success'); }, 2000);
+  });
+});
+
+document.querySelectorAll('.tkey').forEach(key =>
+  key.addEventListener('click', () => {
+    const el = document.getElementById('translit-edit');
+    const s = el.selectionStart, e2 = el.selectionEnd;
+    const ch = key.dataset.char;
+    el.value = el.value.slice(0, s) + ch + el.value.slice(e2);
+    el.selectionStart = el.selectionEnd = s + ch.length;
+    el.focus();
+    updateVegaLink();
+  })
+);
+
+function copyAndFlash(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = btn.innerHTML.replace(/>.+$/, '>✓ Copiado!');
+    btn.classList.add('success');
+    setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('success'); }, 1400);
+  });
+}
+
+document.getElementById('btn-hier').addEventListener('click', function() {
+  copyAndFlash(word.map(s => s.glyph).join(''), this);
+});
+document.getElementById('btn-translit').addEventListener('click', function() {
+  copyAndFlash(document.getElementById('translit-edit').value, this);
+});
+document.getElementById('btn-both').addEventListener('click', function() {
+  const h = word.map(s => s.glyph).join('');
+  const t = document.getElementById('translit-edit').value;
+  copyAndFlash(h + '\n' + t, this);
+});
+document.getElementById('btn-clear').addEventListener('click', () => {
+  word = [];
+  document.getElementById('translit-edit').value = '';
+  renderBuilder();
+});
+document.getElementById('translit-edit').addEventListener('input', updateVegaLink);
+
+document.getElementById('search').addEventListener('input', function() {
+  query = this.value.trim();
+  refresh();
+});
+
+function refresh() { refreshSidebar(); renderGrid(); }
+
+const _body = document.querySelector('.body');
+function mobSwitchPanel(panel) {
+  if (window.innerWidth > 640) return;
+  _body.dataset.panel = panel;
+  document.querySelectorAll('.mob-tab').forEach(t =>
+    t.classList.toggle('active', t.dataset.panel === panel)
+  );
+}
+document.getElementById('mob-tabs').addEventListener('click', e => {
+  const btn = e.target.closest('.mob-tab');
+  if (btn) mobSwitchPanel(btn.dataset.panel);
+});
+
+let lang = 'pt';
+SIGNS = window.GARDINER_DATA;
+buildSidebar();
+renderBuilder();
+renderGrid();
+
+document.getElementById('btn-lang').addEventListener('click', function() {
+  lang = lang === 'pt' ? 'en' : 'pt';
+  SIGNS = lang === 'pt' ? window.GARDINER_DATA : window.GARDINER_DATA_EN;
+  this.textContent = lang === 'pt' ? 'PT · EN' : 'EN · PT';
+  this.style.color = lang === 'en' ? 'var(--gold)' : '';
+  this.style.borderColor = lang === 'en' ? 'var(--gold)' : '';
+  document.getElementById('search').placeholder = lang === 'pt'
+    ? 'Buscar sinal, fonema, descrição…'
+    : 'Search sign, phoneme, description…';
+  refresh();
+});
+</script>
+</body>
+</html>

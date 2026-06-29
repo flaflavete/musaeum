@@ -57,6 +57,19 @@ const BILITERALS_LESSON = [
   { id:'G38', glyph:'𓅬', phon:'gb',  name_pt:'ganso',                  name_en:'goose',            tip:'gb = nome do deus Geb, senhor da terra. O ganso era o animal sagrado de Geb nos textos cosmológicos.' },
 ];
 
+/* Triliterais da Lição 4 (9 sinais com dica mnemônica em português). */
+const TRILITERALS_LESSON = [
+  { id:'F35',  glyph:'𓄤', phon:'nfr',  name_pt:'coração e traqueia',        name_en:'heart with trachea',    tip:'nfr = "bom, belo, perfeito". Um dos hieróglifos mais frequentes do egípcio. Aparece em nomes como Nefertiti (nfr-ṯjt) e Nefertari. Costuma vir acompanhado do complemento fonético 𓂋.' },
+  { id:'S34',  glyph:'𓋹', phon:'ꜥnḫ', name_pt:'ânkh',                       name_en:'ankh',                  tip:'ꜥnḫ = "vida". O símbolo mais reconhecível do Egito antigo. Deuses o seguram pelos braços ao oferecer vida eterna aos faraós. Aparece em centenas de títulos e fórmulas.' },
+  { id:'R8',   glyph:'𓊹', phon:'nṯr',  name_pt:'tecido sobre mastro',        name_en:'god flag on pole',      tip:'nṯr = "deus". Presente em toda fórmula religiosa. ḥm-nṯr = "servo do deus" = sacerdote. O sinal representa um tecido hasteado em mastros nos templos.' },
+  { id:'L1',   glyph:'𓆣', phon:'ḫpr',  name_pt:'escaravelho',                name_en:'scarab beetle',         tip:'ḫpr = "tornar-se, existir, acontecer". O escaravelho representa Khepri, o sol nascente que se recria a cada amanhecer. Frequente em cartuchos e amuletos.' },
+  { id:'R4',   glyph:'𓊵', phon:'ḥtp',  name_pt:'pão sobre esteira',          name_en:'loaf on mat',           tip:'ḥtp = "paz, estar satisfeito, oferta". Abre a fórmula ḥtp-dj-nsw ("dádiva que o rei concede"), a frase mais repetida em lápides e estelas do Egito Antigo.' },
+  { id:'Aa11', glyph:'𓐙', phon:'mꜣꜥ', name_pt:'sinal abstrato',             name_en:'abstract sign',         tip:'mꜣꜥ = "verdadeiro, justo". Raiz de Maat e do título póstumo mꜣꜥ-ḫrw ("verdadeiro de voz"), conferido a quem passava pelo julgamento de Osíris. É o prêmio do Camponês Eloquente.' },
+  { id:'D45',  glyph:'𓂦', phon:'ḏsr',  name_pt:'braço com varinha',          name_en:'arm with wand',         tip:'ḏsr = "sagrado, nobre, exaltado". Raiz do nome do faraó Djeser (pirâmide de Saqqara). Aparece em epítetos como ḏsr-ḏsrw ("sagrado dos sagrados"), título de Amon.' },
+  { id:'F12',  glyph:'𓄊', phon:'wsr',  name_pt:'cabeça e pescoço de animal', name_en:'animal head and neck',  tip:'wsr = "poderoso, forte". Raiz do nome Osíris (wsjr em egípcio). Frequente em epítetos reais e divinos. No Conto do Náufrago, a serpente usa termos de poder desta raiz.' },
+  { id:'F36',  glyph:'𓄥', phon:'smꜣ', name_pt:'pulmão e traqueia',          name_en:'lung and trachea',      tip:'smꜣ = "unir". smꜣ-tꜣwy ("unificação das Duas Terras") é o rito central da coroação egípcia, representado pela junção das plantas do Alto e Baixo Egito.' },
+];
+
 /* Biliterais dos flashcards (15 sinais curados para prática rápida). */
 const BILITERALS_FLASH = [
   { id:'D28', glyph:'𓐝', phon:'kꜣ',  name_pt:'par de braços',         name_en:'pair of arms' },
