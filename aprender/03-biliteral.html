@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lição 3 · Sinais biliterais essenciais · Musæum</title>
+<title>Lição 3 · Sinais bilíteros essenciais · Musæum</title>
 <meta name="theme-color" content="#1b2a3d">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -132,7 +132,7 @@
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     Musæum
   </a>
-  <span class="licao-header-title">Lição 3 · Sinais biliterais essenciais</span>
+  <span class="licao-header-title">Lição 3 · Sinais bilíteros essenciais</span>
 </header>
 
 <div class="licao-content">
@@ -140,32 +140,32 @@
   <div class="licao-hero">
     <div class="licao-hero-num">Lição 3 · Fonética</div>
     <span class="licao-hero-glyph">𓅱</span>
-    <h1>Sinais biliterais essenciais</h1>
-    <p>Os sinais biliterais representam duas consoantes de uma vez. Eles ampliam muito o que você consegue ler. Os 30 aqui são os mais frequentes em textos reais do Egito Antigo.</p>
+    <h1>Sinais bilíteros essenciais</h1>
+    <p>Os sinais bilíteros representam duas consoantes de uma vez. Allen explica que funcionam pelo princípio do rébus: a imagem de uma "casa" (𓉐) foi usada para representar os sons <em>pr</em> porque a palavra egípcia para "casa" começava com essa combinação. Os 20 aqui são os mais frequentes em textos reais do Egito Antigo — entre eles alguns trilíteros e logogramas fundamentais.</p>
   </div>
 
   <div class="callout">
-    <strong>Como usar esta lição:</strong> Alguns dos sinais abaixo também aparecem como unileteral em certas palavras. O contexto define o uso. Clique em qualquer sinal para ver a dica mnemônica e marcar como aprendido.
+    <strong>Regra dos complementos fonéticos (Allen, §3.2):</strong> Um unilítero que vem <em>após</em> um bilítero é quase sempre complemento fonético, não uma letra adicional. Exemplo: 𓉐𓂋 = <em>pr</em> (não <em>prr</em>) — o 𓂋 apenas confirma o r final do bilítero. Para escrever <em>prr</em> de verdade, seriam necessários dois sinais 𓉐.
   </div>
 
   <div class="filter-row">
     <span class="filter-label">Filtrar:</span>
-    <button class="filtro-btn active" onclick="setFilter('all', this)">Todos (30)</button>
+    <button class="filtro-btn active" onclick="setFilter('all', this)">Todos (20)</button>
     <button class="filtro-btn" onclick="setFilter('learned', this)">Aprendidos</button>
     <button class="filtro-btn" onclick="setFilter('new', this)">Novos</button>
-    <span class="progress-count">Aprendidos: <span id="learnedCount">0</span>/30</span>
+    <span class="progress-count">Aprendidos: <span id="learnedCount">0</span>/20</span>
   </div>
 
   <div class="signs-grid" id="signsGrid"></div>
 
   <div class="licao-section">
-    <h2>Biliterais em palavras reais</h2>
-    <p>Veja como biliterais se combinam com complementos e determinativos para formar palavras:</p>
+    <h2>Bilíteros em palavras reais</h2>
+    <p>Veja como bilíteros se combinam com complementos e determinativos para formar palavras:</p>
     <div class="combos-grid">
       <div class="combo-card">
-        <div class="combo-glyphs">𓉐</div>
+        <div class="combo-glyphs">𓉐𓂋</div>
         <div class="combo-translit">pr</div>
-        <div class="combo-meaning">casa</div>
+        <div class="combo-meaning">casa · 𓂋 = complemento r</div>
       </div>
       <div class="combo-card">
         <div class="combo-glyphs">𓁷𓂋</div>
@@ -173,23 +173,23 @@
         <div class="combo-meaning">rosto / sobre</div>
       </div>
       <div class="combo-card">
-        <div class="combo-glyphs">𓆓𓏛</div>
+        <div class="combo-glyphs">𓂓𓏛</div>
         <div class="combo-translit">kꜣ</div>
         <div class="combo-meaning">ka · duplo espiritual</div>
       </div>
       <div class="combo-card">
-        <div class="combo-glyphs">𓅐𓏛</div>
+        <div class="combo-glyphs">𓅜𓏛</div>
         <div class="combo-translit">ꜣḫ</div>
         <div class="combo-meaning">espírito luminoso</div>
       </div>
       <div class="combo-card">
-        <div class="combo-glyphs">𓊽</div>
+        <div class="combo-glyphs">𓊹𓏛</div>
         <div class="combo-translit">nṯr</div>
         <div class="combo-meaning">deus</div>
       </div>
       <div class="combo-card">
-        <div class="combo-glyphs">𓂗𓏛</div>
-        <div class="combo-translit">jb</div>
+        <div class="combo-glyphs">𓄣𓏛</div>
+        <div class="combo-translit">ib</div>
         <div class="combo-meaning">coração</div>
       </div>
     </div>
@@ -222,7 +222,7 @@
     <div class="modal-phon" id="mPhon"></div>
     <div class="modal-name" id="mName"></div>
     <div class="modal-info">
-      <div class="modal-info-row"><span class="key">Tipo</span><span class="val">Biliteral · 2 consoantes</span></div>
+      <div class="modal-info-row"><span class="key">Tipo</span><span class="val" id="mTipo">Bilítero · 2 consoantes</span></div>
       <div class="modal-info-row"><span class="key">Transliteração</span><span class="val" id="mTranslit"></span></div>
       <div class="modal-info-row"><span class="key">Sinal</span><span class="val" id="mDesc"></span></div>
     </div>
@@ -236,36 +236,26 @@
 
 <script>
 const BILITERALS = [
-  { id:'O1',  glyph:'𓉐', phon:'pr',  name:'plano de casa',    tip:'Plano de casa visto de cima. pr = "casa". Raiz de Faraó: pr-ꜥꜣ significa "grande casa".' },
-  { id:'D2',  glyph:'𓁷', phon:'ḥr',  name:'rosto',            tip:'Rosto de frente. ḥr = "rosto" e também "sobre, em" (preposição muito usada).' },
-  { id:'F4',  glyph:'𓂾', phon:'ḥꜣ',  name:'parte dianteira de leão', tip:'Parte dianteira de leão. ḥꜣ = "trás, além de".' },
-  { id:'D28', glyph:'𓆓', phon:'kꜣ',  name:'dois braços levantados', tip:'Os dois braços levantados = ka, o duplo espiritual. Central na teologia egípcia.' },
-  { id:'G25', glyph:'𓅐', phon:'ꜣḫ',  name:'íbis com crista',  tip:'Íbis com crista = ꜣḫ, "espírito luminoso". Os mortos bem-sucedidos tornavam-se ꜣḫ.' },
-  { id:'F34', glyph:'𓂗', phon:'jb',   name:'coração',          tip:'Coração. jb = "coração, desejo". Central em textos de sabedoria do Reino Médio.' },
-  { id:'W24', glyph:'𓏌', phon:'nw',   name:'vasos',            tip:'Vasos. nw = partícula antiga do plural.' },
-  { id:'Aa11',glyph:'𓐛', phon:'mj',   name:'sinal incerto',    tip:'Sinal de significado debatido. mj = "como, igual a" (partícula de comparação).' },
-  { id:'R8',  glyph:'𓊽', phon:'nṯr',  name:'estandarte / deus',tip:'Estandarte = "deus" (nṯr). Um dos logogramas mais importantes em qualquer texto religioso.' },
-  { id:'N37', glyph:'𓈙', phon:'šw',   name:'lagoa de jardim',  tip:'Lagoa de jardim. šw = nome do deus do ar.' },
-  { id:'G1',  glyph:'𓄿', phon:'ꜣ',    name:'abutre egípcio',   tip:'Unileteral ꜣ, muito frequente como complemento em palavras com esse som.' },
-  { id:'M17', glyph:'𓇋', phon:'j',    name:'junco',            tip:'Unileteral j/y. Complemento frequentíssimo no início e final de palavras.' },
-  { id:'G17', glyph:'𓅓', phon:'m',    name:'coruja',           tip:'Unileteral m. Muito usado como complemento em biliterais terminados em M.' },
-  { id:'D21', glyph:'𓂋', phon:'r',    name:'boca',             tip:'Unileteral r, ubíquo como complemento de biliterais terminados em R.' },
-  { id:'G43', glyph:'𓅱', phon:'w',    name:'pintinho',         tip:'Unileteral w, muito frequente como complemento.' },
-  { id:'D36', glyph:'𓂝', phon:'ꜥ',   name:'braço',            tip:'Unileteral ꜥ, usado como complemento em muitos biliterais.' },
-  { id:'D58', glyph:'𓃀', phon:'b',    name:'pé',               tip:'Unileteral b, frequente como complemento.' },
-  { id:'S29', glyph:'𓋴', phon:'s',    name:'tecido dobrado',   tip:'Unileteral s, aparece muito como complemento.' },
-  { id:'N35', glyph:'𓈖', phon:'n',    name:'ondas de água',    tip:'Unileteral n. A forma em ziguezague é inconfundível.' },
-  { id:'Aa1', glyph:'𓐍', phon:'ḫ',   name:'placenta',         tip:'Som KH gutural, como o CH alemão em "Bach". Muito comum como complemento em compostos.' },
-  { id:'O34', glyph:'𓊃', phon:'z',    name:'tranca',           tip:'Unileteral z/s. Aparece em muitas palavras como complemento.' },
-  { id:'V13', glyph:'𓍿', phon:'ṯ',   name:'corda de amarrar', tip:'Unileteral ṯ, comum em sufixos femininos e complementos.' },
-  { id:'D46', glyph:'𓂧', phon:'d',    name:'mão',              tip:'Unileteral d. Frequente como complemento de palavras terminadas em D.' },
-  { id:'X1',  glyph:'𓏏', phon:'t',    name:'pão achatado',     tip:'Unileteral t, marca o feminino em substantivos. Muito frequente.' },
-  { id:'I9',  glyph:'𓆑', phon:'f',    name:'víbora cornuda',   tip:'Unileteral f, frequentíssimo como complemento.' },
-  { id:'N29', glyph:'𓈎', phon:'q',    name:'encosta',          tip:'Unileteral q. Aparece em palavras como qd (construir) e jqr (excelente).' },
-  { id:'V31', glyph:'𓎡', phon:'k',    name:'cesta com alça',   tip:'Unileteral k. Muito frequente em sufixos de segunda pessoa.' },
-  { id:'W11', glyph:'𓎼', phon:'g',    name:'suporte de jarro', tip:'Unileteral g. Aparece em gb (terra) e outras palavras fundamentais.' },
-  { id:'Q3',  glyph:'𓊪', phon:'p',    name:'banco',            tip:'Unileteral p. Aparece em pr (casa) e como complemento em muitos biliterais.' },
-  { id:'F32', glyph:'𓄡', phon:'ẖ',   name:'barriga de animal',tip:'Barriga de animal. Outro som KH, ligeiramente mais palatal que ḫ.' },
+  { id:'O1',  glyph:'𓉐', phon:'pr',   name:'planta de casa',          tip:'pr = "casa". Raiz de per-aa (pr-ꜥꜣ), "grande casa" = Faraó. Frequente em topônimos como Per-Ramsés.' },
+  { id:'D2',  glyph:'𓁷', phon:'ḥr',   name:'rosto',                   tip:'ḥr = "rosto" e preposição "sobre, em". Aparece também no nome do deus Hórus (ḥrw).' },
+  { id:'F4',  glyph:'𓄂', phon:'ḥꜣ',   name:'parte dianteira de leão', tip:'ḥꜣ = "atrás, além de". Preposição espacial frequente em textos funerários e geográficos.' },
+  { id:'D28', glyph:'𓂓', phon:'kꜣ',   name:'dois braços erguidos',    tip:'kꜣ = "ka", o duplo espiritual de cada pessoa. Central na teologia egípcia e nos ritos funerários.' },
+  { id:'G25', glyph:'𓅜', phon:'ꜣḫ',   name:'íbis com crista',         tip:'ꜣḫ = "espírito luminoso". Os mortos bem-sucedidos tornavam-se ꜣḫ e habitavam o campo estelar.' },
+  { id:'F34', glyph:'𓄣', phon:'ib',    name:'coração',                 tip:'ib = "coração, vontade". Para os egípcios, o coração era a sede da inteligência e da memória.' },
+  { id:'W24', glyph:'𓏌', phon:'nw',    name:'vasos',                   tip:'nw = partícula plural do Reino Antigo. Aparece em Nun/Nunu (nwn), o oceano primordial da criação.' },
+  { id:'G19', glyph:'𓅕', phon:'mi',    name:'coruja com antebraço',    tip:'mi = "como, igual a" (partícula de comparação). Frequente em expressões poéticas e laudatórias.' },
+  { id:'V30', glyph:'𓎟', phon:'nb',    name:'cesto',                   tip:'nb = "senhor, todo, cada". Extremamente frequente: nb-tꜣwy = "Senhor das Duas Terras" = Faraó.' },
+  { id:'G36', glyph:'𓅨', phon:'wr',    name:'andorinha',               tip:'wr = "grande". Aparece em epítetos divinos (wr-nṯr, "o grande deus") e títulos nobiliárquicos.' },
+  { id:'R8',  glyph:'𓊹', phon:'nṯr',  name:'tecido sobre mastro',     tip:'nṯr = "deus". Trilítero usado como logograma. Aparece em quase todo texto religioso egípcio.' },
+  { id:'R11', glyph:'𓊽', phon:'ḏd',   name:'coluna djed',             tip:'ḏd = "dizer" (verbo) e "estabilidade" (logograma). A coluna djed é símbolo de Osíris.' },
+  { id:'N41', glyph:'𓈞', phon:'ḥm',   name:'poço com ondas',          tip:'ḥm = "servo" e "Majestade" em contexto real. ḥm-nṯr = "servo do deus" = sacerdote.' },
+  { id:'D1',  glyph:'𓁶', phon:'tp',   name:'cabeça',                  tip:'tp = "cabeça, topo, sobre". Funciona tanto como substantivo quanto como preposição.' },
+  { id:'N16', glyph:'𓇾', phon:'tꜣ',   name:'terra com grãos',         tip:'tꜣ = "terra, país, solo". Aparece em nb-tꜣwy e expressões geográficas fundamentais.' },
+  { id:'G39', glyph:'𓅭', phon:'sꜣ',   name:'pato',                    tip:'sꜣ = "filho", "proteção" e "costas". Muito frequente em linhagens reais e títulos.' },
+  { id:'S34', glyph:'𓋹', phon:'ꜥnḫ',  name:'ânkh',                    tip:'ꜥnḫ = "vida". O ankh é apresentado pelos deuses aos faraós como dom da vida eterna.' },
+  { id:'N18', glyph:'𓈀', phon:'iw',   name:'ilha',                    tip:'iw = "ilha". Também funciona como conectivo verbal frequentíssimo no início de orações.' },
+  { id:'N36', glyph:'𓈘', phon:'mr',   name:'canal',                   tip:'mr = "canal" e verbo "amar, querer". Muito frequente em textos do Reino Médio.' },
+  { id:'G38', glyph:'𓅬', phon:'gb',   name:'ganso',                   tip:'gb = nome do deus Geb, senhor da terra. O ganso era o animal sagrado de Geb nos textos cosmológicos.' },
 ];
 
 let learned = new Set(JSON.parse(localStorage.getItem('musaeum-biliterals-learned') || '[]'));
@@ -279,7 +269,7 @@ function saveLearned() {
   renderGrid();
   const p = JSON.parse(localStorage.getItem('musaeum-hieroglyphs') || '{}');
   p.cardsReviewed = (p.cardsReviewed || 0) + 1;
-  if (learned.size >= 15) p.lessonsCompleted = Math.max(p.lessonsCompleted || 0, 3);
+  if (learned.size >= 10) p.lessonsCompleted = Math.max(p.lessonsCompleted || 0, 3);
   localStorage.setItem('musaeum-hieroglyphs', JSON.stringify(p));
 }
 
@@ -304,15 +294,17 @@ function renderGrid() {
       <span class="sc-name">${s.name}</span>
     </div>`).join('');
   document.getElementById('learnedCount').textContent = learned.size;
-  document.getElementById('progressBar').style.width = Math.round((learned.size/30)*100) + '%';
+  document.getElementById('progressBar').style.width = Math.round((learned.size/20)*100) + '%';
 }
 
 function openModal(phon) {
   const s = BILITERALS.find(x => x.phon === phon);
   if (!s) return;
   currentModal = s;
+  const tipo = s.phon.length >= 3 ? 'Trilítero · 3 consoantes' : s.phon.length === 2 ? 'Bilítero · 2 consoantes' : 'Logograma';
   document.getElementById('mGlyph').textContent    = s.glyph;
-  document.getElementById('mId').textContent       = s.id + ' · biliteral';
+  document.getElementById('mId').textContent       = s.id;
+  document.getElementById('mTipo').textContent     = tipo;
   document.getElementById('mPhon').textContent     = s.phon;
   document.getElementById('mName').textContent     = s.name;
   document.getElementById('mTranslit').textContent = s.phon;
