@@ -177,6 +177,7 @@
     <div class="callout">
       <strong>A Pedra de Roseta:</strong> Champollion decifrou os hieróglifos em 1822 exatamente porque reconheceu o cartucho: ele sabia que ovais continham nomes próprios. Ao comparar o texto em grego (que mencionava Ptolomeu) com os cartuchos hieroglíficos, ele conseguiu atribuir sons aos sinais.
     </div>
+    <p>Muitos nomes de faraós usam <em>transposição honorífica</em> (Allen, §4.15): nomes de deuses são escritos primeiro por reverência, mesmo que sejam lidos depois na frase. Por exemplo, no nome <em>Rꜥ-ms-sw</em> (Ramsés), o disco solar 𓇳 de Rá vem primeiro. Em <em>ꜣḫ-n-jtn</em> (Akhenaton), o disco de Aton não está no início por razão gramatical — a construção é "espírito luminoso de Aton".</p>
   </div>
 
   <div class="licao-section">
@@ -204,14 +205,14 @@
 
       <div class="cartouche-card">
         <div class="cc-cartouche">
-          <div class="cartouche-frame"><span class="cartouche-glyphs">𓏠𓈖𓎡𓏏𓅱𓈖𓇋𓏠𓈖</span></div>
+          <div class="cartouche-frame"><span class="cartouche-glyphs">𓏏𓅱𓏏𓋹𓇋𓏠𓈖</span></div>
           <span class="cc-pharaoh-name">Tutancâmon</span>
         </div>
         <div class="cc-era">XVIII Dinastia · ~1332–1323 AEC</div>
         <div class="cc-name">Tutancâmon (Twt-ꜥnḫ-jmn)</div>
         <div class="cc-epithet">"Imagem viva de Amon"</div>
         <div class="cc-breakdown">
-          <div class="cc-sign"><span class="g">𓏠</span><span class="p">twt</span><span class="d">imagem/estátua</span></div>
+          <div class="cc-sign"><span class="g">𓏏𓅱𓏏</span><span class="p">twt</span><span class="d">imagem/estátua (t-w-t)</span></div>
           <div class="cc-sign"><span class="g">𓋹</span><span class="p">ꜥnḫ</span><span class="d">ankh = vida</span></div>
           <div class="cc-sign"><span class="g">𓇋𓏠𓈖</span><span class="p">jmn</span><span class="d">Amon (deus)</span></div>
         </div>
@@ -275,17 +276,16 @@
 
       <div class="cartouche-card">
         <div class="cc-cartouche">
-          <div class="cartouche-frame"><span class="cartouche-glyphs">𓇯𓈖𓐍𓏏𓈖</span></div>
+          <div class="cartouche-frame"><span class="cartouche-glyphs">𓅜𓈖𓇳𓏏𓈖</span></div>
           <span class="cc-pharaoh-name">Akhenaton</span>
         </div>
         <div class="cc-era">XVIII Dinastia · ~1353–1336 AEC</div>
         <div class="cc-name">Akhenaton (ꜣḫ-n-jtn)</div>
         <div class="cc-epithet">"Espírito luminoso de Aton"</div>
         <div class="cc-breakdown">
-          <div class="cc-sign"><span class="g">𓆭</span><span class="p">ꜣḫ</span><span class="d">íbis = espírito</span></div>
+          <div class="cc-sign"><span class="g">𓅜</span><span class="p">ꜣḫ</span><span class="d">íbis com crista = espírito luminoso</span></div>
           <div class="cc-sign"><span class="g">𓈖</span><span class="p">n</span><span class="d">água = "de"</span></div>
-          <div class="cc-sign"><span class="g">𓇯</span><span class="p">jtn</span><span class="d">disco = Aton</span></div>
-          <div class="cc-sign"><span class="g">𓈖</span><span class="p">n</span><span class="d">complemento</span></div>
+          <div class="cc-sign"><span class="g">𓇳𓏏𓈖</span><span class="p">jtn</span><span class="d">disco solar de Aton (+ compl. t-n)</span></div>
         </div>
         <div class="cc-note">O faraó que aboliu o panteão egípcio e introduziu o monoteísmo de Aton. Após sua morte, seus sucessores apagaram seu nome, mas sem sucesso total.</div>
       </div>
@@ -310,10 +310,10 @@
   <div class="lesson-done" id="lessonDone" style="display:none">
     <div class="trophy">𓂋𓏤</div>
     <h2>Curso completo!</h2>
-    <p>Você terminou as 5 lições do curso básico de hieróglifos. Agora você entende o sistema de escrita, conhece os 24 sinais unileteral, os biliterais essenciais, leu palavras reais e identificou cartuchos de faraós.</p>
+    <p>Você terminou as 5 lições do curso básico de hieróglifos. Agora você entende o sistema de escrita, conhece os 25 sinais unilíteros, os bilíteros essenciais, leu palavras reais e identificou cartuchos de faraós.</p>
     <div class="done-stats">
       <div class="done-stat"><span class="num">5</span><span class="lbl">lições</span></div>
-      <div class="done-stat"><span class="num">24</span><span class="lbl">unileteral</span></div>
+      <div class="done-stat"><span class="num">25</span><span class="lbl">unilíteros</span></div>
       <div class="done-stat"><span class="num">6</span><span class="lbl">faraós</span></div>
     </div>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
@@ -334,10 +334,10 @@
 const CARTOUCHES = [
   { glyph:'𓄤𓆑𓂋𓏏𓇋𓇌𓏏', name:'Nefertiti',   opts:['Ramsés II','Nefertiti','Tutancâmon','Hatchepsut'] },
   { glyph:'𓇳𓇋𓇋𓏠𓇋𓇋𓋴𓇋', name:'Ramsés II',  opts:['Cleópatra','Ramsés II','Akhenaton','Nefertiti'] },
-  { glyph:'𓏠𓈖𓎡𓏏𓅱𓈖𓇋𓏠𓈖', name:'Tutancâmon', opts:['Tutancâmon','Hatchepsut','Akhenaton','Ramsés II'] },
+  { glyph:'𓏏𓅱𓏏𓋹𓇋𓏠𓈖',     name:'Tutancâmon', opts:['Tutancâmon','Hatchepsut','Akhenaton','Ramsés II'] },
   { glyph:'𓎡𓃀𓇋𓍿𓂋𓊪𓄿𓏏', name:'Cleópatra',  opts:['Nefertiti','Tutancâmon','Cleópatra','Ramsés II'] },
   { glyph:'𓉔𓏏𓊪𓈙𓅱𓏏',     name:'Hatchepsut', opts:['Hatchepsut','Akhenaton','Nefertiti','Cleópatra'] },
-  { glyph:'𓇯𓈖𓐍𓏏𓈖',      name:'Akhenaton',  opts:['Ramsés II','Tutancâmon','Akhenaton','Cleópatra'] },
+  { glyph:'𓅜𓈖𓇳𓏏𓈖',      name:'Akhenaton',  opts:['Ramsés II','Tutancâmon','Akhenaton','Cleópatra'] },
 ];
 
 let cqIdx = null, cqScore = 0, cqTotal = 0, cqAnswered = false;

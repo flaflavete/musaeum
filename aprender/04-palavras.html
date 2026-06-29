@@ -152,12 +152,27 @@ ol strong { color: var(--papyrus); }
     <p>Ao encontrar uma palavra em hieróglifos, siga este processo:</p>
     <ol>
       <li>Identifique a <strong>direção</strong> (os rostos encarando de qual lado?)</li>
-      <li>Separe os sinais e classifique: unileteral, biliteral, trileteral ou determinativo</li>
+      <li>Separe os sinais e classifique: unilítero, bilítero, trilítero ou determinativo</li>
       <li>Leia os sinais fonéticos em ordem, ignorando repetições de complementos</li>
       <li>O determinativo no final não é lido: ele apenas confirma a categoria</li>
     </ol>
     <div class="callout">
       <strong>Dica:</strong> Não existe pontuação, espaço entre palavras ou maiúsculas em egípcio. O contexto e os determinativos são os separadores naturais.
+    </div>
+  </div>
+
+  <div class="licao-section">
+    <h2>Substantivos em egípcio: gênero e número</h2>
+    <p>A Lição 4 de Allen é dedicada aos substantivos. Em egípcio médio, todo substantivo tem gênero — masculino ou feminino — e número.</p>
+    <div class="callout">
+      <strong>Masculino</strong> — sem sufixo: <em>nṯr</em> "deus" (𓊹𓏤)<br>
+      <strong>Feminino</strong> — sufixo <em>-t</em>: <em>nṯrt</em> "deusa" (𓊹𓏏𓏤)<br>
+      <strong>Plural masc.</strong> — sufixo <em>-w</em>: <em>nṯrw</em> "deuses" (𓊹𓅱𓏤)<br>
+      <strong>Plural fem.</strong> — sufixo <em>-wt</em>: <em>nṯrwt</em> "deusas" (𓊹𓅱𓏏𓏤)
+    </div>
+    <p>Dois substantivos justapostos formam o <em>genitivo direto</em> (A + B = "A de B"). Por reverência, nomes divinos podem ser escritos antes mesmo sendo lidos depois — Allen chama isso de <em>transposição honorífica</em>:</p>
+    <div class="callout">
+      <strong>𓊹𓉗</strong> — escrito: <em>nṯr</em> + <em>ḥwt</em> — lido: <em>ḥwt-nṯr</em> "recinto do deus" = <strong>templo</strong>
     </div>
   </div>
 
@@ -180,7 +195,7 @@ ol strong { color: var(--papyrus); }
   </div>
 
   <div class="lesson-nav">
-    <a class="btn" href="03-biliteral.html">← Lição 3</a>
+    <a class="btn" href="03-bilítero.html">← Lição 3</a>
     <div class="lesson-nav-info">Lição 4 de 5</div>
     <a class="btn btn-primary" href="05-cartuchos.html">Próxima →</a>
   </div>
@@ -191,54 +206,54 @@ ol strong { color: var(--papyrus); }
 const WORDS = {
   corpo: [
     { glyph:'𓁷𓏤', phon:'ḥr', meaning:'rosto / sobre',
-      parts:[{g:'𓁷',p:'ḥr',d:'rosto (biliteral)'},{g:'𓏤',p:'',d:'traço vertical (logograma)'}],
-      note:'Uma das preposições mais comuns. ḥr também aparece no nome do deus Hórus.' },
-    { glyph:'𓂋𓏤𓈖', phon:'rn', meaning:'nome',
-      parts:[{g:'𓂋',p:'r',d:'boca'},{g:'𓏤',p:'',d:'traço'},{g:'𓈖',p:'n',d:'água (complemento)'}],
-      note:'O "nome" era sagrado: destruí-lo equivalia a uma segunda morte. Por isso os faraós apagavam os nomes dos antecessores.' },
-    { glyph:'𓂗', phon:'jb', meaning:'coração',
-      parts:[{g:'𓂗',p:'jb',d:'coração (biliteral)'}],
-      note:'O coração era a sede da inteligência para os egípcios, não o cérebro. No Julgamento dos Mortos, o coração era pesado contra uma pena.' },
-    { glyph:'𓂀', phon:'jr', meaning:'olho',
-      parts:[{g:'𓂀',p:'jr',d:'olho (logograma)'}],
-      note:'O Olho de Hórus (wḏꜣt) era um dos amuletos mais poderosos do Egito.' },
-    { glyph:'𓂧𓂋𓏤𓂻', phon:'drt', meaning:'mão',
-      parts:[{g:'𓂧',p:'d',d:'mão'},{g:'𓂋',p:'r',d:'boca (complemento)'},{g:'𓏤',p:'',d:'traço'},{g:'𓂻',p:'',d:'determinativo: movimento'}],
-      note:'Palavra "mão" em egípcio clássico. O determinativo final indica ação/movimento.' },
+      parts:[{g:'𓁷',p:'ḥr',d:'rosto (bilítero D2)'},{g:'𓏤',p:'',d:'traço vertical (logograma)'}],
+      note:'Uma das preposições mais frequentes do egípcio médio. ḥr = "rosto" como substantivo e "sobre, a respeito de" como preposição. Aparece no nome do deus Hórus (ḥrw).' },
+    { glyph:'𓂋𓈖𓏤', phon:'rn', meaning:'nome',
+      parts:[{g:'𓂋',p:'r',d:'boca (unilítero D21)'},{g:'𓈖',p:'n',d:'ondas de água (unilítero N35)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      note:'O "nome" era sagrado: destruí-lo equivalia a uma segunda morte. Por isso faraós apagavam os nomes de antecessores indesejados dos monumentos.' },
+    { glyph:'𓄣𓏤', phon:'jb', meaning:'coração',
+      parts:[{g:'𓄣',p:'jb',d:'coração (bilítero F34)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      note:'O coração era a sede da inteligência e da memória para os egípcios. No Julgamento dos Mortos, o coração era pesado contra a pena de Maat.' },
+    { glyph:'𓁹𓏤', phon:'jrt', meaning:'olho',
+      parts:[{g:'𓁹',p:'jrt',d:'olho (logograma D4)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      note:'jrt = "olho". O Olho de Hórus (wḏꜣt, D10) era uma forma especial derivada deste sinal — um dos amuletos mais poderosos do Egito Antigo.' },
+    { glyph:'𓆓𓂋𓏏𓂧', phon:'ḏrt', meaning:'mão',
+      parts:[{g:'𓆓',p:'ḏ',d:'cobra (unilítero I10)'},{g:'𓂋',p:'r',d:'boca (complemento)'},{g:'𓏏',p:'t',d:'pão (complemento)'},{g:'𓂧',p:'',d:'determinativo: mão'}],
+      note:'ḏrt = "mão" em egípcio médio. O sinal da mão no final é silencioso: funciona como determinativo semântico, confirmando a categoria da palavra.' },
   ],
   cosmos: [
-    { glyph:'𓇳', phon:'rꜥ', meaning:'sol / Rá',
-      parts:[{g:'𓇳',p:'rꜥ',d:'disco solar (logograma)'}],
-      note:'O disco solar representa tanto o astro quanto o deus Rá, o mais importante do panteão. Muitos faraós incluíam Rá em seus nomes.' },
-    { glyph:'𓇯', phon:'jtn', meaning:'disco solar / Aton',
-      parts:[{g:'𓇯',p:'jtn',d:'disco solar com raios'}],
-      note:'Aton era o disco solar elevado à divindade única por Akhenaton na revolução religiosa do século XIV AEC.' },
-    { glyph:'𓇋𓈖𓊪𓏏𓇯', phon:'jnpt', meaning:'céu',
-      parts:[{g:'𓇋',p:'j',d:'junco'},{g:'𓈖',p:'n',d:'água'},{g:'𓊪',p:'p',d:'banco'},{g:'𓏏',p:'t',d:'pão'}],
-      note:'O céu em egípcio. A deusa do céu era Nut, que arqueava seu corpo sobre a terra.' },
-    { glyph:'𓇺', phon:'tꜣ', meaning:'terra / país',
-      parts:[{g:'𓇺',p:'tꜣ',d:'terra (logograma + determinativo)'}],
-      note:'Representa a faixa de terra fértil às margens do Nilo. O Egito chamava a si mesmo de "Terra Negra" (Kemet).' },
+    { glyph:'𓇳𓏤', phon:'rꜥ', meaning:'sol / Rá',
+      parts:[{g:'𓇳',p:'rꜥ',d:'disco solar (logograma N5)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      note:'O disco solar representa tanto o astro quanto o deus Rá. Muitos faraós incluíam rꜥ em seus nomes reais, como Ramsés (rꜥ-ms-sw = "Rá o criou").' },
+    { glyph:'𓇯𓏤', phon:'pt', meaning:'céu',
+      parts:[{g:'𓇯',p:'pt',d:'céu (logograma N1)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      note:'pt = "céu". A deusa Nut arqueava seu corpo sobre a terra formando a abóbada celeste. O céu egípcio era feminino, ao contrário da terra (masculina).' },
+    { glyph:'𓂓𓏤', phon:'kꜣ', meaning:'ka (duplo espiritual)',
+      parts:[{g:'𓂓',p:'kꜣ',d:'braços erguidos (bilítero D28)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      note:'O kꜣ era o "duplo" espiritual criado junto com o corpo. Templos e tumbas eram "casas do kꜣ". O sinal de dois braços erguidos é inconfundível.' },
+    { glyph:'𓇾𓏤', phon:'tꜣ', meaning:'terra / país',
+      parts:[{g:'𓇾',p:'tꜣ',d:'terra com grãos (logograma N16)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      note:'tꜣ representa a faixa de terra fértil às margens do Nilo. O Egito se chamava km.t ("Terra Negra") por oposição ao deserto vermelho (dšrt).' },
     { glyph:'𓄤𓆑𓂋', phon:'nfr', meaning:'belo, bom, perfeito',
-      parts:[{g:'𓄤',p:'nfr',d:'coração-traqueia (trileteral)'},{g:'𓆑',p:'f',d:'víbora (complemento)'},{g:'𓂋',p:'r',d:'boca (complemento)'}],
-      note:'Uma das palavras mais belas do egípcio. Aparece em nomes próprios (Nefertiti = "a bela chegou") e em expressões de louvor.' },
+      parts:[{g:'𓄤',p:'nfr',d:'coração-traqueia (trilítero F35)'},{g:'𓆑',p:'f',d:'víbora (complemento)'},{g:'𓂋',p:'r',d:'boca (complemento)'}],
+      note:'Uma das palavras mais frequentes do egípcio médio. Aparece em nomes (Nefertiti = "a bela chegou"), fórmulas de louvor e expressões de oferenda.' },
   ],
   vida: [
     { glyph:'𓉐𓂋𓏤', phon:'pr', meaning:'casa',
-      parts:[{g:'𓉐',p:'pr',d:'planta da casa (biliteral)'},{g:'𓂋',p:'r',d:'boca (complemento)'},{g:'𓏤',p:'',d:'traço vertical'}],
-      note:'pr = "casa" é a raiz de Per-aa (pr-ꜥꜣ), "grande casa" = Faraó. Também em "Per-Ramesés", a capital de Ramsés II.' },
-    { glyph:'𓌀𓂧𓏤𓌀', phon:'ḏd', meaning:'dizer, falar',
-      parts:[{g:'𓌀',p:'ḏ',d:'cobra'},{g:'𓂧',p:'d',d:'mão (complemento)'},{g:'𓏤',p:'',d:'traço'},{g:'𓌀',p:'',d:'det. de cobra/discurso'}],
-      note:'Verbo "dizer". Fórmulas como ḏd mdw ("palavras a dizer") introduzem falas de deuses nos textos religiosos.' },
-    { glyph:'𓄿𓈖𓐍𓂝𓏤', phon:'ꜣnḫ', meaning:'vida / viver',
-      parts:[{g:'𓄿',p:'ꜣ',d:'abutre'},{g:'𓈖',p:'n',d:'água'},{g:'𓐍',p:'ḫ',d:'placenta'},{g:'𓂝',p:'ꜥ',d:'braço (det.)'}],
-      note:'ꜣnḫ = "vida". O símbolo ankh 𓋹 é um dos ícones mais reconhecíveis do Egito. Era presente dado pelos deuses à realeza.' },
-    { glyph:'𓌀𓂧𓏏𓂻', phon:'ḏdt', meaning:'corrida / andar rápido',
-      parts:[{g:'𓌀',p:'ḏ',d:'cobra'},{g:'𓂧',p:'d',d:'mão'},{g:'𓏏',p:'t',d:'pão (feminino)'},{g:'𓂻',p:'',d:'det. movimento'}],
-      note:'O determinativo de pernas em movimento indica ação física, comum em verbos de movimento e transformação.' },
-    { glyph:'𓊽𓏤', phon:'nṯr', meaning:'deus',
-      parts:[{g:'𓊽',p:'nṯr',d:'estandarte (logograma)'},{g:'𓏤',p:'',d:'traço vertical'}],
-      note:'O sinal do estandarte representa divindade em geral. Não havia uma palavra diferente para "deus" e "deusa". Só o gênero do artigo mudava.' },
+      parts:[{g:'𓉐',p:'pr',d:'planta da casa (bilítero O1)'},{g:'𓂋',p:'r',d:'boca (complemento)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      note:'pr = "casa" é a raiz de pr-ꜥꜣ ("grande casa") = Faraó, e de topônimos como pr-Rꜥ-ms-sw (Per-Ramsés), capital de Ramsés II no Delta.' },
+    { glyph:'𓊹𓉗𓏤', phon:'ḥwt-nṯr', meaning:'templo',
+      parts:[{g:'𓊹',p:'nṯr',d:'estandarte = deus (escrito primeiro por reverência)'},{g:'𓉗',p:'ḥwt',d:'recinto/mansão (O6)'},{g:'𓏤',p:'',d:'traço vertical (logograma)'}],
+      note:'Ḥwt-nṯr = "recinto do deus" = templo. Exemplo de genitivo direto com transposição honorífica: nṯr é escrito antes de ḥwt por respeito ao deus, mas lido depois. Allen (§4.15) usa ḥwt-nṯr como exemplo central deste fenômeno.' },
+    { glyph:'𓋹𓏤', phon:'ꜥnḫ', meaning:'vida / viver',
+      parts:[{g:'𓋹',p:'ꜥnḫ',d:'ankh (logograma S34)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      note:'ꜥnḫ = "vida". O símbolo ankh é um dos ícones mais reconhecíveis do Egito Antigo. Era apresentado pelos deuses à realeza como dom da vida eterna.' },
+    { glyph:'𓎟𓏤', phon:'nb', meaning:'senhor / todo / qualquer',
+      parts:[{g:'𓎟',p:'nb',d:'cesto (logograma V30)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      note:'Uma das palavras mais frequentes do egípcio clássico. nb = "senhor" e "todo/qualquer". nb-tꜣwy = "Senhor das Duas Terras" era o título central do faraó.' },
+    { glyph:'𓊹𓏤', phon:'nṯr', meaning:'deus',
+      parts:[{g:'𓊹',p:'nṯr',d:'tecido em mastro (logograma R8)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      note:'O sinal do estandarte representa divindade em geral. Em egípcio, não havia palavras distintas para "deus" e "deusa": só o gênero do artigo e do adjetivo diferenciava.' },
   ],
 };
 

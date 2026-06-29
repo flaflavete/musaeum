@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lição 2 · Os 24 sinais unileteral · Musæum</title>
+<title>Lição 2 · Os 25 sinais unilíteros · Musæum</title>
 <meta name="theme-color" content="#1b2a3d">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -136,7 +136,7 @@
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     Musæum
   </a>
-  <span class="licao-header-title">Lição 2 · Os 24 sinais unileteral</span>
+  <span class="licao-header-title">Lição 2 · Os 25 sinais unilíteros</span>
 </header>
 
 <div class="licao-content">
@@ -144,20 +144,20 @@
   <div class="licao-hero">
     <div class="licao-hero-num">Lição 2 · Fonética</div>
     <span class="licao-hero-glyph">𓄿</span>
-    <h1>Os 24 sinais unileteral</h1>
-    <p>Estes são os sinais mais importantes do egípcio: cada um representa uma única consoante. Aprenda estes 24 e você terá a base para ler qualquer palavra. Clique em cada sinal para ver detalhes e marcar como aprendido.</p>
+    <h1>Os 25 sinais unilíteros</h1>
+    <p>Estes são os sinais mais importantes do egípcio: cada um representa uma única consoante. O egípcio médio tem 25 consoantes (Allen, Lição 2). Aprenda estes 25 e você terá a base para ler qualquer palavra. Clique em cada sinal para ver detalhes e marcar como aprendido.</p>
   </div>
 
   <div class="callout">
-    <strong>Sobre a transliteração:</strong> Os egiptólogos usam um sistema especial de letras para representar sons do egípcio antigo. Alguns sons não existem em português, como <em>ꜣ</em> (um a gutural), <em>ꜥ</em> (consoante faríngea) e <em>ḥ ḫ ẖ</em> (variações do H). Não se preocupe em pronunciar perfeitamente: o foco é reconhecer os sinais.
+    <strong>Ordem do dicionário:</strong> Esta sequência — ꜣ j y ꜥ w b p f m n r h ḥ ḫ ẖ z s š q k g t ṯ d ḏ — é a ordem usada em todos os léxicos de egípcio médio (Allen, §2.3). Memorizar esta ordem é essencial para consultar o dicionário de Faulkner. Alguns sons não têm equivalente em português: <em>ꜣ</em> (a gutural), <em>ꜥ</em> (faríngea), <em>ḥ ḫ ẖ</em> (variantes do H). O foco é reconhecer os sinais, não pronunciar perfeitamente.
   </div>
 
   <div class="filter-row">
     <span class="filter-label">Filtrar:</span>
-    <button class="filtro-btn active" onclick="setFilter('all', this)">Todos (24)</button>
+    <button class="filtro-btn active" onclick="setFilter('all', this)">Todos (25)</button>
     <button class="filtro-btn" onclick="setFilter('learned', this)">Aprendidos</button>
     <button class="filtro-btn" onclick="setFilter('new', this)">Novos</button>
-    <span class="progress-count">Aprendidos: <span id="learnedCount">0</span>/24</span>
+    <span class="progress-count">Aprendidos: <span id="learnedCount">0</span>/25</span>
   </div>
 
   <div class="signs-grid" id="signsGrid"></div>
@@ -191,7 +191,7 @@
     <div class="modal-info">
       <div class="modal-info-row">
         <span class="key">Tipo</span>
-        <span class="val">Unileteral · 1 consoante</span>
+        <span class="val">Unilítero · 1 consoante</span>
       </div>
       <div class="modal-info-row">
         <span class="key">Transliteração</span>
@@ -216,7 +216,7 @@ const UNILITERALS = [
   { id:'M17', glyph:'𓇋', phon:'j', name:'junco',           tip:'Um junco/cana. Equivale ao nosso Y ou I. Muito comum no início de palavras.' },
   { id:'M17', glyph:'𓇌', phon:'y', name:'dois juncos',     tip:'Dois juncos, que reforçam o som Y. Aparece especialmente em sufixos e formas femininas.' },
   { id:'D36', glyph:'𓂝', phon:'ꜥ', name:'braço',          tip:'O braço com mão aberta. Som faríngeo sem equivalente em português. Imagine um "a" profundo na garganta.' },
-  { id:'G17', glyph:'𓅱', phon:'w', name:'pintinho',        tip:'O pintinho de codorna. Som W, como em "uva". Um dos sinais mais frequentes.' },
+  { id:'G43', glyph:'𓅱', phon:'w', name:'pintinho de codorna', tip:'O pintinho de codorna. Som W, como em "uva". Um dos sinais mais frequentes.' },
   { id:'D58', glyph:'𓃀', phon:'b', name:'pé',              tip:'Um pé. O som B. Note que o sinal é um pé visto de lado.' },
   { id:'Q3',  glyph:'𓊪', phon:'p', name:'banco',           tip:'Um banco visto de cima. O som P.' },
   { id:'I9',  glyph:'𓆑', phon:'f', name:'víbora cornuda',  tip:'A víbora cornuda. O som F. Cuidado para não confundir com outras cobras.' },
@@ -236,7 +236,7 @@ const UNILITERALS = [
   { id:'X1',  glyph:'𓏏', phon:'t', name:'pão achatado',    tip:'Um pão achatado. O som T. Este sinal também marca o feminino em substantivos.' },
   { id:'V13', glyph:'𓍿', phon:'ṯ', name:'corda',           tip:'Uma corda de amarrar. Som TJ palatal, como o CH italiano em "ciao".' },
   { id:'D46', glyph:'𓂧', phon:'d', name:'mão',             tip:'Uma mão. O som D.' },
-  { id:'I10', glyph:'𓌀', phon:'ḏ', name:'cobra com capuz', tip:'Uma cobra com capuz. Som DJ, como em "djinn". Par palatal do D.' },
+  { id:'I10', glyph:'𓆓', phon:'ḏ', name:'cobra com capuz', tip:'Uma cobra com capuz. Som DJ, como em "djinn". Par palatal do D.' },
 ];
 
 let learned      = new Set(JSON.parse(localStorage.getItem('musaeum-uniliterals-learned') || '[]'));
@@ -250,7 +250,7 @@ function saveLearned() {
   renderGrid();
   const p = JSON.parse(localStorage.getItem('musaeum-hieroglyphs') || '{}');
   p.cardsReviewed = (p.cardsReviewed || 0) + 1;
-  if (learned.size >= 24) p.lessonsCompleted = Math.max(p.lessonsCompleted || 0, 2);
+  if (learned.size >= 25) p.lessonsCompleted = Math.max(p.lessonsCompleted || 0, 2);
   localStorage.setItem('musaeum-hieroglyphs', JSON.stringify(p));
 }
 
@@ -275,7 +275,7 @@ function renderGrid() {
       <span class="sc-phon">${s.phon}</span>
       <span class="sc-name">${s.name}</span>
     </div>`).join('');
-  const pct = Math.round((learned.size / 24) * 100);
+  const pct = Math.round((learned.size / 25) * 100);
   document.getElementById('progressBar').style.width = pct + '%';
 }
 
@@ -284,7 +284,7 @@ function openModal(phon) {
   if (!s) return;
   currentModal = s;
   document.getElementById('mGlyph').textContent = s.glyph;
-  document.getElementById('mId').textContent    = s.id + ' · unileteral';
+  document.getElementById('mId').textContent    = s.id + ' · unilítero';
   document.getElementById('mPhon').textContent  = s.phon;
   document.getElementById('mName').textContent  = s.name;
   document.getElementById('mTranslit').textContent = s.phon;
