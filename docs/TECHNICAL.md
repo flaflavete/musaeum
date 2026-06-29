@@ -24,6 +24,15 @@ data/sinuhe.js          Textos, desafios e glossário do Sinué
 data/campones.js        Textos, desafios e glossário do Camponês Eloquente
 data/cultura-material.js  Fichas dos manuscritos reais (foto + catálogo) e achados das notas
 data/geografia.js       Lugares citados nos textos, para o mapa interativo do index
+aprender/               Curso de leitura de hieróglifos (standalone, não usa engine.js)
+  index.html            Índice das lições
+  01-sistema.html       Lição 1 · Como funciona a escrita egípcia
+  02-unileteral.html    Lição 2 · Os 24 signos uniliterais
+  03-biliteral.html     Lição 3 · Signos biliterais essenciais
+  04-palavras.html      Lição 4 · Lendo palavras simples
+  05-cartuchos.html     Lição 5 · Cartuchos reais
+  flashcards.html       Flashcards de revisão
+  aprender.css          Estilos do módulo
 tests/                  Testes automatizados (vitest)
 package.json            Dependências de teste (vitest)
 fontes/                 PDFs e áudio de referência bibliográfica
@@ -460,6 +469,77 @@ Para **criar uma história nova** do zero:
 - **localStorage:** prefixo `musaeum-` com hífen (`musaeum-stories`, `musaeum-lang`)
 - **i18n em index.html:** atributo `data-t="chave"`
 - Comentários em português dentro dos arquivos
+
+## Módulo `aprender/` — Curso de hieróglifos
+
+Standalone: páginas autocontidas que **não** carregam `script.js`, `engine.js` nem o catálogo. Cada lição tem CSS e JS inline, mais `aprender.css` compartilhado. Não há persistência de progresso (localStorage).
+
+Referências usadas no conteúdo: Gardiner *Egyptian Grammar* (1957) para tipologia e lista de signos; Faulkner *Concise Dictionary* (1962) para transliterações. Caracteres egiptoló­gicos seguem o padrão do projeto: ꜣ (U+A723), ꜥ (U+A725), ỉ (U+1EC9 precomposto — nunca marcas combinantes).
+
+---
+
+## Caminho pelo Duat (em desenvolvimento, branch `duat-junior`)
+
+Jogo de ação HTML5 com 3 fases (Tumba, Templo, Nilo), rebuild nativo em JS puro. **Não está no `main`.**
+
+### Arquitetura
+
+```
+duat.html              Shell SPA: narrações PT/EN, controle de fluxo, tema, idioma
+duat-native/
+  engine.js            Motor de jogo compartilhado (canvas, física, render, HUD)
+  engine.css           Estilos do motor (HUD, guia, overlays)
+  tumba.html           Fase 1 — define DUAT_CFG e carrega engine.js/engine.css
+  templo.html          Fase 2
+  nilo.html            Fase 3
+  extract.cjs          Extrator de geometria do game.json do GDevelop → levels/*.json
+  levels/              JSONs de geometria das fases (sólidos, inimigos, coletáveis, hazards)
+  art/                 Arte original: tumba-bg.png, templo-bg.png, nilo-bg.png, porta.png
+```
+
+### Motor (`engine.js`) parametrizado por `window.DUAT_CFG`
+
+Cada fase define um objeto `DUAT_CFG` com:
+
+| Campo | Descrição |
+|---|---|
+| `phase` | id da fase (`'tumba'`, `'templo'`, `'nilo'`) |
+| `level` | caminho para o JSON de geometria |
+| `bg` | modo de fundo: `{mode:'image', img, h, y0, floor, ceil}` ou `{mode:'sky'}` |
+| `tileGround` | `true` para revestir sólidos finos com textura; `false` para deixá-los invisíveis |
+| `coinFrames` | frames do sprite coletável (shabti / alabastro / ankh conforme a fase) |
+| `slime` / `fly` | override de sprites e tamanho dos inimigos por fase |
+| `strings` | textos bilíngues de título e guia específicos da fase |
+| `guide` | array de cartões didáticos do Guia (botão 𓂀 no HUD) |
+
+### Comunicação iframe → shell
+
+Quando embedded, a fase notifica vitória com:
+
+```js
+window.parent.postMessage({ source: 'duat-native', phase: 'tumba', event: 'win' }, '*');
+```
+
+O shell ouve `message` e avança para a próxima narração. `EMBEDDED = window.parent !== window` controla se o toggle de idioma e o overlay de vitória aparecem (só no standalone).
+
+### Persistência
+
+Não usa `musaeum-stories`. Lê/grava apenas chaves compartilhadas:
+
+| Chave | Uso |
+|---|---|
+| `musaeum-lang` | idioma (PT/EN), lido no início de cada fase |
+| `musaeum-theme` | tema (dark/light) |
+| `musaeum-muted` | som mutado |
+
+### Pendências antes de publicar
+
+- Auditoria de licença dos assets do jogo original (sprites Kenney, áudios, fontes)
+- Revisão egiptológica dos textos narrativos pela Flavia
+- Entrada na home (aba Júnior)
+- Bug do chão do Templo: com `tileGround:false`, os vãos de areia não se leem visualmente como buraco (Flavia reportou, aberto)
+
+---
 
 ## Como citar
 

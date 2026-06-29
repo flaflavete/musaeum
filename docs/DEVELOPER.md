@@ -59,6 +59,16 @@ musaeum/
 │   ├── cultura-material.js Fichas dos manuscritos reais (CULTURA_MATERIAL) e achados das notas (ACHADOS)
 │   └── geografia.js        Lugares citados nos textos (MUSAEUM_GEO), para o mapa interativo do index
 │
+├── aprender/               Curso de leitura de hieróglifos
+│   ├── index.html          Índice das lições
+│   ├── 01-sistema.html     Lição 1: Como funciona a escrita egípcia
+│   ├── 02-unileteral.html  Lição 2: Os 24 signos uniliterais
+│   ├── 03-biliteral.html   Lição 3: Signos biliterais essenciais
+│   ├── 04-palavras.html    Lição 4: Lendo palavras simples
+│   ├── 05-cartuchos.html   Lição 5: Cartuchos reais
+│   ├── flashcards.html     Flashcards de revisão
+│   └── aprender.css        Estilos do módulo
+│
 ├── docs/
 │   ├── TECHNICAL.md        Documentação técnica de sistemas e estruturas de dados
 │   ├── DEVELOPER.md        Este arquivo
@@ -602,6 +612,44 @@ Spotlight dourado sobre o elemento real + seta piscando + cartão com texto e bo
 ### Estilo dos textos de UI
 
 Sem travessões (`—`); use ponto, vírgula ou `!`. Tom caloroso, de quem mostra o projeto para um amigo. Vale para PT e EN.
+
+---
+
+## 15. Módulo `aprender/` — Curso de hieróglifos
+
+Standalone: não usa `engine.js`, `script.js` nem o catálogo. Cada lição é um HTML autocontido com seu próprio CSS e JS inline. Carregam `aprender.css` (estilos do módulo: tipografia, cards de signos, quiz) e as fontes habituais do Musæum (Cinzel, EB Garamond, Noto Sans Egyptian Hieroglyphs).
+
+| Arquivo | Conteúdo |
+|---|---|
+| `index.html` | Índice das lições com progresso e link para o Musæum |
+| `01-sistema.html` | Como funciona a escrita egípcia: logogramas, fonogramas, determinativos, direção |
+| `02-unileteral.html` | Os 24 signos uniliterais (o "alfabeto" egípcio) |
+| `03-biliteral.html` | Signos biliterais mais frequentes |
+| `04-palavras.html` | Leitura de palavras simples com transliteração |
+| `05-cartuchos.html` | Cartuchos reais e a decifração de Champollion |
+| `flashcards.html` | Flashcards de revisão dos signos |
+
+Fontes de referência: Gardiner *Egyptian Grammar* (1957) para tipologia dos signos; Faulkner *Concise Dictionary* (1962) para transliterações. Ver convenção de caracteres egyptológicos em [[ios-egyptological-glyph-font]].
+
+---
+
+## 21. Em desenvolvimento
+
+Funcionalidades em construção em branches separadas — **não estão no `main`**.
+
+### Caminho pelo Duat (`duat-junior`)
+
+Jogo de ação HTML5, rebuild nativo em JS puro (sem GDevelop ou dependências externas). A personagem **Amunet** atravessa o Duat egípcio em três fases:
+
+| Fase | Ambientação | Mecânica |
+|---|---|---|
+| Tumba | Necrópole com sarcófagos e shabtis | Plataformer; coletar shabtis, desviar de múmias e pardais |
+| Templo | Salão das Duas Verdades | Pesagem do coração; areia movediça nos vãos |
+| Nilo | Rio rumo ao Aaru | Plataformas sobre água; escorpiões como inimigos |
+
+**Arquitetura:** `duat.html` (shell SPA bilíngue PT/EN) + `duat-native/` (motor compartilhado `engine.js`/`engine.css`, parametrizado por `window.DUAT_CFG`). Cada fase é um HTML fino que só define a config e carrega o motor. Comunicação fase→shell via `postMessage` (evento `win`). Não usa o save unificado do Musæum (`musaeum-stories`); herda apenas `musaeum-lang`, `musaeum-theme` e `musaeum-muted`.
+
+**Planejado:** aba Júnior na home (`index.html`), sem data definida. Pendências antes de publicar: auditoria de licença dos assets do jogo original; revisão egiptológica dos textos narrativos; entrada na home.
 
 ---
 
