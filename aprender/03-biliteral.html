@@ -57,49 +57,6 @@
 .progress-count { margin-left: auto; font-family: 'Cinzel', serif; font-size: 11px; color: var(--papyrus-dim); letter-spacing: 0.06em; }
 .progress-count span { color: var(--gold); font-weight: 700; }
 
-.modal-overlay {
-  position: fixed; inset: 0;
-  background: rgba(27,42,61,.82);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 100; padding: 20px;
-  opacity: 0; pointer-events: none;
-  transition: opacity .2s;
-  backdrop-filter: blur(4px);
-}
-.modal-overlay.open { opacity: 1; pointer-events: all; }
-.modal {
-  background: var(--ink-elevated);
-  border: 1px solid var(--border);
-  border-radius: 18px; padding: 32px;
-  max-width: 420px; width: 100%;
-  position: relative;
-  transform: translateY(14px);
-  transition: transform .2s;
-  box-shadow: 0 24px 80px rgba(27,42,61,.6);
-}
-.modal-overlay.open .modal { transform: translateY(0); }
-.modal-close {
-  position: absolute; top: 14px; right: 14px;
-  background: var(--ink-raised); border: none; border-radius: 8px;
-  width: 30px; height: 30px; cursor: pointer;
-  color: var(--papyrus-dim); font-size: 16px;
-  display: flex; align-items: center; justify-content: center;
-  transition: background .13s, color .13s;
-}
-.modal-close:hover { background: var(--border); color: var(--papyrus); }
-.modal-glyph { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 88px; line-height: 1; text-align: center; display: block; color: var(--gold); margin-bottom: 8px; }
-.modal-id { text-align: center; font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700; color: var(--papyrus-dim); letter-spacing: 0.12em; margin-bottom: 14px; }
-.modal-phon { text-align: center; font-family: 'EB Garamond', serif; font-size: 32px; font-style: italic; color: var(--terracotta-lt); margin-bottom: 4px; }
-.modal-name { text-align: center; font-size: 14px; color: var(--papyrus-soft); margin-bottom: 20px; }
-.modal-info { background: var(--ink-raised); border-radius: 10px; padding: 14px; margin-bottom: 16px; }
-.modal-info-row { display: flex; justify-content: space-between; font-size: 14px; padding: 5px 0; border-bottom: 1px solid var(--border); }
-.modal-info-row:last-child { border-bottom: none; }
-.modal-info-row .key { color: var(--papyrus-dim); }
-.modal-info-row .val { color: var(--papyrus); font-style: italic; }
-.modal-tip { font-size: 14px; color: var(--papyrus-soft); line-height: 1.6; margin-bottom: 20px; font-style: italic; background: var(--ink-raised); border-radius: 8px; padding: 12px 14px; }
-.modal-actions { display: flex; gap: 10px; }
-.modal-actions .btn { flex: 1; text-align: center; }
-
 .quiz-section { background: var(--ink-elevated); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 40px; }
 .quiz-section h2 { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700; letter-spacing: 0.12em; color: var(--papyrus); margin-bottom: 4px; }
 .quiz-sub { font-size: 15px; color: var(--papyrus-soft); margin-bottom: 20px; }
@@ -234,39 +191,8 @@
   </div>
 </div>
 
+<script src="hieroglyphs-data.js"></script>
 <script>
-const BILITERALS = [
-  { id:'O1',  glyph:'𓉐', phon:'pr',  name:'plano de casa',    tip:'Plano de casa visto de cima. pr = "casa". Raiz de Faraó: pr-ꜥꜣ significa "grande casa".' },
-  { id:'D2',  glyph:'𓁷', phon:'ḥr',  name:'rosto',            tip:'Rosto de frente. ḥr = "rosto" e também "sobre, em" (preposição muito usada).' },
-  { id:'F4',  glyph:'𓂾', phon:'ḥꜣ',  name:'parte dianteira de leão', tip:'Parte dianteira de leão. ḥꜣ = "trás, além de".' },
-  { id:'D28', glyph:'𓆓', phon:'kꜣ',  name:'dois braços levantados', tip:'Os dois braços levantados = ka, o duplo espiritual. Central na teologia egípcia.' },
-  { id:'G25', glyph:'𓅐', phon:'ꜣḫ',  name:'íbis com crista',  tip:'Íbis com crista = ꜣḫ, "espírito luminoso". Os mortos bem-sucedidos tornavam-se ꜣḫ.' },
-  { id:'F34', glyph:'𓂗', phon:'jb',   name:'coração',          tip:'Coração. jb = "coração, desejo". Central em textos de sabedoria do Reino Médio.' },
-  { id:'W24', glyph:'𓏌', phon:'nw',   name:'vasos',            tip:'Vasos. nw = partícula antiga do plural.' },
-  { id:'Aa11',glyph:'𓐛', phon:'mj',   name:'sinal incerto',    tip:'Sinal de significado debatido. mj = "como, igual a" (partícula de comparação).' },
-  { id:'R8',  glyph:'𓊽', phon:'nṯr',  name:'estandarte / deus',tip:'Estandarte = "deus" (nṯr). Um dos logogramas mais importantes em qualquer texto religioso.' },
-  { id:'N37', glyph:'𓈙', phon:'šw',   name:'lagoa de jardim',  tip:'Lagoa de jardim. šw = nome do deus do ar.' },
-  { id:'G1',  glyph:'𓄿', phon:'ꜣ',    name:'abutre egípcio',   tip:'Unileteral ꜣ, muito frequente como complemento em palavras com esse som.' },
-  { id:'M17', glyph:'𓇋', phon:'j',    name:'junco',            tip:'Unileteral j/y. Complemento frequentíssimo no início e final de palavras.' },
-  { id:'G17', glyph:'𓅓', phon:'m',    name:'coruja',           tip:'Unileteral m. Muito usado como complemento em biliterais terminados em M.' },
-  { id:'D21', glyph:'𓂋', phon:'r',    name:'boca',             tip:'Unileteral r, ubíquo como complemento de biliterais terminados em R.' },
-  { id:'G43', glyph:'𓅱', phon:'w',    name:'pintinho',         tip:'Unileteral w, muito frequente como complemento.' },
-  { id:'D36', glyph:'𓂝', phon:'ꜥ',   name:'braço',            tip:'Unileteral ꜥ, usado como complemento em muitos biliterais.' },
-  { id:'D58', glyph:'𓃀', phon:'b',    name:'pé',               tip:'Unileteral b, frequente como complemento.' },
-  { id:'S29', glyph:'𓋴', phon:'s',    name:'tecido dobrado',   tip:'Unileteral s, aparece muito como complemento.' },
-  { id:'N35', glyph:'𓈖', phon:'n',    name:'ondas de água',    tip:'Unileteral n. A forma em ziguezague é inconfundível.' },
-  { id:'Aa1', glyph:'𓐍', phon:'ḫ',   name:'placenta',         tip:'Som KH gutural, como o CH alemão em "Bach". Muito comum como complemento em compostos.' },
-  { id:'O34', glyph:'𓊃', phon:'z',    name:'tranca',           tip:'Unileteral z/s. Aparece em muitas palavras como complemento.' },
-  { id:'V13', glyph:'𓍿', phon:'ṯ',   name:'corda de amarrar', tip:'Unileteral ṯ, comum em sufixos femininos e complementos.' },
-  { id:'D46', glyph:'𓂧', phon:'d',    name:'mão',              tip:'Unileteral d. Frequente como complemento de palavras terminadas em D.' },
-  { id:'X1',  glyph:'𓏏', phon:'t',    name:'pão achatado',     tip:'Unileteral t, marca o feminino em substantivos. Muito frequente.' },
-  { id:'I9',  glyph:'𓆑', phon:'f',    name:'víbora cornuda',   tip:'Unileteral f, frequentíssimo como complemento.' },
-  { id:'N29', glyph:'𓈎', phon:'q',    name:'encosta',          tip:'Unileteral q. Aparece em palavras como qd (construir) e jqr (excelente).' },
-  { id:'V31', glyph:'𓎡', phon:'k',    name:'cesta com alça',   tip:'Unileteral k. Muito frequente em sufixos de segunda pessoa.' },
-  { id:'W11', glyph:'𓎼', phon:'g',    name:'suporte de jarro', tip:'Unileteral g. Aparece em gb (terra) e outras palavras fundamentais.' },
-  { id:'Q3',  glyph:'𓊪', phon:'p',    name:'banco',            tip:'Unileteral p. Aparece em pr (casa) e como complemento em muitos biliterais.' },
-  { id:'F32', glyph:'𓄡', phon:'ẖ',   name:'barriga de animal',tip:'Barriga de animal. Outro som KH, ligeiramente mais palatal que ḫ.' },
-];
 
 let learned = new Set(JSON.parse(localStorage.getItem('musaeum-biliterals-learned') || '[]'));
 let currentFilter = 'all';
@@ -291,7 +217,7 @@ function setFilter(f, btn) {
 }
 
 function renderGrid() {
-  const filtered = BILITERALS.filter(s => {
+  const filtered = BILITERALS_LESSON.filter(s => {
     if (currentFilter === 'learned') return learned.has(s.phon);
     if (currentFilter === 'new') return !learned.has(s.phon);
     return true;
@@ -301,22 +227,22 @@ function renderGrid() {
       <span class="sc-glyph">${s.glyph}</span>
       <span class="sc-gardiner">${s.id}</span>
       <span class="sc-phon">${s.phon}</span>
-      <span class="sc-name">${s.name}</span>
+      <span class="sc-name">${s.name_pt}</span>
     </div>`).join('');
   document.getElementById('learnedCount').textContent = learned.size;
   document.getElementById('progressBar').style.width = Math.round((learned.size/30)*100) + '%';
 }
 
 function openModal(phon) {
-  const s = BILITERALS.find(x => x.phon === phon);
+  const s = BILITERALS_LESSON.find(x => x.phon === phon);
   if (!s) return;
   currentModal = s;
   document.getElementById('mGlyph').textContent    = s.glyph;
   document.getElementById('mId').textContent       = s.id + ' · biliteral';
   document.getElementById('mPhon').textContent     = s.phon;
-  document.getElementById('mName').textContent     = s.name;
+  document.getElementById('mName').textContent     = s.name_pt;
   document.getElementById('mTranslit').textContent = s.phon;
-  document.getElementById('mDesc').textContent     = s.name;
+  document.getElementById('mDesc').textContent     = s.name_pt;
   document.getElementById('mTip').textContent      = s.tip;
   document.getElementById('modalOverlay').classList.add('open');
 }
@@ -326,9 +252,9 @@ function markLearned() { if (!currentModal) return; learned.add(currentModal.pho
 function nextQuiz() {
   quizAnswered = false;
   document.getElementById('nextBtn').disabled = true;
-  quizSign = BILITERALS[Math.floor(Math.random() * BILITERALS.length)];
+  quizSign = BILITERALS_LESSON[Math.floor(Math.random() * BILITERALS_LESSON.length)];
   document.getElementById('quizGlyph').textContent = quizSign.glyph;
-  const others = BILITERALS.filter(s => s.phon !== quizSign.phon).sort(() => Math.random()-.5).slice(0,3);
+  const others = BILITERALS_LESSON.filter(s => s.phon !== quizSign.phon).sort(() => Math.random()-.5).slice(0,3);
   const opts = [...others, quizSign].sort(() => Math.random()-.5);
   document.getElementById('quizOpts').innerHTML = opts.map(o =>
     `<button class="quiz-opt" onclick="checkQuiz(this,'${o.phon}')">${o.phon}</button>`).join('');
