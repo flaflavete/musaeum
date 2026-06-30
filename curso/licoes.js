@@ -152,12 +152,92 @@ window.CURSO_LICOES = [
   /* As lições abaixo ainda serão construídas no rebuild. Ficam listadas no índice
      como "em breve" até receberem ready:true + sections/quiz. */
   {
-    id: 'unileteros', num: 2, glyph: '𓄿', ready: false,
+    id: 'unileteros',
+    num: 2,
+    glyph: '𓄿',
+    ready: true,
     kicker: { pt: 'Lição 2 · Fonética', en: 'Lesson 2 · Phonetics' },
     title:  { pt: 'Os 24 unilíteros', en: 'The 24 uniliterals' },
     desc:   { pt: 'O "alfabeto" do egípcio: cada sinal representa uma única consoante. A base de tudo que vem depois.', en: 'The Egyptian "alphabet": each sign represents a single consonant. The foundation of everything that follows.' },
     dur:    { pt: '~20 min', en: '~20 min' }, type: { pt: '24 sinais', en: '24 signs' },
-    badge:  { pt: 'Em breve', en: 'Soon' }, badgeClass: 'badge-soon',
+    badge:  { pt: 'Novo', en: 'New' }, badgeClass: 'badge-new',
+    intro:  { pt: 'Os unilíteros são os sinais mais básicos da escrita egípcia: cada um vale uma única consoante. São 24 ao todo, e costumam ser chamados de "alfabeto" egípcio, ainda que a comparação tenha limites.', en: 'Uniliterals are the most basic signs of Egyptian writing: each one stands for a single consonant. There are 24 in all, often called the Egyptian "alphabet", though the comparison has its limits.' },
+    sections: [
+      {
+        title: { pt: 'Um alfabeto consonantal', en: 'A consonantal alphabet' },
+        blocks: [
+          { kind: 'p', html: { pt: 'Um sinal <strong>unilítero</strong> representa uma só consoante, como uma letra do nosso alfabeto. Os 24 unilíteros são a base da escrita: aparecem soletrando palavras curtas, completando a leitura de outros sinais (os complementos fonéticos que você viu na Lição 1) e escrevendo nomes estrangeiros.', en: 'A <strong>uniliteral</strong> sign stands for a single consonant, like a letter in our alphabet. The 24 uniliterals are the foundation of the writing: they spell out short words, complete the reading of other signs (the phonetic complements you saw in Lesson 1), and write foreign names.' } },
+          { kind: 'callout', variant: 'gold', html: { pt: 'Por que "alfabeto" entre aspas? Porque a lista anota só consoantes (e algumas semivogais), nunca vogais. E porque esses mesmos sinais não vivem isolados: também entram dentro de palavras maiores, ao lado de bilíteros, trilíteros e determinativos.', en: 'Why "alphabet" in quotes? Because the list notes only consonants (and a few semivowels), never vowels. And because these signs do not live in isolation: they also appear inside larger words, alongside biliterals, triliterals, and determinatives.' } },
+        ],
+      },
+      {
+        title: { pt: 'Os 24 sinais', en: 'The 24 signs' },
+        blocks: [
+          { kind: 'p', html: { pt: 'Explore os sinais na ordem convencional da egiptologia. Clique em cada um para ver o nome do desenho e a explicação do Gardiner.', en: 'Explore the signs in the conventional Egyptological order. Click each one to see the name of the picture and Gardiner\'s explanation.' } },
+          { kind: 'siggrid',
+            ids: ['G1', 'M17', 'Z4', 'D36', 'G43', 'D58', 'Q3', 'I9', 'G17', 'N35', 'D21', 'O4', 'V28', 'Aa1', 'F32', 'S29', 'N37', 'N29', 'V31', 'W11', 'X1', 'V13', 'D46', 'I10'],
+            hint: { pt: 'Clique num sinal para ver o nome do desenho e a explicação do Gardiner.', en: 'Click a sign to see the name of the picture and Gardiner\'s explanation.' } },
+          { kind: 'callout', variant: 'azul', html: { pt: 'Não tente decorar os 24 de uma vez. A ideia é reconhecer alguns e voltar aqui quando precisar. Os mais frequentes (como 𓅓 m, 𓈖 n, 𓂋 r, 𓏏 t) vão grudando sozinhos.', en: 'Do not try to memorize all 24 at once. The idea is to recognize a few and come back when you need to. The most frequent ones (like 𓅓 m, 𓈖 n, 𓂋 r, 𓏏 t) stick on their own.' } },
+        ],
+      },
+      {
+        title: { pt: 'Os sinais que não são vogais', en: 'The signs that are not vowels' },
+        blocks: [
+          { kind: 'p', html: { pt: 'Dois sinais costumam confundir: <strong>ꜣ</strong> (𓄿, o abutre) e <strong>ꜥ</strong> (𓂝, o antebraço). Eles parecem a vogal "a", mas são consoantes que o português e o inglês não possuem. Por convenção, ꜣ representa uma consoante fraca (uma oclusão glotal, o pequeno "corte" de voz) e ꜥ um som produzido no fundo da garganta, como o ayin do árabe e do hebraico.', en: 'Two signs often cause confusion: <strong>ꜣ</strong> (𓄿, the vulture) and <strong>ꜥ</strong> (𓂝, the forearm). They look like the vowel "a", but they are consonants that Portuguese and English do not have. By convention, ꜣ stands for a weak consonant (a glottal stop, the small catch in the voice) and ꜥ a sound made deep in the throat, like the ayin of Arabic and Hebrew.' } },
+          { kind: 'p', html: { pt: 'Do mesmo modo, <strong>ỉ</strong> (𓇋, o junco) e <strong>w</strong> (𓅱, a codorniz) são semivogais, próximas de "i" e "u". Como as vogais não eram escritas, na leitura moderna inserimos um "e" por convenção e damos a ꜣ e ꜥ um som aproximado de "a", apenas para conseguir pronunciar. Não é a pronúncia original.', en: 'Likewise, <strong>ỉ</strong> (𓇋, the reed) and <strong>w</strong> (𓅱, the quail chick) are semivowels, close to "i" and "u". Since vowels were not written, in modern reading we insert an "e" by convention and give ꜣ and ꜥ an approximate "a" sound, just to be able to pronounce them. This is not the original pronunciation.' } },
+        ],
+      },
+    ],
+    quiz: [
+      {
+        glyph: '𓅓',
+        question: { pt: 'Que som este sinal representa?', en: 'What sound does this sign represent?' },
+        options: [
+          { label: { pt: 'm (a coruja)', en: 'm (the owl)' }, correct: true },
+          { label: { pt: 'n (a ondulação de água)', en: 'n (the water ripple)' }, correct: false },
+          { label: { pt: 'r (a boca)', en: 'r (the mouth)' }, correct: false },
+          { label: { pt: 'w (a codorniz)', en: 'w (the quail chick)' }, correct: false },
+        ],
+        feedbackOk: { pt: 'Isso. 𓅓 é a coruja, o unilítero m.', en: 'Right. 𓅓 is the owl, the uniliteral m.' },
+        feedbackErr: { pt: 'Este é 𓅓, a coruja: o som m.', en: 'This is 𓅓, the owl: the sound m.' },
+      },
+      {
+        glyph: '𓈖',
+        question: { pt: 'E este sinal, qual é o som?', en: 'And this sign, what is its sound?' },
+        options: [
+          { label: { pt: 'n (a ondulação de água)', en: 'n (the water ripple)' }, correct: true },
+          { label: { pt: 'm (a coruja)', en: 'm (the owl)' }, correct: false },
+          { label: { pt: 'š (o lago)', en: 'š (the pool)' }, correct: false },
+          { label: { pt: 'h (o abrigo)', en: 'h (the shelter)' }, correct: false },
+        ],
+        feedbackOk: { pt: 'Exato. 𓈖 é a ondulação de água, o unilítero n.', en: 'Exactly. 𓈖 is the water ripple, the uniliteral n.' },
+        feedbackErr: { pt: '𓈖 é a água em ondulação: o som n.', en: '𓈖 is rippling water: the sound n.' },
+      },
+      {
+        glyph: '𓄿',
+        question: { pt: 'Os sinais ꜣ (𓄿) e ꜥ (𓂝) representam...', en: 'The signs ꜣ (𓄿) and ꜥ (𓂝) represent...' },
+        options: [
+          { label: { pt: 'Consoantes que o português não tem', en: 'Consonants that English does not have' }, correct: true },
+          { label: { pt: 'As vogais "a" e "o"', en: 'The vowels "a" and "o"' }, correct: false },
+          { label: { pt: 'Números', en: 'Numbers' }, correct: false },
+          { label: { pt: 'Determinativos', en: 'Determinatives' }, correct: false },
+        ],
+        feedbackOk: { pt: 'Isso. Apesar da aparência, ꜣ e ꜥ são consoantes (oclusão glotal e som de garganta), não vogais.', en: 'Right. Despite appearances, ꜣ and ꜥ are consonants (a glottal stop and a throat sound), not vowels.' },
+        feedbackErr: { pt: 'ꜣ e ꜥ parecem "a", mas são consoantes que não existem no português; as vogais não eram escritas.', en: 'ꜣ and ꜥ look like "a", but they are consonants absent from English; vowels were not written.' },
+      },
+      {
+        glyph: '𓂋',
+        question: { pt: 'Um sinal unilítero representa...', en: 'A uniliteral sign represents...' },
+        options: [
+          { label: { pt: 'Uma única consoante', en: 'A single consonant' }, correct: true },
+          { label: { pt: 'Uma palavra inteira', en: 'An entire word' }, correct: false },
+          { label: { pt: 'Uma sílaba com vogal', en: 'A syllable with a vowel' }, correct: false },
+          { label: { pt: 'A categoria da palavra', en: 'The category of the word' }, correct: false },
+        ],
+        feedbackOk: { pt: 'Exato. Cada unilítero vale uma só consoante. 𓂋 é a boca, o som r.', en: 'Exactly. Each uniliteral stands for a single consonant. 𓂋 is the mouth, the sound r.' },
+        feedbackErr: { pt: 'Unilítero quer dizer um sinal, uma consoante. 𓂋 (a boca) é o som r.', en: 'Uniliteral means one sign, one consonant. 𓂋 (the mouth) is the sound r.' },
+      },
+    ],
   },
   {
     id: 'bi-tri', num: 3, glyph: '𓅱', ready: false,

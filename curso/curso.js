@@ -30,6 +30,19 @@
   }
   var readyLessons = LESSONS.filter(function (l) { return l.ready; });
 
+  /* ── lookup do Gardiner (fonte única dos sinais) ──── */
+  /* row = [id, glifo, fonema, nome, func, details]. Mapa por idioma, em cache. */
+  var GD = { pt: null, en: null };
+  function gardinerMap() {
+    if (!GD[lang]) {
+      var src = lang === 'pt' ? window.GARDINER_DATA : window.GARDINER_DATA_EN;
+      var m = {};
+      (src || []).forEach(function (row) { m[row[0]] = row; });
+      GD[lang] = m;
+    }
+    return GD[lang];
+  }
+
   /* ── chrome compartilhado: cabeçalho ─────────────── */
   function backArrow() {
     return '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>';
@@ -111,6 +124,29 @@
           '</div>';
         }).join('') + '</div>';
 
+      case 'siggrid': {
+        /* Grid de sinais vindo do GARDINER_DATA por id. b.tr sobrescreve a
+           transliteração só onde o dado está vazio ou fora do padrão da casa. */
+        var map = gardinerMap();
+        var ov = b.tr || {};
+        var cards = b.ids.map(function (id) {
+          var row = map[id] || [id, '', '', id, '', ''];
+          var tr = ov[id] != null ? ov[id] : (row[2] || '');
+          return '<button class="sig-card" data-id="' + esc(id) + '" data-tr="' + esc(tr) + '">' +
+            '<span class="sig-glyph">' + (row[1] || '') + '</span>' +
+            '<span class="sig-tr">' + esc(tr) + '</span>' +
+            '<span class="sig-code">' + esc(id) + '</span>' +
+            '<span class="sig-name">' + esc(row[3] || '') + '</span>' +
+          '</button>';
+        }).join('');
+        var hint = b.hint
+          ? esc(T(b.hint))
+          : (lang === 'pt' ? 'Clique num sinal para ver a explicação do Gardiner.' : 'Click a sign to see Gardiner\'s explanation.');
+        return '<div class="sig-progress">' + (lang === 'pt' ? 'Vistos ' : 'Seen ') + '<span id="sigSeen">0</span> / ' + b.ids.length + '</div>' +
+          '<div class="siggrid" data-siggrid>' + cards + '</div>' +
+          '<div class="sig-detail" id="sigDetail" role="status" aria-live="polite"><span class="sig-detail-hint">' + hint + '</span></div>';
+      }
+
       default:
         return '';
     }
@@ -181,8 +217,36 @@
       lessonNav(lesson);
 
     wireChrome();
+    wireSiggrid();
     startQuiz(lesson);
     wireProgressBar();
+  }
+
+  function wireSiggrid() {
+    var grid = document.querySelector('[data-siggrid]');
+    if (!grid) return;
+    var map = gardinerMap();
+    var detail = el('sigDetail');
+    var seenEl = el('sigSeen');
+    function updateSeen() {
+      if (seenEl) seenEl.textContent = grid.querySelectorAll('.sig-card.learned').length;
+    }
+    grid.querySelectorAll('.sig-card').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        btn.classList.add('learned');
+        var row = map[btn.dataset.id];
+        if (row && detail) {
+          var tr = btn.dataset.tr || '';
+          detail.innerHTML = '<span class="sig-detail-glyph">' + (row[1] || '') + '</span>' +
+            '<span class="sig-detail-body">' +
+              '<strong>' + esc(row[0]) + (tr ? ' · ' + esc(tr) : '') + ' · ' + esc(row[3] || '') + '</strong>' +
+              (row[5] ? '<span>' + esc(row[5]) + '</span>' : '') +
+            '</span>';
+        }
+        updateSeen();
+      });
+    });
+    updateSeen();
   }
 
   /* Quiz em sequência: uma pergunta de cada vez, com placar. */

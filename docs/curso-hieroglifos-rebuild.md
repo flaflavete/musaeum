@@ -17,7 +17,15 @@ Decidido em 2026-06-30: rebuild numa **pasta nova em paralelo** (`curso/`), sem 
 
 Verificado no navegador: índice lista 6 lições (5 bloqueadas), Lição 1 renderiza as 5 seções + os 3 tipos de sinal + as 2 caixas de palavra (nfr) + direção + quiz; troca PT/EN ao vivo; quiz marca concluído e persiste; índice reflete 1/6 com check; mobile empilha os cards.
 
-**Próximos passos:** Lição 2 (24 unilíteros, grid vindo de `GARDINER_DATA`), extrair o construtor de palavras do `gardiner.html` como widget de bloco (`builder`), e conectar o hub da home ao `curso/` na virada. Pendências de design seguem no §8.
+**Quiz multi-pergunta (feito):** o `quiz` de cada lição virou um array; o motor mostra uma pergunta de cada vez, com placar e "próxima pergunta" (`renderQuizQuestion`/`showQuizNext`). Lição 1 tem 4 perguntas.
+
+**Nome de exibição (feito):** deixou de ser "curso" e virou **"Primeiros passos nos hieróglifos"** / "Uma introdução" (é uma introdução honesta, não um curso). Pasta `curso/` mantém o nome interno.
+
+**Lição 2 — Os 24 unilíteros (feito e verificado):** novo bloco `siggrid` no motor, que puxa **glifo, nome e a explicação do Gardiner** do `GARDINER_DATA`/`_EN` por id (fonte única; `licao.html` carrega os dois `gardiner_data*.js`). Clique no sinal marca "visto" (check + contador) e revela a explicação num painel. Grid na ordem convencional dos 24, com **override de transliteração só onde o dado falha** (`tr: { M17:'ỉ', Z4:'y', V31:'k' }`). Seções: alfabeto consonantal; o grid; nota honesta de que ꜣ/ꜥ são consoantes, não vogais. Quiz de 4 perguntas.
+
+> **Achado sobre os dados do Gardiner (a corrigir na fonte/Excel um dia):** `gardiner_data.js` tem `M17` como `i` (deveria ser yod `ỉ`), e `Z4` (`y`) e `V31` (`k`) com fonema **vazio**; `N29` está como `q` (a casa lê Gardiner/Faulkner, que usariam `ḳ`). O curso contorna com override, mas a página `gardiner/gardiner.html` mostra os valores crus. Vale revisar a planilha-fonte.
+
+**Próximos passos:** Lição 3 (bi/trilíteros), extrair o construtor de palavras do `gardiner.html` como widget de bloco (`builder`), e conectar o hub da home ao `curso/` na virada. Pendências de design seguem no §8.
 
 ---
 
