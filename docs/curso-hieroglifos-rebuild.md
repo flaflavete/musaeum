@@ -1,8 +1,23 @@
 # Curso de Hieróglifos — Plano do Rebuild
 
 > Documento de trabalho para refazer o curso de hieróglifos do Musæum do zero.
-> Status: **planejamento** (nada implementado ainda). Última atualização: 2026-06-30.
+> Status: **em construção** (fatia vertical da fundação + Lição 1 pronta e verificada). Última atualização: 2026-06-30.
 > Objetivo deste arquivo: poder retomar o projeto em qualquer sessão sem perder o fio.
+
+## 0. Progresso
+
+Decidido em 2026-06-30: rebuild numa **pasta nova em paralelo** (`curso/`), sem tocar na `aprender/` atual; os links só trocam na virada, quando o curso novo estiver completo.
+
+**Fatia vertical concluída (fundação + Lição 1):**
+
+- `curso/licoes.js` — fonte única `window.CURSO_LICOES`. Lição 1 codificada em blocos (`p`, `callout`, `signtypes`, `word`, `direction`) + `quiz`; lições 2 a 6 só com metadado (`ready:false`, aparecem bloqueadas no índice). Acaba com a duplicação tripla do curso antigo.
+- `curso/curso.js` — motor único que serve índice (`data-page="index"`) e lição (`data-page="lesson"`, lê `?licao=<id>`). Troca de idioma e tema **ao vivo** (botões no header). Progresso em `localStorage 'musaeum-hieroglyphs'` como `{ done: { <id>: true } }`; contagem e % derivam de `CURSO_LICOES.length` (sem número mágico).
+- `curso/curso.css` — folha única, tokens de cor da casa nos dois temas, foco visível, `prefers-reduced-motion`, responsivo.
+- `curso/index.html` e `curso/licao.html` — shells mínimos (só carregam fontes + css + licoes.js + curso.js).
+
+Verificado no navegador: índice lista 6 lições (5 bloqueadas), Lição 1 renderiza as 5 seções + os 3 tipos de sinal + as 2 caixas de palavra (nfr) + direção + quiz; troca PT/EN ao vivo; quiz marca concluído e persiste; índice reflete 1/6 com check; mobile empilha os cards.
+
+**Próximos passos:** Lição 2 (24 unilíteros, grid vindo de `GARDINER_DATA`), extrair o construtor de palavras do `gardiner.html` como widget de bloco (`builder`), e conectar o hub da home ao `curso/` na virada. Pendências de design seguem no §8.
 
 ---
 

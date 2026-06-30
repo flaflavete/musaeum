@@ -1,0 +1,573 @@
+/* Curso de Hieróglifos (rebuild) — folha única do motor de lições.
+   Usa as mesmas variáveis de cor e tipografia do Musæum (tema escuro padrão).
+   Serve tanto o índice (index.html) quanto o motor de lição (licao.html). */
+
+:root {
+  --papyrus:       #f1e4c6;
+  --papyrus-soft:  #c9b894;
+  --papyrus-dim:   #9a8b6d;
+  --ink:           #1b2a3d;
+  --ink-elevated:  #243449;
+  --ink-raised:    #2d3f57;
+  --gold:          #c9a646;
+  --gold-dark:     #a0801e;
+  --gold-light:    #e8c866;
+  --terracotta-lt: #d97a5c;
+  --green:         #4caf7a;
+  --blue:          #5c8de0;
+  --border:        rgba(201, 166, 70, 0.20);
+  --shadow:        rgba(27, 42, 61, 0.55);
+}
+
+[data-theme="light"] {
+  --papyrus:       #0d0a06;
+  --papyrus-soft:  #271e11;
+  --papyrus-dim:   #3d2e1e;
+  --ink:           #fdf8ee;
+  --ink-elevated:  #f5ecd8;
+  --ink-raised:    #eaddb8;
+  --gold:          #5c480e;
+  --gold-dark:     #42340a;
+  --gold-light:    #7a5e14;
+  --border:        rgba(92, 72, 14, 0.22);
+  --shadow:        rgba(13, 10, 6, 0.15);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', Georgia, serif;
+  background: var(--ink);
+  color: var(--papyrus);
+  font-size: 18px;
+  line-height: 1.65;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+.glyph-font {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+}
+
+/* ── CABEÇALHO ──────────────────────────────────────── */
+.licao-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 28px;
+  border-bottom: 1px solid var(--border);
+  background: var(--ink-elevated);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.licao-back {
+  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--papyrus-soft);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s;
+}
+.licao-back:hover { color: var(--gold); }
+.licao-back svg { flex-shrink: 0; }
+.licao-header-title {
+  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  flex: 1;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.header-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+.icon-btn {
+  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  background: none;
+  color: var(--papyrus-dim);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.icon-btn:hover { color: var(--gold); border-color: var(--gold); background: rgba(201,166,70,.08); }
+
+.licao-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--gold);
+  width: 0;
+  transition: width 0.3s ease;
+  z-index: 20;
+}
+
+/* ── CONTEÚDO ────────────────────────────────────────── */
+.licao-content {
+  flex: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 48px 28px 80px;
+  width: 100%;
+}
+
+/* ── HERO ────────────────────────────────────────────── */
+.licao-hero {
+  text-align: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+.licao-hero-num {
+  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--papyrus-dim);
+  margin-bottom: 8px;
+}
+.licao-hero-glyph {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-size: 64px;
+  line-height: 1;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 20px;
+}
+.licao-hero h1 {
+  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 700;
+  color: var(--papyrus);
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+.licao-hero p {
+  font-size: 17px;
+  color: var(--papyrus-soft);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ── SEÇÕES ──────────────────────────────────────────── */
+.licao-section { margin-bottom: 52px; }
+.licao-section h2 {
+  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.licao-section p {
+  color: var(--papyrus-soft);
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  text-align: justify;
+  hyphens: auto;
+}
+.licao-section p strong { color: var(--papyrus); font-weight: 600; }
+.licao-section p em { color: var(--papyrus); }
+
+/* ── CALLOUT ─────────────────────────────────────────── */
+.callout {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin: 20px 0;
+  font-size: 16px;
+  color: var(--papyrus-soft);
+  line-height: 1.65;
+}
+.callout strong { color: var(--gold); }
+.callout.azul { border-left-color: var(--blue); }
+.callout.azul strong { color: var(--blue); }
+
+/* ── TRÊS TIPOS DE SINAL ─────────────────────────────── */
+.sign-types {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+.sign-type-card {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 14px;
+  text-align: center;
+}
+.sign-type-card .icon {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-size: 36px;
+  line-height: 1;
+  display: block;
+  margin-bottom: 10px;
+  color: var(--gold);
+}
+.sign-type-card h3 {
+  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--papyrus);
+  margin-bottom: 6px;
+  letter-spacing: 0.06em;
+}
+.sign-type-card p { font-size: 13px; color: var(--papyrus-soft); line-height: 1.5; margin: 0; }
+.sign-type-card .badge {
+  display: inline-block;
+  font-family: 'Cinzel', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 99px;
+  margin-bottom: 8px;
+  letter-spacing: 0.08em;
+}
+.type-uni { background: rgba(92,141,224,.15); color: var(--blue); }
+.type-bi  { background: rgba(201,166,70,.15); color: var(--gold); }
+.type-det { background: rgba(76,175,122,.15); color: var(--green); }
+
+/* ── CAIXA DE EXEMPLO (montar palavra) ───────────────── */
+.example-box {
+  background: var(--ink-raised);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  margin: 20px 0;
+}
+.example-label {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--papyrus-dim);
+  margin-bottom: 16px;
+}
+.example-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.glyph-block {
+  text-align: center;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--ink-elevated);
+  cursor: help;
+  transition: border-color .15s;
+  position: relative;
+}
+.glyph-block:hover, .glyph-block:focus-within { border-color: var(--gold); }
+.glyph-char {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-size: 40px;
+  line-height: 1;
+  display: block;
+  color: var(--gold);
+}
+.glyph-label { font-size: 10px; color: var(--papyrus-dim); margin-top: 6px; display: block; }
+.glyph-phon  { font-family: 'EB Garamond', serif; font-size: 12px; color: var(--terracotta-lt); display: block; margin-top: 2px; font-style: italic; }
+.glyph-type  { font-size: 9px; padding: 2px 6px; border-radius: 99px; margin-top: 4px; display: inline-block; }
+
+.plus-sep { font-size: 20px; color: var(--papyrus-dim); padding: 0 8px; align-self: center; }
+.eq-sep   { font-size: 16px; color: var(--papyrus-dim); padding: 0 16px; align-self: center; flex-shrink: 0; }
+.word-result { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 52px; color: var(--gold); padding: 0 8px; }
+.example-note { font-size: 15px; color: var(--papyrus-soft); margin: 0; line-height: 1.6; }
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink-raised);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: 'EB Garamond', serif;
+  font-size: 13px;
+  color: var(--papyrus);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .15s;
+  z-index: 10;
+}
+.glyph-block:hover .tooltip, .glyph-block:focus-within .tooltip { opacity: 1; }
+
+/* ── DIREÇÃO DE LEITURA ──────────────────────────────── */
+.direction-demo {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.dir-row { display: flex; align-items: center; gap: 12px; }
+.dir-label { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.08em; color: var(--papyrus-dim); min-width: 110px; }
+.dir-glyphs { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 32px; letter-spacing: 4px; color: var(--papyrus); flex: 1; }
+.dir-arrow { font-size: 13px; color: var(--gold); font-style: italic; }
+
+/* ── QUIZ ────────────────────────────────────────────── */
+.quiz-box {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  margin-top: 36px;
+}
+.quiz-box h3 {
+  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--papyrus-dim);
+  margin-bottom: 20px;
+}
+.quiz-glyph {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-size: 72px;
+  color: var(--gold);
+  display: block;
+  text-align: center;
+  margin-bottom: 20px;
+  line-height: 1;
+}
+.quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.quiz-opt {
+  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  background: none;
+  color: var(--papyrus);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  text-align: center;
+  letter-spacing: 0.08em;
+}
+.quiz-opt:hover:not(:disabled) { background: var(--ink-raised); border-color: var(--gold); }
+.quiz-opt:disabled { pointer-events: none; }
+.quiz-opt.correct { border-color: var(--green); background: rgba(76,175,122,0.12); color: var(--green); }
+.quiz-opt.wrong   { border-color: var(--terracotta-lt); background: rgba(217,122,92,0.10); color: var(--terracotta-lt); }
+.quiz-feedback {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 15px;
+  color: var(--papyrus-soft);
+  min-height: 24px;
+  line-height: 1.55;
+}
+.quiz-nav { display: flex; justify-content: center; margin-top: 18px; }
+
+/* ── BOTÕES ──────────────────────────────────────────── */
+.btn {
+  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 11px 28px;
+  border-radius: 999px;
+  border: 1.5px solid var(--gold);
+  background: rgba(201, 166, 70, 0.10);
+  color: var(--gold);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn:hover { background: rgba(201, 166, 70, 0.22); color: var(--gold-light); }
+.btn-primary { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+.btn-primary:hover { background: var(--gold-light); color: var(--ink); }
+.btn[hidden] { display: none; }
+
+/* ── NAVEGAÇÃO ENTRE LIÇÕES ──────────────────────────── */
+.lesson-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.lesson-nav-info { font-family: 'Cinzel', serif; font-size: 11px; color: var(--papyrus-dim); text-align: center; letter-spacing: 0.1em; }
+
+/* ── ÍNDICE: SOBRE / FONTES ──────────────────────────── */
+.curso-intro { font-size: 16px; color: var(--papyrus-soft); line-height: 1.7; margin-bottom: 12px; }
+.curso-fontes { font-size: 14px; color: var(--papyrus-dim); font-style: italic; margin-bottom: 0; }
+.curso-fontes strong { font-style: normal; color: var(--papyrus-soft); }
+
+/* ── ÍNDICE: PROGRESSO ───────────────────────────────── */
+.curso-progress {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.curso-progress-label { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.1em; color: var(--papyrus-dim); white-space: nowrap; }
+.curso-progress-label span { color: var(--gold); font-weight: 700; }
+.curso-progress-track { flex: 1; height: 6px; background: var(--ink-raised); border-radius: 99px; overflow: hidden; }
+.curso-progress-fill { height: 100%; background: var(--gold); border-radius: 99px; width: 0; transition: width 0.4s ease; }
+
+/* ── ÍNDICE: LISTA DE LIÇÕES ─────────────────────────── */
+.licoes-lista { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; }
+.licao-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 22px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.18s, background 0.18s, transform 0.18s;
+  position: relative;
+}
+.licao-item:hover { border-color: var(--gold); background: var(--ink-raised); transform: translateX(4px); }
+.licao-item.locked { opacity: 0.55; pointer-events: none; }
+.licao-item-glyph {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-size: 44px;
+  line-height: 1;
+  color: var(--gold);
+  flex-shrink: 0;
+  width: 54px;
+  text-align: center;
+}
+.licao-item-body { flex: 1; min-width: 0; }
+.licao-item-num {
+  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--papyrus-dim);
+  margin-bottom: 3px;
+}
+.licao-item-title {
+  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--papyrus);
+  letter-spacing: 0.04em;
+  margin-bottom: 5px;
+  line-height: 1.25;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.licao-item-check { color: var(--green); font-size: 13px; }
+.licao-item-desc { font-size: 14px; color: var(--papyrus-dim); line-height: 1.5; margin: 0; }
+.licao-item-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--papyrus-dim);
+  text-align: right;
+}
+.licao-item-dur { white-space: nowrap; }
+.licao-item-badge {
+  font-family: 'Cinzel', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.badge-start { background: rgba(76,175,122,.15); color: var(--green); }
+.badge-new   { background: rgba(92,141,224,.15); color: var(--blue); }
+.badge-final { background: rgba(201,166,70,.15); color: var(--gold); }
+.badge-soon  { background: var(--ink-raised); color: var(--papyrus-dim); }
+
+/* ── ÍNDICE: FERRAMENTAS ─────────────────────────────── */
+.ferramentas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ferr-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, background 0.15s;
+}
+.ferr-card:hover { border-color: var(--gold); background: var(--ink-raised); }
+.ferr-glyph { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 32px; line-height: 1; color: var(--gold); flex-shrink: 0; }
+.ferr-info strong { display: block; font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--papyrus); margin-bottom: 3px; }
+.ferr-info span { font-size: 13px; color: var(--papyrus-dim); line-height: 1.4; }
+
+/* ── ÍNDICE: REFERÊNCIAS ─────────────────────────────── */
+.refs-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 18px; }
+.ref-item { padding-left: 16px; border-left: 3px solid var(--border); font-size: 15px; line-height: 1.65; color: var(--papyrus-soft); }
+.ref-item cite { font-style: italic; color: var(--papyrus); }
+.ref-item .ref-note { display: block; font-size: 13px; color: var(--papyrus-dim); margin-top: 4px; line-height: 1.5; }
+
+@media (max-width: 600px) {
+  .licao-content { padding: 32px 18px 60px; }
+  .licao-header  { padding: 14px 18px; gap: 10px; }
+  .quiz-options  { grid-template-columns: 1fr; }
+  .sign-types    { grid-template-columns: 1fr; }
+  .ferramentas-grid { grid-template-columns: 1fr; }
+  .licao-item-meta { display: none; }
+  .licao-item-glyph { font-size: 36px; width: 44px; }
+  .lesson-nav    { flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
