@@ -303,6 +303,27 @@ header {
   margin-top: 2px;
   display: block;
 }
+.fn-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3px;
+  margin-top: 4px;
+  min-height: 13px;
+}
+.fn-badge {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 1px 5px;
+  border-radius: 99px;
+  border: 1px solid transparent;
+}
+.fn-P { color: var(--terracotta-lt); background: rgba(217,122,92,.12); border-color: rgba(217,122,92,.30); }
+.fn-I { color: var(--gold);          background: rgba(201,166,70,.14); border-color: rgba(201,166,70,.34); }
+.fn-D { color: var(--papyrus-soft);  background: rgba(120,140,170,.14); border-color: rgba(120,140,170,.32); }
 .search-info {
   font-family: 'EB Garamond', serif;
   font-size: 14px;
@@ -546,6 +567,31 @@ header {
 }
 .pk-btn:hover { background: rgba(201,166,70,.1); border-color: var(--gold); color: var(--papyrus); }
 .pk-det { color: var(--papyrus-dim); font-style: normal; font-size: 13px; }
+#ph-picker { max-width: 290px; }
+.pk-fn {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 9px;
+}
+.pk-details {
+  font-family: 'EB Garamond', serif;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--papyrus-soft);
+  border-top: 1px solid var(--border);
+  padding-top: 9px;
+  margin-bottom: 11px;
+}
+.pk-add-label {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--papyrus-dim);
+  margin-bottom: 5px;
+}
 
 /* ── MOBILE ── */
 .mob-tabs { display: none; }
@@ -776,26 +822,37 @@ function renderGrid() {
         <p>${signs.length} sinais nesta categoria</p>
       </div>` : '';
 
-  document.getElementById('grid').innerHTML = signs.map(([id, glyph, phon, desc]) => {
+  document.getElementById('grid').innerHTML = signs.map(([id, glyph, phon, desc, func, details]) => {
     const phons = phon ? phon.split('|') : [];
     const phTag = phons.map(p => `<span class="ph-tag">${p}</span>`).join('');
-    return `<div class="sign" data-id="${id}" data-g="${esc(glyph)}" data-ph="${esc(phon)}" data-desc="${esc(desc)}">
+    return `<div class="sign" data-id="${id}" data-g="${esc(glyph)}" data-ph="${esc(phon)}" data-desc="${esc(desc)}" data-fn="${esc(func || '')}" data-details="${esc(details || '')}">
       <span class="sign-g">${glyph}</span>
       <span class="sign-id">${id}</span>
       <span class="sign-ph-wrap">${phTag}</span>
       <span class="sign-desc">${desc}</span>
+      <span class="fn-badges">${fnBadges(func, true)}</span>
     </div>`;
   }).join('');
 
   document.querySelectorAll('.sign').forEach(el =>
-    el.addEventListener('click', (e) => {
-      const phons = el.dataset.ph
-        ? el.dataset.ph.split('|').map(p => p.trim()).filter(Boolean)
-        : [];
-      if (phons.length > 1) showPicker(e, el.dataset.g, el.dataset.id, phons, el.dataset.desc);
-      else addSign(el.dataset.g, el.dataset.id, phons[0] || '', el.dataset.desc);
-    })
+    el.addEventListener('click', (e) => openSign(e, el.dataset))
   );
+}
+
+/* Funcoes do sinal: P=fonograma, I=logograma, D=determinativo (campo func dos dados). */
+const FN_LABELS = {
+  P: { pt: ['Fonograma', 'Fon'], en: ['Phonogram', 'Pho'] },
+  I: { pt: ['Logograma', 'Log'], en: ['Logogram', 'Log'] },
+  D: { pt: ['Determinativo', 'Det'], en: ['Determinative', 'Det'] },
+};
+const FN_ORDER = ['P', 'I', 'D'];
+
+function fnBadges(func, short) {
+  if (!func) return '';
+  return FN_ORDER.filter(k => func.includes(k)).map(k => {
+    const lbl = FN_LABELS[k][lang][short ? 1 : 0];
+    return `<span class="fn-badge fn-${k}">${lbl}</span>`;
+  }).join('');
 }
 
 function esc(s) { return (s || '').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
@@ -809,22 +866,31 @@ function addSign(glyph, id, phon, desc) {
 
 let pickerOpen = false;
 
-function showPicker(e, glyph, id, phons, desc) {
+function openSign(e, d) {
   closePicker();
+  const glyph = d.g, id = d.id, desc = d.desc;
+  const phons = d.ph ? d.ph.split('|').map(p => p.trim()).filter(Boolean) : [];
+  const details = d.details || '';
+  const addLbl = lang === 'pt' ? 'Adicionar à palavra' : 'Add to word';
+  const detLbl = lang === 'pt' ? 'sem fonema (determinativo)' : 'no phoneme (determinative)';
+
   const picker = document.createElement('div');
   picker.id = 'ph-picker';
   picker.innerHTML = `
     <div class="pk-title">${glyph} <span>${id}</span></div>
-    <div class="pk-desc">${desc}</div>
+    <div class="pk-desc">${esc(desc)}</div>
+    ${d.fn ? `<div class="pk-fn">${fnBadges(d.fn, false)}</div>` : ''}
+    ${details ? `<div class="pk-details">${esc(details)}</div>` : ''}
+    <span class="pk-add-label">${addLbl}</span>
     <div class="pk-opts">
       ${phons.map(p => `<button class="pk-btn" data-p="${p}">${p}</button>`).join('')}
-      <button class="pk-btn pk-det">sem fonema (determinativo)</button>
+      <button class="pk-btn pk-det">${detLbl}</button>
     </div>`;
   document.body.appendChild(picker);
   pickerOpen = true;
 
   const rect = e.currentTarget.getBoundingClientRect();
-  const pw = 220, ph2 = picker.offsetHeight || 120;
+  const pw = picker.offsetWidth || 260, ph2 = picker.offsetHeight || 160;
   let left = rect.left + rect.width / 2 - pw / 2;
   let top  = rect.top - ph2 - 8;
   if (left < 8) left = 8;
@@ -955,14 +1021,24 @@ document.getElementById('mob-tabs').addEventListener('click', e => {
   if (btn) mobSwitchPanel(btn.dataset.panel);
 });
 
-let lang = 'pt';
-SIGNS = window.GARDINER_DATA;
+let lang = localStorage.getItem('musaeum-lang') === 'en' ? 'en' : 'pt';
+SIGNS = lang === 'pt' ? window.GARDINER_DATA : window.GARDINER_DATA_EN;
+(function syncLangBtn() {
+  const b = document.getElementById('btn-lang');
+  b.textContent = lang === 'pt' ? 'PT · EN' : 'EN · PT';
+  b.style.color = lang === 'en' ? 'var(--gold)' : '';
+  b.style.borderColor = lang === 'en' ? 'var(--gold)' : '';
+  document.getElementById('search').placeholder = lang === 'pt'
+    ? 'Buscar sinal, fonema, descrição…'
+    : 'Search sign, phoneme, description…';
+})();
 buildSidebar();
 renderBuilder();
 renderGrid();
 
 document.getElementById('btn-lang').addEventListener('click', function() {
   lang = lang === 'pt' ? 'en' : 'pt';
+  localStorage.setItem('musaeum-lang', lang);
   SIGNS = lang === 'pt' ? window.GARDINER_DATA : window.GARDINER_DATA_EN;
   this.textContent = lang === 'pt' ? 'PT · EN' : 'EN · PT';
   this.style.color = lang === 'en' ? 'var(--gold)' : '';
