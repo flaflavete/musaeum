@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lição 5 · Lendo palavras simples · Musæum</title>
 <meta name="theme-color" content="#1b2a3d">
+<script>(function(){ var t = localStorage.getItem('musaeum-theme'); if (t) document.documentElement.setAttribute('data-theme', t); })();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
@@ -171,66 +172,134 @@ ol strong { color: var(--papyrus); }
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     Musæum
   </a>
-  <span class="licao-header-title">Lição 5 · Lendo palavras simples</span>
+  <span class="licao-header-title" data-i18n="headerTitle">Lição 5 · Lendo palavras simples</span>
 </header>
 
 <div class="licao-content">
 
   <div class="licao-hero">
-    <div class="licao-hero-num">Lição 5 · Leitura</div>
+    <div class="licao-hero-num" data-i18n="heroNum">Lição 5 · Leitura</div>
     <span class="licao-hero-glyph">𓂋</span>
-    <h1>Lendo palavras simples</h1>
-    <p>É hora de colocar tudo junto. Cada palavra abaixo é uma leitura real em egípcio médio. Tente transliterar antes de revelar. Mesmo que erre, o processo de tentar é o que fixa.</p>
+    <h1 data-i18n="heroH1">Lendo palavras simples</h1>
+    <p data-i18n="heroP">É hora de colocar tudo junto. Cada palavra abaixo é uma leitura real em egípcio médio. Tente transliterar antes de revelar. Mesmo que erre, o processo de tentar é o que fixa.</p>
   </div>
 
   <div class="licao-section">
-    <h2>Como ler uma palavra</h2>
-    <p>Ao encontrar uma palavra em hieróglifos, siga este processo.</p>
+    <h2 data-i18n="sec1H2">Como ler uma palavra</h2>
+    <p data-i18n="sec1P">Ao encontrar uma palavra em hieróglifos, siga este processo.</p>
     <ol>
-      <li>Identifique a <strong>direção</strong> (os rostos encarando de qual lado?)</li>
-      <li>Separe os sinais e classifique: unilítero, bilítero, trilítero ou determinativo</li>
-      <li>Leia os sinais fonéticos em ordem, ignorando repetições de complementos</li>
-      <li>O determinativo no final não é lido: ele apenas confirma a categoria</li>
+      <li data-i18n="step1">Identifique a <strong>direção</strong> (os rostos encarando de qual lado?)</li>
+      <li data-i18n="step2">Separe os sinais e classifique: unilítero, bilítero, trilítero ou determinativo</li>
+      <li data-i18n="step3">Leia os sinais fonéticos em ordem, ignorando repetições de complementos</li>
+      <li data-i18n="step4">O determinativo no final não é lido: ele apenas confirma a categoria</li>
     </ol>
-    <div class="callout">
+    <div class="callout" data-i18n="callout">
       Não existe pontuação, espaço entre palavras ou maiúsculas em egípcio. O contexto e os determinativos são os separadores naturais.
     </div>
   </div>
 
   <div class="licao-section">
-    <h2>Prática de transliteração</h2>
-    <p>Tente escrever a transliteração antes de revelar. Clique em "Revelar" para ver a resposta e a explicação completa. Os caracteres especiais da transliteração egípcia estão no tecladinho abaixo de cada campo, e as letras comuns você digita normalmente pelo teclado.</p>
+    <h2 data-i18n="sec2H2">Prática de transliteração</h2>
+    <p data-i18n="sec2P">Tente escrever a transliteração antes de revelar. Clique em "Revelar" para ver a resposta e a explicação completa. Os caracteres especiais da transliteração egípcia estão no tecladinho abaixo de cada campo, e as letras comuns você digita normalmente pelo teclado.</p>
     <div class="btn-tooltip-wrap">
       <a class="btn" href="../gardiner/gardiner.html" target="_blank" style="display:inline-flex;align-items:center;gap:6px">
-        <span style="font-family:'Noto Sans Egyptian Hieroglyphs',sans-serif;font-size:18px;line-height:1">𓏟</span> Consultar lista de Gardiner
+        <span style="font-family:'Noto Sans Egyptian Hieroglyphs',sans-serif;font-size:18px;line-height:1">𓏟</span> <span data-i18n="gardinerBtn">Consultar lista de Gardiner</span>
       </a>
-      <div class="tooltip">Abre a lista completa de sinais de Gardiner em uma nova aba para você consultar enquanto pratica.</div>
+      <div class="tooltip" data-i18n="gardinerTooltip">Abre a lista completa de sinais de Gardiner em uma nova aba para você consultar enquanto pratica.</div>
     </div>
 
     <div class="cat-tabs">
-      <button class="cat-tab active" onclick="showCat('corpo',this)">Corpo humano</button>
-      <button class="cat-tab" onclick="showCat('cosmos',this)">Cosmos e deuses</button>
-      <button class="cat-tab" onclick="showCat('vida',this)">Vida cotidiana</button>
+      <button class="cat-tab active" onclick="showCat('corpo',this)" data-i18n="tab1">Corpo humano</button>
+      <button class="cat-tab" onclick="showCat('cosmos',this)" data-i18n="tab2">Cosmos e deuses</button>
+      <button class="cat-tab" onclick="showCat('vida',this)" data-i18n="tab3">Vida cotidiana</button>
     </div>
 
     <div class="score-strip">
-      <span>Palavras reveladas: <strong id="scoreNum">0</strong> / <span id="scoreTotal">0</span></span>
-      <span style="font-size:13px;">Cada palavra revelada conta como praticada.</span>
+      <span><span data-i18n="scorePrefix">Palavras reveladas:</span> <strong id="scoreNum">0</strong> / <span id="scoreTotal">0</span></span>
+      <span style="font-size:13px;" data-i18n="scoreNote">Cada palavra revelada conta como praticada.</span>
     </div>
 
     <div id="wordCards"></div>
   </div>
 
   <div class="lesson-nav">
-    <a class="btn" href="04-triliteral.html">← Lição 4</a>
-    <div class="lesson-nav-info">Lição 5 de 6</div>
-    <a class="btn btn-primary" href="06-cartuchos.html">Próxima →</a>
+    <a class="btn" href="04-triliteral.html" data-i18n="navPrev">← Lição 4</a>
+    <div class="lesson-nav-info" data-i18n="navInfo">Lição 5 de 6</div>
+    <a class="btn btn-primary" href="06-cartuchos.html" data-i18n="navNext">Próxima →</a>
   </div>
 
 </div>
 
+<script src="i18n.js"></script>
 <script>
 const LANG = localStorage.getItem('musaeum-lang') || 'pt';
+
+const I18N = {
+  pt: {
+    _title: 'Lição 5 · Lendo palavras simples · Musæum',
+    headerTitle: 'Lição 5 · Lendo palavras simples',
+    heroNum: 'Lição 5 · Leitura',
+    heroH1: 'Lendo palavras simples',
+    heroP: 'É hora de colocar tudo junto. Cada palavra abaixo é uma leitura real em egípcio médio. Tente transliterar antes de revelar. Mesmo que erre, o processo de tentar é o que fixa.',
+    sec1H2: 'Como ler uma palavra',
+    sec1P: 'Ao encontrar uma palavra em hieróglifos, siga este processo.',
+    step1: 'Identifique a <strong>direção</strong> (os rostos encarando de qual lado?)',
+    step2: 'Separe os sinais e classifique: unilítero, bilítero, trilítero ou determinativo',
+    step3: 'Leia os sinais fonéticos em ordem, ignorando repetições de complementos',
+    step4: 'O determinativo no final não é lido: ele apenas confirma a categoria',
+    callout: 'Não existe pontuação, espaço entre palavras ou maiúsculas em egípcio. O contexto e os determinativos são os separadores naturais.',
+    sec2H2: 'Prática de transliteração',
+    sec2P: 'Tente escrever a transliteração antes de revelar. Clique em "Revelar" para ver a resposta e a explicação completa. Os caracteres especiais da transliteração egípcia estão no tecladinho abaixo de cada campo, e as letras comuns você digita normalmente pelo teclado.',
+    gardinerBtn: 'Consultar lista de Gardiner',
+    gardinerTooltip: 'Abre a lista completa de sinais de Gardiner em uma nova aba para você consultar enquanto pratica.',
+    tab1: 'Corpo humano',
+    tab2: 'Cosmos e deuses',
+    tab3: 'Vida cotidiana',
+    scorePrefix: 'Palavras reveladas:',
+    scoreNote: 'Cada palavra revelada conta como praticada.',
+    navInfo: 'Lição 5 de 6',
+    navPrev: '← Lição 4',
+    navNext: 'Próxima →',
+    prompt: 'Qual é a transliteração desta palavra?',
+    placeholder: 'escreva aqui...',
+    checkLbl: 'Verificar',
+    revealLbl: 'Revelar',
+    feedbackOk: 'Correto!',
+    feedbackErr: 'Tente novamente, ou clique em Revelar para ver.'
+  },
+  en: {
+    _title: 'Lesson 5 · Reading Simple Words · Musæum',
+    headerTitle: 'Lesson 5 · Reading Simple Words',
+    heroNum: 'Lesson 5 · Reading',
+    heroH1: 'Reading Simple Words',
+    heroP: 'Time to put it all together. Each word below is a real reading in Middle Egyptian. Try to transliterate before revealing. Even if you get it wrong, the attempt is what makes it stick.',
+    sec1H2: 'How to read a word',
+    sec1P: 'When you encounter a word in hieroglyphs, follow this process.',
+    step1: 'Identify the <strong>direction</strong> (which way are the faces looking?)',
+    step2: 'Separate the signs and classify: uniliteral, biliteral, triliteral, or determinative',
+    step3: 'Read the phonetic signs in order, ignoring repeated phonetic complements',
+    step4: 'The determinative at the end is not read; it only confirms the category',
+    callout: 'There is no punctuation, space between words, or capitalization in Egyptian. Context and determinatives are the natural separators.',
+    sec2H2: 'Transliteration practice',
+    sec2P: 'Try to write the transliteration before revealing. Click "Reveal" to see the answer and full explanation. The special Egyptian transliteration characters are in the small keyboard below each field, and you can type common letters directly from your keyboard.',
+    gardinerBtn: 'Consult Gardiner sign list',
+    gardinerTooltip: 'Opens the complete Gardiner sign list in a new tab for you to consult while practicing.',
+    tab1: 'Human body',
+    tab2: 'Cosmos and gods',
+    tab3: 'Daily life',
+    scorePrefix: 'Words revealed:',
+    scoreNote: 'Each revealed word counts as practiced.',
+    navInfo: 'Lesson 5 of 6',
+    navPrev: '← Lesson 4',
+    navNext: 'Next →',
+    prompt: 'What is the transliteration of this word?',
+    placeholder: 'type here...',
+    checkLbl: 'Check',
+    revealLbl: 'Reveal',
+    feedbackOk: 'Correct!',
+    feedbackErr: 'Try again, or click Reveal to see.'
+  }
+};
 
 const WORDS_EN = {
   'ḥr':  { meaning:'face / over (preposition)', note:'One of the most common prepositions. ḥr also appears in the name of the god Horus.', defs:['face (biliteral)', 'vertical stroke (logogram)'] },
@@ -320,23 +389,20 @@ function renderWords() {
   const done = words.filter(w => revealed.has(currentCat + w.phon)).length;
   document.getElementById('scoreNum').textContent = done;
 
+  const t = I18N[LANG];
   document.getElementById('wordCards').innerHTML = words.map((w, i) => {
     const key = currentCat + w.phon;
     const isRevealed = revealed.has(key);
     const en = LANG === 'en' ? (WORDS_EN[w.phon] || null) : null;
     const meaning   = en ? en.meaning : w.meaning;
     const note      = en ? en.note    : w.note;
-    const prompt    = LANG === 'en' ? 'What is the transliteration of this word?' : 'Qual é a transliteração desta palavra?';
-    const pholder   = LANG === 'en' ? 'type here...'  : 'escreva aqui...';
-    const checkLbl  = LANG === 'en' ? 'Check'   : 'Verificar';
-    const revealLbl = LANG === 'en' ? 'Reveal'  : 'Revelar';
     return `<div class="word-card ${isRevealed ? 'revealed' : ''}" id="wc-${i}">
       <span class="wc-glyph">${w.glyph}</span>
-      <div class="wc-prompt">${prompt}</div>
+      <div class="wc-prompt">${t.prompt}</div>
       <div class="wc-input-row">
-        <input class="wc-input" type="text" placeholder="${pholder}" id="inp-${i}" onkeydown="if(event.key==='Enter')checkWord(${i})" onfocus="activeInp='inp-${i}'">
-        <button class="wc-check" onclick="checkWord(${i})">${checkLbl}</button>
-        <button class="wc-reveal-btn" onclick="revealWord(${i})">${revealLbl}</button>
+        <input class="wc-input" type="text" placeholder="${t.placeholder}" id="inp-${i}" onkeydown="if(event.key==='Enter')checkWord(${i})" onfocus="activeInp='inp-${i}'">
+        <button class="wc-check" onclick="checkWord(${i})">${t.checkLbl}</button>
+        <button class="wc-reveal-btn" onclick="revealWord(${i})">${t.revealLbl}</button>
       </div>
       <div class="translit-kbd" id="kbd-${i}"></div>
       <div class="wc-feedback" id="fb-${i}"></div>
@@ -392,15 +458,13 @@ function checkWord(i) {
   const norm = s => s.replace(/[^a-zꜣꜥḥḫẖšṯḏ]/gi, '');
   const en = LANG === 'en' ? (WORDS_EN[w.phon] || null) : null;
   const meaning = en ? en.meaning : w.meaning;
+  const t = I18N[LANG];
   if (norm(inp) === norm(w.phon.toLowerCase())) {
-    const label = LANG === 'en' ? 'Correct!' : 'Correto!';
-    fb.innerHTML = `${label} <span style="font-style:italic;font-weight:400;color:var(--papyrus-soft)">&ldquo;${meaning}&rdquo;</span>`;
+    fb.innerHTML = `${t.feedbackOk} <span style="font-style:italic;font-weight:400;color:var(--papyrus-soft)">&ldquo;${meaning}&rdquo;</span>`;
     fb.className = 'wc-feedback ok';
     revealWord(i);
   } else {
-    fb.textContent = LANG === 'en'
-      ? 'Try again, or click Reveal to see.'
-      : 'Tente novamente, ou clique em Revelar para ver.';
+    fb.textContent = t.feedbackErr;
     fb.className = 'wc-feedback err';
   }
 }
@@ -425,60 +489,8 @@ function updateScore() {
   document.getElementById('scoreNum').textContent = done;
 }
 
+applyI18n(I18N, LANG);
 showCat('corpo', document.querySelector('.cat-tab'));
-const t = localStorage.getItem('musaeum-theme');
-if (t) document.documentElement.setAttribute('data-theme', t);
-
-if (LANG === 'en') {
-  document.documentElement.lang = 'en';
-  document.title = 'Lesson 5 · Reading Simple Words · Musæum';
-  document.querySelector('.licao-header-title').textContent = 'Lesson 5 · Reading Simple Words';
-  document.querySelector('.licao-hero-num').textContent = 'Lesson 5 · Reading';
-  document.querySelector('.licao-hero h1').textContent = 'Reading Simple Words';
-  document.querySelector('.licao-hero p').textContent = 'Time to put it all together. Each word below is a real reading in Middle Egyptian. Try to transliterate before revealing. Even if you get it wrong, the attempt is what makes it stick.';
-
-  const sectionH2s = document.querySelectorAll('.licao-section h2');
-  if (sectionH2s[0]) sectionH2s[0].textContent = 'How to read a word';
-  if (sectionH2s[1]) sectionH2s[1].textContent = 'Transliteration practice';
-
-  const howToP = document.querySelector('.licao-section:nth-child(2) > p');
-  if (howToP) howToP.textContent = 'When you encounter a word in hieroglyphs, follow this process.';
-
-  const olItems = document.querySelectorAll('.licao-section ol li');
-  if (olItems[0]) olItems[0].innerHTML = 'Identify the <strong>direction</strong> (which way are the faces looking?)';
-  if (olItems[1]) olItems[1].innerHTML = 'Separate the signs and classify: uniliteral, biliteral, triliteral, or determinative';
-  if (olItems[2]) olItems[2].innerHTML = 'Read the phonetic signs in order, ignoring repeated phonetic complements';
-  if (olItems[3]) olItems[3].innerHTML = 'The determinative at the end is not read; it only confirms the category';
-
-  document.querySelector('.callout').textContent = 'There is no punctuation, space between words, or capitalization in Egyptian. Context and determinatives are the natural separators.';
-
-  const practiceP = document.querySelector('.licao-section:last-of-type > p');
-  if (practiceP) practiceP.textContent = 'Try to write the transliteration before revealing. Click "Reveal" to see the answer and full explanation. The special Egyptian transliteration characters are in the small keyboard below each field, and you can type common letters directly from your keyboard.';
-
-  const gardinerBtn = document.querySelector('.btn-tooltip-wrap .btn');
-  if (gardinerBtn) {
-    const glyph = gardinerBtn.querySelector('span');
-    if (glyph) glyph.nextSibling.textContent = ' Consult Gardiner sign list';
-  }
-
-  const catTabs = document.querySelectorAll('.cat-tab');
-  if (catTabs[0]) catTabs[0].textContent = 'Human body';
-  if (catTabs[1]) catTabs[1].textContent = 'Cosmos and gods';
-  if (catTabs[2]) catTabs[2].textContent = 'Daily life';
-
-  const scoreStrip = document.querySelector('.score-strip');
-  if (scoreStrip) {
-    scoreStrip.querySelector('span:first-child').innerHTML = 'Words revealed: <strong id="scoreNum">0</strong> / <span id="scoreTotal">0</span>';
-    scoreStrip.querySelector('span:last-child').textContent = 'Each revealed word counts as practiced.';
-  }
-
-  document.querySelector('.lesson-nav-info').textContent = 'Lesson 5 of 6';
-  const navBtns = document.querySelectorAll('.lesson-nav a.btn');
-  if (navBtns[0]) navBtns[0].textContent = '← Lesson 4';
-  if (navBtns[1]) navBtns[1].textContent = 'Next →';
-
-  showCat('corpo', document.querySelector('.cat-tab'));
-}
 </script>
 
 </body>

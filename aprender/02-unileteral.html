@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lição 2 · Os 24 unilíteros · Musæum</title>
 <meta name="theme-color" content="#1b2a3d">
+<script>(function(){ var t = localStorage.getItem('musaeum-theme'); if (t) document.documentElement.setAttribute('data-theme', t); })();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
@@ -19,83 +20,83 @@
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     Musæum
   </a>
-  <span class="licao-header-title">Lição 2 · Os 24 unilíteros</span>
+  <span class="licao-header-title" data-i18n="headerTitle">Lição 2 · Os 24 unilíteros</span>
 </header>
 
 <div class="licao-content">
 
   <div class="licao-hero">
-    <div class="licao-hero-num">Lição 2 · Fonética</div>
+    <div class="licao-hero-num" data-i18n="heroNum">Lição 2 · Fonética</div>
     <span class="licao-hero-glyph">𓄿</span>
-    <h1>Os 24 unilíteros</h1>
-    <p>Estes são os sinais mais importantes do egípcio, pois cada um representa uma única consoante. São o fundamento fonético do sistema e reconhecê-los é o primeiro passo para decifrar qualquer palavra. Clique em cada sinal para ver detalhes e marcar como aprendido.</p>
+    <h1 data-i18n="heroH1">Os 24 unilíteros</h1>
+    <p data-i18n="heroP">Estes são os sinais mais importantes do egípcio, pois cada um representa uma única consoante. São o fundamento fonético do sistema e reconhecê-los é o primeiro passo para decifrar qualquer palavra. Clique em cada sinal para ver detalhes e marcar como aprendido.</p>
   </div>
 
-  <div class="callout">
+  <div class="callout" data-i18n="callout">
     Os egiptólogos desenvolveram um <strong>sistema especial de transliteração</strong> para representar sons do egípcio antigo. Alguns sons não existem em português, como <em>ꜣ</em> (um a gutural), <em>ꜥ</em> (consoante faríngea) e <em>ḥ ḫ ẖ</em> (variações do H). Não se preocupe em pronunciar perfeitamente; o foco é reconhecer os sinais.
   </div>
 
   <div class="filter-row">
-    <span class="filter-label">Filtrar:</span>
-    <button class="filtro-btn active" onclick="setFilter('all', this)">Todos (24)</button>
-    <button class="filtro-btn" onclick="setFilter('learned', this)">Aprendidos</button>
-    <button class="filtro-btn" onclick="setFilter('new', this)">Novos</button>
-    <span class="progress-count">Aprendidos: <span id="learnedCount">0</span>/24</span>
+    <span class="filter-label" data-i18n="filterLabel">Filtrar:</span>
+    <button class="filtro-btn active" onclick="setFilter('all', this)" data-i18n="filterAll">Todos (24)</button>
+    <button class="filtro-btn" onclick="setFilter('learned', this)" data-i18n="filterLearned">Aprendidos</button>
+    <button class="filtro-btn" onclick="setFilter('new', this)" data-i18n="filterNew">Novos</button>
+    <span class="progress-count"><span data-i18n="learnedPrefix">Aprendidos:</span> <span id="learnedCount">0</span>/24</span>
   </div>
 
   <div class="signs-grid" id="signsGrid"></div>
 
   <div class="quiz-section">
-    <h2>Quiz · Qual é a transliteração?</h2>
-    <p class="quiz-sub">Veja o hieróglifo e escolha o som correto entre as opções.</p>
+    <h2 data-i18n="quizH2">Quiz · Qual é a transliteração?</h2>
+    <p class="quiz-sub" data-i18n="quizSub">Veja o hieróglifo e escolha o som correto entre as opções.</p>
     <div class="quiz-progress-wrap">
       <div class="quiz-progress-label">
-        <span>Sinais dominados</span>
+        <span data-i18n="quizProgressLbl">Sinais dominados</span>
         <span><span id="quizLearned">0</span>/24</span>
       </div>
       <div class="quiz-progress-track"><div class="quiz-progress-fill" id="quizProgressFill" style="width:0%"></div></div>
     </div>
     <span class="quiz-glyph-big" id="quizGlyph">𓄿</span>
-    <div class="quiz-score">Pontuação: <span id="quizScore">0</span> acertos de <span id="quizTotal">0</span></div>
+    <div class="quiz-score"><span data-i18n="scoreLabel">Pontuação:</span> <span id="quizScore">0</span> <span data-i18n="scoreOf">acertos de</span> <span id="quizTotal">0</span></div>
     <div class="quiz-opts" id="quizOpts"></div>
-    <button class="btn btn-primary" style="width:100%;text-align:center" id="nextQuizBtn" onclick="nextQuiz()" disabled>
+    <button class="btn btn-primary" style="width:100%;text-align:center" id="nextQuizBtn" onclick="nextQuiz()" disabled data-i18n="nextSignBtn">
       Próximo sinal →
     </button>
   </div>
 
   <div class="lesson-nav">
-    <a class="btn" href="01-sistema.html">← Lição 1</a>
-    <div class="lesson-nav-info">Lição 2 de 6</div>
-    <a class="btn btn-primary" href="03-biliteral.html">Próxima →</a>
+    <a class="btn" href="01-sistema.html" data-i18n="navPrev">← Lição 1</a>
+    <div class="lesson-nav-info" data-i18n="navInfo">Lição 2 de 6</div>
+    <a class="btn btn-primary" href="03-biliteral.html" data-i18n="navNext">Próxima →</a>
   </div>
 
 </div>
 
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mPhon">
-    <button class="modal-close" id="modalCloseBtn" aria-label="Fechar" onclick="closeModalBtn()">✕</button>
+    <button class="modal-close" id="modalCloseBtn" aria-label="Fechar" data-i18n-aria="modalClose" onclick="closeModalBtn()">✕</button>
     <span class="modal-glyph" id="mGlyph"></span>
     <div class="modal-id" id="mId"></div>
     <div class="modal-phon" id="mPhon"></div>
     <div class="modal-name" id="mName"></div>
     <div class="modal-info">
       <div class="modal-info-row">
-        <span class="key">Tipo</span>
-        <span class="val">Unilítero · 1 consoante</span>
+        <span class="key" data-i18n="modalKeyType">Tipo</span>
+        <span class="val" data-i18n="modalTypeVal">Unilítero · 1 consoante</span>
       </div>
       <div class="modal-info-row">
-        <span class="key">Transliteração</span>
+        <span class="key" data-i18n="modalKeyTranslit">Transliteração</span>
         <span class="val" id="mTranslit"></span>
       </div>
       <div class="modal-info-row">
-        <span class="key">Sinal</span>
+        <span class="key" data-i18n="modalKeySign">Sinal</span>
         <span class="val" id="mDesc"></span>
       </div>
     </div>
     <p class="modal-tip" id="mTip"></p>
     <div class="modal-actions">
-      <button class="btn" onclick="markLearned()">✓ Marcar aprendido</button>
-      <a class="btn btn-primary" href="flashcards.html">Praticar →</a>
+      <button class="btn" onclick="markLearned()" data-i18n="markLearned">✓ Marcar aprendido</button>
+      <a class="btn btn-primary" href="flashcards.html" data-i18n="practice">Praticar →</a>
     </div>
   </div>
 </div>
@@ -103,9 +104,73 @@
 <script src="../gardiner/gardiner_data.js"></script>
 <script src="../gardiner/gardiner_data_en.js"></script>
 <script src="hieroglyphs-data.js"></script>
+<script src="i18n.js"></script>
 <script>
 
 const LANG = localStorage.getItem('musaeum-lang') || 'pt';
+
+const I18N = {
+  pt: {
+    _title: 'Lição 2 · Os 24 unilíteros · Musæum',
+    headerTitle: 'Lição 2 · Os 24 unilíteros',
+    heroNum: 'Lição 2 · Fonética',
+    heroH1: 'Os 24 unilíteros',
+    heroP: 'Estes são os sinais mais importantes do egípcio, pois cada um representa uma única consoante. São o fundamento fonético do sistema e reconhecê-los é o primeiro passo para decifrar qualquer palavra. Clique em cada sinal para ver detalhes e marcar como aprendido.',
+    callout: 'Os egiptólogos desenvolveram um <strong>sistema especial de transliteração</strong> para representar sons do egípcio antigo. Alguns sons não existem em português, como <em>ꜣ</em> (um a gutural), <em>ꜥ</em> (consoante faríngea) e <em>ḥ ḫ ẖ</em> (variações do H). Não se preocupe em pronunciar perfeitamente; o foco é reconhecer os sinais.',
+    filterLabel: 'Filtrar:',
+    filterAll: 'Todos (24)',
+    filterLearned: 'Aprendidos',
+    filterNew: 'Novos',
+    learnedPrefix: 'Aprendidos:',
+    quizH2: 'Quiz · Qual é a transliteração?',
+    quizSub: 'Veja o hieróglifo e escolha o som correto entre as opções.',
+    quizProgressLbl: 'Sinais dominados',
+    scoreLabel: 'Pontuação:',
+    scoreOf: 'acertos de',
+    nextSignBtn: 'Próximo sinal →',
+    navInfo: 'Lição 2 de 6',
+    navPrev: '← Lição 1',
+    navNext: 'Próxima →',
+    modalClose: 'Fechar',
+    modalKeyType: 'Tipo',
+    modalKeyTranslit: 'Transliteração',
+    modalKeySign: 'Sinal',
+    modalTypeVal: 'Unilítero · 1 consoante',
+    signTypeLabel: ' · unilítero',
+    markLearned: '✓ Marcar aprendido',
+    practice: 'Praticar →'
+  },
+  en: {
+    _title: 'Lesson 2 · The 24 Uniliterals · Musæum',
+    headerTitle: 'Lesson 2 · The 24 Uniliterals',
+    heroNum: 'Lesson 2 · Phonetics',
+    heroH1: 'The 24 Uniliterals',
+    heroP: 'These are the most important signs in Egyptian, since each represents a single consonant. They form the phonetic foundation of the system, and recognizing them is the first step in reading any word. Click each sign to see details and mark it as learned.',
+    callout: 'Egyptologists developed a <strong>special transliteration system</strong> to represent ancient Egyptian sounds. Some sounds have no English equivalent, such as <em>ꜣ</em> (a glottal catch), <em>ꜥ</em> (a pharyngeal consonant), and <em>ḥ ḫ ẖ</em> (variations of H). Do not worry about pronouncing them perfectly; the focus is on recognizing the signs.',
+    filterLabel: 'Filter:',
+    filterAll: 'All (24)',
+    filterLearned: 'Learned',
+    filterNew: 'New',
+    learnedPrefix: 'Learned:',
+    quizH2: 'Quiz · What is the transliteration?',
+    quizSub: 'See the hieroglyph and choose the correct sound.',
+    quizProgressLbl: 'Signs mastered',
+    scoreLabel: 'Score:',
+    scoreOf: 'correct of',
+    nextSignBtn: 'Next sign →',
+    navInfo: 'Lesson 2 of 6',
+    navPrev: '← Lesson 1',
+    navNext: 'Next →',
+    modalClose: 'Close',
+    modalKeyType: 'Type',
+    modalKeyTranslit: 'Transliteration',
+    modalKeySign: 'Sign',
+    modalTypeVal: 'Uniliteral · 1 consonant',
+    signTypeLabel: ' · uniliteral',
+    markLearned: '✓ Mark as learned',
+    practice: 'Practice →'
+  }
+};
 
 let learned      = new Set(JSON.parse(localStorage.getItem('musaeum-uniliterals-learned') || '[]'));
 let currentFilter = 'all';
@@ -156,7 +221,7 @@ function openModal(phon) {
   if (!s) return;
   currentModal = s;
   document.getElementById('mGlyph').textContent    = s.glyph;
-  document.getElementById('mId').textContent       = s.id + (LANG === 'en' ? ' · uniliteral' : ' · unilítero');
+  document.getElementById('mId').textContent       = s.id + I18N[LANG].signTypeLabel;
   document.getElementById('mPhon').textContent     = s.phon;
   document.getElementById('mName').textContent     = name_(s);
   document.getElementById('mTranslit').textContent = s.phon;
@@ -212,42 +277,8 @@ function checkQuiz(btn, chosen) {
 
 renderGrid();
 nextQuiz();
-const t = localStorage.getItem('musaeum-theme');
-if (t) document.documentElement.setAttribute('data-theme', t);
 
-if (LANG === 'en') {
-  document.documentElement.lang = 'en';
-  document.title = 'Lesson 2 · The 24 Uniliterals · Musæum';
-  document.querySelector('.licao-header-title').textContent = 'Lesson 2 · The 24 Uniliterals';
-  document.querySelector('.licao-hero-num').textContent = 'Lesson 2 · Phonetics';
-  document.querySelector('.licao-hero h1').textContent = 'The 24 Uniliterals';
-  document.querySelector('.licao-hero p').textContent = 'These are the most important signs in Egyptian, since each represents a single consonant. They form the phonetic foundation of the system, and recognizing them is the first step in reading any word. Click each sign to see details and mark it as learned.';
-  document.querySelector('.callout').innerHTML = 'Egyptologists developed a <strong>special transliteration system</strong> to represent ancient Egyptian sounds. Some sounds have no English equivalent, such as <em>ꜣ</em> (a glottal catch), <em>ꜥ</em> (a pharyngeal consonant), and <em>ḥ ḫ ẖ</em> (variations of H). Do not worry about pronouncing them perfectly; the focus is on recognizing the signs.';
-  document.querySelector('.filter-label').textContent = 'Filter:';
-  const fbtns = document.querySelectorAll('.filtro-btn');
-  if (fbtns[0]) fbtns[0].textContent = 'All (24)';
-  if (fbtns[1]) fbtns[1].textContent = 'Learned';
-  if (fbtns[2]) fbtns[2].textContent = 'New';
-  document.querySelector('.progress-count').innerHTML = 'Learned: <span id="learnedCount">' + learned.size + '</span>/24';
-  document.querySelector('.quiz-section h2').textContent = 'Quiz · What is the transliteration?';
-  document.querySelector('.quiz-sub').textContent = 'See the hieroglyph and choose the correct sound.';
-  document.querySelector('.quiz-progress-label span:first-child').textContent = 'Signs mastered';
-  document.querySelector('.quiz-score').innerHTML = 'Score: <span id="quizScore">0</span> correct of <span id="quizTotal">0</span>';
-  document.getElementById('nextQuizBtn').textContent = 'Next sign →';
-  document.querySelector('.lesson-nav-info').textContent = 'Lesson 2 of 6';
-  const navBtns = document.querySelectorAll('.lesson-nav a.btn');
-  if (navBtns[0]) navBtns[0].textContent = '← Lesson 1';
-  if (navBtns[1]) navBtns[1].textContent = 'Next →';
-  document.getElementById('modalCloseBtn').setAttribute('aria-label', 'Close');
-  const mKeys = document.querySelectorAll('.modal-info-row .key');
-  if (mKeys[0]) mKeys[0].textContent = 'Type';
-  if (mKeys[1]) mKeys[1].textContent = 'Transliteration';
-  if (mKeys[2]) mKeys[2].textContent = 'Sign';
-  const mVals = document.querySelectorAll('.modal-info-row .val:not([id])');
-  if (mVals[0]) mVals[0].textContent = 'Uniliteral · 1 consonant';
-  document.querySelector('[onclick="markLearned()"]').textContent = '✓ Mark as learned';
-  document.querySelector('.modal-actions .btn-primary').textContent = 'Practice →';
-}
+applyI18n(I18N, LANG);
 </script>
 
 </body>

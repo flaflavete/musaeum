@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lição 4 · Trilíteros · Musæum</title>
 <meta name="theme-color" content="#1b2a3d">
+<script>(function(){ var t = localStorage.getItem('musaeum-theme'); if (t) document.documentElement.setAttribute('data-theme', t); })();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
@@ -19,35 +20,35 @@
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     Musæum
   </a>
-  <span class="licao-header-title">Lição 4 · Trilíteros</span>
+  <span class="licao-header-title" data-i18n="headerTitle">Lição 4 · Trilíteros</span>
 </header>
 
 <div class="licao-content">
 
   <div class="licao-hero">
-    <div class="licao-hero-num">Lição 4 · Fonética</div>
+    <div class="licao-hero-num" data-i18n="heroNum">Lição 4 · Fonética</div>
     <span class="licao-hero-glyph">𓄤</span>
-    <h1>Trilíteros</h1>
-    <p>Um sinal trilítero representa três consoantes de uma vez. São menos numerosos que os bilíteros, mas incluem algumas das palavras mais importantes do egípcio: "vida", "deus", "bom", "tornar-se". Reconhecê-los é essencial para ler qualquer texto real.</p>
+    <h1 data-i18n="heroH1">Trilíteros</h1>
+    <p data-i18n="heroP">Um sinal trilítero representa três consoantes de uma vez. São menos numerosos que os bilíteros, mas incluem algumas das palavras mais importantes do egípcio: "vida", "deus", "bom", "tornar-se". Reconhecê-los é essencial para ler qualquer texto real.</p>
   </div>
 
-  <div class="callout">
+  <div class="callout" data-i18n="callout">
     Assim como os bilíteros, trilíteros costumam vir acompanhados de unilíteros que repetem uma ou duas consoantes finais, formando o <strong>complemento fonético</strong>. Por exemplo, nfr (𓄤) aparece frequentemente como 𓄤𓂋, onde o 𓂋 (r) confirma a última consoante sem ser relido. O sinal que conta é o trilítero.
   </div>
 
   <div class="filter-row">
-    <span class="filter-label">Filtrar:</span>
-    <button class="filtro-btn active" onclick="setFilter('all', this)">Todos (9)</button>
-    <button class="filtro-btn" onclick="setFilter('learned', this)">Aprendidos</button>
-    <button class="filtro-btn" onclick="setFilter('new', this)">Novos</button>
-    <span class="progress-count">Aprendidos: <span id="learnedCount">0</span>/9</span>
+    <span class="filter-label" data-i18n="filterLabel">Filtrar:</span>
+    <button class="filtro-btn active" onclick="setFilter('all', this)" data-i18n="filterAll">Todos (9)</button>
+    <button class="filtro-btn" onclick="setFilter('learned', this)" data-i18n="filterLearned">Aprendidos</button>
+    <button class="filtro-btn" onclick="setFilter('new', this)" data-i18n="filterNew">Novos</button>
+    <span class="progress-count"><span data-i18n="learnedPrefix">Aprendidos:</span> <span id="learnedCount">0</span>/9</span>
   </div>
 
   <div class="signs-grid" id="signsGrid"></div>
 
   <div class="licao-section">
-    <h2>Triliterais em palavras reais</h2>
-    <p>Veja como trilíteros aparecem em fórmulas e palavras fundamentais do egípcio clássico.</p>
+    <h2 data-i18n="sectionH2">Triliterais em palavras reais</h2>
+    <p data-i18n="sectionP">Veja como trilíteros aparecem em fórmulas e palavras fundamentais do egípcio clássico.</p>
     <div class="combos-grid">
       <div class="combo-card">
         <div class="combo-glyphs">𓄤𓂋𓂻</div>
@@ -83,40 +84,40 @@
   </div>
 
   <div class="quiz-section">
-    <h2>Quiz · Qual é a transliteração?</h2>
-    <p class="quiz-sub">Veja o hieróglifo e escolha o som correto.</p>
+    <h2 data-i18n="quizH2">Quiz · Qual é a transliteração?</h2>
+    <p class="quiz-sub" data-i18n="quizSub">Veja o hieróglifo e escolha o som correto.</p>
     <span class="quiz-glyph-big" id="quizGlyph">𓄤</span>
-    <div class="quiz-score">Pontuação: <span id="quizScore">0</span> acertos de <span id="quizTotal">0</span></div>
+    <div class="quiz-score"><span data-i18n="scoreLabel">Pontuação:</span> <span id="quizScore">0</span> <span data-i18n="scoreOf">acertos de</span> <span id="quizTotal">0</span></div>
     <div class="quiz-opts" id="quizOpts"></div>
-    <button class="btn btn-primary" style="width:100%;text-align:center" id="nextBtn" onclick="nextQuiz()" disabled>
+    <button class="btn btn-primary" style="width:100%;text-align:center" id="nextBtn" onclick="nextQuiz()" disabled data-i18n="nextSignBtn">
       Próximo sinal →
     </button>
   </div>
 
   <div class="lesson-nav">
-    <a class="btn" href="03-biliteral.html">← Lição 3</a>
-    <div class="lesson-nav-info">Lição 4 de 6</div>
-    <a class="btn btn-primary" href="05-palavras.html">Próxima →</a>
+    <a class="btn" href="03-biliteral.html" data-i18n="navPrev">← Lição 3</a>
+    <div class="lesson-nav-info" data-i18n="navInfo">Lição 4 de 6</div>
+    <a class="btn btn-primary" href="05-palavras.html" data-i18n="navNext">Próxima →</a>
   </div>
 
 </div>
 
 <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mPhon">
-    <button class="modal-close" id="modalCloseBtn" aria-label="Fechar" onclick="closeModal()">✕</button>
+    <button class="modal-close" id="modalCloseBtn" aria-label="Fechar" data-i18n-aria="modalClose" onclick="closeModal()">✕</button>
     <span class="modal-glyph" id="mGlyph"></span>
     <div class="modal-id" id="mId"></div>
     <div class="modal-phon" id="mPhon"></div>
     <div class="modal-name" id="mName"></div>
     <div class="modal-info">
-      <div class="modal-info-row"><span class="key">Tipo</span><span class="val">Trilítero · 3 consoantes</span></div>
-      <div class="modal-info-row"><span class="key">Transliteração</span><span class="val" id="mTranslit"></span></div>
-      <div class="modal-info-row"><span class="key">Sinal</span><span class="val" id="mDesc"></span></div>
+      <div class="modal-info-row"><span class="key" data-i18n="modalKeyType">Tipo</span><span class="val" data-i18n="modalTypeVal">Trilítero · 3 consoantes</span></div>
+      <div class="modal-info-row"><span class="key" data-i18n="modalKeyTranslit">Transliteração</span><span class="val" id="mTranslit"></span></div>
+      <div class="modal-info-row"><span class="key" data-i18n="modalKeySign">Sinal</span><span class="val" id="mDesc"></span></div>
     </div>
     <p class="modal-tip" id="mTip"></p>
     <div class="modal-actions">
-      <button class="btn" onclick="markLearned()">✓ Aprendido</button>
-      <a class="btn btn-primary" href="flashcards.html">Praticar →</a>
+      <button class="btn" onclick="markLearned()" data-i18n="markLearned">✓ Aprendido</button>
+      <a class="btn btn-primary" href="flashcards.html" data-i18n="practice">Praticar →</a>
     </div>
   </div>
 </div>
@@ -124,9 +125,75 @@
 <script src="../gardiner/gardiner_data.js"></script>
 <script src="../gardiner/gardiner_data_en.js"></script>
 <script src="hieroglyphs-data.js"></script>
+<script src="i18n.js"></script>
 <script>
 
 const LANG = localStorage.getItem('musaeum-lang') || 'pt';
+
+const I18N = {
+  pt: {
+    _title: 'Lição 4 · Trilíteros · Musæum',
+    headerTitle: 'Lição 4 · Trilíteros',
+    heroNum: 'Lição 4 · Fonética',
+    heroH1: 'Trilíteros',
+    heroP: 'Um sinal trilítero representa três consoantes de uma vez. São menos numerosos que os bilíteros, mas incluem algumas das palavras mais importantes do egípcio: "vida", "deus", "bom", "tornar-se". Reconhecê-los é essencial para ler qualquer texto real.',
+    callout: 'Assim como os bilíteros, trilíteros costumam vir acompanhados de unilíteros que repetem uma ou duas consoantes finais, formando o <strong>complemento fonético</strong>. Por exemplo, nfr (𓄤) aparece frequentemente como 𓄤𓂋, onde o 𓂋 (r) confirma a última consoante sem ser relido. O sinal que conta é o trilítero.',
+    filterLabel: 'Filtrar:',
+    filterAll: 'Todos (9)',
+    filterLearned: 'Aprendidos',
+    filterNew: 'Novos',
+    learnedPrefix: 'Aprendidos:',
+    sectionH2: 'Triliterais em palavras reais',
+    sectionP: 'Veja como trilíteros aparecem em fórmulas e palavras fundamentais do egípcio clássico.',
+    quizH2: 'Quiz · Qual é a transliteração?',
+    quizSub: 'Veja o hieróglifo e escolha o som correto.',
+    scoreLabel: 'Pontuação:',
+    scoreOf: 'acertos de',
+    nextSignBtn: 'Próximo sinal →',
+    navInfo: 'Lição 4 de 6',
+    navPrev: '← Lição 3',
+    navNext: 'Próxima →',
+    modalClose: 'Fechar',
+    modalKeyType: 'Tipo',
+    modalKeyTranslit: 'Transliteração',
+    modalKeySign: 'Sinal',
+    modalTypeVal: 'Trilítero · 3 consoantes',
+    signTypeLabel: ' · trilítero',
+    markLearned: '✓ Aprendido',
+    practice: 'Praticar →'
+  },
+  en: {
+    _title: 'Lesson 4 · Triliterals · Musæum',
+    headerTitle: 'Lesson 4 · Triliterals',
+    heroNum: 'Lesson 4 · Phonetics',
+    heroH1: 'Triliterals',
+    heroP: 'A triliteral sign represents three consonants at once. They are fewer in number than biliterals, but include some of the most important words in Egyptian: "life", "god", "good", "to become". Recognizing them is essential for reading any real text.',
+    callout: 'Like biliterals, triliterals are often accompanied by uniliterals that repeat one or two final consonants, forming the <strong>phonetic complement</strong>. For example, nfr (𓄤) frequently appears as 𓄤𓂋, where the 𓂋 (r) confirms the final consonant without being re-read. The triliteral is the sign that counts.',
+    filterLabel: 'Filter:',
+    filterAll: 'All (9)',
+    filterLearned: 'Learned',
+    filterNew: 'New',
+    learnedPrefix: 'Learned:',
+    sectionH2: 'Triliterals in real words',
+    sectionP: 'See how triliterals appear in formulas and fundamental words of classical Egyptian:',
+    quizH2: 'Quiz · What is the transliteration?',
+    quizSub: 'See the hieroglyph and choose the correct sound.',
+    scoreLabel: 'Score:',
+    scoreOf: 'correct of',
+    nextSignBtn: 'Next sign →',
+    navInfo: 'Lesson 4 of 6',
+    navPrev: '← Lesson 3',
+    navNext: 'Next →',
+    modalClose: 'Close',
+    modalKeyType: 'Type',
+    modalKeyTranslit: 'Transliteration',
+    modalKeySign: 'Sign',
+    modalTypeVal: 'Triliteral · 3 consonants',
+    signTypeLabel: ' · triliteral',
+    markLearned: '✓ Mark as learned',
+    practice: 'Practice →'
+  }
+};
 
 let learned = new Set(JSON.parse(localStorage.getItem('musaeum-triliterals-learned') || '[]'));
 let currentFilter = 'all';
@@ -176,7 +243,7 @@ function openModal(phon) {
   if (!s) return;
   currentModal = s;
   document.getElementById('mGlyph').textContent    = s.glyph;
-  document.getElementById('mId').textContent       = s.id + (LANG === 'en' ? ' · triliteral' : ' · trilítero');
+  document.getElementById('mId').textContent       = s.id + I18N[LANG].signTypeLabel;
   document.getElementById('mPhon').textContent     = s.phon;
   document.getElementById('mName').textContent     = name_(s);
   document.getElementById('mTranslit').textContent = s.phon;
@@ -224,43 +291,8 @@ function checkQuiz(btn, chosen) {
 
 renderGrid();
 nextQuiz();
-const t = localStorage.getItem('musaeum-theme');
-if (t) document.documentElement.setAttribute('data-theme', t);
 
-if (LANG === 'en') {
-  document.documentElement.lang = 'en';
-  document.title = 'Lesson 4 · Triliterals · Musæum';
-  document.querySelector('.licao-header-title').textContent = 'Lesson 4 · Triliterals';
-  document.querySelector('.licao-hero-num').textContent = 'Lesson 4 · Phonetics';
-  document.querySelector('.licao-hero h1').textContent = 'Triliterals';
-  document.querySelector('.licao-hero p').textContent = 'A triliteral sign represents three consonants at once. They are fewer in number than biliterals, but include some of the most important words in Egyptian: "life", "god", "good", "to become". Recognizing them is essential for reading any real text.';
-  document.querySelector('.callout').innerHTML = 'Like biliterals, triliterals are often accompanied by uniliterals that repeat one or two final consonants, forming the <strong>phonetic complement</strong>. For example, nfr (𓄤) frequently appears as 𓄤𓂋, where the 𓂋 (r) confirms the final consonant without being re-read. The triliteral is the sign that counts.';
-  document.querySelector('.filter-label').textContent = 'Filter:';
-  const fbtns = document.querySelectorAll('.filtro-btn');
-  if (fbtns[0]) fbtns[0].textContent = 'All (9)';
-  if (fbtns[1]) fbtns[1].textContent = 'Learned';
-  if (fbtns[2]) fbtns[2].textContent = 'New';
-  document.querySelector('.progress-count').innerHTML = 'Learned: <span id="learnedCount">' + learned.size + '</span>/9';
-  document.querySelector('.licao-section h2').textContent = 'Triliterals in real words';
-  document.querySelector('.licao-section > p').textContent = 'See how triliterals appear in formulas and fundamental words of classical Egyptian:';
-  document.querySelector('.quiz-section h2').textContent = 'Quiz · What is the transliteration?';
-  document.querySelector('.quiz-sub').textContent = 'See the hieroglyph and choose the correct sound.';
-  document.querySelector('.quiz-score').innerHTML = 'Score: <span id="quizScore">0</span> correct of <span id="quizTotal">0</span>';
-  document.getElementById('nextBtn').textContent = 'Next sign →';
-  document.querySelector('.lesson-nav-info').textContent = 'Lesson 4 of 6';
-  const navBtns = document.querySelectorAll('.lesson-nav a.btn');
-  if (navBtns[0]) navBtns[0].textContent = '← Lesson 3';
-  if (navBtns[1]) navBtns[1].textContent = 'Next →';
-  document.getElementById('modalCloseBtn').setAttribute('aria-label', 'Close');
-  const mKeys = document.querySelectorAll('.modal-info-row .key');
-  if (mKeys[0]) mKeys[0].textContent = 'Type';
-  if (mKeys[1]) mKeys[1].textContent = 'Transliteration';
-  if (mKeys[2]) mKeys[2].textContent = 'Sign';
-  const mVals = document.querySelectorAll('.modal-info-row .val:not([id])');
-  if (mVals[0]) mVals[0].textContent = 'Triliteral · 3 consonants';
-  document.querySelector('[onclick="markLearned()"]').textContent = '✓ Mark as learned';
-  document.querySelector('.modal-actions .btn-primary').textContent = 'Practice →';
-}
+applyI18n(I18N, LANG);
 </script>
 
 </body>

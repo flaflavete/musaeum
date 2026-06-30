@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flashcards · Hieróglifos · Musæum</title>
 <meta name="theme-color" content="#1b2a3d">
+<script>(function(){ var t = localStorage.getItem('musaeum-theme'); if (t) document.documentElement.setAttribute('data-theme', t); })();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+Egyptian+Hieroglyphs&display=swap" rel="stylesheet">
@@ -319,13 +320,13 @@ body {
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     Musæum
   </a>
-  <span class="licao-header-title">Flashcards · Hieróglifos</span>
+  <span class="licao-header-title" data-i18n="headerTitle">Flashcards · Hieróglifos</span>
 </header>
 
 <div class="toolbar">
-  <span class="toolbar-label">Baralho</span>
-  <button class="deck-btn active" onclick="setDeck('uniliterals', this)">24 unilíteros</button>
-  <button class="deck-btn" onclick="setDeck('all', this)">Todos os sinais</button>
+  <span class="toolbar-label" data-i18n="toolbarLabel">Baralho</span>
+  <button class="deck-btn active" onclick="setDeck('uniliterals', this)" data-i18n="deck0">24 unilíteros</button>
+  <button class="deck-btn" onclick="setDeck('all', this)" data-i18n="deck1">Todos os sinais</button>
 
   <div class="mode-toggle">
     <button class="mode-btn active" onclick="setMode('flash', this)">Flashcard</button>
@@ -343,7 +344,7 @@ body {
     <div class="session-stats">
       <span class="stat-correct">✓ <span id="statC">0</span></span>
       <span class="stat-wrong">✗ <span id="statW">0</span></span>
-      <span class="stat-left"><span id="statLeft">0</span> restantes</span>
+      <span class="stat-left" data-i18n="statLeftLabel"><span id="statLeft">0</span> restantes</span>
     </div>
   </div>
 
@@ -352,12 +353,12 @@ body {
     <div class="card-wrap" id="cardWrap" onclick="flipCard()">
       <div class="card-inner" id="cardInner">
         <div class="card-face card-front">
-          <span class="card-hint">clique para revelar</span>
+          <span class="card-hint" data-i18n="hintReveal">clique para revelar</span>
           <span class="card-glyph" id="cardGlyph">𓄿</span>
           <span class="card-id" id="cardId">G1</span>
         </div>
         <div class="card-face card-back">
-          <span class="card-hint">você sabia?</span>
+          <span class="card-hint" data-i18n="hintDidYouKnow">você sabia?</span>
           <span class="card-phon" id="cardPhon">ꜣ</span>
           <span class="card-name" id="cardName">Egyptian vulture</span>
           <span class="card-tip" id="cardTip"></span>
@@ -366,8 +367,8 @@ body {
     </div>
 
     <div class="answer-row hidden" id="answerRow">
-      <button class="answer-btn btn-wrong" onclick="answer(false)">✗ Errei</button>
-      <button class="answer-btn btn-correct" onclick="answer(true)">✓ Acertei</button>
+      <button class="answer-btn btn-wrong" onclick="answer(false)" data-i18n="answerWrong">✗ Errei</button>
+      <button class="answer-btn btn-correct" onclick="answer(true)" data-i18n="answerCorrect">✓ Acertei</button>
     </div>
   </div>
 
@@ -376,7 +377,7 @@ body {
     <div class="card-wrap" style="cursor:default">
       <div class="card-inner">
         <div class="card-face">
-          <span class="card-hint">qual é a transliteração?</span>
+          <span class="card-hint" data-i18n="hintTranslit">qual é a transliteração?</span>
           <span class="card-glyph" id="qGlyph">𓄿</span>
           <span class="card-id" id="qId">G1</span>
         </div>
@@ -384,23 +385,23 @@ body {
     </div>
     <div class="quiz-opts" id="quizOpts"></div>
     <div style="width:100%; max-width:400px">
-      <button class="btn btn-primary" style="width:100%;text-align:center" id="quizNextBtn" onclick="nextCard()" disabled>Próximo →</button>
+      <button class="btn btn-primary" style="width:100%;text-align:center" id="quizNextBtn" onclick="nextCard()" data-i18n="quizNext" disabled>Próximo →</button>
     </div>
   </div>
 
   <!-- DONE -->
   <div class="done-screen" id="doneScreen">
     <span class="done-glyph">𓂋𓏤</span>
-    <h2>Sessão concluída!</h2>
-    <p>Você terminou o baralho. Continue praticando para fixar os sinais no longo prazo.</p>
+    <h2 data-i18n="doneH2">Sessão concluída!</h2>
+    <p data-i18n="doneP">Você terminou o baralho. Continue praticando para fixar os sinais no longo prazo.</p>
     <div class="done-stats">
-      <div class="done-stat"><span class="num" id="doneC">0</span><span class="lbl">acertos</span></div>
-      <div class="done-stat"><span class="num" id="doneW">0</span><span class="lbl">erros</span></div>
-      <div class="done-stat"><span class="num" id="donePct">0%</span><span class="lbl">aproveit.</span></div>
+      <div class="done-stat"><span class="num" id="doneC">0</span><span class="lbl" data-i18n="doneStat1">acertos</span></div>
+      <div class="done-stat"><span class="num" id="doneW">0</span><span class="lbl" data-i18n="doneStat2">erros</span></div>
+      <div class="done-stat"><span class="num" id="donePct">0%</span><span class="lbl" data-i18n="doneStat3">aproveit.</span></div>
     </div>
     <div class="done-actions">
-      <button class="btn" onclick="restartDeck()">↺ Recomeçar</button>
-      <a class="btn btn-primary" href="../index.html">Voltar ao Musæum</a>
+      <button class="btn" onclick="restartDeck()" data-i18n="doneRestart">↺ Recomeçar</button>
+      <a class="btn btn-primary" href="../index.html" data-i18n="doneBack">Voltar ao Musæum</a>
     </div>
   </div>
 
@@ -410,9 +411,56 @@ body {
 <script src="../gardiner/gardiner_data.js"></script>
 <script src="../gardiner/gardiner_data_en.js"></script>
 <script src="hieroglyphs-data.js"></script>
+<script src="i18n.js"></script>
 <script>
 
 const LANG = localStorage.getItem('musaeum-lang') || 'pt';
+
+const I18N = {
+  pt: {
+    _title: 'Flashcards · Hieróglifos · Musæum',
+    headerTitle: 'Flashcards · Hieróglifos',
+    toolbarLabel: 'Baralho',
+    deck0: '24 unilíteros',
+    deck1: 'Todos os sinais',
+    statLeftLabel: '<span id="statLeft">0</span> restantes',
+    hintReveal: 'clique para revelar',
+    hintDidYouKnow: 'você sabia?',
+    hintTranslit: 'qual é a transliteração?',
+    answerWrong: '✗ Errei',
+    answerCorrect: '✓ Acertei',
+    quizNext: 'Próximo →',
+    doneH2: 'Sessão concluída!',
+    doneP: 'Você terminou o baralho. Continue praticando para fixar os sinais no longo prazo.',
+    doneStat1: 'acertos',
+    doneStat2: 'erros',
+    doneStat3: 'aproveit.',
+    doneRestart: '↺ Recomeçar',
+    doneBack: 'Voltar ao Musæum'
+  },
+  en: {
+    _title: 'Flashcards · Hieroglyphs · Musæum',
+    headerTitle: 'Flashcards · Hieroglyphs',
+    toolbarLabel: 'Deck',
+    deck0: '24 Uniliterals',
+    deck1: 'All signs',
+    statLeftLabel: '<span id="statLeft">0</span> remaining',
+    hintReveal: 'click to reveal',
+    hintDidYouKnow: 'did you know?',
+    hintTranslit: 'what is the transliteration?',
+    answerWrong: '✗ Wrong',
+    answerCorrect: '✓ Correct',
+    quizNext: 'Next →',
+    doneH2: 'Session complete!',
+    doneP: 'You have finished the deck. Keep practicing to retain the signs long-term.',
+    doneStat1: 'correct',
+    doneStat2: 'wrong',
+    doneStat3: 'score',
+    doneRestart: '↺ Restart',
+    doneBack: 'Back to Musæum'
+  }
+};
+
 let deck = [], deckName = 'uniliterals', mode = 'flash';
 let idx = 0, correct = 0, wrong = 0, flipped = false, quizAnswered = false;
 
@@ -477,7 +525,7 @@ function showCard() {
     document.getElementById('qGlyph').textContent = s.glyph;
     document.getElementById('qId').textContent = s.id;
 
-    const pool = UNILITERALS;
+    const pool = deckName === 'uniliterals' ? UNILITERALS : [...UNILITERALS, ...BILITERALS_FLASH];
     const others = pool.filter(x => x.phon !== s.phon).sort(() => Math.random() - .5).slice(0, 3);
     const opts = [...others, s].sort(() => Math.random() - .5);
     document.getElementById('quizOpts').innerHTML = opts.map(o =>
@@ -535,6 +583,8 @@ function showDone() {
   localStorage.setItem('musaeum-hieroglyphs', JSON.stringify(p));
 }
 
+applyI18n(I18N, LANG);
+
 const params = new URLSearchParams(location.search);
 if (params.get('mode') === 'quiz') {
   setMode('quiz', document.querySelectorAll('.mode-btn')[1]);
@@ -544,37 +594,6 @@ if (params.get('mode') === 'quiz') {
 
 const t = localStorage.getItem('musaeum-theme');
 if (t) document.documentElement.setAttribute('data-theme', t);
-
-if (LANG === 'en') {
-  document.documentElement.lang = 'en';
-  document.title = 'Flashcards · Hieroglyphs · Musæum';
-  document.querySelector('.licao-header-title').textContent = 'Flashcards · Hieroglyphs';
-  document.querySelector('.toolbar-label').textContent = 'Deck';
-  const deckBtns = document.querySelectorAll('.deck-btn');
-  if (deckBtns[0]) deckBtns[0].textContent = '24 Uniliterals';
-  if (deckBtns[1]) deckBtns[1].textContent = 'All signs';
-  document.querySelector('.stat-left').innerHTML = '<span id="statLeft">0</span> remaining';
-  updateProgress();
-  document.querySelector('.card-face.card-front .card-hint').textContent = 'click to reveal';
-  document.querySelector('.card-face.card-back .card-hint').textContent = 'did you know?';
-  document.querySelector('#quizMode .card-hint').textContent = 'what is the transliteration?';
-  const answerBtns = document.querySelectorAll('.answer-btn');
-  if (answerBtns[0]) answerBtns[0].innerHTML = '✗ Wrong';
-  if (answerBtns[1]) answerBtns[1].innerHTML = '✓ Correct';
-  document.getElementById('quizNextBtn').textContent = 'Next →';
-  const doneScreen = document.getElementById('doneScreen');
-  if (doneScreen) {
-    doneScreen.querySelector('h2').textContent = 'Session complete!';
-    doneScreen.querySelector('p').textContent = 'You have finished the deck. Keep practicing to retain the signs long-term.';
-    const statLbls = doneScreen.querySelectorAll('.done-stat .lbl');
-    if (statLbls[0]) statLbls[0].textContent = 'correct';
-    if (statLbls[1]) statLbls[1].textContent = 'wrong';
-    if (statLbls[2]) statLbls[2].textContent = 'score';
-    const doneActions = doneScreen.querySelectorAll('.done-actions button, .done-actions a');
-    if (doneActions[0]) doneActions[0].innerHTML = '↺ Restart';
-    if (doneActions[1]) doneActions[1].textContent = 'Back to Musæum';
-  }
-}
 </script>
 
 </body>
