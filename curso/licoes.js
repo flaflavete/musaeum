@@ -97,18 +97,56 @@ window.CURSO_LICOES = [
         ],
       },
     ],
-    quiz: {
-      glyph: '𓀀',
-      question: { pt: 'Este sinal aparece ao final de uma palavra sem ter som próprio, apenas para indicar que a palavra é sobre uma pessoa. Que tipo de sinal é este?', en: 'This sign appears at the end of a word without having a sound of its own, only to indicate that the word is about a person. What type of sign is this?' },
-      options: [
-        { label: { pt: 'Unilítero (representa um único som)', en: 'Uniliteral (represents a single sound)' }, correct: false },
-        { label: { pt: 'Logograma (representa a palavra "homem")', en: 'Logogram (represents the word "man")' }, correct: false },
-        { label: { pt: 'Determinativo (classifica a palavra sem som)', en: 'Determinative (classifies the word without sound)' }, correct: true },
-        { label: { pt: 'Complemento fonético (reforça a leitura)', en: 'Phonetic complement (reinforces the reading)' }, correct: false },
-      ],
-      feedbackOk: { pt: 'Exato! Determinativos não têm som; eles apenas classificam. O sinal de homem sentado 𓀀 é um dos determinativos mais comuns, aparecendo em qualquer palavra relacionada a seres masculinos.', en: 'Exactly! Determinatives have no sound; they only classify. The seated man sign 𓀀 is one of the most common determinatives, appearing in any word related to male beings.' },
-      feedbackErr: { pt: 'Não desta vez. Quando um sinal aparece sem som ao final de uma palavra para categorizar, ele é um determinativo.', en: 'Not this time. When a sign appears without sound at the end of a word to categorize, it is a determinative.' },
-    },
+    quiz: [
+      {
+        glyph: '𓀀',
+        question: { pt: 'Este sinal aparece ao final de uma palavra sem ter som próprio, apenas para indicar que a palavra é sobre uma pessoa. Que tipo de sinal é este?', en: 'This sign appears at the end of a word without having a sound of its own, only to indicate that the word is about a person. What type of sign is this?' },
+        options: [
+          { label: { pt: 'Unilítero (representa um único som)', en: 'Uniliteral (represents a single sound)' }, correct: false },
+          { label: { pt: 'Logograma (representa a palavra "homem")', en: 'Logogram (represents the word "man")' }, correct: false },
+          { label: { pt: 'Determinativo (classifica a palavra sem som)', en: 'Determinative (classifies the word without sound)' }, correct: true },
+          { label: { pt: 'Complemento fonético (reforça a leitura)', en: 'Phonetic complement (reinforces the reading)' }, correct: false },
+        ],
+        feedbackOk: { pt: 'Exato! Determinativos não têm som; eles apenas classificam. O sinal de homem sentado 𓀀 é um dos determinativos mais comuns, aparecendo em qualquer palavra relacionada a seres masculinos.', en: 'Exactly! Determinatives have no sound; they only classify. The seated man sign 𓀀 is one of the most common determinatives, appearing in any word related to male beings.' },
+        feedbackErr: { pt: 'Não desta vez. Quando um sinal aparece sem som ao final de uma palavra para categorizar, ele é um determinativo.', en: 'Not this time. When a sign appears without sound at the end of a word to categorize, it is a determinative.' },
+      },
+      {
+        glyph: '𓄤𓆑𓂋',
+        question: { pt: 'Na escrita completa de "nfr" (𓄤𓆑𓂋), os sinais 𓆑 (f) e 𓂋 (r) vêm depois do sinal principal. Qual é a função deles?', en: 'In the full writing of "nfr" (𓄤𓆑𓂋), the signs 𓆑 (f) and 𓂋 (r) come after the main sign. What is their function?' },
+        options: [
+          { label: { pt: 'Acrescentam novos sons à palavra', en: 'They add new sounds to the word' }, correct: false },
+          { label: { pt: 'Confirmam a leitura do sinal principal, sem somar sons', en: 'They confirm the reading of the main sign, without adding sounds' }, correct: true },
+          { label: { pt: 'Classificam a categoria da palavra', en: 'They classify the word\'s category' }, correct: false },
+          { label: { pt: 'Marcam o plural', en: 'They mark the plural' }, correct: false },
+        ],
+        feedbackOk: { pt: 'Isso. São complementos fonéticos: repetem sons que 𓄤 já carrega. Leia o sinal principal uma vez só, como nfr.', en: 'Right. They are phonetic complements: they repeat sounds 𓄤 already carries. Read the main sign once, as nfr.' },
+        feedbackErr: { pt: 'Os complementos fonéticos 𓆑 (f) e 𓂋 (r) só confirmam a leitura de 𓄤 nfr; não acrescentam sons novos.', en: 'The phonetic complements 𓆑 (f) and 𓂋 (r) only confirm the reading of 𓄤 nfr; they add no new sounds.' },
+      },
+      {
+        glyph: '𓅓',
+        question: { pt: 'Você abre um papiro e não sabe por onde começar a ler. Qual é a pista mais confiável para descobrir a direção?', en: 'You open a papyrus and do not know where to start reading. What is the most reliable clue to find the direction?' },
+        options: [
+          { label: { pt: 'Começar sempre pela esquerda, como no português', en: 'Always start from the left, as in English' }, correct: false },
+          { label: { pt: 'Olhar para onde as figuras de pessoas e animais estão voltadas', en: 'Look at which way the figures of people and animals face' }, correct: true },
+          { label: { pt: 'Começar sempre de cima para baixo', en: 'Always start from top to bottom' }, correct: false },
+          { label: { pt: 'Procurar o sinal maior da linha', en: 'Find the largest sign in the line' }, correct: false },
+        ],
+        feedbackOk: { pt: 'Exato. As figuras olham para o início da linha; siga os rostos e você acha por onde começar.', en: 'Exactly. The figures face the beginning of the line; follow the faces and you find where to start.' },
+        feedbackErr: { pt: 'A direção variava. A pista certa são os rostos: pessoas e animais olham para o início da linha.', en: 'The direction varied. The right clue is the faces: people and animals look toward the beginning of the line.' },
+      },
+      {
+        glyph: '𓄤',
+        question: { pt: 'O egípcio escrevia só as consoantes. Quando lemos "nefer" para 𓄤 (nfr), o "e" é...', en: 'Egyptian wrote only consonants. When we read "nefer" for 𓄤 (nfr), the "e" is...' },
+        options: [
+          { label: { pt: 'A pronúncia exata reconstruída dos antigos egípcios', en: 'The exact reconstructed pronunciation of the ancient Egyptians' }, correct: false },
+          { label: { pt: 'Uma convenção moderna para conseguirmos pronunciar a palavra', en: 'A modern convention so we can pronounce the word' }, correct: true },
+          { label: { pt: 'Um hieróglifo de vogal que não foi escrito', en: 'A vowel hieroglyph that was left out' }, correct: false },
+          { label: { pt: 'Um determinativo', en: 'A determinative' }, correct: false },
+        ],
+        feedbackOk: { pt: 'Isso. As vogais não eram escritas; o "e" é só uma convenção de estudo, não a pronúncia original.', en: 'Right. Vowels were not written; the "e" is only a scholarly convention, not the original pronunciation.' },
+        feedbackErr: { pt: 'As vogais não eram escritas. O "e" de "nefer" é uma convenção moderna, não como a palavra soava de fato.', en: 'Vowels were not written. The "e" in "nefer" is a modern convention, not how the word actually sounded.' },
+      },
+    ],
   },
 
   /* As lições abaixo ainda serão construídas no rebuild. Ficam listadas no índice

@@ -145,7 +145,7 @@
 
     el('cursoHeader').innerHTML = renderHeader({
       backHref: 'index.html',
-      backLabel: lang === 'pt' ? 'Curso' : 'Course',
+      backLabel: lang === 'pt' ? 'Índice' : 'Index',
       title: T(lesson.kicker),
     });
 
@@ -158,18 +158,13 @@
     }).join('');
 
     var quizHtml = '';
-    if (lesson.quiz) {
-      var q = lesson.quiz;
-      var opts = q.options.map(function (o, i) {
-        return '<button class="quiz-opt" data-correct="' + (o.correct ? '1' : '0') + '" data-i="' + i + '">' + esc(T(o.label)) + '</button>';
-      }).join('');
+    if (lesson.quiz && lesson.quiz.length) {
       quizHtml = '<section class="licao-section">' +
         '<div class="quiz-box" id="quizBox">' +
           '<h3>' + (lang === 'pt' ? 'Quiz rápido' : 'Quick quiz') + '</h3>' +
-          '<span class="quiz-glyph" aria-hidden="true">' + q.glyph + '</span>' +
-          '<p style="color:var(--papyrus-soft);font-size:16px;margin-bottom:14px;text-align:center">' + esc(T(q.question)) + '</p>' +
-          '<div class="quiz-options" id="quizOptions">' + opts + '</div>' +
-          '<div class="quiz-feedback" id="quizFeedback" role="status" aria-live="polite"></div>' +
+          '<div class="quiz-meta" id="quizMeta"></div>' +
+          '<div id="quizStage"></div>' +
+          '<div class="quiz-nav" id="quizNav"></div>' +
         '</div>' +
       '</section>';
     }
@@ -186,20 +181,43 @@
       lessonNav(lesson);
 
     wireChrome();
-    wireQuiz(lesson);
+    startQuiz(lesson);
     wireProgressBar();
   }
 
-  function wireQuiz(lesson) {
-    if (!lesson.quiz) return;
-    var q = lesson.quiz;
-    if (isDone(lesson.id)) quizLocked = false; // permite refazer, mas já conta como concluída
-    var opts = document.querySelectorAll('#quizOptions .quiz-opt');
-    opts.forEach(function (btn) {
+  /* Quiz em sequência: uma pergunta de cada vez, com placar. */
+  var quizState = { i: 0, score: 0 };
+
+  function startQuiz(lesson) {
+    if (!lesson.quiz || !lesson.quiz.length) return;
+    quizState = { i: 0, score: 0 };
+    renderQuizQuestion(lesson);
+  }
+
+  function renderQuizQuestion(lesson) {
+    var qs = lesson.quiz;
+    var q = qs[quizState.i];
+    var total = qs.length;
+
+    el('quizMeta').textContent = (lang === 'pt' ? 'Pergunta ' : 'Question ') + (quizState.i + 1) + (lang === 'pt' ? ' de ' : ' of ') + total;
+
+    var opts = q.options.map(function (o) {
+      return '<button class="quiz-opt" data-correct="' + (o.correct ? '1' : '0') + '">' + esc(T(o.label)) + '</button>';
+    }).join('');
+
+    el('quizStage').innerHTML =
+      '<span class="quiz-glyph" aria-hidden="true">' + q.glyph + '</span>' +
+      '<p class="quiz-question">' + esc(T(q.question)) + '</p>' +
+      '<div class="quiz-options" id="quizOptions">' + opts + '</div>' +
+      '<div class="quiz-feedback" id="quizFeedback" role="status" aria-live="polite"></div>';
+    el('quizNav').innerHTML = '';
+
+    var options = document.querySelectorAll('#quizOptions .quiz-opt');
+    options.forEach(function (btn) {
       btn.addEventListener('click', function () {
         if (btn.disabled) return;
         var correct = btn.dataset.correct === '1';
-        opts.forEach(function (o) {
+        options.forEach(function (o) {
           o.disabled = true;
           if (o.dataset.correct === '1') o.classList.add('correct');
         });
@@ -208,17 +226,38 @@
           btn.classList.add('correct');
           fb.textContent = T(q.feedbackOk);
           fb.style.color = 'var(--green)';
-          markDone(lesson.id);
+          quizState.score++;
         } else {
           btn.classList.add('wrong');
           fb.textContent = T(q.feedbackErr);
           fb.style.color = 'var(--terracotta-lt)';
         }
-        var bar = el('progressBar');
-        if (bar) bar.style.width = '100%';
-        quizLocked = true;
+        showQuizNext(lesson);
       });
     });
+  }
+
+  function showQuizNext(lesson) {
+    var qs = lesson.quiz;
+    var nav = el('quizNav');
+    if (quizState.i < qs.length - 1) {
+      nav.innerHTML = '<button class="btn btn-primary" id="quizNextBtn">' + (lang === 'pt' ? 'Próxima pergunta →' : 'Next question →') + '</button>';
+      el('quizNextBtn').addEventListener('click', function () {
+        quizState.i++;
+        renderQuizQuestion(lesson);
+        var box = el('quizBox');
+        if (box) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    } else {
+      markDone(lesson.id);
+      var bar = el('progressBar');
+      if (bar) bar.style.width = '100%';
+      quizLocked = true;
+      var msg = lang === 'pt'
+        ? 'Quiz concluído: você acertou ' + quizState.score + ' de ' + qs.length + '.'
+        : 'Quiz complete: you got ' + quizState.score + ' of ' + qs.length + ' right.';
+      nav.innerHTML = '<div class="quiz-result">' + esc(msg) + '</div>';
+    }
   }
 
   function wireProgressBar() {
@@ -238,13 +277,13 @@
 
   /* ── página: índice ──────────────────────────────── */
   function renderIndex() {
-    document.title = (lang === 'pt' ? 'Aprender Hieróglifos · Curso de Leitura' : 'Learn Hieroglyphs · Reading Course') + ' · Musæum';
+    document.title = (lang === 'pt' ? 'Primeiros passos nos hieróglifos' : 'First steps in hieroglyphs') + ' · Musæum';
     document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
 
     el('cursoHeader').innerHTML = renderHeader({
       backHref: '../index.html',
       backLabel: 'Musæum',
-      title: lang === 'pt' ? 'Aprender Hieróglifos' : 'Learn Hieroglyphs',
+      title: lang === 'pt' ? 'Primeiros passos' : 'First steps',
     });
 
     var doneCount = readyLessons.filter(function (l) { return isDone(l.id); }).length;
@@ -272,13 +311,13 @@
       '</li>';
     }).join('');
 
-    var aboutTitle = lang === 'pt' ? 'Sobre este curso' : 'About this course';
+    var aboutTitle = lang === 'pt' ? 'Sobre' : 'About';
     var aboutIntro = lang === 'pt'
-      ? 'O curso apresenta a escrita hieroglífica do egípcio médio, o registro literário clássico. É introdutório, voltado ao reconhecimento e à leitura leve, e segue a tradição acadêmica estabelecida por três obras fundamentais da egiptologia.'
-      : 'The course introduces Middle Egyptian hieroglyphic writing, the classical literary register. It is introductory, aimed at recognition and light reading, and follows the academic tradition established by three foundational works in Egyptology.';
+      ? 'Estes primeiros passos apresentam a escrita hieroglífica do egípcio médio, o registro literário clássico. O objetivo é ter uma noção de como o sistema funciona, com reconhecimento e leitura leve, seguindo a tradição acadêmica estabelecida por três obras fundamentais da egiptologia.'
+      : 'These first steps introduce Middle Egyptian hieroglyphic writing, the classical literary register. The goal is to get a sense of how the system works, through recognition and light reading, following the academic tradition established by three foundational works in Egyptology.';
     var aboutSources = lang === 'pt'
-      ? 'Baseado em <strong>Gardiner</strong> (lista de sinais e gramática), <strong>Faulkner</strong> (vocabulário) e <strong>Allen</strong> (estrutura do curso).'
-      : 'Based on <strong>Gardiner</strong> (sign list and grammar), <strong>Faulkner</strong> (vocabulary), and <strong>Allen</strong> (course structure).';
+      ? 'Baseado em <strong>Gardiner</strong> (lista de sinais e gramática), <strong>Faulkner</strong> (vocabulário) e <strong>Allen</strong> (estrutura e progressão).'
+      : 'Based on <strong>Gardiner</strong> (sign list and grammar), <strong>Faulkner</strong> (vocabulary), and <strong>Allen</strong> (structure and progression).';
     var lessonsTitle = lang === 'pt' ? 'Lições' : 'Lessons';
     var toolsTitle = lang === 'pt' ? 'Ferramentas de prática' : 'Practice tools';
     var progLabel = lang === 'pt' ? 'Progresso' : 'Progress';
@@ -292,12 +331,12 @@
 
     el('cursoContent').innerHTML =
       '<div class="licao-hero">' +
-        '<div class="licao-hero-num">' + (lang === 'pt' ? 'Curso de Leitura' : 'Reading Course') + '</div>' +
+        '<div class="licao-hero-num">' + (lang === 'pt' ? 'Uma introdução' : 'An introduction') + '</div>' +
         '<span class="licao-hero-glyph" aria-hidden="true">𓏛</span>' +
-        '<h1>' + (lang === 'pt' ? 'Aprender hieróglifos' : 'Learn hieroglyphs') + '</h1>' +
+        '<h1>' + (lang === 'pt' ? 'Primeiros passos nos hieróglifos' : 'First steps in hieroglyphs') + '</h1>' +
         '<p>' + (lang === 'pt'
-          ? 'Do sistema ao cartucho, em mordidas curtas. Sem pré-requisitos: você começa do zero e termina lendo nomes de faraós.'
-          : 'From the writing system to the cartouche, in short bites. No prerequisites: start from scratch and finish reading pharaoh names.') + '</p>' +
+          ? 'Um primeiro contato com a escrita egípcia, sem pré-requisitos: você começa do zero e termina lendo nomes de faraós.'
+          : 'A first encounter with Egyptian writing, with no prerequisites: you start from scratch and end up reading pharaoh names.') + '</p>' +
       '</div>' +
       '<div class="curso-progress">' +
         '<span class="curso-progress-label">' + progLabel + ' <span>' + doneCount + '/' + total + '</span></span>' +
