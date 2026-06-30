@@ -324,7 +324,7 @@ body {
 
 <div class="toolbar">
   <span class="toolbar-label">Baralho</span>
-  <button class="deck-btn active" onclick="setDeck('uniliterals', this)">24 unileteral</button>
+  <button class="deck-btn active" onclick="setDeck('uniliterals', this)">24 unilíteros</button>
   <button class="deck-btn" onclick="setDeck('all', this)">Todos os sinais</button>
 
   <div class="mode-toggle">
@@ -407,9 +407,12 @@ body {
 </div>
 </div>
 
+<script src="../gardiner/gardiner_data.js"></script>
+<script src="../gardiner/gardiner_data_en.js"></script>
 <script src="hieroglyphs-data.js"></script>
 <script>
 
+const LANG = localStorage.getItem('musaeum-lang') || 'pt';
 let deck = [], deckName = 'uniliterals', mode = 'flash';
 let idx = 0, correct = 0, wrong = 0, flipped = false, quizAnswered = false;
 
@@ -466,8 +469,8 @@ function showCard() {
     document.getElementById('cardGlyph').textContent = s.glyph;
     document.getElementById('cardId').textContent = s.id;
     document.getElementById('cardPhon').textContent = s.phon;
-    document.getElementById('cardName').textContent = s.name_en;
-    document.getElementById('cardTip').textContent = s.tip || '';
+    document.getElementById('cardName').textContent = LANG === 'en' ? s.name_en : s.name_pt;
+    document.getElementById('cardTip').textContent = LANG === 'en' ? (s.tip_en || '') : (s.tip || '');
   } else {
     quizAnswered = false;
     document.getElementById('quizNextBtn').disabled = true;
@@ -480,7 +483,7 @@ function showCard() {
     document.getElementById('quizOpts').innerHTML = opts.map(o =>
       `<button class="qopt" onclick="checkQuiz(this,'${o.phon}')">
         <span>${o.phon}</span>
-        <small>${o.name_en.split(' ').slice(0,2).join(' ')}</small>
+        <small>${(LANG === 'en' ? o.name_en : o.name_pt).split(' ').slice(0,2).join(' ')}</small>
       </button>`).join('');
   }
 }
@@ -541,6 +544,37 @@ if (params.get('mode') === 'quiz') {
 
 const t = localStorage.getItem('musaeum-theme');
 if (t) document.documentElement.setAttribute('data-theme', t);
+
+if (LANG === 'en') {
+  document.documentElement.lang = 'en';
+  document.title = 'Flashcards · Hieroglyphs · Musæum';
+  document.querySelector('.licao-header-title').textContent = 'Flashcards · Hieroglyphs';
+  document.querySelector('.toolbar-label').textContent = 'Deck';
+  const deckBtns = document.querySelectorAll('.deck-btn');
+  if (deckBtns[0]) deckBtns[0].textContent = '24 Uniliterals';
+  if (deckBtns[1]) deckBtns[1].textContent = 'All signs';
+  document.querySelector('.stat-left').innerHTML = '<span id="statLeft">0</span> remaining';
+  updateProgress();
+  document.querySelector('.card-face.card-front .card-hint').textContent = 'click to reveal';
+  document.querySelector('.card-face.card-back .card-hint').textContent = 'did you know?';
+  document.querySelector('#quizMode .card-hint').textContent = 'what is the transliteration?';
+  const answerBtns = document.querySelectorAll('.answer-btn');
+  if (answerBtns[0]) answerBtns[0].innerHTML = '✗ Wrong';
+  if (answerBtns[1]) answerBtns[1].innerHTML = '✓ Correct';
+  document.getElementById('quizNextBtn').textContent = 'Next →';
+  const doneScreen = document.getElementById('doneScreen');
+  if (doneScreen) {
+    doneScreen.querySelector('h2').textContent = 'Session complete!';
+    doneScreen.querySelector('p').textContent = 'You have finished the deck. Keep practicing to retain the signs long-term.';
+    const statLbls = doneScreen.querySelectorAll('.done-stat .lbl');
+    if (statLbls[0]) statLbls[0].textContent = 'correct';
+    if (statLbls[1]) statLbls[1].textContent = 'wrong';
+    if (statLbls[2]) statLbls[2].textContent = 'score';
+    const doneActions = doneScreen.querySelectorAll('.done-actions button, .done-actions a');
+    if (doneActions[0]) doneActions[0].innerHTML = '↺ Restart';
+    if (doneActions[1]) doneActions[1].textContent = 'Back to Musæum';
+  }
+}
 </script>
 
 </body>

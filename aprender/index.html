@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aprender Hieróglifos · Curso de Leitura · Musæum</title>
+<script>(function(){ var t = localStorage.getItem('musaeum-theme'); if (t) document.documentElement.setAttribute('data-theme', t); })();</script>
 <meta name="theme-color" content="#1b2a3d">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -211,7 +212,7 @@
     <div class="licao-hero-num">Curso de Leitura</div>
     <span class="licao-hero-glyph">𓏛</span>
     <h1>Aprender hieróglifos</h1>
-    <p>Seis lições do sistema ao cartucho, seguidas de flashcards para praticar. Sem pré-requisitos: você começa do zero e termina lendo nomes de faraós.</p>
+    <p>Seis lições do sistema ao cartucho, seguidas de flashcards para praticar. Sem pré-requisitos. Você começa do zero e termina lendo nomes de faraós.</p>
   </div>
 
   <div class="licao-section">
@@ -242,7 +243,7 @@
           <span class="licao-item-glyph">𓄿</span>
           <div class="licao-item-body">
             <div class="licao-item-num">Lição 2 · Fonética</div>
-            <div class="licao-item-title">Os 24 sinais unileteral</div>
+            <div class="licao-item-title">Os 24 unilíteros</div>
             <p class="licao-item-desc">O "alfabeto" do egípcio: cada sinal representa uma única consoante. A base de tudo que vem depois.</p>
           </div>
           <div class="licao-item-meta">
@@ -256,7 +257,7 @@
           <span class="licao-item-glyph">𓅱</span>
           <div class="licao-item-body">
             <div class="licao-item-num">Lição 3 · Fonética</div>
-            <div class="licao-item-title">Sinais biliterais essenciais</div>
+            <div class="licao-item-title">Bilíteros essenciais</div>
             <p class="licao-item-desc">Os 20 sinais mais comuns que representam duas consoantes. A base para ler palavras reais do egípcio clássico.</p>
           </div>
           <div class="licao-item-meta">
@@ -270,7 +271,7 @@
           <span class="licao-item-glyph">𓄤</span>
           <div class="licao-item-body">
             <div class="licao-item-num">Lição 4 · Fonética</div>
-            <div class="licao-item-title">Sinais triliterais</div>
+            <div class="licao-item-title">Trilíteros</div>
             <p class="licao-item-desc">Nove sinais que representam três consoantes de uma vez: vida, deus, belo, tornar-se. Pequenos em número, imensos em frequência.</p>
           </div>
           <div class="licao-item-meta">
@@ -327,6 +328,13 @@
           <span>Teste seu conhecimento com múltipla escolha</span>
         </div>
       </a>
+      <a class="ferr-card" href="../gardiner/gardiner.html" target="_blank">
+        <span class="ferr-glyph">𓏟</span>
+        <div class="ferr-info">
+          <strong>Lista de Gardiner</strong>
+          <span>Consulte os ~900 sinais com transliteração e descrição</span>
+        </div>
+      </a>
     </div>
   </div>
 
@@ -349,6 +357,68 @@
   </div>
 
 </div>
+
+<script>
+const LANG = localStorage.getItem('musaeum-lang') || 'pt';
+
+if (LANG === 'en') {
+  document.documentElement.lang = 'en';
+  document.title = 'Learn Hieroglyphs · Reading Course · Musæum';
+  document.querySelector('.licao-header-title').textContent = 'Learn Hieroglyphs';
+  document.querySelector('.licao-hero-num').textContent = 'Reading Course';
+  document.querySelector('.licao-hero h1').textContent = 'Learn Hieroglyphs';
+  document.querySelector('.licao-hero p').textContent = 'Six lessons from the writing system to the cartouche, followed by flashcards for practice. No prerequisites. Start from scratch and finish reading pharaoh names.';
+
+  const sectionHeadings = document.querySelectorAll('.licao-section h2');
+  if (sectionHeadings[0]) sectionHeadings[0].textContent = 'About this course';
+  if (sectionHeadings[1]) sectionHeadings[1].textContent = 'Lessons';
+  if (sectionHeadings[2]) sectionHeadings[2].textContent = 'Practice tools';
+  if (sectionHeadings[3]) sectionHeadings[3].textContent = 'References';
+
+  document.querySelector('.curso-intro').textContent = 'The course covers Middle Egyptian hieroglyphic writing, the classical literary register. The content follows the academic tradition established by three foundational works in Egyptology.';
+  document.querySelector('.curso-fontes').innerHTML = 'Based on <strong>Gardiner</strong> (sign list and grammar), <strong>Faulkner</strong> (vocabulary), and <strong>Allen</strong> (course structure and examples).';
+
+  const lessonData = [
+    { num:'Lesson 1 · Foundations', title:'How Egyptian Writing Works', desc:'Understand the three types of signs (phonetic, logogram, determinative) and the logic of the system before any individual symbol.', badge:'Start here' },
+    { num:'Lesson 2 · Phonetics', title:'The 24 Uniliterals', desc:'The Egyptian "alphabet": each sign represents a single consonant. The foundation of everything that follows.', badge:'24 signs' },
+    { num:'Lesson 3 · Phonetics', title:'Essential Biliterals', desc:'The 20 most common signs representing two consonants. The foundation for reading real words of classical Egyptian.', badge:'20 signs' },
+    { num:'Lesson 4 · Phonetics', title:'Triliterals', desc:'Nine signs representing three consonants at once: life, god, beautiful, to become. Few in number, enormous in frequency.', badge:'9 signs' },
+    { num:'Lesson 5 · Vocabulary', title:'Reading Simple Words', desc:'Combine the signs to read 20 real words: human body, cosmos, and everyday life in ancient Egypt.', badge:'20 words' },
+    { num:'Lesson 6 · Cartouches', title:'Royal Cartouches', desc:'Read the names of Ramesses, Cleopatra, Tutankhamun, and more, exactly as the ancient Egyptians wrote them.', badge:'Final lesson' },
+  ];
+  document.querySelectorAll('.licao-item').forEach((item, i) => {
+    const d = lessonData[i];
+    if (!d) return;
+    const num   = item.querySelector('.licao-item-num');
+    const title = item.querySelector('.licao-item-title');
+    const desc  = item.querySelector('.licao-item-desc');
+    const badge = item.querySelector('.licao-item-badge');
+    if (num)   num.textContent   = d.num;
+    if (title) title.textContent = d.title;
+    if (desc)  desc.textContent  = d.desc;
+    if (badge) badge.textContent = d.badge;
+  });
+
+  const ferrCards = document.querySelectorAll('.ferr-card');
+  if (ferrCards[0]) {
+    ferrCards[0].querySelector('strong').textContent = 'Flashcards';
+    ferrCards[0].querySelector('span').textContent   = 'Review signs with spaced repetition';
+  }
+  if (ferrCards[1]) {
+    ferrCards[1].querySelector('strong').textContent = 'Quiz';
+    ferrCards[1].querySelector('span').textContent   = 'Test your knowledge with multiple choice';
+  }
+  if (ferrCards[2]) {
+    ferrCards[2].querySelector('strong').textContent = 'Gardiner Sign List';
+    ferrCards[2].querySelector('span').textContent   = 'Browse all ~900 signs with transliteration and description';
+  }
+
+  const refNotes = document.querySelectorAll('.ref-note');
+  if (refNotes[0]) refNotes[0].textContent = 'The standard grammar of Middle Egyptian, with the canonical sign list (A-Aa) that classifies hieroglyphs by theme. The Gardiner codes (e.g. G17, N35) used in this course follow that numbering.';
+  if (refNotes[1]) refNotes[1].textContent = 'The most widely consulted pocket dictionary of Middle Egyptian. Word translations and vocabulary choices in this course take Faulkner as their primary reference.';
+  if (refNotes[2]) refNotes[2].textContent = 'The most widely adopted university textbook today. The pedagogical sequence, the choice of examples, and the progression from phonetic system to cartouche follow Allen\'s organization.';
+}
+</script>
 
 </body>
 </html>

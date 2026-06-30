@@ -185,20 +185,20 @@ ol strong { color: var(--papyrus); }
 
   <div class="licao-section">
     <h2>Como ler uma palavra</h2>
-    <p>Ao encontrar uma palavra em hieróglifos, siga este processo:</p>
+    <p>Ao encontrar uma palavra em hieróglifos, siga este processo.</p>
     <ol>
       <li>Identifique a <strong>direção</strong> (os rostos encarando de qual lado?)</li>
-      <li>Separe os sinais e classifique: unileteral, biliteral, trileteral ou determinativo</li>
+      <li>Separe os sinais e classifique: unilítero, bilítero, trilítero ou determinativo</li>
       <li>Leia os sinais fonéticos em ordem, ignorando repetições de complementos</li>
       <li>O determinativo no final não é lido: ele apenas confirma a categoria</li>
     </ol>
     <div class="callout">
-      <strong>Dica:</strong> Não existe pontuação, espaço entre palavras ou maiúsculas em egípcio. O contexto e os determinativos são os separadores naturais.
+      Não existe pontuação, espaço entre palavras ou maiúsculas em egípcio. O contexto e os determinativos são os separadores naturais.
     </div>
   </div>
 
   <div class="licao-section">
-    <h2>Prática: tente transliterar</h2>
+    <h2>Prática de transliteração</h2>
     <p>Tente escrever a transliteração antes de revelar. Clique em "Revelar" para ver a resposta e a explicação completa. Os caracteres especiais da transliteração egípcia estão no tecladinho abaixo de cada campo, e as letras comuns você digita normalmente pelo teclado.</p>
     <div class="btn-tooltip-wrap">
       <a class="btn" href="../gardiner/gardiner.html" target="_blank" style="display:inline-flex;align-items:center;gap:6px">
@@ -230,16 +230,36 @@ ol strong { color: var(--papyrus); }
 </div>
 
 <script>
+const LANG = localStorage.getItem('musaeum-lang') || 'pt';
+
+const WORDS_EN = {
+  'ḥr':  { meaning:'face / over (preposition)', note:'One of the most common prepositions. ḥr also appears in the name of the god Horus.', defs:['face (biliteral)', 'vertical stroke (logogram)'] },
+  'rn':  { meaning:'name', note:'The name was sacred and destroying it was considered a second death. That is why pharaohs erased the names of their predecessors.', defs:['mouth', 'stroke', 'water (complement)'] },
+  'jb':  { meaning:'heart', note:'The heart was the seat of intelligence for the Egyptians, not the brain. In the Judgment of the Dead, the heart was weighed against a feather.', defs:['heart (biliteral)'] },
+  'jrt': { meaning:'eye', note:'The Eye of Horus (wḏꜣt) was one of the most powerful amulets in Egypt.', defs:['eye (logogram, D4)', 'vertical stroke'] },
+  'drt': { meaning:'hand', note:'The word for hand in classical Egyptian. The same sign appears as phonetic and as determinative at the end.', defs:['hand (D46)', 'mouth (phonetic complement)', 'bread loaf (phonetic complement)', 'hand (determinative)'] },
+  'rꜥ':  { meaning:'sun / Ra', note:'The solar disk represents both the celestial body and the god Ra, the most important in the pantheon. Many pharaohs included Ra in their names.', defs:['solar disk (logogram)'] },
+  'jtn': { meaning:'solar disk / Aten', note:'Aten was the solar disk elevated to a single deity by Akhenaten in the religious revolution of the 14th century BCE.', defs:['reed (M17)', 'bread loaf (X1)', 'water (N35)', 'solar disk (determinative, N5)'] },
+  'pt':  { meaning:'sky', note:'The sky in Egyptian. The sky goddess was Nut, who arched her body over the earth.', defs:['sky (logogram, N1)'] },
+  'tꜣ':  { meaning:'earth / land', note:'Represents the fertile strip of land along the Nile. Egypt called itself the Black Land (Kemet).', defs:['strip of land (logogram, N16)', 'vertical stroke'] },
+  'nfr': { meaning:'beautiful, good, perfect', note:'One of the most common words in Egyptian. It appears in proper names (Nefertiti = the beautiful one has come) and in praise formulas.', defs:['heart-trachea (triliteral)', 'viper (complement)', 'mouth (complement)'] },
+  'pr':  { meaning:'house', note:'pr = "house" is the root of Per-aa (pr-ꜥꜣ), "great house" = Pharaoh. Also in Per-Ramesses, the capital of Ramesses II.', defs:['floor plan of house (biliteral)', 'mouth (complement)', 'vertical stroke'] },
+  'ḏd':  { meaning:'to say, to speak', note:'Verb "to say". Formulas like ḏd mdw ("words to say") introduce the speech of gods in religious texts.', defs:['cobra (I10)', 'hand (phonetic complement, D46)', 'vertical stroke'] },
+  'ꜣnḫ': { meaning:'life / to live', note:'ꜣnḫ = "life". The ankh symbol 𓋹 is one of Egypt\'s most recognizable icons. It was a gift from the gods to royalty.', defs:['vulture (G1)', 'water (N35)', 'placenta (Aa1)', 'ankh (determinative, S34)'] },
+  'ḏdt': { meaning:'running / moving quickly', note:'The walking legs determinative indicates physical action, common in verbs of movement and transformation.', defs:['cobra (I10)', 'hand (D46)', 'bread loaf (X1)', 'walking legs (determinative, D54)'] },
+  'nṯr': { meaning:'god', note:'The flagpole sign represents divinity in general. There was no separate word for "god" and "goddess". Only the grammatical gender changed.', defs:['flagpole (logogram, R8)', 'vertical stroke'] },
+};
+
 const WORDS = {
   corpo: [
     { glyph:'𓁷𓏤', phon:'ḥr', meaning:'rosto / sobre',
-      parts:[{g:'𓁷',p:'ḥr',d:'rosto (biliteral)'},{g:'𓏤',p:'',d:'traço vertical (logograma)'}],
+      parts:[{g:'𓁷',p:'ḥr',d:'rosto (bilítero)'},{g:'𓏤',p:'',d:'traço vertical (logograma)'}],
       note:'Uma das preposições mais comuns. ḥr também aparece no nome do deus Hórus.' },
     { glyph:'𓂋𓏤𓈖', phon:'rn', meaning:'nome',
       parts:[{g:'𓂋',p:'r',d:'boca'},{g:'𓏤',p:'',d:'traço'},{g:'𓈖',p:'n',d:'água (complemento)'}],
       note:'O "nome" era sagrado e destruí-lo equivalia a uma segunda morte. Por isso os faraós apagavam os nomes dos antecessores.' },
     { glyph:'𓄣', phon:'jb', meaning:'coração',
-      parts:[{g:'𓄣',p:'jb',d:'coração (biliteral)'}],
+      parts:[{g:'𓄣',p:'jb',d:'coração (bilítero)'}],
       note:'O coração era a sede da inteligência para os egípcios, não o cérebro. No Julgamento dos Mortos, o coração era pesado contra uma pena.' },
     { glyph:'𓁹𓏤', phon:'jrt', meaning:'olho',
       parts:[{g:'𓁹',p:'jrt',d:'olho (logograma, D4)'},{g:'𓏤',p:'',d:'traço vertical'}],
@@ -262,12 +282,12 @@ const WORDS = {
       parts:[{g:'𓇾',p:'tꜣ',d:'faixa de terra (logograma, N16)'},{g:'𓏤',p:'',d:'traço vertical'}],
       note:'Representa a faixa de terra fértil às margens do Nilo. O Egito chamava a si mesmo de "Terra Negra" (Kemet).' },
     { glyph:'𓄤𓆑𓂋', phon:'nfr', meaning:'belo, bom, perfeito',
-      parts:[{g:'𓄤',p:'nfr',d:'coração-traqueia (trileteral)'},{g:'𓆑',p:'f',d:'víbora (complemento)'},{g:'𓂋',p:'r',d:'boca (complemento)'}],
+      parts:[{g:'𓄤',p:'nfr',d:'coração-traqueia (trilítero)'},{g:'𓆑',p:'f',d:'víbora (complemento)'},{g:'𓂋',p:'r',d:'boca (complemento)'}],
       note:'Uma das palavras mais belas do egípcio. Aparece em nomes próprios (Nefertiti = "a bela chegou") e em expressões de louvor.' },
   ],
   vida: [
     { glyph:'𓉐𓂋𓏤', phon:'pr', meaning:'casa',
-      parts:[{g:'𓉐',p:'pr',d:'planta da casa (biliteral)'},{g:'𓂋',p:'r',d:'boca (complemento)'},{g:'𓏤',p:'',d:'traço vertical'}],
+      parts:[{g:'𓉐',p:'pr',d:'planta da casa (bilítero)'},{g:'𓂋',p:'r',d:'boca (complemento)'},{g:'𓏤',p:'',d:'traço vertical'}],
       note:'pr = "casa" é a raiz de Per-aa (pr-ꜥꜣ), "grande casa" = Faraó. Também em "Per-Ramesés", a capital de Ramsés II.' },
     { glyph:'𓆓𓂧𓏤', phon:'ḏd', meaning:'dizer, falar',
       parts:[{g:'𓆓',p:'ḏ',d:'cobra (I10)'},{g:'𓂧',p:'d',d:'mão (complemento fonético, D46)'},{g:'𓏤',p:'',d:'traço vertical'}],
@@ -303,26 +323,33 @@ function renderWords() {
   document.getElementById('wordCards').innerHTML = words.map((w, i) => {
     const key = currentCat + w.phon;
     const isRevealed = revealed.has(key);
+    const en = LANG === 'en' ? (WORDS_EN[w.phon] || null) : null;
+    const meaning   = en ? en.meaning : w.meaning;
+    const note      = en ? en.note    : w.note;
+    const prompt    = LANG === 'en' ? 'What is the transliteration of this word?' : 'Qual é a transliteração desta palavra?';
+    const pholder   = LANG === 'en' ? 'type here...'  : 'escreva aqui...';
+    const checkLbl  = LANG === 'en' ? 'Check'   : 'Verificar';
+    const revealLbl = LANG === 'en' ? 'Reveal'  : 'Revelar';
     return `<div class="word-card ${isRevealed ? 'revealed' : ''}" id="wc-${i}">
       <span class="wc-glyph">${w.glyph}</span>
-      <div class="wc-prompt">Qual é a transliteração desta palavra?</div>
+      <div class="wc-prompt">${prompt}</div>
       <div class="wc-input-row">
-        <input class="wc-input" type="text" placeholder="escreva aqui..." id="inp-${i}" onkeydown="if(event.key==='Enter')checkWord(${i})" onfocus="activeInp='inp-${i}'">
-        <button class="wc-check" onclick="checkWord(${i})">Verificar</button>
-        <button class="wc-reveal-btn" onclick="revealWord(${i})">Revelar</button>
+        <input class="wc-input" type="text" placeholder="${pholder}" id="inp-${i}" onkeydown="if(event.key==='Enter')checkWord(${i})" onfocus="activeInp='inp-${i}'">
+        <button class="wc-check" onclick="checkWord(${i})">${checkLbl}</button>
+        <button class="wc-reveal-btn" onclick="revealWord(${i})">${revealLbl}</button>
       </div>
       <div class="translit-kbd" id="kbd-${i}"></div>
       <div class="wc-feedback" id="fb-${i}"></div>
       <div class="wc-answer">
         <div class="wc-answer-phon">${w.phon}</div>
-        <div class="wc-answer-meaning">"${w.meaning}"</div>
-        <div class="wc-answer-breakdown">${w.parts.map(p=>`
+        <div class="wc-answer-meaning">"${meaning}"</div>
+        <div class="wc-answer-breakdown">${w.parts.map((p,j)=>`
           <div class="wc-sign-chip">
             <span class="g">${p.g}</span>
             ${p.p ? `<span class="p">${p.p}</span>` : ''}
-            <span class="d">${p.d}</span>
+            <span class="d">${en && en.defs[j] ? en.defs[j] : p.d}</span>
           </div>`).join('')}</div>
-        <div class="wc-answer-note">${w.note}</div>
+        <div class="wc-answer-note">${note}</div>
       </div>
     </div>`;
   }).join('');
@@ -363,12 +390,17 @@ function checkWord(i) {
   const inp = document.getElementById('inp-' + i).value.trim().toLowerCase();
   const fb  = document.getElementById('fb-' + i);
   const norm = s => s.replace(/[^a-zꜣꜥḥḫẖšṯḏ]/gi, '');
+  const en = LANG === 'en' ? (WORDS_EN[w.phon] || null) : null;
+  const meaning = en ? en.meaning : w.meaning;
   if (norm(inp) === norm(w.phon.toLowerCase())) {
-    fb.innerHTML = `Correto! <span style="font-style:italic;font-weight:400;color:var(--papyrus-soft)">&ldquo;${w.meaning}&rdquo;</span>`;
+    const label = LANG === 'en' ? 'Correct!' : 'Correto!';
+    fb.innerHTML = `${label} <span style="font-style:italic;font-weight:400;color:var(--papyrus-soft)">&ldquo;${meaning}&rdquo;</span>`;
     fb.className = 'wc-feedback ok';
     revealWord(i);
   } else {
-    fb.textContent = 'Tente novamente, ou clique em Revelar para ver.';
+    fb.textContent = LANG === 'en'
+      ? 'Try again, or click Reveal to see.'
+      : 'Tente novamente, ou clique em Revelar para ver.';
     fb.className = 'wc-feedback err';
   }
 }
@@ -396,6 +428,57 @@ function updateScore() {
 showCat('corpo', document.querySelector('.cat-tab'));
 const t = localStorage.getItem('musaeum-theme');
 if (t) document.documentElement.setAttribute('data-theme', t);
+
+if (LANG === 'en') {
+  document.documentElement.lang = 'en';
+  document.title = 'Lesson 5 · Reading Simple Words · Musæum';
+  document.querySelector('.licao-header-title').textContent = 'Lesson 5 · Reading Simple Words';
+  document.querySelector('.licao-hero-num').textContent = 'Lesson 5 · Reading';
+  document.querySelector('.licao-hero h1').textContent = 'Reading Simple Words';
+  document.querySelector('.licao-hero p').textContent = 'Time to put it all together. Each word below is a real reading in Middle Egyptian. Try to transliterate before revealing. Even if you get it wrong, the attempt is what makes it stick.';
+
+  const sectionH2s = document.querySelectorAll('.licao-section h2');
+  if (sectionH2s[0]) sectionH2s[0].textContent = 'How to read a word';
+  if (sectionH2s[1]) sectionH2s[1].textContent = 'Transliteration practice';
+
+  const howToP = document.querySelector('.licao-section:nth-child(2) > p');
+  if (howToP) howToP.textContent = 'When you encounter a word in hieroglyphs, follow this process.';
+
+  const olItems = document.querySelectorAll('.licao-section ol li');
+  if (olItems[0]) olItems[0].innerHTML = 'Identify the <strong>direction</strong> (which way are the faces looking?)';
+  if (olItems[1]) olItems[1].innerHTML = 'Separate the signs and classify: uniliteral, biliteral, triliteral, or determinative';
+  if (olItems[2]) olItems[2].innerHTML = 'Read the phonetic signs in order, ignoring repeated phonetic complements';
+  if (olItems[3]) olItems[3].innerHTML = 'The determinative at the end is not read; it only confirms the category';
+
+  document.querySelector('.callout').textContent = 'There is no punctuation, space between words, or capitalization in Egyptian. Context and determinatives are the natural separators.';
+
+  const practiceP = document.querySelector('.licao-section:last-of-type > p');
+  if (practiceP) practiceP.textContent = 'Try to write the transliteration before revealing. Click "Reveal" to see the answer and full explanation. The special Egyptian transliteration characters are in the small keyboard below each field, and you can type common letters directly from your keyboard.';
+
+  const gardinerBtn = document.querySelector('.btn-tooltip-wrap .btn');
+  if (gardinerBtn) {
+    const glyph = gardinerBtn.querySelector('span');
+    if (glyph) glyph.nextSibling.textContent = ' Consult Gardiner sign list';
+  }
+
+  const catTabs = document.querySelectorAll('.cat-tab');
+  if (catTabs[0]) catTabs[0].textContent = 'Human body';
+  if (catTabs[1]) catTabs[1].textContent = 'Cosmos and gods';
+  if (catTabs[2]) catTabs[2].textContent = 'Daily life';
+
+  const scoreStrip = document.querySelector('.score-strip');
+  if (scoreStrip) {
+    scoreStrip.querySelector('span:first-child').innerHTML = 'Words revealed: <strong id="scoreNum">0</strong> / <span id="scoreTotal">0</span>';
+    scoreStrip.querySelector('span:last-child').textContent = 'Each revealed word counts as practiced.';
+  }
+
+  document.querySelector('.lesson-nav-info').textContent = 'Lesson 5 of 6';
+  const navBtns = document.querySelectorAll('.lesson-nav a.btn');
+  if (navBtns[0]) navBtns[0].textContent = '← Lesson 4';
+  if (navBtns[1]) navBtns[1].textContent = 'Next →';
+
+  showCat('corpo', document.querySelector('.cat-tab'));
+}
 </script>
 
 </body>

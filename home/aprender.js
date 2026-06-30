@@ -16,7 +16,7 @@ const APRENDER_LESSONS = [
   {
     num:        { pt: 'Lição 2', en: 'Lesson 2' },
     glyph:      '𓄿',
-    title:      { pt: 'Os 24 sinais unileteral', en: 'The 24 uniliteral signs' },
+    title:      { pt: 'Os 24 unilíteros', en: 'The 24 uniliteral signs' },
     desc:       { pt: 'O "alfabeto" do egípcio: cada sinal representa um único som, a base de tudo que vem depois.', en: 'Egyptian writing\'s "alphabet": each sign represents a single sound, the foundation for everything else.' },
     dur:        { pt: '~20 min', en: '~20 min' },
     type:       { pt: '24 sinais', en: '24 signs' },
@@ -27,7 +27,7 @@ const APRENDER_LESSONS = [
   {
     num:        { pt: 'Lição 3', en: 'Lesson 3' },
     glyph:      '𓅱',
-    title:      { pt: 'Sinais biliterais essenciais', en: 'Essential biliteral signs' },
+    title:      { pt: 'Bilíteros essenciais', en: 'Essential biliteral signs' },
     desc:       { pt: 'Os 20 sinais mais comuns que representam duas consoantes. A base para ler palavras reais.', en: 'The 20 most common signs representing two consonants. The foundation for reading real words.' },
     dur:        { pt: '~25 min', en: '~25 min' },
     type:       { pt: '20 sinais', en: '20 signs' },
@@ -38,7 +38,7 @@ const APRENDER_LESSONS = [
   {
     num:        { pt: 'Lição 4', en: 'Lesson 4' },
     glyph:      '𓄤',
-    title:      { pt: 'Sinais triliterais', en: 'Triliteral signs' },
+    title:      { pt: 'Trilíteros', en: 'Triliteral signs' },
     desc:       { pt: 'Nove sinais que valem três consoantes: vida, deus, belo, tornar-se. Pequenos em número, imensos em frequência.', en: 'Nine signs worth three consonants each: life, god, beautiful, to become. Few in number, enormous in frequency.' },
     dur:        { pt: '~20 min', en: '~20 min' },
     type:       { pt: '9 sinais', en: '9 signs' },
@@ -85,6 +85,13 @@ const APRENDER_TOOLS = [
     desc:  { pt: 'Teste seus conhecimentos com múltipla escolha', en: 'Test your knowledge with multiple choice' },
     href:  'aprender/flashcards.html?mode=quiz',
   },
+  {
+    glyph: '𓏟',
+    emoji: false,
+    title: { pt: 'Lista de Gardiner', en: 'Gardiner List' },
+    desc:  { pt: 'Consulte os ~900 sinais com transliteração e descrição', en: 'Browse ~900 signs with transliteration and description' },
+    href:  'gardiner/gardiner.html',
+  },
 ];
 
 function renderAprenderHub() {
@@ -93,7 +100,7 @@ function renderAprenderHub() {
   const p = JSON.parse(localStorage.getItem('musaeum-hieroglyphs') || '{}');
   const done  = p.lessonsCompleted || 0;
   const cards = p.cardsReviewed    || 0;
-  const pct   = Math.round((done / 5) * 100);
+  const pct   = Math.round((done / 6) * 100);
 
   const elDone  = document.getElementById('aprenderStatDone');
   const elCards = document.getElementById('aprenderStatCards');
