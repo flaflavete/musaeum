@@ -872,7 +872,12 @@ function openSign(e, d) {
   const phons = d.ph ? d.ph.split('|').map(p => p.trim()).filter(Boolean) : [];
   const details = d.details || '';
   const addLbl = lang === 'pt' ? 'Adicionar à palavra' : 'Add to word';
-  const detLbl = lang === 'pt' ? 'sem fonema (determinativo)' : 'no phoneme (determinative)';
+  const fn = d.fn || '';
+  let noPhonPar = '';
+  if (fn.includes('D') && fn.includes('I')) noPhonPar = lang === 'pt' ? ' (logograma/determinativo)' : ' (logogram/determinative)';
+  else if (fn.includes('D'))               noPhonPar = lang === 'pt' ? ' (determinativo)' : ' (determinative)';
+  else if (fn.includes('I'))               noPhonPar = lang === 'pt' ? ' (logograma)' : ' (logogram)';
+  const detLbl = (lang === 'pt' ? 'sem fonema' : 'no phoneme') + noPhonPar;
 
   const picker = document.createElement('div');
   picker.id = 'ph-picker';
