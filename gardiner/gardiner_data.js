@@ -344,7 +344,7 @@ window.GARDINER_DATA=[
   ['K6','𓆠','nšmt','escama de peixe','ID','Determinativo e logograma em nšmt ("escama de peixe").'],
   ['K7','𓆡','','baiacu','D','Determinativo de špt ("descontente").'],
   ['K8','𓆢','nꜥr','bagre','',''],
-  ['L1','𓆣','ḫpr','escaravelho-rola-bosta','P','Fonograma ḫpr. Em ḫpr ("ser, existir, tornar-se").'],
+  ['L1','𓆣','ḫpr','escaravelho','P','Fonograma ḫpr. Em ḫpr ("ser, existir, tornar-se").'],
   ['L2','𓆤','bỉty','abelha','I','Logograma de bỉty ("rei do Baixo Egito").'],
   ['L3','𓆦','','mosca','D','Determinativo em ꜥff ("mosca").'],
   ['L4','𓆧','','gafanhoto','D','Determinativo em snḥm ("gafanhoto").'],

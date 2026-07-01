@@ -344,7 +344,7 @@ window.GARDINER_DATA_EN=[
   ['K6','𓆠','nšmt','fish scale','ID','Det. and Ideo. in nšmt “fish scale.”'],
   ['K7','𓆡','','puffer','D','Det. špt “discontented.”'],
   ['K8','𓆢','nꜥr','catfish','',''],
-  ['L1','𓆣','ḫpr','dung beetle','P','Phono. ḫpr. In ḫpr “being, exist, become.'],
+  ['L1','𓆣','ḫpr','scarab','P','Phono. ḫpr. In ḫpr “being, exist, become.'],
   ['L2','𓆤','bỉty','bee','I','Ideo. for bity “King of Lower Egypt.”'],
   ['L3','𓆦','','fly','D','Det. in ʿff “fly.”'],
   ['L4','𓆧','','locust','D','Det. in snḥm “locust.”'],
