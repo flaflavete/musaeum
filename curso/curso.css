@@ -209,6 +209,14 @@ body {
 .callout strong { color: var(--gold); }
 .callout.azul { border-left-color: var(--blue); }
 .callout.azul strong { color: var(--blue); }
+.gloss-glyph {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-size: 30px;
+  color: var(--gold);
+  display: inline-block;
+  margin: 4px 0 2px;
+  letter-spacing: 3px;
+}
 
 /* ── TRÊS TIPOS DE SINAL ─────────────────────────────── */
 .sign-types {

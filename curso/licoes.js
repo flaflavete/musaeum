@@ -452,11 +452,62 @@ window.CURSO_LICOES = [
     ],
   },
   {
-    id: 'texto', num: 6, glyph: '𓏛', ready: false,
+    id: 'texto',
+    num: 6,
+    glyph: '𓏛',
+    ready: true,
     kicker: { pt: 'Lição 6 · Leitura', en: 'Lesson 6 · Reading' },
     title:  { pt: 'Ler um texto curto', en: 'Reading a short text' },
-    desc:   { pt: 'O capstone: juntar tudo e ler um texto curto, palavra a palavra.', en: 'The capstone: put it all together and read a short text, word by word.' },
-    dur:    { pt: '~30 min', en: '~30 min' }, type: { pt: 'Capstone', en: 'Capstone' },
-    badge:  { pt: 'Em breve', en: 'Soon' }, badgeClass: 'badge-soon',
+    desc:   { pt: 'O capstone: juntar tudo e ler a fórmula de oferenda, palavra a palavra.', en: 'The capstone: put it all together and read the offering formula, word by word.' },
+    dur:    { pt: '~25 min', en: '~25 min' }, type: { pt: 'Capstone', en: 'Capstone' },
+    badge:  { pt: 'Final', en: 'Final' }, badgeClass: 'badge-final',
+    intro:  { pt: 'Chegou a hora de ler de verdade. Você vai encarar a fórmula de oferenda, o texto mais comum de todo o Egito antigo, e vai entender cada sinal.', en: 'Time to read for real. You will take on the offering formula, the most common text in all of ancient Egypt, and understand every sign.' },
+    sections: [
+      {
+        title: { pt: 'O texto mais comum do Egito', en: 'The most common text in Egypt' },
+        blocks: [
+          { kind: 'p', html: { pt: 'De estelas a paredes de tumba, do Reino Médio em diante, uma mesma frase aparece milhares de vezes: a <strong>fórmula de oferenda</strong>. Ela pede que o rei e um deus providenciem oferendas para o morto, de modo que seu <em>ka</em> seja alimentado para sempre. Ler essa fórmula é ler egípcio antigo de verdade.', en: 'From stelae to tomb walls, from the Middle Kingdom onward, one same phrase appears thousands of times: the <strong>offering formula</strong>. It asks the king and a god to provide offerings for the deceased, so that their <em>ka</em> is sustained forever. Reading this formula is reading real ancient Egyptian.' } },
+        ],
+      },
+      {
+        title: { pt: 'Leia a fórmula, palavra por palavra', en: 'Read the formula, word by word' },
+        blocks: [
+          { kind: 'p', html: { pt: 'Ela começa sempre igual: <strong>ḥtp-dỉ-nsw</strong>. Veja os sinais:', en: 'It always begins the same way: <strong>ḥtp-dỉ-nsw</strong>. Look at the signs:' } },
+          { kind: 'word', label: { pt: 'Passe o mouse sobre cada sinal', en: 'Hover over each sign' },
+            signs: [
+              { glyph: '𓇓', id: 'M23', phon: 'nsw', type: 'bi', typeLabel: { pt: 'rei', en: 'king' }, tip: { pt: '𓇓 nsw, o junco · logograma de "rei", escrito primeiro por respeito', en: '𓇓 nsw, the sedge · logogram of "king", written first out of respect' } },
+              { glyph: '𓏏', id: 'X1', phon: 't', type: 'uni', typeLabel: { pt: 'rei', en: 'king' }, tip: { pt: '𓏏 t · parte de nsw(t), "rei"', en: '𓏏 t · part of nsw(t), "king"' } },
+              { glyph: '𓊵', id: 'R4', phon: 'ḥtp', type: 'bi', typeLabel: { pt: 'trilítero', en: 'triliteral' }, tip: { pt: '𓊵 ḥtp · "oferenda, contentamento"', en: '𓊵 ḥtp · "offering, contentment"' } },
+              { glyph: '𓏙', id: 'X8', phon: 'dỉ', type: 'bi', typeLabel: { pt: 'dar', en: 'give' }, tip: { pt: '𓏙 dỉ · "dar"', en: '𓏙 dỉ · "to give"' } },
+            ],
+            result: '𓇓𓏏𓊵𓏙',
+            note: { pt: 'Lê-se <strong>ḥtp-dỉ-nsw</strong>: "uma oferenda que o rei dá". O sinal do rei 𓇓 vem escrito primeiro, por respeito, mas se lê por último: é a mesma transposição honorífica do nome de Tutancâmon.', en: 'It reads <strong>ḥtp-dỉ-nsw</strong>: "an offering which the king gives". The king sign 𓇓 is written first, out of respect, but read last: the same honorific transposition as in Tutankhamun\'s name.' } },
+          { kind: 'p', html: { pt: 'A oferenda costuma ser dedicada a um deus. Muitas vezes é <strong>Osíris</strong>, senhor dos mortos:', en: 'The offering is usually dedicated to a god. Often it is <strong>Osiris</strong>, lord of the dead:' } },
+          { kind: 'word', label: { pt: 'Osíris', en: 'Osiris' },
+            signs: [
+              { glyph: '𓊨', id: 'Q1', phon: 'ws', type: 'bi', typeLabel: { pt: 'trono', en: 'throne' }, tip: { pt: '𓊨 ws, o trono · em Wsỉr (Osíris)', en: '𓊨 ws, the throne · in Wsỉr (Osiris)' } },
+              { glyph: '𓁹', id: 'D4', phon: 'ỉr', type: 'bi', typeLabel: { pt: 'olho', en: 'eye' }, tip: { pt: '𓁹 ỉr, o olho · em Wsỉr (Osíris)', en: '𓁹 ỉr, the eye · in Wsỉr (Osiris)' } },
+            ],
+            result: '𓊨𓁹',
+            note: { pt: 'Lê-se <strong>Wsỉr</strong>, "Osíris", escrito com o trono e o olho.', en: 'It reads <strong>Wsỉr</strong>, "Osiris", written with the throne and the eye.' } },
+          { kind: 'callout', variant: 'gold', html: { pt: 'Juntando: <span class="gloss-glyph">𓇓𓏏𓊵𓏙 𓊨𓁹</span><br><strong>ḥtp-dỉ-nsw wsỉr</strong> = "Uma oferenda que o rei dá a Osíris". Pronto: você acabou de ler um texto egípcio de verdade.', en: 'Putting it together: <span class="gloss-glyph">𓇓𓏏𓊵𓏙 𓊨𓁹</span><br><strong>ḥtp-dỉ-nsw wsỉr</strong> = "An offering which the king gives to Osiris". There you go: you have just read a real Egyptian text.' } },
+        ],
+      },
+      {
+        title: { pt: 'Agora escreva você', en: 'Now you write it' },
+        blocks: [
+          { kind: 'p', html: { pt: 'Feche o curso escrevendo a própria fórmula. Lembre: o rei vem primeiro.', en: 'Close the course by writing the formula yourself. Remember: the king comes first.' } },
+          { kind: 'builder', cartouche: false,
+            palette: ['M23', 'X1', 'R4', 'X8', 'Q1', 'D4', 'N35', 'G17'],
+            challenges: [
+              { meaning: { pt: 'a fórmula de oferenda (o rei primeiro!)', en: 'the offering formula (the king first!)' }, translit: 'ḥtp-dỉ-nsw', answer: ['M23', 'X1', 'R4', 'X8'],
+                note: { pt: '𓇓𓏏 (nsw, rei) + 𓊵 (ḥtp) + 𓏙 (dỉ). Escreve-se o rei primeiro, mas lê-se ḥtp-dỉ-nsw.', en: '𓇓𓏏 (nsw, king) + 𓊵 (ḥtp) + 𓏙 (dỉ). You write the king first, but read ḥtp-dỉ-nsw.' } },
+              { meaning: { pt: 'Osíris', en: 'Osiris' }, translit: 'wsỉr', answer: ['Q1', 'D4'],
+                note: { pt: '𓊨 (ws, trono) + 𓁹 (ỉr, olho). O deus a quem a oferenda é dedicada.', en: '𓊨 (ws, throne) + 𓁹 (ỉr, eye). The god to whom the offering is dedicated.' } },
+            ] },
+          { kind: 'p', html: { pt: 'É isso. Você começou sem saber um sinal e agora lê e escreve a frase que cobre as paredes do Egito antigo. Da próxima vez que vir uma estela num museu, procure o 𓇓𓏏𓊵𓏙: você vai reconhecer.', en: 'That is it. You started without knowing a single sign, and now you read and write the phrase that covers the walls of ancient Egypt. Next time you see a stela in a museum, look for the 𓇓𓏏𓊵𓏙: you will recognize it.' } },
+        ],
+      },
+    ],
   },
 ];
