@@ -439,12 +439,12 @@ window.CURSO_LICOES = [
         blocks: [
           { kind: 'p', html: { pt: 'Agora você. Monte os dois nomes abaixo clicando os sinais na ordem; eles vão aparecer dentro do cartucho.', en: 'Now you. Build the two names below by clicking the signs in order; they will appear inside the cartouche.' } },
           { kind: 'builder', cartouche: true,
-            palette: ['M17', 'Y5', 'N35', 'N5', 'F31', 'S29', 'M23', 'G43', 'G17', 'D21'],
+            palette: ['M17', 'Y5', 'N35', 'X1', 'G43', 'S34', 'N5', 'F31', 'S29', 'M23', 'G17', 'D21'],
             challenges: [
-              { meaning: { pt: 'Amon (o deus)', en: 'Amun (the god)' }, translit: 'ỉmn', answer: ['M17', 'Y5', 'N35'],
-                note: { pt: '𓇋 (ỉ) + 𓏠 (mn) + 𓈖 (n). É o mesmo mn da Lição 4, e é o Amon que abre o nome de Tutancâmon.', en: '𓇋 (ỉ) + 𓏠 (mn) + 𓈖 (n). It is the same mn from Lesson 4, and the Amun that opens Tutankhamun\'s name.' } },
               { meaning: { pt: 'Ramessu (Ramsés)', en: 'Ramessu (Ramesses)' }, translit: 'rꜥ-ms-sw', answer: ['N5', 'F31', 'S29', 'M23', 'G43'],
                 note: { pt: '𓇳 (Rꜥ) + 𓄟 (ms) + 𓋴 (s) + 𓇓 (sw) + 𓅱 (w). O disco solar abre o nome, e os complementos confirmam ms e sw.', en: '𓇳 (Rꜥ) + 𓄟 (ms) + 𓋴 (s) + 𓇓 (sw) + 𓅱 (w). The sun disk opens the name, and the complements confirm ms and sw.' } },
+              { meaning: { pt: 'Tutancâmon (escreva o deus primeiro!)', en: 'Tutankhamun (write the god first!)' }, translit: 'twt-ꜥnḫ-ỉmn', answer: ['M17', 'Y5', 'N35', 'X1', 'G43', 'X1', 'S34'],
+                note: { pt: 'Na ordem escrita: 𓇋𓏠𓈖 (ỉmn, Amon) + 𓏏𓅱𓏏 (twt) + 𓋹 (ꜥnḫ). Escreve-se o deus primeiro, mas lê-se por último: Twt-ꜥnḫ-ỉmn. É a transposição honorífica.', en: 'In written order: 𓇋𓏠𓈖 (ỉmn, Amun) + 𓏏𓅱𓏏 (twt) + 𓋹 (ꜥnḫ). You write the god first but read it last: Twt-ꜥnḫ-ỉmn. That is honorific transposition.' } },
             ] },
           { kind: 'p', html: { pt: 'Pronto: você acabou de escrever nomes de faraó do jeito que os egípcios escreviam, há mais de três mil anos.', en: 'There you go: you have just written pharaoh names the way the Egyptians wrote them, more than three thousand years ago.' } },
         ],

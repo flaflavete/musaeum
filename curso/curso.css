@@ -319,7 +319,7 @@ body {
 .cartouche::before {
   content: '';
   position: absolute;
-  left: 2px; top: 50%; transform: translateY(-50%);
+  left: -2px; top: 50%; transform: translateY(-50%);
   width: 3px; height: 66%;
   background: var(--gold);
   border-radius: 2px;
@@ -494,7 +494,7 @@ body {
 .builder-strip.as-cartouche::before {
   content: '';
   position: absolute;
-  left: 5px; top: 50%; transform: translateY(-50%);
+  left: 0; top: 50%; transform: translateY(-50%);
   width: 3px; height: 58%;
   background: var(--gold);
   border-radius: 2px;
