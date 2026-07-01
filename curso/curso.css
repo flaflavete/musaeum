@@ -305,7 +305,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 20px 8px 24px;
+  padding: 8px 26px;
   border: 3px solid var(--gold);
   border-radius: 46px;
   position: relative;
@@ -319,8 +319,8 @@ body {
 .cartouche::before {
   content: '';
   position: absolute;
-  left: 8px; top: 50%; transform: translateY(-50%);
-  width: 3px; height: 60%;
+  left: 2px; top: 50%; transform: translateY(-50%);
+  width: 3px; height: 66%;
   background: var(--gold);
   border-radius: 2px;
 }
@@ -487,15 +487,15 @@ body {
   border-width: 3px;
   border-color: var(--gold);
   border-radius: 60px;
-  padding-left: 34px;
+  padding-left: 30px;
   padding-right: 30px;
   position: relative;
 }
 .builder-strip.as-cartouche::before {
   content: '';
   position: absolute;
-  left: 14px; top: 50%; transform: translateY(-50%);
-  width: 3px; height: 52%;
+  left: 5px; top: 50%; transform: translateY(-50%);
+  width: 3px; height: 58%;
   background: var(--gold);
   border-radius: 2px;
 }
