@@ -107,7 +107,11 @@
               '<span class="tooltip" role="tooltip">' + esc(T(s.tip)) + '</span>' +
             '</div>';
         }).join('');
-        var result = b.result ? '<span class="eq-sep" aria-hidden="true">=</span><span class="word-result">' + b.result + '</span>' : '';
+        var result = b.result
+          ? '<span class="eq-sep" aria-hidden="true">=</span>' + (b.cartouche
+              ? '<span class="cartouche">' + b.result + '</span>'
+              : '<span class="word-result">' + b.result + '</span>')
+          : '';
         return '<div class="example-box">' +
           '<div class="example-label">' + esc(T(b.label)) + '</div>' +
           '<div class="example-row">' + row + result + '</div>' +
@@ -162,7 +166,7 @@
         }).join('');
         return '<div class="builder" data-builder>' +
           '<div class="builder-task" id="builderTask"></div>' +
-          '<div class="builder-strip" id="builderStrip" aria-live="polite"></div>' +
+          '<div class="builder-strip' + (b.cartouche ? ' as-cartouche' : '') + '" id="builderStrip" aria-live="polite"></div>' +
           '<div class="builder-controls">' +
             '<button class="btn" type="button" id="builderBack">' + (lang === 'pt' ? '⌫ Apagar' : '⌫ Delete') + '</button>' +
             '<button class="btn" type="button" id="builderClear">' + (lang === 'pt' ? 'Limpar' : 'Clear') + '</button>' +

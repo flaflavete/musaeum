@@ -386,12 +386,55 @@ window.CURSO_LICOES = [
     ],
   },
   {
-    id: 'cartuchos', num: 5, glyph: '𓇳', ready: false,
+    id: 'cartuchos',
+    num: 5,
+    glyph: '𓇳',
+    ready: true,
     kicker: { pt: 'Lição 5 · Cartuchos', en: 'Lesson 5 · Cartouches' },
     title:  { pt: 'Cartuchos e os nomes do rei', en: 'Cartouches and the king\'s names' },
     desc:   { pt: 'O cartucho, os nomes reais e como ler nomes de faraó.', en: 'The cartouche, the royal names, and how to read pharaoh names.' },
     dur:    { pt: '~20 min', en: '~20 min' }, type: { pt: 'Cartuchos', en: 'Cartouches' },
-    badge:  { pt: 'Em breve', en: 'Soon' }, badgeClass: 'badge-soon',
+    badge:  { pt: 'Novo', en: 'New' }, badgeClass: 'badge-new',
+    intro:  { pt: 'Aquele oval alongado que você já viu em templos e museus tem nome: cartucho. E ele guarda justamente o que mais chama a atenção, o nome do rei. Com o que você já sabe, dá para começar a lê-los.', en: 'That elongated oval you have seen on temples and in museums has a name: cartouche. And it holds exactly what draws the most attention, the king\'s name. With what you already know, you can start reading them.' },
+    sections: [
+      {
+        title: { pt: 'O que é um cartucho', en: 'What a cartouche is' },
+        blocks: [
+          { kind: 'p', html: { pt: 'O cartucho é uma <strong>alça de corda</strong> desenhada como um oval com uma barra numa das pontas. Ele envolve o nome e sinaliza que ali dentro está um <strong>nome real</strong>. A corda que circunda simboliza proteção, e a forma vem do anel <em>shen</em>, que representava tudo aquilo que o sol contorna.', en: 'A cartouche is a <strong>loop of rope</strong> drawn as an oval with a bar at one end. It surrounds the name and signals that a <strong>royal name</strong> is inside. The encircling rope symbolizes protection, and the shape comes from the <em>shen</em> ring, which represented all that the sun encircles.' } },
+          { kind: 'p', html: { pt: 'Veja o cartucho de <strong>Ramsés</strong>, lido da esquerda para a direita:', en: 'Look at the cartouche of <strong>Ramesses</strong>, read from left to right:' } },
+          { kind: 'word', label: { pt: 'Passe o mouse sobre cada sinal', en: 'Hover over each sign' }, cartouche: true,
+            signs: [
+              { glyph: '𓇳', id: 'N5', phon: 'rꜥ', type: 'bi', typeLabel: { pt: 'logograma', en: 'logogram' }, tip: { pt: '𓇳 Rꜥ, o deus-sol · logograma', en: '𓇳 Rꜥ, the sun god · logogram' } },
+              { glyph: '𓄟', id: 'F31', phon: 'ms', type: 'bi', typeLabel: { pt: 'bilítero', en: 'biliteral' }, tip: { pt: '𓄟 ms · "gerar, dar à luz"', en: '𓄟 ms · "to fashion, give birth"' } },
+              { glyph: '𓋴', id: 'S29', phon: 's', type: 'uni', typeLabel: { pt: 'unilítero', en: 'uniliteral' }, tip: { pt: '𓋴 s · complemento de ms', en: '𓋴 s · complement of ms' } },
+            ],
+            result: '𓇳𓄟𓋴',
+            note: { pt: 'Lê-se <strong>Rꜥ-ms-s</strong> (Ramessu, o nosso "Ramsés"), algo como "Rá o gerou". Repare que o disco solar 𓇳 vem primeiro: nomes reais costumam abrir com o deus.', en: 'It reads <strong>Rꜥ-ms-s</strong> (Ramessu, our "Ramesses"), roughly "Ra fashioned him". Notice the sun disk 𓇳 comes first: royal names often open with the god.' } },
+        ],
+      },
+      {
+        title: { pt: 'Os cinco nomes do rei', en: 'The king\'s five names' },
+        blocks: [
+          { kind: 'p', html: { pt: 'O faraó não tinha um nome só, mas um conjunto de <strong>cinco</strong> (a titulatura real). Dois deles eram escritos dentro de cartuchos: o <strong>nome de trono</strong> (adotado na coroação) e o <strong>nome de nascimento</strong>, este precedido do título "Filho de Rá". Os outros três (nomes de Hórus, das Duas Senhoras e de Hórus de Ouro) ficavam fora do cartucho.', en: 'The pharaoh did not have a single name, but a set of <strong>five</strong> (the royal titulary). Two of them were written inside cartouches: the <strong>throne name</strong> (taken at coronation) and the <strong>birth name</strong>, the latter preceded by the title "Son of Ra". The other three (the Horus, Two Ladies, and Golden Horus names) sat outside the cartouche.' } },
+          { kind: 'callout', variant: 'azul', html: { pt: '<strong>Transposição honorífica:</strong> quando um nome contém um deus, o sinal do deus costuma ser escrito na frente, por respeito, mesmo que seja lido depois. Em <em>Tutancâmon</em> (twt-ꜥnḫ-ỉmn), o nome de Amon aparece escrito primeiro, mas se lê por último.', en: '<strong>Honorific transposition:</strong> when a name contains a god, the god\'s sign is usually written first, out of respect, even if it is read later. In <em>Tutankhamun</em> (twt-ꜥnḫ-ỉmn), the name of Amun is written first but read last.' } },
+        ],
+      },
+      {
+        title: { pt: 'Monte um cartucho', en: 'Build a cartouche' },
+        blocks: [
+          { kind: 'p', html: { pt: 'Agora você. Monte os dois nomes abaixo clicando os sinais na ordem; eles vão aparecer dentro do cartucho.', en: 'Now you. Build the two names below by clicking the signs in order; they will appear inside the cartouche.' } },
+          { kind: 'builder', cartouche: true,
+            palette: ['M17', 'Y5', 'N35', 'N5', 'F31', 'S29', 'G17', 'D21'],
+            challenges: [
+              { meaning: { pt: 'Amon (o deus)', en: 'Amun (the god)' }, translit: 'ỉmn', answer: ['M17', 'Y5', 'N35'],
+                note: { pt: '𓇋 (ỉ) + 𓏠 (mn) + 𓈖 (n). É o mesmo mn da Lição 4, e é o Amon que fecha o nome de Tutancâmon.', en: '𓇋 (ỉ) + 𓏠 (mn) + 𓈖 (n). It is the same mn from Lesson 4, and the Amun that ends Tutankhamun\'s name.' } },
+              { meaning: { pt: 'Ramessu (Ramsés)', en: 'Ramessu (Ramesses)' }, translit: 'rꜥ-ms-s', answer: ['N5', 'F31', 'S29'],
+                note: { pt: '𓇳 (Rꜥ) + 𓄟 (ms) + 𓋴 (s). O disco solar abre o nome, como você viu acima.', en: '𓇳 (Rꜥ) + 𓄟 (ms) + 𓋴 (s). The sun disk opens the name, as you saw above.' } },
+            ] },
+          { kind: 'p', html: { pt: 'Pronto: você acabou de escrever nomes de faraó do jeito que os egípcios escreviam, há mais de três mil anos.', en: 'There you go: you have just written pharaoh names the way the Egyptians wrote them, more than three thousand years ago.' } },
+        ],
+      },
+    ],
   },
   {
     id: 'texto', num: 6, glyph: '𓏛', ready: false,

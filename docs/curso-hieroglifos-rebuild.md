@@ -29,7 +29,9 @@ Verificado no navegador: índice lista 6 lições (5 bloqueadas), Lição 1 rend
 
 **Lição 4 — Montar palavras reais (feito e verificado):** bloco novo `builder` no motor, uma versão **guiada** do construtor (não o livre do `gardiner.html`): paleta de sinais do `GARDINER_DATA`, cada desafio dá significado + transliteração, o aluno clica os sinais na ordem e recebe feedback na hora (acerto verde com nota do complemento; erro pede conferir a ordem). 4 desafios (pr, mn, nfr, ꜥnḫ) que revisitam sinais das lições 1 a 3. Sem quiz: a lição conclui ao montar as 4 palavras. `wireBuilder` guarda o estado; ⌫ Apagar / Limpar.
 
-**Próximos passos:** Lição 5 (cartuchos e nomes do rei), Lição 6 (ler um texto curto, capstone, texto a definir no §8), e conectar o hub da home ao `curso/` na virada. Pendências de design seguem no §8.
+**Lição 5 — Cartuchos e os nomes do rei (feito e verificado):** o cartucho (alça de corda/anel shen, marca nome real) + decodificação do cartucho de Ramsés (bloco `word` com flag `cartouche: true`, mostra os sinais e o resultado num oval dourado) + os cinco nomes da titulatura (2 em cartuchos) + nota de transposição honorífica (Tutancâmon) + construtor em modo cartucho (bloco `builder` com `cartouche: true`, o strip vira o oval) montando ỉmn (Amon) e rꜥ-ms-s (Ramessu). Conclui ao montar os dois. CSS `.cartouche` + `.builder-strip.as-cartouche`.
+
+**Próximos passos:** Lição 6 (ler um texto curto, capstone, texto a definir no §8) e conectar o hub da home ao `curso/` na virada. Pendências de design seguem no §8.
 
 ---
 
