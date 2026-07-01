@@ -129,6 +129,18 @@ def derive_phon(sid, xl, phon_orig, seen=None):
     return ""
 
 
+# Sinais cujas linhas no Excel estao desalinhadas: a coluna Details traz so um
+# codigo de sinal (ex.: R8 -> "T3"), virando um "Igual a X" sem explicacao. Damos
+# a eles a explicacao correta a mao (Gardiner/Faulkner). O PT correspondente vive
+# em source/details_pt.tsv. Ver a nota "conferir minuciosamente" (memoria).
+DETAILS_OVERRIDE_EN = {
+    "R8":  "Logogram and phonogram nṯr (“god”). A pole wrapped in cloth, an emblem of divinity.",
+    "S40": "Phonogram wꜣs. The was-scepter, a symbol of dominion and well-being; in wꜣs (“dominion”).",
+    "S38": "Phonogram ḥḳꜣ. The heqa-scepter (the crook); in ḥḳꜣ (“ruler, to rule”).",
+    "V30": "Phonogram nb. A basket; in nb (“lord”) and nb (“all, every”).",
+}
+
+
 def load_existing(rel):
     """Le um arquivo window.GARDINER_DATA[_EN] via node e devolve a lista."""
     var = "GARDINER_DATA_EN" if rel.endswith("_en.js") else "GARDINER_DATA"
@@ -189,7 +201,7 @@ def main():
         er = en_by_id.get(sid, row)
         base = [er[0], er[1], final_phon[sid], er[3]]
         func = func_by_id.get(sid, "")
-        details_en = xl[sid]["details"] if sid in xl else ""
+        details_en = DETAILS_OVERRIDE_EN.get(sid) or (xl[sid]["details"] if sid in xl else "")
         new_en.append(base + [func, details_en])
 
     write_js(ROOT / "gardiner_data.js", "GARDINER_DATA", new_pt)
