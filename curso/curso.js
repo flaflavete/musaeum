@@ -142,9 +142,11 @@
         var hint = b.hint
           ? esc(T(b.hint))
           : (lang === 'pt' ? 'Clique num sinal para ver a explicação do Gardiner.' : 'Click a sign to see Gardiner\'s explanation.');
-        return '<div class="sig-progress">' + (lang === 'pt' ? 'Vistos ' : 'Seen ') + '<span id="sigSeen">0</span> / ' + b.ids.length + '</div>' +
-          '<div class="siggrid" data-siggrid>' + cards + '</div>' +
-          '<div class="sig-detail" id="sigDetail" role="status" aria-live="polite"><span class="sig-detail-hint">' + hint + '</span></div>';
+        return '<div class="siggrid-block" data-siggrid-block>' +
+          '<div class="sig-progress">' + (lang === 'pt' ? 'Vistos ' : 'Seen ') + '<span class="sig-seen">0</span> / ' + b.ids.length + '</div>' +
+          '<div class="siggrid">' + cards + '</div>' +
+          '<div class="sig-detail" role="status" aria-live="polite"><span class="sig-detail-hint">' + hint + '</span></div>' +
+        '</div>';
       }
 
       case 'builder': {
@@ -307,30 +309,30 @@
   }
 
   function wireSiggrid() {
-    var grid = document.querySelector('[data-siggrid]');
-    if (!grid) return;
     var map = gardinerMap();
-    var detail = el('sigDetail');
-    var seenEl = el('sigSeen');
-    function updateSeen() {
-      if (seenEl) seenEl.textContent = grid.querySelectorAll('.sig-card.learned').length;
-    }
-    grid.querySelectorAll('.sig-card').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        btn.classList.add('learned');
-        var row = map[btn.dataset.id];
-        if (row && detail) {
-          var tr = btn.dataset.tr || '';
-          detail.innerHTML = '<span class="sig-detail-glyph">' + (row[1] || '') + '</span>' +
-            '<span class="sig-detail-body">' +
-              '<strong>' + esc(row[0]) + (tr ? ' · ' + esc(tr) : '') + ' · ' + esc(row[3] || '') + '</strong>' +
-              (row[5] ? '<span>' + esc(row[5]) + '</span>' : '') +
-            '</span>';
-        }
-        updateSeen();
+    document.querySelectorAll('[data-siggrid-block]').forEach(function (block) {
+      var detail = block.querySelector('.sig-detail');
+      var seenEl = block.querySelector('.sig-seen');
+      function updateSeen() {
+        if (seenEl) seenEl.textContent = block.querySelectorAll('.sig-card.learned').length;
+      }
+      block.querySelectorAll('.sig-card').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          btn.classList.add('learned');
+          var row = map[btn.dataset.id];
+          if (row && detail) {
+            var tr = btn.dataset.tr || '';
+            detail.innerHTML = '<span class="sig-detail-glyph">' + (row[1] || '') + '</span>' +
+              '<span class="sig-detail-body">' +
+                '<strong>' + esc(row[0]) + (tr ? ' · ' + esc(tr) : '') + ' · ' + esc(row[3] || '') + '</strong>' +
+                (row[5] ? '<span>' + esc(row[5]) + '</span>' : '') +
+              '</span>';
+          }
+          updateSeen();
+        });
       });
+      updateSeen();
     });
-    updateSeen();
   }
 
   /* Quiz em sequência: uma pergunta de cada vez, com placar. */
