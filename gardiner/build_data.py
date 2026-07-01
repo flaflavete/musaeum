@@ -91,6 +91,44 @@ def resolve_func(sid, xl, seen=None):
     return ""
 
 
+def norm_phon(v):
+    """Normaliza um valor de transliteracao para o padrao da casa."""
+    return (v.replace("3", "ꜣ").replace("ʿ", "ꜥ")
+             .replace("i", "ỉ").replace("j", "ỉ").replace("q", "ḳ")).strip()
+
+
+# Um valor valido de transliteracao nao tem vogais ascii (a e o u) nem espaco:
+# essas marcas denunciam glosa em ingles vazada ("mountain") ou texto livre
+# ("in m3"). Nesses casos preferimos deixar vazio a gravar lixo.
+def _looks_like_translit(v):
+    return bool(v) and " " not in v and not re.search(r"[aeou]", v)
+
+
+def derive_phon(sid, xl, phon_orig, seen=None):
+    """Deriva o fonema do sinal a partir da coluna Details do Excel.
+
+    So e chamado quando o fonema preservado do JS esta VAZIO (nunca sobrescreve
+    valor ja curado). Extrai o valor de "Phono./Phon. X" ou, para variantes
+    ("Use as Y" / "Var. of Y"), herda o fonema do alvo. Retorna "" quando o
+    texto e ambiguo demais para extrair com seguranca."""
+    seen = seen or set()
+    details = xl[sid]["details"] if sid in xl else ""
+    m = re.match(r"Phono?\.?\s+(.+)", details)
+    if m:
+        cand = re.split(r"[.“”\"',]|\s+[Ii]n\s", m.group(1))[0].strip()
+        cand = norm_phon(cand)
+        return cand if _looks_like_translit(cand) else ""
+    x = XREF.match(details)
+    if x:
+        tgt = x.group(1)
+        if phon_orig.get(tgt):
+            return phon_orig[tgt]
+        if tgt in xl and tgt not in seen:
+            seen.add(sid)
+            return derive_phon(tgt, xl, phon_orig, seen)
+    return ""
+
+
 def load_existing(rel):
     """Le um arquivo window.GARDINER_DATA[_EN] via node e devolve a lista."""
     var = "GARDINER_DATA_EN" if rel.endswith("_en.js") else "GARDINER_DATA"
@@ -122,10 +160,24 @@ def main():
 
     func_by_id = {sid: resolve_func(sid, xl) for sid in xl}
 
+    # Fonema: preserva o valor curado do JS; so quando vazio, deriva da coluna
+    # Details do Excel (Phono. X / heranca de variante). Nunca sobrescreve.
+    phon_orig = {row[0]: row[2] for row in pt}
+    final_phon, derived = {}, 0
+    for row in pt:
+        sid = row[0]
+        if row[2]:
+            final_phon[sid] = row[2]
+        else:
+            d = derive_phon(sid, xl, phon_orig)
+            final_phon[sid] = d
+            if d:
+                derived += 1
+
     new_pt, new_en, gaps = [], [], []
     for row in pt:
         sid = row[0]
-        base = row[:4]
+        base = [row[0], row[1], final_phon[sid], row[3]]
         func = func_by_id.get(sid, "")
         if sid not in xl:
             gaps.append(sid)
@@ -135,7 +187,7 @@ def main():
     for row in pt:  # mesma ordem/ids do PT, para casar
         sid = row[0]
         er = en_by_id.get(sid, row)
-        base = er[:4]
+        base = [er[0], er[1], final_phon[sid], er[3]]
         func = func_by_id.get(sid, "")
         details_en = xl[sid]["details"] if sid in xl else ""
         new_en.append(base + [func, details_en])
@@ -144,7 +196,9 @@ def main():
     write_js(ROOT / "gardiner_data_en.js", "GARDINER_DATA_EN", new_en)
 
     covered = sum(1 for r in new_pt if r[4])
-    print(f"PT/EN: {len(new_pt)} sinais | com funcao: {covered} | sem cobertura: {len(gaps)}")
+    with_phon = sum(1 for r in new_pt if r[2])
+    print(f"PT/EN: {len(new_pt)} sinais | com funcao: {covered} | com fonema: {with_phon} "
+          f"(derivados do Details: {derived}) | sem cobertura: {len(gaps)}")
     print("Sem cobertura (sem Details no Excel):")
     print("  " + ", ".join(gaps))
     # worklist de traducao
