@@ -398,6 +398,70 @@ body {
 .sig-detail-body strong { color: var(--papyrus); font-size: 14px; }
 .sig-detail-body span { color: var(--papyrus-soft); font-size: 14px; line-height: 1.5; }
 
+/* ── CONSTRUTOR DE PALAVRAS ──────────────────────────── */
+.builder {
+  background: var(--ink-elevated);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  margin: 20px 0;
+}
+.builder-task { text-align: center; margin-bottom: 16px; }
+.builder-task-label {
+  display: block;
+  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--papyrus-dim);
+  margin-bottom: 6px;
+}
+.builder-task-word { font-size: 20px; color: var(--papyrus); }
+.builder-task-word em { color: var(--terracotta-lt); font-style: italic; }
+.builder-strip {
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  flex-wrap: wrap;
+  background: var(--ink-raised);
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 12px;
+  transition: border-color .2s, background .2s;
+}
+.builder-strip.solved { border-style: solid; border-color: var(--green); background: rgba(76,175,122,.08); }
+.bs-glyph { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 48px; line-height: 1; color: var(--gold); }
+.builder-strip-empty { font-style: italic; color: var(--papyrus-dim); font-size: 14px; }
+.builder-controls { display: flex; gap: 10px; justify-content: center; margin-bottom: 16px; }
+.builder-controls .btn { padding: 8px 18px; font-size: 11px; }
+.builder-palette {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.builder-key {
+  background: var(--ink-raised);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 4px 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: background .13s, border-color .13s, transform .13s;
+  font-family: inherit;
+  color: inherit;
+}
+.builder-key:hover { background: rgba(201,166,70,.12); border-color: var(--gold); transform: translateY(-2px); }
+.bk-glyph { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 30px; line-height: 1; display: block; color: var(--gold); margin-bottom: 4px; }
+.bk-ph { font-family: 'EB Garamond', 'Gentium Plus', serif; font-size: 14px; font-style: italic; color: var(--terracotta-lt); display: block; }
+.builder-feedback { text-align: center; min-height: 24px; font-size: 15px; line-height: 1.5; color: var(--papyrus-soft); }
+.bf-note { display: block; font-size: 13px; color: var(--papyrus-soft); margin-top: 4px; }
+.builder-next { display: flex; justify-content: center; margin-top: 14px; }
+
 /* ── QUIZ ────────────────────────────────────────────── */
 .quiz-box {
   background: var(--ink-elevated);

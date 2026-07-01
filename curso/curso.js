@@ -147,6 +147,30 @@
           '<div class="sig-detail" id="sigDetail" role="status" aria-live="polite"><span class="sig-detail-hint">' + hint + '</span></div>';
       }
 
+      case 'builder': {
+        /* Construtor guiado: paleta de sinais do GARDINER_DATA; monta a palavra
+           alvo clicando os sinais na ordem. Desafios ficam em wireBuilder. */
+        var bmap = gardinerMap();
+        var keys = b.palette.map(function (id) {
+          var row = bmap[id] || [id, '', '', id];
+          return '<button class="builder-key" type="button" data-id="' + esc(id) + '">' +
+            '<span class="bk-glyph">' + (row[1] || '') + '</span>' +
+            '<span class="bk-ph">' + esc(row[2] || '') + '</span>' +
+          '</button>';
+        }).join('');
+        return '<div class="builder" data-builder>' +
+          '<div class="builder-task" id="builderTask"></div>' +
+          '<div class="builder-strip" id="builderStrip" aria-live="polite"></div>' +
+          '<div class="builder-controls">' +
+            '<button class="btn" type="button" id="builderBack">' + (lang === 'pt' ? '⌫ Apagar' : '⌫ Delete') + '</button>' +
+            '<button class="btn" type="button" id="builderClear">' + (lang === 'pt' ? 'Limpar' : 'Clear') + '</button>' +
+          '</div>' +
+          '<div class="builder-palette">' + keys + '</div>' +
+          '<div class="builder-feedback" id="builderFeedback" role="status" aria-live="polite"></div>' +
+          '<div class="builder-next" id="builderNext"></div>' +
+        '</div>';
+      }
+
       default:
         return '';
     }
@@ -218,8 +242,68 @@
 
     wireChrome();
     wireSiggrid();
+    wireBuilder(lesson);
     startQuiz(lesson);
     wireProgressBar();
+  }
+
+  function wireBuilder(lesson) {
+    var block = null;
+    (lesson.sections || []).forEach(function (s) {
+      (s.blocks || []).forEach(function (b) { if (b.kind === 'builder') block = b; });
+    });
+    if (!block) return;
+    var map = gardinerMap();
+    var st = { ci: 0, built: [], solved: false };
+    var strip = el('builderStrip'), task = el('builderTask'), fb = el('builderFeedback'), nextWrap = el('builderNext');
+
+    function renderTask() {
+      var c = block.challenges[st.ci];
+      task.innerHTML = '<span class="builder-task-label">' + (lang === 'pt' ? 'Monte a palavra' : 'Build the word') + ' ' + (st.ci + 1) + '/' + block.challenges.length + '</span>' +
+        '<span class="builder-task-word">' + esc(T(c.meaning)) + ' <em>(' + esc(c.translit) + ')</em></span>';
+    }
+    function renderStrip() {
+      strip.innerHTML = st.built.length
+        ? st.built.map(function (id) { return '<span class="bs-glyph">' + ((map[id] || [])[1] || '') + '</span>'; }).join('')
+        : '<span class="builder-strip-empty">' + (lang === 'pt' ? 'clique nos sinais abaixo' : 'click the signs below') + '</span>';
+      strip.classList.toggle('solved', st.solved);
+    }
+    function check() {
+      var c = block.challenges[st.ci];
+      if (st.built.join(',') === c.answer.join(',')) {
+        st.solved = true;
+        renderStrip();
+        fb.style.color = 'var(--green)';
+        fb.innerHTML = '✓ ' + esc(c.translit) + ' — ' + esc(T(c.meaning)) + (c.note ? '<span class="bf-note">' + T(c.note) + '</span>' : '');
+        if (st.ci < block.challenges.length - 1) {
+          nextWrap.innerHTML = '<button class="btn btn-primary" type="button" id="bNext">' + (lang === 'pt' ? 'Próxima palavra →' : 'Next word →') + '</button>';
+          el('bNext').addEventListener('click', function () {
+            st.ci++; st.built = []; st.solved = false; fb.innerHTML = ''; nextWrap.innerHTML = '';
+            renderTask(); renderStrip();
+          });
+        } else {
+          nextWrap.innerHTML = '<div class="quiz-result">' + (lang === 'pt' ? 'Você montou todas as palavras!' : 'You built all the words!') + '</div>';
+          markDone(lesson.id);
+          var bar = el('progressBar');
+          if (bar) bar.style.width = '100%';
+          quizLocked = true;
+        }
+      } else if (st.built.length >= c.answer.length) {
+        fb.style.color = 'var(--terracotta-lt)';
+        fb.textContent = lang === 'pt' ? 'Não é bem assim. Use ⌫ e confira a ordem dos sinais.' : 'Not quite. Use ⌫ and check the order of the signs.';
+      } else {
+        fb.textContent = '';
+      }
+    }
+
+    document.querySelectorAll('[data-builder] .builder-key').forEach(function (k) {
+      k.addEventListener('click', function () { if (st.solved) return; st.built.push(k.dataset.id); renderStrip(); check(); });
+    });
+    el('builderBack').addEventListener('click', function () { if (st.solved) return; st.built.pop(); renderStrip(); check(); });
+    el('builderClear').addEventListener('click', function () { if (st.solved) return; st.built = []; fb.textContent = ''; renderStrip(); });
+
+    renderTask();
+    renderStrip();
   }
 
   function wireSiggrid() {

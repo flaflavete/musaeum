@@ -27,7 +27,9 @@ Verificado no navegador: índice lista 6 lições (5 bloqueadas), Lição 1 rend
 
 **Lição 3 — Bilíteros e trilíteros (feito e verificado):** dois `siggrid` (12 bilíteros + 9 trilíteros, do `GARDINER_DATA`) + a seção de complementos fonéticos com dois blocos `word` (ꜥnḫ 𓋹𓈖𓐍 e mn 𓏠𓈖, mostrando que o complemento não dobra o som) + quiz de 4. Sinais escolhidos e conferidos na fonte (ex.: pr O1, ꜥnḫ S34, nṯr R8, ḥḳꜣ S38).
 
-**Próximos passos:** Lição 4 (montar palavras reais), extrair o construtor de palavras do `gardiner.html` como widget de bloco (`builder`) — é o que a Lição 4 pede de verdade —, e conectar o hub da home ao `curso/` na virada. Pendências de design seguem no §8.
+**Lição 4 — Montar palavras reais (feito e verificado):** bloco novo `builder` no motor, uma versão **guiada** do construtor (não o livre do `gardiner.html`): paleta de sinais do `GARDINER_DATA`, cada desafio dá significado + transliteração, o aluno clica os sinais na ordem e recebe feedback na hora (acerto verde com nota do complemento; erro pede conferir a ordem). 4 desafios (pr, mn, nfr, ꜥnḫ) que revisitam sinais das lições 1 a 3. Sem quiz: a lição conclui ao montar as 4 palavras. `wireBuilder` guarda o estado; ⌫ Apagar / Limpar.
+
+**Próximos passos:** Lição 5 (cartuchos e nomes do rei), Lição 6 (ler um texto curto, capstone, texto a definir no §8), e conectar o hub da home ao `curso/` na virada. Pendências de design seguem no §8.
 
 ---
 

@@ -347,12 +347,43 @@ window.CURSO_LICOES = [
     ],
   },
   {
-    id: 'palavras', num: 4, glyph: '𓂋', ready: false,
+    id: 'palavras',
+    num: 4,
+    glyph: '𓂋',
+    ready: true,
     kicker: { pt: 'Lição 4 · Vocabulário', en: 'Lesson 4 · Vocabulary' },
     title:  { pt: 'Montar palavras reais', en: 'Building real words' },
     desc:   { pt: 'Combine os sinais no construtor para ler palavras frequentes do egípcio clássico.', en: 'Combine signs in the builder to read frequent words of classical Egyptian.' },
     dur:    { pt: '~30 min', en: '~30 min' }, type: { pt: 'Construtor', en: 'Builder' },
-    badge:  { pt: 'Em breve', en: 'Soon' }, badgeClass: 'badge-soon',
+    badge:  { pt: 'Novo', en: 'New' }, badgeClass: 'badge-new',
+    intro:  { pt: 'Hora de juntar tudo. Você já conhece unilíteros, bilíteros, trilíteros e os complementos. Agora vai montar palavras reais, sinal por sinal, e ver a leitura aparecer.', en: 'Time to put it all together. You already know uniliterals, biliterals, triliterals, and complements. Now you will build real words, sign by sign, and watch the reading appear.' },
+    sections: [
+      {
+        title: { pt: 'Como uma palavra se monta', en: 'How a word is built' },
+        blocks: [
+          { kind: 'p', html: { pt: 'A maioria das palavras segue um esquema simples: um <strong>sinal principal</strong> (bilítero, trilítero ou logograma) que carrega o miolo da leitura, seguido de <strong>complementos fonéticos</strong> que confirmam parte dos sons, e às vezes um <strong>determinativo</strong> no fim para classificar. Nesta lição o foco é o esqueleto sonoro; os determinativos ficam de fora por enquanto.', en: 'Most words follow a simple pattern: a <strong>main sign</strong> (biliteral, triliteral, or logogram) carrying the core of the reading, followed by <strong>phonetic complements</strong> that confirm part of the sounds, and sometimes a <strong>determinative</strong> at the end to classify. In this lesson the focus is the sound skeleton; determinatives are left aside for now.' } },
+          { kind: 'callout', variant: 'gold', html: { pt: 'No construtor abaixo, cada palavra vem com o significado e a transliteração. Clique nos sinais na ordem para montá-la. Se errar, use <strong>⌫ Apagar</strong>. Ao acertar, repare como os complementos não somam sons novos.', en: 'In the builder below, each word comes with its meaning and transliteration. Click the signs in order to build it. If you slip, use <strong>⌫ Delete</strong>. When you get it right, notice how the complements add no new sounds.' } },
+        ],
+      },
+      {
+        title: { pt: 'O construtor', en: 'The builder' },
+        blocks: [
+          { kind: 'builder',
+            palette: ['O1', 'Y5', 'F35', 'S34', 'I9', 'D21', 'N35', 'Aa1', 'G17', 'D58', 'M17', 'S29'],
+            challenges: [
+              { meaning: { pt: 'casa', en: 'house' }, translit: 'pr', answer: ['O1', 'D21'],
+                note: { pt: '𓉐 já vale pr; o 𓂋 (r) é só um complemento. Lê-se pr, não pr-r.', en: '𓉐 already reads pr; the 𓂋 (r) is just a complement. You read pr, not pr-r.' } },
+              { meaning: { pt: 'permanecer, ser firme', en: 'to remain, be firm' }, translit: 'mn', answer: ['Y5', 'N35'],
+                note: { pt: '𓏠 vale mn; o 𓈖 (n) confirma o som. É o mn do nome do deus Amon (ỉ-mn).', en: '𓏠 reads mn; the 𓈖 (n) confirms the sound. This is the mn in the name of the god Amun (ỉ-mn).' } },
+              { meaning: { pt: 'belo, bom, perfeito', en: 'beautiful, good, perfect' }, translit: 'nfr', answer: ['F35', 'I9', 'D21'],
+                note: { pt: '𓄤 já é nfr; 𓆑 (f) e 𓂋 (r) são complementos. Lê-se nfr, não nfr-f-r.', en: '𓄤 is already nfr; 𓆑 (f) and 𓂋 (r) are complements. You read nfr, not nfr-f-r.' } },
+              { meaning: { pt: 'vida', en: 'life' }, translit: 'ꜥnḫ', answer: ['S34', 'N35', 'Aa1'],
+                note: { pt: '𓋹 é ꜥnḫ; 𓈖 (n) e 𓐍 (ḫ) repetem sons que ele já carrega. Uma das palavras mais escritas do Egito.', en: '𓋹 is ꜥnḫ; 𓈖 (n) and 𓐍 (ḫ) repeat sounds it already carries. One of the most written words in Egypt.' } },
+            ] },
+          { kind: 'p', html: { pt: 'Montou as quatro? Então você já lê o esqueleto de palavras reais. É exatamente assim que os escribas combinavam os sinais, só que com um repertório maior e, quase sempre, um determinativo fechando a palavra.', en: 'Built all four? Then you can already read the skeleton of real words. This is exactly how the scribes combined signs, only with a larger repertoire and, almost always, a determinative closing the word.' } },
+        ],
+      },
+    ],
   },
   {
     id: 'cartuchos', num: 5, glyph: '𓇳', ready: false,
