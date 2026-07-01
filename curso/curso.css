@@ -38,7 +38,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', Georgia, serif;
+  font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', Georgia, 'Noto Sans Egyptian Hieroglyphs', serif;
   background: var(--ink);
   color: var(--papyrus);
   font-size: 18px;
@@ -519,7 +519,7 @@ body {
   gap: 10px;
 }
 .quiz-opt {
-  font-family: 'Cinzel', 'Gentium Plus', serif;
+  font-family: 'Cinzel', 'Gentium Plus', 'Noto Sans Egyptian Hieroglyphs', serif;
   font-size: 13px;
   font-weight: 700;
   padding: 12px;
