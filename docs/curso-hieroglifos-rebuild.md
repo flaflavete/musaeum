@@ -25,7 +25,9 @@ Verificado no navegador: índice lista 6 lições (5 bloqueadas), Lição 1 rend
 
 > **Achado sobre os dados do Gardiner (a corrigir na fonte/Excel um dia):** `gardiner_data.js` tem `M17` como `i` (deveria ser yod `ỉ`), e `Z4` (`y`) e `V31` (`k`) com fonema **vazio**; `N29` está como `q` (a casa lê Gardiner/Faulkner, que usariam `ḳ`). O curso contorna com override, mas a página `gardiner/gardiner.html` mostra os valores crus. Vale revisar a planilha-fonte.
 
-**Próximos passos:** Lição 3 (bi/trilíteros), extrair o construtor de palavras do `gardiner.html` como widget de bloco (`builder`), e conectar o hub da home ao `curso/` na virada. Pendências de design seguem no §8.
+**Lição 3 — Bilíteros e trilíteros (feito e verificado):** dois `siggrid` (12 bilíteros + 9 trilíteros, do `GARDINER_DATA`) + a seção de complementos fonéticos com dois blocos `word` (ꜥnḫ 𓋹𓈖𓐍 e mn 𓏠𓈖, mostrando que o complemento não dobra o som) + quiz de 4. Sinais escolhidos e conferidos na fonte (ex.: pr O1, ꜥnḫ S34, nṯr R8, ḥḳꜣ S38).
+
+**Próximos passos:** Lição 4 (montar palavras reais), extrair o construtor de palavras do `gardiner.html` como widget de bloco (`builder`) — é o que a Lição 4 pede de verdade —, e conectar o hub da home ao `curso/` na virada. Pendências de design seguem no §8.
 
 ---
 

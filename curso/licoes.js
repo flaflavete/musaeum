@@ -240,12 +240,111 @@ window.CURSO_LICOES = [
     ],
   },
   {
-    id: 'bi-tri', num: 3, glyph: '𓅱', ready: false,
+    id: 'bi-tri',
+    num: 3,
+    glyph: '𓆣',
+    ready: true,
     kicker: { pt: 'Lição 3 · Fonética', en: 'Lesson 3 · Phonetics' },
     title:  { pt: 'Bilíteros e trilíteros', en: 'Biliterals and triliterals' },
     desc:   { pt: 'Sinais de duas e três consoantes e os complementos fonéticos que confirmam a leitura.', en: 'Two- and three-consonant signs and the phonetic complements that confirm the reading.' },
     dur:    { pt: '~25 min', en: '~25 min' }, type: { pt: 'Fonética', en: 'Phonetics' },
-    badge:  { pt: 'Em breve', en: 'Soon' }, badgeClass: 'badge-soon',
+    badge:  { pt: 'Novo', en: 'New' }, badgeClass: 'badge-new',
+    intro:  { pt: 'Soletrar tudo com unilíteros daria muito trabalho. Por isso o egípcio tinha sinais que já valem duas ou três consoantes de uma vez: os bilíteros e os trilíteros. São eles que fazem a escrita andar rápido.', en: 'Spelling everything out with uniliterals would be a lot of work. So Egyptian had signs that already stand for two or three consonants at once: biliterals and triliterals. They are what make the writing move fast.' },
+    sections: [
+      {
+        title: { pt: 'Sinais de mais de uma consoante', en: 'Signs for more than one consonant' },
+        blocks: [
+          { kind: 'p', html: { pt: 'Um sinal <strong>bilítero</strong> vale duas consoantes; um <strong>trilítero</strong>, três. São fonogramas, como os unilíteros, mas mais econômicos: 𓉐 já é <em>pr</em> ("casa") sem precisar de p mais r; 𓋹 já é <em>ꜥnḫ</em> ("vida") sem soletrar ꜥ, n, ḫ.', en: 'A <strong>biliteral</strong> sign is worth two consonants; a <strong>triliteral</strong>, three. They are phonograms, like the uniliterals, but more economical: 𓉐 already reads <em>pr</em> ("house") without needing p plus r; 𓋹 already reads <em>ꜥnḫ</em> ("life") without spelling out ꜥ, n, ḫ.' } },
+          { kind: 'p', html: { pt: 'Muitos desses sinais também funcionam como <strong>logogramas</strong> (a palavra inteira pelo desenho). O mesmo 𓉐 pode ser o fonograma <em>pr</em> dentro de outra palavra ou o logograma "casa". O contexto e os sinais vizinhos dizem qual leitura vale.', en: 'Many of these signs also work as <strong>logograms</strong> (the whole word through the picture). The same 𓉐 can be the phonogram <em>pr</em> inside another word, or the logogram "house". Context and neighboring signs tell you which reading applies.' } },
+        ],
+      },
+      {
+        title: { pt: 'Alguns bilíteros comuns', en: 'Some common biliterals' },
+        blocks: [
+          { kind: 'p', html: { pt: 'Não são para decorar de uma vez. Explore e note como cada um condensa duas consoantes num só desenho.', en: 'Not to be memorized at once. Explore and notice how each one condenses two consonants into a single picture.' } },
+          { kind: 'siggrid', ids: ['O1', 'Y5', 'U1', 'E34', 'F31', 'G39', 'D28', 'V30', 'R11', 'D1', 'D2', 'O29'] },
+        ],
+      },
+      {
+        title: { pt: 'Os trilíteros', en: 'The triliterals' },
+        blocks: [
+          { kind: 'p', html: { pt: 'Poucos em número, mas de altíssima frequência: aparecem em palavras centrais da cultura egípcia, como "vida", "deus", "belo" e "tornar-se".', en: 'Few in number, but very high in frequency: they appear in words central to Egyptian culture, such as "life", "god", "beautiful", and "to become".' } },
+          { kind: 'siggrid', ids: ['F35', 'S34', 'L1', 'R4', 'R8', 'S40', 'N14', 'F12', 'S38'] },
+        ],
+      },
+      {
+        title: { pt: 'Os complementos fonéticos', en: 'Phonetic complements' },
+        blocks: [
+          { kind: 'p', html: { pt: 'Você viu isso rapidamente na Lição 1. Agora com calma: o egípcio costuma escrever o bilítero ou trilítero e, logo depois, repetir parte dos seus sons com unilíteros. Esses unilíteros são <strong>complementos fonéticos</strong>. Eles não adicionam sons novos, só confirmam a leitura do sinal principal.', en: 'You saw this briefly in Lesson 1. Now slowly: Egyptian usually writes the biliteral or triliteral and, right after, repeats part of its sounds with uniliterals. Those uniliterals are <strong>phonetic complements</strong>. They add no new sounds; they only confirm the reading of the main sign.' } },
+          { kind: 'word', label: { pt: 'Passe o mouse sobre cada sinal', en: 'Hover over each sign' },
+            signs: [
+              { glyph: '𓋹', id: 'S34', phon: 'ꜥnḫ', type: 'bi', typeLabel: { pt: 'trilítero', en: 'triliteral' }, tip: { pt: '𓋹 ꜥnḫ, o ânkh · representa as três consoantes ꜥ-n-ḫ', en: '𓋹 ꜥnḫ, the ankh · represents the three consonants ꜥ-n-ḫ' } },
+              { glyph: '𓈖', id: 'N35', phon: 'n', type: 'uni', typeLabel: { pt: 'unilítero', en: 'uniliteral' }, tip: { pt: '𓈖 n, ondulação de água · confirma o som N de ꜥnḫ', en: '𓈖 n, water ripple · confirms the N sound of ꜥnḫ' } },
+              { glyph: '𓐍', id: 'Aa1', phon: 'ḫ', type: 'uni', typeLabel: { pt: 'unilítero', en: 'uniliteral' }, tip: { pt: '𓐍 ḫ, placenta ou peneira · confirma o som Ḫ de ꜥnḫ', en: '𓐍 ḫ, placenta or sieve · confirms the Ḫ sound of ꜥnḫ' } },
+            ],
+            result: '𓋹𓈖𓐍',
+            note: { pt: 'A palavra continua sendo <strong>ꜥnḫ</strong> ("vida"). Os sinais 𓈖 (n) e 𓐍 (ḫ) só repetem sons que 𓋹 já carrega: lê-se ꜥnḫ uma vez, não "ꜥnḫ-n-ḫ".', en: 'The word is still <strong>ꜥnḫ</strong> ("life"). The signs 𓈖 (n) and 𓐍 (ḫ) merely repeat sounds that 𓋹 already carries: you read ꜥnḫ once, not "ꜥnḫ-n-ḫ".' } },
+          { kind: 'word', label: { pt: 'Um bilítero com complemento', en: 'A biliteral with a complement' },
+            signs: [
+              { glyph: '𓏠', id: 'Y5', phon: 'mn', type: 'bi', typeLabel: { pt: 'bilítero', en: 'biliteral' }, tip: { pt: '𓏠 mn, tabuleiro de senet · representa as duas consoantes m-n', en: '𓏠 mn, senet board · represents the two consonants m-n' } },
+              { glyph: '𓈖', id: 'N35', phon: 'n', type: 'uni', typeLabel: { pt: 'unilítero', en: 'uniliteral' }, tip: { pt: '𓈖 n · confirma o som N de mn', en: '𓈖 n · confirms the N sound of mn' } },
+            ],
+            result: '𓏠𓈖',
+            note: { pt: 'Lê-se <strong>mn</strong>, não "mn-n". É essa combinação que aparece, por exemplo, no nome do deus Amon (ỉ-mn).', en: 'You read <strong>mn</strong>, not "mn-n". This is the combination that appears, for example, in the name of the god Amun (ỉ-mn).' } },
+          { kind: 'callout', variant: 'azul', html: { pt: 'A <strong>regra</strong> de novo: sinal grande seguido de sinais menores cujos sons já estão nele = complementos. Leia o sinal grande uma vez e siga em frente.', en: 'The <strong>rule</strong> again: a large sign followed by smaller signs whose sounds are already in it = complements. Read the large sign once and move on.' } },
+        ],
+      },
+    ],
+    quiz: [
+      {
+        glyph: '𓆣',
+        question: { pt: 'O que é um sinal bilítero?', en: 'What is a biliteral sign?' },
+        options: [
+          { label: { pt: 'Um sinal que vale duas consoantes', en: 'A sign worth two consonants' }, correct: true },
+          { label: { pt: 'Um sinal que vale uma consoante', en: 'A sign worth one consonant' }, correct: false },
+          { label: { pt: 'Um sinal sem som, que classifica', en: 'A soundless sign that classifies' }, correct: false },
+          { label: { pt: 'Duas palavras escritas juntas', en: 'Two words written together' }, correct: false },
+        ],
+        feedbackOk: { pt: 'Isso. Bilítero = dois; trilítero = três consoantes num só sinal. 𓆣 (ḫpr) é trilítero.', en: 'Right. Biliteral = two; triliteral = three consonants in a single sign. 𓆣 (ḫpr) is a triliteral.' },
+        feedbackErr: { pt: 'Bilítero vale duas consoantes de uma vez (tri, três). Um vale uma consoante é o unilítero.', en: 'A biliteral is worth two consonants at once (tri, three). One consonant is the uniliteral.' },
+      },
+      {
+        glyph: '𓋹',
+        question: { pt: 'Este trilítero, o ânkh, escreve qual palavra?', en: 'This triliteral, the ankh, writes which word?' },
+        options: [
+          { label: { pt: 'ꜥnḫ ("vida")', en: 'ꜥnḫ ("life")' }, correct: true },
+          { label: { pt: 'nfr ("belo")', en: 'nfr ("beautiful")' }, correct: false },
+          { label: { pt: 'ḥtp ("oferenda")', en: 'ḥtp ("offering")' }, correct: false },
+          { label: { pt: 'nṯr ("deus")', en: 'nṯr ("god")' }, correct: false },
+        ],
+        feedbackOk: { pt: 'Exato. 𓋹 é ꜥnḫ, "vida", um dos sinais mais conhecidos do Egito.', en: 'Exactly. 𓋹 is ꜥnḫ, "life", one of the most recognizable signs from Egypt.' },
+        feedbackErr: { pt: '𓋹 é o ânkh: ꜥnḫ, "vida".', en: '𓋹 is the ankh: ꜥnḫ, "life".' },
+      },
+      {
+        glyph: '𓋹',
+        question: { pt: 'Em ꜥnḫ escrito 𓋹𓈖𓐍, o que fazem os sinais 𓈖 (n) e 𓐍 (ḫ)?', en: 'In ꜥnḫ written 𓋹𓈖𓐍, what do the signs 𓈖 (n) and 𓐍 (ḫ) do?' },
+        options: [
+          { label: { pt: 'Confirmam sons que 𓋹 já tem, sem adicionar', en: 'They confirm sounds 𓋹 already has, without adding' }, correct: true },
+          { label: { pt: 'Adicionam sons, virando "ꜥnḫnḫ"', en: 'They add sounds, making it "ꜥnḫnḫ"' }, correct: false },
+          { label: { pt: 'Classificam a palavra (determinativo)', en: 'They classify the word (determinative)' }, correct: false },
+          { label: { pt: 'Marcam o plural', en: 'They mark the plural' }, correct: false },
+        ],
+        feedbackOk: { pt: 'Isso. São complementos fonéticos: repetem o n e o ḫ que 𓋹 já carrega. Lê-se ꜥnḫ uma vez só.', en: 'Right. They are phonetic complements: they repeat the n and ḫ that 𓋹 already carries. You read ꜥnḫ just once.' },
+        feedbackErr: { pt: 'São complementos fonéticos: só confirmam a leitura de 𓋹 (ꜥnḫ), não acrescentam sons.', en: 'They are phonetic complements: they only confirm the reading of 𓋹 (ꜥnḫ); they add no sounds.' },
+      },
+      {
+        glyph: '𓊹',
+        question: { pt: 'O trilítero nṯr (𓊹) significa...', en: 'The triliteral nṯr (𓊹) means...' },
+        options: [
+          { label: { pt: 'Deus', en: 'God' }, correct: true },
+          { label: { pt: 'Casa', en: 'House' }, correct: false },
+          { label: { pt: 'Vida', en: 'Life' }, correct: false },
+          { label: { pt: 'Belo', en: 'Beautiful' }, correct: false },
+        ],
+        feedbackOk: { pt: 'Isso. nṯr (𓊹, tecido sobre mastro) é "deus". "Casa" é pr, "vida" é ꜥnḫ, "belo" é nfr.', en: 'Right. nṯr (𓊹, cloth on a pole) is "god". "House" is pr, "life" is ꜥnḫ, "beautiful" is nfr.' },
+        feedbackErr: { pt: 'nṯr (𓊹) é "deus". Casa = pr, vida = ꜥnḫ, belo = nfr.', en: 'nṯr (𓊹) is "god". House = pr, life = ꜥnḫ, beautiful = nfr.' },
+      },
+    ],
   },
   {
     id: 'palavras', num: 4, glyph: '𓂋', ready: false,
