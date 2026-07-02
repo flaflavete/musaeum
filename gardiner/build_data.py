@@ -72,6 +72,43 @@ def detect_funcs(details):
     return f
 
 
+# Transliteracao do alfabeto usada para reconhecer tokens egipcios (letras
+# minusculas + os signos egiptologicos). Codigos de sinal (A36, N33) tem digito
+# colado a MAIUSCULA, entao nao entram; numeros/fracoes idem.
+_TL = "a-zꜣꜥỉḥḫẖšḳṯḏ"
+
+
+def clean_en_details(s):
+    """Limpa o Details EN cru da planilha para exibicao (nao toca no significado):
+    - expande abreviacoes (Ideo. = Logograma na convencao do projeto)
+    - ayin ʿ -> ꜥ (sempre ayin, seguro global)
+    - aleph 3 -> ꜣ APENAS colado a letra de transliteracao (preserva codigos de
+      sinal e numeros/fracoes); o laco resolve sequencias como m33 -> mꜣꜣ.
+    NAO converte q->ḳ nem i/j->ỉ: apareceriam em palavras inglesas (equip,
+    queens, jackal) e corromperiam o texto; q e i sao transliteracoes validas."""
+    if not s:
+        return ""
+    s = re.sub(r"\bPhono?\.", "Phonogram", s)
+    s = re.sub(r"\bIdeo\.", "Logogram", s)
+    s = re.sub(r"\bDet\.", "Determinative", s)
+    s = re.sub(r"\bVar\.", "Variant", s)
+    s = s.replace("ʿ", "ꜥ")
+    # Mascara codigos de sinal (A36, N33, Aa30, D280a...) para o aleph nao mexer
+    # neles; o 'a' minusculo de "Aa30" enganaria o lookbehind (viraria "Aaꜣ0").
+    codes = []
+    def _mask(m):
+        codes.append(m.group(0))
+        return "\x00%d\x00" % (len(codes) - 1)
+    s = re.sub(r"\b[A-Z][a-z]?\d+[a-z]?\b", _mask, s)
+    prev = None
+    while prev != s:
+        prev = s
+        s = re.sub(r"(?<=[" + _TL + r"])3", "ꜣ", s)
+        s = re.sub(r"3(?=[" + _TL + r"])", "ꜣ", s)
+    s = re.sub(r"\x00(\d+)\x00", lambda m: codes[int(m.group(1))], s)
+    return s
+
+
 XREF = re.compile(r"^(?:use as|var\. of|var\.|same as|cf\.|as)\s*([A-Za-z]{1,3}\d+\w*)", re.I)
 
 
@@ -258,7 +295,10 @@ def main():
         er = en_by_id.get(sid, row)
         base = [er[0], er[1], final_phon[sid], er[3]]
         func = func_by_id.get(sid, "")
-        details_en = DETAILS_OVERRIDE_EN.get(sid) or (xl[sid]["details"] if sid in xl else "")
+        if sid in DETAILS_OVERRIDE_EN:
+            details_en = DETAILS_OVERRIDE_EN[sid]            # override ja vem limpo
+        else:
+            details_en = clean_en_details(xl[sid]["details"]) if sid in xl else ""
         new_en.append(base + [func, details_en])
 
     write_js(ROOT / "gardiner_data.js", "GARDINER_DATA", new_pt)
