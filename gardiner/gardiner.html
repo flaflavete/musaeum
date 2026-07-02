@@ -1079,6 +1079,9 @@ function gardinerTourSteps() {
     { selector: '#btn-vega', before: function () { mobSwitchPanel('builder'); }, title: pt ? 'Dicionário VÉgA' : 'VÉgA dictionary',
       body: pt ? 'Montou uma palavra? Copie a transliteração e pesquise no VÉgA, um dicionário científico do egípcio antigo, num clique.'
                : 'Built a word? Copy the transliteration and look it up in VÉgA, a scholarly dictionary of ancient Egyptian, in one click.' },
+    { selector: '.btn-row', before: function () { mobSwitchPanel('builder'); }, title: pt ? 'Copiar' : 'Copy',
+      body: pt ? 'Vai levar a palavra pra outro lugar? Copie só os <b>hieróglifos</b>, só a <b>transliteração</b>, ou <b>os dois juntos</b>, com um clique.'
+               : 'Taking the word elsewhere? Copy just the <b>hieroglyphs</b>, just the <b>transliteration</b>, or <b>both together</b>, in one click.' },
   ];
 }
 function startGardinerTour() {
