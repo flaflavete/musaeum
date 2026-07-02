@@ -5,7 +5,8 @@
 
    Baralho = FONOGRAMAS de valor único, soletráveis no teclado:
      func contém 'P'  E  fonema sem barra '|'  E  todo char está no alfabeto.
-   Níveis: 'uni' (1 consoante), 'unibi' (até 2), 'tudo' (uni+bi+tri+quad).
+   Níveis: 'uni' (1 consoante), 'unibi' (até 2), 'tudo' (uni + bi + tri, até 3;
+   os poucos quadrilíteros ficam de fora para o rótulo bater com o conteúdo).
    Sem persistência de placar (sessão só); guarda só o nível escolhido. */
 
 (function () {
@@ -39,7 +40,7 @@
     var pool = buildPool();
     if (level === 'uni')   return pool.filter(function (r) { return r[2].length === 1; });
     if (level === 'unibi') return pool.filter(function (r) { return r[2].length <= 2; });
-    return pool;
+    return pool.filter(function (r) { return r[2].length <= 3; });   // uni + bi + tri
   }
 
   /* ── estado ───────────────────────────────────────── */
@@ -94,7 +95,7 @@
     var opts = [
       { id: 'uni',   label: T('Só unilíteros', 'Uniliterals only') },
       { id: 'unibi', label: T('Uni + bilíteros', 'Uni + biliterals') },
-      { id: 'tudo',  label: T('Tudo', 'Everything') },
+      { id: 'tudo',  label: 'Uni + bi + tri' },
     ];
     return opts.map(function (o) {
       return '<button class="deck-level-btn' + (o.id === level ? ' active' : '') +

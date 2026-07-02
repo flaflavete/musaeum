@@ -647,15 +647,15 @@ header {
 
 <!-- HEADER -->
 <header>
-  <a class="header-back" href="../aprender/05-palavras.html" onclick="history.length>1 ? (history.back(), event.preventDefault()) : null">
+  <a class="header-back" href="../curso/index.html" onclick="history.length>1 ? (history.back(), event.preventDefault()) : null">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     Musæum
   </a>
   <div class="logo">
     <span class="logo-glyph">𓏟</span>
     <div>
-      <div class="logo-text">Lista de Gardiner</div>
-      <div class="logo-sub">Egípcio Médio Clássico · Lista de Sinais</div>
+      <div class="logo-text" data-i18n="logoText">Lista de Gardiner</div>
+      <div class="logo-sub" data-i18n="logoSub">Egípcio Médio Clássico · Lista de Sinais</div>
     </div>
   </div>
   <button id="btn-tour" title="Guia da ferramenta" aria-label="Guia da ferramenta">?</button>
@@ -679,17 +679,17 @@ header {
   <aside class="builder">
 
     <div class="builder-section">
-      <div class="builder-label">Palavra em hieróglifos</div>
+      <div class="builder-label" data-i18n="lblWord">Palavra em hieróglifos</div>
       <div class="hier-display empty" id="hier-display"></div>
     </div>
 
     <div class="builder-section">
-      <div class="builder-label">Transliteração automática</div>
+      <div class="builder-label" data-i18n="lblTranslitAuto">Transliteração automática</div>
       <div class="translit-auto empty" id="translit-auto"></div>
     </div>
 
     <div class="builder-section">
-      <div class="builder-label">Editar transliteração</div>
+      <div class="builder-label" data-i18n="lblTranslitEdit">Editar transliteração</div>
       <textarea class="translit-edit" id="translit-edit" placeholder="escreva ou edite aqui…" rows="2" spellcheck="false"></textarea>
       <div class="keys-grid">
         <span class="tkey" data-char="ꜣ">ꜣ</span>
@@ -706,18 +706,15 @@ header {
     </div>
 
     <div class="builder-section">
-      <div class="builder-label">Buscar no VÉgA</div>
-      <p class="vega-info">
-        <a href="https://vega-vocabulaire-egyptien-ancien.fr/en/the-vega/" target="_blank" rel="noopener">VÉgA</a>
-        é um dicionário científico do egípcio antigo. Clique para copiar a transliteração e abrir o dicionário.
-      </p>
+      <div class="builder-label" data-i18n="lblVega">Buscar no VÉgA</div>
+      <p class="vega-info"></p>
       <button class="action-btn disabled" id="btn-vega">
         <span style="font-family:var(--hier)">𓂀</span> Copiar e abrir VÉgA ↗
       </button>
     </div>
 
     <div class="builder-section">
-      <div class="builder-label">Copiar</div>
+      <div class="builder-label" data-i18n="lblCopy">Copiar</div>
       <div class="btn-row">
         <button class="action-btn" id="btn-hier"><span style="font-family:var(--hier)">𓀀</span> Hieróglifos</button>
         <button class="action-btn" id="btn-translit"><span style="font-style:italic">ꜣ</span> Transliteração</button>
@@ -727,7 +724,7 @@ header {
     </div>
 
     <div class="biblio">
-      <strong>Bibliografia</strong>
+      <strong data-i18n="biblio">Bibliografia</strong>
       ALLEN, James P. <em>Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs</em>. 3ª ed. Cambridge: Cambridge University Press, 2014.<br>
       GARDINER, Alan H. <em>Egyptian Grammar</em>. 3ª ed. Oxford: Griffith Institute, 1957.<br>
       Unicode Consortium. <em>Egyptian Hieroglyphs</em>. Unicode 5.2+, U+13000–U+1342F.
@@ -737,40 +734,130 @@ header {
 </div>
 
 <nav class="mob-tabs" id="mob-tabs">
-  <button class="mob-tab" data-panel="sidebar">Categorias</button>
-  <button class="mob-tab active" data-panel="main">Sinais</button>
-  <button class="mob-tab" data-panel="builder">Construtor</button>
+  <button class="mob-tab" data-panel="sidebar" data-i18n="mobCats">Categorias</button>
+  <button class="mob-tab active" data-panel="main" data-i18n="mobSigns">Sinais</button>
+  <button class="mob-tab" data-panel="builder" data-i18n="mobBuilder">Construtor</button>
 </nav>
 
 <script>
 const CATS = [
-  ['A','Homem e suas Ocupações'],
-  ['B','Mulher e suas Ocupações'],
-  ['C','Deidades Antropomórficas'],
-  ['D','Partes do Corpo Humano'],
-  ['E','Mamíferos'],
-  ['F','Partes de Mamíferos'],
-  ['G','Aves'],
-  ['H','Partes de Aves'],
-  ['I','Répteis e Anfíbios'],
-  ['K','Peixes'],
-  ['L','Invertebrados'],
-  ['M','Plantas e Árvores'],
-  ['N','Céu, Terra, Água'],
-  ['O','Edificações e Partes'],
-  ['P','Embarcações'],
-  ['Q','Mobiliário Doméstico'],
-  ['R','Objetos de Templo e Emblemas Sagrados'],
-  ['S','Coroas, Vestes e Cetros'],
-  ['T','Guerra, Caça e Abate'],
-  ['U','Agricultura, Ofícios e Profissões'],
-  ['V','Cordas, Fibras, Cestos e Bolsas'],
-  ['W','Vasos de Pedra e Barro'],
-  ['X','Pães e Bolos'],
-  ['Y','Escrita, Jogos e Música'],
-  ['Z','Traços e Sinais Hieráticos'],
-  ['Aa','Não Classificados'],
+  ['A','Homem e suas Ocupações','Man and his Occupations'],
+  ['B','Mulher e suas Ocupações','Woman and her Occupations'],
+  ['C','Deidades Antropomórficas','Anthropomorphic Deities'],
+  ['D','Partes do Corpo Humano','Parts of the Human Body'],
+  ['E','Mamíferos','Mammals'],
+  ['F','Partes de Mamíferos','Parts of Mammals'],
+  ['G','Aves','Birds'],
+  ['H','Partes de Aves','Parts of Birds'],
+  ['I','Répteis e Anfíbios','Reptiles and Amphibians'],
+  ['K','Peixes','Fish'],
+  ['L','Invertebrados','Invertebrates'],
+  ['M','Plantas e Árvores','Plants and Trees'],
+  ['N','Céu, Terra, Água','Sky, Earth, Water'],
+  ['O','Edificações e Partes','Buildings and Parts'],
+  ['P','Embarcações','Ships and Boats'],
+  ['Q','Mobiliário Doméstico','Domestic Furniture'],
+  ['R','Objetos de Templo e Emblemas Sagrados','Temple Furniture and Sacred Emblems'],
+  ['S','Coroas, Vestes e Cetros','Crowns, Dress, and Scepters'],
+  ['T','Guerra, Caça e Abate','Warfare, Hunting, and Slaughter'],
+  ['U','Agricultura, Ofícios e Profissões','Agriculture, Crafts, and Professions'],
+  ['V','Cordas, Fibras, Cestos e Bolsas','Ropes, Fibers, Baskets, and Bags'],
+  ['W','Vasos de Pedra e Barro','Stone and Earthenware Vessels'],
+  ['X','Pães e Bolos','Bread and Cakes'],
+  ['Y','Escrita, Jogos e Música','Writing, Games, Music'],
+  ['Z','Traços e Sinais Hieráticos','Strokes and Hieratic Signs'],
+  ['Aa','Não Classificados','Unclassified'],
 ];
+
+/* Nome da categoria no idioma atual (lang é definido mais abaixo). */
+function catName(c) { return (typeof lang !== 'undefined' && lang === 'en') ? c[2] : c[1]; }
+
+/* i18n da interface. As descrições dos sinais e os selos de função já trocam de
+   idioma pelos dados (GARDINER_DATA/_EN e FN_LABELS); aqui fica o resto da UI. */
+const I18N = {
+  pt: {
+    logoText: 'Lista de Gardiner',
+    logoSub: 'Egípcio Médio Clássico · Lista de Sinais',
+    tourTitle: 'Guia da ferramenta',
+    langTitle: 'Alternar idioma da interface e das descrições',
+    searchPh: 'Buscar sinal, fonema, descrição…',
+    lblWord: 'Palavra em hieróglifos',
+    lblTranslitAuto: 'Transliteração automática',
+    lblTranslitEdit: 'Editar transliteração',
+    translitEditPh: 'escreva ou edite aqui…',
+    lblVega: 'Buscar no VÉgA',
+    vegaInfo: '<a href="https://vega-vocabulaire-egyptien-ancien.fr/en/the-vega/" target="_blank" rel="noopener">VÉgA</a> é um dicionário científico do egípcio antigo. Clique para copiar a transliteração e abrir o dicionário.',
+    btnVega: 'Copiar e abrir VÉgA ↗',
+    lblCopy: 'Copiar',
+    btnHier: 'Hieróglifos',
+    btnTranslit: 'Transliteração',
+    btnBoth: 'Hieróglifos + Transliteração',
+    btnClear: 'Limpar tudo',
+    biblio: 'Bibliografia',
+    mobCats: 'Categorias', mobSigns: 'Sinais', mobBuilder: 'Construtor',
+    resultsFor: (q, n) => `Resultados para "<strong>${q}</strong>": ${n} sinal(is)`,
+    catCount: (n) => `${n} sinais nesta categoria`,
+    copiedVega: '✓ Copiado, cole no VÉgA!',
+    copied: '✓ Copiado!',
+  },
+  en: {
+    logoText: 'Gardiner Sign List',
+    logoSub: 'Classical Middle Egyptian · Sign List',
+    tourTitle: 'Tool guide',
+    langTitle: 'Switch interface and description language',
+    searchPh: 'Search sign, phoneme, description…',
+    lblWord: 'Word in hieroglyphs',
+    lblTranslitAuto: 'Automatic transliteration',
+    lblTranslitEdit: 'Edit transliteration',
+    translitEditPh: 'type or edit here…',
+    lblVega: 'Search in VÉgA',
+    vegaInfo: '<a href="https://vega-vocabulaire-egyptien-ancien.fr/en/the-vega/" target="_blank" rel="noopener">VÉgA</a> is a scholarly dictionary of ancient Egyptian. Click to copy the transliteration and open the dictionary.',
+    btnVega: 'Copy and open VÉgA ↗',
+    lblCopy: 'Copy',
+    btnHier: 'Hieroglyphs',
+    btnTranslit: 'Transliteration',
+    btnBoth: 'Hieroglyphs + Transliteration',
+    btnClear: 'Clear all',
+    biblio: 'Bibliography',
+    mobCats: 'Categories', mobSigns: 'Signs', mobBuilder: 'Builder',
+    resultsFor: (q, n) => `Results for "<strong>${q}</strong>": ${n} sign(s)`,
+    catCount: (n) => `${n} signs in this category`,
+    copiedVega: '✓ Copied, paste in VÉgA!',
+    copied: '✓ Copied!',
+  },
+};
+
+function setIconBtn(id, icon, label) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = icon + ' ' + label;
+}
+
+/* Aplica o idioma a toda a interface estática. As partes dinâmicas (grade,
+   cabeçalho de seção) são reescritas por renderGrid, que já lê o I18N. */
+function applyI18n() {
+  const t = I18N[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = t[el.dataset.i18n];
+    if (typeof v === 'string') el.textContent = v;
+  });
+  const b = document.getElementById('btn-lang');
+  b.textContent = lang === 'pt' ? 'PT · EN' : 'EN · PT';
+  b.style.color = lang === 'en' ? 'var(--gold)' : '';
+  b.style.borderColor = lang === 'en' ? 'var(--gold)' : '';
+  b.title = t.langTitle;
+  const tb = document.getElementById('btn-tour');
+  tb.title = t.tourTitle; tb.setAttribute('aria-label', t.tourTitle);
+  document.getElementById('search').placeholder = t.searchPh;
+  document.getElementById('translit-edit').placeholder = t.translitEditPh;
+  document.querySelector('.vega-info').innerHTML = t.vegaInfo;
+  setIconBtn('btn-vega', '<span style="font-family:var(--hier)">𓂀</span>', t.btnVega);
+  setIconBtn('btn-hier', '<span style="font-family:var(--hier)">𓀀</span>', t.btnHier);
+  setIconBtn('btn-translit', '<span style="font-style:italic">ꜣ</span>', t.btnTranslit);
+  setIconBtn('btn-both', '<span>⊞</span>', t.btnBoth);
+  setIconBtn('btn-clear', '<span>✕</span>', t.btnClear);
+  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+  document.title = t.logoText + ' · Musæum';
+}
 
 let SIGNS = [];
 let word  = [];
@@ -778,10 +865,10 @@ let cat   = 'A';
 let query = '';
 
 function buildSidebar() {
-  document.getElementById('sidebar').innerHTML = CATS.map(([id, name]) => `
-    <button class="cat-btn ${id === cat ? 'active' : ''}" data-cat="${id}">
-      <span class="cat-code">${id}</span>
-      <span class="cat-name">${name}</span>
+  document.getElementById('sidebar').innerHTML = CATS.map(c => `
+    <button class="cat-btn ${c[0] === cat ? 'active' : ''}" data-cat="${c[0]}">
+      <span class="cat-code">${c[0]}</span>
+      <span class="cat-name">${catName(c)}</span>
     </button>`).join('');
   document.querySelectorAll('.cat-btn').forEach(btn =>
     btn.addEventListener('click', () => {
@@ -818,12 +905,13 @@ function renderGrid() {
   const signs = getSigns();
   const catInfo = CATS.find(c => c[0] === cat);
 
+  const t = I18N[lang];
   document.getElementById('section-head').innerHTML = query
-    ? `<p class="search-info">Resultados para "<strong>${esc(query)}</strong>": ${signs.length} sinal(is)</p>`
+    ? `<p class="search-info">${t.resultsFor(esc(query), signs.length)}</p>`
     : catInfo ? `
       <div class="section-head">
-        <h2>${catInfo[0]} · ${catInfo[1]}</h2>
-        <p>${signs.length} sinais nesta categoria</p>
+        <h2>${catInfo[0]} · ${catName(catInfo)}</h2>
+        <p>${t.catCount(signs.length)}</p>
       </div>` : '';
 
   document.getElementById('grid').innerHTML = signs.map(([id, glyph, phon, desc, func, details]) => {
@@ -965,7 +1053,7 @@ document.getElementById('btn-vega').addEventListener('click', function() {
   navigator.clipboard.writeText(translit).then(() => {
     window.open('https://app.vega-lexique.fr/', '_blank', 'noopener');
     const orig = this.innerHTML;
-    this.innerHTML = this.innerHTML.replace(/>.+$/, '>✓ Copiado — cole no VÉgA!');
+    this.innerHTML = this.innerHTML.replace(/>.+$/, '>' + I18N[lang].copiedVega);
     this.classList.add('success');
     setTimeout(() => { this.innerHTML = orig; this.classList.remove('success'); }, 2000);
   });
@@ -986,7 +1074,7 @@ document.querySelectorAll('.tkey').forEach(key =>
 function copyAndFlash(text, btn) {
   navigator.clipboard.writeText(text).then(() => {
     const orig = btn.innerHTML;
-    btn.innerHTML = btn.innerHTML.replace(/>.+$/, '>✓ Copiado!');
+    btn.innerHTML = btn.innerHTML.replace(/>.+$/, '>' + I18N[lang].copied);
     btn.classList.add('success');
     setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('success'); }, 1400);
   });
@@ -1032,15 +1120,7 @@ document.getElementById('mob-tabs').addEventListener('click', e => {
 
 let lang = localStorage.getItem('musaeum-lang') === 'en' ? 'en' : 'pt';
 SIGNS = lang === 'pt' ? window.GARDINER_DATA : window.GARDINER_DATA_EN;
-(function syncLangBtn() {
-  const b = document.getElementById('btn-lang');
-  b.textContent = lang === 'pt' ? 'PT · EN' : 'EN · PT';
-  b.style.color = lang === 'en' ? 'var(--gold)' : '';
-  b.style.borderColor = lang === 'en' ? 'var(--gold)' : '';
-  document.getElementById('search').placeholder = lang === 'pt'
-    ? 'Buscar sinal, fonema, descrição…'
-    : 'Search sign, phoneme, description…';
-})();
+applyI18n();
 buildSidebar();
 renderBuilder();
 renderGrid();
@@ -1049,12 +1129,8 @@ document.getElementById('btn-lang').addEventListener('click', function() {
   lang = lang === 'pt' ? 'en' : 'pt';
   localStorage.setItem('musaeum-lang', lang);
   SIGNS = lang === 'pt' ? window.GARDINER_DATA : window.GARDINER_DATA_EN;
-  this.textContent = lang === 'pt' ? 'PT · EN' : 'EN · PT';
-  this.style.color = lang === 'en' ? 'var(--gold)' : '';
-  this.style.borderColor = lang === 'en' ? 'var(--gold)' : '';
-  document.getElementById('search').placeholder = lang === 'pt'
-    ? 'Buscar sinal, fonema, descrição…'
-    : 'Search sign, phoneme, description…';
+  applyI18n();
+  buildSidebar();
   refresh();
 });
 
