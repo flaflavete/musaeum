@@ -457,7 +457,7 @@ window.CURSO_LICOES = [
     glyph: '𓏛',
     ready: true,
     kicker: { pt: 'Lição 6 · Leitura', en: 'Lesson 6 · Reading' },
-    title:  { pt: 'Ler um texto curto', en: 'Reading a short text' },
+    title:  { pt: 'Ler um texto mágico', en: 'Reading a magical text' },
     desc:   { pt: 'O capstone: juntar tudo e ler a fórmula de oferenda, palavra a palavra.', en: 'The capstone: put it all together and read the offering formula, word by word.' },
     dur:    { pt: '~25 min', en: '~25 min' }, type: { pt: 'Capstone', en: 'Capstone' },
     badge:  { pt: 'Final', en: 'Final' }, badgeClass: 'badge-final',

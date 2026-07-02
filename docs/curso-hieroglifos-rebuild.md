@@ -31,9 +31,9 @@ Verificado no navegador: índice lista 6 lições (5 bloqueadas), Lição 1 rend
 
 **Lição 5 — Cartuchos e os nomes do rei (feito e verificado):** o cartucho (alça de corda/anel shen, marca nome real) + decodificação do cartucho de Ramsés (bloco `word` com flag `cartouche: true`, mostra os sinais e o resultado num oval dourado) + os cinco nomes da titulatura (2 em cartuchos) + nota de transposição honorífica (Tutancâmon) + construtor em modo cartucho (bloco `builder` com `cartouche: true`, o strip vira o oval) montando ỉmn (Amon) e rꜥ-ms-s (Ramessu). Conclui ao montar os dois. CSS `.cartouche` + `.builder-strip.as-cartouche`.
 
-**Lição 6 — Ler um texto curto / capstone (feito e verificado):** o capstone é a **fórmula de oferenda** (decidido com a Flavia). Leitura guiada palavra por palavra da fórmula ḥtp-dỉ-nsw (𓇓𓏏𓊵𓏙, blocos `word`), amarrando com a transposição honorífica da Lição 5 (o rei 𓇓 escrito primeiro, lido por último); + Osíris (𓊨𓁹, wsỉr); + construtor pra escrever a fórmula e Osíris; fecha o curso. Sinais novos introduzidos: X8 (dỉ), Q1 (ws/trono), D4 (ỉr/olho). CSS `.gloss-glyph`.
+**Lição 6 — Ler um texto mágico / capstone (feito e verificado):** o capstone é a **fórmula de oferenda** (decidido com a Flavia). Leitura guiada palavra por palavra da fórmula ḥtp-dỉ-nsw (𓇓𓏏𓊵𓏙, blocos `word`), amarrando com a transposição honorífica da Lição 5 (o rei 𓇓 escrito primeiro, lido por último); + Osíris (𓊨𓁹, wsỉr); + construtor pra escrever a fórmula e Osíris; fecha o curso. Sinais novos introduzidos: X8 (dỉ), Q1 (ws/trono), D4 (ỉr/olho). CSS `.gloss-glyph`.
 
-**AS 6 LIÇÕES ESTÃO PRONTAS.** O curso novo em `curso/` está completo e verificado ponta a ponta (1 O sistema, 2 Os 24 unilíteros, 3 Bi/trilíteros, 4 Montar palavras, 5 Cartuchos, 6 A fórmula de oferenda).
+**AS 6 LIÇÕES ESTÃO PRONTAS.** O curso novo em `curso/` está completo e verificado ponta a ponta (1 O sistema, 2 Os 24 unilíteros, 3 Bi/trilíteros, 4 Montar palavras, 5 Cartuchos, 6 Ler um texto mágico (fórmula de oferenda)).
 
 **Próximos passos (a virada):** conectar o hub da home (`home/aprender.js` / `#panel-aprender`) ao `curso/` novo, decidir o destino da `aprender/` antiga (aposentar), e revisitar as pendências do §8 (curso na Coleção/Certificado? etc.).
 
