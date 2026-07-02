@@ -487,10 +487,11 @@ window.CURSO_LICOES = [
             signs: [
               { glyph: '𓊨', id: 'Q1', phon: 'ws', type: 'bi', typeLabel: { pt: 'trono', en: 'throne' }, tip: { pt: '𓊨 ws, o trono · em Wsỉr (Osíris)', en: '𓊨 ws, the throne · in Wsỉr (Osiris)' } },
               { glyph: '𓁹', id: 'D4', phon: 'ỉr', type: 'bi', typeLabel: { pt: 'olho', en: 'eye' }, tip: { pt: '𓁹 ỉr, o olho · em Wsỉr (Osíris)', en: '𓁹 ỉr, the eye · in Wsỉr (Osiris)' } },
+              { glyph: '𓀭', id: 'A40', phon: '', type: 'det', typeLabel: { pt: 'determinativo', en: 'determinative' }, tip: { pt: '𓀭 determinativo de deus (sem som)', en: '𓀭 determinative of a god (no sound)' } },
             ],
-            result: '𓊨𓁹',
-            note: { pt: 'Lê-se <strong>Wsỉr</strong>, "Osíris", escrito com o trono e o olho.', en: 'It reads <strong>Wsỉr</strong>, "Osiris", written with the throne and the eye.' } },
-          { kind: 'callout', variant: 'gold', html: { pt: 'Juntando: <span class="gloss-glyph">𓇓𓏏𓊵𓏙 𓊨𓁹</span><br><strong>ḥtp-dỉ-nsw wsỉr</strong> = "Uma oferenda que o rei dá a Osíris". Pronto: você acabou de ler um texto egípcio de verdade.', en: 'Putting it together: <span class="gloss-glyph">𓇓𓏏𓊵𓏙 𓊨𓁹</span><br><strong>ḥtp-dỉ-nsw wsỉr</strong> = "An offering which the king gives to Osiris". There you go: you have just read a real Egyptian text.' } },
+            result: '𓊨𓁹𓀭',
+            note: { pt: 'Lê-se <strong>Wsỉr</strong>, "Osíris", escrito com o trono e o olho, e fechado pelo 𓀭, o determinativo de deus, que não tem som e só marca que a palavra é uma divindade.', en: 'It reads <strong>Wsỉr</strong>, "Osiris", written with the throne and the eye, and closed by 𓀭, the determinative of a god, which has no sound and only marks that the word is a deity.' } },
+          { kind: 'callout', variant: 'gold', html: { pt: 'Juntando: <span class="gloss-glyph">𓇓𓏏𓊵𓏙 𓊨𓁹𓀭</span><br><strong>ḥtp-dỉ-nsw wsỉr</strong> = "Uma oferenda que o rei dá a Osíris". Pronto: você acabou de ler um texto egípcio de verdade.', en: 'Putting it together: <span class="gloss-glyph">𓇓𓏏𓊵𓏙 𓊨𓁹𓀭</span><br><strong>ḥtp-dỉ-nsw wsỉr</strong> = "An offering which the king gives to Osiris". There you go: you have just read a real Egyptian text.' } },
         ],
       },
       {
@@ -498,12 +499,12 @@ window.CURSO_LICOES = [
         blocks: [
           { kind: 'p', html: { pt: 'Feche o curso escrevendo a própria fórmula. Lembre: o rei vem primeiro.', en: 'Close the course by writing the formula yourself. Remember: the king comes first.' } },
           { kind: 'builder', cartouche: false,
-            palette: ['M23', 'X1', 'R4', 'X8', 'Q1', 'D4', 'N35', 'G17'],
+            palette: ['M23', 'X1', 'R4', 'X8', 'Q1', 'D4', 'A40', 'N35', 'G17'],
             challenges: [
               { meaning: { pt: 'a fórmula de oferenda (o rei primeiro!)', en: 'the offering formula (the king first!)' }, translit: 'ḥtp-dỉ-nsw', answer: ['M23', 'X1', 'R4', 'X8'],
                 note: { pt: '𓇓𓏏 (nsw, rei) + 𓊵 (ḥtp) + 𓏙 (dỉ). Escreve-se o rei primeiro, mas lê-se ḥtp-dỉ-nsw.', en: '𓇓𓏏 (nsw, king) + 𓊵 (ḥtp) + 𓏙 (dỉ). You write the king first, but read ḥtp-dỉ-nsw.' } },
-              { meaning: { pt: 'Osíris', en: 'Osiris' }, translit: 'wsỉr', answer: ['Q1', 'D4'],
-                note: { pt: '𓊨 (ws, trono) + 𓁹 (ỉr, olho). O deus a quem a oferenda é dedicada.', en: '𓊨 (ws, throne) + 𓁹 (ỉr, eye). The god to whom the offering is dedicated.' } },
+              { meaning: { pt: 'Osíris', en: 'Osiris' }, translit: 'wsỉr', answer: ['Q1', 'D4', 'A40'],
+                note: { pt: '𓊨 (ws, trono) + 𓁹 (ỉr, olho) + 𓀭 (determinativo de deus, sem som). O deus a quem a oferenda é dedicada.', en: '𓊨 (ws, throne) + 𓁹 (ỉr, eye) + 𓀭 (determinative of a god, no sound). The god to whom the offering is dedicated.' } },
             ] },
           { kind: 'p', html: { pt: 'É isso. Você começou sem saber um sinal e agora lê e escreve a frase que cobre as paredes do Egito antigo. Da próxima vez que vir uma estela num museu, procure o 𓇓𓏏𓊵𓏙: você vai reconhecer.', en: 'That is it. You started without knowing a single sign, and now you read and write the phrase that covers the walls of ancient Egypt. Next time you see a stela in a museum, look for the 𓇓𓏏𓊵𓏙: you will recognize it.' } },
         ],
