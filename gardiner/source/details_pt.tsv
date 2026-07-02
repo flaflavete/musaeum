@@ -55,7 +55,7 @@ A53	Determinativo de múmia, estátua, imagem, forma.
 A54	Determinativo de morto.
 A55	Determinativo de sḏr ("deitar-se"); morto.
 A59	Determinativo de afugentar, repelir.
-B1	Determinativo de mulher e de nomes próprios. Às vezes no lugar de A1 para o pronome de 1ª pessoa do singular ỉ.
+B1	Determinativo de mulher e de nomes de mulher. Variante de A1 para a 1ª pessoa do singular quando quem fala é mulher.
 B2	Determinativo de grávida.
 B3	Determinativo e logograma de msỉ ("dar à luz").
 B4	Igual a B3.
@@ -98,7 +98,7 @@ D17	Determinativo ou logograma de tỉt ("figura, imagem").
 D18	Determinativo ou logograma de msḏr ("orelha").
 D19	Determinativo ou logograma de fnd ("nariz"). Determinativo de sn ("cheirar"), rš ("regozijar-se").
 D20	Igual a D19.
-D21	Igual a T31.
+D21	Fonograma r. Logograma de r ("boca").
 D22	Logograma de rwy ("2/3").
 D23	Logograma de ḫmt rw ("3/4").
 D24	Determinativo ou logograma de spt ("lábio"). Usado por engano como F42.
@@ -208,19 +208,19 @@ F30	Fonograma šd. Em šdỉ ("retirar"), šdw ("odre").
 F31	Fonograma ms. Em msỉ ("dar à luz").
 F32	Fonograma ẖ. Logograma em ẖt ("ventre, corpo").
 F33	Fonograma sd. Determinativo e logograma em sd ("cauda").
-F34	Igual a W21.
+F34	Logograma de ỉb ("coração, mente"). Determinativo em ḥꜣty ("coração").
 F35	Fonograma nfr. Em nfr ("bom, belo").
-F36	Igual a P8.
+F36	Fonograma smꜣ. Em smꜣ ("unir, juntar").
 F37	Determinativo ou logograma em ỉꜣt ("costas, dorso"). Determinativo em psd ("costas").
 F38	Determinativo em psd ("costas").
 F39	Determinativo e logograma em ỉmꜣḫ ("espinha dorsal" e "veneração").
 F40	Fonograma ꜣw.
 F41	Determinativo em psd ("costas").
-F42	Igual a D13.
+F42	Fonograma spr. Em spr ("chegar, apelar"); determinativo ou logograma em spr ("costela").
 F43	Determinativo em sḥpt ("costelas").
 F44	Fonograma ỉwꜥ, ỉsw. Em ỉwꜥ ("herdar"), sỉw ("trocar").
 F45	Determinativo ou logograma em dỉt ("vulva, vaca").
-F46	Igual a F49.
+F46	Determinativo ou logograma em ḳꜣb ("intestino, meio"). Determinativo em pẖr ("dar a volta, circular").
 F47	Igual a F46.
 F48	Igual a F46.
 F49	Igual a F46.
@@ -294,7 +294,7 @@ I2	Determinativo ou logograma de štyw ("tartaruga").
 I3	Determinativo ou logograma de crocodilo: msḥ ("crocodilo"), ꜣd ("agressivo"). Logograma de ỉty ("soberano"), quando reduplicado.
 I4	Determinativo de sbk ("Sobek").
 I5	Determinativo em sꜣḳ ("juntar, reunir").
-I6	Igual a Aa4.
+I6	Fonograma km. Em km ("negro, preto") e kmt ("a Terra Negra", o Egito).
 I7	Determinativo em ḥḳt ("Heket"). Logograma de wḥm ꜥnḫ ("repetição da vida").
 I8	Determinativo de ḥfnr ("girino"). Logograma de ḥfn ("100.000").
 I9	Fonograma f. Determinativo em ỉt ("pai").
@@ -316,7 +316,7 @@ L2	Logograma de bỉty ("rei do Baixo Egito").
 L3	Determinativo em ꜥff ("mosca").
 L4	Determinativo em snḥm ("gafanhoto").
 L5	Determinativo de spꜣ ("centopeia").
-L6	Igual a N33.
+L6	Fonograma ḫꜣ. Em ḫꜣwt ("mesa de oferendas").
 L7	Determinativo e logograma em srḳt ("Serket").
 M1	Fonograma ỉmꜣ. Determinativo de nhwt, mnw ("árvores").
 M2	Fonograma ḥn. Em ḥnỉ ("junco"), ḥnw ("vaso"). Determinativo em ỉs ("tumba").
@@ -352,21 +352,21 @@ M31	Determinativo em rd ("crescer").
 M32	Igual a M31.
 M33	Logograma em ỉt ("cevada, grão").
 M34	Determinativo ou logograma em btỉ ("trigo emmer").
-M35	Igual a X1.
-M36	Igual a U30.
+M35	Determinativo de monte, pilha.
+M36	Fonograma ḏr. Em ḏr ("limite, fim; desde").
 M37	Fonograma ḏr.
 M38	Determinativo em mḥꜥ ("linho"), dmꜣ ("atar junto").
 M39	Determinativo em rnpt ("legumes, vegetais").
-M40	Igual a P11.
+M40	Fonograma ỉs. Em ỉs ("tumba") e ỉst ("tripulação, equipe").
 M41	Determinativo em ꜥš ("cedro").
 M42	Fonograma wn. Em wnm ("comer"), ḥwn ("ser jovem").
 M43	Determinativo ou logograma em ỉrp ("vinho").
 M44	Determinativo de spd ("afiado").
-N1	Igual a N39.
+N1	Logograma de pt ("céu"). Determinativo de céu, em cima; em ḥry ("superior").
 N2	Determinativo ou logograma de grḥ ("noite").
 N3	Igual a N2.
 N4	Determinativo ou logograma de šnyt ("chuva"), ỉꜣdt ("orvalho").
-N5	Igual a Aa1.
+N5	Logograma de rꜥ ("sol, Rá"), hrw ("dia") e sw ("dia", em datas). Determinativo de sol, dia, tempo.
 N6	Determinativo ou logograma em rꜥ ("sol, Rá").
 N7	Determinativo de ẖrt-hrw ("curso do dia").
 N8	Fonograma wbn. Determinativo ou logograma de ꜣḫw ("luz do sol"), psḏ ("brilhar"), wbn ("nascer, surgir").
@@ -384,7 +384,7 @@ N19	Logograma em ꜣḫt ("horizonte"), ḥrw-ꜣḫty ("Horakhty").
 N20	Fonograma wḏb. Em wḏb ("margem"). Determinativo em ḥꜣb-sd ("Festa Sed").
 N21	Logograma em ỉdb ("margem"), ỉdbwy ("as duas margens").
 N22	Determinativo em ꜥḥt ("campo"), sḫt ("campo").
-N23	Igual a O45.
+N23	Determinativo de terra, sobretudo terra irrigada. Logograma de gbb ("Geb").
 N24	Determinativo ou logograma em spꜣt ("nomo", província).
 N25	Logograma em ḫꜣst ("terra estrangeira, região montanhosa").
 N26	Fonograma ḏw ("montanha").
@@ -432,13 +432,13 @@ O26	Determinativo ou logograma em wḏ ("estela").
 O27	Determinativo em ḫꜣ ("repartição"), ḫꜣwy ("noite").
 O28	Fonograma ỉwn. Em ỉwnw ("Heliópolis"), ỉwn ("coluna").
 O29	Fonograma ꜥꜣ. Em ꜥꜣ ("grande").
-O30	Igual a F45.
+O30	Determinativo ou logograma em sḫnt ("suporte, pilar").
 O31	Determinativo em ꜥꜣ ("porta"), sn, wn ("abrir").
 O32	Determinativo em sbꜣ ("porta"), sbḫt ("portal").
 O33	Determinativo em srḫ ("serekh, fachada de palácio").
 O34	Fonograma s. Em s ("tranca").
 O35	Fonograma s. Em sbỉ ("ir", "perecer"), ms ("trazer").
-O36	Igual a V29.
+O36	Determinativo de muro. Logograma de ỉnb ("muro").
 O37	Determinativo em whn ("derrubar"), gsꜣ ("inclinar").
 O38	Logograma em ḳnbt ("tribunal, canto, magistrados").
 O39	Determinativo em ỉnr ("pedra"), dbnỉ ("deben", peso), ḏbt ("tijolo").
@@ -449,7 +449,7 @@ O44	Logograma em ỉꜣt ("posto, cargo").
 O45	Determinativo ou logograma em ỉpt ("harém").
 O46	Igual a O45.
 O47	Logograma em nḫn ("Hieracômpolis").
-O48	Igual a S10.
+O48	Variante de O47. Logograma de nḫn ("Hieracômpolis").
 O49	Logograma em nỉwt ("cidade").
 O50	Fonograma sp. Em sp ("ocasião, vez, evento"), sp sn ("duas vezes").
 O51	Determinativo ou logograma em šnwt ("celeiro").
@@ -466,7 +466,7 @@ P10	Determinativo em ḥmw ("remo de governo"), ḥmy ("timoneiro").
 P11	Determinativo em mnỉt ("poste de amarração").
 Q1	Fonograma st, ws. Em st ("assento, lugar"), wsỉr ("Osíris"), ḥtm ("perecer").
 Q2	Fonograma ws. Em wsỉr ("Osíris").
-Q3	Igual a O47.
+Q3	Fonograma p.
 Q4	Determinativo em wrs ("apoio de cabeça").
 Q5	Determinativo em hn ("caixa"), ꜥfdt ("arca").
 Q6	Determinativo ou logograma em ḳrs ("sepultar"), ḳrsw ("sarcófago").
@@ -506,7 +506,7 @@ S7	Determinativo ou logograma em ḫprš ("coroa azul").
 S8	Determinativo ou logograma em ꜣtf ("coroa atef").
 S9	Determinativo ou logograma em šwty ("dupla pluma").
 S10	Fonograma mḏḥ. Em mḏḥ ("faixa, fita de cabeça").
-S11	Igual a F38.
+S11	Fonograma wsḫ. Determinativo ou logograma em wsḫ ("colar largo").
 S12	Determinativo ou logograma em nbw ("ouro"), ḥḏ ("prata").
 S13	Fonograma nb.
 S14	Logograma em ḥḏ ("prata").
@@ -519,7 +519,7 @@ S20	Logograma em ḫtm ("selo").
 S21	Determinativo em ỉwꜥw, ꜥꜥw, sšw ("anel").
 S22	Fonograma sṯ. Determinativo ou logograma em tꜣ-wr ("bombordo").
 S23	Fonograma dmḏ. Em dmḏ ("unir").
-S24	Igual a T11.
+S24	Fonograma ṯs. Em ṯs ("atar, nó"); logograma de ṯst ("nó, vértebra").
 S25	Logograma em ỉꜥꜣw ("guia").
 S26	Determinativo ou logograma em šndyt ("avental, saiote").
 S27	Determinativo ou logograma em mnḫt ("vestimenta").
@@ -532,7 +532,7 @@ S33	Logograma em ṯbt ("sandália"), ṯbw ("sandaleiro").
 S34	Fonograma ꜥnḫ. Em ꜥnḫ ("viver"), ꜥnḫ ("correia de sandália").
 S35	Logograma em šwt ("sombra").
 S36	Igual a S35.
-S37	Igual a R16.
+S37	Determinativo ou logograma em ḫw ("flabelo, leque").
 S38	Fonograma ḥḳꜣ. O cetro heqa (o cajado curvo); em ḥḳꜣ (“governante, governar”).
 S39	Fonograma ꜥwt. Em ꜥwt ("rebanho").
 S40	Fonograma wꜣs. O cetro uás, símbolo de domínio e bem-estar; em wꜣs (“domínio”).
@@ -549,7 +549,7 @@ T5	Fonograma ḥḏ.
 T6	Fonograma ḥḏḏ.
 T7	Determinativo em mỉbt, mỉnb ("machado"), mdḥ ("desbastar, talhar").
 T8	Fonograma tp. Em tpy ("primeiro, chefe, sobre").
-T9	Igual a F32.
+T9	Fonograma pḏ. Determinativo ou logograma em pḏt ("arco").
 T10	Igual a T9.
 T11	Fonograma swn. Em swn ("perecer"), swnt ("médico").
 T12	Fonograma rwd/rwḏ. Em rwd ("duro, firme"). Logograma em dꜣr ("subjugar").
@@ -559,9 +559,9 @@ T15	Igual a T14.
 T16	Determinativo em ḫpš ("cimitarra").
 T17	Determinativo ou logograma em wrrt ("carro de guerra").
 T18	Fonograma šms. Em šms ("seguir, acompanhar").
-T19	Igual a R11.
+T19	Fonograma ḳs. Em ḳs ("osso"); determinativo em ḳrs ("sepultar").
 T20	Igual a T19.
-T21	Igual a U21.
+T21	Fonograma wꜥ. Em wꜥ ("um").
 T22	Fonograma sn. Em sn ("irmão"), sn ("cheirar").
 T23	Igual a T22.
 T24	Fonograma ꜥḥ/ỉḥ. Em ỉḥ ("rede").
@@ -575,7 +575,7 @@ T31	Fonograma sšm. Em sšm ("guiar, conduzir").
 T32	Fonograma sšm. Em sšm ("guiar, conduzir").
 T33	Logograma em sšm ("açougueiro").
 T34	Fonograma nm. Em nm ("faca"), ḫnms ("amigo").
-T35	Igual a U32.
+T35	Fonograma nm. Determinativo ou logograma em nm ("faca de açougueiro").
 U1	Fonograma mꜣ. Em mꜣꜣ ("ver"), ꜣsḫ ("ceifar").
 U2	Igual a U1.
 U3	Fonograma mꜣ. Em mꜣꜣ ("ver").
@@ -591,9 +591,9 @@ U12	Logograma em ḥḳꜣt ("medida heqat").
 U13	Fonograma šnꜥ. Em šnꜥ ("repelir"). Fonograma hb. Em hb ("arar").
 U14	Fonograma šnꜥ. Em šnꜥ ("repelir").
 U15	Fonograma tm. Em tm ("estar completo"), ḥtm ("perecer").
-U16	Igual a O31.
+U16	Determinativo ou logograma em bỉꜣ ("maravilha, prodígio"). Determinativo de trenó.
 U17	Fonograma grg. Em grg ("estabelecer; armar laço"), grg ("falsidade, mentira").
-U18	Igual a F18.
+U18	Variante de U17. Fonograma grg. Em grg ("fundar, estabelecer").
 U19	Fonograma nw. Em nw ("este").
 U20	Igual a U19.
 U21	Fonograma stp/sṯp. Em stp ("escolher").
@@ -601,7 +601,7 @@ U22	Determinativo em mnḫ ("eficiente"), mnḫ ("entalhar").
 U23	Fonograma mr. Em mr ("doente"), smr ("amigo, cortesão"). Fonograma ꜣb. Em ꜣbỉ ("desejar").
 U24	Logograma em ḥmt ("ofício, arte").
 U25	Igual a U24.
-U26	Igual a U25.
+U26	Determinativo ou logograma em wbꜣ ("abrir, perfurar").
 U27	Igual a U26.
 U28	Fonograma ḏꜣ. Em ꜥnḫ(.w) (w)ḏꜣ snb ("que ele viva, prospere e tenha saúde", v.p.s.).
 U29	Igual a U28.
@@ -611,7 +611,7 @@ U32	Determinativo em smn ("pressionar"), smn ("estabelecer").
 U33	Fonograma tỉ.
 U34	Fonograma ḫsf. Em ḫsf ("repelir").
 U35	Fonograma ḫsf.
-U36	Igual a M13.
+U36	Fonograma ḥm. Em ḥm ("majestade") e ḥm-nṯr ("servo do deus", sacerdote).
 U37	Determinativo em ẖꜥḳ ("barbear, rapar").
 U38	Determinativo ou logograma em mḫꜣt ("balança").
 U39	Determinativo em wsṯt ("poste"), wṯs, ṯsỉ ("erguer, levantar").
@@ -633,25 +633,25 @@ V13	Fonograma ṯ.
 V14	Igual a V13.
 V15	Fonograma ỉṯ. Em ỉṯỉ ("tomar, apoderar-se").
 V16	Fonograma sꜣ. Em sꜣ ("proteção").
-V17	Igual a V39.
+V17	Logograma de sꜣ ("proteção"). Variante de V16.
 V18	Igual a V17.
-V19	Igual a Aa3.
+V19	Determinativo em ḫꜣr ("saco", medida), tmꜣ ("esteira") e mḏt ("estábulo").
 V20	Fonograma mḏ. Em mḏwt ("estábulos"), mḏ ("10").
 V21	Fonograma mḏ.
 V22	Fonograma mḥ. Em mḥ ("encher").
-V23	Igual a O34.
+V23	Variante de V22. Fonograma mḥ. Em mḥ ("encher") e mḥ ("côvado").
 V24	Fonograma wḏ. Em wḏ ("ordenar, decreto").
-V25	Igual a U34.
+V25	Variante de V24. Fonograma wḏ. Em wḏ ("ordenar, decreto").
 V26	Fonograma ꜥd/ꜥḏ. Em ꜥd ("bom estado").
 V27	Igual a V26.
 V28	Fonograma ḥ.
 V29	Fonograma wꜣḥ, sk.
 V30	Fonograma nb. Um cesto; em nb (“senhor”) e nb (“todo, cada”).
 V31	Fonograma k.
-V32	Igual a R4.
-V33	Igual a V8.
+V32	Determinativo em gꜣwt ("trouxa, fardo") e gꜣw ("falta, carência"). Fonograma msn.
+V33	Determinativo em ꜥrf ("embrulhar"), sṯỉ ("perfume") e šs ("linho"). Logograma de sšrw ("grão").
 V34	Igual a V33.
-V35	Igual a F51.
+V35	Variante de V33. Determinativo de linho, embrulho.
 V36	Fonograma ḥn. Em ḥnt ("ocupação").
 V37	Determinativo ou logograma em ỉdr ("atadura, atar"), ỉdr ("rebanho").
 V38	Determinativo em wt ("atadura").
@@ -668,7 +668,7 @@ W9	Fonograma ẖnm.
 W10	Fonograma ḥnw. Em ḥnwt ("senhora"). Determinativo ou logograma em wsḫ ("largo").
 W11	Fonograma g. Determinativo ou logograma em nst ("trono").
 W12	Igual a W11.
-W13	Igual a N42.
+W13	Determinativo ou logograma em dšrt ("vaso vermelho, cerâmica vermelha").
 W14	Fonograma ḥs. Em ḥst ("jarro de água").
 W15	Determinativo ou logograma em ḳbb, ḳbḥ ("esfriar; libação").
 W16	Igual a W15.
@@ -684,7 +684,7 @@ W25	Fonograma ỉn. Em ỉnỉ ("buscar, trazer").
 X1	Fonograma t. Logograma em t ("pão").
 X2	Determinativo de pão. Em t ("pão"). Logograma em ḏḥwty ("Tot").
 X3	Igual a X2.
-X4	Igual a N16.
+X4	Determinativo de pão, alimento; em palavras com sn (de snw, "oferendas de alimento").
 X5	Determinativo em ꜥḳw ("provisões").
 X6	Determinativo em pꜣt ("pão, bolo").
 X7	Determinativo em snw ("oferendas"). Quando duplicado, wnm ("comer").
@@ -702,12 +702,12 @@ Z2	Determinativo de pluralidade.
 Z3	Igual a Z2.
 Z4	Determinativo de dualidade.
 Z5	Substituto de sinais complexos ou perigosos, e de figuras humanas.
-Z6	Igual a T7.
+Z6	Substituto hierático de A13 e A14. Determinativo de morte, inimigo.
 Z7	Fonograma w.
 Z8	Determinativo de redondo.
 Z9	Fonograma swꜣ. Em swꜣ ("passar").
 Z10	Igual a Z9.
-Z11	Igual a M44.
+Z11	Fonograma ỉm. Em ỉmỉ ("que está em"). Variante de M42.
 Aa1	Fonograma ḫ.
 Aa2	Determinativo de tumores ou condições corporais.
 Aa3	Igual a Aa2.
@@ -715,10 +715,10 @@ Aa4	Variante de W10a.
 Aa5	Fonograma ḥp.
 Aa6	Determinativo em tmꜣ ("esteira").
 Aa7	Determinativo em sḳr ("golpear, abater").
-Aa8	Igual a V27.
+Aa8	Fonograma ḳn. Em ḳnỉ ("valente, capaz"); determinativo em spꜣt ("distrito, propriedade").
 Aa9	Determinativo em ḫwd ("rico").
 Aa10	Determinativo em drf ("escrita").
-Aa11	Igual a Aa14.
+Aa11	Fonograma mꜣꜥ. Em mꜣꜥ ("verdadeiro, justo").
 Aa12	Igual a Aa11.
 Aa13	Fonograma ỉm, m.
 Aa14	Fonograma ỉm, m.
@@ -736,5 +736,5 @@ Aa26	Determinativo em sbỉ ("rebelar-se, rebelde").
 Aa27	Fonograma nḏ. Em nḏ ("perguntar, indagar").
 Aa28	Fonograma ḳd. Em ḳd ("construir").
 Aa29	Igual a Aa28.
-Aa30	Igual a F31.
+Aa30	Determinativo ou logograma em ẖkr ("adornar; ornamento").
 Aa31	Igual a Aa30.

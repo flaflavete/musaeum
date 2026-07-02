@@ -55,7 +55,7 @@ A53	D	Det. mummy, statue, likeness, form.
 A54	D	Det. dead.
 A55	D	Det. sḏr “lie down,” dead.
 A59	D	Det. drive off.
-B1	D	Det. woman, name. Sometimes for A1 1st sing. pronoun – i
+B1	D	Determinative of woman, names of women. Variant of A1 for the first person singular when the speaker is a woman.
 B2	D	Det. pregnant
 B3	ID	Det. and Ideo. msi “give birth, bear.”
 B4	ID	Use as B3.
@@ -98,7 +98,7 @@ D17	ID	Det. or Ideo. for tit “figure, image.”
 D18	ID	Det. or Ideo. for msḏr “ear.”
 D19	ID	Det. or Ideo. for fnd “nose.” Det. sn “smell,” rš “rejoice.”
 D20	ID	Use as D19
-D21		T31
+D21	PI	Phonogram r. Logogram for r (“mouth”).
 D22	I	Ideo. for rwy “2/3.”
 D23	I	Ideo. for ḫmt rw “3/4.”
 D24	ID	Det. or Ideo. for spt “lip.” Mistakenly used a F42.
@@ -208,22 +208,22 @@ F30	P	Phono. šd. In šdi “draw forth,” šdw “water skin.”
 F31	P	Phono. ms. In msi “give birth.”
 F32	PI	Phono. ẖ. Ideo. in ẖt “belly, body.”
 F33	PID	Phono. sd. Det. and Ideo in sd “tail.”
-F34		W21
+F34	ID	Logogram for ỉb (“heart, mind”). Determinative in ḥꜣty (“heart”).
 F35	P	Phono. nfr. In nfr “good, beautiful.”
-F36		P8
+F36	P	Phonogram smꜣ. In smꜣ (“unite, join”).
 F37	ID	Det. or Ideo. in i3t “back.” Det. in psd “back.”
 F38	D	Det. in psd “back.”
 F39	ID	Det. and Ideo. in im3ḫ “spine” and “honor.”
 F40	P	Phono. 3w.
 F41	D	Det. in psd “back.”
-F42		D13
+F42	PID	Phonogram spr. In spr (“arrive, appeal”); determinative or logogram in spr (“rib”).
 F43	D	Det. in sḥpt “ribs.”
 F44	P	Phono. iwʿ, isw. In iwʿ inherit,” siw “exchange.”
 F45	ID	Det. or Ideo. in dit “vulva, cow.”
-F46		F49
-F47		Use as F46.
-F48		Use as F46.
-F49		Use as F46.
+F46	ID	Determinative or logogram in ḳꜣb (“intestine, midst”). Determinative in pẖr (“go around, turn”).
+F47	ID	Use as F46.
+F48	ID	Use as F46.
+F49	ID	Use as F46.
 F50	P	Phono. spḫr, “write, copy.”
 F51	PD	Phono. is, ist, ws. Det. ḥʿ “flesh,” iwf “meat.”
 F52	D	Det. in ḥs “excrement.”
@@ -294,7 +294,7 @@ I2	ID	Det. or Ideo. for štyw “turtle.”
 I3	ID	Det. or Ideo. for crocodile. ex. msḥ “crocodile,” 3d “agressive.” Ideo. ity “sovereign,” when reduplicated
 I4	D	Det. sbk “Sobek.”
 I5	D	Det. in s3q “collect, gather.”
-I6		Aa4
+I6	P	Phonogram km. In km (“black”) and kmt (“the Black Land”, Egypt).
 I7	ID	Det. in ḥqt “Heqet.” Ideo. wḥm ʿnḫ “repeating life.”
 I8	ID	Det. ḥfnr “tadpole.” Ideo. ḥfn “100,000.”
 I9	PD	Phono. f. Det. in it “father.”
@@ -316,7 +316,7 @@ L2	I	Ideo. for bity “King of Lower Egypt.”
 L3	D	Det. in ʿff “fly.”
 L4	D	Det. in snḥm “locust.”
 L5	D	Det. sp3 “centipede.”
-L6		N33
+L6	P	Phonogram ḫꜣ. In ḫꜣwt (“offering table”).
 L7	ID	Det. and Ideo. in srqt “Selket.”
 M1	PD	Phono. im3. Det. nhwt, mnw “trees.”
 M2	PD	Phono. ḥn. In ḥni “rush,” ḥnw “vessel.” Det. in is “tomb.”
@@ -352,21 +352,21 @@ M31	D	Det. in rd “grow.”
 M32	D	Use as M31
 M33	I	Ideo. in it “barley, corn.”
 M34	ID	Det. or Ideo. in bti “emmer.”
-M35		X1
-M36		U30
+M35	D	Determinative of heap.
+M36	P	Phonogram ḏr. In ḏr (“limit, end; since”).
 M37	P	Phono. ḏr.
 M38	D	Det. in mḥʿ “flax,” dm3 “bind together.”
 M39	D	Det. in rnpt “vegetables.”
-M40		P11
+M40	P	Phonogram ỉs. In ỉs (“tomb”) and ỉst (“crew, gang”).
 M41	D	Det. in ʿš “cedar.”
 M42	P	Phono. wn. In wnm “eat,” ḥwn “be young.”
 M43	ID	Det. or Ideo. in irp “wine.”
 M44	D	Det. spd “sharp.”
-N1		N39
+N1	ID	Logogram for pt (“sky, heaven”). Determinative of sky, above; in ḥry (“upper”).
 N2	ID	Det. or Ideo. grḥ “night.”
 N3	ID	Use as N2.
 N4	ID	Det. or Ideo. šnyt “rain,” i3dt “dew.”
-N5		Aa1
+N5	ID	Logogram for rꜥ (“sun, Re”), hrw (“day”) and sw (“day”, in dates). Determinative of sun, day, time.
 N6	ID	Det. or ideo in rʿ “sun, Re.”
 N7	D	Det. ẖrt-hrw “daytime.”
 N8	PID	Phono. wbn. Det. or Ideo. 3ḫw “sunshine,” psḏ “shine,” wbn “rise.”
@@ -384,7 +384,7 @@ N19	I	Ideo. in 3ḫt “horizon,” ḥrw-3ḫty “Horakhty.”
 N20	PD	Phono. wḏb. In wḏb “shore.” Det. in ḥ3b-sd “Sed Festival.”
 N21	I	Ideo. in idb “bank,” idbwy “two banks.”
 N22	D	Det. in ʿḥt “field,” sḫt “field.”
-N23		O45
+N23	ID	Determinative of land, especially irrigated land. Logogram for gbb (“Geb”).
 N24	ID	Det. or Ideo. in sp3t “nome.”
 N25	I	Ideo. in ḫ3st “foreign land, hill country.”
 N26	P	Phono. ḏw “mountain.”
@@ -432,13 +432,13 @@ O26	ID	Det. or Ideo. in wḏ “stela.”
 O27	D	Det. in ḫ3 “office,” ḫ3wy “night.”
 O28	P	Phono iwn. In iwnw “Heliopolis,” iwn “column.”
 O29	P	Phono. ʿ3. In ʿ3 “great.”
-O30		F45
+O30	ID	Determinative or logogram in sḫnt (“support, pillar”).
 O31	D	Det. in ʿ3 “door,” sn, wn “open.”
 O32	D	Det. in sb3 “door,” sbḫt “gateway.”
 O33	D	Det. in srḫ “banner.”
 O34	P	Phono. s. In s “bolt.”
 O35	P	Phono. s. In sbi “go,” “perish,” ms “bring.”
-O36		V29
+O36	ID	Determinative of wall. Logogram for ỉnb (“wall”).
 O37	D	Det. in whn “overthrow,” gs3 “tilt.”
 O38	I	Ideo. in qnbt “court, corner, magistrates.”
 O39	D	Det. in inr “stone,” dbni “deben (weight),” ḏbt “brick.”
@@ -449,7 +449,7 @@ O44	I	Ideo. in i3t “rank, office.”
 O45	ID	Det. or Ideo. in ipt “harim.”
 O46	ID	Use as O45.
 O47	I	Ideo. in nḫn “Hierakonpolis.”
-O48		S10
+O48	I	Variant of O47. Logogram for nḫn (“Hierakonpolis”).
 O49	I	Ideo. in niwt “town.”
 O50	P	Phono. sp. In sp “occasion, time, event,” sp sn “two times.”
 O51	ID	Det. or Ideo. in šnwt “granary.”
@@ -466,7 +466,7 @@ P10	D	Det. in ḥmw “steering oar,” ḥmy “steerer”
 P11	D	Det. in mnit “mooring post.”
 Q1	P	Phono. st, ws. In st “seat, place,” wsir “Osiris,” ḥtm “perish.”
 Q2	P	Phono. ws. In wsir “Osiris.”
-Q3		O47
+Q3	P	Phonogram p.
 Q4	D	Det. in wrs “headrest.”
 Q5	D	Det. in hn “box,” ʿfdt “chest.”
 Q6	ID	Det. or Ideo. in qrs “bury,” qrsw “coffin.”
@@ -478,7 +478,7 @@ R4	P	Phono. ḥtp. In ḥtp “altar, rest, be pleased.”
 R5	ID	Det. or Ideo. in k3p “fumigate.”
 R6	ID	Use as R5
 R7	ID	Det. or Ideo. in sntr “incense.”
-R8		Logogram and phonogram nṯr (“god”). A pole wrapped in cloth, an emblem of divinity.
+R8	PI	Logogram and phonogram nṯr (“god”). A pole wrapped in cloth, an emblem of divinity.
 R9	ID	Det. or Ideo. in bd “incense.”
 R10	I	Ideo. in ẖrt-nṯr “necropolis.”
 R11	P	Phono. ḏd. In ḏd “stable,” ḏdw “Busiris.”
@@ -506,7 +506,7 @@ S7	ID	Det. or Ideo. in ḫprš “blue crown.”
 S8	ID	Det. or Ideo. in 3tf “atef crown.”
 S9	ID	Det. or Ideo. in šwty “double plumes.”
 S10	P	Phono mḏḥ. In mḏḥ “fillet.”
-S11		F38
+S11	PID	Phonogram wsḫ. Determinative or logogram in wsḫ (“broad collar”).
 S12	ID	Det. or Ideo. in nbw “gold,” ḥḏ “silver.”
 S13	P	Phono. nb.
 S14	I	Ideo. in ḥḏ “silver.”
@@ -519,7 +519,7 @@ S20	I	Ideo. in ḫtm “seal.”
 S21	D	Det. in iwʿw, ʿʿw, sšw “ring.”
 S22	PID	Phono. sṯ. Det. or Ideo. in t3-wr “port.”
 S23	P	Phono dmḏ. In dmḏ “unite.”
-S24		T11
+S24	PI	Phonogram ṯs. In ṯs (“tie, knot”); logogram for ṯst (“knot, vertebra”).
 S25	I	Ideo. in iʿ3w “guide.”
 S26	ID	Det. or Ideo. in šndyt “apron.”
 S27	ID	Det. or Ideo. in mnḫt “clothing.”
@@ -532,10 +532,10 @@ S33	I	Ideo. in ṯbt “sandal,” ṯbw “sandal maker.”
 S34	P	Phono. ʿnḫ. In ʿnḫ “live,” ʿnḫ “sandal strap.”
 S35	I	Ideo. in šwt “shadow, shade.”
 S36	I	Use as S35
-S37		R16
-S38		Phonogram ḥḳꜣ. The heqa-scepter (the crook); in ḥḳꜣ (“ruler, to rule”).
+S37	ID	Determinative or logogram in ḫw (“fan”).
+S38	P	Phonogram ḥḳꜣ. The heqa-scepter (the crook); in ḥḳꜣ (“ruler, to rule”).
 S39	P	Phono ʿwt. In ʿwt “flock.”
-S40		Phonogram wꜣs. The was-scepter, a symbol of dominion and well-being; in wꜣs (“dominion”).
+S40	P	Phonogram wꜣs. The was-scepter, a symbol of dominion and well-being; in wꜣs (“dominion”).
 S41	P	Phono. ḏʿm. In ḏʿm “fine gold.”
 S42	PID	Phono. sḫm. In sḫm “have power,” sḫm “scepter.” Det. or Ideo. in ḫrp “manage, at head.”
 S43	P	Phono. md. In mdw “speak.”
@@ -549,8 +549,8 @@ T5	P	Phono. ḥḏ.
 T6	P	Phono. ḥḏḏ.
 T7	D	Det. in mibt, minb “axe,” mdḥ “hew.”
 T8	P	Phono. tp. In tpy “first, chief, upon.”
-T9		F32
-T10		Use as T9
+T9	PID	Phonogram pḏ. Determinative or logogram in pḏt (“bow”).
+T10	PID	Use as T9
 T11	P	Phono. swn. In swn “perish,” swnt “physician.”
 T12	PI	Phono. rwd/rwḏ. In rwd “hard, firm.” Ideo. in d3r “subdue.”
 T13	P	Phono. rs. In rs “wakeful.”
@@ -559,9 +559,9 @@ T15	ID	Use as T14
 T16	D	Det. in ḫpš “scimitar.”
 T17	ID	Det. or Ideo. in wrrt “chariot.”
 T18	P	Phono. šms. In šms “follow, accompany.”
-T19		R11
-T20		Use as T19
-T21		U21
+T19	PD	Phonogram ḳs. In ḳs (“bone”); determinative in ḳrs (“bury”).
+T20	PD	Use as T19
+T21	P	Phonogram wꜥ. In wꜥ (“one”).
 T22	P	Phono. sn. In sn “brother,” sn “smell.”
 T23	P	Use as T22
 T24	P	Phono. ʿḥ/iḥ . In iḥ “net.”
@@ -575,7 +575,7 @@ T31	P	Phono sšm. In sšm “guide, lead.”
 T32	P	Phono sšm. In sšm “guide, lead.”
 T33	I	Ideo. in sšm “butcher.”
 T34	P	Phono. nm. In nm “knife,” ḫnms “friend.”
-T35		U32
+T35	PID	Phonogram nm. Determinative or logogram in nm (“butcher's knife”).
 U1	P	Phono. m3. In m33 “see,” 3sḫ “reap.”
 U2	P	Use as U1.
 U3	P	Phono. m3. In m33 “see.”
@@ -591,9 +591,9 @@ U12	I	Ideo. in ḥq3t “hekat measure.”
 U13	P	Phono. šnʿ. In šnʿ “repel.” Phono hb. In hb “plow.”
 U14	P	Phono. šnʿ. In šnʿ “repel.”
 U15	P	Phono. tm. In tm “be complete,” ḥtm “perish.”
-U16		O31
+U16	ID	Determinative or logogram in bỉꜣ (“marvel, wonder”). Determinative of sled.
 U17	P	Phono. grg. In grg “establish, snare,” grg “falshood, lie.”
-U18		F18
+U18	P	Variant of U17. Phonogram grg. In grg (“found, establish”).
 U19	P	Phono. nw. In nw “this.”
 U20	P	Use as U19
 U21	P	Phono. stp/sṯp. In stp “choose.”
@@ -601,8 +601,8 @@ U22	D	Det. in mnḫ “efficient,” mnḫ “carve.”
 U23	P	Phono. mr. In mr “ill,” smr “friend.” Phono. 3b. In 3bi “desire.”
 U24	I	Ideo. in ḥmt “craft, art.”
 U25	I	Use as U24.
-U26		U25
-U27		Use as U26.
+U26	ID	Determinative or logogram in wbꜣ (“open up, drill”).
+U27	ID	Use as U26.
 U28	P	Phono. ḏ3. In ʿnḫ.(w) (w)ḏ3 snb “may he live, be prosperous, be healthy.” (L.P.H.)
 U29	P	Use as U28.
 U30	P	Phono. t3. In št3 “hot,” t3 “mysterious.
@@ -611,7 +611,7 @@ U32	D	Det. in smn “press down,” smn “establish.”
 U33	P	Phono. ti.
 U34	P	Phono. ḫsf. In ḫsf “repel.”
 U35	P	Phono. ḫsf.
-U36		M13
+U36	P	Phonogram ḥm. In ḥm (“majesty”) and ḥm-nṯr (“god's servant”, priest).
 U37	D	Det. in ẖʿq “shave.”
 U38	ID	Det. or Ideo. in mḫ3t “scale.”
 U39	D	Det. in wsṯt “post,” wṯs, ṯsi “raise, lift.”
@@ -633,25 +633,25 @@ V13	P	Phono. ṯ.
 V14		Use as last.
 V15	P	Phono. iṯ. In iṯi “seize.”
 V16	P	Phono. s3. In s3 “protection.”
-V17		V39
-V18		Use as V17
-V19		Aa3
+V17	I	Logogram for sꜣ (“protection”). Variant of V16.
+V18	I	Use as V17
+V19	D	Determinative in ḫꜣr (“sack”, a measure), tmꜣ (“mat”) and mḏt (“stable”).
 V20	P	Phono. mḏ. In mḏwt “stables,” mḏ “10.”
 V21	P	Phono. mḏ.
 V22	P	Phono. mḥ. In mḥ “fill.”
-V23		O34
+V23	P	Variant of V22. Phonogram mḥ. In mḥ (“fill”) and mḥ (“cubit”).
 V24	P	Phono. wḏ. In wḏ “command, decree.”
-V25		U34
+V25	P	Variant of V24. Phonogram wḏ. In wḏ (“command, decree”).
 V26	P	Phono. ʿd/ʿḏ. In ʿd “good condition.”
 V27	P	Use as V26.
 V28	P	Phono. ḥ.
 V29	P	Phono. w3ḥ, sk.
-V30		Phonogram nb. A basket; in nb (“lord”) and nb (“all, every”).
+V30	P	Phonogram nb. A basket; in nb (“lord”) and nb (“all, every”).
 V31	P	Phono k.
-V32		R4
-V33		V8
-V34		Use as V33.
-V35		F51
+V32	PD	Determinative in gꜣwt (“bundle”) and gꜣw (“lack, absence”). Phonogram msn.
+V33	ID	Determinative in ꜥrf (“enclose, pack”), sṯỉ (“scent”) and šs (“linen”). Logogram for sšrw (“grain”).
+V34	ID	Use as V33.
+V35	D	Variant of V33. Determinative of linen, packing.
 V36	P	Phono. ḥn. In ḥnt “occupation.”
 V37	ID	Det. or Ideo. in idr “bandage, bind,” idr “herd.”
 V38	D	Det. in wt “bandage.”
@@ -668,7 +668,7 @@ W9	P	Phono. ẖnm.
 W10	PID	Phono. ḥnw. In ḥnwt “mistress.” Det. or Ideo. in wsḫ “wide.”
 W11	PID	Phono. g. Det. or Ideo. in nst “throne.”
 W12	PID	Use as W11.
-W13		N42
+W13	ID	Determinative or logogram in dšrt (“red pot, red ware”).
 W14	P	Phono. ḥs. In ḥst “water jar.”
 W15	ID	Det. or Ideo. in qbb, qbḥ “cool, water.”
 W16	ID	Use as W15.
@@ -684,7 +684,7 @@ W25	P	Phono. in. In ini “fetch, bring.”
 X1	PI	Phono. t. Ideo. in t “bread.”
 X2	ID	Det. of bread. In t “bread.” Ideo. in dḥwty “Thoth.”
 X3	ID	Use as X2
-X4		N16
+X4	D	Determinative of bread, food; in words with sn (from snw, “food offerings”).
 X5	D	Det. in ʿqw “provisions.”
 X6	D	Det. in p3t “loaf.”
 X7	D	Det. in snw “offerings.” When doubled, wnm “eat.”
@@ -702,12 +702,12 @@ Z2	D	Det. of plurality.
 Z3	D	Same as Z2.
 Z4	D	Det. Duality
 Z5		Replacement for complex or dangerous signs, human figures.
-Z6		T7
+Z6	D	Hieratic substitute for A13 and A14. Determinative of death, enemy.
 Z7	P	Phono. w.
 Z8	D	Det. of round.
 Z9	P	Phono. sw3. In sw3 “pass.”
 Z10	P	Use as Z9.
-Z11		M44
+Z11	P	Phonogram ỉm. In ỉmỉ (“who is in”). Variant of M42.
 Aa1	P	Phono. ḫ.
 Aa2	D	Det. in bodily growths or conditions.
 Aa3	D	Use as Aa2.
@@ -715,11 +715,11 @@ Aa4	P	Var. of W10a.
 Aa5	P	Phono. ḥp.
 Aa6	D	Det. in tm3 “mat.”
 Aa7	D	Det. in sqr “smite.”
-Aa8		V27
+Aa8	PD	Phonogram ḳn. In ḳnỉ (“brave, capable”); determinative in spꜣt (“district, estate”).
 Aa9	D	Det. in ḫwd “rich.”
 Aa10	D	Det. in drf “writing.”
-Aa11		Aa14
-Aa12		Use as Aa11.
+Aa11	P	Phonogram mꜣꜥ. In mꜣꜥ (“true, correct”).
+Aa12	P	Use as Aa11.
 Aa13	P	Phono. im, m.
 Aa14	P	Phono. im, m.
 Aa15	P	Phono. im, m.
@@ -736,5 +736,5 @@ Aa26	D	Det. in sbi “rebel.”
 Aa27	P	Phono. nḏ. In nḏ “ask, inquire.”
 Aa28	P	Phono. qd. In qd “build.”
 Aa29	P	Use as Aa28.
-Aa30		F31
-Aa31		Use as Aa30.
+Aa30	ID	Determinative or logogram in ẖkr (“adorn; ornament”).
+Aa31	ID	Use as Aa30.

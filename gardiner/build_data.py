@@ -129,15 +129,61 @@ def derive_phon(sid, xl, phon_orig, seen=None):
     return ""
 
 
-# Sinais cujas linhas no Excel estao desalinhadas: a coluna Details traz so um
-# codigo de sinal (ex.: R8 -> "T3"), virando um "Igual a X" sem explicacao. Damos
-# a eles a explicacao correta a mao (Gardiner/Faulkner). O PT correspondente vive
-# em source/details_pt.tsv. Ver a nota "conferir minuciosamente" (memoria).
+# Sinais cujas linhas no Excel estao desalinhadas: as colunas Description e
+# Details trazem so codigos de outros sinais (ex.: D21 -> "T30"/"T31"), virando
+# um "Igual a X" falso. Damos a eles a explicacao correta a mao, conferida na
+# sign list do Allen (fontes/Allen-MiddleEgyptian.pdf, pp. 425-450) e no
+# Gardiner/Faulkner. O PT correspondente vive em source/details_pt.tsv.
+# A funcao (P/I/D) desses sinais e derivada deste texto, nao do Excel.
 DETAILS_OVERRIDE_EN = {
-    "R8":  "Logogram and phonogram nṯr (“god”). A pole wrapped in cloth, an emblem of divinity.",
-    "S40": "Phonogram wꜣs. The was-scepter, a symbol of dominion and well-being; in wꜣs (“dominion”).",
-    "S38": "Phonogram ḥḳꜣ. The heqa-scepter (the crook); in ḥḳꜣ (“ruler, to rule”).",
-    "V30": "Phonogram nb. A basket; in nb (“lord”) and nb (“all, every”).",
+    # B1 nao e desalinhado: override so para tirar o travessao e completar o texto.
+    "B1":   "Determinative of woman, names of women. Variant of A1 for the first person singular when the speaker is a woman.",
+    "D21":  "Phonogram r. Logogram for r (“mouth”).",
+    "F34":  "Logogram for ỉb (“heart, mind”). Determinative in ḥꜣty (“heart”).",
+    "F36":  "Phonogram smꜣ. In smꜣ (“unite, join”).",
+    "F42":  "Phonogram spr. In spr (“arrive, appeal”); determinative or logogram in spr (“rib”).",
+    "F46":  "Determinative or logogram in ḳꜣb (“intestine, midst”). Determinative in pẖr (“go around, turn”).",
+    "I6":   "Phonogram km. In km (“black”) and kmt (“the Black Land”, Egypt).",
+    "L6":   "Phonogram ḫꜣ. In ḫꜣwt (“offering table”).",
+    "M35":  "Determinative of heap.",
+    "M36":  "Phonogram ḏr. In ḏr (“limit, end; since”).",
+    "M40":  "Phonogram ỉs. In ỉs (“tomb”) and ỉst (“crew, gang”).",
+    "N1":   "Logogram for pt (“sky, heaven”). Determinative of sky, above; in ḥry (“upper”).",
+    "N5":   "Logogram for rꜥ (“sun, Re”), hrw (“day”) and sw (“day”, in dates). Determinative of sun, day, time.",
+    "N23":  "Determinative of land, especially irrigated land. Logogram for gbb (“Geb”).",
+    "O30":  "Determinative or logogram in sḫnt (“support, pillar”).",
+    "O36":  "Determinative of wall. Logogram for ỉnb (“wall”).",
+    "O48":  "Variant of O47. Logogram for nḫn (“Hierakonpolis”).",
+    "Q3":   "Phonogram p.",
+    "R8":   "Logogram and phonogram nṯr (“god”). A pole wrapped in cloth, an emblem of divinity.",
+    "S11":  "Phonogram wsḫ. Determinative or logogram in wsḫ (“broad collar”).",
+    "S24":  "Phonogram ṯs. In ṯs (“tie, knot”); logogram for ṯst (“knot, vertebra”).",
+    "S37":  "Determinative or logogram in ḫw (“fan”).",
+    "S38":  "Phonogram ḥḳꜣ. The heqa-scepter (the crook); in ḥḳꜣ (“ruler, to rule”).",
+    "S40":  "Phonogram wꜣs. The was-scepter, a symbol of dominion and well-being; in wꜣs (“dominion”).",
+    "T9":   "Phonogram pḏ. Determinative or logogram in pḏt (“bow”).",
+    "T19":  "Phonogram ḳs. In ḳs (“bone”); determinative in ḳrs (“bury”).",
+    "T21":  "Phonogram wꜥ. In wꜥ (“one”).",
+    "T35":  "Phonogram nm. Determinative or logogram in nm (“butcher's knife”).",
+    "U16":  "Determinative or logogram in bỉꜣ (“marvel, wonder”). Determinative of sled.",
+    "U18":  "Variant of U17. Phonogram grg. In grg (“found, establish”).",
+    "U26":  "Determinative or logogram in wbꜣ (“open up, drill”).",
+    "U36":  "Phonogram ḥm. In ḥm (“majesty”) and ḥm-nṯr (“god's servant”, priest).",
+    "V17":  "Logogram for sꜣ (“protection”). Variant of V16.",
+    "V19":  "Determinative in ḫꜣr (“sack”, a measure), tmꜣ (“mat”) and mḏt (“stable”).",
+    "V23":  "Variant of V22. Phonogram mḥ. In mḥ (“fill”) and mḥ (“cubit”).",
+    "V25":  "Variant of V24. Phonogram wḏ. In wḏ (“command, decree”).",
+    "V30":  "Phonogram nb. A basket; in nb (“lord”) and nb (“all, every”).",
+    "V32":  "Determinative in gꜣwt (“bundle”) and gꜣw (“lack, absence”). Phonogram msn.",
+    "V33":  "Determinative in ꜥrf (“enclose, pack”), sṯỉ (“scent”) and šs (“linen”). Logogram for sšrw (“grain”).",
+    "V35":  "Variant of V33. Determinative of linen, packing.",
+    "W13":  "Determinative or logogram in dšrt (“red pot, red ware”).",
+    "X4":   "Determinative of bread, food; in words with sn (from snw, “food offerings”).",
+    "Z6":   "Hieratic substitute for A13 and A14. Determinative of death, enemy.",
+    "Z11":  "Phonogram ỉm. In ỉmỉ (“who is in”). Variant of M42.",
+    "Aa8":  "Phonogram ḳn. In ḳnỉ (“brave, capable”); determinative in spꜣt (“district, estate”).",
+    "Aa11": "Phonogram mꜣꜥ. In mꜣꜥ (“true, correct”).",
+    "Aa30": "Determinative or logogram in ẖkr (“adorn; ornament”).",
 }
 
 
@@ -171,6 +217,17 @@ def main():
     en = load_existing("gardiner_data_en.js")
 
     func_by_id = {sid: resolve_func(sid, xl) for sid in xl}
+    # Nos sinais corrigidos a mao, a linha do Excel esta desalinhada e nao
+    # diz nada util: a funcao vem do proprio texto do override.
+    for sid, txt in DETAILS_OVERRIDE_EN.items():
+        func_by_id[sid] = detect_funcs(txt)
+    # Variantes ("Use as X" / "Var. of X") de um sinal corrigido herdam a
+    # funcao dele, que o resolve_func nao encontrou na planilha.
+    for sid in xl:
+        if not func_by_id.get(sid):
+            m = XREF.match(xl[sid]["details"])
+            if m and func_by_id.get(m.group(1)):
+                func_by_id[sid] = func_by_id[m.group(1)]
 
     # Fonema: preserva o valor curado do JS; so quando vazio, deriva da coluna
     # Details do Excel (Phono. X / heranca de variante). Nunca sobrescreve.
