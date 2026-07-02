@@ -44,7 +44,10 @@
 
   /* ── estado ───────────────────────────────────────── */
   var st = { queue: [], card: null, answer: [], done: false, hinted: false,
-             hits: 0, seen: 0, streak: 0, best: 0 };
+             flipping: false, hits: 0, seen: 0, streak: 0, best: 0 };
+
+  var FLIP_MS = 550;
+  var noMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function shuffle(a) {
     a = a.slice();
@@ -100,6 +103,41 @@
     }).join('');
   }
 
+  /* verso da carta: mesma linguagem visual do ícone do Musæum (fundo azul-noite,
+     moldura dourada dupla, pontinhos de canto, halo e a ankh ao centro). Puro
+     ornamento; cores fixas de propósito para o verso parecer carta nos dois temas. */
+  function cardBack() {
+    return '' +
+      '<svg class="deck-back-svg" viewBox="0 0 260 364" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' +
+        '<defs>' +
+          '<radialGradient id="dbBg" cx="50%" cy="44%" r="80%">' +
+            '<stop offset="0%" stop-color="#2a3d57"/><stop offset="55%" stop-color="#1b2a3d"/><stop offset="100%" stop-color="#0d1623"/>' +
+          '</radialGradient>' +
+          '<linearGradient id="dbGold" x1="0" y1="0" x2="1" y2="1">' +
+            '<stop offset="0%" stop-color="#f4d97a"/><stop offset="45%" stop-color="#c9a646"/><stop offset="100%" stop-color="#8a6a1e"/>' +
+          '</linearGradient>' +
+          '<radialGradient id="dbHalo" cx="50%" cy="50%" r="46%">' +
+            '<stop offset="0%" stop-color="#c9a646" stop-opacity="0.20"/><stop offset="70%" stop-color="#c9a646" stop-opacity="0.03"/><stop offset="100%" stop-color="#c9a646" stop-opacity="0"/>' +
+          '</radialGradient>' +
+        '</defs>' +
+        '<rect width="260" height="364" fill="url(#dbBg)"/>' +
+        '<rect x="8" y="8" width="244" height="348" rx="13" fill="none" stroke="#c9a646" stroke-opacity="0.32" stroke-width="1.3"/>' +
+        '<rect x="15" y="15" width="230" height="334" rx="10" fill="none" stroke="#c9a646" stroke-opacity="0.14" stroke-width="0.7"/>' +
+        '<circle cx="32" cy="32" r="1.8" fill="#c9a646" fill-opacity="0.55"/>' +
+        '<circle cx="228" cy="32" r="1.8" fill="#c9a646" fill-opacity="0.55"/>' +
+        '<circle cx="32" cy="332" r="1.8" fill="#c9a646" fill-opacity="0.55"/>' +
+        '<circle cx="228" cy="332" r="1.8" fill="#c9a646" fill-opacity="0.55"/>' +
+        '<circle cx="64" cy="70" r="1.1" fill="#c9a646" fill-opacity="0.35"/>' +
+        '<circle cx="196" cy="70" r="1.1" fill="#c9a646" fill-opacity="0.35"/>' +
+        '<circle cx="64" cy="294" r="1.1" fill="#c9a646" fill-opacity="0.35"/>' +
+        '<circle cx="196" cy="294" r="1.1" fill="#c9a646" fill-opacity="0.35"/>' +
+        '<circle cx="130" cy="182" r="96" fill="url(#dbHalo)"/>' +
+        '<g transform="translate(130 182) scale(0.52) translate(-256 -272)">' +
+          '<path d="M 256 80 C 318 80 360 128 360 186 C 360 236 328 276 282 288 L 380 288 C 392 288 400 296 400 306 C 400 316 392 324 380 324 L 274 324 L 274 444 C 274 456 266 464 256 464 C 246 464 238 456 238 444 L 238 324 L 132 324 C 120 324 112 316 112 306 C 112 296 120 288 132 288 L 230 288 C 184 276 152 236 152 186 C 152 128 194 80 256 80 Z M 256 120 C 218 120 192 150 192 186 C 192 222 218 252 256 252 C 294 252 320 222 320 186 C 320 150 294 120 256 120 Z" fill="url(#dbGold)" fill-rule="evenodd"/>' +
+        '</g>' +
+      '</svg>';
+  }
+
   function keyboard() {
     return ALPHA.map(function (c) {
       return '<button class="deck-key" data-ch="' + esc(c) + '" aria-label="' + esc(T('letra ', 'letter ') + c) + '">' + c + '</button>';
@@ -116,8 +154,8 @@
         '<div class="deck-intro">' +
           '<span class="deck-intro-glyph" aria-hidden="true">𓄿</span>' +
           '<h1>' + T('Baralho de sinais', 'Sign deck') + '</h1>' +
-          '<p>' + T('Aparece um sinal: toque as letras para escrever o fonema que ele representa. As 24 letras bastam para soletrar qualquer leitura.',
-                    'A sign appears: tap the letters to write the phoneme it represents. The 24 letters are enough to spell any reading.') + '</p>' +
+          '<p>' + T('Toque as letras para escrever o fonema que ele representa. As 24 letras bastam para soletrar qualquer leitura.',
+                    'Tap the letters to write the phoneme it represents. The 24 letters are enough to spell any reading.') + '</p>' +
         '</div>' +
 
         '<div class="deck-levels" role="group" aria-label="' + esc(T('Dificuldade', 'Difficulty')) + '">' + levelBtns() + '</div>' +
@@ -125,7 +163,12 @@
         '<div class="deck-score" id="deckScore" aria-live="off"></div>' +
 
         '<div class="deck-card">' +
-          '<span class="deck-glyph" id="deckGlyph" aria-hidden="true"></span>' +
+          '<div class="deck-flip" id="deckFlip">' +
+            '<div class="deck-face deck-front">' +
+              '<span class="deck-glyph" id="deckGlyph" aria-hidden="true"></span>' +
+            '</div>' +
+            '<div class="deck-face deck-back" aria-hidden="true">' + cardBack() + '</div>' +
+          '</div>' +
         '</div>' +
 
         '<div class="deck-answer" id="deckAnswer" aria-live="polite"></div>' +
@@ -230,10 +273,22 @@
     var correct = st.answer.join('') === (st.card[2] || '').toLowerCase();
     finish(correct, false);
   }
-  function next() {
+  function swapCard() {
     drawNext();
     feedback(null);
     paint();
+  }
+  function next() {
+    if (st.flipping) return;
+    var flip = el('deckFlip');
+    if (!flip || noMotion) { swapCard(); return; }
+    st.flipping = true;
+    flip.classList.add('flip');                 // vira mostrando o verso
+    setTimeout(function () {
+      swapCard();                               // troca a frente com o verso à mostra
+      flip.classList.remove('flip');            // desvira, revelando a carta nova
+      setTimeout(function () { st.flipping = false; }, FLIP_MS);
+    }, FLIP_MS);
   }
 
   /* ── ligações ─────────────────────────────────────── */
