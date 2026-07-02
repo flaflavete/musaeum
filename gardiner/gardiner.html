@@ -11,6 +11,7 @@
 <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('musaeum-theme') || 'dark');</script>
 <script src="./gardiner_data.js"></script>
 <script src="./gardiner_data_en.js"></script>
+<script src="../tour.js"></script>
 <style>
 
 @font-face {
@@ -99,7 +100,7 @@ header {
   letter-spacing: 0.06em;
 }
 
-#btn-lang {
+#btn-lang, #btn-tour {
   font-family: 'Cinzel', serif;
   font-size: 11px;
   font-weight: 700;
@@ -114,7 +115,8 @@ header {
   white-space: nowrap;
   flex-shrink: 0;
 }
-#btn-lang:hover { border-color: var(--gold); color: var(--gold); }
+#btn-tour { padding: 6px 11px; }
+#btn-lang:hover, #btn-tour:hover { border-color: var(--gold); color: var(--gold); }
 
 .header-back {
   font-family: 'Cinzel', serif;
@@ -656,6 +658,7 @@ header {
       <div class="logo-sub">Egípcio Médio Clássico · Lista de Sinais</div>
     </div>
   </div>
+  <button id="btn-tour" title="Guia da ferramenta" aria-label="Guia da ferramenta">?</button>
   <button id="btn-lang" title="Alternar idioma das descrições">PT · EN</button>
   <div class="search-wrap">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -1053,6 +1056,45 @@ document.getElementById('btn-lang').addEventListener('click', function() {
     : 'Search sign, phoneme, description…';
   refresh();
 });
+
+/* ── Tour guiado da ferramenta ─────────────────────────────── */
+function gardinerTourSteps() {
+  var pt = lang === 'pt';
+  return [
+    { selector: '.search-wrap', title: pt ? 'Buscar' : 'Search',
+      body: pt ? 'Procure qualquer sinal pelo código de Gardiner (ex.: <b>G17</b>), pelo fonema ou por uma palavra da descrição.'
+               : 'Look up any sign by its Gardiner code (e.g. <b>G17</b>), by phoneme, or by a word in the description.' },
+    { selector: '#sidebar', before: function () { mobSwitchPanel('sidebar'); }, title: pt ? 'Categorias' : 'Categories',
+      body: pt ? 'Ou explore por tema: pessoas, aves, plantas, construções… são as 26 categorias de Gardiner, de A a Aa.'
+               : 'Or browse by theme: people, birds, plants, buildings… the 26 Gardiner categories, from A to Aa.' },
+    { selector: '.sign', before: function () { mobSwitchPanel('main'); }, title: pt ? 'Os sinais' : 'The signs',
+      body: pt ? 'Cada cartão traz o glifo, o código, o fonema e a descrição. Os selos de cor marcam a função: <b>fonograma</b>, <b>logograma</b> ou <b>determinativo</b>. Clique num sinal para ver os detalhes e adicioná-lo à sua palavra.'
+               : 'Each card shows the glyph, the code, the phoneme, and the description. The coloured seals mark the function: <b>phonogram</b>, <b>logogram</b>, or <b>determinative</b>. Click a sign to see its details and add it to your word.' },
+    { selector: '#hier-display', before: function () { mobSwitchPanel('builder'); }, title: pt ? 'Monte palavras' : 'Build words',
+      body: pt ? 'Os sinais que você adiciona aparecem aqui, formando uma palavra em hieróglifos.'
+               : 'The signs you add appear here, forming a word in hieroglyphs.' },
+    { selector: '#translit-auto', before: function () { mobSwitchPanel('builder'); }, title: pt ? 'Transliteração automática' : 'Automatic transliteration',
+      body: pt ? 'A transliteração da palavra aparece sozinha, e você pode ajustá-la no campo logo abaixo.'
+               : 'The transliteration of the word appears on its own, and you can adjust it in the field just below.' },
+    { selector: '#btn-vega', before: function () { mobSwitchPanel('builder'); }, title: pt ? 'Dicionário VÉgA' : 'VÉgA dictionary',
+      body: pt ? 'Montou uma palavra? Copie a transliteração e pesquise no VÉgA, um dicionário científico do egípcio antigo, num clique.'
+               : 'Built a word? Copy the transliteration and look it up in VÉgA, a scholarly dictionary of ancient Egyptian, in one click.' },
+  ];
+}
+function startGardinerTour() {
+  if (window.Tour && Tour.isActive()) return;
+  var pt = lang === 'pt';
+  Tour.start(gardinerTourSteps(), {
+    labels: pt ? { skip: 'Pular', prev: 'Voltar', next: 'Avançar', done: 'Concluir' }
+               : { skip: 'Skip', prev: 'Back', next: 'Next', done: 'Done' },
+    onClose: function () { mobSwitchPanel('main'); }
+  });
+}
+document.getElementById('btn-tour').addEventListener('click', startGardinerTour);
+if (!localStorage.getItem('musaeum-gardiner-tour')) {
+  localStorage.setItem('musaeum-gardiner-tour', '1');
+  setTimeout(startGardinerTour, 700);
+}
 </script>
 </body>
 </html>

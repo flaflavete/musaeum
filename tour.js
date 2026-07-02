@@ -161,6 +161,8 @@ html[data-theme="light"] .tour-btn:focus-visible { outline-color: #5c480e; }
   // ── Render de um passo ────────────────────────────────────────────────────
   function _render() {
     const step = _steps[_idx];
+    // Gancho opcional por passo: p.ex. trocar de aba no mobile antes de medir.
+    if (typeof step.before === 'function') step.before();
     const target = document.querySelector(step.selector);
     const root = document.getElementById('tour-root');
     if (!target || !root) { _finish(); return; }
