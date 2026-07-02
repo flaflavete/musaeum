@@ -270,6 +270,7 @@ window.CURSO_LICOES = [
         blocks: [
           { kind: 'p', html: { pt: 'Poucos em número, mas de altíssima frequência: aparecem em palavras centrais da cultura egípcia, como "vida", "deus", "belo" e "tornar-se".', en: 'Few in number, but very high in frequency: they appear in words central to Egyptian culture, such as "life", "god", "beautiful", and "to become".' } },
           { kind: 'siggrid', ids: ['F35', 'S34', 'L1', 'R4', 'R8', 'S40', 'N14', 'F12', 'S38'] },
+          { kind: 'callout', variant: 'azul', html: { pt: '<strong>E quatro consoantes?</strong> Praticamente não existe sinal puramente fonético de quatro. As leituras mais longas que você encontra (pr-ḥḏ "tesouro", ḥtp-dỉ-nsw na fórmula de oferenda) são logogramas: um sinal que vale uma palavra inteira, não um bloco de sons. Por isso o esqueleto fonético para nos trilíteros.', en: '<strong>What about four consonants?</strong> There is essentially no purely phonetic four-consonant sign. The longer readings you meet (pr-ḥḏ "treasury", ḥtp-dỉ-nsw in the offering formula) are logograms: a single sign standing for a whole word, not a block of sounds. That is why the phonetic skeleton stops at triliterals.' } },
         ],
       },
       {
