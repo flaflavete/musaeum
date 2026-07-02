@@ -352,11 +352,11 @@ window.CURSO_LICOES = [
     glyph: '𓂋',
     ready: true,
     kicker: { pt: 'Lição 4 · Vocabulário', en: 'Lesson 4 · Vocabulary' },
-    title:  { pt: 'Montar palavras reais', en: 'Building real words' },
+    title:  { pt: 'Escrevendo em egípcio antigo', en: 'Writing in ancient Egyptian' },
     desc:   { pt: 'Combine os sinais no construtor para ler palavras frequentes do egípcio clássico.', en: 'Combine signs in the builder to read frequent words of classical Egyptian.' },
     dur:    { pt: '~30 min', en: '~30 min' }, type: { pt: 'Construtor', en: 'Builder' },
     badge:  { pt: 'Novo', en: 'New' }, badgeClass: 'badge-new',
-    intro:  { pt: 'Hora de juntar tudo. Você já conhece unilíteros, bilíteros, trilíteros e os complementos. Agora vai montar palavras reais, sinal por sinal, e ver a leitura aparecer.', en: 'Time to put it all together. You already know uniliterals, biliterals, triliterals, and complements. Now you will build real words, sign by sign, and watch the reading appear.' },
+    intro:  { pt: 'Hora de juntar tudo. Você já conhece unilíteros, bilíteros, trilíteros e os complementos. Agora vai escrever palavras em egípcio, sinal por sinal, e ver a leitura aparecer.', en: 'Time to put it all together. You already know uniliterals, biliterals, triliterals, and complements. Now you will write words in Egyptian, sign by sign, and watch the reading appear.' },
     sections: [
       {
         title: { pt: 'Como uma palavra se monta', en: 'How a word is built' },
@@ -380,7 +380,7 @@ window.CURSO_LICOES = [
               { meaning: { pt: 'vida', en: 'life' }, translit: 'ꜥnḫ', answer: ['S34', 'N35', 'Aa1'],
                 note: { pt: '𓋹 é ꜥnḫ; 𓈖 (n) e 𓐍 (ḫ) repetem sons que ele já carrega. Uma das palavras mais escritas do Egito.', en: '𓋹 is ꜥnḫ; 𓈖 (n) and 𓐍 (ḫ) repeat sounds it already carries. One of the most written words in Egypt.' } },
             ] },
-          { kind: 'p', html: { pt: 'Montou as quatro? Então você já lê o esqueleto de palavras reais. É exatamente assim que os escribas combinavam os sinais, só que com um repertório maior e, quase sempre, um determinativo fechando a palavra.', en: 'Built all four? Then you can already read the skeleton of real words. This is exactly how the scribes combined signs, only with a larger repertoire and, almost always, a determinative closing the word.' } },
+          { kind: 'p', html: { pt: 'Montou as quatro? Então você já lê o esqueleto de palavras de verdade. É exatamente assim que os escribas combinavam os sinais, só que com um repertório maior e, quase sempre, um determinativo fechando a palavra.', en: 'Built all four? Then you can already read the skeleton of real words. This is exactly how the scribes combined signs, only with a larger repertoire and, almost always, a determinative closing the word.' } },
         ],
       },
     ],
