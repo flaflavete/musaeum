@@ -10,6 +10,13 @@
 // já vivem dentro do curso e da própria lista de Gardiner.
 const APRENDER_TOOLS = [
   {
+    glyph: '𓄿',
+    emoji: false,
+    title: { pt: 'Baralho de sinais', en: 'Sign deck' },
+    desc:  { pt: 'Pratique a leitura: soletre o fonema de cada sinal', en: 'Practice reading: spell out each sign\'s phoneme' },
+    href:  'curso/baralho.html',
+  },
+  {
     glyph: '𓏟',
     emoji: false,
     title: { pt: 'Lista de Gardiner', en: 'Gardiner List' },

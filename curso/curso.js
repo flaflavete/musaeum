@@ -477,6 +477,11 @@
     var progLabel = lang === 'pt' ? 'Progresso' : 'Progress';
 
     var tools = '' +
+      '<a class="ferr-card" href="baralho.html">' +
+        '<span class="ferr-glyph" aria-hidden="true">𓄿</span>' +
+        '<div class="ferr-info"><strong>' + (lang === 'pt' ? 'Baralho de sinais' : 'Sign deck') + '</strong>' +
+        '<span>' + (lang === 'pt' ? 'Pratique a leitura: soletre o fonema de cada sinal' : 'Practice reading: spell out each sign\'s phoneme') + '</span></div>' +
+      '</a>' +
       '<a class="ferr-card" href="../gardiner/gardiner.html">' +
         '<span class="ferr-glyph" aria-hidden="true">𓏟</span>' +
         '<div class="ferr-info"><strong>' + (lang === 'pt' ? 'Lista de Gardiner' : 'Gardiner Sign List') + '</strong>' +
