@@ -458,9 +458,9 @@ window.CURSO_LICOES = [
     ready: true,
     kicker: { pt: 'Lição 6 · Leitura', en: 'Lesson 6 · Reading' },
     title:  { pt: 'Ler um texto mágico', en: 'Reading a magical text' },
-    desc:   { pt: 'A leitura final: juntar tudo e ler a fórmula de oferenda, palavra a palavra.', en: 'The final reading: put it all together and read the offering formula, word by word.' },
+    desc:   { pt: 'Juntar tudo e ler a fórmula de oferenda, palavra a palavra.', en: 'Put it all together and read the offering formula, word by word.' },
     dur:    { pt: '~25 min', en: '~25 min' }, type: { pt: 'Leitura', en: 'Reading' },
-    badge:  { pt: 'Final', en: 'Final' }, badgeClass: 'badge-final',
+    badge:  { pt: 'Novo', en: 'New' }, badgeClass: 'badge-new',
     intro:  { pt: 'Chegou a hora de ler de verdade. Você vai encarar a fórmula de oferenda, o texto mais comum de todo o Egito antigo, e vai entender cada sinal.', en: 'Time to read for real. You will take on the offering formula, the most common text in all of ancient Egypt, and understand every sign.' },
     sections: [
       {
