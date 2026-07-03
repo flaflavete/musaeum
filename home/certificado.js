@@ -1,22 +1,28 @@
-// Certificado de leitura: desbloqueia quando todas as histórias publicadas
-// têm screen === 'final'. Desenhado em canvas 800x560 e exportável em PNG.
+// Certificado de leitura: desbloqueia quando todas as lições da introdução aos
+// hieróglifos estão concluídas (mesmo save do curso: musaeum-hieroglyphs).
+// Desenhado em canvas 800x560 e exportável em PNG.
 
-  // Histórias publicadas (derivado do catálogo): todas precisam estar
-  // concluídas para desbloquear o certificado.
-  const AVAILABLE_STORIES = MUSAEUM_CATALOG.filter(s => s.available).map(s => s.storyId);
+  // Lições publicadas (fonte: window.CURSO_LICOES, curso/licoes.js). Todas as
+  // lições prontas precisam estar concluídas para desbloquear o certificado.
+  function readyLessons() {
+    return (window.CURSO_LICOES || []).filter(l => l.ready);
+  }
 
-  function allStoriesComplete() {
-    return AVAILABLE_STORIES.every(id => {
-      const s = storeGet(id);
-      return s && s.screen === 'final';
-    });
+  function allLessonsComplete() {
+    const lessons = readyLessons();
+    if (!lessons.length) return false;
+    let done = {};
+    try { done = JSON.parse(localStorage.getItem('musaeum-hieroglyphs') || '{}').done || {}; }
+    catch (e) { done = {}; }
+    return lessons.every(l => done[l.id]);
   }
 
   function renderCertificateSection() {
-    const wrap = document.getElementById('certColecaoWrap');
+    const wrap = document.getElementById('certWrap');
     if (!wrap) return;
     const t = i18n[currentLang];
-    const unlocked = allStoriesComplete();
+    const unlocked = allLessonsComplete();
+    document.getElementById('certSectionTitle').textContent = t.certSectionTitle;
     document.getElementById('certLockedWrap').style.display  = unlocked ? 'none' : '';
     document.getElementById('certLockedMsg').textContent     = t.certLocked;
     document.getElementById('certUnlockMsg').textContent     = t.certUnlock;
@@ -24,6 +30,15 @@
     document.getElementById('certOpenBtn').textContent       = t.certOpenBtn;
     document.getElementById('certDownloadBtn').textContent   = t.certDownload;
     document.getElementById('certCloseBtn').textContent      = t.certClose;
+
+    // Nome que aparece no certificado (editável a qualquer momento)
+    const nameLine = document.getElementById('certNameLine');
+    if (nameLine) {
+      const name = getPlayerName();
+      nameLine.innerHTML = name
+        ? `<span class="cert-name-label">${t.certNameLabel}:</span> <span class="cert-name-val">${escapeHtml(name)}</span> <button class="edit-name-btn" onclick="openNameModal()" aria-label="${t.editNameLabel}" title="${t.editNameLabel}">✎</button>`
+        : `<button class="edit-name-btn cert-add-name" onclick="openNameModal()" aria-label="${t.addNameLabel}" title="${t.addNameLabel}">${t.addNameLabel}</button>`;
+    }
   }
 
   function showCertificate() {
@@ -139,20 +154,14 @@
       ctx.fillStyle = INK_DIM;
       ctx.fillText(t.certCompleted, W/2, 246);
 
-      // Historias
-      const certStories = MUSAEUM_CATALOG.filter(s => s.available);
-      let storyY = 282 - (certStories.length - 1) * 14;
-      for (const s of certStories) {
-        ctx.font = '20px "Noto Sans Egyptian Hieroglyphs", sans-serif';
-        ctx.fillStyle = GOLD_L;
-        ctx.textAlign = 'right';
-        ctx.fillText(s.cardGlyph, W/2 - 12, storyY);
-        ctx.font = '500 16px Cinzel, serif';
-        ctx.fillStyle = INK_SOFT;
-        ctx.textAlign = 'left';
-        ctx.fillText(lang === 'pt' ? s.titlePt : s.titleEn, W/2 + 18, storyY);
-        storyY += 28;
-      }
+      // Assunto: a introducao aos hieroglifos
+      ctx.textAlign = 'center';
+      ctx.font = '24px "Noto Sans Egyptian Hieroglyphs", sans-serif';
+      ctx.fillStyle = GOLD_L;
+      ctx.fillText('𓂀', W/2, 290);
+      ctx.font = '500 18px Cinzel, serif';
+      ctx.fillStyle = INK_SOFT;
+      ctx.fillText(t.certSubjectDraw, W/2, 320);
 
       line(340);
 

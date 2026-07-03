@@ -50,7 +50,7 @@
     document.getElementById('footerContent').innerText = t.footer;
     document.getElementById('footerPrivacy').innerText = t.footerPrivacy;
     document.getElementById('footerInstSupport').innerText = t.instSupport;
-    renderCollection();
+    renderCardTreasures();
     renderGeoSection();
     renderCertificateSection();
     renderAprenderHub();

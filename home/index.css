@@ -487,6 +487,46 @@
   .card-glyph { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 48px; color: var(--gold); margin-bottom: 16px; line-height: 1; }
   .card-title { font-family: 'Cinzel', 'Gentium Plus', serif; font-size: 20px; font-weight: 700; color: var(--papyrus); margin-bottom: 10px; }
   .card-desc { font-size: 15px; color: var(--papyrus-soft); line-height: 1.5; }
+  /* Tesouros da história, dentro do próprio card. Earned mostra o emoji;
+     locked fica como um espaço marcado (o tesouro ainda por descobrir). */
+  .card-treasures {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(201, 166, 70, 0.12);
+  }
+  .card-treasure {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1;
+    border: 1px solid rgba(201, 166, 70, 0.12);
+    background: rgba(201, 166, 70, 0.04);
+  }
+  .card-treasure.earned {
+    background: rgba(201, 166, 70, 0.14);
+    border-color: rgba(201, 166, 70, 0.32);
+  }
+  .card-treasure.locked {
+    border-style: dashed;
+    border-color: rgba(201, 166, 70, 0.16);
+  }
+  .card-treasure.award {
+    width: auto;
+    padding: 0 12px;
+    gap: 8px;
+  }
+  /* Convite para a introdução aos hieróglifos, ao fim da grade da Biblioteca */
+  .library-invite {
+    margin-top: 40px;
+  }
+  .library-invite .codex-invite { max-width: 480px; }
 
   footer {
     margin-top: 80px;
@@ -1000,6 +1040,57 @@
     color: var(--papyrus-dim);
   }
   .col-award.earned .col-award-desc { color: var(--papyrus-soft); }
+  /* Convite para a introdução aos hieróglifos (aba Hieróglifos) */
+  .codex-invite {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: 420px;
+    margin: 8px auto 0;
+    padding: 16px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(201, 166, 70, 0.22);
+    background: rgba(201, 166, 70, 0.06);
+  }
+  .codex-invite-icon {
+    font-size: 34px;
+    line-height: 1;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+  .codex-invite-title {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .codex-invite-desc {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--papyrus-soft);
+    margin-bottom: 10px;
+  }
+  .codex-invite-btn {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: transparent;
+    border: 1px solid var(--gold-dark);
+    border-radius: 999px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .codex-invite-btn:hover,
+  .codex-invite-btn:focus-visible {
+    background: rgba(201, 166, 70, 0.14);
+    border-color: var(--gold);
+  }
   .collection-empty {
     text-align: center;
     font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
@@ -1285,11 +1376,35 @@
   }
 
   /* ===== CERTIFICADO ===== */
-  .cert-colecao-wrap {
+  .cert-wrap {
     margin-top: 48px;
     padding-top: 36px;
     border-top: 1px solid rgba(201, 166, 70, 0.18);
     text-align: center;
+  }
+  .cert-section-title {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .cert-name-line {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-size: 14px;
+    color: var(--papyrus-dim);
+    margin-bottom: 24px;
+  }
+  .cert-name-line .cert-name-label { letter-spacing: 0.04em; }
+  .cert-name-line .cert-name-val { color: var(--papyrus-soft); font-style: italic; }
+  .cert-add-name {
+    opacity: 0.6;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    text-decoration: underline;
   }
   .cert-modal-panel {
     text-align: center;

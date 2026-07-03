@@ -109,7 +109,6 @@
   <nav class="tabbar" id="tabbar" role="tablist" aria-label="Seções do Musæum">
     <button class="tab active" id="tab-inicio"  role="tab" aria-selected="true"  aria-controls="panel-inicio"  data-tab="inicio"  data-t="tabInicio"  type="button" onclick="showTab('inicio')"></button>
     <button class="tab"        id="tab-mapa"    role="tab" aria-selected="false" aria-controls="panel-mapa"    data-tab="mapa"    data-t="tabMapa"    type="button" tabindex="-1" onclick="showTab('mapa')"></button>
-    <button class="tab"        id="tab-colecao" role="tab" aria-selected="false" aria-controls="panel-colecao" data-tab="colecao" data-t="tabColecao" type="button" tabindex="-1" onclick="showTab('colecao')"></button>
     <button class="tab"        id="tab-aprender" role="tab" aria-selected="false" aria-controls="panel-aprender" data-tab="aprender" data-t="tabAprender" type="button" tabindex="-1" onclick="showTab('aprender')"></button>
   </nav>
 
@@ -119,6 +118,8 @@
       <!-- Cards gerados a partir de MUSAEUM_CATALOG (data/catalogo.js) por buildLibrary() -->
       <div class="library-grid" id="libraryGrid"></div>
     </section>
+
+    <div class="library-invite" id="libraryInvite"></div>
 
     <section class="epigraph" aria-label="Epígrafe">
       <div class="epigraph-label">
@@ -156,27 +157,6 @@
     </div>
   </section>
 
-  <section class="collection-section tab-panel" id="panel-colecao" role="tabpanel" aria-labelledby="tab-colecao" hidden>
-    <div class="panel-heading">
-      <span class="collection-heading" id="collectionHeading"></span>
-      <span class="collection-summary" id="collectionSummary"></span>
-    </div>
-    <div class="panel-body">
-      <div class="collection-player" id="collectionPlayer"></div>
-      <div id="collectionContent"></div>
-    </div>
-    <div class="cert-colecao-wrap" id="certColecaoWrap">
-      <div class="cert-locked-wrap" id="certLockedWrap" style="display:none;">
-        <span class="cert-lock-icon">𓂀</span>
-        <p class="cert-locked-msg" id="certLockedMsg"></p>
-      </div>
-      <div id="certOpenBtnWrap" style="display:none;">
-        <p class="cert-unlock-msg" id="certUnlockMsg"></p>
-        <button class="cert-open-btn" id="certOpenBtn" onclick="showCertificate()"></button>
-      </div>
-    </div>
-  </section>
-
   <section class="tab-panel" id="panel-aprender" role="tabpanel" aria-labelledby="tab-aprender" hidden>
     <div class="aprender-hub">
       <div class="aprender-progress">
@@ -193,6 +173,19 @@
       <div class="aprender-grid" id="aprenderGrid"></div>
       <div class="aprender-section" data-t="aprenderFerrTitle"></div>
       <div class="aprender-tools" id="aprenderTools"></div>
+
+      <div class="cert-wrap" id="certWrap">
+        <div class="cert-section-title" id="certSectionTitle"></div>
+        <div class="cert-name-line" id="certNameLine"></div>
+        <div class="cert-locked-wrap" id="certLockedWrap" style="display:none;">
+          <span class="cert-lock-icon">𓂀</span>
+          <p class="cert-locked-msg" id="certLockedMsg"></p>
+        </div>
+        <div id="certOpenBtnWrap" style="display:none;">
+          <p class="cert-unlock-msg" id="certUnlockMsg"></p>
+          <button class="cert-open-btn" id="certOpenBtn" onclick="showCertificate()"></button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -297,7 +290,6 @@
 <script src="home/onboarding.js"></script>
 <script src="home/abas.js"></script>
 <script src="home/mapa.js"></script>
-<script src="home/colecao.js"></script>
 <script src="home/certificado.js"></script>
 <script src="curso/licoes.js"></script>
 <script src="home/aprender.js"></script>
