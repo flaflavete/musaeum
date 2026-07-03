@@ -123,7 +123,7 @@
         return '<div class="direction-demo">' + b.rows.map(function (r) {
           return '<div class="dir-row">' +
             '<span class="dir-label">' + esc(T(r.label)) + '</span>' +
-            '<span class="dir-glyphs"' + (r.rtl ? ' style="direction:rtl"' : '') + '>' + r.glyphs + '</span>' +
+            '<span class="dir-glyphs' + (r.rtl ? ' rtl' : '') + '">' + r.glyphs + '</span>' +
             '<span class="dir-arrow">' + esc(T(r.arrow)) + '</span>' +
           '</div>';
         }).join('') + '</div>';

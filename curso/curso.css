@@ -372,6 +372,10 @@ body {
 .dir-row { display: flex; align-items: center; gap: 12px; }
 .dir-label { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.08em; color: var(--papyrus-dim); min-width: 110px; }
 .dir-glyphs { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 32px; letter-spacing: 4px; color: var(--papyrus); flex: 1; }
+/* Espelha o grupo: inverte a ordem E o rosto dos sinais, para os sinais
+   olharem para o começo da linha (direita p/ esquerda). Só direction:rtl
+   reordenaria sem virar o rosto, que é justamente a pista que a lição ensina. */
+.dir-glyphs.rtl { display: inline-block; transform: scaleX(-1); transform-origin: center; }
 .dir-arrow { font-size: 13px; color: var(--gold); font-style: italic; }
 
 /* ── GRADE DE SINAIS (do GARDINER_DATA) ──────────────── */

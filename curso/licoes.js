@@ -83,7 +83,7 @@ window.CURSO_LICOES = [
           { kind: 'p', html: { pt: '<strong>Observe os animais e pessoas.</strong> Eles sempre olham para o início da linha. A direção que os rostos encaram é por onde você começa a ler.', en: '<strong>Observe the animals and people.</strong> They always face the beginning of the line. The direction the faces are looking is where you start reading.' } },
           { kind: 'direction', rows: [
             { label: { pt: '← direita p/ esquerda', en: '← right to left' }, glyphs: '𓀀𓂋𓈖', rtl: true, arrow: { pt: '← começar aqui', en: '← start here' } },
-            { label: { pt: '→ esquerda p/ direita', en: '→ left to right' }, glyphs: '𓀁𓂋𓈖', rtl: false, arrow: { pt: 'começar aqui →', en: 'start here →' } },
+            { label: { pt: '→ esquerda p/ direita', en: '→ left to right' }, glyphs: '𓀀𓂋𓈖', rtl: false, arrow: { pt: 'começar aqui →', en: 'start here →' } },
           ] },
           { kind: 'p', html: { pt: 'Seja em textos religiosos e monumentais ou em papiros e textos cotidianos, a direção variava. O importante é seguir <strong>sempre os rostos.</strong>', en: 'Whether in religious and monumental texts or in papyri and everyday texts, the direction varied. The important thing is to always follow <strong>the faces.</strong>' } },
         ],
