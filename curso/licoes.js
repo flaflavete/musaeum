@@ -82,8 +82,8 @@ window.CURSO_LICOES = [
           { kind: 'p', html: { pt: 'Os hieróglifos podem ser escritos da direita para a esquerda, da esquerda para a direita, ou de cima para baixo. Como saber para onde ler?', en: 'Hieroglyphs can be written from right to left, from left to right, or from top to bottom. How do you know which way to read?' } },
           { kind: 'p', html: { pt: '<strong>Observe os animais e pessoas.</strong> Eles sempre olham para o início da linha. A direção que os rostos encaram é por onde você começa a ler.', en: '<strong>Observe the animals and people.</strong> They always face the beginning of the line. The direction the faces are looking is where you start reading.' } },
           { kind: 'direction', rows: [
-            { label: { pt: '← direita p/ esquerda', en: '← right to left' }, glyphs: '𓀀𓂋𓈖', rtl: true, arrow: { pt: '← começar aqui', en: '← start here' } },
-            { label: { pt: '→ esquerda p/ direita', en: '→ left to right' }, glyphs: '𓀀𓂋𓈖', rtl: false, arrow: { pt: 'começar aqui →', en: 'start here →' } },
+            { label: { pt: '← direita p/ esquerda', en: '← right to left' }, glyphs: '𓀀𓂋𓈖', rtl: true, arrow: { pt: '←', en: '←' } },
+            { label: { pt: '→ esquerda p/ direita', en: '→ left to right' }, glyphs: '𓀀𓂋𓈖', rtl: false, arrow: { pt: '→', en: '→' } },
           ] },
           { kind: 'p', html: { pt: 'Seja em textos religiosos e monumentais ou em papiros e textos cotidianos, a direção variava. O importante é seguir <strong>sempre os rostos.</strong>', en: 'Whether in religious and monumental texts or in papyri and everyday texts, the direction varied. The important thing is to always follow <strong>the faces.</strong>' } },
         ],
@@ -107,7 +107,7 @@ window.CURSO_LICOES = [
           { label: { pt: 'Determinativo (classifica a palavra sem som)', en: 'Determinative (classifies the word without sound)' }, correct: true },
           { label: { pt: 'Complemento fonético (reforça a leitura)', en: 'Phonetic complement (reinforces the reading)' }, correct: false },
         ],
-        feedbackOk: { pt: 'Exato! Determinativos não têm som; eles apenas classificam. O sinal de homem sentado 𓀀 é um dos determinativos mais comuns, aparecendo em qualquer palavra relacionada a seres masculinos.', en: 'Exactly! Determinatives have no sound; they only classify. The seated man sign 𓀀 is one of the most common determinatives, appearing in any word related to male beings.' },
+        feedbackOk: { pt: 'Exato! Determinativos não têm som; eles apenas classificam. O sinal de homem sentado 𓀀 é um dos determinativos mais comuns, podendo aparecer em palavras relacionadas a seres masculinos.', en: 'Exactly! Determinatives have no sound; they only classify. The seated man sign 𓀀 is one of the most common determinatives, and can appear in words related to male beings.' },
         feedbackErr: { pt: 'Não desta vez. Quando um sinal aparece sem som ao final de uma palavra para categorizar, ele é um determinativo.', en: 'Not this time. When a sign appears without sound at the end of a word to categorize, it is a determinative.' },
       },
       {
@@ -181,7 +181,7 @@ window.CURSO_LICOES = [
         ],
       },
       {
-        title: { pt: 'Os sinais que não são vogais', en: 'The signs that are not vowels' },
+        title: { pt: 'Parecem vogais, mas não são', en: 'They look like vowels, but they are not' },
         blocks: [
           { kind: 'p', html: { pt: 'Dois sinais costumam confundir: <strong>ꜣ</strong> (𓄿, o abutre) e <strong>ꜥ</strong> (𓂝, o antebraço). Eles parecem a vogal "a", mas são consoantes que o português e o inglês não possuem. Por convenção, ꜣ representa uma consoante fraca (uma oclusão glotal, o pequeno "corte" de voz) e ꜥ um som produzido no fundo da garganta, como o ayin do árabe e do hebraico.', en: 'Two signs often cause confusion: <strong>ꜣ</strong> (𓄿, the vulture) and <strong>ꜥ</strong> (𓂝, the forearm). They look like the vowel "a", but they are consonants that Portuguese and English do not have. By convention, ꜣ stands for a weak consonant (a glottal stop, the small catch in the voice) and ꜥ a sound made deep in the throat, like the ayin of Arabic and Hebrew.' } },
           { kind: 'p', html: { pt: 'Do mesmo modo, <strong>ỉ</strong> (𓇋, o junco) e <strong>w</strong> (𓅱, a codorniz) são semivogais, próximas de "i" e "u". Como as vogais não eram escritas, na leitura moderna inserimos um "e" por convenção e damos a ꜣ e ꜥ um som aproximado de "a", apenas para conseguir pronunciar. Não é a pronúncia original.', en: 'Likewise, <strong>ỉ</strong> (𓇋, the reed) and <strong>w</strong> (𓅱, the quail chick) are semivowels, close to "i" and "u". Since vowels were not written, in modern reading we insert an "e" by convention and give ꜣ and ꜥ an approximate "a" sound, just to be able to pronounce them. This is not the original pronunciation.' } },
