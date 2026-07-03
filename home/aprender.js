@@ -13,7 +13,7 @@ const APRENDER_TOOLS = [
     glyph: '𓄿',
     emoji: false,
     title: { pt: 'Baralho de sinais', en: 'Sign deck' },
-    desc:  { pt: 'Pratique a leitura: soletre o fonema de cada sinal', en: 'Practice reading: spell out each sign\'s phoneme' },
+    desc:  { pt: 'Pratique a leitura e a escrita soletrando o fonema de cada sinal.', en: 'Practice reading and writing by spelling out each sign\'s phoneme.' },
     href:  'curso/baralho.html',
   },
   {

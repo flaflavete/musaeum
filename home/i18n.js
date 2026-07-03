@@ -27,8 +27,13 @@
       aboutMiddle: 'Este projeto quer aproximar você de algumas das histórias mais incríveis escritas no Egito Antigo durante o <strong>Reino Médio</strong> (entre os anos 2055 e 1650 AEC), que foi a época de maior criatividade na literatura egípcia.',
       aboutGoal: 'Cada texto é apresentado como uma história narrada, com curiosidades da arqueologia, desafios para ajudar a entender o conteúdo e um "código" de hieróglifos que você vai descobrindo aos poucos. E se der vontade de ir além da leitura, há uma introdução aos hieróglifos, com lições interativas para reconhecer e ler os sinais, além de um mapa dos lugares citados e ferramentas de prática. A ideia é levar para todo mundo esses textos que muitas vezes só são lidos nas universidades, mantendo o respeito aos originais e explicando como era a vida e a cultura naquela época.',
       aboutBetaNote: 'Versão 1.2, com duas histórias completas e uma introdução aos hieróglifos. Novos textos e recursos continuam sendo adicionados.',
-      aboutMethodTitle: 'Nota sobre o texto',
-      aboutMethod: 'As histórias aqui não são traduções literais: cada uma se apoia nas edições críticas e traduções de referência citadas na bibliografia e foi reescrita para ser lida com prazer, sem trair o sentido do original. Os significados de hieróglifos seguem Gardiner e Faulkner; curiosidades arqueológicas citam sítios e objetos reais, com a fonte nomeável. As datas usam AEC (antes da Era Comum) em vez de a.C., por inclusividade.',
+      aboutMethodTitle: 'Importante',
+      aboutMethod: [
+        'Cada história apresentada se apoia nas edições críticas e traduções de referência citadas na bibliografia e foi reescrita para ser lida com prazer, sem trair o sentido do texto original;',
+        'Os significados de hieróglifos e as lições apresentadas seguem Gardiner, Allen e Faulkner, egiptólogos cujas gramáticas e dicionários fundamentaram o estudo do egípcio clássico;',
+        'As curiosidades arqueológicas citam sítios e objetos reais, com fontes nomeáveis;',
+        'As datas usam AEC (antes da Era Comum) em vez de a.C., por inclusividade.'
+      ],
       aboutCiteTitle: 'Como citar',
       aboutCiteText: 'CORPAS, Flavia Lima. <em>Musæum: biblioteca digital interativa de literatura do Egito Antigo</em>. Zenodo, 2026. DOI: 10.5281/zenodo.20617042.',
       aboutContactTitle: 'Contato',
@@ -147,8 +152,13 @@
       aboutMiddle: 'This project brings you closer to some of the most incredible stories written in Ancient Egypt during the <strong>Middle Kingdom</strong> (between 2055 and 1650 BCE), the period of greatest creativity in Egyptian literature.',
       aboutGoal: 'Each text is presented as a narrated story, with archaeological curiosities, challenges to help you understand the content, and a hieroglyphic "code" that you gradually uncover. And if you feel like going beyond reading, there is an introduction to hieroglyphs, with interactive lessons for recognizing and reading the signs, plus a map of the places mentioned and practice tools. The idea is to bring these texts, usually only read in universities, to everyone, while respecting the originals and explaining what life and culture were like at that time.',
       aboutBetaNote: 'Version 1.2, with two complete stories and an introduction to hieroglyphs. New texts and features keep being added.',
-      aboutMethodTitle: 'A note on the text',
-      aboutMethod: 'The stories here are not literal translations: each one draws on the critical editions and reference translations cited in the bibliography and was rewritten to be read with pleasure, without betraying the meaning of the original. Hieroglyph meanings follow Gardiner and Faulkner; archaeological curiosities cite real sites and objects, with a source that can be named. Dates use BCE (Before the Common Era) instead of BC, for inclusivity.',
+      aboutMethodTitle: 'Important',
+      aboutMethod: [
+        'Each story draws on the critical editions and reference translations cited in the bibliography and was rewritten to be read with pleasure, without betraying the meaning of the original text;',
+        'The hieroglyph meanings and the lessons presented follow Gardiner, Allen and Faulkner, Egyptologists whose grammars and dictionaries underpinned the study of Classical Egyptian;',
+        'The archaeological curiosities cite real sites and objects, with sources that can be named;',
+        'Dates use BCE (Before the Common Era) instead of BC, for inclusivity.'
+      ],
       aboutCiteTitle: 'How to cite',
       aboutCiteText: 'CORPAS, Flavia Lima. <em>Musæum: an interactive digital library of Ancient Egyptian literature</em>. Zenodo, 2026. DOI: 10.5281/zenodo.20617042.',
       aboutContactTitle: 'Contact',
