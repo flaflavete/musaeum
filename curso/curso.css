@@ -306,7 +306,7 @@ body {
   color: var(--gold);
 }
 .glyph-label { font-size: 10px; color: var(--papyrus-dim); margin-top: 6px; display: block; }
-.glyph-phon  { font-family: 'EB Garamond', serif; font-size: 12px; color: var(--terracotta-lt); display: block; margin-top: 2px; font-style: italic; }
+.glyph-phon  { font-family: 'EB Garamond', 'Gentium Plus', serif; font-size: 12px; color: var(--terracotta-lt); display: block; margin-top: 2px; font-style: italic; }
 .glyph-type  { font-size: 9px; padding: 2px 6px; border-radius: 99px; margin-top: 4px; display: inline-block; }
 
 .cartouche {
@@ -347,7 +347,7 @@ body {
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 8px 12px;
-  font-family: 'EB Garamond', serif;
+  font-family: 'EB Garamond', 'Gentium Plus', serif;
   font-size: 13px;
   color: var(--papyrus);
   white-space: nowrap;

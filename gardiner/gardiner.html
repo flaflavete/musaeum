@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<!-- Subset da Gentium Plus só com aleph/ayin egiptológicos (Ꜣ ꜣ Ꜥ ꜥ, U+A722-A725): o iOS não tem esses glifos e mostraria tofu na transliteração. -->
+<link href="https://fonts.googleapis.com/css2?family=Gentium+Plus&text=%EA%9C%A2%EA%9C%A3%EA%9C%A4%EA%9C%A5&display=swap" rel="stylesheet">
 <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('musaeum-theme') || 'dark');</script>
 <script src="./gardiner_data.js"></script>
 <script src="./gardiner_data_en.js"></script>
@@ -53,7 +55,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'EB Garamond', serif;
+  font-family: 'EB Garamond', 'Gentium Plus', serif;
   background: var(--ink);
   color: var(--papyrus);
   height: 100vh;
@@ -150,7 +152,7 @@ header {
   border-radius: 8px;
   padding: 7px 12px 7px 34px;
   color: var(--papyrus);
-  font-family: 'EB Garamond', serif;
+  font-family: 'EB Garamond', 'Gentium Plus', serif;
   font-size: 15px;
   width: 260px;
   outline: none;
@@ -189,7 +191,7 @@ header {
   border-left: 3px solid transparent;
   color: var(--papyrus-soft);
   cursor: pointer;
-  font-family: 'EB Garamond', serif;
+  font-family: 'EB Garamond', 'Gentium Plus', serif;
   font-size: 14px;
   text-align: left;
   transition: background .12s, border-color .12s;
@@ -289,7 +291,7 @@ header {
   margin-top: 2px;
 }
 .ph-tag {
-  font-family: 'EB Garamond', serif;
+  font-family: 'EB Garamond', 'Gentium Plus', serif;
   font-size: 11px;
   font-style: italic;
   color: var(--terracotta-lt);
@@ -327,7 +329,7 @@ header {
 .fn-I { color: var(--gold);          background: rgba(201,166,70,.14); border-color: rgba(201,166,70,.34); }
 .fn-D { color: var(--papyrus-soft);  background: rgba(120,140,170,.14); border-color: rgba(120,140,170,.32); }
 .search-info {
-  font-family: 'EB Garamond', serif;
+  font-family: 'EB Garamond', 'Gentium Plus', serif;
   font-size: 14px;
   color: var(--papyrus-dim);
 }
@@ -373,7 +375,7 @@ header {
 }
 .hier-display.empty::after {
   content: 'clique nos sinais →';
-  font-family: 'EB Garamond', serif;
+  font-family: 'EB Garamond', 'Gentium Plus', serif;
   font-size: 13px;
   font-style: italic;
   color: var(--papyrus-dim);
@@ -400,7 +402,7 @@ header {
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 6px 12px;
-  font-family: 'EB Garamond', serif;
+  font-family: 'EB Garamond', 'Gentium Plus', serif;
   font-size: 18px;
   font-style: italic;
   color: var(--papyrus);
@@ -423,7 +425,7 @@ header {
   border-radius: 10px;
   padding: 6px 12px;
   color: var(--papyrus);
-  font-family: 'EB Garamond', serif;
+  font-family: 'EB Garamond', 'Gentium Plus', serif;
   font-size: 16px;
   font-style: italic;
   outline: none;
@@ -445,7 +447,7 @@ header {
   border: 1px solid var(--border);
   border-radius: 7px;
   padding: 4px 10px;
-  font-family: 'EB Garamond', serif;
+  font-family: 'EB Garamond', 'Gentium Plus', serif;
   font-size: 15px;
   font-style: italic;
   color: var(--terracotta-lt);
@@ -559,7 +561,7 @@ header {
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 7px 12px;
-  font-family: 'EB Garamond', serif;
+  font-family: 'EB Garamond', 'Gentium Plus', serif;
   font-size: 15px;
   font-style: italic;
   color: var(--terracotta-lt);
@@ -577,7 +579,7 @@ header {
   margin-bottom: 9px;
 }
 .pk-details {
-  font-family: 'EB Garamond', serif;
+  font-family: 'EB Garamond', 'Gentium Plus', serif;
   font-size: 13px;
   line-height: 1.55;
   color: var(--papyrus-soft);
