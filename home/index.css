@@ -288,6 +288,17 @@
   .tab-panel { animation: fadein 0.5s ease; }
   .tab-panel[hidden] { display: none; }
 
+  /* Folha de leitura: acalma a foto do templo atrás do conteúdo das abas,
+     para o texto não competir com o fundo. */
+  .tab-panel.active {
+    background: rgba(16, 26, 40, 0.62);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    border: 1px solid rgba(201, 166, 70, 0.12);
+    border-radius: 18px;
+    padding: 30px 26px;
+  }
+
   /* Cabeçalho de cada painel (Mapa / Coleção) */
   .panel-heading {
     display: flex;
@@ -592,6 +603,7 @@
     /* abas mais compactas pra caber as quatro em uma linha */
     .tabbar { gap: 2px; }
     .tabbar .tab { font-size: 11px; letter-spacing: 0.08em; padding: 8px 9px 10px; }
+    .tab-panel.active { padding: 20px 14px; border-radius: 14px; }
   }
 
   /* Modal "Sobre o Projeto" */
