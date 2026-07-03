@@ -59,15 +59,17 @@ musaeum/
 │   ├── cultura-material.js Fichas dos manuscritos reais (CULTURA_MATERIAL) e achados das notas (ACHADOS)
 │   └── geografia.js        Lugares citados nos textos (MUSAEUM_GEO), para o mapa interativo do index
 │
-├── aprender/               Curso de leitura de hieróglifos
-│   ├── index.html          Índice das lições
-│   ├── 01-sistema.html     Lição 1: Como funciona a escrita egípcia
-│   ├── 02-unileteral.html  Lição 2: Os 24 signos uniliterais
-│   ├── 03-biliteral.html   Lição 3: Signos biliterais essenciais
-│   ├── 04-palavras.html    Lição 4: Lendo palavras simples
-│   ├── 05-cartuchos.html   Lição 5: Cartuchos reais
-│   ├── flashcards.html     Flashcards de revisão
-│   └── aprender.css        Estilos do módulo
+├── curso/                  Introdução aos hieróglifos (6 lições)
+│   ├── licoes.js           Fonte única das lições (window.CURSO_LICOES)
+│   ├── curso.js            Motor único: índice + lição (lê ?licao=<id>)
+│   ├── curso.css           Folha única do módulo (tokens nos dois temas)
+│   ├── index.html          Shell do índice · licao.html: shell da lição
+│   └── baralho.html/.js    Baralho de sinais (soletrar o fonema)
+│
+├── gardiner/               Lista de Gardiner (~900 sinais) + construtor de palavras
+│   ├── gardiner.html       Página da lista e do construtor livre
+│   ├── gardiner_data.js/_en.js  Dados dos sinais (PT/EN), gerados
+│   └── build_data.py, merge_pt.py, source/  Pipeline e planilha-fonte
 │
 ├── docs/
 │   ├── TECHNICAL.md        Documentação técnica de sistemas e estruturas de dados
@@ -615,41 +617,17 @@ Sem travessões (`—`); use ponto, vírgula ou `!`. Tom caloroso, de quem mostr
 
 ---
 
-## 15. Módulo `aprender/` — Curso de hieróglifos
+## 15. Introdução aos hieróglifos (`curso/` e `gardiner/`)
 
-Standalone: não usa `engine.js`, `script.js` nem o catálogo. Cada lição é um HTML autocontido com seu próprio CSS e JS inline. Carregam `aprender.css` (estilos do módulo: tipografia, cards de signos, quiz) e as fontes habituais do Musæum (Cinzel, EB Garamond, Noto Sans Egyptian Hieroglyphs).
+Módulo standalone: não usa `engine.js`, `script.js` nem o catálogo. Exibido como **"Primeiros passos nos hieróglifos"** (a pasta mantém o nome interno `curso/`), acessível pela aba **Hieróglifos** da home. Detalhes completos em [TECHNICAL.md](TECHNICAL.md#introdução-aos-hieróglifos-curso).
 
-| Arquivo | Conteúdo |
-|---|---|
-| `index.html` | Índice das lições com progresso e link para o Musæum |
-| `01-sistema.html` | Como funciona a escrita egípcia: logogramas, fonogramas, determinativos, direção |
-| `02-unileteral.html` | Os 24 signos uniliterais (o "alfabeto" egípcio) |
-| `03-biliteral.html` | Signos biliterais mais frequentes |
-| `04-palavras.html` | Leitura de palavras simples com transliteração |
-| `05-cartuchos.html` | Cartuchos reais e a decifração de Champollion |
-| `flashcards.html` | Flashcards de revisão dos signos |
+Arquitetura de fonte única: as 6 lições vivem em `curso/licoes.js` (`window.CURSO_LICOES`), servidas por um motor único (`curso/curso.js`) para o índice e para cada lição (`?licao=<id>`). Progresso em `localStorage 'musaeum-hieroglyphs'` (`{ done: { <id>: true } }`), com total derivado de `CURSO_LICOES.length`. O hub da home (`home/aprender.js`) lê o mesmo save e renderiza a partir de `CURSO_LICOES`, sem duplicar dados.
 
-Fontes de referência: Gardiner *Egyptian Grammar* (1957) para tipologia dos signos; Faulkner *Concise Dictionary* (1962) para transliterações. Ver convenção de caracteres egyptológicos em [[ios-egyptological-glyph-font]].
+Os sinais nas lições vêm sempre do `gardiner/` (`GARDINER_DATA`/`_EN`), nunca relistados à mão. A pasta `gardiner/` também serve a página `gardiner.html` (lista de ~900 sinais + construtor livre) e o pipeline que gera os dados da planilha-fonte (`build_data.py`, `merge_pt.py`, `source/`).
 
----
+As 6 lições: 1 O sistema, 2 Os 24 unilíteros, 3 Bilíteros e trilíteros, 4 Escrevendo em egípcio antigo, 5 Cartuchos e os nomes do rei, 6 Ler um texto mágico (a fórmula de oferenda, como capstone). Ferramentas de prática: baralho de sinais (`curso/baralho.html`) e a lista de Gardiner.
 
-## 21. Em desenvolvimento
-
-Funcionalidades em construção em branches separadas — **não estão no `main`**.
-
-### Caminho pelo Duat (`duat-junior`)
-
-Jogo de ação HTML5, rebuild nativo em JS puro (sem GDevelop ou dependências externas). A personagem **Amunet** atravessa o Duat egípcio em três fases:
-
-| Fase | Ambientação | Mecânica |
-|---|---|---|
-| Tumba | Necrópole com sarcófagos e shabtis | Plataformer; coletar shabtis, desviar de múmias e pardais |
-| Templo | Salão das Duas Verdades | Pesagem do coração; areia movediça nos vãos |
-| Nilo | Rio rumo ao Aaru | Plataformas sobre água; escorpiões como inimigos |
-
-**Arquitetura:** `duat.html` (shell SPA bilíngue PT/EN) + `duat-native/` (motor compartilhado `engine.js`/`engine.css`, parametrizado por `window.DUAT_CFG`). Cada fase é um HTML fino que só define a config e carrega o motor. Comunicação fase→shell via `postMessage` (evento `win`). Não usa o save unificado do Musæum (`musaeum-stories`); herda apenas `musaeum-lang`, `musaeum-theme` e `musaeum-muted`.
-
-**Planejado:** aba Júnior na home (`index.html`), sem data definida. Pendências antes de publicar: auditoria de licença dos assets do jogo original; revisão egiptológica dos textos narrativos; entrada na home.
+Fontes de referência: Allen *Middle Egyptian* (sequência didática); Gardiner *Egyptian Grammar* (1957) e Faulkner *Concise Dictionary* (1962) para tipologia, sinais e transliterações. Ver convenção de caracteres egyptológicos em [[ios-egyptological-glyph-font]].
 
 ---
 

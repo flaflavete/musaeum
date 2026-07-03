@@ -2,7 +2,7 @@
 
 [🇧🇷 Português](#português) · [🇬🇧 English](#english)
 
-[![Version](https://img.shields.io/badge/version-1.1-c9a646.svg)](https://github.com/flaflavete/musaeum/releases)
+[![Version](https://img.shields.io/badge/version-1.2-c9a646.svg)](https://github.com/flaflavete/musaeum/releases)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20617042-blue.svg)](https://doi.org/10.5281/zenodo.20617042)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR)
 
@@ -27,12 +27,6 @@ O Musæum apresenta textos da literatura egípcia antiga como experiências inte
 | A História de Sinué | `sinuhe.html` | ✅ Disponível |
 | O Camponês Eloquente | — | 🔒 Em breve |
 
-### Em desenvolvimento
-
-| Projeto | Descrição |
-|---|---|
-| **Caminho pelo Duat** | Jogo de ação HTML5 com 3 fases (Tumba, Templo, Nilo); a personagem **Amunet** atravessa o Duat em direção ao Aaru. Rebuild nativo em JS puro, sem dependências externas. Previsto como aba Júnior na página inicial. |
-
 ### Como abrir
 
 Abra `index.html` diretamente no navegador — não há servidor nem build necessário.
@@ -54,7 +48,8 @@ npm run test:watch        # roda os testes em modo watch (desenvolvimento)
 - **Códex de hieróglifos** — 9 signos por história, com transliteração e nota
 - **Glossário** — termos da cultura egípcia com busca e links no texto
 - **Tutorial de leitura** — introdução a logogramas, fonogramas e determinativos
-- **Curso "Aprender Hieróglifos"** — 5 lições interativas (sistema de escrita, signos uniliterais, biliterais, leitura de palavras e cartuchos reais) com flashcards de revisão, em `aprender/`
+- **Primeiros passos nos hieróglifos** — introdução em 6 lições interativas (como funciona a escrita; os 24 unilíteros; bilíteros e trilíteros; escrever palavras; cartuchos e os nomes do rei; ler a fórmula de oferenda), com construtor guiado de palavras e quizzes, na aba Hieróglifos da página inicial (`curso/`)
+- **Ferramentas de prática** — baralho de sinais para soletrar fonemas (`curso/baralho.html`) e a Lista de Gardiner completa (~900 sinais) com construtor livre de palavras (`gardiner/`)
 - **Tour guiado** — setas douradas apresentam a biblioteca, a coleção e as ferramentas de cada história; aparece no primeiro acesso e volta pelo botão ?
 - **Coleção** — painel na página inicial com progresso cruzado entre histórias
 - **Mapa interativo** — os lugares citados nos textos sobre uma carta de 1837; cada ponto abre um cartão com o que era e em que história aparece, e localizações debatidas vêm sinalizadas
@@ -77,7 +72,8 @@ tour.js               Tour guiado (usado na home e nas histórias)
 research.js           Coleta anônima de dados da pesquisa
 style.css             Estilos globais
 data/                 Catálogo central e dados das histórias (catalogo.js, naufrago.js, sinuhe.js)
-aprender/             Curso de leitura de hieróglifos: índice, 5 lições (01–05), flashcards e CSS
+curso/                Introdução aos hieróglifos: 6 lições (fonte única em licoes.js), motor único, baralho de sinais
+gardiner/             Lista de Gardiner (~900 sinais) e construtor de palavras; dados gerados da planilha-fonte
 assets/audio/         Trilha sonora e efeitos (acerto, erro)
 assets/images/        Imagens de fundo
 tests/                Testes automatizados (Vitest)
@@ -140,12 +136,6 @@ Musæum presents ancient Egyptian literary texts as interactive reading experien
 | The Story of Sinuhe | `sinuhe.html` | ✅ Available |
 | The Eloquent Peasant | — | 🔒 Coming soon |
 
-### In development
-
-| Project | Description |
-|---|---|
-| **Path through the Duat** | HTML5 action game with 3 phases (Tomb, Temple, Nile); the character **Amunet** crosses the Duat toward the Aaru. Native JS rebuild, no external dependencies. Planned as a Junior tab on the home page. |
-
 ### How to open
 
 Open `index.html` directly in your browser — no server or build step required.
@@ -167,7 +157,8 @@ npm run test:watch        # run tests in watch mode (development)
 - **Hieroglyph Codex** — 9 signs per story, with transliteration and notes
 - **Glossary** — Egyptian cultural terms with search and inline text links
 - **Reading tutorial** — introduction to logograms, phonograms, and determinatives
-- **"Learn Hieroglyphs" course** — 5 interactive lessons (writing system, uniliteral signs, biliteral signs, reading words, royal cartouches) with review flashcards, in `aprender/`
+- **First steps in hieroglyphs** — a 6-lesson interactive introduction (how the writing works; the 24 uniliterals; biliterals and triliterals; writing words; cartouches and the king's names; reading the offering formula), with a guided word builder and quizzes, in the Hieroglyphs tab on the home page (`curso/`)
+- **Practice tools** — a sign deck for spelling out phonemes (`curso/baralho.html`) and the full Gardiner sign list (~900 signs) with a free word builder (`gardiner/`)
 - **Guided tour** — golden arrows introduce the library, the collection, and each story's tools; appears on first visit and returns via the ? button
 - **Collection** — dashboard on the home page with cross-story progress
 - **Interactive map** — the places named in the texts over an 1837 chart; each marker opens a card on what it was and which story it appears in, with debated locations flagged
@@ -190,7 +181,8 @@ tour.js               Guided tour (used on home and in stories)
 research.js           Anonymous research data collection
 style.css             Global styles
 data/                 Central catalog and story data (catalogo.js, naufrago.js, sinuhe.js)
-aprender/             Hieroglyph reading course: index, 5 lessons (01–05), flashcards, and CSS
+curso/                Hieroglyph introduction: 6 lessons (single source in licoes.js), one engine, sign deck
+gardiner/             Gardiner sign list (~900 signs) and word builder; data generated from the source spreadsheet
 assets/audio/         Soundtrack and sound effects (correct, wrong)
 assets/images/        Background images
 tests/                Automated tests (Vitest)

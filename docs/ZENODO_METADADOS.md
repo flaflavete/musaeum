@@ -66,7 +66,7 @@ ORCID: (preencher quando tiver)
 | License | Creative Commons Attribution-NonCommercial-ShareAlike 4.0 (CC BY-NC-SA 4.0) |
 | Language | Marcar **English (eng)** e **Portuguese (por)** |
 | Related identifiers | `https://github.com/flaflavete/musaeum` (is supplement to / is derived from) |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 
 ---
 

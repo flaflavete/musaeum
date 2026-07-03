@@ -24,15 +24,18 @@ data/sinuhe.js          Textos, desafios e glossário do Sinué
 data/campones.js        Textos, desafios e glossário do Camponês Eloquente
 data/cultura-material.js  Fichas dos manuscritos reais (foto + catálogo) e achados das notas
 data/geografia.js       Lugares citados nos textos, para o mapa interativo do index
-aprender/               Curso de leitura de hieróglifos (standalone, não usa engine.js)
-  index.html            Índice das lições
-  01-sistema.html       Lição 1 · Como funciona a escrita egípcia
-  02-unileteral.html    Lição 2 · Os 24 signos uniliterais
-  03-biliteral.html     Lição 3 · Signos biliterais essenciais
-  04-palavras.html      Lição 4 · Lendo palavras simples
-  05-cartuchos.html     Lição 5 · Cartuchos reais
-  flashcards.html       Flashcards de revisão
-  aprender.css          Estilos do módulo
+curso/                  Introdução aos hieróglifos (standalone, não usa engine.js)
+  licoes.js             Fonte única das 6 lições (window.CURSO_LICOES)
+  curso.js              Motor único: serve o índice e cada lição (lê ?licao=<id>)
+  curso.css             Folha única do módulo (tokens de cor nos dois temas)
+  index.html            Shell do índice das lições
+  licao.html            Shell de uma lição
+  baralho.html / baralho.js  Baralho de sinais (soletrar o fonema de cada sinal)
+gardiner/               Lista de Gardiner e construtor de palavras (standalone)
+  gardiner.html         ~900 sinais, selos de função, construtor livre de palavras
+  gardiner_data.js / _en.js  Dados dos sinais (PT/EN), gerados da planilha-fonte
+  build_data.py / merge_pt.py  Pipeline de geração dos dados
+  source/               Planilha-fonte (gardiner-sign-list.xlsx) e TSVs de tradução
 tests/                  Testes automatizados (vitest)
 package.json            Dependências de teste (vitest)
 fontes/                 PDFs e áudio de referência bibliográfica
@@ -470,74 +473,51 @@ Para **criar uma história nova** do zero:
 - **i18n em index.html:** atributo `data-t="chave"`
 - Comentários em português dentro dos arquivos
 
-## Módulo `aprender/` — Curso de hieróglifos
+## Introdução aos hieróglifos (`curso/`)
 
-Standalone: páginas autocontidas que **não** carregam `script.js`, `engine.js` nem o catálogo. Cada lição tem CSS e JS inline, mais `aprender.css` compartilhado. Não há persistência de progresso (localStorage).
+Módulo standalone, **não** carrega `script.js`, `engine.js` nem o catálogo. Exibido como **"Primeiros passos nos hieróglifos"** (subtítulo "Uma introdução"); a pasta mantém o nome interno `curso/`. Acessível pela aba **Hieróglifos** da home (`#panel-aprender`, `home/aprender.js`).
 
-Referências usadas no conteúdo: Gardiner *Egyptian Grammar* (1957) para tipologia e lista de signos; Faulkner *Concise Dictionary* (1962) para transliterações. Caracteres egiptoló­gicos seguem o padrão do projeto: ꜣ (U+A723), ꜥ (U+A725), ỉ (U+1EC9 precomposto — nunca marcas combinantes).
+### Fonte única e motor
 
----
+- **`curso/licoes.js`** — `window.CURSO_LICOES`, fonte única das lições. Cada lição é um objeto com metadado (`id`, `num`, `glyph`, `kicker`, `title`, `desc`, `dur`, `type`, `badge`, `ready`) e um array `sections` de blocos + um `quiz`. Renomear ou reordenar aqui reflete no índice, nas lições e no hub da home sozinho (acaba com a duplicação tripla do curso antigo).
+- **`curso/curso.js`** — motor único. Serve o índice (`data-page="index"`) e cada lição (`data-page="lesson"`, lê `?licao=<id>`). Troca de idioma e tema **ao vivo** pelos botões do header.
+- **`curso/curso.css`** — folha única, tokens de cor da casa nos dois temas, foco visível, `prefers-reduced-motion`, responsivo.
+- **`curso/index.html`** e **`curso/licao.html`** — shells mínimos (fontes + css + `licoes.js` + `curso.js`).
 
-## Caminho pelo Duat (em desenvolvimento, branch `duat-junior`)
+### Tipos de bloco de conteúdo (renderizados por `curso.js`)
 
-Jogo de ação HTML5 com 3 fases (Tumba, Templo, Nilo), rebuild nativo em JS puro. **Não está no `main`.**
-
-### Arquitetura
-
-```
-duat.html              Shell SPA: narrações PT/EN, controle de fluxo, tema, idioma
-duat-native/
-  engine.js            Motor de jogo compartilhado (canvas, física, render, HUD)
-  engine.css           Estilos do motor (HUD, guia, overlays)
-  tumba.html           Fase 1 — define DUAT_CFG e carrega engine.js/engine.css
-  templo.html          Fase 2
-  nilo.html            Fase 3
-  extract.cjs          Extrator de geometria do game.json do GDevelop → levels/*.json
-  levels/              JSONs de geometria das fases (sólidos, inimigos, coletáveis, hazards)
-  art/                 Arte original: tumba-bg.png, templo-bg.png, nilo-bg.png, porta.png
-```
-
-### Motor (`engine.js`) parametrizado por `window.DUAT_CFG`
-
-Cada fase define um objeto `DUAT_CFG` com:
-
-| Campo | Descrição |
+| Bloco | Uso |
 |---|---|
-| `phase` | id da fase (`'tumba'`, `'templo'`, `'nilo'`) |
-| `level` | caminho para o JSON de geometria |
-| `bg` | modo de fundo: `{mode:'image', img, h, y0, floor, ceil}` ou `{mode:'sky'}` |
-| `tileGround` | `true` para revestir sólidos finos com textura; `false` para deixá-los invisíveis |
-| `coinFrames` | frames do sprite coletável (shabti / alabastro / ankh conforme a fase) |
-| `slime` / `fly` | override de sprites e tamanho dos inimigos por fase |
-| `strings` | textos bilíngues de título e guia específicos da fase |
-| `guide` | array de cartões didáticos do Guia (botão 𓂀 no HUD) |
+| `p` / `callout` | Parágrafo e caixa de destaque |
+| `signtypes` | Cartões dos tipos de sinal (fonético, logograma, determinativo) |
+| `word` | Decomposição de uma palavra sinal a sinal (com flag `cartouche` para o oval) |
+| `direction` | Ilustração da direção de leitura |
+| `siggrid` | Grade de sinais que puxa **glifo, nome e explicação do Gardiner** do `GARDINER_DATA`/`_EN` por id (fonte única; a `licao.html` carrega os dois `gardiner_data*.js`). Clique marca "visto" e revela a explicação |
+| `builder` | Construtor guiado de palavras (paleta de sinais do `GARDINER_DATA`; cada desafio dá significado + transliteração e dá feedback na hora; flag `cartouche` faz o strip virar oval) |
 
-### Comunicação iframe → shell
+Transliteração usa override só onde o dado do Gardiner falha (ex.: `tr: { M17:'ỉ', Z4:'y', V31:'k' }`).
 
-Quando embedded, a fase notifica vitória com:
+### As 6 lições
 
-```js
-window.parent.postMessage({ source: 'duat-native', phase: 'tumba', event: 'win' }, '*');
-```
+| # | id | Título | Foco |
+|---|---|---|---|
+| 1 | `sistema` | Como funciona a escrita egípcia | Os 3 tipos de sinal, direção de leitura, a palavra nfr |
+| 2 | `unileteros` | Os 24 unilíteros | O "alfabeto" consonantal (grid do Gardiner) |
+| 3 | `bi-tri` | Bilíteros e trilíteros | Sinais de 2 e 3 consoantes; complementos fonéticos |
+| 4 | `palavras` | Escrevendo em egípcio antigo | Construtor guiado (pr, mn, nfr, ꜥnḫ) |
+| 5 | `cartuchos` | Cartuchos e os nomes do rei | O shen, os 5 nomes reais, construtor em modo cartucho (ỉmn, rꜥ-ms-s) |
+| 6 | `texto` | Ler um texto mágico | Capstone: a fórmula de oferenda ḥtp-dỉ-nsw, palavra a palavra + Osíris |
 
-O shell ouve `message` e avança para a próxima narração. `EMBEDDED = window.parent !== window` controla se o toggle de idioma e o overlay de vitória aparecem (só no standalone).
+### Progresso
 
-### Persistência
+`localStorage 'musaeum-hieroglyphs'` como `{ done: { <id>: true } }`. Contagem e % derivam de `CURSO_LICOES.length` (sem número mágico). O hub da home (`home/aprender.js`) lê o mesmo save e renderiza os cards a partir de `CURSO_LICOES` (não duplica dados).
 
-Não usa `musaeum-stories`. Lê/grava apenas chaves compartilhadas:
+### Ferramentas de prática
 
-| Chave | Uso |
-|---|---|
-| `musaeum-lang` | idioma (PT/EN), lido no início de cada fase |
-| `musaeum-theme` | tema (dark/light) |
-| `musaeum-muted` | som mutado |
+- **Baralho de sinais** (`curso/baralho.html` + `baralho.js`): soletrar o fonema de cada sinal.
+- **Lista de Gardiner** (`gardiner/gardiner.html`): ~900 sinais com selos de função e o construtor livre de palavras.
 
-### Pendências antes de publicar
-
-- Auditoria de licença dos assets do jogo original (sprites Kenney, áudios, fontes)
-- Revisão egiptológica dos textos narrativos pela Flavia
-- Entrada na home (aba Júnior)
-- Bug do chão do Templo: com `tileGround:false`, os vãos de areia não se leem visualmente como buraco (Flavia reportou, aberto)
+Referências do conteúdo: Allen *Middle Egyptian* (sequência didática); Gardiner *Egyptian Grammar* (1957) e Faulkner *Concise Dictionary* (1962) para tipologia, lista de sinais e transliterações. Caracteres egiptológicos seguem o padrão do projeto: ꜣ (U+A723), ꜥ (U+A725), ỉ (U+1EC9 precomposto, nunca marcas combinantes).
 
 ---
 
