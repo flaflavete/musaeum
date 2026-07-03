@@ -34,7 +34,7 @@ window.CURSO_LICOES = [
     type:   { pt: 'Teoria', en: 'Theory' },
     badge:  { pt: 'Começar aqui', en: 'Start here' },
     badgeClass: 'badge-start',
-    intro:  { pt: 'Antes de decorar qualquer sinal, você precisa entender a lógica do sistema. A escrita hieroglífica não é um simples alfabeto, pois combina três tipos de sinais de formas que, uma vez compreendidas, tornam tudo mais fácil.', en: 'Before memorizing any sign, you need to understand the logic of the system. Hieroglyphic writing is not a simple alphabet; it combines three types of signs in ways that, once understood, make everything much easier.' },
+    intro:  { pt: 'A escrita hieroglífica não é um simples alfabeto, pois combina três tipos de sinais de formas que, uma vez compreendidas, tornam tudo mais fácil.', en: 'Hieroglyphic writing is not a simple alphabet; it combines three types of signs in ways that, once understood, make everything much easier.' },
     sections: [
       {
         title: { pt: 'Hieróglifos não são letras', en: 'Hieroglyphs are not letters' },
@@ -73,7 +73,7 @@ window.CURSO_LICOES = [
             ],
             result: '𓄤𓆑𓂋',
             note: { pt: 'Os sinais 𓆑 (f) e 𓂋 (r) são <strong>complementos fonéticos</strong> que não adicionam novos sons, apenas confirmam a leitura do sinal principal. É como se o egípcio "soletrasse" parte da palavra novamente para não deixar dúvida.', en: 'The signs 𓆑 (f) and 𓂋 (r) are <strong>phonetic complements</strong> that add no new sounds; they only confirm the reading of the main sign. It is as if Egyptian "spelled out" part of the word again to leave no doubt.' } },
-          { kind: 'callout', variant: 'azul', html: { pt: 'A <strong>regra prática</strong> é simples. Quando você ver um sinal grande seguido de sinais menores com sons que já estão no sinal grande, esses menores são complementos fonéticos; leia o sinal grande uma vez e não repita os sons.', en: 'The <strong>practical rule</strong> is simple. When you see a large sign followed by smaller signs whose sounds are already contained in the large sign, those smaller ones are phonetic complements; read the large sign once and do not repeat the sounds.' } },
+          { kind: 'callout', variant: 'azul', html: { pt: 'A <strong>regra prática</strong> é simples. Quando um sinal principal vem seguido de outros sinais cujos sons ele já carrega, esses sinais são complementos fonéticos; leia o sinal principal uma vez e não repita os sons.', en: 'The <strong>practical rule</strong> is simple. When a main sign is followed by other signs whose sounds it already carries, those signs are phonetic complements; read the main sign once and do not repeat the sounds.' } },
         ],
       },
       {
@@ -292,7 +292,7 @@ window.CURSO_LICOES = [
             ],
             result: '𓏠𓈖',
             note: { pt: 'Lê-se <strong>mn</strong>, não "mn-n". É essa combinação que aparece, por exemplo, no nome do deus Amon (ỉ-mn).', en: 'You read <strong>mn</strong>, not "mn-n". This is the combination that appears, for example, in the name of the god Amun (ỉ-mn).' } },
-          { kind: 'callout', variant: 'azul', html: { pt: 'A <strong>regra</strong> de novo: sinal grande seguido de sinais menores cujos sons já estão nele = complementos. Leia o sinal grande uma vez e siga em frente.', en: 'The <strong>rule</strong> again: a large sign followed by smaller signs whose sounds are already in it = complements. Read the large sign once and move on.' } },
+          { kind: 'callout', variant: 'azul', html: { pt: 'A <strong>regra</strong> de novo: um sinal principal seguido de outros sinais cujos sons já estão nele = complementos. Leia o sinal principal uma vez e siga em frente.', en: 'The <strong>rule</strong> again: a main sign followed by other signs whose sounds are already in it = complements. Read the main sign once and move on.' } },
         ],
       },
     ],
