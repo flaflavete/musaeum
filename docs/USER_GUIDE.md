@@ -9,7 +9,7 @@ Este guia explica tudo o que você pode fazer no site — da primeira visita ao 
 ## Sumário
 
 1. [Primeiro acesso](#1-primeiro-acesso)
-2. [A Biblioteca e o Mapa](#2-a-biblioteca-e-o-mapa)
+2. [A Biblioteca, o Mapa e os Hieróglifos](#2-a-biblioteca-o-mapa-e-os-hieróglifos)
 3. [Idioma, tema e som](#3-idioma-tema-e-som)
 4. [Entrando em uma história](#4-entrando-em-uma-história)
 5. [Lendo os capítulos](#5-lendo-os-capítulos)
@@ -20,8 +20,8 @@ Este guia explica tudo o que você pode fazer no site — da primeira visita ao 
 10. [Notas arqueológicas](#10-notas-arqueológicas)
 11. [Pontuação e títulos](#11-pontuação-e-títulos)
 12. [Tela final](#12-tela-final)
-13. [A Coleção](#13-a-coleção)
-14. [O Certificado](#14-o-certificado)
+13. [Seus tesouros nos cards](#13-seus-tesouros-nos-cards)
+14. [O Certificado de Leitura](#14-o-certificado-de-leitura)
 15. [Progresso salvo automaticamente](#15-progresso-salvo-automaticamente)
 16. [Recomeçar uma história](#16-recomeçar-uma-história)
 17. [Perguntas frequentes](#17-perguntas-frequentes)
@@ -40,21 +40,22 @@ Por último, o site te pergunta se quer um **tour rápido**. Se topar, ele mostr
 
 > Tudo isso fica salvo só no seu navegador. Seu nome não vai pra lugar nenhum, e os dados da pesquisa, caso você aceite, são anônimos.
 
-Quer trocar seu nome mais tarde? É só ir na seção **Coleção** da página inicial e clicar no ícone de edição ao lado dele.
+Quer trocar seu nome mais tarde? É só ir na aba **Hieróglifos** da página inicial, ao lado do Certificado, e clicar no ícone de edição ao lado do nome.
 
 ---
 
-## 2. A Biblioteca e o Mapa
+## 2. A Biblioteca, o Mapa e os Hieróglifos
 
-A página inicial do Musæum é organizada em quatro abas, logo abaixo do título: **Biblioteca**, **Mapa**, **Coleção** e **Certificado**.
+A página inicial do Musæum é organizada em três abas, logo abaixo do título: **Biblioteca**, **Mapa** e **Hieróglifos**.
 
 ### Biblioteca
 
 É a aba que abre primeiro. Nela você encontra:
 
 - **Os pergaminhos** — cada um representa uma história. Clique num pergaminho disponível para entrar na história.
+- **Seus tesouros** aparecem no próprio card de cada história, à medida que você os coleta (veja a seção 13).
 - Histórias ainda não disponíveis aparecem com um cadeado e não são clicáveis.
-- Abaixo dos pergaminhos, uma epígrafe dos *Ensinamentos de Ptahhotep* fecha a biblioteca.
+- Ao fim da grade, um convite leva você à aba **Hieróglifos**, e uma epígrafe dos *Ensinamentos de Ptahhotep* fecha a biblioteca.
 
 ### Mapa — onde as histórias acontecem
 
@@ -65,7 +66,23 @@ A aba **Mapa** mostra os lugares citados nos textos sobre uma carta antiga do Eg
 - As cores distinguem a que história cada lugar pertence; a legenda ao lado explica.
 - Alguns lugares têm localização **debatida** pelos pesquisadores ou são conhecidos só pelos textos antigos. Nesses casos, o próprio cartão avisa, com honestidade, que a posição é aproximada.
 
-As outras duas abas, **Coleção** e **Certificado**, têm seções próprias mais adiante neste guia.
+### Hieróglifos — aprenda a ler os sinais
+
+A aba **Hieróglifos** é a porta de entrada dos **"Primeiros passos nos hieróglifos"**, uma introdução em **6 lições interativas** que ensina, do zero, a reconhecer e ler a escrita egípcia:
+
+1. **Como funciona a escrita egípcia** — os três tipos de sinal e a direção de leitura;
+2. **Os 24 unilíteros** — o "alfabeto" consonantal;
+3. **Bilíteros e trilíteros** — sinais de duas e três consoantes, e os complementos fonéticos;
+4. **Escrevendo em egípcio antigo** — um construtor guiado em que você monta palavras sinal a sinal;
+5. **Cartuchos e os nomes do rei** — a moldura oval e os nomes reais;
+6. **Ler um texto mágico** — como fecho, a fórmula de oferenda, palavra a palavra.
+
+Cada lição traz explicações, exercícios e um pequeno quiz. Uma barra mostra quantas lições você já concluiu. Nessa aba você também encontra:
+
+- **O Certificado de Leitura** (seção 14), que se libera quando você conclui todas as lições;
+- **Ferramentas de prática**: o **baralho de sinais**, para treinar soletrando o fonema de cada sinal, e a **Lista de Gardiner** completa (cerca de 900 sinais), com um construtor livre onde você monta as palavras que quiser.
+
+> Essa introdução é independente das histórias: dá para percorrer o curso sem ter lido nenhum conto, e vice-versa.
 
 ---
 
@@ -248,31 +265,30 @@ Dali você pode **recomeçar a história** ou **voltar para a Biblioteca**.
 
 ---
 
-## 13. A Coleção
+## 13. Seus tesouros nos cards
 
-De volta à página inicial, clique em **Coleção** para ver o resumo de tudo o que você conquistou:
+Não existe mais uma aba Coleção separada: o seu progresso aparece no próprio card de cada história, na aba **Biblioteca**.
 
-- **Seu nome** de jogador (editável clicando no ícone ao lado)
-- **Tesouros coletados** por história — quais você ganhou e quais ainda pode buscar
-- **Hieróglifos descobertos** — todos os signos desbloqueados, clicáveis para ver a ficha completa
+- **Tesouros coletados** — cada card mostra os tesouros daquela história. Os que você já ganhou aparecem iluminados; os que faltam ficam apagados. Assim dá para ver, de relance, o que ainda pode buscar.
+- **Histórias sem tesouros** (como o Camponês Eloquente) mostram, no lugar, o **pergaminho de conclusão**, que se ilumina quando você termina a história.
+- **Hieróglifos** — os signos que você descobre aparecem no momento da leitura, dentro de cada história (no Códex e no aviso "Novo signo descoberto!").
 
-A Coleção agrega o progresso de todas as histórias em um só lugar.
+Seu **nome** de leitor pode ser editado a qualquer momento na aba **Hieróglifos**, ao lado do Certificado.
 
 ---
 
-## 14. O Certificado
+## 14. O Certificado de Leitura
 
-O **Certificado de Explorador do Egito Antigo** é desbloqueado quando você completa **todas as histórias disponíveis** (chegando à tela final de cada uma).
+O **Certificado de Leitura** fica na aba **Hieróglifos** e é desbloqueado quando você conclui **todas as lições da introdução aos hieróglifos**. Enquanto houver lição pendente, ele aparece bloqueado, com uma mensagem indicando o que ainda falta.
 
-O certificado inclui:
-- Seu nome
-- Os tesouros coletados
+Quando liberado, clique em **Ver Certificado** para abri-lo. Ele traz:
+- Seu nome de leitor
 - A data de conclusão
-- Assinatura do Musæum / PPGArq — Museu Nacional / UFRJ
+- As logos institucionais (PPGArq · Museu Nacional / UFRJ)
 
 Clique em **Baixar Certificado** para salvar como imagem PNG.
 
-> O certificado é gerado no seu próprio navegador — nenhum dado é enviado a servidores externos.
+> O certificado é gerado no seu próprio navegador, nenhum dado é enviado a servidores externos.
 
 ---
 
@@ -290,7 +306,7 @@ O Musæum salva seu progresso automaticamente no navegador. Isso significa que:
 
 Na **tela final** de cada história há o botão **↻ Recomeçar**. Ao confirmar, o progresso daquela história é reiniciado — pontos, tesouros e hieróglifos voltam ao zero.
 
-Os hieróglifos da Coleção referentes a essa história também são resetados.
+Os tesouros mostrados no card daquela história também voltam a ficar apagados. (O progresso do curso de hieróglifos é separado e não é afetado.)
 
 ---
 

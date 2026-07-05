@@ -1,122 +1,135 @@
-# Configuração do Google Forms para coleta de dados
+# Configuração da coleta de dados da pesquisa
 
-## 1. Crie o formulário
+> **Desde a v1.2, a pesquisa mede o CURSO de hieróglifos, não as histórias.**
+> `research.js` é carregado apenas nas páginas de `curso/` (`curso/index.html` e
+> `curso/licao.html`) e registra conclusão de lição, desempenho no quiz e no
+> construtor de palavras. Não há mais coleta nas histórias.
 
-Acesse [forms.google.com](https://forms.google.com) e crie um novo formulário em branco.
-
-**Título sugerido:** `Musæum — Dados de Pesquisa`
-
-Crie **15 perguntas**, todas do tipo **Resposta curta**, com os nomes abaixo (na ordem):
-
-| # | Nome da pergunta      | Valores possíveis                          |
-|---|----------------------|--------------------------------------------|
-| 1 | timestamp            | Data/hora ISO (ex: 2025-05-14T20:30:00Z)  |
-| 2 | lang                 | `pt` ou `en`                              |
-| 3 | theme                | `dark` ou `light`                         |
-| 4 | device               | `mobile` ou `desktop`                     |
-| 5 | region               | navigator.language (ex: `pt-BR`, `en-US`) |
-| 6 | is_first_visit       | `sim` ou `não`                            |
-| 7 | story                | `naufrago`, `sinuhe`, etc.                |
-| 8 | score                | número                                    |
-| 9 | max_score            | número (ex: 160)                          |
-|10 | attempts             | número de tentativas erradas              |
-|11 | completed            | `sim` ou `não`                            |
-|12 | chapter_abandoned    | número (0–7) ou `N/A`                     |
-|13 | glossary_opened      | `sim` ou `não`                            |
-|14 | codex_opened         | `sim` ou `não`                            |
-|15 | notes_opened         | `sim` ou `não`                            |
-
-Todas as perguntas podem ser **não obrigatórias** — o envio ocorre mesmo sem preencher tudo.
+O backend é um **Google Apps Script Web App** (não Google Forms): o `research.js`
+faz uma requisição HTTP simples (GET com query string, `mode: 'no-cors'`,
+`keepalive`) para o endpoint do Apps Script, que grava uma linha numa planilha
+Google Sheets.
 
 ---
 
-## 2. Obtenha o endpoint e os IDs de campo
+## 1. Crie a planilha e o Apps Script
 
-1. Com o formulário aberto, clique nos três pontinhos (⋮) → **Visualizar**
-2. Na página de visualização, abra o DevTools do navegador (F12) → aba **Network**
-3. Preencha qualquer resposta e clique em **Enviar**
-4. Observe a requisição POST para `formResponse` — copie a URL completa
+1. Crie uma **planilha Google Sheets** (será o destino dos dados).
+2. Nela, abra **Extensões → Apps Script**.
+3. Escreva um `doGet(e)` que leia `e.parameter` e faça `appendRow` com os campos
+   abaixo, na ordem em que você definir o cabeçalho da planilha. Esboço:
 
-   Ela terá este formato:
+   ```js
+   function doGet(e) {
+     const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('respostas');
+     const p = e.parameter;
+     sheet.appendRow([
+       p.timestamp, p.lang, p.theme, p.device, p.region, p.is_first_visit,
+       p.lesson, p.lesson_num, p.lessons_total, p.completed,
+       p.quiz_score, p.quiz_max, p.quiz_attempts,
+       p.builder_solved, p.builder_total, p.builder_attempts
+     ]);
+     return ContentService.createTextOutput('ok');
+   }
    ```
-   https://docs.google.com/forms/d/e/FORM_ID_LONGO/formResponse
-   ```
 
-5. No corpo da requisição (aba Payload), você verá os pares `entry.XXXXXXXXX=valor`
-   Cada número corresponde a uma pergunta na ordem em que aparecem no formulário
-
-> **Alternativa mais fácil:** inspecione o HTML da página de visualização e procure por `entry.` — cada campo `<input name="entry.XXXXXXXXX">` corresponde a uma pergunta.
+4. **Implantar → Nova implantação → Tipo: App da Web.**
+   - *Executar como:* você mesma.
+   - *Quem pode acessar:* **Qualquer pessoa**.
+5. Copie a **URL do app da Web** (termina em `/exec`).
 
 ---
 
-## 3. Configure research.js
+## 2. Aponte o `research.js` para o endpoint
 
-Abra [`/research.js`](../research.js) e substitua os dois blocos:
+Abra [`/research.js`](../research.js) e substitua a constante `ENDPOINT` pela URL
+copiada acima:
 
 ```js
-const FORM_URL = 'SUBSTITUA_PELO_ENDPOINT_DO_FORMULARIO';
-
-const ENTRIES = {
-  timestamp:         'entry.XXXXXXXXX',   // ← substitua cada um
-  lang:              'entry.XXXXXXXXX',
-  theme:             'entry.XXXXXXXXX',
-  device:            'entry.XXXXXXXXX',
-  region:            'entry.XXXXXXXXX',
-  is_first_visit:    'entry.XXXXXXXXX',
-  story:             'entry.XXXXXXXXX',
-  score:             'entry.XXXXXXXXX',
-  max_score:         'entry.XXXXXXXXX',
-  attempts:          'entry.XXXXXXXXX',
-  completed:         'entry.XXXXXXXXX',
-  chapter_abandoned: 'entry.XXXXXXXXX',
-  glossary_opened:   'entry.XXXXXXXXX',
-  codex_opened:      'entry.XXXXXXXXX',
-  notes_opened:      'entry.XXXXXXXXX',
-};
+const ENDPOINT = 'https://script.google.com/macros/s/SEU_ID/exec';
 ```
 
----
-
-## 4. Teste o envio
-
-1. Abra o DevTools → aba **Network**
-2. Acesse `index.html` sem a chave `musaeum-research-consent`
-   (ou limpe o localStorage com `localStorage.removeItem('musaeum-research-consent')` no console)
-3. O onboarding aparece: escolha o idioma, e na janela de boas-vindas **marque a caixinha de consentimento** antes de entrar (na home o consentimento é esse checkbox; o modal próprio do `research.js` só aparece em entrada direta numa história)
-4. Acesse `naufrago.html`, jogue até o final
-5. Na aba Network, confirme que houve uma requisição para `formResponse`
-6. Confira a planilha vinculada ao formulário — a linha deve aparecer em segundos
+Não há mais lista de `entry.XXXX`: o Apps Script recebe os campos pelo nome
+(query string), então basta o cabeçalho da planilha bater com os nomes dos
+campos abaixo.
 
 ---
 
-## 5. Planilha de respostas
+## 3. Campos coletados
 
-O Google Forms cria automaticamente uma planilha Google Sheets vinculada.  
-Acesse: **Respostas → ícone de planilha** no formulário.
+Cada linha é enviada ao **concluir** uma lição (ou ao **abandoná-la**, via
+`pagehide`). Nenhum campo identifica o usuário.
 
-Os dados chegam em tempo real sem nenhuma configuração adicional.
+### Ambiente (`_envData`)
+
+| Campo | O que registra |
+|---|---|
+| `timestamp` | Data/hora ISO do evento |
+| `lang` | `pt` ou `en` |
+| `theme` | `dark` ou `light` |
+| `device` | `mobile` ou `desktop` (inferido pela largura da tela / user agent) |
+| `region` | `navigator.language` (ex.: `pt-BR`), não geolocalização |
+| `is_first_visit` | `sim` na primeira visita ao curso (nenhuma lição concluída ainda) |
+
+### Lição
+
+| Campo | O que registra |
+|---|---|
+| `lesson` | id da lição (ex.: `sistema`, `unileteros`) |
+| `lesson_num` | número da lição |
+| `lessons_total` | total de lições publicadas |
+| `completed` | `sim` (concluída) ou `não` (abandonada) |
+| `quiz_score` / `quiz_max` | acertos e total do quiz da lição |
+| `quiz_attempts` | respostas erradas no quiz (sessão da lição) |
+| `builder_solved` / `builder_total` | palavras montadas e total no construtor |
+| `builder_attempts` | palavras montadas erradas no construtor (sessão da lição) |
+
+> Campos de quiz/construtor ausentes numa lição ficam em branco na planilha.
+
+---
+
+## 4. Como o `research.js` é acionado (curso/curso.js)
+
+`research.js` expõe `window.Research`. O motor do curso o chama assim:
+
+| Chamada | Quando |
+|---|---|
+| `Research.init()` | Ao abrir o curso. Na primeira visita (sem lição concluída), mostra o modal de consentimento se `musaeum-research-consent === null`. |
+| `Research.watchLesson({ lessonId, lessonNum, totalLessons, getState })` | Ao renderizar uma lição, arma o rastreio de abandono (`pagehide`). |
+| `Research.trackAttempt('quiz' \| 'builder')` | A cada resposta errada no quiz ou palavra errada no construtor. |
+| `Research.trackLessonComplete({ ... })` | Ao concluir a lição (último quiz ou último desafio do construtor). |
+
+O envio (`_send`) **só ocorre com consentimento** (`musaeum-research-consent === 'sim'`).
+
+---
+
+## 5. Consentimento
+
+O consentimento é coletado **uma vez, no onboarding da home** (checkbox opt-in,
+desmarcado por padrão, na janela de boas-vindas), e gravado em
+`musaeum-research-consent` (`'sim'` / `'não'`). Como `research.js` não roda mais
+na home, ele apenas **lê** essa chave nas páginas do curso. Se a pessoa chegar ao
+curso sem ter decidido (`null`), o próprio `research.js` mostra um modal de
+consentimento como fallback.
+
+- Recusar (ou entrar sem marcar) não tem consequência: o curso funciona igual.
+- A escolha não volta a ser pedida em visitas seguintes.
+
+---
+
+## 6. Teste o envio
+
+1. Abra o DevTools → aba **Network**.
+2. No console: `localStorage.setItem('musaeum-research-consent','sim')`.
+3. Abra uma lição em `curso/licao.html?licao=sistema` e conclua o quiz/construtor.
+4. Na aba Network, confirme a requisição GET para o endpoint `/exec`.
+5. Confira a planilha vinculada: a linha deve aparecer em segundos.
 
 ---
 
 ## Notas sobre privacidade
 
-- Nenhum dado pessoal identificável é coletado
-- O envio só ocorre após consentimento explícito (`musaeum-research-consent = 'sim'`)
-- Se o usuário recusar, nada é enviado — nem em visitas futuras
-- O campo `region` usa `navigator.language` (ex: `pt-BR`), não geolocalização
-
----
-
-## Para adicionar uma nova história
-
-Quando `sinuhe.html` for publicada, adicione ao final do seu script de inicialização:
-
-```js
-if (window.Research) Research.watchAbandonment({
-  storyId:  'sinuhe',
-  maxScore: CHAPTERS.length * 20,   // ajuste conforme a história
-  getState: () => state,
-});
-```
-
-E chame `Research.trackComplete(...)` no `goFinal()` equivalente da nova história.
+- Nenhum dado pessoal identificável é coletado (sem nome, e-mail, IP ou localização).
+- O envio só ocorre após consentimento explícito (`musaeum-research-consent = 'sim'`).
+- Se o usuário recusar, nada é enviado, nem em visitas futuras.
+- O campo `region` usa `navigator.language` (ex.: `pt-BR`), não geolocalização.

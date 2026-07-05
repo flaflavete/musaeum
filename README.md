@@ -50,10 +50,10 @@ npm run test:watch        # roda os testes em modo watch (desenvolvimento)
 - **Tutorial de leitura** — introdução a logogramas, fonogramas e determinativos
 - **Primeiros passos nos hieróglifos** — introdução em 6 lições interativas (como funciona a escrita; os 24 unilíteros; bilíteros e trilíteros; escrever palavras; cartuchos e os nomes do rei; ler a fórmula de oferenda), com construtor guiado de palavras e quizzes, na aba Hieróglifos da página inicial (`curso/`)
 - **Ferramentas de prática** — baralho de sinais para soletrar fonemas (`curso/baralho.html`) e a Lista de Gardiner completa (~900 sinais) com construtor livre de palavras (`gardiner/`)
-- **Tour guiado** — setas douradas apresentam a biblioteca, a coleção e as ferramentas de cada história; aparece no primeiro acesso e volta pelo botão ?
-- **Coleção** — painel na página inicial com progresso cruzado entre histórias
+- **Tour guiado** — setas douradas apresentam as três abas da home (Biblioteca, Mapa, Hieróglifos) e as ferramentas de cada história; aparece no primeiro acesso e volta pelo botão ?
+- **Tesouros no card** — cada história mostra, no próprio card da biblioteca, os tesouros já coletados (ou o pergaminho de conclusão); os glifos descobertos aparecem no momento da leitura
 - **Mapa interativo** — os lugares citados nos textos sobre uma carta de 1837; cada ponto abre um cartão com o que era e em que história aparece, e localizações debatidas vêm sinalizadas
-- **Certificado** — gerado em canvas, exportável como PNG, ao concluir todas as histórias
+- **Certificado de Leitura** — gerado em canvas, exportável como PNG, ao concluir todas as lições da introdução aos hieróglifos (na aba Hieróglifos)
 - **Nome do leitor** — opcional, aparece na coleção e no certificado
 - **Participação na pesquisa** — opcional e anônima, escolhida no primeiro acesso (dados de uso, nenhuma informação pessoal)
 - **Achados nas notas arqueológicas** — spans clicáveis nas notas revelam um cartão com foto, nome, referência de acervo e crédito do objeto real citado (imagens CC0/domínio público)
@@ -62,14 +62,14 @@ npm run test:watch        # roda os testes em modo watch (desenvolvimento)
 ### Estrutura
 
 ```
-index.html            Página da biblioteca (CSS inline; JS em home/)
-home/                 JS do index, um arquivo por seção (i18n, coleção, mapa, certificado…)
+index.html            Página inicial, 3 abas (CSS em home/index.css; JS em home/)
+home/                 JS do index, um arquivo por seção (i18n, biblioteca, mapa, aprender, certificado…)
 naufrago.html         Conto do Náufrago
 sinuhe.html           História de Sinué
 script.js             Utilitários compartilhados + shell HTML das histórias
 engine.js             Motor das histórias (telas, desafios, save)
 tour.js               Tour guiado (usado na home e nas histórias)
-research.js           Coleta anônima de dados da pesquisa
+research.js           Coleta anônima da pesquisa (mede o curso de hieróglifos; carregado só em curso/)
 style.css             Estilos globais
 data/                 Catálogo central e dados das histórias (catalogo.js, naufrago.js, sinuhe.js)
 curso/                Introdução aos hieróglifos: 6 lições (fonte única em licoes.js), motor único, baralho de sinais
@@ -159,10 +159,10 @@ npm run test:watch        # run tests in watch mode (development)
 - **Reading tutorial** — introduction to logograms, phonograms, and determinatives
 - **First steps in hieroglyphs** — a 6-lesson interactive introduction (how the writing works; the 24 uniliterals; biliterals and triliterals; writing words; cartouches and the king's names; reading the offering formula), with a guided word builder and quizzes, in the Hieroglyphs tab on the home page (`curso/`)
 - **Practice tools** — a sign deck for spelling out phonemes (`curso/baralho.html`) and the full Gardiner sign list (~900 signs) with a free word builder (`gardiner/`)
-- **Guided tour** — golden arrows introduce the library, the collection, and each story's tools; appears on first visit and returns via the ? button
-- **Collection** — dashboard on the home page with cross-story progress
+- **Guided tour** — golden arrows introduce the home's three tabs (Library, Map, Hieroglyphs) and each story's tools; appears on first visit and returns via the ? button
+- **Treasures on the card** — each story shows the treasures you have collected right on its library card (or the completion scroll); discovered glyphs appear as you read
 - **Interactive map** — the places named in the texts over an 1837 chart; each marker opens a card on what it was and which story it appears in, with debated locations flagged
-- **Certificate** — generated on canvas, exportable as PNG, upon completing all stories
+- **Reading Certificate** — generated on canvas, exportable as PNG, upon completing all lessons of the hieroglyph introduction (in the Hieroglyphs tab)
 - **Reader name** — optional, shown in the collection and certificate
 - **Research participation** — optional and anonymous, chosen on first visit (usage data only, no personal information)
 - **Finds in archaeological notes** — clickable spans in the notes reveal a card with a photo, name, museum accession reference, and credit for the real object cited (CC0/public domain images)
@@ -171,14 +171,14 @@ npm run test:watch        # run tests in watch mode (development)
 ### Structure
 
 ```
-index.html            Library home page (inline CSS; JS in home/)
-home/                 Index JS, one file per section (i18n, collection, map, certificate…)
+index.html            Home page, 3 tabs (CSS in home/index.css; JS in home/)
+home/                 Index JS, one file per section (i18n, library, map, aprender, certificate…)
 naufrago.html         The Shipwrecked Sailor
 sinuhe.html           The Story of Sinuhe
 script.js             Shared utilities + stories' HTML shell
 engine.js             Story engine (screens, challenges, save)
 tour.js               Guided tour (used on home and in stories)
-research.js           Anonymous research data collection
+research.js           Anonymous research collection (measures the hieroglyph course; loaded only in curso/)
 style.css             Global styles
 data/                 Central catalog and story data (catalogo.js, naufrago.js, sinuhe.js)
 curso/                Hieroglyph introduction: 6 lessons (single source in licoes.js), one engine, sign deck

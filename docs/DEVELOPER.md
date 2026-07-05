@@ -29,18 +29,19 @@ O site é bilíngue (PT/EN), gamificado, e funciona como aplicação web estáti
 
 ```
 musaeum/
-├── index.html              Página inicial: biblioteca, coleção, certificado (CSS inline; JS em home/)
+├── index.html              Página inicial: 3 abas (Biblioteca, Mapa, Hieróglifos) + modal Sobre (CSS em home/index.css; JS em home/)
 │
 ├── home/                   JS exclusivo do index, uma gaveta por seção:
 │   ├── i18n.js             Textos PT/EN de UI (objeto i18n)
-│   ├── biblioteca.js       buildLibrary (cards a partir do catálogo)
+│   ├── biblioteca.js       buildLibrary (cards) + renderCardTreasures (tesouros no card)
 │   ├── modais.js           setPageInert + modal Sobre + card do glifo (Códex)
-│   ├── onboarding.js       Idioma, nome, consentimento, oferta de tour
-│   ├── abas.js             showTab, initTabKeys (tablist WAI-ARIA)
+│   ├── onboarding.js       Idioma, nome, consentimento, oferta e motor do tour da home
+│   ├── abas.js             showTab, initTabKeys (tablist WAI-ARIA; 3 abas)
 │   ├── mapa.js             renderGeoSection (delega para data/geografia.js)
-│   ├── colecao.js          renderCollection (tesouros + Códex por história)
-│   ├── certificado.js      Certificado em canvas + export PNG
+│   ├── aprender.js         Hub da aba Hieróglifos (renderAprenderHub, lê CURSO_LICOES)
+│   ├── certificado.js      Certificado de Leitura em canvas + export PNG (concluir o curso)
 │   └── main.js             Estado, setLang/render, init (carrega por ÚLTIMO)
+│   (não há mais colecao.js: os tesouros migraram para os cards da biblioteca)
 │
 ├── naufrago.html           Experiência interativa: O Conto do Náufrago
 ├── sinuhe.html             Experiência interativa: A História de Sinué
@@ -48,7 +49,7 @@ musaeum/
 ├── script.js               Utilitários compartilhados + shell HTML (initStoryApp)
 ├── engine.js               Motor das histórias: telas, render, desafios, save
 ├── tour.js                 Motor do tour guiado (coach marks), usado na home e nas histórias
-├── research.js             Coleta anônima de dados da pesquisa (consentimento + envio)
+├── research.js             Coleta anônima da pesquisa; hoje mede só o curso (carregado apenas nas páginas de curso/)
 ├── style.css               Estilos globais (tema, tipografia, componentes)
 │
 ├── data/
@@ -125,14 +126,15 @@ Cada página de história (`naufrago.html`, `sinuhe.html`) segue sempre esta ord
   <script src="data/catalogo.js"></script>      <!-- 2. catálogo central (MUSAEUM_CATALOG, catalogGet) -->
   <script src="data/naufrago.js"></script>      <!-- 3. dados da história (I18N, CHAPTERS...) -->
   <script src="data/cultura-material.js"></script> <!-- 4. fichas dos papiros + achados -->
-  <script src="research.js"></script>           <!-- 5. coleta da pesquisa -->
-  <script src="engine.js"></script>             <!-- 6. motor: telas, render, desafios, save -->
-  <script src="tour.js"></script>               <!-- 7. motor do tour guiado -->
-  <script>initStory({ storyId: 'naufrago' });</script>  <!-- 8. dá o play -->
+  <script src="engine.js"></script>             <!-- 5. motor: telas, render, desafios, save -->
+  <script src="tour.js"></script>               <!-- 6. motor do tour guiado -->
+  <script>initStory({ storyId: 'naufrago' });</script>  <!-- 7. dá o play -->
 </body>
 ```
 
 Os scripts são carregados em ordem, então todas as funções e constantes ficam disponíveis globalmente. **`data/catalogo.js` vem logo após `script.js`** porque o data file da história usa `catalogGet()` para puxar `ITEMS` e `GLYPHS_CODEX` dali. A lógica da história vive em `engine.js` (não inline): `initStory()` monta o estado, injeta o shell via `initStoryApp()`, carrega o save e renderiza. `tour.js` é opcional do ponto de vista do motor — se estiver presente, `engine.js` o usa para o tour da história.
+
+> **`research.js` não entra aqui.** Desde a v1.2 a coleta da pesquisa mede só o curso de hieróglifos, então `research.js` é carregado apenas nas páginas de `curso/` — nunca nas histórias nem na home. Ver §18.
 
 ---
 
@@ -401,6 +403,7 @@ Todas as chaves usam **hífen** (não underscore).
 | `musaeum-theme` | string | `"dark"` ou `"light"` |
 | `musaeum-player` | JSON | `{ name: "..." }` |
 | `musaeum-stories` | JSON | `{ naufrago: {...}, sinuhe: {...} }` |
+| `musaeum-hieroglyphs` | JSON | `{ done: { <id>: true } }` — lições concluídas do curso |
 | `musaeum-research-consent` | string | `"sim"` / `"não"`; `null` enquanto não decidido (é o gatilho do onboarding) |
 | `musaeum-tour-<storyId>` | string | `"seen"` quando o tour daquela história já auto-disparou |
 
@@ -547,11 +550,12 @@ Quando a história estiver pronta, mude `available` para `true` na entrada do ca
 Nada de card, Coleção ou Certificado é escrito à mão: tudo lê `MUSAEUM_CATALOG` (`data/catalogo.js`).
 
 - **Cards da biblioteca:** `buildLibrary()` percorre o catálogo; `available: true` vira card-link, `false` vira card bloqueado.
-- **Certificado:** `AVAILABLE_STORIES = MUSAEUM_CATALOG.filter(s => s.available).map(s => s.storyId)` — derivado, não escrito à mão. O certificado desbloqueia quando todas essas histórias chegam à tela final.
-- **Coleção:** mostra uma história quando ela está publicada ou quando há save dela no aparelho.
+- **Tesouros nos cards:** `renderCardTreasures()` mostra, dentro de cada card, os tesouros da história (ou o pergaminho `award`), cruzando o catálogo com o save (`storeGet`). Não há mais aba Coleção.
 - **Mapa:** as cores por história derivam do catálogo (`geoStoryStyle`).
 
 Por isso publicar é só `available: true`: a derivação cuida do resto. (A História de Sinué foi publicada na v1.0, em 2026-06-09, por esse mesmo caminho.)
+
+> **O Certificado NÃO deriva mais do catálogo.** Desde a v1.2 ele é um **Certificado de Leitura** que desbloqueia ao concluir todas as lições `ready` do curso de hieróglifos (`window.CURSO_LICOES` + save `musaeum-hieroglyphs`), e mora na aba Hieróglifos. Ver `home/certificado.js` e [TECHNICAL.md](TECHNICAL.md#certificado-de-leitura-indexhtml-homecertificadojs).
 
 ---
 
@@ -594,7 +598,7 @@ Disparada quando `musaeum-research-consent === null`. Três pop-ups, em ordem:
 2. `#nameModal` — boas-vindas: nome (opcional) + checkbox de consentimento **desmarcado por padrão**. Grava `musaeum-player` e `musaeum-research-consent`. Já é mostrada no idioma escolhido.
 3. `#tourOfferModal` — oferta do tour; "Sim" chama `startHomeTour()`.
 
-Na home, `research.js` é iniciado com `Research.init({ suppressModal: true })` para não duplicar o modal de consentimento (a boas-vindas já cobre isso). Em entrada direta numa história, o `research.js` mostra seu próprio modal como fallback.
+O consentimento coletado aqui vale para a pesquisa acadêmica, que **desde a v1.2 mede só o curso de hieróglifos**: `research.js` não é carregado na home nem nas histórias, apenas nas páginas de `curso/`. Lá, se a pessoa chegar sem ter decidido (`consent === null`), o próprio `research.js` mostra um modal de consentimento como fallback. Ver §15 e [TECHNICAL.md](TECHNICAL.md#coleta-da-pesquisa-só-aqui).
 
 ### Motor de tour (`tour.js`)
 
@@ -608,7 +612,7 @@ Tour.isActive();  Tour.close();
 
 Spotlight dourado sobre o elemento real + seta piscando + cartão com texto e botões. **As cores do cartão são fixas claras** (não usam as variáveis de tema), porque o cartão é sempre escuro, inclusive no tema claro. Teclado: ←/→/Esc. Reposiciona em scroll/resize. O botão `#btnTour` (`?`), tanto na home quanto no shell das histórias, reabre o tour.
 
-- **Home** (`startHomeTour`, index.html): 5 passos — `.library-grid .scroll-card`, `#tab-mapa`, `#tab-colecao`, `#tab-cert`, `#btnAbout`. Textos em `i18n.<lang>.tourSteps`.
+- **Home** (`startHomeTour`, `home/onboarding.js`): 4 passos — `#tab-inicio`, `#tab-mapa`, `#tab-aprender`, `#btnAbout`. Textos em `i18n.<lang>.tourSteps`.
 - **História** (`startStoryTour`, engine.js): `#btnGlossary`, `#btnCodex`, `#btnSound`, `#inventoryHud`, `#btnNote`, `#btnChallenge` (filtra só os visíveis). **Auto-dispara uma vez** ao chegar à tela `story` (flag `musaeum-tour-<storyId>`). Textos nas chaves `tour-*` do `I18N`.
 
 ### Estilo dos textos de UI
@@ -624,6 +628,8 @@ Módulo standalone: não usa `engine.js`, `script.js` nem o catálogo. Exibido c
 Arquitetura de fonte única: as 6 lições vivem em `curso/licoes.js` (`window.CURSO_LICOES`), servidas por um motor único (`curso/curso.js`) para o índice e para cada lição (`?licao=<id>`). Progresso em `localStorage 'musaeum-hieroglyphs'` (`{ done: { <id>: true } }`), com total derivado de `CURSO_LICOES.length`. O hub da home (`home/aprender.js`) lê o mesmo save e renderiza a partir de `CURSO_LICOES`, sem duplicar dados.
 
 Os sinais nas lições vêm sempre do `gardiner/` (`GARDINER_DATA`/`_EN`), nunca relistados à mão. A pasta `gardiner/` também serve a página `gardiner.html` (lista de ~900 sinais + construtor livre) e o pipeline que gera os dados da planilha-fonte (`build_data.py`, `merge_pt.py`, `source/`).
+
+> **A pesquisa vive aqui.** Desde a v1.2, `research.js` mede o curso (conclusão de lição, quiz e construtor) e é carregado só em `curso/index.html` e `curso/licao.html`. `curso/curso.js` chama `Research.init/watchLesson/trackAttempt/trackLessonComplete`. Configuração e campos coletados: [RESEARCH_SETUP.md](RESEARCH_SETUP.md).
 
 As 6 lições: 1 O sistema, 2 Os 24 unilíteros, 3 Bilíteros e trilíteros, 4 Escrevendo em egípcio antigo, 5 Cartuchos e os nomes do rei, 6 Ler um texto mágico (a fórmula de oferenda, como capstone). Ferramentas de prática: baralho de sinais (`curso/baralho.html`) e a lista de Gardiner.
 

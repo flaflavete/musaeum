@@ -29,13 +29,19 @@ funcionam):
 digital library of literary texts from Ancient Egypt's Middle Kingdom
 (2055–1650 BCE). An academic project devoted to democratizing access to ancient
 Egyptian texts that usually circulate only in university settings, built with
-bibliographic rigor and fidelity to the original sources.</p>
+bibliographic rigor and fidelity to the original sources. Alongside the stories,
+it offers an interactive introduction to reading hieroglyphs (a six-lesson course
+with a guided word builder), the full Gardiner sign list, and reading-practice
+tools.</p>
 
 <p><strong>Musæum</strong> é uma biblioteca digital interativa e bilíngue
 (português/inglês) de textos literários do Egito Antigo do Reino Médio
 (2055–1650 AEC). Projeto acadêmico voltado a democratizar o acesso a textos
 egípcios antigos que normalmente só circulam em ambientes universitários, com
-rigor bibliográfico e fidelidade às fontes originais.</p>
+rigor bibliográfico e fidelidade às fontes originais. Além das histórias, traz
+uma introdução interativa à leitura dos hieróglifos (curso de seis lições com
+construtor guiado de palavras), a Lista de Gardiner completa e ferramentas de
+prática de leitura.</p>
 ```
 
 ---
@@ -43,7 +49,7 @@ rigor bibliográfico e fidelidade às fontes originais.</p>
 ## Keywords
 
 ```
-Ancient Egypt, Middle Kingdom, Egyptian literature, Egyptology, digital humanities, digital library, archaeology, Egito Antigo, Reino Médio, literatura egípcia, egiptologia, humanidades digitais
+Ancient Egypt, Middle Kingdom, Egyptian literature, Egyptology, hieroglyphs, digital humanities, digital library, archaeology, Egito Antigo, Reino Médio, literatura egípcia, egiptologia, hieróglifos, humanidades digitais
 ```
 
 ---

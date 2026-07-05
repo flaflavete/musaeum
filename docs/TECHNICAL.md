@@ -12,12 +12,14 @@ campones.html           Experiência interativa do Camponês Eloquente (pronta, 
 script.js               Utilitários compartilhados + shell HTML das histórias
 engine.js               Motor das histórias: telas, render, desafios, save
 tour.js                 Tour guiado (coach marks), usado na home e nas histórias
-research.js             Coleta anônima e consentida de dados da pesquisa
+research.js             Coleta anônima e consentida da pesquisa; hoje mede só o curso (carregado apenas nas páginas de curso/)
 style.css               Estilos globais das histórias (tema, tipografia); não usado pelo index
 home/                   CSS e JS exclusivos da página inicial. index.css: todo
                         o estilo do index (um arquivo só). JS separado por seção
                         (i18n, biblioteca, modais, onboarding, abas, mapa,
-                        colecao, certificado, main). main.js carrega por último.
+                        certificado, aprender, main). main.js carrega por último.
+                        3 abas: Biblioteca, Mapa e Hieróglifos (não há mais aba
+                        Coleção nem Certificado; ver abaixo).
 data/catalogo.js        Catálogo central: cards, tesouros, códex e disponibilidade
 data/naufrago.js        Textos, desafios e glossário do Náufrago
 data/sinuhe.js          Textos, desafios e glossário do Sinué
@@ -131,6 +133,7 @@ Tema padrão: **escuro**. Variáveis redefinidas em `:root[data-theme="light"]`.
 | `musaeum-theme` | string | `"dark"` ou `"light"` |
 | `musaeum-player` | JSON | `{ name: "..." }` |
 | `musaeum-stories` | JSON | `{ naufrago: {...}, sinuhe: {...} }` — save unificado |
+| `musaeum-hieroglyphs` | JSON | `{ done: { <id>: true } }` — lições concluídas do curso |
 | `musaeum-research-consent` | string | `"sim"` ou `"não"` — consentimento da pesquisa; `null` enquanto não decidido (dispara o onboarding) |
 | `musaeum-muted` | string | `"1"` ou `"0"` — preferência de som mutado |
 | `musaeum-tour-<storyId>` | string | `"seen"` — marca que o tour daquela história já auto-disparou |
@@ -165,7 +168,7 @@ A migração automática de saves antigos (`musaeum-naufrago`, `musaeum-sinuhe`)
 ### A História de Sinué (`sinuhe.html`)
 
 - **STORY_ID:** `sinuhe`
-- **Tesouros (8):** Trigo 🌾, Falcão 🦅, Onda 🌊, Palmeira 🌴, Espadas ⚔️, Pena de Maat 🪶, Lua 🌙, Rolo Real 📜
+- **Tesouros (8):** Coroa 👑, Falcão 🦅, Camelo 🐪, Mel 🍯, Arco 🏹, Escaravelho 🪲, Rolo Real 📜, Pena de Maat 🪶
 - **Hieróglifos do Códex (9):**
 
 | # | Glifo | Translit | Capítulo |
@@ -207,16 +210,15 @@ award: {
 ```
 
 - **Tela final** (`engine.js`): se a história tem `award` e não tem tesouros, o bloco do prêmio substitui o rank/glifo final (não repete).
-- **Coleção** (`home/colecao.js`): histórias com `items` mostram a grade de tesouros; histórias com `award` mostram um cartão do pergaminho (`.col-award`), travado até `screen === 'final'`.
+- **Card na Biblioteca** (`home/biblioteca.js`, `renderCardTreasures`): histórias com `items` mostram a grade de tesouros no card; histórias com `award` mostram o pergaminho (`.card-treasure.award`), travado até `screen === 'final'`.
 
 ---
 
-## Sistema de Coleção (index.html)
+## Abas da home e tesouros nos cards (index.html)
 
-Seção accordion na página inicial que exibe progresso cruzado:
+A página inicial tem **três abas** (`home/abas.js`, tablist WAI-ARIA): **Biblioteca** (`#panel-inicio`), **Mapa** (`#panel-mapa`) e **Hieróglifos** (`#panel-aprender`). Não há mais aba **Coleção** nem aba **Certificado** separadas: o progresso vive nos próprios cards e o certificado passou para a aba Hieróglifos.
 
-1. **Tesouros coletados** por história (itens definidos em `data/catalogo.js`)
-2. **Códex de hieróglifos** desbloqueados, por história (lê `musaeum-stories`)
+**Tesouros nos cards** (`home/biblioteca.js`, `renderCardTreasures`): cada card de história disponível mostra seus tesouros inline (grade `.card-treasure` earned/locked por item), lidos do catálogo cruzado com o save (`storeGet`/`musaeum-stories`). Histórias com `award` (ex.: Camponês) mostram o pergaminho único, travado até `screen === 'final'`. Ao fim da grade, um convite (`.codex-invite`) leva à aba Hieróglifos. Os glifos descobertos aparecem no momento da leitura (toast dentro da história); não há mais códex cruzado na home.
 
 ### MUSAEUM_CATALOG (data/catalogo.js)
 
@@ -244,7 +246,7 @@ Na primeira visita — detectada por `musaeum-research-consent === null` — o `
 2. **Boas-vindas** (`#nameModal`) — campo de nome (opcional) mais um checkbox de consentimento da pesquisa, **desmarcado por padrão** (opt-in ativo). Ao entrar, grava `musaeum-player` (se houver nome) e `musaeum-research-consent` (`sim`/`não`).
 3. **Oferta de tour** (`#tourOfferModal`) — pergunta se a pessoa quer o tour guiado da home. "Sim" chama `startHomeTour()`.
 
-Na home, `Research.init({ suppressModal: true })` impede que o `research.js` mostre seu próprio modal de consentimento, já que a boas-vindas cuida disso. O nome é editável a qualquer momento na seção Coleção (reabre o `#nameModal`).
+O consentimento coletado aqui (`musaeum-research-consent`) vale para a pesquisa, que **desde a v1.2 mede só o curso de hieróglifos**: `research.js` não é mais carregado na home nem nas histórias, só nas páginas de `curso/`, onde lê essa chave. Se a pessoa chegar ao curso sem ter decidido (`consent === null`), o próprio `research.js` mostra um modal de consentimento como fallback (ver §Introdução aos hieróglifos). O nome é editável a qualquer momento na seção Coleção (reabre o `#nameModal`).
 
 ---
 
@@ -261,7 +263,7 @@ Tour.start(steps, { labels: { skip, prev, next, done }, onClose });
 - Navegação por teclado (←/→/Esc); reposiciona ao rolar/redimensionar.
 - Botão `#btnTour` (`?`) na barra superior reabre o tour a qualquer momento.
 
-**Tour da home** (`index.html`, `startHomeTour`): 5 passos — `.library-grid .scroll-card` (biblioteca), `#tab-mapa`, `#tab-colecao`, `#tab-cert`, `#btnAbout`. Textos no objeto `i18n` (`tourSteps`).
+**Tour da home** (`home/onboarding.js`, `startHomeTour`): 4 passos — `#tab-inicio` (Biblioteca), `#tab-mapa` (Mapa), `#tab-aprender` (Hieróglifos), `#btnAbout` (Sobre). Textos no objeto `i18n` (`tourSteps`).
 
 **Tour da história** (`engine.js`, `startStoryTour`): aponta os recursos visíveis na cena — `#btnGlossary`, `#btnCodex`, `#btnSound`, `#inventoryHud`, `#btnNote`, `#btnChallenge`. **Auto-dispara uma única vez** na primeira chegada à tela `story` (gravando `musaeum-tour-<storyId>`); depois fica disponível só pelo `?`. Textos nas chaves `tour-*` do `I18N`.
 
@@ -380,16 +382,20 @@ Lugares fora da carta (Punt ao sul, o Levante ao norte) viram marcadores de **bo
 
 ---
 
-## Certificado (index.html)
+## Certificado de Leitura (index.html, `home/certificado.js`)
 
-Desbloqueia quando todas as histórias em `AVAILABLE_STORIES` têm `screen === 'final'`.
+Desde a v1.2, o certificado premia a conclusão do **curso de hieróglifos**, não das histórias, e mora na seção "Sua Conquista" da aba **Hieróglifos** (não é mais uma aba própria).
+
+Desbloqueia quando **todas as lições `ready`** do curso estão concluídas no save do curso:
 
 ```js
-// Derivado de data/catalogo.js: toda história com available: true conta.
-const AVAILABLE_STORIES = MUSAEUM_CATALOG.filter(s => s.available).map(s => s.storyId);
+// Fonte das lições: window.CURSO_LICOES (curso/licoes.js). Só as prontas contam.
+const lessons = (window.CURSO_LICOES || []).filter(l => l.ready);
+const done = JSON.parse(localStorage.getItem('musaeum-hieroglyphs') || '{}').done || {};
+const unlocked = lessons.length && lessons.every(l => done[l.id]);
 ```
 
-Gerado em `<canvas>` 800 × 560 px com suporte a devicePixelRatio. Inclui nome do jogador, tesouros coletados, data e assinatura. Exportável como PNG via `downloadCertificate()`.
+Título: **"CERTIFICADO DE LEITURA"** (assunto: "a Introdução aos Hieróglifos do Musæum"). Gerado em `<canvas>` 800 × 560 px com suporte a devicePixelRatio, traz o nome do leitor, a data e as **logos institucionais** (PPGArq + Museu Nacional), sem tesouros. Exportável como PNG via `downloadCertificate()`.
 
 ---
 
@@ -511,6 +517,17 @@ Transliteração usa override só onde o dado do Gardiner falha (ex.: `tr: { M17
 ### Progresso
 
 `localStorage 'musaeum-hieroglyphs'` como `{ done: { <id>: true } }`. Contagem e % derivam de `CURSO_LICOES.length` (sem número mágico). O hub da home (`home/aprender.js`) lê o mesmo save e renderiza os cards a partir de `CURSO_LICOES` (não duplica dados).
+
+### Coleta da pesquisa (só aqui)
+
+Desde a v1.2, a pesquisa acadêmica (`research.js`) mede **o curso**, não as histórias. `research.js` é carregado apenas em `curso/index.html` e `curso/licao.html`, e `curso/curso.js` o aciona:
+
+- `Research.init()` — na primeira visita ao curso (nenhuma lição concluída), mostra o modal de consentimento se `musaeum-research-consent === null`.
+- `Research.watchLesson({ lessonId, lessonNum, totalLessons, getState })` — arma o rastreio de abandono (`pagehide`) ao abrir a lição.
+- `Research.trackAttempt('quiz' | 'builder')` — conta cada resposta errada no quiz ou palavra errada no construtor.
+- `Research.trackLessonComplete({ ... })` — envia ao concluir a lição (quiz final ou último desafio do construtor).
+
+O envio só ocorre com consentimento (`'sim'`). Backend: Google Apps Script Web App → Google Sheets. Detalhes de campos e configuração em [RESEARCH_SETUP.md](RESEARCH_SETUP.md). **Não** reintroduzir hooks de pesquisa em `engine.js`/`script.js`/histórias.
 
 ### Ferramentas de prática
 
