@@ -2,6 +2,9 @@
  * Musæum: Módulo de coleta de dados para pesquisa acadêmica
  * PPGArq / Museu Nacional / UFRJ
  *
+ * Coleta o uso do CURSO de hieróglifos (curso/): conclusão de lições,
+ * desempenho no quiz e no construtor de palavras. Não coleta das histórias.
+ *
  * Backend: Google Apps Script Web App (doGet) gravando em Google Sheets.
  * Para trocar o endpoint, substitua ENDPOINT abaixo.
  */
@@ -14,24 +17,25 @@
   const ENDPOINT = 'https://script.google.com/macros/s/AKfycbxlNgQu7Mf9x1drInYq-gEYp2IpkoNRHjnPZDBVVuQdhVJ9wIVfC72FoipbBf-vEqX4Lw/exec';
   // ────────────────────────────────────────────────────────────────────────────
 
-  // Estado da sessão atual (não persiste)
+  // Estado da sessão atual (não persiste). Contadores por página, ou seja,
+  // por lição: cada lição abre em licao.html?licao=… e recarrega o módulo.
   const _s = {
-    isFirstVisit:   false,
-    glossaryOpened: false,
-    codexOpened:    false,
-    notesOpened:    false,
-    totalAttempts:  0,
+    isFirstVisit:    false,
+    quizAttempts:    0, // respostas erradas no quiz da lição
+    builderAttempts: 0, // palavras montadas erradas no construtor
   };
 
   function _consent() {
     return localStorage.getItem(CONSENT_KEY);
   }
 
+  // Primeira visita ao curso = nenhuma lição concluída ainda.
   function _isFirstVisit() {
     try {
-      const raw = localStorage.getItem('musaeum-stories');
+      const raw = localStorage.getItem('musaeum-hieroglyphs');
       if (!raw) return true;
-      return Object.keys(JSON.parse(raw)).length === 0;
+      const p = JSON.parse(raw);
+      return !p.done || Object.keys(p.done).length === 0;
     } catch (_) { return true; }
   }
 
@@ -331,24 +335,25 @@
 
   let _abandonFn = null;
 
-  function _registerAbandonment(storyId, maxScore, getState) {
+  function _registerAbandonment(info) {
     if (_abandonFn) window.removeEventListener('pagehide', _abandonFn);
 
     _abandonFn = function () {
       if (_consent() !== 'sim') return;
-      const s = getState();
-      if (s.screen === 'final') return; // já foi registrado via trackComplete
+      const s = info.getState();
+      if (s.done) return; // já foi registrado via trackLessonComplete
       _sendBeacon({
         ..._envData(s.lang),
-        story:             storyId,
-        score:             s.score || 0,
-        max_score:         maxScore,
-        attempts:          _s.totalAttempts,
-        completed:         'não',
-        chapter_abandoned: s.chapter ?? 0,
-        glossary_opened:   _s.glossaryOpened ? 'sim' : 'não',
-        codex_opened:      _s.codexOpened    ? 'sim' : 'não',
-        notes_opened:      _s.notesOpened    ? 'sim' : 'não',
+        lesson:           info.lessonId,
+        lesson_num:       info.lessonNum,
+        lessons_total:    info.totalLessons,
+        completed:        'não',
+        quiz_score:       s.quizScore,
+        quiz_max:         s.quizMax,
+        quiz_attempts:    _s.quizAttempts,
+        builder_solved:   s.builderSolved,
+        builder_total:    s.builderTotal,
+        builder_attempts: _s.builderAttempts,
       });
     };
 
@@ -360,7 +365,7 @@
   window.Research = {
 
     /**
-     * Chame em cada página logo após qualquer setup de DOM.
+     * Chame em cada página do curso logo após o setup de DOM.
      * Mostra o modal de consentimento na primeira visita.
      */
     init(opts) {
@@ -372,29 +377,23 @@
     },
 
     /**
-     * Registra abertura de glossário, códex ou notas arqueológicas.
-     * @param {'glossary'|'codex'|'notes'} type
+     * Registra uma tentativa errada.
+     * @param {'quiz'|'builder'} type quiz = resposta errada; builder = palavra montada errada.
      */
-    trackEvent(type) {
-      if (type === 'glossary') _s.glossaryOpened = true;
-      else if (type === 'codex')   _s.codexOpened   = true;
-      else if (type === 'notes')   _s.notesOpened   = true;
+    trackAttempt(type) {
+      if (type === 'builder') _s.builderAttempts++;
+      else _s.quizAttempts++;
     },
 
     /**
-     * Registra uma tentativa errada num desafio.
-     * Chame cada vez que o jogador escolhe uma opção incorreta.
+     * Registra conclusão de uma lição e envia os dados.
+     * Chame quando a lição chegar ao fim (último quiz ou último desafio do construtor).
+     * Campos de quiz/construtor ausentes na lição ficam em branco na planilha.
+     * @param {{ lessonId: string, lessonNum: number, totalLessons: number,
+     *           quizScore?: number, quizMax?: number,
+     *           builderSolved?: number, builderTotal?: number, lang: string }} opts
      */
-    trackAttempt() {
-      _s.totalAttempts++;
-    },
-
-    /**
-     * Registra conclusão da história e envia os dados.
-     * Chame quando a tela final for exibida.
-     * @param {{ storyId: string, score: number, maxScore: number, lang: string }} opts
-     */
-    trackComplete({ storyId, score, maxScore, lang }) {
+    trackLessonComplete({ lessonId, lessonNum, totalLessons, quizScore, quizMax, builderSolved, builderTotal, lang }) {
       // Remove o listener de abandono, não precisamos mais dele
       if (_abandonFn) {
         window.removeEventListener('pagehide', _abandonFn);
@@ -402,25 +401,27 @@
       }
       _send({
         ..._envData(lang),
-        story:             storyId,
-        score:             score,
-        max_score:         maxScore,
-        attempts:          _s.totalAttempts,
-        completed:         'sim',
-        chapter_abandoned: 'N/A',
-        glossary_opened:   _s.glossaryOpened ? 'sim' : 'não',
-        codex_opened:      _s.codexOpened    ? 'sim' : 'não',
-        notes_opened:      _s.notesOpened    ? 'sim' : 'não',
+        lesson:           lessonId,
+        lesson_num:       lessonNum,
+        lessons_total:    totalLessons,
+        completed:        'sim',
+        quiz_score:       quizScore,
+        quiz_max:         quizMax,
+        quiz_attempts:    _s.quizAttempts,
+        builder_solved:   builderSolved,
+        builder_total:    builderTotal,
+        builder_attempts: _s.builderAttempts,
       });
     },
 
     /**
-     * Registra o rastreio de abandono para uma história.
-     * Chame após inicializar o estado do jogo.
-     * @param {{ storyId: string, maxScore: number, getState: () => object }} opts
+     * Registra o rastreio de abandono de uma lição.
+     * Chame ao renderizar a lição. getState() devolve o progresso atual.
+     * @param {{ lessonId: string, lessonNum: number, totalLessons: number,
+     *           getState: () => object }} opts
      */
-    watchAbandonment({ storyId, maxScore, getState }) {
-      _registerAbandonment(storyId, maxScore, getState);
+    watchLesson({ lessonId, lessonNum, totalLessons, getState }) {
+      _registerAbandonment({ lessonId, lessonNum, totalLessons, getState });
     },
   };
 

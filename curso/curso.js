@@ -185,6 +185,25 @@
   /* ── página: lição ───────────────────────────────── */
   var quizLocked = false;
 
+  /* Pesquisa: contexto da lição em curso. renderLesson preenche; o quiz, o
+     construtor e o watcher de abandono leem e atualizam. reportComplete envia
+     uma única vez, no fim do quiz ou do construtor. */
+  var reportCtx = null;
+  function reportComplete() {
+    if (!reportCtx || reportCtx.done) return;
+    reportCtx.done = true;
+    if (window.Research) Research.trackLessonComplete({
+      lessonId:      reportCtx.lessonId,
+      lessonNum:     reportCtx.lessonNum,
+      totalLessons:  reportCtx.totalLessons,
+      quizScore:     reportCtx.quizScore,
+      quizMax:       reportCtx.quizMax,
+      builderSolved: reportCtx.builderSolved,
+      builderTotal:  reportCtx.builderTotal,
+      lang:          lang,
+    });
+  }
+
   function lessonNav(lesson) {
     var idx = readyLessons.indexOf(lesson);
     var next = readyLessons[idx + 1];
@@ -246,6 +265,32 @@
       quizHtml +
       lessonNav(lesson);
 
+    reportCtx = {
+      lessonId:      lesson.id,
+      lessonNum:     lesson.num,
+      totalLessons:  LESSONS.length,
+      quizScore:     undefined,
+      quizMax:       (lesson.quiz && lesson.quiz.length) || undefined,
+      builderSolved: undefined,
+      builderTotal:  undefined,
+      done:          false,
+    };
+    if (window.Research) Research.watchLesson({
+      lessonId:     lesson.id,
+      lessonNum:    lesson.num,
+      totalLessons: LESSONS.length,
+      getState: function () {
+        return {
+          done:          reportCtx.done,
+          lang:          lang,
+          quizScore:     reportCtx.quizScore,
+          quizMax:       reportCtx.quizMax,
+          builderSolved: reportCtx.builderSolved,
+          builderTotal:  reportCtx.builderTotal,
+        };
+      },
+    });
+
     wireChrome();
     wireSiggrid();
     wireBuilder(lesson);
@@ -262,6 +307,7 @@
     var map = gardinerMap();
     var st = { ci: 0, built: [], solved: false };
     var strip = el('builderStrip'), task = el('builderTask'), fb = el('builderFeedback'), nextWrap = el('builderNext');
+    if (reportCtx) { reportCtx.builderTotal = block.challenges.length; reportCtx.builderSolved = 0; }
 
     function renderTask() {
       var c = block.challenges[st.ci];
@@ -278,6 +324,7 @@
       var c = block.challenges[st.ci];
       if (st.built.join(',') === c.answer.join(',')) {
         st.solved = true;
+        if (reportCtx) reportCtx.builderSolved = st.ci + 1;
         renderStrip();
         fb.style.color = 'var(--green)';
         fb.innerHTML = '✓ ' + esc(c.translit) + ' — ' + esc(T(c.meaning)) + (c.note ? '<span class="bf-note">' + T(c.note) + '</span>' : '');
@@ -293,8 +340,10 @@
           var bar = el('progressBar');
           if (bar) bar.style.width = '100%';
           quizLocked = true;
+          reportComplete();
         }
       } else if (st.built.length >= c.answer.length) {
+        if (window.Research) Research.trackAttempt('builder');
         fb.style.color = 'var(--terracotta-lt)';
         fb.textContent = lang === 'pt' ? 'Não é bem assim. Use ⌫ e confira a ordem dos sinais.' : 'Not quite. Use ⌫ and check the order of the signs.';
       } else {
@@ -385,6 +434,7 @@
           btn.classList.add('wrong');
           fb.textContent = T(q.feedbackErr);
           fb.style.color = 'var(--terracotta-lt)';
+          if (window.Research) Research.trackAttempt('quiz');
         }
         showQuizNext(lesson);
       });
@@ -407,6 +457,8 @@
       var bar = el('progressBar');
       if (bar) bar.style.width = '100%';
       quizLocked = true;
+      if (reportCtx) reportCtx.quizScore = quizState.score;
+      reportComplete();
       var msg = lang === 'pt'
         ? 'Quiz concluído: você acertou ' + quizState.score + ' de ' + qs.length + '.'
         : 'Quiz complete: you got ' + quizState.score + ' of ' + qs.length + ' right.';
@@ -535,5 +587,8 @@
     }
   }
 
-  document.addEventListener('DOMContentLoaded', render);
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.Research) Research.init(); // consentimento na 1ª visita ao curso
+    render();
+  });
 })();

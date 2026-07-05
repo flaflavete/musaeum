@@ -36,7 +36,6 @@ function toggleNote() {
   } else {
     note.style.display = 'block';
     btn.textContent = t('note-close');
-    if (window.Research) Research.trackEvent('notes');
   }
 }
 

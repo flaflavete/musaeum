@@ -345,7 +345,6 @@ function openArtifact() {
   renderModal();
   showOverlay();
   document.getElementById('modalClose').focus();
-  if (window.Research) Research.trackEvent('artifact');
 }
 
 function renderArtifactView() {
@@ -505,7 +504,6 @@ function attachMinigame(ch) {
       } else {
         el.classList.add('wrong');
         playFeedback('wrong');
-        if (window.Research) Research.trackAttempt();
         state.attempts++;
         const msg = state.chapter === SERPENT_CHAPTER ? t('wrong-serpent') : t('wrong-default');
         document.getElementById('feedbackSlot').innerHTML = `<div class="feedback danger"><strong class="label">${t('warning')}</strong>${msg}</div>`;
@@ -605,12 +603,6 @@ function goChapter(i) {
 
 function goFinal() {
   state.screen = 'final';
-  if (window.Research) Research.trackComplete({
-    storyId:  STORY_ID,
-    score:    state.score,
-    maxScore: CHAPTERS.length * 20,
-    lang:     state.lang,
-  });
   render();
   scrollTop();
 }
@@ -707,7 +699,6 @@ function openCodex() {
   renderModal();
   showOverlay();
   setTimeout(() => document.getElementById('modalClose').focus(), 50);
-  if (window.Research) Research.trackEvent('codex');
 }
 
 function openGlyphSheet(idx) {
@@ -734,7 +725,6 @@ function openGlossary() {
     const searchInput = document.getElementById('glossarySearchInput');
     if (searchInput) searchInput.focus();
   }, 80);
-  if (window.Research) Research.trackEvent('glossary');
 }
 
 function openGlossaryAt(termId) {
@@ -743,7 +733,6 @@ function openGlossaryAt(termId) {
   state.glossarySearch = '';
   renderModal();
   showOverlay();
-  if (window.Research) Research.trackEvent('glossary');
   setTimeout(() => {
     const target = document.getElementById('gloss-' + termId);
     if (target) {
@@ -1098,13 +1087,4 @@ function initStory(config) {
   const _sharedLang = localStorage.getItem('musaeum-lang');
   if (_sharedLang) state.lang = _sharedLang;
   setLang(state.lang);
-
-  if (window.Research) {
-    Research.init();
-    Research.watchAbandonment({
-      storyId:  STORY_ID,
-      maxScore: CHAPTERS.length * 20,
-      getState: () => state,
-    });
-  }
 }

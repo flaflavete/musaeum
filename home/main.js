@@ -102,7 +102,6 @@
   initTabKeys();
   const _savedLang = localStorage.getItem('musaeum-lang') || 'pt';
   setLang(_savedLang);
-  if (window.Research) Research.init({ suppressModal: true });
   if (localStorage.getItem('musaeum-research-consent') === null) {
     _welcomeFirstRun = true;
     setTimeout(showLangModal, 500); // idioma → boas-vindas → tour
