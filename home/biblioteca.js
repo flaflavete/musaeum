@@ -79,7 +79,7 @@
         <div class="codex-invite-body">
           <div class="codex-invite-title">${t.codexInviteTitle}</div>
           <div class="codex-invite-desc">${t.codexInviteBody}</div>
-          <button class="codex-invite-btn" type="button" onclick="showTab('aprender')">${t.codexInviteBtn}</button>
+          <button class="codex-invite-btn" type="button" onclick="showTab('aprender')">${t.codexInviteBtn} &rarr;</button>
         </div>
       </div>`;
     }

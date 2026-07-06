@@ -114,7 +114,7 @@
     font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', Georgia, serif;
     color: var(--papyrus);
     background:
-      linear-gradient(rgba(20, 32, 47, 0.85), rgba(27, 42, 61, 0.85)),
+      linear-gradient(rgba(26, 40, 58, 0.93), rgba(32, 48, 68, 0.93)),
       url('../assets/images/pexels-clioseye-35506459.jpg');
     background-size: cover;
     background-position: center;
@@ -291,7 +291,7 @@
   /* Folha de leitura: acalma a foto do templo atrás do conteúdo das abas,
      para o texto não competir com o fundo. */
   .tab-panel.active {
-    background: rgba(16, 26, 40, 0.62);
+    background: rgba(22, 35, 52, 0.42);
     backdrop-filter: blur(7px);
     -webkit-backdrop-filter: blur(7px);
     border: 1px solid rgba(201, 166, 70, 0.12);
@@ -533,11 +533,14 @@
     padding: 0 12px;
     gap: 8px;
   }
-  /* Convite para a introdução aos hieróglifos, ao fim da grade da Biblioteca */
+  /* Convite para a introdução aos hieróglifos, ao fim da grade da Biblioteca.
+     De propósito discreto: guia para o curso sem competir com os cards. */
   .library-invite {
-    margin-top: 40px;
+    margin-top: 28px;
+    padding-top: 26px;
+    border-top: 1px solid rgba(201, 166, 70, 0.10);
   }
-  .library-invite .codex-invite { max-width: 480px; }
+  .library-invite .codex-invite { max-width: 460px; }
 
   footer {
     margin-top: 80px;
@@ -1079,52 +1082,57 @@
   .codex-invite {
     display: flex;
     align-items: center;
-    gap: 16px;
-    max-width: 420px;
-    margin: 8px auto 0;
-    padding: 16px 18px;
-    border-radius: 12px;
-    border: 1px solid rgba(201, 166, 70, 0.22);
-    background: rgba(201, 166, 70, 0.06);
+    gap: 14px;
+    max-width: 460px;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+    background: transparent;
   }
   .codex-invite-icon {
-    font-size: 34px;
+    font-size: 26px;
     line-height: 1;
     flex-shrink: 0;
     color: var(--gold);
+    opacity: 0.55;
   }
   .codex-invite-title {
     font-family: 'Cinzel', 'Gentium Plus', serif;
-    font-size: 13px;
-    letter-spacing: 0.12em;
+    font-size: 11px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 6px;
+    color: var(--papyrus-dim);
+    margin-bottom: 4px;
   }
   .codex-invite-desc {
     font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
     font-size: 13px;
     line-height: 1.5;
-    color: var(--papyrus-soft);
-    margin-bottom: 10px;
+    color: var(--papyrus-dim);
+    margin-bottom: 8px;
   }
   .codex-invite-btn {
     font-family: 'Cinzel', 'Gentium Plus', serif;
     font-size: 11px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--gold);
     background: transparent;
-    border: 1px solid var(--gold-dark);
-    border-radius: 999px;
-    padding: 6px 14px;
+    border: none;
+    padding: 0;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    transition: color 0.2s;
   }
   .codex-invite-btn:hover,
   .codex-invite-btn:focus-visible {
-    background: rgba(201, 166, 70, 0.14);
-    border-color: var(--gold);
+    color: var(--gold-light);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .codex-invite-btn:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 3px;
   }
   .collection-empty {
     text-align: center;

@@ -1114,6 +1114,26 @@
     flex-wrap: wrap;
   }
 
+  /* Ponte para o curso completo, discreta abaixo das ações do Códex */
+  .codex-course-link {
+    display: block;
+    text-align: center;
+    margin-top: 14px;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+    text-decoration: none;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+  }
+  .codex-course-link:hover,
+  .codex-course-link:focus-visible {
+    opacity: 1;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
   /* Ficha individual de signo */
   .glyph-sheet {
     text-align: center;

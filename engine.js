@@ -825,7 +825,8 @@ function renderCodexView() {
     <div class="codex-actions">
       <button class="btn" onclick="openTutorial()">${t('codex-tutorial')}</button>
       <button class="btn ghost" onclick="closeModal()">${t('codex-close')}</button>
-    </div>`;
+    </div>
+    <a class="codex-course-link" href="curso/index.html">${t('codex-course')} &rarr;</a>`;
 }
 
 function renderSheetView() {
