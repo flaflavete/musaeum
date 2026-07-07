@@ -533,14 +533,6 @@
     padding: 0 12px;
     gap: 8px;
   }
-  /* Convite para a introdução aos hieróglifos, ao fim da grade da Biblioteca.
-     De propósito discreto: guia para o curso sem competir com os cards. */
-  .library-invite {
-    margin-top: 28px;
-    padding-top: 26px;
-    border-top: 1px solid rgba(201, 166, 70, 0.10);
-  }
-  .library-invite .codex-invite { max-width: 460px; }
 
   footer {
     margin-top: 80px;
@@ -1078,62 +1070,6 @@
     color: var(--papyrus-dim);
   }
   .col-award.earned .col-award-desc { color: var(--papyrus-soft); }
-  /* Convite para a introdução aos hieróglifos (aba Hieróglifos) */
-  .codex-invite {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    max-width: 460px;
-    margin: 0 auto;
-    padding: 0;
-    border: none;
-    background: transparent;
-  }
-  .codex-invite-icon {
-    font-size: 26px;
-    line-height: 1;
-    flex-shrink: 0;
-    color: var(--gold);
-    opacity: 0.55;
-  }
-  .codex-invite-title {
-    font-family: 'Cinzel', 'Gentium Plus', serif;
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--papyrus-dim);
-    margin-bottom: 4px;
-  }
-  .codex-invite-desc {
-    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--papyrus-dim);
-    margin-bottom: 8px;
-  }
-  .codex-invite-btn {
-    font-family: 'Cinzel', 'Gentium Plus', serif;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--gold);
-    background: transparent;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: color 0.2s;
-  }
-  .codex-invite-btn:hover,
-  .codex-invite-btn:focus-visible {
-    color: var(--gold-light);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  .codex-invite-btn:focus-visible {
-    outline: 2px solid var(--gold);
-    outline-offset: 3px;
-    border-radius: 3px;
-  }
   .collection-empty {
     text-align: center;
     font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;

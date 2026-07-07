@@ -32,9 +32,9 @@
     grid.innerHTML = html;
   }
 
-  // Tesouros de cada história dentro do próprio card + o convite para o curso
-  // de hieróglifos ao fim da grade. Lê o catálogo cruzado com o progresso salvo
-  // (musaeum-stories via storeGet). Chamado por render() (é sensível ao idioma).
+  // Tesouros de cada história dentro do próprio card. Lê o catálogo cruzado com
+  // o progresso salvo (musaeum-stories via storeGet). Chamado por render() (é
+  // sensível ao idioma).
   function renderCardTreasures() {
     const t = i18n[currentLang];
 
@@ -67,20 +67,5 @@
         slot.setAttribute('aria-label', earned ? title : t.awardLocked);
         slot.innerHTML = `<span class="card-treasure award ${earned ? 'earned' : 'locked'}" title="${earned ? escapeHtml(title) : escapeHtml(t.awardLocked)}">${s.award.icon}</span>`;
       }
-    }
-
-    // Convite para a introdução aos hieróglifos (aba Hieróglifos). Ponte entre
-    // ler as histórias e aprender a escrita; os glifos descobertos aparecem no
-    // momento da leitura (toast), aqui fica o caminho para o curso.
-    const invite = document.getElementById('libraryInvite');
-    if (invite) {
-      invite.innerHTML = `<div class="codex-invite">
-        <div class="codex-invite-icon" aria-hidden="true">𓂀</div>
-        <div class="codex-invite-body">
-          <div class="codex-invite-title">${t.codexInviteTitle}</div>
-          <div class="codex-invite-desc">${t.codexInviteBody}</div>
-          <button class="codex-invite-btn" type="button" onclick="showTab('aprender')">${t.codexInviteBtn} &rarr;</button>
-        </div>
-      </div>`;
     }
   }
