@@ -199,13 +199,13 @@ const MUSAEUM_CATALOG = [
         noteEn: 'The recumbent lion is the biliteral <i>rw</i>, used in the spelling of the word <i>rw</i>, "lion", itself. In the Ptolemaic period it served for the sound "l" in names such as Ptolemy and Cleopatra, in the cartouches that guided Champollion. In royal imagery, texts describe the pharaoh as a lion in battle, and the sphinx combines a lion body with a human head. In the duel, Sinuhe defeats the champion of Retjenu with arrow and axe.'
       },
       {
-        glyph: '𓇹', translit: 'jꜥḥ', chapter: 5,
+        glyph: '𓇹', translit: 'ꜣbd', chapter: 5,
         namePt: 'Lua crescente', nameEn: 'Crescent moon',
-        meaningPt: 'Logograma: jꜥḥ, "lua"<br>Determinativo: tempo e datas, como em ꜣbd, "mês"',
-        meaningEn: 'Logogram: jꜥḥ, "moon"<br>Determinative: time and dates, as in ꜣbd, "month"',
+        meaningPt: 'Logograma: ꜣbd, "mês"<br>Determinativo: ỉꜥḥ, "lua"',
+        meaningEn: 'Logogram: ꜣbd, "month"<br>Determinative: ỉꜥḥ, "moon"',
         typeKey: 'type-logogram',
-        notePt: 'A lua crescente é logograma de <i>jꜥḥ</i>, "lua", e aparece na grafia de palavras ligadas ao tempo, como <i>ꜣbd</i>, "mês": era pela lua que os egípcios contavam os meses do calendário. Para Sinué envelhecido em Iaa, o que pesa no coração é o medo de morrer sob um céu estrangeiro, sem o ritual egípcio que permite à alma enfrentar o julgamento de Osíris.',
-        noteEn: 'The crescent moon is the logogram of <i>jꜥḥ</i>, "moon", and appears in the spelling of words tied to time, such as <i>ꜣbd</i>, "month": it was by the moon that the Egyptians counted the months of the calendar. For the aging Sinuhe in Yaa, what weighs on the heart is the fear of dying under a foreign sky, without the Egyptian ritual that allows the soul to face Osiris\'s judgment.'
+        notePt: 'A lua crescente é logograma de <i>ꜣbd</i>, "mês", e determinativo de <i>ỉꜥḥ</i>, "lua": era pela lua que os egípcios contavam os meses do calendário. Para Sinué envelhecido em Iaa, o que pesa no coração é o medo de morrer sob um céu estrangeiro, sem o ritual egípcio que permite à alma enfrentar o julgamento de Osíris.',
+        noteEn: 'The crescent moon is the logogram of <i>ꜣbd</i>, "month", and the determinative of <i>ỉꜥḥ</i>, "moon": it was by the moon that the Egyptians counted the months of the calendar. For the aging Sinuhe in Yaa, what weighs on the heart is the fear of dying under a foreign sky, without the Egyptian ritual that allows the soul to face Osiris\'s judgment.'
       },
       {
         glyph: '𓆸', translit: 'sšn', chapter: 6,
