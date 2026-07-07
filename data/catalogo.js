@@ -243,7 +243,7 @@ const MUSAEUM_CATALOG = [
     // voz» (mꜣꜥ-ḫrw), epíteto de quem foi vindicado, que o próprio texto
     // aplica ao rei (Araújo, p. 231: «de palavra perfeita»).
     award: {
-      icon: '📜',
+      icon: '⚖️',
       titlePt: 'Justo de Voz',
       titleEn: 'True of Voice',
       descPt: 'Você seguiu as nove apelações do camponês até o fim. Como ele, conquistou o epíteto «Justo de voz» (mꜣꜥ-ḫrw), o título de quem foi justificado.',
