@@ -2,7 +2,7 @@
 
 [🇧🇷 Português](#português) · [🇬🇧 English](#english)
 
-[![Version](https://img.shields.io/badge/version-1.2-c9a646.svg)](https://github.com/flaflavete/musaeum/releases)
+[![Version](https://img.shields.io/badge/version-1.3-c9a646.svg)](https://github.com/flaflavete/musaeum/releases)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20617042-blue.svg)](https://doi.org/10.5281/zenodo.20617042)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR)
 
