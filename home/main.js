@@ -44,7 +44,10 @@
       const desc  = currentLang === 'pt' ? s.descPt  : s.descEn;
       card.querySelector('.card-title').textContent = title;
       card.querySelector('.card-desc').textContent  = desc;
-      card.setAttribute('aria-label', `${title}, ${s.available ? t.tagOpen : t.tagLocked}`);
+      let statusLabel = '';
+      if (!s.available) statusLabel = ', ' + t.tagLocked;
+      else if ((storeGet(s.storyId) || {}).screen === 'final') statusLabel = ', ' + t.tagDone;
+      card.setAttribute('aria-label', `${title}${statusLabel}`);
     }
 
     document.getElementById('footerContent').innerText = t.footer;

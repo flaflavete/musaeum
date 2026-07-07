@@ -13,7 +13,7 @@
       epigraphQuote: '"A bela palavra é mais procurada que a pedra verde, mas encontra-se com as mulheres junto ao moinho."',
       epigraphSource: 'Ensinamentos de Ptahhotep, Papiro Prisse, coluna 5',
 
-      tagOpen: 'Aberto',
+      tagDone: 'Concluído',
       tagLocked: 'Em Breve',
       tMore: 'Mais histórias em breve',
       dMore: 'Novos contos dos antigos egípcios estão a caminho.',
@@ -139,7 +139,7 @@
       epigraphQuote: '"Fine words are more sought after than greenstone, but can be found with the women at the grindstone."',
       epigraphSource: 'The Teaching of Ptahhotep, Prisse Papyrus, column 5',
 
-      tagOpen: 'Open',
+      tagDone: 'Completed',
       tagLocked: 'Coming Soon',
       tMore: 'More stories soon',
       dMore: 'New tales from the ancient Egyptians are on the way.',

@@ -7,7 +7,7 @@
       if (s.available) {
         html += `
       <a href="${s.href}" class="scroll-card" id="card-${s.storyId}">
-        <span class="status-tag tag-ready" data-t="tagOpen"></span>
+        <span class="status-tag tag-done" id="status-${s.storyId}" hidden></span>
         <div class="card-glyph" aria-hidden="true">${s.cardGlyph}</div>
         <div class="card-title"></div>
         <div class="card-desc"></div>
@@ -43,6 +43,15 @@
       const slot = document.getElementById('treasures-' + s.storyId);
       if (!slot) continue;
       const save = storeGet(s.storyId);
+
+      // Selo de concluído: um tique só aparece quando a história foi terminada
+      // (o motor grava screen: 'final' ao fim). Antes de terminar, sem selo.
+      const statusEl = document.getElementById('status-' + s.storyId);
+      if (statusEl) {
+        const done = !!save && save.screen === 'final';
+        statusEl.hidden = !done;
+        statusEl.textContent = done ? '✓ ' + t.tagDone : '';
+      }
 
       // Tesouros colecionáveis (grade de emoji): earned = descoberto na leitura.
       if (s.items) {
