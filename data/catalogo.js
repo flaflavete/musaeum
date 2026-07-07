@@ -115,8 +115,8 @@ const MUSAEUM_CATALOG = [
       {
         glyph: '𓉐', translit: 'pr', chapter: 7,
         namePt: 'Casa', nameEn: 'House',
-        meaningPt: 'Logograma: pr, "casa"<br>Fonograma: bilítero pr, como em prj, "sair"',
-        meaningEn: 'Logogram: pr, "house"<br>Phonogram: biliteral pr, as in prj, "to go out"',
+        meaningPt: 'Logograma: pr, "casa"<br>Fonograma: bilítero pr, como em prỉ, "sair"',
+        meaningEn: 'Logogram: pr, "house"<br>Phonogram: biliteral pr, as in prỉ, "to go out"',
         typeKey: 'type-bi',
         notePt: 'A planta baixa de uma casa vista de cima. Como bilítero <i>pr</i>, forma palavras como <i>pr-ꜥnḫ</i> ("casa da vida", biblioteca de templo), <i>pr-ꜥꜣ</i> ("casa grande", donde vem a palavra "faraó") e <i>pr-ḥḏ</i> ("casa branca", o tesouro real).',
         noteEn: 'The floor plan of a house seen from above. As biliteral <i>pr</i>, it forms words like <i>pr-ꜥnḫ</i> ("house of life", temple library), <i>pr-ꜥꜣ</i> ("great house", source of the word "pharaoh") and <i>pr-ḥḏ</i> ("white house", the royal treasury).'
@@ -165,17 +165,17 @@ const MUSAEUM_CATALOG = [
       {
         glyph: '𓄔', translit: 'sḏm', chapter: 1,
         namePt: 'Orelha bovina', nameEn: 'Bovine ear',
-        meaningPt: 'Ideograma: sḏm, "ouvir", também "obedecer"<br>Fonograma: jdn, como em jdnw, "substituto"',
-        meaningEn: 'Ideogram: sḏm, "to hear", also "to obey"<br>Phonogram: jdn, as in jdnw, "deputy"',
+        meaningPt: 'Ideograma: sḏm, "ouvir", também "obedecer"<br>Fonograma: ỉdn, como em ỉdnw, "substituto"',
+        meaningEn: 'Ideogram: sḏm, "to hear", also "to obey"<br>Phonogram: ỉdn, as in ỉdnw, "deputy"',
         typeKey: 'type-ideo',
         notePt: 'A orelha de boi é ideograma e determinativo do verbo <i>sḏm</i>, "ouvir", que também significa "obedecer" (quem ouve, atende). É o verbo-modelo das gramáticas de egípcio médio, usado para nomear as formas verbais (<i>sḏm=f</i>). No capítulo, é uma audição acidental que muda o destino de Sinué: ele ouve o que não devia.',
         noteEn: 'The ox ear is the ideogram and determinative of the verb <i>sḏm</i>, "to hear", which also means "to obey" (who hears, heeds). It is the model verb of Middle Egyptian grammars, used to name the verb forms (<i>sḏm=f</i>). In the chapter, an accidental act of hearing changes Sinuhe\'s fate: he hears what he should not.'
       },
       {
-        glyph: '𓈉', translit: 'xꜣst', chapter: 2,
+        glyph: '𓈉', translit: 'ḫꜣst', chapter: 2,
         namePt: 'Terra estrangeira', nameEn: 'Foreign land',
-        meaningPt: 'Logograma e determinativo: xꜣst, "terra estrangeira", "deserto"',
-        meaningEn: 'Logogram and determinative: xꜣst, "foreign land", "desert"',
+        meaningPt: 'Logograma e determinativo: ḫꜣst, "terra estrangeira", "deserto"',
+        meaningEn: 'Logogram and determinative: ḫꜣst, "foreign land", "desert"',
         typeKey: 'type-determin',
         notePt: 'O signo representa colinas rochosas com vales, evocando o terreno acidentado das terras além do Nilo. É o determinativo padrão de topônimos estrangeiros como <i>Rtnw</i> (Retjenu). Na ideologia egípcia, as terras estrangeiras eram associadas à desordem, em contraste com o Egito regido por <span class="gloss" data-gloss="maat">Maat</span>.',
         noteEn: 'The sign depicts rocky hills with valleys, evoking the rough terrain beyond the Nile. It is the standard determinative for foreign place names like <i>Rtnw</i> (Retjenu). In Egyptian ideology, foreign lands were associated with disorder, in contrast with Egypt governed by <span class="gloss" data-gloss="maat">Maat</span>.'
@@ -260,10 +260,10 @@ const MUSAEUM_CATALOG = [
         noteEn: 'The donkey was Egypt\'s main pack animal long before the camel, which spread only much later. Donkey caravans crossed the desert between the oases and the Nile valley carrying salt, natron, and goods, exactly like Khun-Anup\'s. It is the theft of these donkeys that sets the whole story in motion.'
       },
       {
-        glyph: '𓇣', translit: 'jt', chapter: 1,
-        namePt: 'Espiga de cevada', nameEn: 'Ear of barley',
-        meaningPt: 'Determinativo: cereais, na grafia de jt, "cevada", e bdt, "trigo emmer"',
-        meaningEn: 'Determinative: cereals, in the spelling of jt, "barley", and bdt, "emmer wheat"',
+        glyph: '𓇣', translit: 'btỉ', chapter: 1,
+        namePt: 'Espiga de trigo emmer', nameEn: 'Ear of emmer wheat',
+        meaningPt: 'Determinativo ou logograma: btỉ, "trigo emmer"',
+        meaningEn: 'Determinative or logogram: btỉ, "emmer wheat"',
         typeKey: 'type-determin',
         notePt: 'A cevada e o trigo emmer eram a base da alimentação egípcia, virando pão e cerveja, e serviam também de moeda de troca e de medida de salário numa economia sem dinheiro cunhado. Na história, é um punhado de cevada comido por um asno que serve de pretexto para Nemti-nakht confiscar tudo.',
         noteEn: 'Barley and emmer wheat were the foundation of the Egyptian diet, turned into bread and beer, and also served as a medium of exchange and a measure of wages in an economy without coined money. In the story, it is a mouthful of barley eaten by a donkey that serves as Nemti-nakht\'s pretext to seize everything.'
@@ -287,10 +287,10 @@ const MUSAEUM_CATALOG = [
         noteEn: 'The sacred ibis perched on a standard writes the name of <span class="gloss" data-gloss="tot">Thoth</span>, god of writing, reckoning, and justice, scribe of the gods. It was he who recorded the verdict at the weighing of the heart. In the petitions, the peasant invokes Thoth as the tongue of the balance, the judge who cannot be bent.'
       },
       {
-        glyph: '𓆛', translit: 'jn', chapter: 4,
+        glyph: '𓆛', translit: 'ỉn', chapter: 4,
         namePt: 'Tilápia', nameEn: 'Tilapia',
-        meaningPt: 'Fonograma: jn<br>Determinativo: peixes, na grafia de jn, "tilápia"',
-        meaningEn: 'Phonogram: jn<br>Determinative: fish, in the spelling of jn, "tilapia"',
+        meaningPt: 'Fonograma: ỉn<br>Determinativo: peixes, na grafia de ỉn, "tilápia"',
+        meaningEn: 'Phonogram: ỉn<br>Determinative: fish, in the spelling of ỉn, "tilapia"',
         typeKey: 'type-phonogram',
         notePt: 'A tilápia-do-nilo (Oreochromis niloticus) choca os ovos na própria boca, e por isso foi associada ao renascimento na arte egípcia. Aqui ela vale pelo mundo dos pescadores: na quinta apelação, o camponês compara o grande intendente a um pescador que arrasta a rede e devasta o rio, sem poupar nem o peixe mais humilde.',
         noteEn: 'The Nile tilapia (Oreochromis niloticus) broods its eggs in its own mouth, and was therefore linked to rebirth in Egyptian art. Here it stands for the world of fishermen: in the fifth petition, the peasant compares the high steward to a fisherman who drags the net and lays the river waste, sparing not even the humblest fish.'
@@ -305,19 +305,19 @@ const MUSAEUM_CATALOG = [
         noteEn: 'The oar sign carries the sound value ḫrw, "voice". It is the very ḫrw of the epithet <span class="gloss" data-gloss="justo-de-voz">mꜣꜥ-ḫrw</span>, "true of voice", given to one vindicated in judgment. In the petitions the peasant calls the high steward "the steering oar of the whole land": it is by his voice, his only weapon, that he tries to set the rudder of justice straight.'
       },
       {
-        glyph: '𓌾', translit: 'ḥqꜣt', chapter: 6,
+        glyph: '𓌾', translit: 'ỉt', chapter: 6,
         namePt: 'Medida de grãos', nameEn: 'Grain measure',
-        meaningPt: 'Ideograma e determinativo: a medida de grão (heqat), em palavras de medir e contar',
-        meaningEn: 'Ideogram and determinative: the grain measure (heqat), in words of measuring and counting',
+        meaningPt: 'Logograma: ỉt, "cevada", com o sinal da medida de grão',
+        meaningEn: 'Logogram: ỉt, "barley", with the grain-measure sign',
         typeKey: 'type-ideo',
         notePt: 'A <span class="gloss" data-gloss="heqat">heqat</span> era a medida-padrão de cereais (cerca de 4,8 litros), e a justiça egípcia era pensada como uma medida exata: nem a mais, nem a menos. Na oitava apelação, o camponês diz que a medida cheia transborda e o que sobra se perde no chão, imagem da ganância do intendente, que já tem o bastante e ainda toma do pobre.',
         noteEn: 'The <span class="gloss" data-gloss="heqat">heqat</span> was the standard measure of grain (about 4.8 liters), and Egyptian justice was imagined as an exact measure: neither more nor less. In the eighth petition, the peasant says the full measure overflows and the surplus is lost on the ground, an image of the steward\'s greed, who already has enough and still takes from the poor.'
       },
       {
-        glyph: '𓃢', translit: 'jnpw', chapter: 7,
+        glyph: '𓃢', translit: 'Ỉnpw', chapter: 7,
         namePt: 'Chacal de Anúbis', nameEn: 'Jackal of Anubis',
-        meaningPt: 'Logograma e determinativo: o chacal deitado, o deus Anúbis (jnpw)',
-        meaningEn: 'Logogram and determinative: the recumbent jackal, the god Anubis (jnpw)',
+        meaningPt: 'Logograma e determinativo: o chacal deitado, o deus Anúbis (Ỉnpw)',
+        meaningEn: 'Logogram and determinative: the recumbent jackal, the god Anubis (Ỉnpw)',
         typeKey: 'type-logogram',
         notePt: 'O chacal deitado é <span class="gloss" data-gloss="anubis">Anúbis</span>, deus dos embalsamadores e guardião das necrópoles, que conduz o morto ao julgamento. O nome do próprio camponês, Khun-Anup, significa "protegido de Anúbis", e é a Anúbis que ele ameaça apelar quando perde a esperança na justiça humana, no fecho da nona apelação.',
         noteEn: 'The recumbent jackal is <span class="gloss" data-gloss="anubis">Anubis</span>, god of embalmers and guardian of the necropolis, who leads the dead to judgment. The peasant\'s own name, Khun-Anup, means "protected of Anubis", and it is to Anubis that he threatens to appeal when he loses hope in human justice, at the close of the ninth petition.'
