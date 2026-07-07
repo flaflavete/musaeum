@@ -493,6 +493,8 @@
     border-radius: 4px;
   }
   .tag-ready { background: rgba(201,166,70,0.15); color: var(--gold); border: 1px solid rgba(201,166,70,0.3); }
+  .tag-done { background: rgba(126,176,80,0.18); color: #9cd06a; border: 1px solid rgba(126,176,80,0.45); }
+  html[data-theme="light"] .tag-done { background: rgba(74,122,42,0.14); color: #3f7a2a; border-color: rgba(74,122,42,0.4); }
   .tag-locked { background: rgba(217,122,92,0.1); color: var(--terracotta-lt); border: 1px solid rgba(217,122,92,0.2); }
 
   .card-glyph { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 48px; color: var(--gold); margin-bottom: 16px; line-height: 1; }
