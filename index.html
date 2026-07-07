@@ -215,6 +215,17 @@
   </div>
 </div>
 
+<!-- Toast dourado: conclusão do curso de hieróglifos (disparado uma vez) -->
+<div class="cert-toast" id="certToast" role="status" aria-live="polite">
+  <button class="cert-toast-close" id="certToastClose" type="button" onclick="dismissCertToast()">×</button>
+  <span class="cert-toast-glyph" aria-hidden="true">𓏞</span>
+  <div class="cert-toast-body">
+    <div class="cert-toast-title" id="certToastTitle"></div>
+    <p class="cert-toast-msg" id="certToastMsg"></p>
+    <button class="cert-toast-btn" id="certToastBtn" type="button" onclick="openCertFromToast()"></button>
+  </div>
+</div>
+
 <!-- Modal Seletor de Idioma -->
 <div class="name-modal-backdrop" id="langModal" role="dialog" aria-modal="true" aria-labelledby="langModalTitle">
   <div class="name-modal-panel">

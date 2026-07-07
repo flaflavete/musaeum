@@ -120,7 +120,11 @@
       certAttest:           'Atesta-se que',
       certCompleted:        'concluiu com êxito',
       certSubjectDraw:      'a Introdução aos Hieróglifos do Musæum',
-      certSignature:        'Museu Nacional / UFRJ'
+      certSignature:        'Museu Nacional / UFRJ',
+      certToastTitle:       'Você concluiu os hieróglifos!',
+      certToastMsg:         'Todas as lições estão prontas. Seu Certificado de Leitura já pode ser emitido.',
+      certToastBtn:         '𓏞 Ver certificado',
+      certToastCloseLabel:  'Fechar aviso'
     },
     en: {
       docLang: 'en',
@@ -242,6 +246,10 @@
       certAttest:           'This certifies that',
       certCompleted:        'has successfully completed',
       certSubjectDraw:      'the Introduction to Hieroglyphs at the Musæum',
-      certSignature:        'Museu Nacional / UFRJ'
+      certSignature:        'Museu Nacional / UFRJ',
+      certToastTitle:       'You completed the hieroglyphs!',
+      certToastMsg:         'Every lesson is done. Your Reading Certificate is ready to be issued.',
+      certToastBtn:         '𓏞 View certificate',
+      certToastCloseLabel:  'Dismiss'
     }
   };

@@ -202,3 +202,49 @@
       mnImg.src = 'assets/images/museu-nacional.png';
     });
   }
+
+  // Toast dourado de conclusão: aparece uma única vez, quando o leitor volta à
+  // home tendo concluído todas as lições do curso. Guardado por um marcador
+  // próprio (musaeum-cert-celebrated) para não repetir a cada visita. O
+  // certificado em si continua sempre acessível na seção "Sua Conquista".
+  let _certToastTimer = null;
+
+  function maybeCelebrateCertificate() {
+    // Não roubar a cena da apresentação institucional (Modo Palco).
+    if (/[?&](palco|apresentar|stage)\b/.test(location.search)) return;
+    if (localStorage.getItem('musaeum-cert-celebrated') === '1') return;
+    if (!allLessonsComplete()) return;
+    showCertToast();
+  }
+
+  function showCertToast() {
+    const toast = document.getElementById('certToast');
+    if (!toast) return;
+    localStorage.setItem('musaeum-cert-celebrated', '1');
+    const t = i18n[currentLang];
+    document.getElementById('certToastTitle').textContent = t.certToastTitle;
+    document.getElementById('certToastMsg').textContent = t.certToastMsg;
+    document.getElementById('certToastBtn').textContent = t.certToastBtn;
+    document.getElementById('certToastClose').setAttribute('aria-label', t.certToastCloseLabel);
+    // Mesmo padrão do toast de descoberta das histórias: só alterna .show;
+    // o visibility:hidden do CSS já mantém o toast fora da tabulação enquanto
+    // escondido (nada de atributo hidden, que quebra a transição).
+    toast.classList.add('show');
+    clearTimeout(_certToastTimer);
+    _certToastTimer = setTimeout(dismissCertToast, 12000);
+  }
+
+  function dismissCertToast() {
+    const toast = document.getElementById('certToast');
+    if (!toast) return;
+    clearTimeout(_certToastTimer);
+    toast.classList.remove('show');
+  }
+
+  function openCertFromToast() {
+    dismissCertToast();
+    showTab('aprender');
+    const wrap = document.getElementById('certWrap');
+    if (wrap) wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    showCertificate();
+  }

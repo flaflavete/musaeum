@@ -105,4 +105,8 @@
   if (localStorage.getItem('musaeum-research-consent') === null) {
     _welcomeFirstRun = true;
     setTimeout(showLangModal, 500); // idioma → boas-vindas → tour
+  } else {
+    // Toast de conclusão do curso (uma vez). Só faz sentido em visitas de
+    // retorno, então fica fora do primeiro acesso (que abre o onboarding).
+    setTimeout(maybeCelebrateCertificate, 900);
   }
