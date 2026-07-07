@@ -218,6 +218,15 @@ function activateGloss(container) {
 }
 
 function handleGloss(target) {
+  // Toque/clique na foto do achado amplia (e volta): é o equivalente do hover
+  // para telas sem mouse. No desktop, o hover já cuida disso.
+  if (target && target.tagName === 'IMG' && target.closest && target.closest('.achado-card')) {
+    const on = target.classList.toggle('achado-zoomed');
+    // marca o container para o layout em coluna no mobile (foto em largura total)
+    const corpo = target.closest('.achado-corpo');
+    if (corpo) corpo.classList.toggle('achado-corpo-zoomed', on);
+    return true;
+  }
   const a = target && target.closest ? target.closest('.achado-ref') : null;
   if (a) { toggleAchado(a); return true; }
   const g = target && target.closest ? target.closest('.gloss') : null;
@@ -260,7 +269,7 @@ function toggleAchado(el) {
   card.dataset.achado = id;
   card.innerHTML = `
     <div class="achado-corpo">
-      <img src="${a.image}" alt="${pt ? a.altPt : a.altEn}" loading="lazy" />
+      <img src="${a.image}" alt="${pt ? a.altPt : a.altEn}" loading="lazy" tabindex="0" title="${t('achado-zoom')}" />
       <div>
         <div class="achado-kicker">${t('achado-kicker')}</div>
         <div class="achado-nome">${pt ? a.namePt : a.nameEn}</div>

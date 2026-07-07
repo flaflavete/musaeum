@@ -530,6 +530,34 @@
     object-fit: cover;
     border-radius: 5px;
     border: 1px solid var(--gold-dark);
+    cursor: zoom-in;
+    transition: flex-basis 0.35s ease, width 0.35s ease, height 0.35s ease, box-shadow 0.35s ease;
+  }
+  /* Passar o mouse (ou focar pelo teclado) amplia a foto do achado: o cartão
+     acomoda o tamanho maior, sem cortar, pra ficar grande e visível. */
+  .achado-corpo img:hover,
+  .achado-corpo img:focus-visible,
+  .achado-corpo img.achado-zoomed {
+    flex-basis: min(280px, 68vw);
+    width: min(280px, 68vw);
+    height: 210px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+  .achado-corpo img.achado-zoomed { cursor: zoom-out; }
+  /* No mobile (toque), a foto ampliada ocupa a largura toda do cartão, com o
+     texto embaixo: cabe inteira e fica bem visível numa tela estreita. */
+  @media (max-width: 560px) {
+    .achado-corpo.achado-corpo-zoomed {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .achado-corpo.achado-corpo-zoomed img.achado-zoomed {
+      width: 100%;
+      flex-basis: auto;
+      height: 200px;
+    }
   }
   .achado-kicker {
     font-family: 'Cinzel', 'Gentium Plus', serif;
@@ -575,6 +603,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .achado-card, .archaeo-note { animation: none; }
+    .achado-corpo img { transition: none; }
   }
 
   .note-toggle {
