@@ -8,11 +8,11 @@ Aplicação web estática sem etapa de build. O HTML de cada história é um esq
 index.html              Página inicial: biblioteca, mapa, coleção, certificado, modal "sobre"
 naufrago.html           Experiência interativa do Conto do Náufrago
 sinuhe.html             Experiência interativa da História de Sinué
-campones.html           Experiência interativa do Camponês Eloquente (pronta, ainda não publicada)
+campones.html           Experiência interativa do Camponês Eloquente
 script.js               Utilitários compartilhados + shell HTML das histórias
 engine.js               Motor das histórias: telas, render, desafios, save
 tour.js                 Tour guiado (coach marks), usado na home e nas histórias
-research.js             Coleta anônima e consentida da pesquisa; hoje mede só o curso (carregado apenas nas páginas de curso/)
+research.js             Coleta anônima e consentida da pesquisa; mede o curso em detalhe e recebe um ping anônimo de abertura das histórias (curso/ e as três histórias)
 style.css               Estilos globais das histórias (tema, tipografia); não usado pelo index
 home/                   CSS e JS exclusivos da página inicial. index.css: todo
                         o estilo do index (um arquivo só). JS separado por seção
@@ -186,9 +186,9 @@ A migração automática de saves antigos (`musaeum-naufrago`, `musaeum-sinuhe`)
 - **Glossário:** termos específicos da história (Amenemhat I, Sesostris I, Retjenu, Araru, etc.)
 - **Capítulos:** 8
 
-### O Camponês Eloquente (`campones.html`) — escrita, ainda não publicada
+### O Camponês Eloquente (`campones.html`) — disponível
 
-Já existe como arquivo completo (`campones.html` + `data/campones.js`); falta só `available: true` no catálogo para publicar.
+Terceira história publicada (`available: true` no catálogo).
 
 - **STORY_ID:** `campones`
 - **Prêmio:** não tem tesouros (`items: null`). Em vez disso, premia com um único pergaminho ao concluir: o título **«Justo de Voz»** (mꜣꜥ-ḫrw), via o campo `award` no catálogo (ver abaixo).
@@ -218,7 +218,7 @@ award: {
 
 A página inicial tem **três abas** (`home/abas.js`, tablist WAI-ARIA): **Biblioteca** (`#panel-inicio`), **Mapa** (`#panel-mapa`) e **Hieróglifos** (`#panel-aprender`). Não há mais aba **Coleção** nem aba **Certificado** separadas: o progresso vive nos próprios cards e o certificado passou para a aba Hieróglifos.
 
-**Tesouros nos cards** (`home/biblioteca.js`, `renderCardTreasures`): cada card de história disponível mostra seus tesouros inline (grade `.card-treasure` earned/locked por item), lidos do catálogo cruzado com o save (`storeGet`/`musaeum-stories`). Histórias com `award` (ex.: Camponês) mostram o pergaminho único, travado até `screen === 'final'`. Ao fim da grade, um convite (`.codex-invite`) leva à aba Hieróglifos. Os glifos descobertos aparecem no momento da leitura (toast dentro da história); não há mais códex cruzado na home.
+**Tesouros nos cards** (`home/biblioteca.js`, `renderCardTreasures`): cada card de história disponível mostra seus tesouros inline (grade `.card-treasure` earned/locked por item), lidos do catálogo cruzado com o save (`storeGet`/`musaeum-stories`). Histórias com `award` (ex.: Camponês) mostram o pergaminho único, travado até `screen === 'final'`. Os glifos descobertos aparecem no momento da leitura (toast dentro da história); não há mais códex cruzado na home. O caminho para o curso é a aba Hieróglifos (a Biblioteca não traz mais o convite ao fim da grade).
 
 ### MUSAEUM_CATALOG (data/catalogo.js)
 
@@ -231,7 +231,7 @@ publicada ou quando existe progresso salvo dela no aparelho.
 const MUSAEUM_CATALOG = [
   { storyId: 'naufrago', href: 'naufrago.html', available: true,  items: [...], codex: [...] },
   { storyId: 'sinuhe',   href: 'sinuhe.html',   available: true,  items: [...], ... },
-  { storyId: 'campones', href: 'campones.html', available: false, items: null, award: {...}, ... }, // pronta, não publicada
+  { storyId: 'campones', href: 'campones.html', available: true,  items: null, award: {...}, ... },
 ];
 ```
 
@@ -246,7 +246,7 @@ Na primeira visita — detectada por `musaeum-research-consent === null` — o `
 2. **Boas-vindas** (`#nameModal`) — campo de nome (opcional) mais um checkbox de consentimento da pesquisa, **desmarcado por padrão** (opt-in ativo). Ao entrar, grava `musaeum-player` (se houver nome) e `musaeum-research-consent` (`sim`/`não`).
 3. **Oferta de tour** (`#tourOfferModal`) — pergunta se a pessoa quer o tour guiado da home. "Sim" chama `startHomeTour()`.
 
-O consentimento coletado aqui (`musaeum-research-consent`) vale para a pesquisa, que **desde a v1.2 mede só o curso de hieróglifos**: `research.js` não é mais carregado na home nem nas histórias, só nas páginas de `curso/`, onde lê essa chave. Se a pessoa chegar ao curso sem ter decidido (`consent === null`), o próprio `research.js` mostra um modal de consentimento como fallback (ver §Introdução aos hieróglifos). O nome é editável a qualquer momento na seção Coleção (reabre o `#nameModal`).
+O consentimento coletado aqui (`musaeum-research-consent`) vale para a pesquisa, que **mede em detalhe o curso de hieróglifos** (lição, quiz, construtor, tempo e itens errados) e recebe **apenas um ping anônimo de abertura** de cada história (`Research.trackStoryOpen`, uma vez no fim de `initStory`). Por isso `research.js` é carregado nas páginas de `curso/` e nas três histórias, mas **não** na home; ele só envia se a chave for `sim`. Se a pessoa chegar ao curso sem ter decidido (`consent === null`), o próprio `research.js` mostra um modal de consentimento como fallback (ver §Introdução aos hieróglifos). O nome é editável a qualquer momento (reabre o `#nameModal`).
 
 ---
 
@@ -443,13 +443,13 @@ Esta pasta **não** é servida pelo site e não deve ser comitada no repositóri
 
 ## Publicando uma nova história
 
-Para **publicar uma história que já existe** (ex.: Sinué): mudar `available`
+Para **publicar uma história que já existe**: mudar `available`
 para `true` na entrada dela em `data/catalogo.js`. Só isso — card, Coleção,
 Certificado e desbloqueio derivam todos do catálogo.
 
-> O Camponês Eloquente já passou por esses passos: `campones.html` e
-> `data/campones.js` existem e estão completos (9 capítulos, prêmio `award`
-> em vez de tesouros). Falta só `available: true` para publicá-lo.
+> Foi assim que o Camponês Eloquente entrou no ar: `campones.html` e
+> `data/campones.js` já estavam completos (9 capítulos, prêmio `award`
+> em vez de tesouros) e bastou virar `available: true`.
 
 Para **criar uma história nova** do zero:
 
@@ -518,16 +518,20 @@ Transliteração usa override só onde o dado do Gardiner falha (ex.: `tr: { M17
 
 `localStorage 'musaeum-hieroglyphs'` como `{ done: { <id>: true } }`. Contagem e % derivam de `CURSO_LICOES.length` (sem número mágico). O hub da home (`home/aprender.js`) lê o mesmo save e renderiza os cards a partir de `CURSO_LICOES` (não duplica dados).
 
-### Coleta da pesquisa (só aqui)
+### Coleta da pesquisa
 
-Desde a v1.2, a pesquisa acadêmica (`research.js`) mede **o curso**, não as histórias. `research.js` é carregado apenas em `curso/index.html` e `curso/licao.html`, e `curso/curso.js` o aciona:
+A pesquisa acadêmica (`research.js`) mede **o curso em detalhe** e recebe **apenas um ping anônimo de abertura** das histórias. É carregado em `curso/index.html`, `curso/licao.html` e nas três histórias, **nunca na home**.
+
+No curso, `curso/curso.js` o aciona:
 
 - `Research.init()` — na primeira visita ao curso (nenhuma lição concluída), mostra o modal de consentimento se `musaeum-research-consent === null`.
-- `Research.watchLesson({ lessonId, lessonNum, totalLessons, getState })` — arma o rastreio de abandono (`pagehide`) ao abrir a lição.
-- `Research.trackAttempt('quiz' | 'builder')` — conta cada resposta errada no quiz ou palavra errada no construtor.
-- `Research.trackLessonComplete({ ... })` — envia ao concluir a lição (quiz final ou último desafio do construtor).
+- `Research.watchLesson({ lessonId, lessonNum, totalLessons, getState })` — arma o rastreio de abandono (`pagehide`) e o cronômetro da lição ao abri-la.
+- `Research.trackAttempt('quiz' | 'builder', item)` — conta cada resposta errada no quiz ou palavra errada no construtor, guardando qual item errou (`quiz_wrong`/`builder_wrong`).
+- `Research.trackLessonComplete({ ... })` — envia ao concluir a lição (quiz final ou último desafio do construtor), com `duration_sec`.
 
-O envio só ocorre com consentimento (`'sim'`). Backend: Google Apps Script Web App → Google Sheets. Detalhes de campos e configuração em [RESEARCH_SETUP.md](RESEARCH_SETUP.md). **Não** reintroduzir hooks de pesquisa em `engine.js`/`script.js`/histórias.
+Nas histórias, `engine.js` chama `Research.trackStoryOpen(storyId, lang)` uma vez no fim de `initStory`: um ping anônimo de abertura (a linha na planilha tem a coluna `story` preenchida e `lesson` vazia). É o **único** hook de pesquisa permitido nas histórias; **não** adicionar rastreio de capítulo, resposta ou tempo de leitura em `engine.js`/`script.js`/histórias.
+
+O envio só ocorre com consentimento (`'sim'`). Backend: Google Apps Script Web App → Google Sheets. Detalhes de campos e configuração em [RESEARCH_SETUP.md](RESEARCH_SETUP.md).
 
 ### Ferramentas de prática
 

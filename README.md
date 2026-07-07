@@ -25,7 +25,7 @@ O Musæum apresenta textos da literatura egípcia antiga como experiências inte
 |---|---|---|
 | O Conto do Náufrago | `naufrago.html` | ✅ Disponível |
 | A História de Sinué | `sinuhe.html` | ✅ Disponível |
-| O Camponês Eloquente | — | 🔒 Em breve |
+| O Camponês Eloquente | `campones.html` | ✅ Disponível |
 
 ### Como abrir
 
@@ -43,7 +43,7 @@ npm run test:watch        # roda os testes em modo watch (desenvolvimento)
 
 - **Leitura bilíngue** — alterne entre PT e EN a qualquer momento
 - **Tema claro/escuro** — persiste entre visitas
-- **8 capítulos** por história, cada um com desafio de múltipla escolha
+- **Capítulos** por história (8 no Náufrago e em Sinué, 9 no Camponês), cada um com desafio de múltipla escolha
 - **Tesouros** desbloqueados por acerto na primeira tentativa
 - **Códex de hieróglifos** — 9 signos por história, com transliteração e nota
 - **Glossário** — termos da cultura egípcia com busca e links no texto
@@ -66,12 +66,13 @@ index.html            Página inicial, 3 abas (CSS em home/index.css; JS em home
 home/                 JS do index, um arquivo por seção (i18n, biblioteca, mapa, aprender, certificado…)
 naufrago.html         Conto do Náufrago
 sinuhe.html           História de Sinué
+campones.html         Camponês Eloquente
 script.js             Utilitários compartilhados + shell HTML das histórias
 engine.js             Motor das histórias (telas, desafios, save)
 tour.js               Tour guiado (usado na home e nas histórias)
-research.js           Coleta anônima da pesquisa (mede o curso de hieróglifos; carregado só em curso/)
+research.js           Coleta anônima da pesquisa (mede o curso; ping de abertura nas histórias)
 style.css             Estilos globais
-data/                 Catálogo central e dados das histórias (catalogo.js, naufrago.js, sinuhe.js)
+data/                 Catálogo central e dados das histórias (catalogo.js, naufrago.js, sinuhe.js, campones.js)
 curso/                Introdução aos hieróglifos: 6 lições (fonte única em licoes.js), motor único, baralho de sinais
 gardiner/             Lista de Gardiner (~900 sinais) e construtor de palavras; dados gerados da planilha-fonte
 assets/audio/         Trilha sonora e efeitos (acerto, erro)
@@ -134,7 +135,7 @@ Musæum presents ancient Egyptian literary texts as interactive reading experien
 |---|---|---|
 | The Tale of the Shipwrecked Sailor | `naufrago.html` | ✅ Available |
 | The Story of Sinuhe | `sinuhe.html` | ✅ Available |
-| The Eloquent Peasant | — | 🔒 Coming soon |
+| The Eloquent Peasant | `campones.html` | ✅ Available |
 
 ### How to open
 
@@ -152,7 +153,7 @@ npm run test:watch        # run tests in watch mode (development)
 
 - **Bilingual reading** — switch between PT and EN at any time
 - **Light/dark theme** — persists across visits
-- **8 chapters** per story, each with a multiple-choice comprehension challenge
+- **Chapters** per story (8 in the Shipwrecked Sailor and Sinuhe, 9 in the Peasant), each with a multiple-choice comprehension challenge
 - **Treasures** unlocked by answering correctly on the first attempt
 - **Hieroglyph Codex** — 9 signs per story, with transliteration and notes
 - **Glossary** — Egyptian cultural terms with search and inline text links
@@ -175,12 +176,13 @@ index.html            Home page, 3 tabs (CSS in home/index.css; JS in home/)
 home/                 Index JS, one file per section (i18n, library, map, aprender, certificate…)
 naufrago.html         The Shipwrecked Sailor
 sinuhe.html           The Story of Sinuhe
+campones.html         The Eloquent Peasant
 script.js             Shared utilities + stories' HTML shell
 engine.js             Story engine (screens, challenges, save)
 tour.js               Guided tour (used on home and in stories)
-research.js           Anonymous research collection (measures the hieroglyph course; loaded only in curso/)
+research.js           Anonymous research collection (measures the course; open ping in the stories)
 style.css             Global styles
-data/                 Central catalog and story data (catalogo.js, naufrago.js, sinuhe.js)
+data/                 Central catalog and story data (catalogo.js, naufrago.js, sinuhe.js, campones.js)
 curso/                Hieroglyph introduction: 6 lessons (single source in licoes.js), one engine, sign deck
 gardiner/             Gardiner sign list (~900 signs) and word builder; data generated from the source spreadsheet
 assets/audio/         Soundtrack and sound effects (correct, wrong)

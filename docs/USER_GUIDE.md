@@ -55,7 +55,7 @@ A página inicial do Musæum é organizada em três abas, logo abaixo do título
 - **Os pergaminhos** — cada um representa uma história. Clique num pergaminho disponível para entrar na história.
 - **Seus tesouros** aparecem no próprio card de cada história, à medida que você os coleta (veja a seção 13).
 - Histórias ainda não disponíveis aparecem com um cadeado e não são clicáveis.
-- Ao fim da grade, um convite leva você à aba **Hieróglifos**, e uma epígrafe dos *Ensinamentos de Ptahhotep* fecha a biblioteca.
+- Ao fim da grade, uma epígrafe dos *Ensinamentos de Ptahhotep* fecha a biblioteca. Para conhecer a escrita, use a aba **Hieróglifos**.
 
 ### Mapa — onde as histórias acontecem
 

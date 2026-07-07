@@ -1,9 +1,10 @@
 # Configuração da coleta de dados da pesquisa
 
-> **Desde a v1.2, a pesquisa mede o CURSO de hieróglifos, não as histórias.**
-> `research.js` é carregado apenas nas páginas de `curso/` (`curso/index.html` e
-> `curso/licao.html`) e registra conclusão de lição, desempenho no quiz e no
-> construtor de palavras. Não há mais coleta nas histórias.
+> **A pesquisa mede o CURSO de hieróglifos em detalhe** (conclusão de lição,
+> desempenho no quiz e no construtor, tempo por lição e quais itens erram).
+> `research.js` é carregado em `curso/index.html`, `curso/licao.html` e nas três
+> histórias, **nunca na home**. Das histórias vem **apenas um ping anônimo de
+> abertura** (`trackStoryOpen`): nenhum rastreio de leitura, capítulo ou resposta.
 
 O backend é um **Google Apps Script Web App** (não Google Forms): o `research.js`
 faz uma requisição HTTP simples (GET com query string, `mode: 'no-cors'`,
@@ -25,9 +26,10 @@ Google Sheets.
      const p = e.parameter;
      sheet.appendRow([
        p.timestamp, p.lang, p.theme, p.device, p.region, p.is_first_visit,
-       p.lesson, p.lesson_num, p.lessons_total, p.completed,
-       p.quiz_score, p.quiz_max, p.quiz_attempts,
-       p.builder_solved, p.builder_total, p.builder_attempts
+       p.lesson, p.lesson_num, p.lessons_total, p.completed, p.duration_sec,
+       p.quiz_score, p.quiz_max, p.quiz_attempts, p.quiz_wrong,
+       p.builder_solved, p.builder_total, p.builder_attempts, p.builder_wrong,
+       p.story
      ]);
      return ContentService.createTextOutput('ok');
    }
@@ -57,8 +59,10 @@ campos abaixo.
 
 ## 3. Campos coletados
 
-Cada linha é enviada ao **concluir** uma lição (ou ao **abandoná-la**, via
-`pagehide`). Nenhum campo identifica o usuário.
+Uma linha do **curso** é enviada ao **concluir** uma lição (ou ao **abandoná-la**,
+via `pagehide`); uma linha de **história** é enviada ao abri-la (ping único). As
+linhas se distinguem pela coluna `story` (preenchida só nas histórias, com `lesson`
+vazia). Nenhum campo identifica o usuário.
 
 ### Ambiente (`_envData`)
 
@@ -79,25 +83,40 @@ Cada linha é enviada ao **concluir** uma lição (ou ao **abandoná-la**, via
 | `lesson_num` | número da lição |
 | `lessons_total` | total de lições publicadas |
 | `completed` | `sim` (concluída) ou `não` (abandonada) |
+| `duration_sec` | segundos desde a abertura da lição até o envio |
 | `quiz_score` / `quiz_max` | acertos e total do quiz da lição |
 | `quiz_attempts` | respostas erradas no quiz (sessão da lição) |
+| `quiz_wrong` | quais perguntas do quiz erraram (ex.: `q2,q4`) |
 | `builder_solved` / `builder_total` | palavras montadas e total no construtor |
 | `builder_attempts` | palavras montadas erradas no construtor (sessão da lição) |
+| `builder_wrong` | quais palavras do construtor erraram (transliteração) |
 
 > Campos de quiz/construtor ausentes numa lição ficam em branco na planilha.
 
+### História
+
+| Campo | O que registra |
+|---|---|
+| `story` | id da história aberta (ex.: `naufrago`, `sinuhe`, `campones`). Preenchido só nas linhas de história; nelas os campos de lição ficam vazios. |
+
 ---
 
-## 4. Como o `research.js` é acionado (curso/curso.js)
+## 4. Como o `research.js` é acionado
 
-`research.js` expõe `window.Research`. O motor do curso o chama assim:
+`research.js` expõe `window.Research`. No curso, `curso/curso.js` o chama assim:
 
 | Chamada | Quando |
 |---|---|
 | `Research.init()` | Ao abrir o curso. Na primeira visita (sem lição concluída), mostra o modal de consentimento se `musaeum-research-consent === null`. |
-| `Research.watchLesson({ lessonId, lessonNum, totalLessons, getState })` | Ao renderizar uma lição, arma o rastreio de abandono (`pagehide`). |
-| `Research.trackAttempt('quiz' \| 'builder')` | A cada resposta errada no quiz ou palavra errada no construtor. |
+| `Research.watchLesson({ lessonId, lessonNum, totalLessons, getState })` | Ao renderizar uma lição, arma o rastreio de abandono (`pagehide`) e o cronômetro (`duration_sec`). |
+| `Research.trackAttempt('quiz' \| 'builder', item)` | A cada resposta errada no quiz ou palavra errada no construtor; `item` guarda o que errou (`q2`, transliteração). |
 | `Research.trackLessonComplete({ ... })` | Ao concluir a lição (último quiz ou último desafio do construtor). |
+
+Nas histórias, `engine.js` chama, uma vez no fim de `initStory`:
+
+| Chamada | Quando |
+|---|---|
+| `Research.trackStoryOpen(storyId, lang)` | Ao abrir uma história: um ping anônimo de abertura (coluna `story`). É o único hook de pesquisa nas histórias. |
 
 O envio (`_send`) **só ocorre com consentimento** (`musaeum-research-consent === 'sim'`).
 

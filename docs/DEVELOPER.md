@@ -45,11 +45,11 @@ musaeum/
 │
 ├── naufrago.html           Experiência interativa: O Conto do Náufrago
 ├── sinuhe.html             Experiência interativa: A História de Sinué
-├── campones.html           Experiência interativa: O Camponês Eloquente (pronta, não publicada)
+├── campones.html           Experiência interativa: O Camponês Eloquente
 ├── script.js               Utilitários compartilhados + shell HTML (initStoryApp)
 ├── engine.js               Motor das histórias: telas, render, desafios, save
 ├── tour.js                 Motor do tour guiado (coach marks), usado na home e nas histórias
-├── research.js             Coleta anônima da pesquisa; hoje mede só o curso (carregado apenas nas páginas de curso/)
+├── research.js             Coleta anônima da pesquisa; mede o curso em detalhe e recebe um ping de abertura das histórias
 ├── style.css               Estilos globais (tema, tipografia, componentes)
 │
 ├── data/
@@ -134,7 +134,7 @@ Cada página de história (`naufrago.html`, `sinuhe.html`) segue sempre esta ord
 
 Os scripts são carregados em ordem, então todas as funções e constantes ficam disponíveis globalmente. **`data/catalogo.js` vem logo após `script.js`** porque o data file da história usa `catalogGet()` para puxar `ITEMS` e `GLYPHS_CODEX` dali. A lógica da história vive em `engine.js` (não inline): `initStory()` monta o estado, injeta o shell via `initStoryApp()`, carrega o save e renderiza. `tour.js` é opcional do ponto de vista do motor — se estiver presente, `engine.js` o usa para o tour da história.
 
-> **`research.js` não entra aqui.** Desde a v1.2 a coleta da pesquisa mede só o curso de hieróglifos, então `research.js` é carregado apenas nas páginas de `curso/` — nunca nas histórias nem na home. Ver §18.
+> **`research.js` nas histórias é só o ping de abertura.** A coleta detalhada da pesquisa mede o curso de hieróglifos; das histórias vem **apenas um ping anônimo de abertura** (`Research.trackStoryOpen`, disparado uma vez no fim de `initStory`). Por isso `research.js` é carregado nas páginas de `curso/` e nas três histórias, mas **nunca na home**. NÃO adicionar rastreio mais fino (capítulo, resposta, tempo de leitura) nas histórias. Ver §18.
 
 ---
 
@@ -489,7 +489,7 @@ Padrões que devem ser mantidos em qualquer alteração:
 
 O catálogo central (`data/catalogo.js`) é a **fonte única**: card, Coleção, Certificado, mapa e desbloqueio derivam todos dele.
 
-> **Exemplo real já no repositório:** "O Camponês Eloquente" (storyId `campones`) já passou por todos os passos abaixo. `campones.html` e `data/campones.js` existem e estão completos (9 capítulos, prêmio `award` em vez de tesouros); falta só `available: true` para publicá-lo. Use esses arquivos como referência viva.
+> **Exemplo real já no repositório:** "O Camponês Eloquente" (storyId `campones`) passou por todos os passos abaixo e já está publicado (`available: true`). `campones.html` e `data/campones.js` estão completos (9 capítulos, prêmio `award` em vez de tesouros). Use esses arquivos como referência viva de uma história com `award`.
 
 ### Passo 1 — entrada no catálogo
 
@@ -499,7 +499,7 @@ Em `data/catalogo.js`, acrescente uma entrada ao array `MUSAEUM_CATALOG`:
 {
   storyId:   'campones',
   href:      'campones.html',
-  available:  false,               // ainda não publicada
+  available:  false,               // false enquanto rascunha; true para publicar (o campones real já está true)
   cardGlyph: '𓃾',
   titlePt:   'Camponês Eloquente',  titleEn: 'The Eloquent Peasant',
   descPt:    '...',                  descEn:  '...',
@@ -598,7 +598,7 @@ Disparada quando `musaeum-research-consent === null`. Três pop-ups, em ordem:
 2. `#nameModal` — boas-vindas: nome (opcional) + checkbox de consentimento **desmarcado por padrão**. Grava `musaeum-player` e `musaeum-research-consent`. Já é mostrada no idioma escolhido.
 3. `#tourOfferModal` — oferta do tour; "Sim" chama `startHomeTour()`.
 
-O consentimento coletado aqui vale para a pesquisa acadêmica, que **desde a v1.2 mede só o curso de hieróglifos**: `research.js` não é carregado na home nem nas histórias, apenas nas páginas de `curso/`. Lá, se a pessoa chegar sem ter decidido (`consent === null`), o próprio `research.js` mostra um modal de consentimento como fallback. Ver §15 e [TECHNICAL.md](TECHNICAL.md#coleta-da-pesquisa-só-aqui).
+O consentimento coletado aqui vale para a pesquisa acadêmica, que **mede em detalhe o curso de hieróglifos** e recebe **apenas um ping anônimo de abertura** de cada história. Por isso `research.js` é carregado nas páginas de `curso/` e nas três histórias, mas **não na home**. No curso, se a pessoa chegar sem ter decidido (`consent === null`), o próprio `research.js` mostra um modal de consentimento como fallback. Ver §15 e [TECHNICAL.md](TECHNICAL.md#coleta-da-pesquisa).
 
 ### Motor de tour (`tour.js`)
 
@@ -629,7 +629,7 @@ Arquitetura de fonte única: as 6 lições vivem em `curso/licoes.js` (`window.C
 
 Os sinais nas lições vêm sempre do `gardiner/` (`GARDINER_DATA`/`_EN`), nunca relistados à mão. A pasta `gardiner/` também serve a página `gardiner.html` (lista de ~900 sinais + construtor livre) e o pipeline que gera os dados da planilha-fonte (`build_data.py`, `merge_pt.py`, `source/`).
 
-> **A pesquisa vive aqui.** Desde a v1.2, `research.js` mede o curso (conclusão de lição, quiz e construtor) e é carregado só em `curso/index.html` e `curso/licao.html`. `curso/curso.js` chama `Research.init/watchLesson/trackAttempt/trackLessonComplete`. Configuração e campos coletados: [RESEARCH_SETUP.md](RESEARCH_SETUP.md).
+> **A coleta detalhada da pesquisa vive aqui.** `research.js` mede o curso (conclusão de lição, quiz, construtor, tempo e itens errados) e é carregado em `curso/index.html` e `curso/licao.html`. `curso/curso.js` chama `Research.init/watchLesson/trackAttempt/trackLessonComplete`. Das histórias vem só um ping anônimo de abertura (`Research.trackStoryOpen`, em `engine.js`). Configuração e campos coletados: [RESEARCH_SETUP.md](RESEARCH_SETUP.md).
 
 As 6 lições: 1 O sistema, 2 Os 24 unilíteros, 3 Bilíteros e trilíteros, 4 Escrevendo em egípcio antigo, 5 Cartuchos e os nomes do rei, 6 Ler um texto mágico (a fórmula de oferenda, como capstone). Ferramentas de prática: baralho de sinais (`curso/baralho.html`) e a lista de Gardiner.
 
