@@ -231,7 +231,7 @@ const MUSAEUM_CATALOG = [
   {
     storyId: 'campones',
     href: 'campones.html',
-    available: false,
+    available: true,
     cardGlyph: '𓃾',
     titlePt: 'Camponês Eloquente',
     titleEn: 'The Eloquent Peasant',
