@@ -21,9 +21,17 @@
   // por lição: cada lição abre em licao.html?licao=… e recarrega o módulo.
   const _s = {
     isFirstVisit:    false,
-    quizAttempts:    0, // respostas erradas no quiz da lição
-    builderAttempts: 0, // palavras montadas erradas no construtor
+    quizAttempts:    0,  // respostas erradas no quiz da lição
+    builderAttempts: 0,  // palavras montadas erradas no construtor
+    quizWrong:       [], // quais perguntas do quiz erraram (ex.: 'q2')
+    builderWrong:    [], // quais palavras do construtor erraram (translit)
+    lessonStart:     0,  // Date.now() quando a lição abriu (para a duração)
   };
+
+  // Segundos desde que a lição abriu. undefined se ainda não houve watchLesson.
+  function _durationSec() {
+    return _s.lessonStart ? Math.round((Date.now() - _s.lessonStart) / 1000) : undefined;
+  }
 
   function _consent() {
     return localStorage.getItem(CONSENT_KEY);
@@ -348,12 +356,15 @@
         lesson_num:       info.lessonNum,
         lessons_total:    info.totalLessons,
         completed:        'não',
+        duration_sec:     _durationSec(),
         quiz_score:       s.quizScore,
         quiz_max:         s.quizMax,
         quiz_attempts:    _s.quizAttempts,
+        quiz_wrong:       _s.quizWrong.join(',') || undefined,
         builder_solved:   s.builderSolved,
         builder_total:    s.builderTotal,
         builder_attempts: _s.builderAttempts,
+        builder_wrong:    _s.builderWrong.join(',') || undefined,
       });
     };
 
@@ -379,10 +390,16 @@
     /**
      * Registra uma tentativa errada.
      * @param {'quiz'|'builder'} type quiz = resposta errada; builder = palavra montada errada.
+     * @param {string} [item] identificador do item errado (ex.: 'q2' no quiz, translit no construtor).
      */
-    trackAttempt(type) {
-      if (type === 'builder') _s.builderAttempts++;
-      else _s.quizAttempts++;
+    trackAttempt(type, item) {
+      if (type === 'builder') {
+        _s.builderAttempts++;
+        if (item) _s.builderWrong.push(item);
+      } else {
+        _s.quizAttempts++;
+        if (item) _s.quizWrong.push(item);
+      }
     },
 
     /**
@@ -405,12 +422,15 @@
         lesson_num:       lessonNum,
         lessons_total:    totalLessons,
         completed:        'sim',
+        duration_sec:     _durationSec(),
         quiz_score:       quizScore,
         quiz_max:         quizMax,
         quiz_attempts:    _s.quizAttempts,
+        quiz_wrong:       _s.quizWrong.join(',') || undefined,
         builder_solved:   builderSolved,
         builder_total:    builderTotal,
         builder_attempts: _s.builderAttempts,
+        builder_wrong:    _s.builderWrong.join(',') || undefined,
       });
     },
 
@@ -421,7 +441,23 @@
      *           getState: () => object }} opts
      */
     watchLesson({ lessonId, lessonNum, totalLessons, getState }) {
+      _s.lessonStart = Date.now();
       _registerAbandonment({ lessonId, lessonNum, totalLessons, getState });
+    },
+
+    /**
+     * Registra a abertura de uma história (ping anônimo, uma vez por página).
+     * Só a abertura: NÃO rastreamos leitura, capítulo nem resposta das histórias.
+     * A linha da planilha se distingue das do curso por ter a coluna `story`
+     * preenchida (e `lesson` vazia).
+     * @param {string} storyId id da história (ex.: 'naufrago').
+     * @param {string} [lang] idioma corrente.
+     */
+    trackStoryOpen(storyId, lang) {
+      _send({
+        ..._envData(lang),
+        story: storyId,
+      });
     },
   };
 

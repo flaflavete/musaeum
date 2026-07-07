@@ -1088,4 +1088,8 @@ function initStory(config) {
   const _sharedLang = localStorage.getItem('musaeum-lang');
   if (_sharedLang) state.lang = _sharedLang;
   setLang(state.lang);
+
+  // Pesquisa: ping anônimo de abertura da história (só se houver consentimento).
+  // Uma vez por página; nada de rastreio de leitura, capítulo ou resposta.
+  if (window.Research) Research.trackStoryOpen(STORY_ID, state.lang);
 }

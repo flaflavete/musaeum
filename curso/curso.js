@@ -343,7 +343,7 @@
           reportComplete();
         }
       } else if (st.built.length >= c.answer.length) {
-        if (window.Research) Research.trackAttempt('builder');
+        if (window.Research) Research.trackAttempt('builder', c.translit);
         fb.style.color = 'var(--terracotta-lt)';
         fb.textContent = lang === 'pt' ? 'Não é bem assim. Use ⌫ e confira a ordem dos sinais.' : 'Not quite. Use ⌫ and check the order of the signs.';
       } else {
@@ -434,7 +434,7 @@
           btn.classList.add('wrong');
           fb.textContent = T(q.feedbackErr);
           fb.style.color = 'var(--terracotta-lt)';
-          if (window.Research) Research.trackAttempt('quiz');
+          if (window.Research) Research.trackAttempt('quiz', 'q' + (quizState.i + 1));
         }
         showQuizNext(lesson);
       });
