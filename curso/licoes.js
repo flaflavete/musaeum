@@ -52,7 +52,11 @@ window.CURSO_LICOES = [
             { badge: { pt: 'Logograma', en: 'Logogram' }, variant: 'bi', glyph: '𓇳', title: { pt: 'Logogramas', en: 'Logograms' }, desc: { pt: 'Representam a palavra inteira pelo próprio desenho. O sol 𓇳 pode simplesmente significar "sol" ou "dia".', en: 'Represent an entire word through the picture itself. The sun 𓇳 can simply mean "sun" or "day".' } },
             { badge: { pt: 'Determinativo', en: 'Determinative' }, variant: 'det', glyph: '𓀀', title: { pt: 'Determinativos', en: 'Determinatives' }, desc: { pt: 'Não têm som. Aparecem no final de palavras para indicar a categoria semântica (animal, pessoa, deus, ação).', en: 'Have no sound. They appear at the end of words to indicate the semantic category (animal, person, god, action).' } },
           ] },
-          { kind: 'p', html: { pt: 'Na prática, a maioria das palavras egípcias combina sinais fonéticos (para soletrar) com um determinativo no final (para classificar). Isso ajudava a diferenciar palavras que soariam igual.', en: 'In practice, most Egyptian words combine phonetic signs (for spelling) with a determinative at the end (for classification). This helped distinguish words that would sound alike.' } },
+          { kind: 'p', html: { pt: 'É muito comum uma palavra egípcia combinar sinais fonéticos (para soletrar) com um determinativo no final (para classificar). Isso ajudava a diferenciar palavras que soariam igual.', en: 'It is very common for an Egyptian word to combine phonetic signs (for spelling) with a determinative at the end (for classification). This helped distinguish words that would sound alike.' } },
+          { kind: 'foto', src: '../assets/photos/dendera.jpg',
+            alt: { pt: 'Bloco de calcário com o nome da deusa Hathor: um falcão dentro de um recinto retangular.', en: 'Limestone block with the name of the goddess Hathor: a falcon inside a rectangular enclosure.' },
+            caption: { pt: 'O nome da deusa <em>Hathor</em> (<em>Ḥwt-Ḥr</em>, "Casa de Hórus"), escrito com o falcão de Hórus dentro do recinto <em>ḥwt</em>, "casa". O nome é, ao pé da letra, um desenho com significado.', en: 'The name of the goddess <em>Hathor</em> (<em>Ḥwt-Ḥr</em>, "House of Horus"), written with the Horus falcon inside the <em>ḥwt</em> enclosure, "house". The name is, quite literally, a picture with meaning.' },
+            credit: { pt: 'Foto: Flavia Lima Corpas · Templo de Dendera, Qena', en: 'Photo: Flavia Lima Corpas · Temple of Dendera, Qena' } },
         ],
       },
       {
@@ -86,6 +90,10 @@ window.CURSO_LICOES = [
             { label: { pt: '→ esquerda p/ direita', en: '→ left to right' }, glyphs: '𓀀𓂋𓈖', rtl: false, arrow: { pt: '→', en: '→' } },
           ] },
           { kind: 'p', html: { pt: 'Seja em textos religiosos e monumentais ou em papiros e textos cotidianos, a direção variava. O importante é seguir <strong>sempre os rostos.</strong>', en: 'Whether in religious and monumental texts or in papyri and everyday texts, the direction varied. The important thing is to always follow <strong>the faces.</strong>' } },
+          { kind: 'foto', src: '../assets/photos/estela1.jpeg',
+            alt: { pt: 'Estela de calcário com um homem sentado diante de uma mesa de oferendas e linhas de hieróglifos.', en: 'Limestone stela with a seated man before an offering table and lines of hieroglyphs.' },
+            caption: { pt: 'O dono da estela, <em>Tjenu</em>, está sentado <strong>virado para a direita</strong>. Por isso o texto se lê da direita para a esquerda, começando pelo lado para onde ele olha.', en: 'The stela owner, <em>Tjenu</em>, sits <strong>facing right</strong>. So the text reads from right to left, starting on the side he looks toward.' },
+            credit: { pt: 'Foto: Cristina Brandão · Estela de Tjenu, Abydos · Grand Egyptian Museum', en: 'Photo: Cristina Brandão · Stela of Tjenu, Abydos · Grand Egyptian Museum' } },
         ],
       },
       {
@@ -413,6 +421,10 @@ window.CURSO_LICOES = [
             ],
             result: '𓇳𓄟𓋴𓇓𓅱',
             note: { pt: 'Lê-se <strong>Rꜥ-ms-sw</strong> (Ramessu, o nosso "Ramsés"), algo como "Rá o gerou". O 𓋴 (s) e o 𓅱 (w) são complementos que confirmam ms e sw. E repare: o disco solar 𓇳 vem primeiro, porque nomes reais costumam abrir com o deus.', en: 'It reads <strong>Rꜥ-ms-sw</strong> (Ramessu, our "Ramesses"), roughly "Ra fashioned him". The 𓋴 (s) and 𓅱 (w) are complements confirming ms and sw. And notice: the sun disk 𓇳 comes first, because royal names often open with the god.' } },
+          { kind: 'foto', src: '../assets/photos/karnak.JPG',
+            alt: { pt: 'Cartucho talhado numa coluna de pedra, com o disco solar e outros sinais dentro de um oval.', en: 'Cartouche carved on a stone column, with the sun disk and other signs inside an oval.' },
+            caption: { pt: 'O nome de trono de <em>Ramsés II</em>, <em>Wsr-Mꜣꜥt-Rꜥ</em> ("Poderosa é a Maat de Rá"). Repare no disco solar 𓇳 escrito primeiro, por respeito: é a transposição honorífica.', en: 'The throne name of <em>Ramesses II</em>, <em>Wsr-Mꜣꜥt-Rꜥ</em> ("The Maat of Ra is powerful"). Notice the sun disk 𓇳 written first, out of respect: honorific transposition.' },
+            credit: { pt: 'Foto: Flavia Lima Corpas · Templo de Karnak', en: 'Photo: Flavia Lima Corpas · Temple of Karnak' } },
         ],
       },
       {
@@ -493,12 +505,17 @@ window.CURSO_LICOES = [
             result: '𓊨𓁹𓀭',
             note: { pt: 'Lê-se <strong>Wsỉr</strong>, "Osíris", escrito com o trono e o olho, e fechado pelo 𓀭, o determinativo de deus, que não tem som e só marca que a palavra é uma divindade.', en: 'It reads <strong>Wsỉr</strong>, "Osiris", written with the throne and the eye, and closed by 𓀭, the determinative of a god, which has no sound and only marks that the word is a deity.' } },
           { kind: 'callout', variant: 'gold', html: { pt: 'Juntando: <span class="gloss-glyph">𓇓𓏏𓊵𓏙 𓊨𓁹𓀭</span><br><strong>ḥtp-dỉ-nsw wsỉr</strong> = "Uma oferenda que o rei dá a Osíris". Pronto: você acabou de ler um texto egípcio de verdade.', en: 'Putting it together: <span class="gloss-glyph">𓇓𓏏𓊵𓏙 𓊨𓁹𓀭</span><br><strong>ḥtp-dỉ-nsw wsỉr</strong> = "An offering which the king gives to Osiris". There you go: you have just read a real Egyptian text.' } },
+          { kind: 'foto', src: '../assets/photos/estela.jpg',
+            alt: { pt: 'Estela de calcário de Tjenu, com um homem sentado diante da mesa de oferendas e linhas de texto no alto.', en: 'Limestone stela of Tjenu, with a seated man before the offering table and lines of text above.' },
+            caption: { pt: 'A estela de <em>Tjenu</em>, guarda da sala do vestuário real (Abydos, calcário, 13ª dinastia). No alto, à direita, começa o <em>ḥtp-dỉ-nsw</em>, dedicado ao <em>ka</em> do dono. E ele não é um rei: a fórmula "que o rei dá" é justamente a das pessoas comuns.', en: 'The stela of <em>Tjenu</em>, keeper of the hall of the royal wardrobe (Abydos, limestone, 13th Dynasty). At the top right begins the <em>ḥtp-dỉ-nsw</em>, dedicated to the owner\'s <em>ka</em>. And he is no king: the formula "which the king gives" is precisely the one for ordinary people.' },
+            credit: { pt: 'Foto: Cristina Brandão · Grand Egyptian Museum', en: 'Photo: Cristina Brandão · Grand Egyptian Museum' } },
         ],
       },
       {
         title: { pt: 'Agora escreva você', en: 'Now you write it' },
         blocks: [
           { kind: 'p', html: { pt: 'Feche o curso escrevendo a própria fórmula. Lembre: o rei vem primeiro.', en: 'Close the course by writing the formula yourself. Remember: the king comes first.' } },
+          { kind: 'callout', variant: 'azul', html: { pt: 'Antes de montar: a tecla do junco 𓇓 aparece com o som <strong>sw</strong> (é o valor dele na Lista de Gardiner). Mas aqui ele escreve a palavra <strong>nsw</strong>, "rei", com o <em>n</em> inicial que não é grafado. Por isso a leitura da fórmula é <em>nsw</em>, mesmo o sinal valendo sw sozinho.', en: 'Before you build: the sedge key 𓇓 shows the sound <strong>sw</strong> (its value in the Gardiner list). But here it writes the word <strong>nsw</strong>, "king", with an initial <em>n</em> that is not written. That is why the formula reads <em>nsw</em>, even though the sign sounds sw on its own.' } },
           { kind: 'builder', cartouche: false,
             palette: ['M23', 'X1', 'R4', 'X8', 'Q1', 'D4', 'A40', 'N35', 'G17'],
             challenges: [

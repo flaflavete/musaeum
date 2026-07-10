@@ -85,6 +85,22 @@
       case 'callout':
         return '<div class="callout' + (b.variant === 'azul' ? ' azul' : '') + '">' + T(b.html) + '</div>';
 
+      case 'foto': {
+        /* Foto de cultura material (pedra real). Botão .foto-frame abre a vista
+           ampliada (toque/teclado); no desktop a lupa segue o cursor (wireFotos).
+           A imagem em alta vive em ../assets/photos. */
+        var ampliar = lang === 'pt' ? 'Ampliar foto' : 'Enlarge photo';
+        return '<figure class="foto-figure" data-foto>' +
+          '<button class="foto-frame" type="button" aria-label="' + esc(ampliar) + '">' +
+            '<img class="foto-img" src="' + esc(b.src) + '" alt="' + esc(T(b.alt)) + '" loading="lazy" draggable="false">' +
+            '<span class="foto-lupa" aria-hidden="true">🔍</span>' +
+          '</button>' +
+          '<figcaption class="foto-cap">' + T(b.caption) +
+            '<span class="foto-credit">' + esc(T(b.credit)) + '</span>' +
+          '</figcaption>' +
+        '</figure>';
+      }
+
       case 'signtypes':
         return '<div class="sign-types">' + b.cards.map(function (c) {
           return '<div class="sign-type-card">' +
@@ -294,8 +310,85 @@
     wireChrome();
     wireSiggrid();
     wireBuilder(lesson);
+    wireFotos();
     startQuiz(lesson);
     wireProgressBar();
+  }
+
+  /* ── fotos de cultura material: lupa (desktop) + lightbox (todos) ── */
+  var _lbPrevFocus = null;
+
+  function wireFotos() {
+    var figs = document.querySelectorAll('[data-foto]');
+    if (!figs.length) return;
+    var fine = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    figs.forEach(function (fig) {
+      var frame = fig.querySelector('.foto-frame');
+      var img = fig.querySelector('.foto-img');
+      if (!frame || !img) return;
+      // Vista ampliada: universal e acessível (clique, Enter, Espaço).
+      frame.addEventListener('click', function () { openLightbox(img.src, img.alt); });
+      // Lupa que segue o cursor: só onde há mouse de verdade (enhancement).
+      if (fine) attachLoupe(frame, img);
+    });
+  }
+
+  function attachLoupe(frame, img) {
+    var ZOOM = 2.6, lens = null;
+    frame.addEventListener('mouseenter', function () {
+      lens = document.createElement('div');
+      lens.className = 'foto-lens';
+      lens.style.backgroundImage = 'url("' + img.src + '")';
+      frame.appendChild(lens);
+    });
+    frame.addEventListener('mousemove', function (e) {
+      if (!lens) return;
+      var r = frame.getBoundingClientRect();
+      var x = e.clientX - r.left, y = e.clientY - r.top;
+      var lw = lens.offsetWidth, lh = lens.offsetHeight;
+      lens.style.left = (x - lw / 2) + 'px';
+      lens.style.top = (y - lh / 2) + 'px';
+      lens.style.backgroundSize = (r.width * ZOOM) + 'px ' + (r.height * ZOOM) + 'px';
+      lens.style.backgroundPosition = '-' + (x * ZOOM - lw / 2) + 'px -' + (y * ZOOM - lh / 2) + 'px';
+    });
+    frame.addEventListener('mouseleave', function () {
+      if (lens) { lens.remove(); lens = null; }
+    });
+  }
+
+  function openLightbox(src, alt) {
+    var lb = el('fotoLightbox');
+    if (!lb) {
+      lb = document.createElement('div');
+      lb.id = 'fotoLightbox';
+      lb.className = 'foto-lightbox';
+      lb.innerHTML =
+        '<div class="foto-lightbox-inner" role="dialog" aria-modal="true">' +
+          '<button class="foto-lightbox-close" type="button">✕</button>' +
+          '<img class="foto-lightbox-img" alt="">' +
+        '</div>';
+      document.body.appendChild(lb);
+      lb.addEventListener('click', function (e) { if (e.target === lb) closeLightbox(); });
+      lb.querySelector('.foto-lightbox-close').addEventListener('click', closeLightbox);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lb.classList.contains('show')) closeLightbox();
+      });
+    }
+    var closeBtn = lb.querySelector('.foto-lightbox-close');
+    closeBtn.setAttribute('aria-label', lang === 'pt' ? 'Fechar' : 'Close');
+    lb.querySelector('.foto-lightbox-inner').setAttribute('aria-label', lang === 'pt' ? 'Foto ampliada' : 'Enlarged photo');
+    var im = lb.querySelector('.foto-lightbox-img');
+    im.src = src; im.alt = alt || '';
+    lb.classList.add('show');
+    _lbPrevFocus = document.activeElement;
+    closeBtn.focus();
+  }
+
+  function closeLightbox() {
+    var lb = el('fotoLightbox');
+    if (!lb) return;
+    lb.classList.remove('show');
+    if (_lbPrevFocus && _lbPrevFocus.focus) _lbPrevFocus.focus();
   }
 
   function wireBuilder(lesson) {
