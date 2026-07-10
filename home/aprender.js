@@ -68,6 +68,40 @@ function renderAprenderHub() {
       </a>`).join('');
   }
 
+  // Cartão da Prova do Módulo 1 (porteiro do certificado). Fonte: window.CURSO_PROVA.
+  // Trancado até todas as lições prontas estarem concluídas; ao passar, vira "Aprovado".
+  const provaWrap = document.getElementById('aprenderProva');
+  if (provaWrap) {
+    const prova = window.CURSO_PROVA;
+    if (!prova) { provaWrap.innerHTML = ''; }
+    else {
+      const unlocked = total > 0 && done === total;
+      let provaDone = false;
+      try {
+        const p = JSON.parse(localStorage.getItem('musaeum-hieroglyphs') || '{}');
+        provaDone = !!(p.done && p.done[prova.id]);
+      } catch (e) { /* save ausente */ }
+      const tag = unlocked ? 'a' : 'div';
+      const href = unlocked ? ' href="curso/prova.html"' : '';
+      const badge = provaDone
+        ? { pt: 'Aprovado', en: 'Passed' }
+        : (unlocked ? { pt: 'Disponível', en: 'Available' } : { pt: 'Conclua as lições', en: 'Finish the lessons' });
+      const desc = provaDone
+        ? { pt: 'Você passou no teste e liberou seu Certificado de Leitura. Pode refazê-lo quando quiser.', en: 'You passed the test and unlocked your Reading Certificate. Retake it anytime.' }
+        : { pt: 'Dez questões sorteadas das seis lições, com consulta aberta à Lista de Gardiner. Ao passar, seu Certificado de Leitura é liberado.', en: 'Ten questions drawn from the six lessons, with open access to the Gardiner list. Passing unlocks your Reading Certificate.' };
+      provaWrap.innerHTML = `
+        <${tag} class="aprender-prova-card${unlocked ? '' : ' locked'}${provaDone ? ' is-done' : ''}"${href}>
+          <span class="aprender-prova-glyph">${prova.glyph}</span>
+          <div class="aprender-prova-body">
+            <div class="aprender-prova-kicker">${T(prova.kicker)}</div>
+            <div class="aprender-prova-title">${T(prova.title)}${provaDone ? ' <span class="aprender-prova-check" aria-hidden="true">✓</span>' : ''}</div>
+            <div class="aprender-prova-desc">${T(desc)}</div>
+          </div>
+          <span class="aprender-prova-badge ${provaDone ? 'badge-final' : 'badge-new'}">${T(badge)}</span>
+        </${tag}>`;
+    }
+  }
+
   const tools = document.getElementById('aprenderTools');
   if (tools) {
     tools.innerHTML = APRENDER_TOOLS.map(t => `

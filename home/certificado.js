@@ -1,20 +1,20 @@
-// Certificado de leitura: desbloqueia quando todas as lições da introdução aos
-// hieróglifos estão concluídas (mesmo save do curso: musaeum-hieroglyphs).
-// Desenhado em canvas 800x560 e exportável em PNG.
+// Certificado de leitura: desbloqueia quando o leitor PASSA na Prova do Módulo 1
+// (o porteiro do curso), não mais pela simples conclusão das lições. A aprovação
+// grava done['prova-1'] no mesmo save do curso (musaeum-hieroglyphs), via
+// curso/curso.js. Desenhado em canvas 800x560 e exportável em PNG.
 
-  // Lições publicadas (fonte: window.CURSO_LICOES, curso/licoes.js). Todas as
-  // lições prontas precisam estar concluídas para desbloquear o certificado.
-  function readyLessons() {
-    return (window.CURSO_LICOES || []).filter(l => l.ready);
+  // Id da prova (fonte: window.CURSO_PROVA, curso/prova.js). Fallback defensivo
+  // caso o script da prova não tenha carregado.
+  function provaId() {
+    return (window.CURSO_PROVA && window.CURSO_PROVA.id) || 'prova-1';
   }
 
+  // Desbloqueado = aprovado na prova. Certifica quem provou, não quem só clicou.
   function allLessonsComplete() {
-    const lessons = readyLessons();
-    if (!lessons.length) return false;
     let done = {};
     try { done = JSON.parse(localStorage.getItem('musaeum-hieroglyphs') || '{}').done || {}; }
     catch (e) { done = {}; }
-    return lessons.every(l => done[l.id]);
+    return !!done[provaId()];
   }
 
   function renderCertificateSection() {

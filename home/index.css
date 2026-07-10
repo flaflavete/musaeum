@@ -1718,6 +1718,70 @@
     margin-top: auto;
   }
 
+  /* Cartão da Prova do Módulo 1: capstone que fecha a lista de lições e leva ao
+     certificado. Faixa horizontal, mais destacada que os cards das lições. */
+  .aprender-prova { margin-bottom: 36px; }
+  .aprender-prova-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    border: 1px solid rgba(201, 166, 70, 0.35);
+    border-radius: 12px;
+    background: rgba(201, 166, 70, 0.08);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s, border-color 0.15s, transform 0.15s;
+  }
+  a.aprender-prova-card:hover {
+    background: rgba(201, 166, 70, 0.16);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .aprender-prova-card.locked { opacity: 0.55; cursor: default; }
+  .aprender-prova-glyph {
+    font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+    font-size: 34px;
+    line-height: 1;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .aprender-prova-body { flex: 1; }
+  .aprender-prova-kicker {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--papyrus-dim);
+  }
+  .aprender-prova-title {
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--papyrus);
+    line-height: 1.3;
+    margin: 2px 0 4px;
+  }
+  .aprender-prova-check { color: #9cd06a; font-size: 13px; }
+  html[data-theme="light"] .aprender-prova-check { color: #3f7a2a; }
+  .aprender-prova-desc {
+    font-family: 'EB Garamond', 'Gentium Plus', 'Noto Serif', serif;
+    font-size: 13px;
+    color: var(--papyrus-soft);
+    line-height: 1.55;
+  }
+  .aprender-prova-badge {
+    flex-shrink: 0;
+    font-family: 'Cinzel', 'Gentium Plus', serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 11px;
+    border-radius: 99px;
+  }
+
   .aprender-tools {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -1767,5 +1831,7 @@
     .aprender-stat { min-width: 80px; }
     .aprender-bar-wrap { flex: 1 1 100%; }
     .aprender-grid { grid-template-columns: 1fr; }
+    .aprender-prova-card { flex-wrap: wrap; }
+    .aprender-prova-badge { order: 3; }
   }
 

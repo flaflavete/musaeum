@@ -983,6 +983,107 @@ body {
   .foto-lightbox-close { top: 6px; right: 6px; }
 }
 
+/* ── Prova do Módulo 1 (porteiro) ──────────────────── */
+/* Consulta aberta: link para a Lista de Gardiner, logo abaixo do hero. */
+.prova-openbook {
+  display: flex; align-items: center; gap: 10px;
+  max-width: 640px; margin: 0 auto 6px;
+  padding: 12px 18px;
+  border: 1px solid var(--gold-dark, var(--border));
+  border-radius: 12px;
+  background: rgba(201,166,70,0.08);
+  color: var(--papyrus-soft); text-decoration: none;
+  font-family: 'EB Garamond', 'Gentium Plus', serif; font-size: 15px;
+  transition: background 0.18s, border-color 0.18s;
+}
+.prova-openbook:hover { background: rgba(201,166,70,0.16); border-color: var(--gold); }
+.prova-openbook-glyph { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 22px; color: var(--gold); }
+.prova-openbook-label { flex: 1; }
+.prova-openbook-ext { color: var(--gold); font-size: 15px; }
+
+.prova-box { max-width: 640px; margin: 0 auto; }
+.prova-meta {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--papyrus-dim); margin-bottom: 18px;
+}
+.prova-score { color: var(--gold); }
+.prova-stage { text-align: center; }
+.prova-prompt { font-size: 16px; line-height: 1.6; color: var(--papyrus); margin-bottom: 18px; }
+.prova-fill-translit {
+  font-family: 'Gentium Plus', 'EB Garamond', serif; font-size: 26px;
+  letter-spacing: 0.06em; color: var(--gold-light); margin: 4px 0 18px;
+}
+.prova-feedback { text-align: center; min-height: 24px; font-size: 15px; line-height: 1.55; margin-top: 16px; }
+.prova-feedback .prova-revise { display: inline-block; margin-left: 4px; }
+.prova-nav { display: flex; justify-content: center; margin-top: 18px; }
+.prova-confirm-wrap { display: flex; justify-content: center; margin-top: 6px; }
+
+/* ordenar: sinais soltos para colocar na ordem de escrita */
+.order-pool {
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 18px;
+}
+.order-tile {
+  min-width: 58px; padding: 10px 8px; text-align: center; cursor: pointer;
+  background: var(--ink-raised); border: 1px solid var(--border); border-radius: 10px;
+  transition: transform 0.12s, border-color 0.12s, opacity 0.12s;
+}
+.order-tile:hover:not(.used) { border-color: var(--gold); transform: translateY(-2px); }
+.order-tile.used { opacity: 0.28; pointer-events: none; }
+
+/* parear: duas colunas, sinal e valor */
+.match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; max-width: 460px; margin: 0 auto; }
+.match-col { display: flex; flex-direction: column; gap: 10px; }
+.match-item {
+  padding: 12px; border: 1px solid var(--border); border-radius: 10px;
+  background: var(--ink-raised); color: var(--papyrus); cursor: pointer;
+  font-family: 'EB Garamond', 'Gentium Plus', serif; font-size: 17px;
+  transition: border-color 0.14s, background 0.14s;
+}
+.match-item:hover:not(.done) { border-color: var(--gold); }
+.match-item.sel { border-color: var(--gold); background: rgba(201,166,70,0.14); }
+.match-item.done { cursor: default; }
+.match-glyph { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 30px; line-height: 1; color: var(--gold); }
+.match-item.done .match-glyph { color: inherit; }
+.pair-a { border-color: #c9a642 !important; background: rgba(201,166,70,0.14) !important; color: #c9a642; }
+.pair-b { border-color: #5b8dbf !important; background: rgba(91,141,191,0.16) !important; color: #5b8dbf; }
+.pair-c { border-color: #4caf7a !important; background: rgba(76,175,122,0.16) !important; color: #4caf7a; }
+.pair-d { border-color: #c98a5b !important; background: rgba(201,138,91,0.16) !important; color: #c98a5b; }
+.pair-e { border-color: #9b7bc9 !important; background: rgba(155,123,201,0.16) !important; color: #9b7bc9; }
+.pair-f { border-color: #4fb0a8 !important; background: rgba(79,176,168,0.16) !important; color: #4fb0a8; }
+
+/* revise a lição X */
+.prova-revise {
+  color: var(--gold); text-decoration: underline; text-underline-offset: 3px;
+  font-weight: 600; font-family: 'EB Garamond', 'Gentium Plus', serif;
+}
+.prova-revise:hover { color: var(--gold-light); }
+.prova-revise-list {
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center;
+  margin: 16px 0; color: var(--papyrus-dim); font-size: 14px;
+}
+
+/* resultado */
+.prova-result { text-align: center; padding: 8px 0; }
+.prova-result-glyph { font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif; font-size: 46px; line-height: 1; display: block; margin-bottom: 8px; }
+.prova-result.is-pass .prova-result-glyph { color: var(--green); }
+.prova-result.is-fail .prova-result-glyph { color: var(--gold); }
+.prova-result h2 { font-family: 'Cinzel', serif; color: var(--gold); margin: 0 0 8px; }
+.prova-result.is-pass h2 { color: var(--green); }
+.prova-result-score { font-size: 18px; color: var(--papyrus); margin-bottom: 14px; }
+.prova-result p { color: var(--papyrus-soft); line-height: 1.6; }
+.prova-result-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+.prova-result-actions .btn { text-decoration: none; }
+
+/* cartão da prova no índice */
+.prova-item.locked { opacity: 0.55; cursor: default; }
+.prova-item .licao-item-glyph { color: var(--gold); }
+
+@media (max-width: 600px) {
+  .match-grid { gap: 10px; }
+  .prova-result-actions { flex-direction: column; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
 }

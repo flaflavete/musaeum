@@ -420,7 +420,7 @@
         if (reportCtx) reportCtx.builderSolved = st.ci + 1;
         renderStrip();
         fb.style.color = 'var(--green)';
-        fb.innerHTML = '✓ ' + esc(c.translit) + ' — ' + esc(T(c.meaning)) + (c.note ? '<span class="bf-note">' + T(c.note) + '</span>' : '');
+        fb.innerHTML = '✓ ' + esc(c.translit) + ' · ' + esc(T(c.meaning)) + (c.note ? '<span class="bf-note">' + T(c.note) + '</span>' : '');
         if (st.ci < block.challenges.length - 1) {
           nextWrap.innerHTML = '<button class="btn btn-primary" type="button" id="bNext">' + (lang === 'pt' ? 'Próxima palavra →' : 'Next word →') + '</button>';
           el('bNext').addEventListener('click', function () {
@@ -574,6 +574,387 @@
     onScroll();
   }
 
+  /* ── página: prova (porteiro do Módulo 1) ─────────── */
+  var PROVA = window.CURSO_PROVA || null;
+  var provaState = null;
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function provaUnlocked() {
+    return readyLessons.length > 0 && readyLessons.every(function (l) { return isDone(l.id); });
+  }
+
+  function lessonByNum(n) {
+    return LESSONS.filter(function (x) { return x.num === n; })[0];
+  }
+
+  function reviseLink(n, cls) {
+    var l = lessonByNum(n);
+    if (!l) return '';
+    return '<a class="' + (cls || 'prova-revise') + '" href="licao.html?licao=' + l.id + '" target="_blank" rel="noopener">' +
+      (lang === 'pt' ? 'Revise a Lição ' : 'Review Lesson ') + n + ' ↗</a>';
+  }
+
+  function provaOpenBook() {
+    var label = lang === 'pt' ? 'Consulta aberta: abra a Lista de Gardiner numa nova aba' : 'Open book: open the Gardiner Sign List in a new tab';
+    return '<a class="prova-openbook" href="../gardiner/gardiner.html" target="_blank" rel="noopener">' +
+      '<span class="prova-openbook-glyph" aria-hidden="true">𓏟</span>' +
+      '<span class="prova-openbook-label">' + esc(label) + '</span>' +
+      '<span class="prova-openbook-ext" aria-hidden="true">↗</span>' +
+    '</a>';
+  }
+
+  function renderProva() {
+    if (!PROVA) { window.location.replace('index.html'); return; }
+    document.title = T(PROVA.title) + ' · Musæum';
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+
+    el('cursoHeader').innerHTML = renderHeader({
+      backHref: 'index.html',
+      backLabel: lang === 'pt' ? 'Índice' : 'Index',
+      title: T(PROVA.kicker),
+    });
+
+    // Porteiro: a prova vem depois das lições. Sem elas concluídas, mostra um
+    // aviso gentil em vez do teste (o cartão do índice já vem trancado, isto
+    // cobre quem chega pela URL direta).
+    if (!provaUnlocked()) {
+      el('cursoContent').innerHTML =
+        '<div class="licao-hero">' +
+          '<span class="licao-hero-glyph" aria-hidden="true">' + PROVA.glyph + '</span>' +
+          '<h1>' + T(PROVA.title) + '</h1>' +
+          '<p>' + esc(lang === 'pt'
+            ? 'O teste abre depois que você conclui as seis lições dos Primeiros passos. Volte ao índice e finalize as lições que faltam.'
+            : 'The test opens after you finish the six First steps lessons. Go back to the index and complete the remaining lessons.') + '</p>' +
+        '</div>' +
+        '<div class="prova-result-actions"><a class="btn btn-primary" href="index.html">' + (lang === 'pt' ? '← Voltar ao índice' : '← Back to index') + '</a></div>';
+      wireChrome();
+      return;
+    }
+
+    var draw = Math.min(PROVA.draw || PROVA.questions.length, PROVA.questions.length);
+    provaState = { queue: shuffle(PROVA.questions).slice(0, draw), i: 0, score: 0, wrong: [] };
+
+    el('cursoContent').innerHTML =
+      '<div class="licao-hero">' +
+        '<div class="licao-hero-num">' + esc(T(PROVA.kicker)) + '</div>' +
+        '<span class="licao-hero-glyph" aria-hidden="true">' + PROVA.glyph + '</span>' +
+        '<h1>' + T(PROVA.title) + '</h1>' +
+        (PROVA.intro ? '<p>' + T(PROVA.intro) + '</p>' : '') +
+      '</div>' +
+      provaOpenBook() +
+      '<section class="licao-section"><div class="prova-box" id="provaBox"></div></section>';
+
+    wireChrome();
+    renderProvaQuestion();
+  }
+
+  function renderProvaQuestion() {
+    var st = provaState;
+    var total = st.queue.length;
+    if (st.i >= total) { renderProvaResult(); return; }
+    var q = st.queue[st.i];
+
+    el('provaBox').innerHTML =
+      '<div class="prova-meta">' +
+        '<span>' + (lang === 'pt' ? 'Questão ' : 'Question ') + (st.i + 1) + (lang === 'pt' ? ' de ' : ' of ') + total + '</span>' +
+        '<span class="prova-score">' + (lang === 'pt' ? 'Acertos: ' : 'Correct: ') + st.score + '</span>' +
+      '</div>' +
+      '<div class="prova-stage" id="provaStage"></div>' +
+      '<div class="prova-feedback" id="provaFeedback" role="status" aria-live="polite"></div>' +
+      '<div class="prova-nav" id="provaNav"></div>';
+
+    var stage = el('provaStage');
+    if (q.kind === 'mc' || q.kind === 'fill') renderProvaChoice(q, stage);
+    else if (q.kind === 'build') renderProvaBuild(q, stage);
+    else if (q.kind === 'order') renderProvaOrder(q, stage);
+    else if (q.kind === 'match') renderProvaMatch(q, stage);
+  }
+
+  function okBody(q) {
+    if (q.kind === 'mc' || q.kind === 'fill') return esc(T(q.fbOk));
+    if (q.translit) return '✓ ' + esc(q.translit) + (q.note ? ' · ' + T(q.note) : '');
+    return '✓ ' + (lang === 'pt' ? 'Correto.' : 'Correct.');
+  }
+  function errBody(q) {
+    if (q.kind === 'mc' || q.kind === 'fill') return esc(T(q.fbErr));
+    if (q.note) return (lang === 'pt' ? 'Não é bem assim. ' : 'Not quite. ') + T(q.note);
+    return lang === 'pt' ? 'Não é bem assim.' : 'Not quite.';
+  }
+
+  function provaGraded(q, correct) {
+    var st = provaState, fb = el('provaFeedback');
+    if (correct) { st.score++; }
+    else { st.wrong.push(q.lesson); if (window.Research) Research.trackAttempt('quiz', 'prova'); }
+    fb.style.color = correct ? 'var(--green)' : 'var(--terracotta-lt)';
+    fb.innerHTML = (correct ? okBody(q) : errBody(q)) + (correct ? '' : ' ' + reviseLink(q.lesson));
+    showProvaNext();
+  }
+
+  function showProvaNext() {
+    var st = provaState, nav = el('provaNav');
+    var last = st.i >= st.queue.length - 1;
+    nav.innerHTML = '<button class="btn btn-primary" id="provaNextBtn">' +
+      (last ? (lang === 'pt' ? 'Ver resultado →' : 'See result →') : (lang === 'pt' ? 'Próxima →' : 'Next →')) + '</button>';
+    el('provaNextBtn').addEventListener('click', function () {
+      st.i++;
+      if (st.i >= st.queue.length) { renderProvaResult(); }
+      else { renderProvaQuestion(); var box = el('provaBox'); if (box) box.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  }
+
+  /* mc / fill: escolha única (mesma mecânica do quiz da lição). */
+  function renderProvaChoice(q, stage) {
+    var head = q.kind === 'fill' ? '<div class="prova-fill-translit">' + esc(q.translit) + '</div>' : '';
+    var opts = shuffle(q.options).map(function (o) {
+      return '<button class="quiz-opt" data-correct="' + (o.correct ? '1' : '0') + '">' + esc(T(o.label)) + '</button>';
+    }).join('');
+    stage.innerHTML =
+      '<span class="quiz-glyph" aria-hidden="true">' + (q.glyph || '') + '</span>' +
+      '<p class="quiz-question">' + esc(T(q.q)) + '</p>' + head +
+      '<div class="quiz-options" id="provaOptions">' + opts + '</div>';
+    var options = stage.querySelectorAll('#provaOptions .quiz-opt');
+    options.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (btn.disabled) return;
+        var correct = btn.dataset.correct === '1';
+        options.forEach(function (o) { o.disabled = true; if (o.dataset.correct === '1') o.classList.add('correct'); });
+        btn.classList.add(correct ? 'correct' : 'wrong');
+        provaGraded(q, correct);
+      });
+    });
+  }
+
+  /* build: construtor de palavra (uma tentativa, confirmada). */
+  function renderProvaBuild(q, stage) {
+    var map = gardinerMap();
+    var keys = shuffle(q.palette).map(function (id) {
+      var row = map[id] || [id, '', '', id];
+      return '<button class="builder-key" type="button" data-id="' + esc(id) + '">' +
+        '<span class="bk-glyph">' + (row[1] || '') + '</span>' +
+        '<span class="bk-ph">' + esc(row[2] || '') + '</span>' +
+      '</button>';
+    }).join('');
+    stage.innerHTML =
+      '<p class="prova-prompt">' + T(q.prompt) + '</p>' +
+      '<div class="builder-task"><span class="builder-task-word">' + esc(T(q.meaning)) + ' <em>(' + esc(q.translit) + ')</em></span></div>' +
+      '<div class="builder-strip' + (q.cartouche ? ' as-cartouche' : '') + '" id="provaStrip" aria-live="polite"></div>' +
+      '<div class="builder-controls">' +
+        '<button class="btn" type="button" id="provaBack">' + (lang === 'pt' ? '⌫ Apagar' : '⌫ Delete') + '</button>' +
+        '<button class="btn" type="button" id="provaClear">' + (lang === 'pt' ? 'Limpar' : 'Clear') + '</button>' +
+      '</div>' +
+      '<div class="builder-palette">' + keys + '</div>' +
+      '<div class="prova-confirm-wrap"><button class="btn btn-primary" type="button" id="provaConfirm" disabled>' + (lang === 'pt' ? 'Conferir' : 'Check') + '</button></div>';
+    var built = [], strip = el('provaStrip'), confirm = el('provaConfirm');
+    function renderStrip() {
+      strip.innerHTML = built.length
+        ? built.map(function (id) { return '<span class="bs-glyph">' + ((map[id] || [])[1] || '') + '</span>'; }).join('')
+        : '<span class="builder-strip-empty">' + (lang === 'pt' ? 'clique nos sinais abaixo' : 'click the signs below') + '</span>';
+      confirm.disabled = built.length === 0;
+    }
+    stage.querySelectorAll('.builder-key').forEach(function (k) {
+      k.addEventListener('click', function () { built.push(k.dataset.id); renderStrip(); });
+    });
+    el('provaBack').addEventListener('click', function () { built.pop(); renderStrip(); });
+    el('provaClear').addEventListener('click', function () { built = []; renderStrip(); });
+    confirm.addEventListener('click', function () {
+      var correct = built.join(',') === q.answer.join(',');
+      stage.querySelectorAll('button').forEach(function (b) { b.disabled = true; });
+      strip.classList.toggle('solved', correct);
+      provaGraded(q, correct);
+    });
+    renderStrip();
+  }
+
+  /* order: colocar os sinais dados na ordem de escrita. */
+  function renderProvaOrder(q, stage) {
+    var map = gardinerMap();
+    var tiles = shuffle(q.answer.map(function (id, idx) { return { id: id, key: idx }; }));
+    var tilesHtml = tiles.map(function (t) {
+      var row = map[t.id] || [t.id, '', '', t.id];
+      return '<button class="order-tile" type="button" data-key="' + t.key + '" data-id="' + esc(t.id) + '">' +
+        '<span class="bk-glyph">' + (row[1] || '') + '</span>' +
+        '<span class="bk-ph">' + esc(row[2] || '') + '</span>' +
+      '</button>';
+    }).join('');
+    stage.innerHTML =
+      '<p class="prova-prompt">' + T(q.prompt) + '</p>' +
+      '<div class="builder-task"><span class="builder-task-word"><em>' + esc(q.translit) + '</em></span></div>' +
+      '<div class="builder-strip' + (q.cartouche ? ' as-cartouche' : '') + '" id="provaStrip" aria-live="polite"></div>' +
+      '<div class="builder-controls"><button class="btn" type="button" id="provaBack">' + (lang === 'pt' ? '⌫ Apagar' : '⌫ Delete') + '</button></div>' +
+      '<div class="order-pool" id="orderPool">' + tilesHtml + '</div>' +
+      '<div class="prova-confirm-wrap"><button class="btn btn-primary" type="button" id="provaConfirm" disabled>' + (lang === 'pt' ? 'Conferir' : 'Check') + '</button></div>';
+    var placed = [], strip = el('provaStrip'), confirm = el('provaConfirm'), pool = el('orderPool');
+    function renderStrip() {
+      strip.innerHTML = placed.length
+        ? placed.map(function (p) { return '<span class="bs-glyph">' + ((map[p.id] || [])[1] || '') + '</span>'; }).join('')
+        : '<span class="builder-strip-empty">' + (lang === 'pt' ? 'clique nos sinais na ordem' : 'click the signs in order') + '</span>';
+      confirm.disabled = placed.length !== q.answer.length;
+    }
+    pool.querySelectorAll('.order-tile').forEach(function (tile) {
+      tile.addEventListener('click', function () {
+        if (tile.classList.contains('used')) return;
+        tile.classList.add('used'); tile.disabled = true;
+        placed.push({ key: tile.dataset.key, id: tile.dataset.id });
+        renderStrip();
+      });
+    });
+    el('provaBack').addEventListener('click', function () {
+      var last = placed.pop();
+      if (last) { var t = pool.querySelector('.order-tile[data-key="' + last.key + '"]'); if (t) { t.classList.remove('used'); t.disabled = false; } }
+      renderStrip();
+    });
+    confirm.addEventListener('click', function () {
+      var correct = placed.map(function (p) { return p.id; }).join(',') === q.answer.join(',');
+      stage.querySelectorAll('button').forEach(function (b) { b.disabled = true; });
+      strip.classList.toggle('solved', correct);
+      provaGraded(q, correct);
+    });
+    renderStrip();
+  }
+
+  /* match: parear cada sinal com o seu valor. */
+  function renderProvaMatch(q, stage) {
+    var map = gardinerMap();
+    var COLORS = ['a', 'b', 'c', 'd', 'e', 'f'];
+    function build() {
+      var lefts = shuffle(q.pairs.map(function (p, i) { return { i: i, id: p.id }; }));
+      var rights = shuffle(q.pairs.map(function (p, i) { return { i: i, label: p.label }; }));
+      var leftHtml = lefts.map(function (l) {
+        var row = map[l.id] || [l.id, '', '', l.id];
+        return '<button class="match-item match-left" type="button" data-i="' + l.i + '">' +
+          '<span class="match-glyph">' + (row[1] || '') + '</span></button>';
+      }).join('');
+      var rightHtml = rights.map(function (r) {
+        return '<button class="match-item match-right" type="button" data-i="' + r.i + '">' + esc(T(r.label)) + '</button>';
+      }).join('');
+      stage.innerHTML =
+        '<p class="prova-prompt">' + T(q.prompt) + '</p>' +
+        '<div class="match-grid">' +
+          '<div class="match-col" id="matchLeft">' + leftHtml + '</div>' +
+          '<div class="match-col" id="matchRight">' + rightHtml + '</div>' +
+        '</div>' +
+        '<div class="builder-controls"><button class="btn" type="button" id="matchReset">' + (lang === 'pt' ? 'Recomeçar' : 'Reset') + '</button></div>' +
+        '<div class="prova-confirm-wrap"><button class="btn btn-primary" type="button" id="provaConfirm" disabled>' + (lang === 'pt' ? 'Conferir' : 'Check') + '</button></div>';
+
+      var selLeft = null, pairs = {}, confirm = el('provaConfirm');
+      function updateConfirm() { confirm.disabled = Object.keys(pairs).length !== q.pairs.length; }
+      stage.querySelectorAll('.match-left').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (btn.classList.contains('done')) return;
+          stage.querySelectorAll('.match-item.sel').forEach(function (x) { x.classList.remove('sel'); });
+          selLeft = btn; btn.classList.add('sel');
+        });
+      });
+      stage.querySelectorAll('.match-right').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (!selLeft || btn.classList.contains('done')) return;
+          var li = selLeft.dataset.i;
+          pairs[li] = btn.dataset.i;
+          var c = COLORS[Object.keys(pairs).length - 1] || 'a';
+          selLeft.classList.add('done', 'pair-' + c);
+          btn.classList.add('done', 'pair-' + c);
+          selLeft.classList.remove('sel'); selLeft = null;
+          updateConfirm();
+        });
+      });
+      el('matchReset').addEventListener('click', build);
+      confirm.addEventListener('click', function () {
+        var correct = true;
+        Object.keys(pairs).forEach(function (li) { if (pairs[li] !== li) correct = false; });
+        stage.querySelectorAll('button').forEach(function (b) { b.disabled = true; });
+        provaGraded(q, correct);
+      });
+    }
+    build();
+  }
+
+  function renderProvaResult() {
+    var st = provaState, total = st.queue.length;
+    var need = Math.ceil((PROVA.pass || 0.7) * total);
+    var passed = st.score >= need;
+    var pct = Math.round((st.score / total) * 100);
+    if (passed) markDone(PROVA.id);
+
+    var wrongLessons = st.wrong.filter(function (v, i, a) { return a.indexOf(v) === i; }).sort(function (a, b) { return a - b; });
+    var scoreLine = (lang === 'pt' ? 'Você acertou ' : 'You got ') + st.score + (lang === 'pt' ? ' de ' : ' of ') + total + ' (' + pct + '%).';
+
+    var body;
+    if (passed) {
+      body = '<p>' + esc(lang === 'pt'
+        ? 'Você concluiu o Módulo 1, os Primeiros passos nos hieróglifos. Seu Certificado de Leitura foi liberado na página inicial, na aba Hieróglifos.'
+        : 'You have completed Module 1, the First steps in hieroglyphs. Your Reading Certificate has been unlocked on the home page, in the Hieroglyphs tab.') + '</p>' +
+        '<div class="prova-result-actions">' +
+          '<a class="btn btn-primary" href="../index.html">' + (lang === 'pt' ? 'Ir ao certificado →' : 'Go to the certificate →') + '</a>' +
+          '<a class="btn" href="index.html">' + (lang === 'pt' ? 'Voltar ao índice' : 'Back to index') + '</a>' +
+        '</div>';
+    } else {
+      var revise = wrongLessons.length
+        ? '<div class="prova-revise-list"><span>' + (lang === 'pt' ? 'Vale revisar:' : 'Worth reviewing:') + '</span>' +
+          wrongLessons.map(function (n) {
+            var l = lessonByNum(n);
+            return l ? '<a class="prova-revise" href="licao.html?licao=' + l.id + '">' + (lang === 'pt' ? 'Lição ' : 'Lesson ') + n + '</a>' : '';
+          }).join('') + '</div>'
+        : '';
+      body = '<p>' + esc(lang === 'pt'
+        ? ('Faltou pouco: são necessários ' + need + ' acertos em ' + total + '. Reveja os pontos abaixo e refaça o teste, que sorteia novas questões.')
+        : ('Almost there: you need ' + need + ' correct out of ' + total + '. Review the points below and retake the test, which draws fresh questions.')) + '</p>' +
+        revise +
+        '<div class="prova-result-actions">' +
+          '<button class="btn btn-primary" id="provaRetry">' + (lang === 'pt' ? 'Refazer o teste →' : 'Retake the test →') + '</button>' +
+          '<a class="btn" href="index.html">' + (lang === 'pt' ? 'Voltar ao índice' : 'Back to index') + '</a>' +
+        '</div>';
+    }
+
+    el('provaBox').innerHTML =
+      '<div class="prova-result ' + (passed ? 'is-pass' : 'is-fail') + '">' +
+        '<span class="prova-result-glyph" aria-hidden="true">' + (passed ? '𓋹' : '𓂻') + '</span>' +
+        '<h2>' + (passed ? (lang === 'pt' ? 'Aprovado!' : 'Passed!') : (lang === 'pt' ? 'Ainda não' : 'Not yet')) + '</h2>' +
+        '<p class="prova-result-score">' + esc(scoreLine) + '</p>' +
+        body +
+      '</div>';
+    if (!passed) { var r = el('provaRetry'); if (r) r.addEventListener('click', function () { renderProva(); window.scrollTo(0, 0); }); }
+
+    if (window.Research) Research.trackLessonComplete({
+      lessonId: PROVA.id, lessonNum: LESSONS.length + 1, totalLessons: LESSONS.length,
+      quizScore: st.score, quizMax: total, lang: lang,
+    });
+    var box = el('provaBox'); if (box) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function renderProvaCard() {
+    if (!PROVA) return '';
+    var unlocked = provaUnlocked();
+    var done = isDone(PROVA.id);
+    var tag = unlocked ? 'a' : 'div';
+    var check = done ? '<span class="licao-item-check" aria-hidden="true">✓</span>' : '';
+    var badgeTxt = done ? (lang === 'pt' ? 'Aprovado' : 'Passed')
+      : (unlocked ? (lang === 'pt' ? 'Disponível' : 'Available') : (lang === 'pt' ? 'Conclua as lições' : 'Finish the lessons'));
+    var desc = lang === 'pt'
+      ? 'O teste dos primeiros passos: dez questões sorteadas, com consulta aberta. Ao passar, o Certificado de Leitura é liberado.'
+      : 'The first steps test: ten drawn questions, open book. Passing unlocks the Reading Certificate.';
+    return '<li>' +
+      '<' + tag + ' class="licao-item prova-item' + (unlocked ? '' : ' locked') + (done ? ' is-done' : '') + '"' + (unlocked ? ' href="prova.html"' : '') + '>' +
+        '<span class="licao-item-glyph" aria-hidden="true">' + PROVA.glyph + '</span>' +
+        '<div class="licao-item-body">' +
+          '<div class="licao-item-num">' + esc(T(PROVA.kicker)) + '</div>' +
+          '<div class="licao-item-title">' + T(PROVA.title) + check + '</div>' +
+          '<p class="licao-item-desc">' + esc(desc) + '</p>' +
+        '</div>' +
+        '<div class="licao-item-meta">' +
+          '<span class="licao-item-badge ' + (done ? 'badge-final' : 'badge-start') + '">' + esc(badgeTxt) + '</span>' +
+        '</div>' +
+      '</' + tag + '>' +
+    '</li>';
+  }
+
   /* ── página: índice ──────────────────────────────── */
   function renderIndex() {
     document.title = (lang === 'pt' ? 'Primeiros passos nos hieróglifos' : 'First steps in hieroglyphs') + ' · Musæum';
@@ -653,7 +1034,7 @@
       '</section>' +
       '<section class="licao-section">' +
         '<h2>' + lessonsTitle + '</h2>' +
-        '<ul class="licoes-lista">' + list + '</ul>' +
+        '<ul class="licoes-lista">' + list + renderProvaCard() + '</ul>' +
       '</section>' +
       '<section class="licao-section">' +
         '<h2>' + toolsTitle + '</h2>' +
@@ -675,6 +1056,8 @@
       var lesson = LESSONS.filter(function (l) { return l.id === id && l.ready; })[0];
       if (!lesson) { window.location.replace('index.html'); return; }
       renderLesson(lesson);
+    } else if (page === 'prova') {
+      renderProva();
     } else {
       renderIndex();
     }
