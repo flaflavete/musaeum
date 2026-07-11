@@ -275,7 +275,7 @@
         '<div class="licao-hero-num">' + esc(T(lesson.kicker)) + '</div>' +
         '<span class="licao-hero-glyph" aria-hidden="true">' + lesson.glyph + '</span>' +
         '<h1>' + T(lesson.title) + '</h1>' +
-        '<p>' + T(lesson.intro) + '</p>' +
+        (lesson.intro ? '<p>' + T(lesson.intro) + '</p>' : '') +
       '</div>' +
       sectionsHtml +
       quizHtml +

@@ -529,4 +529,127 @@ window.CURSO_LICOES = [
       },
     ],
   },
+
+  /* ── Módulo 2: ler frases ─────────────────────────────
+     Sai da palavra solta e chega à frase. Tom: didático mas enxuto, foco em
+     conhecimento (Allen/Gardiner/Faulkner). Cada lição puxa um gancho do M1
+     ou das histórias. Sinais sempre por id do Gardiner. */
+  {
+    id: 'determinativos',
+    num: 7,
+    module: 2,
+    glyph: '𓀁',
+    ready: true,
+    kicker: { pt: 'Lição 7 · Classificadores', en: 'Lesson 7 · Classifiers' },
+    title:  { pt: 'Determinativos: os classificadores', en: 'Determinatives: the classifiers' },
+    desc:   { pt: 'O sinal mudo no fim da palavra que dá a categoria, e como ele muda o sentido.', en: 'The silent sign at the end of a word that gives its category, and how it changes meaning.' },
+    dur:    { pt: '~15 min', en: '~15 min' }, type: { pt: 'Leitura', en: 'Reading' },
+    badge:  { pt: 'Módulo 2', en: 'Module 2' }, badgeClass: 'badge-new',
+    sections: [
+      {
+        title: { pt: 'O que o determinativo faz', en: 'What the determinative does' },
+        blocks: [
+          { kind: 'p', html: { pt: 'O determinativo não tem som. Ele fica no fim da palavra e a <strong>classifica</strong>: diz se ela é sobre uma pessoa, um deus, um movimento ou uma ideia. Como o egípcio escrevia só as consoantes, muitas palavras diferentes acabavam com o mesmo esqueleto de sinais. O determinativo é o que as separa.', en: 'The determinative has no sound. It sits at the end of a word and <strong>classifies</strong> it: it says whether the word is about a person, a god, a motion, or an idea. Since Egyptian wrote only the consonants, many different words ended up with the same skeleton of signs. The determinative is what tells them apart.' } },
+          { kind: 'callout', variant: 'gold', html: { pt: 'É uma dica de leitura poderosa. Se a palavra termina com as pernas 𓂻, é sobre movimento, mesmo que você não saiba qual verbo. Se termina com o rolo de papiro 𓏛, é uma ideia abstrata. Você lê a categoria antes de ler a palavra.', en: 'It is a powerful reading clue. If a word ends with the legs 𓂻, it is about motion, even if you do not know which verb. If it ends with the papyrus scroll 𓏛, it is an abstract idea. You read the category before you read the word.' } },
+        ],
+      },
+      {
+        title: { pt: 'Os classificadores mais comuns', en: 'The most common classifiers' },
+        blocks: [
+          { kind: 'p', html: { pt: 'Estes estão entre os determinativos mais frequentes. Repare no padrão: quase todo determinativo é o desenho concreto da própria categoria. Clique para ver o nome do sinal e a classificação no Gardiner.', en: 'These are among the most frequent determinatives. Notice the pattern: almost every determinative is the concrete picture of its own category. Click to see the name of the sign and its classification in Gardiner.' } },
+          { kind: 'siggrid',
+            ids: ['A1', 'B1', 'A40', 'D54', 'A2', 'Y1'],
+            tr: { A1: '', B1: '', A40: '', D54: '', A2: '', Y1: '' },
+            hint: { pt: 'Nenhum destes tem som próprio: cada um só classifica a palavra que fecha.', en: 'None of these has a sound of its own: each only classifies the word it closes.' } },
+          { kind: 'callout', variant: 'azul', html: { pt: 'O homem sentado 𓀀 classifica palavras sobre homens; a mulher 𓁐, sobre mulheres; o deus sentado 𓀭, sobre divindades. As pernas 𓂻 marcam movimento; o homem com a mão na boca 𓀁, o que se faz com a boca ou a mente (comer, falar, pensar); o rolo 𓏛, o que é abstrato.', en: 'The seated man 𓀀 classifies words about men; the woman 𓁐, about women; the seated god 𓀭, about deities. The legs 𓂻 mark motion; the man with hand to mouth 𓀁, what is done with the mouth or mind (eating, speaking, thinking); the scroll 𓏛, what is abstract.' } },
+        ],
+      },
+      {
+        title: { pt: 'O mesmo esqueleto, sentidos diferentes', en: 'The same skeleton, different meanings' },
+        blocks: [
+          { kind: 'p', html: { pt: 'Veja o poder do determinativo num caso real. Sozinho, o sinal da casa se lê <strong>pr</strong> e significa "casa", algo concreto:', en: 'See the power of the determinative in a real case. On its own, the house sign reads <strong>pr</strong> and means "house", something concrete:' } },
+          { kind: 'word', label: { pt: 'A palavra pr', en: 'The word pr' },
+            signs: [
+              { glyph: '𓉐', id: 'O1', phon: 'pr', type: 'bi', typeLabel: { pt: 'logograma', en: 'logogram' }, tip: { pt: '𓉐 pr, a casa · logograma de "casa"', en: '𓉐 pr, the house · logogram of "house"' } },
+            ],
+            result: '𓉐',
+            note: { pt: 'Uma casa, um lugar. Foi assim que você viu na Lição 3.', en: 'A house, a place. This is how you met it in Lesson 3.' } },
+          { kind: 'p', html: { pt: 'Agora acrescente as pernas caminhando ao fim de uma palavra com o mesmo esqueleto sonoro. Ela deixa de ser um lugar e vira <strong>movimento</strong>:', en: 'Now add the walking legs to the end of a word with the same sound skeleton. It stops being a place and becomes <strong>motion</strong>:' } },
+          { kind: 'word', label: { pt: 'A palavra prt', en: 'The word prt' },
+            signs: [
+              { glyph: '𓉐', id: 'O1', phon: 'pr', type: 'bi', typeLabel: { pt: 'bilítero', en: 'biliteral' }, tip: { pt: '𓉐 pr · o esqueleto sonoro', en: '𓉐 pr · the sound skeleton' } },
+              { glyph: '𓂋', id: 'D21', phon: 'r', type: 'uni', typeLabel: { pt: 'unilítero', en: 'uniliteral' }, tip: { pt: '𓂋 r · complemento de pr', en: '𓂋 r · complement of pr' } },
+              { glyph: '𓏏', id: 'X1', phon: 't', type: 'uni', typeLabel: { pt: 'unilítero', en: 'uniliteral' }, tip: { pt: '𓏏 t · o t final de prt', en: '𓏏 t · the final t of prt' } },
+              { glyph: '𓂻', id: 'D54', phon: '', type: 'det', typeLabel: { pt: 'determinativo', en: 'determinative' }, tip: { pt: '𓂻 pernas caminhando · determinativo de movimento (sem som)', en: '𓂻 walking legs · determinative of motion (no sound)' } },
+            ],
+            result: '𓉐𓂋𓏏𓂻',
+            note: { pt: 'Lê-se <strong>prt</strong> (algo como "peret"): "o sair, a saída". As pernas 𓂻 não têm som, só dizem "isto é movimento". É literalmente o <em>prt</em> de <em>prt-ḫrw</em>, a "saída da voz", que fecha a fórmula de oferenda mais adiante. (O verbo puro seria <em>prỉ</em>, "peri", sem o t.)', en: 'It reads <strong>prt</strong> (roughly "peret"): "the going forth". The legs 𓂻 have no sound; they only say "this is motion". It is literally the <em>prt</em> in <em>prt-ḫrw</em>, the "coming forth of the voice", that closes the offering formula later on. (The bare verb would be <em>prỉ</em>, "peri", without the t.)' } },
+          { kind: 'callout', variant: 'azul', html: { pt: 'Guarde a regra: quando a palavra tem determinativo, ele é a <strong>última</strong> coisa escrita e a <strong>primeira</strong> dica que você lê. Chegou ao fim da palavra, olhe o classificador e você já sabe do que ela trata.', en: 'Keep the rule: when a word has a determinative, it is the <strong>last</strong> thing written and the <strong>first</strong> clue you read. Reach the end of a word, look at the classifier, and you already know what it is about.' } },
+          { kind: 'callout', variant: 'gold', html: { pt: 'Mas nem toda palavra tem determinativo. Preposições e outras palavras curtas nunca levam; uma palavra escrita por logograma, como o próprio <strong>pr</strong> "casa" aqui em cima, dispensa; e até verbos comuns, como <em>ḏd</em> "falar", aparecem mais vezes sem o classificador do que com ele. Quando há, é a sua dica; quando não há, você lê pelos fonogramas. (Allen, <em>Middle Egyptian</em>.)', en: 'But not every word has a determinative. Prepositions and other small words never take one; a word written as a logogram, such as <strong>pr</strong> "house" above, needs none; and even common verbs, like <em>ḏd</em> "to speak", appear more often without the classifier than with it. When there is one, it is your clue; when there is not, you read from the phonograms. (Allen, <em>Middle Egyptian</em>.)' } },
+        ],
+      },
+    ],
+    quiz: [
+      {
+        glyph: '𓂻',
+        question: { pt: 'Uma palavra que você não conhece termina com as pernas caminhando 𓂻. O que dá para concluir?', en: 'A word you do not know ends with the walking legs 𓂻. What can you conclude?' },
+        options: [
+          { label: { pt: 'Que ela tem a ver com movimento', en: 'That it has to do with motion' }, correct: true },
+          { label: { pt: 'Que ela termina no som "pernas"', en: 'That it ends in the sound "legs"' }, correct: false },
+          { label: { pt: 'Que é o nome de um deus', en: 'That it is the name of a god' }, correct: false },
+          { label: { pt: 'Que está no plural', en: 'That it is plural' }, correct: false },
+        ],
+        feedbackOk: { pt: 'Isso. As pernas são o determinativo de movimento: sem som, só classificam a palavra como algo de ir e vir.', en: 'Right. The legs are the determinative of motion: no sound, they only classify the word as something of coming and going.' },
+        feedbackErr: { pt: 'As pernas 𓂻 são um determinativo de movimento. Não têm som; só dizem que a palavra é sobre ir e vir.', en: 'The legs 𓂻 are a determinative of motion. They have no sound; they only say the word is about coming and going.' },
+      },
+      {
+        glyph: '𓏛',
+        question: { pt: 'O rolo de papiro 𓏛 no fim de uma palavra costuma marcar...', en: 'The papyrus scroll 𓏛 at the end of a word usually marks...' },
+        options: [
+          { label: { pt: 'Uma ideia abstrata', en: 'An abstract idea' }, correct: true },
+          { label: { pt: 'Uma pessoa', en: 'A person' }, correct: false },
+          { label: { pt: 'Um movimento', en: 'A motion' }, correct: false },
+          { label: { pt: 'Um número', en: 'A number' }, correct: false },
+        ],
+        feedbackOk: { pt: 'Exato. O rolo classifica o que é abstrato: escrita, conhecimento, ideias.', en: 'Exactly. The scroll classifies what is abstract: writing, knowledge, ideas.' },
+        feedbackErr: { pt: 'O rolo de papiro 𓏛 marca o abstrato: ideias, escrita, conhecimento.', en: 'The papyrus scroll 𓏛 marks the abstract: ideas, writing, knowledge.' },
+      },
+      {
+        glyph: '𓉐',
+        question: { pt: 'Sozinho, 𓉐 é pr, "casa". Em 𓉐𓂋𓏏𓂻 (prt, "sair"), o que fazem as pernas 𓂻 no fim?', en: 'On its own, 𓉐 is pr, "house". In 𓉐𓂋𓏏𓂻 (prt, "to go out"), what do the legs 𓂻 do at the end?' },
+        options: [
+          { label: { pt: 'Classificam a palavra como movimento, sem som', en: 'Classify the word as motion, with no sound' }, correct: true },
+          { label: { pt: 'Acrescentam o som "b" à palavra', en: 'Add the sound "b" to the word' }, correct: false },
+          { label: { pt: 'Transformam a casa num deus', en: 'Turn the house into a god' }, correct: false },
+          { label: { pt: 'Marcam que é um nome de rei', en: 'Mark it as a king\'s name' }, correct: false },
+        ],
+        feedbackOk: { pt: 'Isso. O mesmo esqueleto vira movimento por causa do determinativo. As pernas não têm som; só classificam.', en: 'Right. The same skeleton becomes motion because of the determinative. The legs have no sound; they only classify.' },
+        feedbackErr: { pt: 'As pernas são o determinativo de movimento: sem som, só dizem que prt é sobre ir e vir.', en: 'The legs are the determinative of motion: no sound, they only say prt is about coming and going.' },
+      },
+      {
+        glyph: '𓀁',
+        question: { pt: 'Qual é a característica que todo determinativo tem em comum?', en: 'What is the feature every determinative shares?' },
+        options: [
+          { label: { pt: 'Não tem som; só classifica a palavra', en: 'It has no sound; it only classifies the word' }, correct: true },
+          { label: { pt: 'Vale sempre duas consoantes', en: 'It is always worth two consonants' }, correct: false },
+          { label: { pt: 'Aparece sempre no começo da palavra', en: 'It always appears at the start of the word' }, correct: false },
+          { label: { pt: 'É sempre o nome de um deus', en: 'It is always the name of a god' }, correct: false },
+        ],
+        feedbackOk: { pt: 'Exato. Determinativo é o sinal mudo no fim da palavra que só dá a categoria. Essa é a definição.', en: 'Exactly. A determinative is the silent sign at the end of a word that only gives the category. That is the definition.' },
+        feedbackErr: { pt: 'O que define um determinativo é não ter som: ele fica no fim e só classifica a palavra.', en: 'What defines a determinative is having no sound: it sits at the end and only classifies the word.' },
+      },
+      {
+        glyph: '𓉐',
+        question: { pt: 'Toda palavra egípcia termina com um determinativo?', en: 'Does every Egyptian word end with a determinative?' },
+        options: [
+          { label: { pt: 'Não; muitas dispensam, como as preposições e as palavras escritas por logograma (pr "casa")', en: 'No; many do without, such as prepositions and words written as logograms (pr "house")' }, correct: true },
+          { label: { pt: 'Sim, há sempre um no fim da palavra', en: 'Yes, there is always one at the end of the word' }, correct: false },
+          { label: { pt: 'Sim, menos nos nomes de rei', en: 'Yes, except in kings\' names' }, correct: false },
+          { label: { pt: 'Só as palavras longas têm determinativo', en: 'Only long words have a determinative' }, correct: false },
+        ],
+        feedbackOk: { pt: 'Isso. O determinativo não é obrigatório: preposições nunca levam, um logograma como pr "casa" dispensa, e até verbos comuns como ḏd "falar" costumam vir sem ele. (Allen, Middle Egyptian.)', en: 'Right. The determinative is not obligatory: prepositions never take one, a logogram like pr "house" needs none, and even common verbs like ḏd "to speak" usually appear without it. (Allen, Middle Egyptian.)' },
+        feedbackErr: { pt: 'Nem toda palavra tem determinativo: preposições e logogramas (pr "casa") dispensam, e verbos comuns como ḏd "falar" aparecem mais sem ele. (Allen, Middle Egyptian.)', en: 'Not every word has a determinative: prepositions and logograms (pr "house") need none, and common verbs like ḏd "to speak" appear more often without it. (Allen, Middle Egyptian.)' },
+      },
+    ],
+  },
 ];
