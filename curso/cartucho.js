@@ -17,6 +17,28 @@
   function esc(s) { return (s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
   function el(id) { return document.getElementById(id); }
 
+  /* ── fonte de hieróglifos à prova de tofu ──────────────
+     A página usa a Noto Sans Egyptian Hieroglyphs do Google Fonts, como o resto
+     do site. Se ela não carregar (offline, rede bloqueada), os glifos virariam
+     quadradinhos (▯). Como rede de segurança, o próprio repositório traz a fonte
+     em gardiner/, declarada em curso.css sob a família 'Noto Egyptian Fallback'
+     e emendada no fim das pilhas de fonte dos glifos. Na tela o navegador só a
+     baixa quando a do Google falta (custo zero no caso normal). Aqui só
+     garantimos que uma delas esteja carregada antes de desenhar o PNG — o canvas
+     não busca fonte sozinho. (A transliteração usa só o aleph ꜣ como caractere
+     especial, já coberto pelo subset da Gentium Plus na página.) */
+  var GLYPH_STACK = "'Noto Sans Egyptian Hieroglyphs', 'Noto Egyptian Fallback'";
+  function ensureGlyphFont(text, cb) {
+    if (!document.fonts || !document.fonts.load) { cb(); return; }
+    var google = "96px 'Noto Sans Egyptian Hieroglyphs'";
+    var local  = "96px 'Noto Egyptian Fallback'";
+    function useLocal() { document.fonts.load(local, text).then(cb).catch(cb); }
+    document.fonts.load(google, text).then(function () {
+      try { if (document.fonts.check(google, text)) { cb(); return; } } catch (e) { cb(); return; }
+      useLocal();
+    }).catch(useLocal);
+  }
+
   /* ── mapa letra latina → sinal unilítero ──────────────
      Cada entrada: glyph (hieróglifo), tr (transliteração egiptológica),
      code (Gardiner), name {pt,en} (o desenho) e, quando a correspondência é uma
@@ -236,7 +258,7 @@
 
       // glifos
       ctx.fillStyle = GOLD_LT;
-      ctx.font = GLYPH + "px 'Noto Sans Egyptian Hieroglyphs'";
+      ctx.font = GLYPH + "px " + GLYPH_STACK;
       ctx.textBaseline = 'middle'; ctx.textAlign = 'center';
       var cy = ovY + ovH / 2 + 4;
       var startX = ovX + (ovW - innerW) / 2;
@@ -262,15 +284,14 @@
       }, 'image/png');
     }
 
-    // garante que a fonte de hieróglifos esteja pronta antes de pintar
-    if (document.fonts && document.fonts.load) {
-      Promise.all([
-        document.fonts.load(GLYPH + "px 'Noto Sans Egyptian Hieroglyphs'"),
-        document.fonts.load("22px 'Cinzel'"),
-      ]).then(paint).catch(paint);
-    } else {
-      paint();
+    // garante a fonte de hieróglifos (com fallback local) e a Cinzel antes de pintar,
+    // para o PNG nunca sair com tofu no lugar dos glifos
+    var glyphStr = signs.map(function (p) { return p.glyph; }).join('');
+    function withCinzel(next) {
+      if (document.fonts && document.fonts.load) document.fonts.load("22px 'Cinzel'").then(next).catch(next);
+      else next();
     }
+    ensureGlyphFont(glyphStr, function () { withCinzel(paint); });
   }
   function roundRect(ctx, x, y, w, h, r) {
     ctx.beginPath();
