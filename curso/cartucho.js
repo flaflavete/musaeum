@@ -155,7 +155,6 @@
         '</div>' +
 
         '<div class="cart-stage" id="cartStage" aria-live="polite"></div>' +
-        '<div class="cart-translit" id="cartTranslit" aria-hidden="true"></div>' +
 
         '<div class="cart-actions">' +
           '<button class="btn btn-primary" id="cartDownload" disabled>' + T('Baixar imagem', 'Download image') + '</button>' +
@@ -164,8 +163,8 @@
         '<div class="cart-breakdown" id="cartBreakdown"></div>' +
 
         '<div class="callout cart-note">' +
-          T('<strong>Uma brincadeira séria.</strong> Os egípcios não escreviam vogais e não grafavam nomes estrangeiros letra a letra. Esta é uma convenção moderna: emprestamos os sinais unilíteros (o "alfabeto" de 24 consoantes) para aproximar cada letra do nosso nome. Divirta-se — e, para a escrita de verdade, siga para as lições.',
-              '<strong>Serious fun.</strong> The Egyptians did not write vowels and did not spell foreign names letter by letter. This is a modern convention: we borrow the uniliteral signs (the 24-consonant "alphabet") to approximate each letter of our name. Enjoy — and for the real writing, head to the lessons.') +
+          T('Emprestamos os sinais unilíteros (o "alfabeto" de 24 consoantes) para aproximar cada letra do nosso nome. Divirta-se e, para a escrita de verdade, siga para as lições.',
+              'We borrow the uniliteral signs (the 24-consonant "alphabet") to approximate each letter of our name. Have fun, and for the real writing, head to the lessons.') +
         '</div>' +
       '</div>';
 
@@ -216,10 +215,8 @@
     var raw = el('cartName') ? el('cartName').value : '';
     lastPieces = transcribe(raw);
     renderCartouche(lastPieces);
-    var signs = lastPieces.filter(function (p) { return !p.space; });
-    var tr = signs.map(function (p) { return p.tr; }).join('');
-    el('cartTranslit').textContent = tr;
     renderBreakdown(lastPieces);
+    var signs = lastPieces.filter(function (p) { return !p.space; });
     var dl = el('cartDownload');
     if (dl) dl.disabled = signs.length === 0;
   }
