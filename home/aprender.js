@@ -10,6 +10,13 @@
 // já vivem dentro do curso e da própria lista de Gardiner.
 const APRENDER_TOOLS = [
   {
+    glyph: '𓊹',
+    emoji: false,
+    title: { pt: 'Seu nome no cartucho', en: 'Your name in a cartouche' },
+    desc:  { pt: 'Escreva seu nome em hieróglifos dentro de um cartucho, como um faraó.', en: 'Write your name in hieroglyphs inside a cartouche, like a pharaoh.' },
+    href:  'curso/cartucho.html',
+  },
+  {
     glyph: '𓄿',
     emoji: false,
     title: { pt: 'Baralho de sinais', en: 'Sign deck' },
