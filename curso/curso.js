@@ -1005,7 +1005,7 @@
     var tools = '' +
       '<a class="ferr-card" href="cartucho.html">' +
         '<span class="ferr-glyph" aria-hidden="true">𓊹</span>' +
-        '<div class="ferr-info"><strong>' + (lang === 'pt' ? 'Seu nome no cartucho' : 'Your name in a cartouche') + '</strong>' +
+        '<div class="ferr-info"><strong>' + (lang === 'pt' ? 'Você, faraó' : 'You, pharaoh') + '</strong>' +
         '<span>' + (lang === 'pt' ? 'Escreva seu nome em hieróglifos, como um faraó' : 'Write your name in hieroglyphs, like a pharaoh') + '</span></div>' +
       '</a>' +
       '<a class="ferr-card" href="baralho.html">' +

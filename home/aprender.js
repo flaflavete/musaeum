@@ -12,7 +12,7 @@ const APRENDER_TOOLS = [
   {
     glyph: '𓊹',
     emoji: false,
-    title: { pt: 'Seu nome no cartucho', en: 'Your name in a cartouche' },
+    title: { pt: 'Você, faraó', en: 'You, pharaoh' },
     desc:  { pt: 'Escreva seu nome em hieróglifos dentro de um cartucho, como um faraó.', en: 'Write your name in hieroglyphs inside a cartouche, like a pharaoh.' },
     href:  'curso/cartucho.html',
   },
