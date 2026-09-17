@@ -232,7 +232,7 @@
     var GLYPH = 96, GAP = 8, PAD = 70, TIE = 22;
     var innerW = signs.length * GLYPH + Math.max(0, signs.length - 1) * GAP;
     var W = (innerW + PAD * 2 + TIE) ;
-    var H = 300;
+    var H = 320;
     var canvas = document.createElement('canvas');
     canvas.width = W * scale; canvas.height = H * scale;
     var ctx = canvas.getContext('2d');
@@ -264,11 +264,15 @@
         ctx.fillText(p.glyph, cx, cy);
       });
 
-      // assinatura discreta
+      // assinatura + endereço do site
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
       ctx.fillStyle = GOLD;
       ctx.font = "22px 'Cinzel', serif";
-      ctx.textAlign = 'center';
-      ctx.fillText('Musæum', W / 2, H - 26);
+      ctx.fillText('Musæum', W / 2, H - 42);
+      ctx.fillStyle = GOLD_LT;
+      ctx.font = "15px 'EB Garamond', serif";
+      ctx.fillText('www.musaeum.app', W / 2, H - 18);
 
       canvas.toBlob(function (blob) {
         if (!blob) return;
