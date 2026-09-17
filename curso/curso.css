@@ -765,7 +765,7 @@ body {
 
 .deck-intro { text-align: center; margin-bottom: 28px; }
 .deck-intro-glyph {
-  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-family: 'Noto Sans Egyptian Hieroglyphs', 'Noto Egyptian Fallback', sans-serif;
   font-size: 48px; line-height: 1; color: var(--gold); display: block; margin-bottom: 14px;
 }
 .deck-intro h1 {
@@ -1085,6 +1085,15 @@ body {
 }
 
 /* ── Escreva seu nome no cartucho (cartucho.html) ──── */
+/* Rede de segurança contra tofu: a fonte de hieróglifos vem do Google Fonts,
+   mas o repositório também a traz em gardiner/. Declarada aqui sob nome próprio
+   e emendada no fim das pilhas dos glifos desta página, o navegador só a baixa
+   quando a do Google falta — sem custo no caso normal. */
+@font-face {
+  font-family: 'Noto Egyptian Fallback';
+  src: url('../gardiner/NotoSansEgyptianHieroglyphs-Regular.ttf') format('truetype');
+  font-display: swap;
+}
 .cart-wrap { max-width: 700px; margin: 0 auto; }
 
 .cart-field { max-width: 420px; margin: 0 auto 26px; text-align: center; }
@@ -1125,7 +1134,7 @@ body {
   gap: 6px; flex-wrap: nowrap;
 }
 .cart-glyph {
-  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-family: 'Noto Sans Egyptian Hieroglyphs', 'Noto Egyptian Fallback', sans-serif;
   font-size: 56px; line-height: 1; color: var(--gold);
 }
 .cart-space { display: inline-block; width: 22px; }
@@ -1164,7 +1173,7 @@ body {
 }
 .cart-key-arrow { color: var(--papyrus-dim); flex-shrink: 0; }
 .cart-key-glyph {
-  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-family: 'Noto Sans Egyptian Hieroglyphs', 'Noto Egyptian Fallback', sans-serif;
   font-size: 34px; line-height: 1; color: var(--gold); flex-shrink: 0;
 }
 .cart-key-body { display: flex; flex-direction: column; min-width: 0; }
