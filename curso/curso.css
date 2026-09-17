@@ -1115,7 +1115,7 @@ body {
 /* palco do cartucho */
 .cart-stage {
   display: flex; justify-content: center;
-  overflow-x: auto; padding: 8px 4px 4px; margin-bottom: 4px;
+  overflow-x: auto; padding: 8px 4px 4px; margin-bottom: 26px;
 }
 .cart-piece {
   position: relative; display: inline-flex; align-items: center;
@@ -1141,12 +1141,6 @@ body {
 .cart-placeholder {
   font-family: 'EB Garamond', serif; font-style: italic; font-size: 16px;
   color: var(--papyrus-dim); padding: 0 8px;
-}
-
-.cart-translit {
-  text-align: center; min-height: 22px; margin-bottom: 18px;
-  font-family: 'EB Garamond', 'Gentium Plus', serif; font-style: italic;
-  font-size: 20px; color: var(--terracotta-lt); letter-spacing: 0.04em;
 }
 
 .cart-actions { display: flex; justify-content: center; margin-bottom: 30px; }
