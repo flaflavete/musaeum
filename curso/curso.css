@@ -1084,6 +1084,106 @@ body {
   .prova-result-actions { flex-direction: column; }
 }
 
+/* ── Escreva seu nome no cartucho (cartucho.html) ──── */
+.cart-wrap { max-width: 700px; margin: 0 auto; }
+
+.cart-field { max-width: 420px; margin: 0 auto 26px; text-align: center; }
+.cart-label {
+  display: block; font-family: 'EB Garamond', serif; font-size: 14px;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 8px;
+}
+.cart-input {
+  width: 100%; box-sizing: border-box; text-align: center;
+  font-family: 'EB Garamond', 'Noto Serif', serif; font-size: 24px;
+  color: var(--papyrus); background: var(--ink-elevated);
+  border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px;
+  transition: border-color 0.12s;
+}
+.cart-input:focus { outline: none; border-color: var(--gold); }
+.cart-input::placeholder { color: var(--papyrus-dim); font-style: italic; }
+
+/* palco do cartucho */
+.cart-stage {
+  display: flex; justify-content: center;
+  overflow-x: auto; padding: 8px 4px 4px; margin-bottom: 4px;
+}
+.cart-piece {
+  position: relative; display: inline-flex; align-items: center;
+  min-height: 96px; padding: 12px 30px; margin-left: 12px;
+  border: 4px solid var(--gold); border-radius: 60px;
+  background: rgba(201, 166, 70, 0.04);
+}
+.cart-piece.is-empty { border-style: dashed; border-color: var(--border); }
+.cart-tie {
+  position: absolute; left: -12px; top: 50%; transform: translateY(-50%);
+  width: 4px; height: 66%; background: var(--gold); border-radius: 2px;
+}
+.cart-piece.is-empty .cart-tie { background: var(--border); }
+.cart-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; flex-wrap: nowrap;
+}
+.cart-glyph {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-size: 56px; line-height: 1; color: var(--gold);
+}
+.cart-space { display: inline-block; width: 22px; }
+.cart-placeholder {
+  font-family: 'EB Garamond', serif; font-style: italic; font-size: 16px;
+  color: var(--papyrus-dim); padding: 0 8px;
+}
+
+.cart-translit {
+  text-align: center; min-height: 22px; margin-bottom: 18px;
+  font-family: 'EB Garamond', 'Gentium Plus', serif; font-style: italic;
+  font-size: 20px; color: var(--terracotta-lt); letter-spacing: 0.04em;
+}
+
+.cart-actions { display: flex; justify-content: center; margin-bottom: 30px; }
+.cart-actions .btn-primary { min-width: 180px; }
+
+/* detalhamento sinal por sinal */
+.cart-breakdown { margin-bottom: 30px; }
+.cart-breakdown-title {
+  font-family: 'Cinzel', serif; font-size: 18px; color: var(--gold);
+  text-align: center; margin: 0 0 16px; font-weight: 500;
+}
+.cart-key-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 10px;
+}
+.cart-key {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--ink-elevated); border: 1px solid var(--border);
+  border-radius: 12px; padding: 10px 12px;
+}
+.cart-key-letter {
+  font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700;
+  color: var(--papyrus); width: 22px; text-align: center; flex-shrink: 0;
+}
+.cart-key-arrow { color: var(--papyrus-dim); flex-shrink: 0; }
+.cart-key-glyph {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
+  font-size: 34px; line-height: 1; color: var(--gold); flex-shrink: 0;
+}
+.cart-key-body { display: flex; flex-direction: column; min-width: 0; }
+.cart-key-tr {
+  font-family: 'EB Garamond', 'Gentium Plus', serif; font-style: italic;
+  font-size: 16px; color: var(--terracotta-lt);
+}
+.cart-key-code { font-style: normal; font-size: 13px; color: var(--papyrus-dim); }
+.cart-key-name { font-size: 13px; color: var(--papyrus-soft); }
+.cart-key-note { font-size: 12px; color: var(--papyrus-dim); line-height: 1.4; margin-top: 2px; }
+
+.cart-note { margin-top: 8px; }
+
+@media (max-width: 600px) {
+  .cart-glyph { font-size: 46px; }
+  .cart-piece { padding: 10px 20px; }
+  .cart-key-grid { grid-template-columns: 1fr; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
 }

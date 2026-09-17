@@ -1003,6 +1003,11 @@
     var progLabel = lang === 'pt' ? 'Progresso' : 'Progress';
 
     var tools = '' +
+      '<a class="ferr-card" href="cartucho.html">' +
+        '<span class="ferr-glyph" aria-hidden="true">𓊹</span>' +
+        '<div class="ferr-info"><strong>' + (lang === 'pt' ? 'Seu nome no cartucho' : 'Your name in a cartouche') + '</strong>' +
+        '<span>' + (lang === 'pt' ? 'Escreva seu nome em hieróglifos, como um faraó' : 'Write your name in hieroglyphs, like a pharaoh') + '</span></div>' +
+      '</a>' +
       '<a class="ferr-card" href="baralho.html">' +
         '<span class="ferr-glyph" aria-hidden="true">𓄿</span>' +
         '<div class="ferr-info"><strong>' + (lang === 'pt' ? 'Baralho de sinais' : 'Sign deck') + '</strong>' +

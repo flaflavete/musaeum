@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escreva seu nome no cartucho · Musæum</title>
+<meta name="theme-color" content="#1b2a3d">
+<meta name="description" content="Escreva seu nome em hieróglifos dentro de um cartucho real, letra por letra, usando o alfabeto dos sinais unilíteros egípcios.">
+<script>(function(){ var t = localStorage.getItem('musaeum-theme'); if (t) document.documentElement.setAttribute('data-theme', t); })();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<!-- Subset da Gentium Plus só com aleph/ayin egiptológicos (Ꜣ ꜣ Ꜥ ꜥ, U+A722-A725): o iOS não tem esses glifos e mostraria tofu na transliteração. -->
+<link href="https://fonts.googleapis.com/css2?family=Gentium+Plus&text=%EA%9C%A2%EA%9C%A3%EA%9C%A4%EA%9C%A5&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="curso.css">
+</head>
+<body data-page="cartucho">
+  <header class="licao-header" id="cartHeader"></header>
+  <main class="licao-content" id="cartContent"></main>
+  <script src="../gardiner/gardiner_data.js"></script>
+  <script src="../gardiner/gardiner_data_en.js"></script>
+  <script src="cartucho.js"></script>
+</body>
+</html>
