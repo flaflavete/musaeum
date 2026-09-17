@@ -29,11 +29,12 @@
     c: { glyph: '𓎡', tr: 'k', code: 'V31', name: { pt: 'cesto com alça', en: 'basket with handle' },
          note: { pt: 'o C não existe: aqui vale como K (som duro).', en: 'there is no C: here it takes the K (hard) sound.' } },
     d: { glyph: '𓂧', tr: 'd', code: 'D46', name: { pt: 'mão', en: 'hand' } },
-    e: { glyph: '𓇋', tr: 'ỉ', code: 'M17', name: { pt: 'junco florido', en: 'flowering reed' },
-         note: { pt: 'vogal aproximada pelo junco (semivogal ỉ).', en: 'vowel approximated by the reed (the semivowel ỉ).' } },
+    e: { glyph: '𓇌', tr: 'y', code: 'M17A', name: { pt: 'dois juncos', en: 'two reed leaves' },
+         note: { pt: 'vogal aproximada pelos dois juncos (semivogal y).', en: 'vowel approximated by the two reeds (the semivowel y).' } },
     f: { glyph: '𓆑', tr: 'f', code: 'I9',  name: { pt: 'víbora cornuda', en: 'horned viper' } },
     g: { glyph: '𓎼', tr: 'g', code: 'W11', name: { pt: 'suporte de pote', en: 'pot stand' } },
-    h: { glyph: '𓉔', tr: 'h', code: 'O4',  name: { pt: 'abrigo de junco', en: 'reed shelter' } },
+    h: { glyph: '𓎛', tr: 'ḥ', code: 'V28', name: { pt: 'pavio de linho torcido', en: 'wick of twisted flax' },
+         note: { pt: 'o H é aproximado por ḥ, um agá enfático.', en: 'H is approximated by ḥ, an emphatic h.' } },
     i: { glyph: '𓇋', tr: 'ỉ', code: 'M17', name: { pt: 'junco florido', en: 'flowering reed' } },
     j: { glyph: '𓆓', tr: 'ḏ', code: 'I10', name: { pt: 'cobra', en: 'cobra' },
          note: { pt: 'o J segue o som ḏ, próximo de "dj".', en: 'J follows the ḏ sound, close to "dj".' } },
@@ -42,8 +43,8 @@
          note: { pt: 'o egípcio não tinha um L próprio; o leão é a convenção.', en: 'Egyptian had no dedicated L; the lion is the convention.' } },
     m: { glyph: '𓅓', tr: 'm', code: 'G17', name: { pt: 'coruja', en: 'owl' } },
     n: { glyph: '𓈖', tr: 'n', code: 'N35', name: { pt: 'ondulação de água', en: 'water ripple' } },
-    o: { glyph: '𓅱', tr: 'w', code: 'G43', name: { pt: 'codorniz jovem', en: 'quail chick' },
-         note: { pt: 'vogal aproximada pela codorniz (semivogal w).', en: 'vowel approximated by the quail chick (the semivowel w).' } },
+    o: { glyph: '𓍯', tr: 'wꜣ', code: 'V4', name: { pt: 'laço', en: 'lasso' },
+         note: { pt: 'vogal aproximada pelo laço (semivogal wꜣ).', en: 'vowel approximated by the lasso (the semivowel wꜣ).' } },
     p: { glyph: '𓊪', tr: 'p', code: 'Q3',  name: { pt: 'banquinho', en: 'stool' } },
     q: { glyph: '𓈎', tr: 'ḳ', code: 'N29', name: { pt: 'encosta arenosa', en: 'hill slope' } },
     r: { glyph: '𓂋', tr: 'r', code: 'D21', name: { pt: 'boca', en: 'mouth' } },
@@ -101,7 +102,7 @@
     var langAria = pt ? 'Switch to English' : 'Mudar para português';
     el('cartHeader').innerHTML =
       '<a class="licao-back" href="index.html">' + backArrow() + ' ' + T('Índice', 'Index') + '</a>' +
-      '<span class="licao-header-title">' + T('Seu nome no cartucho', 'Your name in a cartouche') + '</span>' +
+      '<span class="licao-header-title">' + T('Você, faraó', 'You, pharaoh') + '</span>' +
       '<div class="header-actions">' +
         '<button class="icon-btn" id="langToggle" aria-label="' + esc(langAria) + '">' + langLabel + '</button>' +
         '<button class="icon-btn" id="themeToggle" aria-label="' + esc(T('Alternar tema', 'Toggle theme')) + '" title="' + esc(T('Tema', 'Theme')) + '">◐</button>' +
@@ -110,7 +111,7 @@
 
   /* ── página ─────────────────────────────────────────── */
   function renderPage() {
-    document.title = T('Escreva seu nome no cartucho', 'Write your name in a cartouche') + ' · Musæum';
+    document.title = T('Você, faraó', 'You, pharaoh') + ' · Musæum';
     document.documentElement.lang = pt ? 'pt-BR' : 'en';
     renderHeader();
 
@@ -120,7 +121,7 @@
       '<div class="cart-wrap">' +
         '<div class="deck-intro">' +
           '<span class="deck-intro-glyph" aria-hidden="true">𓊹</span>' +
-          '<h1>' + T('Escreva seu nome no cartucho', 'Write your name in a cartouche') + '</h1>' +
+          '<h1>' + T('Você, faraó.', 'You, pharaoh.') + '</h1>' +
           '<p>' + T('O cartucho era o laço de corda que envolvia o nome do rei, protegendo-o. Digite seu nome e veja-o em hieróglifos, como um faraó.',
                     'The cartouche was the loop of rope that enclosed the king\'s name, protecting it. Type your name and see it in hieroglyphs, like a pharaoh.') + '</p>' +
         '</div>' +
